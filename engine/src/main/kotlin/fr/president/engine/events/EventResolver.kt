@@ -91,6 +91,6 @@ class EventResolver(private val ctx: SimulationContext) {
     }
 
     /** Sujet d'un courrier, tel qu'un interlocuteur le rappellera plus tard. */
-    private fun topicLabel(subject: String): String = subject.replaceFirstChar { it.lowercaseChar() }
+    private fun topicLabel(subject: String): String = "notre dossier « $subject »"
 
 }

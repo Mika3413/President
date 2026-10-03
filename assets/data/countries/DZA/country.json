@@ -71,6 +71,7 @@
    "name": "Alger",
    "lon": 3.06,
    "lat": 36.75
-  }
+  },
+  "fisheryNeighbor": true
  }
 }

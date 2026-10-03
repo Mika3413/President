@@ -74,6 +74,7 @@
    "name": "Amsterdam",
    "lon": 4.9,
    "lat": 52.37
-  }
+  },
+  "fisheryNeighbor": true
  }
 }

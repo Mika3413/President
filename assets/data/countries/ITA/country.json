@@ -74,6 +74,7 @@
    "name": "Rome",
    "lon": 12.5,
    "lat": 41.9
-  }
+  },
+  "fisheryNeighbor": true
  }
 }

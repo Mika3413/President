@@ -71,6 +71,7 @@
    "name": "Rabat",
    "lon": -6.84,
    "lat": 34.02
-  }
+  },
+  "fisheryNeighbor": true
  }
 }

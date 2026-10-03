@@ -16,6 +16,11 @@ class EffectApplier(private val ctx: SimulationContext) {
 
     /** Déclenche un effet : immédiat si sans durée ni délai, progressif sinon. */
     fun trigger(spec: EffectSpec, scope: ScopeRef?, params: Map<String, Double>, source: String) {
+        // « chain.<événement> » : suite d'une histoire, déclenchée avec une probabilité (amount) après un délai.
+        if (spec.target.startsWith(CHAIN_PREFIX)) {
+            chain(spec.target.removePrefix(CHAIN_PREFIX), spec, scope, source)
+            return
+        }
         val target = resolveTarget(spec.target, scope) ?: run {
             ctx.log("effects", "Cible non résolue ${spec.target} ($source)")
             return
@@ -28,6 +33,23 @@ class EffectApplier(private val ctx: SimulationContext) {
                 ActiveEffect(target, value, ctx.now.plusDays(spec.delayDays), ctx.now.plusDays(spec.delayDays + spec.days), source = source)
             )
         }
+    }
+
+    private fun chain(eventId: String, spec: EffectSpec, scope: ScopeRef?, source: String) {
+        val def = ctx.db.events.firstOrNull { it.id == eventId } ?: run {
+            ctx.log("effects", "Suite inconnue $eventId ($source)")
+            return
+        }
+        if (!ctx.rng.chance(spec.amount.coerceIn(0.0, 1.0))) return
+        // La suite garde le même territoire (ou pays) que l'épisode précédent quand c'est possible.
+        val scopeId = scope?.id?.takeIf { scope.type == def.scope }
+        if (scopeId == null && def.scope != EventScope.NATIONAL) {
+            ctx.log("effects", "Suite $eventId ignorée : territoire incompatible ($source)")
+            return
+        }
+        val delay = spec.delayDays.coerceAtLeast(MIN_CHAIN_DELAY_DAYS) * ctx.rng.nextDouble(CHAIN_JITTER_MIN, CHAIN_JITTER_MAX)
+        ctx.scheduler.schedule(fr.president.engine.simulation.ScheduledAction.EventLaunch(ctx.now.plusDays(delay), def.id, scopeId))
+        ctx.log("effects", "Suite programmée : $eventId dans %.1f jours ($source)".format(delay))
     }
 
     fun resolveTarget(target: String, scope: ScopeRef?): String? {
@@ -139,6 +161,10 @@ class EffectApplier(private val ctx: SimulationContext) {
     }
 
     private companion object {
+        const val CHAIN_PREFIX = "chain."
+        const val MIN_CHAIN_DELAY_DAYS = 1.0
+        const val CHAIN_JITTER_MIN = 0.8
+        const val CHAIN_JITTER_MAX = 1.3
         const val MIN_RATE = 0.01
     }
 }

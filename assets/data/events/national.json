@@ -1,0 +1,1951 @@
+{
+ "events": [
+  {
+   "id": "rail_strike",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0015,
+   "cooldownDays": 240,
+   "urgency": "IMPORTANT",
+   "headline": "Grève à la SNCF : le trafic fortement perturbé",
+   "notificationText": "Les syndicats de cheminots lancent un mouvement reconductible.",
+   "modifiers": [
+    {
+     "variable": "economy.purchasingPower",
+     "from": -0.02,
+     "to": 0.02,
+     "factorAtFrom": 2.0,
+     "factorAtTo": 0.6
+    }
+   ],
+   "immediateEffects": [],
+   "message": {
+    "template": "rail_strike",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "firm",
+    "options": [
+     {
+      "id": "negotiate",
+      "label": "Ouvrir une négociation salariale",
+      "hint": "Coût : 400 M€ ; fin probable du conflit",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.4
+       },
+       {
+        "target": "opinion.group.private_employees",
+        "amount": 0.004
+       },
+       {
+        "target": "opinion.group.civil_servants",
+        "amount": 0.006
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "partial",
+      "label": "Concession ciblée sur les conditions de travail",
+      "hint": "Coût : 150 M€ ; le conflit peut durer",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.15
+       },
+       {
+        "target": "chain.strike_spreads",
+        "amount": 0.3,
+        "delayDays": 10
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "firm",
+      "label": "Tenir bon et garantir un service minimum",
+      "hint": "Aucun coût direct ; risque d'extension",
+      "effects": [
+       {
+        "target": "economy.output",
+        "amount": -0.001,
+        "days": 20
+       },
+       {
+        "target": "opinion.group.civil_servants",
+        "amount": -0.01
+       },
+       {
+        "target": "chain.strike_spreads",
+        "amount": 0.7,
+        "delayDays": 9
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "transport"
+   }
+  },
+  {
+   "id": "strike_spreads",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0,
+   "cooldownDays": 30,
+   "urgency": "URGENT",
+   "headline": "La grève s'étend : raffineries et ports rejoignent le mouvement",
+   "notificationText": "Le mouvement social devient interprofessionnel.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "strike_spreads",
+    "sender": "PRIME_MINISTER",
+    "responseDays": 4,
+    "defaultOption": "wait",
+    "options": [
+     {
+      "id": "summit",
+      "label": "Convoquer un sommet social",
+      "hint": "Coût : 1 Md€ ; apaisement",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 1.0
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.004
+       },
+       {
+        "target": "opinion.group.private_employees",
+        "amount": 0.006
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "requisition",
+      "label": "Réquisitionner les raffineries",
+      "hint": "Fermeté ; colère syndicale",
+      "effects": [
+       {
+        "target": "opinion.group.civil_servants",
+        "amount": -0.01
+       },
+       {
+        "target": "opinion.group.private_employees",
+        "amount": -0.006
+       },
+       {
+        "target": "opinion.group.self_employed",
+        "amount": 0.006
+       },
+       {
+        "target": "chain.fuel_blockade",
+        "amount": 0.3,
+        "delayDays": 6
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "wait",
+      "label": "Attendre l'essoufflement",
+      "hint": "Aucun coût direct ; pénuries probables",
+      "effects": [
+       {
+        "target": "economy.output",
+        "amount": -0.002,
+        "days": 20
+       },
+       {
+        "target": "economy.consumerConfidence",
+        "amount": -0.01
+       },
+       {
+        "target": "chain.fuel_blockade",
+        "amount": 0.6,
+        "delayDays": 5
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "fuel_blockade",
+   "category": "ENERGY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0,
+   "cooldownDays": 30,
+   "urgency": "URGENT",
+   "headline": "Pénurie de carburant : un tiers des stations à sec",
+   "notificationText": "Les blocages paralysent l'approvisionnement.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "fuel_blockade",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "stocks",
+    "options": [
+     {
+      "id": "stocks",
+      "label": "Débloquer les stocks stratégiques",
+      "hint": "Coût : 300 M€ ; soulagement rapide",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.3
+       },
+       {
+        "target": "economy.output",
+        "amount": 0.0005,
+        "days": 10
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "rationing",
+      "label": "Instaurer un rationnement",
+      "hint": "Impopulaire mais efficace",
+      "effects": [
+       {
+        "target": "opinion.national",
+        "amount": -0.008
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": -0.008
+       }
+      ],
+      "outcome": "PARTIAL"
+     }
+    ],
+    "ministry": "ecology"
+   }
+  },
+  {
+   "id": "new_virus",
+   "category": "DISASTER",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0007,
+   "cooldownDays": 900,
+   "urgency": "IMPORTANT",
+   "headline": "Un nouveau virus détecté à l'étranger",
+   "notificationText": "Les autorités sanitaires internationales s'inquiètent.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "new_virus",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "wait",
+    "options": [
+     {
+      "id": "prepare",
+      "label": "Se préparer : stocks, tests, plan hospitalier",
+      "hint": "Coût : 800 M€ ; une éventuelle vague serait bien moins grave",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.8
+       },
+       {
+        "target": "quality.health",
+        "amount": 0.004
+       },
+       {
+        "target": "chain.pandemic_wave",
+        "amount": 0.25,
+        "delayDays": 30
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "borders",
+      "label": "Contrôles sanitaires aux frontières",
+      "hint": "Coût : 100 M€ ; efficacité incertaine",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.1
+       },
+       {
+        "target": "economy.output",
+        "amount": -0.0003,
+        "days": 30
+       },
+       {
+        "target": "chain.pandemic_wave",
+        "amount": 0.45,
+        "delayDays": 28
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "wait",
+      "label": "Attendre d'en savoir plus",
+      "hint": "Aucun coût immédiat",
+      "effects": [
+       {
+        "target": "chain.pandemic_wave",
+        "amount": 0.65,
+        "delayDays": 25
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "health"
+   }
+  },
+  {
+   "id": "pandemic_wave",
+   "category": "DISASTER",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0,
+   "cooldownDays": 200,
+   "urgency": "URGENT",
+   "headline": "Épidémie : une vague frappe le pays",
+   "notificationText": "Les hôpitaux se remplissent rapidement.",
+   "modifiers": [],
+   "immediateEffects": [
+    {
+     "target": "economy.output",
+     "amount": -0.002,
+     "days": 30
+    },
+    {
+     "target": "quality.health",
+     "amount": -0.02,
+     "days": 30
+    }
+   ],
+   "message": {
+    "template": "pandemic_wave",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "targeted",
+    "options": [
+     {
+      "id": "lockdown",
+      "label": "Confinement strict de quatre semaines",
+      "hint": "Très coûteux pour l'économie ; protège les hôpitaux",
+      "effects": [
+       {
+        "target": "economy.output",
+        "amount": -0.012,
+        "days": 30
+       },
+       {
+        "target": "budget.oneOff",
+        "amount": 6.0,
+        "days": 60
+       },
+       {
+        "target": "quality.health",
+        "amount": 0.01,
+        "days": 30
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": -0.02
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": 0.015
+       },
+       {
+        "target": "opinion.group.self_employed",
+        "amount": -0.02
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "targeted",
+      "label": "Restrictions ciblées et vaccination",
+      "hint": "Équilibre ; coût : 2 Md€",
+      "effects": [
+       {
+        "target": "economy.output",
+        "amount": -0.004,
+        "days": 45
+       },
+       {
+        "target": "budget.oneOff",
+        "amount": 2.0,
+        "days": 60
+       },
+       {
+        "target": "quality.health",
+        "amount": 0.005,
+        "days": 30
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "liberty",
+      "label": "Miser sur la responsabilité individuelle",
+      "hint": "Économie préservée ; hôpitaux débordés",
+      "effects": [
+       {
+        "target": "quality.health",
+        "amount": -0.04,
+        "days": 45
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": -0.03
+       },
+       {
+        "target": "opinion.national",
+        "amount": -0.01,
+        "days": 20,
+        "delayDays": 20
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "health"
+   }
+  },
+  {
+   "id": "minister_investigation",
+   "category": "GOVERNMENT",
+   "scope": "MINISTER",
+   "baseDailyProbability": 0.0005,
+   "cooldownDays": 300,
+   "urgency": "IMPORTANT",
+   "headline": "Enquête judiciaire visant {minister}",
+   "notificationText": "Une perquisition a eu lieu au ministère.",
+   "modifiers": [
+    {
+     "variable": "scope.integrity",
+     "from": 0.2,
+     "to": 0.8,
+     "factorAtFrom": 3.0,
+     "factorAtTo": 0.3
+    }
+   ],
+   "immediateEffects": [],
+   "message": {
+    "template": "minister_investigation",
+    "sender": "PRIME_MINISTER",
+    "responseDays": 4,
+    "defaultOption": "wait",
+    "options": [
+     {
+      "id": "dismiss",
+      "label": "Lui demander de démissionner",
+      "hint": "Affaire close politiquement ; ministère en intérim",
+      "effects": [
+       {
+        "target": "subject.dismiss",
+        "amount": 1
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "support",
+      "label": "Le soutenir publiquement",
+      "hint": "Loyauté ; risque si l'affaire s'aggrave",
+      "effects": [
+       {
+        "target": "subject.loyalty",
+        "amount": 0.15
+       },
+       {
+        "target": "chain.minister_indicted",
+        "amount": 0.5,
+        "delayDays": 40
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "wait",
+      "label": "Attendre l'évolution de la procédure",
+      "hint": "Prudence",
+      "effects": [
+       {
+        "target": "chain.minister_indicted",
+        "amount": 0.4,
+        "delayDays": 45
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ]
+   }
+  },
+  {
+   "id": "minister_indicted",
+   "category": "GOVERNMENT",
+   "scope": "MINISTER",
+   "baseDailyProbability": 0.0,
+   "cooldownDays": 100,
+   "urgency": "URGENT",
+   "headline": "{minister} mis en examen",
+   "notificationText": "La justice franchit une étape décisive dans l'affaire.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "minister_indicted",
+    "sender": "PRIME_MINISTER",
+    "responseDays": 4,
+    "defaultOption": "dismiss",
+    "options": [
+     {
+      "id": "dismiss",
+      "label": "Exiger sa démission",
+      "hint": "Coût politique limité",
+      "effects": [
+       {
+        "target": "subject.dismiss",
+        "amount": 1
+       },
+       {
+        "target": "opinion.national",
+        "amount": -0.003
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "keep",
+      "label": "Le maintenir au nom de la présomption d'innocence",
+      "hint": "Risqué : scandale pour l'exécutif",
+      "effects": [
+       {
+        "target": "president.scandal",
+        "amount": 1
+       },
+       {
+        "target": "opinion.national",
+        "amount": -0.015
+       },
+       {
+        "target": "government.parliamentSupport",
+        "amount": -0.03
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bank_fragility",
+   "category": "ECONOMY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0005,
+   "cooldownDays": 700,
+   "urgency": "IMPORTANT",
+   "headline": "Une grande banque en difficulté",
+   "notificationText": "Les marchés s'inquiètent de la solidité d'un établissement français.",
+   "modifiers": [
+    {
+     "variable": "economy.debtRatio",
+     "from": 0.9,
+     "to": 1.3,
+     "factorAtFrom": 0.7,
+     "factorAtTo": 1.6
+    }
+   ],
+   "immediateEffects": [],
+   "message": {
+    "template": "bank_fragility",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "wait",
+    "options": [
+     {
+      "id": "guarantee",
+      "label": "Garantie publique des dépôts et des financements",
+      "hint": "Engagement de l'État ; calme probable",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.5
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": 0.006
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "recap",
+      "label": "Recapitalisation contre contreparties",
+      "hint": "Coût : 3 Md€ ; l'État devient actionnaire",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 3.0
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": 0.01
+       },
+       {
+        "target": "opinion.group.low_income",
+        "amount": -0.004
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "wait",
+      "label": "Laisser le marché s'ajuster",
+      "hint": "Aucun coût ; risque de panique",
+      "effects": [
+       {
+        "target": "chain.bank_run",
+        "amount": 0.5,
+        "delayDays": 12
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "economy"
+   }
+  },
+  {
+   "id": "bank_run",
+   "category": "ECONOMY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0,
+   "cooldownDays": 300,
+   "urgency": "URGENT",
+   "headline": "Panique bancaire : les clients se ruent aux guichets",
+   "notificationText": "Les retraits massifs menacent tout le système.",
+   "modifiers": [],
+   "immediateEffects": [
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.02
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.03
+    }
+   ],
+   "message": {
+    "template": "bank_run",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "rescue",
+    "options": [
+     {
+      "id": "rescue",
+      "label": "Plan de sauvetage massif",
+      "hint": "Coût : 15 Md€ ; crise contenue",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 15.0
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": -0.01
+       },
+       {
+        "target": "economy.consumerConfidence",
+        "amount": -0.01
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "resolution",
+      "label": "Faillite ordonnée de la banque",
+      "hint": "Coût moindre ; choc économique",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 4.0
+       },
+       {
+        "target": "economy.output",
+        "amount": -0.008,
+        "days": 90
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": -0.04
+       },
+       {
+        "target": "economy.consumerConfidence",
+        "amount": -0.03
+       }
+      ],
+      "outcome": "PARTIAL"
+     }
+    ],
+    "ministry": "economy"
+   }
+  },
+  {
+   "id": "police_incident",
+   "category": "SECURITY",
+   "scope": "CITY",
+   "baseDailyProbability": 0.0008,
+   "cooldownDays": 400,
+   "urgency": "URGENT",
+   "headline": "Un jeune tué lors d'un contrôle de police à {city}",
+   "notificationText": "La vidéo de l'intervention circule massivement.",
+   "modifiers": [
+    {
+     "variable": "scope.crime",
+     "from": 0.9,
+     "to": 1.5,
+     "factorAtFrom": 0.6,
+     "factorAtTo": 1.8
+    }
+   ],
+   "immediateEffects": [],
+   "message": {
+    "template": "police_incident",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "support_police",
+    "options": [
+     {
+      "id": "justice",
+      "label": "Parole forte, enquête indépendante, agent suspendu",
+      "hint": "Apaisement probable ; colère policière",
+      "effects": [
+       {
+        "target": "opinion.group.young",
+        "amount": 0.008
+       },
+       {
+        "target": "opinion.group.urban",
+        "amount": 0.004
+       },
+       {
+        "target": "opinion.group.retirees",
+        "amount": -0.004
+       },
+       {
+        "target": "chain.urban_riots",
+        "amount": 0.25,
+        "delayDays": 2
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "balanced",
+      "label": "Appel au calme et confiance dans la justice",
+      "hint": "Neutre",
+      "effects": [
+       {
+        "target": "chain.urban_riots",
+        "amount": 0.45,
+        "delayDays": 2
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "support_police",
+      "label": "Soutien appuyé aux forces de l'ordre",
+      "hint": "Fermeté ; risque d'embrasement",
+      "effects": [
+       {
+        "target": "opinion.group.young",
+        "amount": -0.012
+       },
+       {
+        "target": "opinion.group.retirees",
+        "amount": 0.006
+       },
+       {
+        "target": "chain.urban_riots",
+        "amount": 0.7,
+        "delayDays": 2
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "interior"
+   },
+   "scopeCooldownDays": 2000
+  },
+  {
+   "id": "urban_riots",
+   "category": "SECURITY",
+   "scope": "CITY",
+   "baseDailyProbability": 0.0,
+   "cooldownDays": 120,
+   "urgency": "URGENT",
+   "headline": "Nuits d'émeutes à {city} et dans plusieurs villes",
+   "notificationText": "Bâtiments publics incendiés, centaines d'interpellations.",
+   "modifiers": [],
+   "immediateEffects": [
+    {
+     "target": "scope.approval",
+     "amount": -0.03,
+     "days": 20
+    },
+    {
+     "target": "economy.output",
+     "amount": -0.0008,
+     "days": 20
+    },
+    {
+     "target": "scope.crime",
+     "amount": 0.08
+    }
+   ],
+   "message": {
+    "template": "urban_riots",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "reinforce",
+    "options": [
+     {
+      "id": "emergency",
+      "label": "Décréter l'état d'urgence",
+      "hint": "Retour à l'ordre rapide ; libertés restreintes",
+      "effects": [
+       {
+        "target": "quality.security",
+        "amount": 0.003
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": -0.015
+       },
+       {
+        "target": "opinion.group.retirees",
+        "amount": 0.01
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "reinforce",
+      "label": "Renforts massifs de police et de gendarmerie",
+      "hint": "Coût : 200 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.2
+       },
+       {
+        "target": "opinion.group.retirees",
+        "amount": 0.005
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": -0.004
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "mediation",
+      "label": "Médiation et plan pour les quartiers",
+      "hint": "Coût : 1 Md€ ; apaisement plus lent",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 1.0
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": 0.008
+       },
+       {
+        "target": "opinion.group.urban",
+        "amount": 0.004
+       },
+       {
+        "target": "opinion.group.retirees",
+        "amount": -0.008
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ],
+    "ministry": "interior"
+   }
+  },
+  {
+   "id": "fuel_tax_protest",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0012,
+   "cooldownDays": 400,
+   "urgency": "URGENT",
+   "headline": "Colère contre le prix du carburant : des blocages partout en France",
+   "notificationText": "Un mouvement spontané naît sur les réseaux sociaux.",
+   "modifiers": [
+    {
+     "variable": "energy.priceIndex",
+     "from": 1.0,
+     "to": 1.5,
+     "factorAtFrom": 0.4,
+     "factorAtTo": 3.0
+    },
+    {
+     "variable": "economy.purchasingPower",
+     "from": -0.03,
+     "to": 0.02,
+     "factorAtFrom": 2.5,
+     "factorAtTo": 0.5
+    }
+   ],
+   "immediateEffects": [],
+   "message": {
+    "template": "fuel_tax_protest",
+    "sender": "PRIME_MINISTER",
+    "responseDays": 4,
+    "defaultOption": "firm",
+    "options": [
+     {
+      "id": "tax_cut",
+      "label": "Baisser les taxes sur le carburant",
+      "hint": "Coût : 4 Md€ par an ; apaisement",
+      "effects": [
+       {
+        "target": "revenue.energy_taxes",
+        "amount": -10
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.012
+       },
+       {
+        "target": "opinion.group.low_income",
+        "amount": 0.008
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "debate",
+      "label": "Ouvrir un grand débat national",
+      "hint": "Coût : 100 M€ ; apaisement progressif",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.1
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.004,
+        "days": 60
+       },
+       {
+        "target": "chain.fuel_protest_hardens",
+        "amount": 0.25,
+        "delayDays": 20
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "firm",
+      "label": "Maintenir le cap",
+      "hint": "Aucun coût ; risque de durcissement",
+      "effects": [
+       {
+        "target": "opinion.group.rural",
+        "amount": -0.012
+       },
+       {
+        "target": "opinion.group.low_income",
+        "amount": -0.008
+       },
+       {
+        "target": "chain.fuel_protest_hardens",
+        "amount": 0.65,
+        "delayDays": 14
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "fuel_protest_hardens",
+   "category": "SECURITY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0,
+   "cooldownDays": 120,
+   "urgency": "URGENT",
+   "headline": "Le mouvement se durcit : violences à Paris",
+   "notificationText": "Des scènes de chaos sur les Champs-Élysées.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "fuel_protest_hardens",
+    "sender": "PRIME_MINISTER",
+    "responseDays": 4,
+    "defaultOption": "order",
+    "options": [
+     {
+      "id": "concessions",
+      "label": "Concessions sociales importantes",
+      "hint": "Coût : 10 Md€ ; fin probable du mouvement",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 10.0
+       },
+       {
+        "target": "opinion.group.low_income",
+        "amount": 0.015
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.01
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.006
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "order",
+      "label": "Durcir le maintien de l'ordre",
+      "hint": "Fermeté ; division du pays",
+      "effects": [
+       {
+        "target": "opinion.group.retirees",
+        "amount": 0.008
+       },
+       {
+        "target": "opinion.group.low_income",
+        "amount": -0.01
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": -0.008
+       },
+       {
+        "target": "economy.output",
+        "amount": -0.001,
+        "days": 30
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cold_wave",
+   "category": "DISASTER",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.004,
+   "cooldownDays": 300,
+   "urgency": "IMPORTANT",
+   "headline": "Vague de froid : le réseau électrique sous tension",
+   "notificationText": "Des températures polaires s'abattent sur le pays.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "cold_wave",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "minimal",
+    "options": [
+     {
+      "id": "plan",
+      "label": "Plan grand froid renforcé",
+      "hint": "Coût : 150 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.15
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.003
+       },
+       {
+        "target": "quality.social",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "minimal",
+      "label": "Dispositif habituel",
+      "hint": "Aucun coût supplémentaire",
+      "effects": [
+       {
+        "target": "opinion.group.low_income",
+        "amount": -0.004
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ],
+    "ministry": "ecology"
+   },
+   "conditions": [
+    {
+     "variable": "season.month",
+     "oneOf": [
+      12,
+      1,
+      2
+     ]
+    }
+   ]
+  },
+  {
+   "id": "food_scandal",
+   "category": "SECURITY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0012,
+   "cooldownDays": 300,
+   "urgency": "IMPORTANT",
+   "headline": "Scandale alimentaire : des produits contaminés retirés de la vente",
+   "notificationText": "Plusieurs enfants hospitalisés.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "food_scandal",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "prosecute",
+    "options": [
+     {
+      "id": "controls",
+      "label": "Renforcer massivement les contrôles sanitaires",
+      "hint": "Coût : 200 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.2
+       },
+       {
+        "target": "quality.agriculture",
+        "amount": 0.002
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.004
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "prosecute",
+      "label": "Poursuites contre l'industriel",
+      "hint": "Aucun coût ; effet limité",
+      "effects": [
+       {
+        "target": "opinion.national",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ],
+    "ministry": "agriculture"
+   }
+  },
+  {
+   "id": "teacher_shortage",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.02,
+   "cooldownDays": 300,
+   "urgency": "IMPORTANT",
+   "headline": "Rentrée scolaire : des milliers de postes d'enseignants non pourvus",
+   "notificationText": "Des classes sans professeur dès le premier jour.",
+   "modifiers": [
+    {
+     "variable": "quality.education",
+     "from": 0.4,
+     "to": 0.7,
+     "factorAtFrom": 2.0,
+     "factorAtTo": 0.4
+    }
+   ],
+   "immediateEffects": [],
+   "message": {
+    "template": "teacher_shortage",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "status_quo",
+    "options": [
+     {
+      "id": "raise",
+      "label": "Revaloriser les salaires des enseignants",
+      "hint": "Budget de l'éducation +3 %",
+      "effects": [
+       {
+        "target": "spending.education",
+        "amount": 0.03
+       },
+       {
+        "target": "opinion.group.civil_servants",
+        "amount": 0.01
+       },
+       {
+        "target": "quality.education",
+        "amount": 0.004,
+        "days": 180
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "recruit",
+      "label": "Plan de recrutement exceptionnel",
+      "hint": "Coût : 300 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.3
+       },
+       {
+        "target": "quality.education",
+        "amount": 0.002,
+        "days": 120
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "status_quo",
+      "label": "S'en tenir aux mesures existantes",
+      "hint": "Aucun coût",
+      "effects": [
+       {
+        "target": "opinion.group.civil_servants",
+        "amount": -0.006
+       },
+       {
+        "target": "quality.education",
+        "amount": -0.003,
+        "days": 60
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "education"
+   },
+   "conditions": [
+    {
+     "variable": "season.month",
+     "oneOf": [
+      9
+     ]
+    }
+   ]
+  },
+  {
+   "id": "space_failure",
+   "category": "ECONOMY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0006,
+   "cooldownDays": 500,
+   "urgency": "IMPORTANT",
+   "headline": "Échec d'un lancement d'Ariane",
+   "notificationText": "La fusée a explosé quelques minutes après le décollage.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "space_failure",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "esa",
+    "options": [
+     {
+      "id": "support",
+      "label": "Plan de soutien à la filière spatiale",
+      "hint": "Coût : 600 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.6
+       },
+       {
+        "target": "economy.potentialGrowth",
+        "amount": 0.0002
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": 0.004
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "esa",
+      "label": "S'en remettre à l'Agence spatiale européenne",
+      "hint": "Aucun coût",
+      "effects": [
+       {
+        "target": "economy.businessConfidence",
+        "amount": -0.003
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ],
+    "ministry": "economy"
+   }
+  },
+  {
+   "id": "nobel_prize",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0015,
+   "cooldownDays": 365,
+   "urgency": "IMPORTANT",
+   "headline": "Une chercheuse française reçoit le prix Nobel",
+   "notificationText": "Une fierté nationale et un symbole pour la recherche.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "nobel_prize",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "honor",
+    "options": [
+     {
+      "id": "plan",
+      "label": "Annoncer un plan pour la recherche",
+      "hint": "Coût : 1 Md€ ; croissance potentielle",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 1.0
+       },
+       {
+        "target": "economy.potentialGrowth",
+        "amount": 0.0004
+       },
+       {
+        "target": "quality.education",
+        "amount": 0.002
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.006
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "honor",
+      "label": "La recevoir à l'Élysée et saluer sa réussite",
+      "hint": "Aucun coût",
+      "effects": [
+       {
+        "target": "opinion.national",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ],
+    "ministry": "education"
+   },
+   "conditions": [
+    {
+     "variable": "season.month",
+     "oneOf": [
+      10
+     ]
+    }
+   ]
+  },
+  {
+   "id": "defense_leak",
+   "category": "MILITARY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0006,
+   "cooldownDays": 500,
+   "urgency": "IMPORTANT",
+   "headline": "Fuite de documents classifiés de la Défense",
+   "notificationText": "Des informations sensibles publiées en ligne.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "defense_leak",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "internal",
+    "options": [
+     {
+      "id": "audit",
+      "label": "Audit complet et renforcement de la sécurité",
+      "hint": "Coût : 250 M€ ; confiance des alliés restaurée",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.25
+       },
+       {
+        "target": "memory.USA.NEGOTIATION_GOODWILL",
+        "amount": 0.02
+       },
+       {
+        "target": "memory.GBR.NEGOTIATION_GOODWILL",
+        "amount": 0.02
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "internal",
+      "label": "Enquête interne discrète",
+      "hint": "Aucun coût",
+      "effects": [
+       {
+        "target": "memory.USA.DISAGREEMENT",
+        "amount": -0.01
+       },
+       {
+        "target": "military.readiness",
+        "amount": -0.005
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ],
+    "ministry": "armed_forces"
+   }
+  },
+  {
+   "id": "pension_deficit",
+   "category": "ECONOMY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0015,
+   "cooldownDays": 500,
+   "urgency": "IMPORTANT",
+   "headline": "Le déficit des retraites se creuse",
+   "notificationText": "Le Conseil d'orientation des retraites publie un rapport alarmant.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "pension_deficit",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "postpone",
+    "options": [
+     {
+      "id": "contributions",
+      "label": "Hausse modérée des cotisations",
+      "hint": "Recettes en hausse ; salariés mécontents",
+      "effects": [
+       {
+        "target": "revenue.social_contributions",
+        "amount": 2
+       },
+       {
+        "target": "opinion.group.private_employees",
+        "amount": -0.006
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "deindex",
+      "label": "Désindexer temporairement les pensions",
+      "hint": "Économies ; retraités en colère",
+      "effects": [
+       {
+        "target": "spending.pensions",
+        "amount": -0.015
+       },
+       {
+        "target": "opinion.group.retirees",
+        "amount": -0.015
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": -0.01
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "postpone",
+      "label": "Reporter le débat",
+      "hint": "Aucun coût immédiat ; dette en hausse",
+      "effects": [
+       {
+        "target": "economy.businessConfidence",
+        "amount": -0.003
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "labour"
+   }
+  },
+  {
+   "id": "hostages_abroad",
+   "category": "DIPLOMACY",
+   "scope": "FOREIGN_COUNTRY",
+   "baseDailyProbability": 0.0003,
+   "cooldownDays": 400,
+   "urgency": "URGENT",
+   "headline": "Des Français pris en otage {foreignIn}",
+   "notificationText": "Un groupe armé revendique l'enlèvement.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "hostages_abroad",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "negotiate",
+    "options": [
+     {
+      "id": "negotiate",
+      "label": "Négociation discrète",
+      "hint": "Coût : 50 M€ ; libération probable",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.05
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.006,
+        "delayDays": 30
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "operation",
+      "label": "Opération de libération par les forces spéciales",
+      "hint": "Risqué ; succès retentissant ou drame",
+      "effects": [
+       {
+        "target": "military.readiness",
+        "amount": -0.005
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.004,
+        "delayDays": 10
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "local",
+      "label": "S'en remettre aux autorités locales",
+      "hint": "Aucun coût ; issue incertaine",
+      "effects": [
+       {
+        "target": "opinion.national",
+        "amount": -0.006,
+        "delayDays": 20
+       },
+       {
+        "target": "country.DISAGREEMENT",
+        "amount": -0.01
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "foreign"
+   },
+   "conditions": [
+    {
+     "variable": "scope.relation",
+     "max": 0.7
+    }
+   ],
+   "scopeCooldownDays": 1500
+  },
+  {
+   "id": "cyber_espionage",
+   "category": "DIPLOMACY",
+   "scope": "FOREIGN_COUNTRY",
+   "baseDailyProbability": 0.0005,
+   "cooldownDays": 300,
+   "urgency": "IMPORTANT",
+   "headline": "Cyberespionnage : nos services accusent {foreignThe}",
+   "notificationText": "Des intrusions dans des ministères attribuées à un État étranger.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "cyber_espionage",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "discreet",
+    "options": [
+     {
+      "id": "public",
+      "label": "Attribution publique et expulsion de diplomates",
+      "hint": "Fermeté ; relations dégradées",
+      "effects": [
+       {
+        "target": "country.DISAGREEMENT",
+        "amount": -0.06
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "discreet",
+      "label": "Protestation discrète",
+      "hint": "Équilibre",
+      "effects": [
+       {
+        "target": "country.DISAGREEMENT",
+        "amount": -0.02
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "silence",
+      "label": "Ne rien dire",
+      "hint": "Aucune conséquence immédiate",
+      "effects": [
+       {
+        "target": "quality.security",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ],
+    "ministry": "interior"
+   },
+   "conditions": [
+    {
+     "variable": "scope.relation",
+     "max": 0.55
+    }
+   ],
+   "scopeCooldownDays": 500
+  },
+  {
+   "id": "strategic_acquisition",
+   "category": "ECONOMY",
+   "scope": "FOREIGN_COUNTRY",
+   "baseDailyProbability": 0.0008,
+   "cooldownDays": 300,
+   "urgency": "IMPORTANT",
+   "headline": "Un groupe étranger veut racheter un fleuron industriel français",
+   "notificationText": "Le rachat concerne une entreprise stratégique.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "strategic_acquisition",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "conditions",
+    "options": [
+     {
+      "id": "block",
+      "label": "Bloquer le rachat",
+      "hint": "Souveraineté ; investisseurs refroidis",
+      "effects": [
+       {
+        "target": "country.DISAGREEMENT",
+        "amount": -0.03
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": -0.003
+       },
+       {
+        "target": "opinion.group.private_employees",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "REFUSED"
+     },
+     {
+      "id": "conditions",
+      "label": "Autoriser sous conditions strictes",
+      "hint": "Compromis",
+      "effects": [
+       {
+        "target": "country.NEGOTIATION_GOODWILL",
+        "amount": 0.01
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "allow",
+      "label": "Laisser l'opération se faire",
+      "hint": "Capitaux étrangers ; critiques souverainistes",
+      "effects": [
+       {
+        "target": "country.NEGOTIATION_GOODWILL",
+        "amount": 0.03
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": 0.004
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": -0.003
+       }
+      ],
+      "outcome": "ACCEPTED"
+     }
+    ],
+    "ministry": "economy"
+   },
+   "scopeCooldownDays": 700
+  },
+  {
+   "id": "fishing_dispute",
+   "category": "DIPLOMACY",
+   "scope": "FOREIGN_COUNTRY",
+   "baseDailyProbability": 0.0008,
+   "cooldownDays": 300,
+   "urgency": "IMPORTANT",
+   "headline": "Conflit de pêche avec {foreignThe}",
+   "notificationText": "Des chalutiers français interdits d'accès à des zones de pêche.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "fishing_dispute",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "negotiate",
+    "options": [
+     {
+      "id": "retaliate",
+      "label": "Mesures de rétorsion commerciales",
+      "hint": "Fermeté ; escalade possible",
+      "effects": [
+       {
+        "target": "country.DISAGREEMENT",
+        "amount": -0.05
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.004
+       }
+      ],
+      "outcome": "REFUSED"
+     },
+     {
+      "id": "negotiate",
+      "label": "Négociation",
+      "hint": "Apaisement",
+      "effects": [
+       {
+        "target": "country.NEGOTIATION_GOODWILL",
+        "amount": 0.01
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "compensate",
+      "label": "Indemniser nos pêcheurs",
+      "hint": "Coût : 80 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.08
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "ACCEPTED"
+     }
+    ],
+    "ministry": "agriculture"
+   },
+   "conditions": [
+    {
+     "variable": "scope.fisheryNeighbor",
+     "min": 1
+    }
+   ],
+   "scopeCooldownDays": 700
+  },
+  {
+   "id": "trade_tariffs",
+   "category": "ECONOMY",
+   "scope": "FOREIGN_COUNTRY",
+   "baseDailyProbability": 0.0007,
+   "cooldownDays": 300,
+   "urgency": "IMPORTANT",
+   "headline": "{ForeignThe} impose des droits de douane sur les produits français",
+   "notificationText": "Le vin, le fromage et l'aéronautique sont visés.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "trade_tariffs",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "negotiate",
+    "options": [
+     {
+      "id": "retaliate",
+      "label": "Riposte proportionnée",
+      "hint": "Fermeté ; escalade possible",
+      "effects": [
+       {
+        "target": "country.DISAGREEMENT",
+        "amount": -0.05
+       },
+       {
+        "target": "economy.output",
+        "amount": -0.0005,
+        "days": 90
+       }
+      ],
+      "outcome": "REFUSED"
+     },
+     {
+      "id": "negotiate",
+      "label": "Négocier, au besoin en assouplissant notre taxe",
+      "hint": "Apaisement ; recettes en baisse",
+      "effects": [
+       {
+        "target": "country.NEGOTIATION_GOODWILL",
+        "amount": 0.02
+       },
+       {
+        "target": "budget.oneOff",
+        "amount": 0.3
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "support",
+      "label": "Soutenir les filières touchées",
+      "hint": "Coût : 400 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.4
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.004
+       },
+       {
+        "target": "economy.output",
+        "amount": -0.0003,
+        "days": 90
+       }
+      ],
+      "outcome": "PARTIAL"
+     }
+    ],
+    "ministry": "economy"
+   },
+   "conditions": [
+    {
+     "variable": "scope.relation",
+     "max": 0.6
+    }
+   ],
+   "scopeCooldownDays": 700
+  },
+  {
+   "id": "disaster_abroad",
+   "category": "DIPLOMACY",
+   "scope": "FOREIGN_COUNTRY",
+   "baseDailyProbability": 0.0008,
+   "cooldownDays": 200,
+   "urgency": "IMPORTANT",
+   "headline": "Séisme meurtrier {foreignIn}",
+   "notificationText": "Des milliers de victimes ; le pays appelle à l'aide internationale.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "disaster_abroad",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "symbolic",
+    "options": [
+     {
+      "id": "major",
+      "label": "Envoi massif de secours et aide financière",
+      "hint": "Coût : 150 M€ ; relation renforcée",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.15
+       },
+       {
+        "target": "country.CRISIS_SOLIDARITY",
+        "amount": 0.08
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "symbolic",
+      "label": "Aide symbolique et message de soutien",
+      "hint": "Coût minime",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.01
+       },
+       {
+        "target": "country.CRISIS_SOLIDARITY",
+        "amount": 0.02
+       }
+      ],
+      "outcome": "PARTIAL"
+     }
+    ],
+    "ministry": "foreign"
+   },
+   "scopeCooldownDays": 1000
+  }
+ ]
+}

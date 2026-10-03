@@ -115,6 +115,7 @@ class VariableResolver(private val ctx: SimulationContext) {
             EventScope.FOREIGN_COUNTRY -> when (field) {
                 "relation" -> RelationCalculator(ctx).score(scope.id, ctx.state.player.countryId)
                 "electricityBalance" -> ctx.state.countries[scope.id]?.electricityBalanceTWh
+                "fisheryNeighbor" -> if (ctx.db.country(scope.id).definition.strategic.fisheryNeighbor) 1.0 else 0.0
                 else -> null
             }
             EventScope.NATIONAL -> null

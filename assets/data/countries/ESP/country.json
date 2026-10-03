@@ -74,6 +74,7 @@
    "name": "Madrid",
    "lon": -3.7,
    "lat": 40.42
-  }
+  },
+  "fisheryNeighbor": true
  }
 }

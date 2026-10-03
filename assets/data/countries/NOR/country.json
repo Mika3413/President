@@ -73,6 +73,7 @@
    "name": "Oslo",
    "lon": 10.75,
    "lat": 59.91
-  }
+  },
+  "fisheryNeighbor": true
  }
 }

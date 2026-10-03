@@ -44,6 +44,9 @@ def feminine_title(t):
     t = t.replace("Chancelier fédéral", "Chancelière fédérale").replace("Premier ministre", "Première ministre").replace("Chef du gouvernement", "Cheffe du gouvernement")
     return re.sub(r"^Président\b", "Présidente", t)
 
+# Voisins avec lesquels les zones de pêche sont partagées (conflits de pêche possibles).
+FISHERY_NEIGHBORS = {"GBR", "NOR", "ESP", "PRT", "BEL", "NLD", "ITA", "MAR", "DZA", "TUN"}
+
 # Article défini, pour accorder le nom du pays dans les textes (« de l'Italie », « au Brésil »).
 ARTICLES = {"AUT": "l'", "BEL": "la", "BLR": "la", "BRA": "le", "CAN": "le", "CHE": "la", "CHN": "la", "DEU": "l'", "DZA": "l'", "EGY": "l'", "ESP": "l'", "GBR": "le", "GRC": "la", "IND": "l'", "ITA": "l'", "JPN": "le", "MAR": "le", "NLD": "les", "NOR": "la", "POL": "la", "PRT": "le", "ROU": "la", "RUS": "la", "SAU": "l'", "SWE": "la", "TUN": "la", "TUR": "la", "UKR": "l'", "USA": "les"}
 countries = []
@@ -66,6 +69,7 @@ for (cid,name,adj,lang,pool,pop,hog,hm,hf,gdp,g,inf,u,debt,rev,spend,elec,inter,
                        "priorities": [], "intelligenceQuality": intel, "militaryBudgetBillions": mil, "nuclear": nuc,
                        "forces": {"land": forces[0], "air": forces[1], "sea": forces[2]},
                        "capital": {"name": cap[0], "lon": cap[1], "lat": cap[2]}}}
+    if cid in FISHERY_NEIGHBORS: d["strategic"]["fisheryNeighbor"] = True
     json.dump(d, open(f"countries/{cid}/country.json", "w"), ensure_ascii=False, indent=1)
     countries.append(cid)
 

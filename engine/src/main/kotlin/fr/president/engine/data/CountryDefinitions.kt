@@ -70,6 +70,8 @@ data class StrategicProfile(
     val electricityInterconnected: Boolean = false,
     /** Forces conventionnelles (nombre d'unités générées pour les pays IA). */
     val forces: ForcesDef = ForcesDef(),
+    /** Zones de pêche partagées avec la France (conflits de pêche possibles). */
+    val fisheryNeighbor: Boolean = false
 )
 
 @Serializable

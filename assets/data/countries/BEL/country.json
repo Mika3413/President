@@ -74,6 +74,7 @@
    "name": "Bruxelles",
    "lon": 4.35,
    "lat": 50.85
-  }
+  },
+  "fisheryNeighbor": true
  }
 }
