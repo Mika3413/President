@@ -5,6 +5,7 @@ import fr.president.engine.elections.ElectionService
 import fr.president.engine.events.EventFollowUps
 import fr.president.engine.events.EventLauncher
 import fr.president.engine.events.ScopeRef
+import fr.president.engine.government.ParliamentService
 import fr.president.engine.government.PolicyService
 import fr.president.engine.military.ProductionService
 import fr.president.engine.military.WarService
@@ -28,6 +29,9 @@ class ActionDispatcher(private val ctx: SimulationContext) {
             is ScheduledAction.MobilizationComplete -> ProductionService(ctx).completeMobilization(action.units)
             is ScheduledAction.AllianceCall -> WarService(ctx).handleAllianceCall(action.warId, action.country)
             is ScheduledAction.Tutorial -> fr.president.engine.setup.WelcomeMessage(ctx).tutorial(action.index)
+            is ScheduledAction.LegislativeElection -> ParliamentService(ctx).runLegislative(action.at)
+            is ScheduledAction.CensureVote -> ParliamentService(ctx).censureVote()
+            is ScheduledAction.ReferendumVote -> ParliamentService(ctx).runReferendum(action.reformId)
             is ScheduledAction.ProjectCompletion -> ProjectService(ctx).complete(action.projectId)
         }
     }

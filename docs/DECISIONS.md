@@ -33,3 +33,5 @@ Décisions secondaires prises pendant le développement, documentées comme dema
 | 27 | Prime au sortant | Bonus électoral de notoriété pour le président sortant | Calibrage : un bilan moyen donne une élection disputée, un mauvais bilan une défaite |
 | 28 | Portraits | Générés par programme depuis la graine du personnage | Aucune image de personne réelle ; visages stables d'une session à l'autre |
 | 29 | Android | APK construit par la CI GitHub (dépôt Maven de Google inaccessible depuis l'environnement de développement) | Validation réelle de la compilation Android à chaque push |
+| 30 | Assemblée | Sièges par famille, scrutin majoritaire résumé par une amplification des voix | Législatives, cohabitation et dissolution crédibles sans simuler 577 circonscriptions |
+| 31 | Censure et référendum | Censure seulement après un passage en force sans majorité (ou opposition dominante) ; référendum en partie plébiscitaire | Procédures simplifiées, conséquences réalistes (chute du gouvernement, désaveu du président) |

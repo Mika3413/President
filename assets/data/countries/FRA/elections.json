@@ -7,42 +7,48 @@
    "name": "Gauche radicale",
    "economicPosition": -0.8,
    "socialPosition": -0.4,
-   "baseStrength": 0.0
+   "baseStrength": 0.0,
+   "color": "b23a48"
   },
   {
    "id": "left",
    "name": "Gauche sociale-démocrate",
    "economicPosition": -0.45,
    "socialPosition": -0.35,
-   "baseStrength": 0.0
+   "baseStrength": 0.0,
+   "color": "e0607e"
   },
   {
    "id": "greens",
    "name": "Écologistes",
    "economicPosition": -0.4,
    "socialPosition": -0.6,
-   "baseStrength": -0.1
+   "baseStrength": -0.1,
+   "color": "5aa95a"
   },
   {
    "id": "centre",
    "name": "Centre libéral",
    "economicPosition": 0.15,
    "socialPosition": -0.15,
-   "baseStrength": 0.0
+   "baseStrength": 0.0,
+   "color": "e8b23a"
   },
   {
    "id": "right",
    "name": "Droite républicaine",
    "economicPosition": 0.55,
    "socialPosition": 0.3,
-   "baseStrength": 0.0
+   "baseStrength": 0.0,
+   "color": "3f72c4"
   },
   {
    "id": "nationalist",
    "name": "Droite nationaliste",
    "economicPosition": 0.2,
    "socialPosition": 0.85,
-   "baseStrength": 0.1
+   "baseStrength": 0.1,
+   "color": "34407a"
   }
  ],
  "incumbentRecordWeight": 1.8,
@@ -52,5 +58,35 @@
  "turnoutDiscontentWeight": 0.3,
  "turnoutEnthusiasmWeight": 0.2,
  "pollNoise": 0.04,
- "scandalPenalty": 0.1
+ "scandalPenalty": 0.1,
+ "legislative": {
+  "seats": 577,
+  "termYears": 5,
+  "daysAfterPresidential": 35,
+  "seatAmplification": 1.5,
+  "coattailBonus": 0.06,
+  "coattailWindowDays": 90,
+  "incumbentBonusShare": 0.7,
+  "dissolutionCampaignDays": 21,
+  "minDaysBetweenDissolutions": 365,
+  "allyRange": 0.8,
+  "approvalWeight": 0.35,
+  "cohesionWeight": 0.12,
+  "censureThreshold": 0.45,
+  "censureDelayDays": 3,
+  "censureNoise": 0.04,
+  "spontaneousCensureSupport": 0.38,
+  "spontaneousCensureChanceMonthly": 0.25,
+  "governmentFallApprovalCost": 0.01
+ },
+ "referendum": {
+  "campaignDays": 30,
+  "minDaysBetween": 365,
+  "approvalWeight": 0.9,
+  "interestWeight": 3.0,
+  "noise": 0.03,
+  "victorySupportBonus": 0.05,
+  "defeatApprovalCost": 0.05,
+  "defeatLockDays": 1095
+ }
 }

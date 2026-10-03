@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 enum class PolicyKind { TAX_RATE, SPENDING, REFORM }
 
 @Serializable
-enum class PolicyStatus { PENDING_VOTE, ADOPTED, REJECTED, FORCED }
+enum class PolicyStatus { PENDING_VOTE, ADOPTED, REJECTED, FORCED, PENDING_CENSURE }
 
 /** Mesure budgétaire soumise au Parlement (procédure simplifiée, conséquences réalistes). */
 @Serializable

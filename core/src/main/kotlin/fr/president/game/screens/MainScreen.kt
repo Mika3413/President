@@ -201,6 +201,7 @@ class MainScreen(
     override fun open(panel: PanelId, argument: String?) {
         val p = panels.getValue(panel)
         if (panel == PanelId.DIPLOMACY && argument != null) diplomacyPanel.country = argument
+        else if (argument != null) p.applyArgument(argument)
         currentPanel = p
         panelSlot.actor = p.root
         p.refresh()

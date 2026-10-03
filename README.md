@@ -17,8 +17,8 @@ pour la profondeur — sans leurs défauts.
 | Temps | Monde persistant, rythme verrouillé, rattrapage déterministe après absence, simulation d'arrière-plan Android (WorkManager) |
 | Économie | Modèle macro interconnecté (confiance, impulsions différées, taux, dette, énergie, commerce, sanctions), budget détaillé voté au Parlement |
 | Société | Opinion de 13 groupes sociaux et de chaque territoire, services publics, démographie, immigration |
-| Politique | Gouvernement (Premier ministre, 11 ministres, priorités), Parlement, 18 réformes structurelles, promesses de campagne, scandales |
-| Élections | Présidentielle à deux tours, participation, 6 familles politiques, bilan jugé par chaque groupe, promesses tenues ou rompues |
+| Politique | Gouvernement (Premier ministre, 11 ministres, priorités), Assemblée nationale (577 sièges, majorité/cohabitation, dissolution, motion de censure), référendums, 18 réformes structurelles, promesses de campagne, scandales |
+| Élections | Présidentielle à deux tours, législatives (à échéance ou après dissolution), référendums, participation, 6 familles politiques, bilan jugé par chaque groupe, promesses tenues ou rompues |
 | Territoires | Demandes des maires, préfets, présidents de collectivités (accepter, partiellement, cofinancer, reporter, se renseigner, refuser), grands projets |
 | Événements | 30 types dépendant de l'état du monde (incidents industriels, catastrophes, crises sociales, attentats, scandales, épidémies...) |
 | Diplomatie | 29 pays IA, mémoire diplomatique, négociation par clauses (14 types), contre-propositions, sanctions, ultimatums, condamnations, alliances (OTAN, UE, OTSC), alternances politiques à l'étranger |

@@ -60,6 +60,7 @@ class WorldState(
     val scheduler: SchedulerState = SchedulerState(),
     val projects: MutableList<ProjectState> = mutableListOf(),
     val policy: PolicyState = PolicyState(),
+    val parliament: fr.president.engine.government.ParliamentState = fr.president.engine.government.ParliamentState(),
     var nextId: Long = 1,
     val demography: fr.president.engine.territory.DemographyState = fr.president.engine.territory.DemographyState(),
 ) {

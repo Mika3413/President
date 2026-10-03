@@ -43,6 +43,16 @@ sealed class ScheduledAction {
     data class Tutorial(override val at: WorldTime, val index: Int) : ScheduledAction()
 
     @Serializable
+    data class LegislativeElection(override val at: WorldTime) : ScheduledAction()
+
+    /** Motion de censure : [proposalId] est le texte passé en force qui l'a provoquée, s'il y en a un. */
+    @Serializable
+    data class CensureVote(override val at: WorldTime, val proposalId: String?) : ScheduledAction()
+
+    @Serializable
+    data class ReferendumVote(override val at: WorldTime, val reformId: String) : ScheduledAction()
+
+    @Serializable
     data class ProjectCompletion(override val at: WorldTime, val projectId: String) : ScheduledAction()
 }
 

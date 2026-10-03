@@ -15,6 +15,9 @@ abstract class Panel(protected val ui: Ui, private val onClose: () -> Unit) {
     private val titleLabel = ui.label("", "title", wrap = true)
     protected val expanded = mutableSetOf<String>()
 
+    /** Argument d'ouverture (onglet, cible...) transmis par le navigateur. */
+    open fun applyArgument(argument: String) {}
+
     init {
         root.pad(PAD)
         val header = Table()

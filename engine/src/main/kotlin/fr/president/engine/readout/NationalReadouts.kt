@@ -114,9 +114,16 @@ class NationalReadouts(private val ctx: SimulationContext) {
         val support = ctx.state.government.parliamentSupport
         val s = scales.describe("support", support)
         val threshold = ctx.playerData.government!!.parliament.passThreshold
+        val assembly = fr.president.engine.government.ParliamentService(ctx)
+        val details = mutableListOf("Soutien estimé" to Formatting.percent(support))
+        if (assembly.isActive) {
+            details += "Assemblée" to assembly.majorityStatus().label
+            details += "Groupe présidentiel" to "${ctx.state.parliament.seats[assembly.presidentFamily().id] ?: 0} sièges sur ${assembly.totalSeats()}"
+            ctx.state.parliament.nextLegislative?.let { details += "Prochaines législatives" to Formatting.date(it) }
+        }
         return Indicator("Parlement", s.label, s.tone,
             if (support >= threshold) "Vos textes ont de bonnes chances d'être adoptés." else "L'adoption de vos textes est incertaine.",
-            listOf("Soutien estimé" to Formatting.percent(support)))
+            details)
     }
 
     fun military(): Indicator {

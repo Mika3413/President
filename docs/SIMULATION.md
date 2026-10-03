@@ -72,10 +72,26 @@ Des sondages bruités sont publiés toutes les deux semaines. Pas de règle « p
 * Efficacité d'un ministère = compétence, gestion, expérience, loyauté du ministre + priorité
   (au plus 3 priorités hautes). Ministère vacant = intérim peu efficace.
 * La loyauté dérive avec la relation au président et sa popularité ; sous un seuil, démission.
-* Soutien parlementaire : base + popularité + ouverture (un Premier ministre d'une autre
-  sensibilité élargit la majorité, mais trop d'écart nuit).
+* **Assemblée nationale** (`ParliamentService`) : 577 sièges répartis entre les 6 familles.
+  Les législatives réutilisent le modèle de vote par groupe ; le scrutin majoritaire est résumé
+  par une amplification des écarts (parts de voix à la puissance 1,5, plus forts restes). Le parti
+  présidentiel garde une partie de la prime du sortant et bénéficie d'un effet d'entraînement
+  quand le scrutin suit de peu la présidentielle (35 jours après, comme en France).
+* Personnalités rattachées à la famille la plus proche sur les deux axes (économique, sociétal).
+* Soutien parlementaire = Σ sièges × proximité de chaque groupe avec la famille du président
+  **ou** celle du Premier ministre (un PM d'ouverture élargit la base) − coût de cohésion d'un
+  exécutif à deux têtes éloignées + effet de la popularité. Statut : majorité absolue, relative,
+  cohabitation.
+* **Dissolution** : interdite dans l'année qui suit des législatives ; scrutin trois semaines plus
+  tard, le calendrier repart pour cinq ans.
 * Les mesures budgétaires sont votées après un délai ; un rejet peut être contourné par une
-  adoption sans vote, au prix d'un coût politique.
+  adoption sans vote. Sans majorité solide, ce passage en force déclenche une **motion de
+  censure** (tirage autour du soutien réel) : adoptée, elle fait tomber le texte et le Premier
+  ministre ; une opposition dominante peut aussi en déposer d'elle-même chaque mois.
+* **Référendum** : une réforme peut être soumise aux électeurs (un par an au plus). Oui par groupe
+  = 50 % + poids × (opinion du groupe − 50 %) + intérêt × effets immédiats de la réforme sur ce
+  groupe. Un « oui » adopte la réforme et renforce la majorité ; un « non » coûte en popularité et
+  bloque le texte trois ans.
 
 ## Événements
 

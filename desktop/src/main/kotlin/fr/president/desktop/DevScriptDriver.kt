@@ -31,7 +31,7 @@ class DevScriptDriver(private val game: PresidentGame, script: String) : Applica
             "shot" -> screenshot(arg)
             "zoom" -> arg.split(',').let { (lon, lat, w) -> game.mainScreen?.devZoom(lon.toDouble(), lat.toDouble(), w.toFloat()) }
             "layer" -> game.mainScreen?.devLayer(ThematicLayer.valueOf(arg))
-            "open" -> game.mainScreen?.open(PanelId.valueOf(arg))
+            "open" -> arg.split('/').let { parts -> game.mainScreen?.open(PanelId.valueOf(parts[0]), parts.getOrNull(1)) }
             "select" -> select(arg)
             // Débogage uniquement : avance le monde sans attendre le temps réel.
             "skip" -> game.controller?.session?.context?.let { ctx -> Simulator(ctx).advanceTo(ctx.now.plusDays(arg.toLong())) }

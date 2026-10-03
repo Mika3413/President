@@ -8,7 +8,6 @@ import fr.president.engine.simulation.ScheduledAction
 import fr.president.engine.simulation.SimulationContext
 import fr.president.engine.util.Formatting
 import fr.president.engine.world.GameOver
-import kotlin.math.abs
 
 /** Organisation des scrutins présidentiels : candidats, sondages, tours, résultats. */
 class ElectionService(private val ctx: SimulationContext) {
@@ -19,7 +18,7 @@ class ElectionService(private val ctx: SimulationContext) {
         val state = ctx.state.elections
         state.candidates.clear()
         val president = ctx.state.characters.getValue(ctx.state.player.presidentId)
-        val presidentFamily = def.families.minByOrNull { abs(it.economicPosition - president.economicLeaning) }!!
+        val presidentFamily = PoliticalFamilies.closest(def.families, president.economicLeaning, president.socialLeaning)
         state.candidates += Candidate(president.id, presidentFamily.id, true, president.economicLeaning, president.socialLeaning)
         val year = ctx.now.toDateTime().year
         for (family in def.families.filter { it.id != presidentFamily.id }) {

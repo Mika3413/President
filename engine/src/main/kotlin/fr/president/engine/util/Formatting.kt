@@ -27,6 +27,15 @@ object Formatting {
         else -> integer.format(v * THOUSAND) + " M€"
     }
 
+    private val monthNames = listOf("janvier", "février", "mars", "avril", "mai", "juin", "juillet",
+        "août", "septembre", "octobre", "novembre", "décembre")
+
+    /** Date du monde en toutes lettres : « 14 mars 2029 ». */
+    fun date(t: fr.president.engine.time.WorldTime): String {
+        val d = t.toDateTime()
+        return "${d.dayOfMonth} ${monthNames[d.monthValue - 1]} ${d.year}"
+    }
+
     fun population(v: Long): String = when {
         v >= MILLION -> oneDecimal.format(v / MILLION) + " M hab."
         else -> integer.format(v) + " hab."

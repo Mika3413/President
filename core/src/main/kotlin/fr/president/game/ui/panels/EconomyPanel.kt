@@ -102,6 +102,7 @@ class EconomyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pa
                 PolicyStatus.ADOPTED -> "Adoptée"
                 PolicyStatus.REJECTED -> "Rejetée"
                 PolicyStatus.FORCED -> "Adoptée sans vote"
+                PolicyStatus.PENDING_CENSURE -> "Responsabilité engagée : motion de censure en cours"
             }
             val color = when (p.status) {
                 PolicyStatus.REJECTED -> Theme.bad
@@ -111,7 +112,7 @@ class EconomyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pa
             into.add(ui.label(session.policy.label(p), "small", wrap = true)).row()
             into.add(ui.label(status, "muted", color)).row()
             if (p.status == PolicyStatus.REJECTED && p.supportAtVote != null) {
-                into.add(ui.button("Passer en force (coût politique)", "flat") { session.policy.forcePass(p.id); nav.refresh() }).left().row()
+                into.add(ui.button("Passer en force (coût politique, risque de censure)", "flat") { session.policy.forcePass(p.id); nav.refresh() }).left().row()
             }
         }
     }

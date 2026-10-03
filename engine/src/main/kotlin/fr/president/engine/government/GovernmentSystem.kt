@@ -34,6 +34,12 @@ class GovernmentSystem : SimulationSystem {
     }
 
     private fun updateParliament(ctx: SimulationContext) {
+        val parliament = ParliamentService(ctx)
+        if (parliament.isActive) {
+            ctx.state.government.parliamentSupport = approach(ctx.state.government.parliamentSupport, parliament.supportTarget(), PARLIAMENT_DRIFT)
+            parliament.monthlyCheck()
+            return
+        }
         val p = ctx.playerData.government!!.parliament
         val president = ctx.state.characters.getValue(ctx.state.player.presidentId)
         val pm = ctx.state.government.primeMinisterId?.let { ctx.state.characters[it] }

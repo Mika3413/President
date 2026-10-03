@@ -36,7 +36,12 @@ class PolicyService(private val ctx: SimulationContext) {
         val def = reforms().firstOrNull { it.id == id } ?: return "Réforme inconnue"
         val policy = ctx.state.policy
         if (id in policy.adoptedReforms) return "Déjà adoptée"
-        if (policy.proposals.any { it.itemId == id && it.status == PolicyStatus.PENDING_VOTE }) return "Vote en attente"
+        if (policy.proposals.any { it.itemId == id && (it.status == PolicyStatus.PENDING_VOTE || it.status == PolicyStatus.PENDING_CENSURE) }) return "Vote en attente"
+        val parliament = ctx.state.parliament
+        if (parliament.referendumReform == id) return "Soumise à référendum"
+        parliament.lockedReforms[id]?.let { until ->
+            if (ctx.now < until) return "Rejetée par référendum : pas avant ${fr.president.engine.util.Formatting.date(until)}"
+        }
         def.exclusiveWith.firstOrNull { it in policy.adoptedReforms }?.let { other ->
             return "Incompatible avec « ${reforms().first { it.id == other }.title} »"
         }
@@ -86,12 +91,33 @@ class PolicyService(private val ctx: SimulationContext) {
         val proposal = ctx.state.policy.proposals.firstOrNull { it.id == proposalId } ?: return
         if (proposal.status != PolicyStatus.REJECTED && proposal.status != PolicyStatus.PENDING_VOTE) return
         val p = gov.parliament
-        proposal.status = PolicyStatus.FORCED
         ctx.state.opinion.groups.values.forEach { it.shock -= p.forcePassApprovalCost }
         ctx.state.government.parliamentSupport = (ctx.state.government.parliamentSupport - p.forcePassSupportCost).coerceAtLeast(0.0)
+        val parliament = ParliamentService(ctx)
+        val censure = parliament.legislative
+        // Sans majorité solide, l'engagement de responsabilité expose le gouvernement à la censure.
+        if (censure != null && parliament.isActive && ctx.state.government.parliamentSupport < censure.censureThreshold + CENSURE_MARGIN) {
+            proposal.status = PolicyStatus.PENDING_CENSURE
+            ctx.notifications.post(NotificationCategory.POLITICS, Urgency.IMPORTANT, "Responsabilité du gouvernement engagée",
+                "${label(proposal)}. Le texte sera adopté sauf si une motion de censure est votée.")
+            parliament.requestCensure(proposal.id)
+            return
+        }
+        enactForced(proposal)
+    }
+
+    /** Application d'un texte adopté sans vote (directement ou après le rejet d'une censure). */
+    fun enactForced(proposal: PolicyProposal) {
+        proposal.status = PolicyStatus.FORCED
         apply(proposal)
         ctx.notifications.post(NotificationCategory.POLITICS, Urgency.IMPORTANT, "Mesure adoptée sans vote",
             "${label(proposal)}. L'opposition dénonce un passage en force.")
+    }
+
+    /** Réforme approuvée directement par les électeurs. */
+    fun adoptByReferendum(id: String) {
+        if (id in ctx.state.policy.adoptedReforms) return
+        applyReform(id)
     }
 
     private fun apply(proposal: PolicyProposal) {
@@ -147,5 +173,7 @@ class PolicyService(private val ctx: SimulationContext) {
     private companion object {
         const val MIN_SPENDING_FACTOR = 0.5
         const val MAX_SPENDING_FACTOR = 1.6
+        /** Marge au-dessus du seuil de censure en deçà de laquelle l'opposition tente sa chance. */
+        const val CENSURE_MARGIN = 0.05
     }
 }
