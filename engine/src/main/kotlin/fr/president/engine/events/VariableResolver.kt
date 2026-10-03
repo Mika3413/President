@@ -63,6 +63,8 @@ class VariableResolver(private val ctx: SimulationContext) {
             "ammunitionStock" -> ctx.state.military.stocks.ammunition
             // Guerre active impliquant un pays européen (réfugiés, inquiétude, prix).
             "nearbyWar" -> if (geo.activeWars().any { w -> w.participants.any { it in NEARBY } }) 1.0 else 0.0
+            // Guerre en cours dans laquelle la France n'est pas engagée (sujet de résolutions à l'ONU).
+            "foreignWar" -> if (geo.mainWarWithout(ctx.state.player.countryId) != null) 1.0 else 0.0
             else -> null
         }
     }

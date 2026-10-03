@@ -118,5 +118,35 @@
   "incumbentBonus": 0.03,
   "incumbentRerunChance": 0.7,
   "parliamentImpact": 0.08
+ },
+ "senate": {
+  "seats": 348,
+  "initialSeats": {
+   "right": 145,
+   "centre": 60,
+   "left": 72,
+   "greens": 19,
+   "radical_left": 17,
+   "nationalist": 35
+  },
+  "renewalYears": 3,
+  "firstRenewal": "2029-09-23T08:00:00Z",
+  "renewedShare": 0.5,
+  "mayorWeight": 0.6,
+  "departmentWeight": 0.25,
+  "regionWeight": 0.15,
+  "passThreshold": 0.5,
+  "voteNoise": 0.05,
+  "navetteDelayDays": 60
+ },
+ "european": {
+  "firstDate": "2029-06-10T08:00:00Z",
+  "termYears": 5,
+  "seats": 81,
+  "turnoutFactor": 0.68,
+  "goodScore": 0.25,
+  "badScore": 0.17,
+  "supportSwing": 0.04,
+  "opinionSwing": 0.01
  }
 }

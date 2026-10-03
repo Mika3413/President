@@ -120,6 +120,8 @@ class NationalReadouts(private val ctx: SimulationContext) {
             details += "Assemblée" to assembly.majorityStatus().label
             details += "Groupe présidentiel" to "${ctx.state.parliament.seats[assembly.presidentFamily().id] ?: 0} sièges sur ${assembly.totalSeats()}"
             ctx.state.parliament.nextLegislative?.let { details += "Prochaines législatives" to Formatting.date(it) }
+            val senate = fr.president.engine.government.SenateService(ctx)
+            if (senate.isActive) details += "Sénat" to senate.majorityLabel()
         }
         return Indicator("Parlement", s.label, s.tone,
             if (support >= threshold) "Vos textes ont de bonnes chances d'être adoptés." else "L'adoption de vos textes est incertaine.",

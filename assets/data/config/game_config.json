@@ -49,7 +49,8 @@
       "events/government.json",
       "events/crises.json",
       "events/local.json",
-      "events/national.json"
+      "events/national.json",
+      "events/summits.json"
     ],
     "dialogue": [
       "dialogue/fr/territory.json",
@@ -60,7 +61,8 @@
       "dialogue/fr/crises.json",
       "dialogue/fr/conversations.json",
       "dialogue/fr/local.json",
-      "dialogue/fr/national.json"
+      "dialogue/fr/national.json",
+      "dialogue/fr/summits.json"
     ],
     "names": {
       "fr": "names/fr.json",

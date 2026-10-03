@@ -117,7 +117,7 @@ class PolicyService(private val ctx: SimulationContext) {
     /** Réforme approuvée directement par les électeurs. */
     fun adoptByReferendum(id: String) {
         if (id in ctx.state.policy.adoptedReforms) return
-        applyReform(id)
+        applyReform(id, viaParliament = false)
     }
 
     private fun apply(proposal: PolicyProposal) {
@@ -148,10 +148,13 @@ class PolicyService(private val ctx: SimulationContext) {
             .format(impulse, householdDelta, businessDelta))
     }
 
-    private fun applyReform(id: String) {
+    private fun applyReform(id: String, viaParliament: Boolean = true) {
         val def = reforms().first { it.id == id }
         ctx.state.policy.adoptedReforms[id] = ctx.now
-        (def.immediateEffects + def.longTermEffects).forEach { ctx.effects.trigger(it, null, emptyMap(), id) }
+        // Navette : un Sénat hostile retarde la mise en œuvre (pas pour un référendum).
+        val delay = if (viaParliament) SenateService(ctx).reviewReform(def.title).toDouble() else 0.0
+        def.immediateEffects.forEach { ctx.effects.trigger(it, null, emptyMap(), id) }
+        def.longTermEffects.forEach { ctx.effects.trigger(it.copy(delayDays = it.delayDays + delay), null, emptyMap(), id) }
         ctx.notifications.news(NotificationCategory.POLITICS, "Réforme adoptée : ${def.title}")
     }
 

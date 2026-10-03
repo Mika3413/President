@@ -41,4 +41,16 @@ class ParliamentState(
     val lockedReforms: MutableMap<String, WorldTime> = mutableMapOf(),
     var censuresSurvived: Int = 0,
     var governmentsFallen: Int = 0,
+    /** Famille politique -> sièges au Sénat. */
+    val senateSeats: MutableMap<String, Int> = mutableMapOf(),
+    var nextSenateRenewal: WorldTime? = null,
+    val senateResults: MutableList<SenateResult> = mutableListOf(),
+    var nextEuropean: WorldTime? = null,
+    val europeanResults: MutableList<EuropeanResult> = mutableListOf(),
 )
+
+@Serializable
+data class SenateResult(val time: WorldTime, val seats: Map<String, Int>, val gained: Int)
+
+@Serializable
+data class EuropeanResult(val time: WorldTime, val votes: Map<String, Double>, val seats: Map<String, Int>, val turnout: Double)

@@ -169,6 +169,8 @@ class GovernmentPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) :
             into.add(ui.label("Pour gouverner, nommez à Matignon une personnalité proche de : ${largest.name}.", "small", Theme.warning, wrap = true)).growX().padTop(GAP).row()
         }
 
+        senate(into)
+
         into.add(ui.label("Calendrier", "bold")).left().padTop(GAP).row()
         state.nextLegislative?.let { into.add(ui.label((if (state.dissolutionPending) "Législatives anticipées : " else "Prochaines législatives : ") + Formats.date(it), "small")).left().row() }
         if (state.censurePending) into.add(ui.label("Une motion de censure sera votée dans les prochains jours.", "small", Theme.bad, wrap = true)).growX().row()
@@ -197,6 +199,24 @@ class GovernmentPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) :
             }
             else -> into.add(ui.button("Dissoudre l'Assemblée…", "flat") { confirmDissolution = true; nav.refresh() }).left().row()
         }
+    }
+
+    /** Sénat : composition et rôle (il retarde les réformes qu'il rejette). */
+    private fun senate(into: Table) {
+        val senate = session.senate
+        if (!senate.isActive) return
+        val state = session.state.parliament
+        val p = session.parliament
+        into.add(ui.label("Sénat — ${senate.majorityLabel()}", "bold")).left().padTop(GAP).row()
+        val total = senate.totalSeats().coerceAtLeast(1)
+        val bar = Table().left()
+        p.families.sortedBy { it.economicPosition }.forEach { f ->
+            val seats = state.senateSeats[f.id] ?: 0
+            if (seats > 0) bar.add(Table().apply { setBackground(ui.skin.fill(Color.valueOf(f.color))) }).width(BAR_WIDTH * seats / total).height(BAR_HEIGHT * 0.7f)
+        }
+        into.add(bar).growX().padTop(2f).row()
+        into.add(ui.label("Élu par les élus locaux et renouvelé par moitié : un Sénat hostile ne bloque pas vos réformes, mais la navette retarde leur mise en œuvre.", "muted", wrap = true)).growX().row()
+        state.nextSenateRenewal?.let { into.add(ui.label("Prochaines sénatoriales : ${Formats.date(it)}", "small")).left().row() }
     }
 
     private fun stanceLabel(support: Double): String = when {

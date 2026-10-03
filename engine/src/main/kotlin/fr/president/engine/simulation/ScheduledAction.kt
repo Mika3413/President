@@ -56,6 +56,12 @@ sealed class ScheduledAction {
     data class LocalElection(override val at: WorldTime, val kindId: String) : ScheduledAction()
 
     @Serializable
+    data class SenateRenewal(override val at: WorldTime) : ScheduledAction()
+
+    @Serializable
+    data class EuropeanElection(override val at: WorldTime) : ScheduledAction()
+
+    @Serializable
     data class ProjectCompletion(override val at: WorldTime, val projectId: String) : ScheduledAction()
 }
 

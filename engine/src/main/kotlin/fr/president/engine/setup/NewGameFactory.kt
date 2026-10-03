@@ -106,6 +106,7 @@ class NewGameFactory(private val db: GameDatabase) {
         }
         fr.president.engine.government.ParliamentService(ctx).ensure()
         fr.president.engine.elections.LocalElectionService(ctx).ensure()
+        fr.president.engine.government.SenateService(ctx).ensure()
         WelcomeMessage(ctx).send()
         WelcomeMessage(ctx).scheduleTutorial()
         return state

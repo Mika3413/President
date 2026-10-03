@@ -21,6 +21,10 @@ class Geopolitics(private val ctx: SimulationContext) {
     }
 
     fun activeWars(): List<War> = military.wars.filter { it.status == WarStatus.ACTIVE }
+
+    /** Principale guerre en cours dont un pays donné n'est pas partie prenante (sujet de résolutions, de sommets). */
+    fun mainWarWithout(country: String): War? =
+        activeWars().filter { country !in it.participants }.maxByOrNull { it.participants.size }
     fun ongoingWars(): List<War> = military.wars.filter { it.status != WarStatus.ENDED }
 
     fun atWar(a: String, b: String): Boolean = activeWars().any { w ->

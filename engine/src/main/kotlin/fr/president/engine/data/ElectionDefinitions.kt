@@ -19,6 +19,44 @@ data class ElectionsDefinition(
     val legislative: LegislativeDef? = null,
     val referendum: ReferendumDef? = null,
     val local: LocalElectionsDef? = null,
+    val senate: SenateDef? = null,
+    val european: EuropeanElectionDef? = null,
+)
+
+/**
+ * Sénat : élu au suffrage indirect par les élus locaux, renouvelé par moitié. Il ne peut pas bloquer
+ * une réforme (l'Assemblée a le dernier mot), mais une navette retarde sa mise en œuvre.
+ */
+@Serializable
+data class SenateDef(
+    val seats: Int,
+    val initialSeats: Map<String, Int>,
+    val renewalYears: Int,
+    val firstRenewal: String,
+    /** Part des sièges renouvelée à chaque élection. */
+    val renewedShare: Double,
+    /** Poids des maires, présidents de département et de région parmi les grands électeurs. */
+    val mayorWeight: Double,
+    val departmentWeight: Double,
+    val regionWeight: Double,
+    val passThreshold: Double,
+    val voteNoise: Double,
+    /** Retard de mise en œuvre d'une réforme rejetée par le Sénat (navette parlementaire). */
+    val navetteDelayDays: Int,
+)
+
+/** Élections européennes : scrutin national à la proportionnelle, test pour la majorité. */
+@Serializable
+data class EuropeanElectionDef(
+    val firstDate: String,
+    val termYears: Int,
+    val seats: Int,
+    /** Participation plus faible qu'à la présidentielle. */
+    val turnoutFactor: Double,
+    val goodScore: Double,
+    val badScore: Double,
+    val supportSwing: Double,
+    val opinionSwing: Double,
 )
 
 @Serializable

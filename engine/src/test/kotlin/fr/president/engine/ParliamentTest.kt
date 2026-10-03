@@ -125,4 +125,35 @@ class ParliamentTest {
         assertTrue(changed > 0, "Des exécutifs changent de titulaire")
         assertTrue(session.state.localElections.next.getValue("departmental") > next)
     }
+
+    @Test
+    fun `le Sénat est renouvelé et les élections européennes ont lieu`() {
+        val clock = TestData.FakeClock()
+        val session = TestData.newSession(seed = 11L, clock = clock)
+        assertEquals(348, session.state.parliament.senateSeats.values.sum())
+        val renewal = session.state.parliament.nextSenateRenewal!!
+        clock.advanceWorldDays(session.state.time.daysUntil(renewal) + 1)
+        session.advanceToNow()
+        assertEquals(1, session.state.parliament.senateResults.size)
+        assertEquals(348, session.state.parliament.senateSeats.values.sum())
+        assertEquals(1, session.state.parliament.europeanResults.size, "Les européennes (juin 2029) précèdent les sénatoriales")
+        assertEquals(81, session.state.parliament.europeanResults.first().seats.values.sum())
+    }
+
+    @Test
+    fun `un Sénat hostile retarde la mise en oeuvre d'une réforme`() {
+        val clock = TestData.FakeClock()
+        val session = TestData.newSession(seed = 12L, clock = clock)
+        // Sénat entièrement acquis à l'opposition la plus éloignée.
+        val far = session.parliament.families.minBy { session.parliament.familySupport(it) }
+        session.state.parliament.senateSeats.clear()
+        session.state.parliament.senateSeats[far.id] = 348
+        session.state.government.parliamentSupport = 0.95
+        session.policy.proposeReform("hospital_plan").getOrThrow()
+        clock.advanceWorldDays(35.0)
+        session.advanceToNow()
+        assertTrue("hospital_plan" in session.state.policy.adoptedReforms)
+        val delayed = session.state.effects.filter { it.source == "hospital_plan" }
+        assertTrue(delayed.isNotEmpty() && delayed.all { it.startsAt > session.state.time }, "Effets retardés par la navette")
+    }
 }

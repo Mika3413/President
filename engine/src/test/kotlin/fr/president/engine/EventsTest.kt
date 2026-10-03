@@ -25,6 +25,8 @@ class EventsTest {
     @Test
     fun `chaque événement produit des textes entièrement résolus`() {
         val session = TestData.newSession(seed = 77L)
+        // Une guerre étrangère, pour les sommets et résolutions qui en parlent.
+        fr.president.engine.military.WarService(session.context).declare("RUS", "UKR", "Test")
         for (def in TestData.db.events) {
             for (scope in scopeFor(session, def.scope, def.infraTypes)) {
                 val before = session.state.inbox.messages.size

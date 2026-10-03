@@ -1,0 +1,1031 @@
+{
+ "events": [
+  {
+   "id": "eu_budget",
+   "category": "DIPLOMACY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.025,
+   "cooldownDays": 200,
+   "urgency": "IMPORTANT",
+   "headline": "Conseil européen : bras de fer sur le budget de l'Union",
+   "notificationText": "Les Vingt-Sept négocient le budget pluriannuel.",
+   "conditions": [
+    {
+     "variable": "season.month",
+     "oneOf": [
+      3,
+      6,
+      10,
+      12
+     ]
+    }
+   ],
+   "message": {
+    "template": "eu_budget",
+    "sender": "MINISTER",
+    "ministry": "foreign",
+    "responseDays": 4,
+    "defaultOption": "stabilize",
+    "options": [
+     {
+      "id": "increase",
+      "label": "Soutenir un budget européen plus ambitieux",
+      "hint": "Coût : 1,5 Md€ ; nos partenaires apprécient",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 1.5
+       },
+       {
+        "target": "alliance.EU.TALK_CORDIAL",
+        "amount": 0.03
+       },
+       {
+        "target": "opinion.group.urban",
+        "amount": 0.002
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "stabilize",
+      "label": "Défendre une stabilisation",
+      "hint": "Position médiane",
+      "effects": [
+       {
+        "target": "alliance.EU.TALK_CORDIAL",
+        "amount": 0.01
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "cut",
+      "label": "Exiger une baisse de notre contribution",
+      "hint": "Économie : 800 M€ ; tensions avec nos partenaires",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": -0.8
+       },
+       {
+        "target": "alliance.EU.TALK_TENSE",
+        "amount": -0.03
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "eu_migration",
+   "category": "DIPLOMACY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.025,
+   "cooldownDays": 200,
+   "urgency": "IMPORTANT",
+   "headline": "Conseil européen : le pacte sur les migrations",
+   "notificationText": "Les dirigeants européens se divisent sur l'accueil des migrants.",
+   "conditions": [
+    {
+     "variable": "season.month",
+     "oneOf": [
+      3,
+      6,
+      10,
+      12
+     ]
+    }
+   ],
+   "message": {
+    "template": "eu_migration",
+    "sender": "MINISTER",
+    "ministry": "foreign",
+    "responseDays": 4,
+    "defaultOption": "compromise",
+    "options": [
+     {
+      "id": "solidarity",
+      "label": "Soutenir la répartition obligatoire",
+      "hint": "Coût : 500 M€ ; pays du Sud reconnaissants",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.5
+       },
+       {
+        "target": "memory.ITA.NEGOTIATION_GOODWILL",
+        "amount": 0.04
+       },
+       {
+        "target": "memory.GRC.NEGOTIATION_GOODWILL",
+        "amount": 0.04
+       },
+       {
+        "target": "memory.ESP.NEGOTIATION_GOODWILL",
+        "amount": 0.02
+       },
+       {
+        "target": "memory.POL.TALK_TENSE",
+        "amount": -0.03
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": -0.004
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "compromise",
+      "label": "Défendre un compromis",
+      "hint": "Équilibre",
+      "effects": [
+       {
+        "target": "alliance.EU.TALK_CORDIAL",
+        "amount": 0.01
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "borders",
+      "label": "Privilégier les frontières extérieures",
+      "hint": "Populaire chez certains ; pays du Sud déçus",
+      "effects": [
+       {
+        "target": "memory.ITA.TALK_TENSE",
+        "amount": -0.02
+       },
+       {
+        "target": "memory.POL.NEGOTIATION_GOODWILL",
+        "amount": 0.03
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.004
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": -0.003
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "eu_defense",
+   "category": "DIPLOMACY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.025,
+   "cooldownDays": 200,
+   "urgency": "IMPORTANT",
+   "headline": "Conseil européen : vers une défense européenne ?",
+   "notificationText": "La question d'un fonds commun pour la défense est sur la table.",
+   "conditions": [
+    {
+     "variable": "season.month",
+     "oneOf": [
+      3,
+      6,
+      10,
+      12
+     ]
+    }
+   ],
+   "message": {
+    "template": "eu_defense",
+    "sender": "MINISTER",
+    "ministry": "foreign",
+    "responseDays": 4,
+    "defaultOption": "support",
+    "options": [
+     {
+      "id": "lead",
+      "label": "Porter le projet de défense européenne",
+      "hint": "Coût : 2 Md€ ; industrie et partenaires",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 2.0
+       },
+       {
+        "target": "alliance.EU.NEGOTIATION_GOODWILL",
+        "amount": 0.03
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": 0.003
+       },
+       {
+        "target": "military.readiness",
+        "amount": 0.01,
+        "days": 365
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "support",
+      "label": "Soutenir sans s'exposer",
+      "hint": "Position prudente",
+      "effects": [
+       {
+        "target": "alliance.EU.TALK_CORDIAL",
+        "amount": 0.01
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "bilateral",
+      "label": "Privilégier les coopérations bilatérales",
+      "hint": "Aucun coût ; occasion manquée",
+      "effects": [
+       {
+        "target": "memory.DEU.TALK_TENSE",
+        "amount": -0.02
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "eu_sanctions_war",
+   "category": "DIPLOMACY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.05,
+   "cooldownDays": 200,
+   "urgency": "URGENT",
+   "headline": "Conseil européen : sanctions contre {aggressorThe}",
+   "notificationText": "Les Vingt-Sept débattent d'un nouveau paquet de sanctions.",
+   "conditions": [
+    {
+     "variable": "season.month",
+     "oneOf": [
+      3,
+      6,
+      10,
+      12
+     ]
+    },
+    {
+     "variable": "military.foreignWar",
+     "min": 1
+    }
+   ],
+   "message": {
+    "template": "eu_sanctions_war",
+    "sender": "MINISTER",
+    "ministry": "foreign",
+    "responseDays": 4,
+    "defaultOption": "limited",
+    "options": [
+     {
+      "id": "strong",
+      "label": "Soutenir des sanctions fortes",
+      "hint": "Coût économique ; alliés reconnaissants",
+      "effects": [
+       {
+        "target": "war.attackers.SANCTION",
+        "amount": -0.06
+       },
+       {
+        "target": "war.defenders.MILITARY_SUPPORT",
+        "amount": 0.04
+       },
+       {
+        "target": "alliance.EU.NEGOTIATION_GOODWILL",
+        "amount": 0.02
+       },
+       {
+        "target": "economy.output",
+        "amount": -0.0008,
+        "days": 180
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "limited",
+      "label": "Un paquet limité",
+      "hint": "Compromis",
+      "effects": [
+       {
+        "target": "war.attackers.TALK_TENSE",
+        "amount": -0.02
+       },
+       {
+        "target": "war.defenders.TALK_CORDIAL",
+        "amount": 0.01
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "oppose",
+      "label": "S'opposer à de nouvelles sanctions",
+      "hint": "Économie préservée ; isolement",
+      "effects": [
+       {
+        "target": "alliance.EU.TALK_TENSE",
+        "amount": -0.03
+       },
+       {
+        "target": "war.defenders.TALK_TENSE",
+        "amount": -0.04
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "eu_common_debt",
+   "category": "DIPLOMACY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.025,
+   "cooldownDays": 200,
+   "urgency": "IMPORTANT",
+   "headline": "Conseil européen : un nouvel emprunt commun ?",
+   "notificationText": "Le débat sur la dette européenne commune est relancé.",
+   "conditions": [
+    {
+     "variable": "season.month",
+     "oneOf": [
+      3,
+      6,
+      10,
+      12
+     ]
+    }
+   ],
+   "message": {
+    "template": "eu_common_debt",
+    "sender": "MINISTER",
+    "ministry": "foreign",
+    "responseDays": 4,
+    "defaultOption": "neutral",
+    "options": [
+     {
+      "id": "support",
+      "label": "Soutenir l'emprunt commun",
+      "hint": "Investissement européen ; pays du Nord réticents",
+      "effects": [
+       {
+        "target": "economy.businessConfidence",
+        "amount": 0.004
+       },
+       {
+        "target": "memory.ITA.NEGOTIATION_GOODWILL",
+        "amount": 0.03
+       },
+       {
+        "target": "memory.ESP.NEGOTIATION_GOODWILL",
+        "amount": 0.03
+       },
+       {
+        "target": "memory.NLD.TALK_TENSE",
+        "amount": -0.02
+       },
+       {
+        "target": "memory.DEU.TALK_TENSE",
+        "amount": -0.01
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "neutral",
+      "label": "Rester neutre",
+      "hint": "Aucune conséquence",
+      "effects": [],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "oppose",
+      "label": "S'y opposer",
+      "hint": "Pays du Nord rassurés ; Sud déçu",
+      "effects": [
+       {
+        "target": "memory.NLD.NEGOTIATION_GOODWILL",
+        "amount": 0.02
+       },
+       {
+        "target": "memory.ITA.TALK_TENSE",
+        "amount": -0.02
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "g7_tax",
+   "category": "DIPLOMACY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.025,
+   "cooldownDays": 200,
+   "urgency": "IMPORTANT",
+   "headline": "Sommet du G7 : un impôt mondial sur les multinationales",
+   "notificationText": "Les grandes puissances négocient une taxation minimale.",
+   "conditions": [
+    {
+     "variable": "season.month",
+     "oneOf": [
+      6
+     ]
+    }
+   ],
+   "message": {
+    "template": "g7_tax",
+    "sender": "MINISTER",
+    "ministry": "foreign",
+    "responseDays": 4,
+    "defaultOption": "compromise",
+    "options": [
+     {
+      "id": "ambitious",
+      "label": "Défendre un taux ambitieux",
+      "hint": "Recettes futures ; tensions avec Washington",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": -1.5,
+        "delayDays": 180
+       },
+       {
+        "target": "memory.USA.TALK_TENSE",
+        "amount": -0.03
+       },
+       {
+        "target": "opinion.group.low_income",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "compromise",
+      "label": "Accepter le compromis américain",
+      "hint": "Recettes plus modestes ; apaisement",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": -0.6,
+        "delayDays": 180
+       },
+       {
+        "target": "memory.USA.NEGOTIATION_GOODWILL",
+        "amount": 0.02
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "alone",
+      "label": "Maintenir notre taxe nationale",
+      "hint": "Recettes immédiates ; risque de représailles",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": -0.4
+       },
+       {
+        "target": "memory.USA.TALK_TENSE",
+        "amount": -0.05
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "g7_africa",
+   "category": "DIPLOMACY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.025,
+   "cooldownDays": 200,
+   "urgency": "IMPORTANT",
+   "headline": "Sommet du G7 : un plan pour l'Afrique",
+   "notificationText": "Les dirigeants discutent d'aide au développement et de dette africaine.",
+   "conditions": [
+    {
+     "variable": "season.month",
+     "oneOf": [
+      6
+     ]
+    }
+   ],
+   "message": {
+    "template": "g7_africa",
+    "sender": "MINISTER",
+    "ministry": "foreign",
+    "responseDays": 4,
+    "defaultOption": "modest",
+    "options": [
+     {
+      "id": "ambitious",
+      "label": "Engagement ambitieux",
+      "hint": "Coût : 2 Md€ ; influence renforcée",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 2.0
+       },
+       {
+        "target": "memory.MAR.NEGOTIATION_GOODWILL",
+        "amount": 0.04
+       },
+       {
+        "target": "memory.DZA.NEGOTIATION_GOODWILL",
+        "amount": 0.03
+       },
+       {
+        "target": "memory.TUN.NEGOTIATION_GOODWILL",
+        "amount": 0.04
+       },
+       {
+        "target": "memory.EGY.NEGOTIATION_GOODWILL",
+        "amount": 0.03
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "modest",
+      "label": "Contribution modeste",
+      "hint": "Coût : 500 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.5
+       },
+       {
+        "target": "memory.MAR.TALK_CORDIAL",
+        "amount": 0.01
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "none",
+      "label": "Laisser d'autres porter le projet",
+      "hint": "Aucun coût ; influence en recul",
+      "effects": [
+       {
+        "target": "memory.MAR.TALK_TENSE",
+        "amount": -0.02
+       },
+       {
+        "target": "memory.DZA.TALK_TENSE",
+        "amount": -0.02
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "nato_spending",
+   "category": "DIPLOMACY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.025,
+   "cooldownDays": 200,
+   "urgency": "IMPORTANT",
+   "headline": "Sommet de l'OTAN : Washington exige plus de dépenses militaires",
+   "notificationText": "Les alliés sont sommés de consacrer 3 % de leur PIB à la défense.",
+   "conditions": [
+    {
+     "variable": "season.month",
+     "oneOf": [
+      7
+     ]
+    }
+   ],
+   "message": {
+    "template": "nato_spending",
+    "sender": "MINISTER",
+    "ministry": "foreign",
+    "responseDays": 4,
+    "defaultOption": "gradual",
+    "options": [
+     {
+      "id": "accept",
+      "label": "Souscrire à l'objectif de 3 %",
+      "hint": "Budget des armées +15 % ; alliés satisfaits",
+      "effects": [
+       {
+        "target": "spending.defense",
+        "amount": 0.15
+       },
+       {
+        "target": "alliance.NATO.NEGOTIATION_GOODWILL",
+        "amount": 0.03
+       },
+       {
+        "target": "military.readiness",
+        "amount": 0.03,
+        "days": 730
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "gradual",
+      "label": "Proposer une trajectoire progressive",
+      "hint": "Budget des armées +5 %",
+      "effects": [
+       {
+        "target": "spending.defense",
+        "amount": 0.05
+       },
+       {
+        "target": "alliance.NATO.TALK_CORDIAL",
+        "amount": 0.01
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "refuse",
+      "label": "Refuser l'objectif",
+      "hint": "Finances préservées ; Washington mécontent",
+      "effects": [
+       {
+        "target": "memory.USA.TALK_TENSE",
+        "amount": -0.04
+       },
+       {
+        "target": "memory.POL.TALK_TENSE",
+        "amount": -0.02
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "nato_war_support",
+   "category": "DIPLOMACY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.05,
+   "cooldownDays": 200,
+   "urgency": "URGENT",
+   "headline": "Sommet de l'OTAN : quel soutien {victimTo} ?",
+   "notificationText": "Les alliés débattent de l'aide militaire à fournir.",
+   "conditions": [
+    {
+     "variable": "season.month",
+     "oneOf": [
+      7
+     ]
+    },
+    {
+     "variable": "military.foreignWar",
+     "min": 1
+    }
+   ],
+   "message": {
+    "template": "nato_war_support",
+    "sender": "MINISTER",
+    "ministry": "foreign",
+    "responseDays": 4,
+    "defaultOption": "humanitarian",
+    "options": [
+     {
+      "id": "military",
+      "label": "Aide militaire importante",
+      "hint": "Stocks de munitions réduits ; alliés reconnaissants",
+      "effects": [
+       {
+        "target": "military.ammoStock",
+        "amount": -0.08
+       },
+       {
+        "target": "war.defenders.MILITARY_SUPPORT",
+        "amount": 0.06
+       },
+       {
+        "target": "war.attackers.THREAT",
+        "amount": -0.04
+       },
+       {
+        "target": "alliance.NATO.NEGOTIATION_GOODWILL",
+        "amount": 0.02
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "humanitarian",
+      "label": "Aide humanitaire et économique",
+      "hint": "Coût : 800 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.8
+       },
+       {
+        "target": "war.defenders.CRISIS_SOLIDARITY",
+        "amount": 0.04
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "neutral",
+      "label": "Rester en retrait",
+      "hint": "Aucun coût ; crédibilité entamée",
+      "effects": [
+       {
+        "target": "war.defenders.TALK_TENSE",
+        "amount": -0.04
+       },
+       {
+        "target": "alliance.NATO.TALK_TENSE",
+        "amount": -0.02
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "un_resolution",
+   "category": "DIPLOMACY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.05,
+   "cooldownDays": 200,
+   "urgency": "URGENT",
+   "headline": "ONU : vote sur une résolution condamnant {aggressorThe}",
+   "notificationText": "L'Assemblée générale se prononce sur la guerre {victimIn}.",
+   "conditions": [
+    {
+     "variable": "season.month",
+     "oneOf": [
+      9,
+      3
+     ]
+    },
+    {
+     "variable": "military.foreignWar",
+     "min": 1
+    }
+   ],
+   "message": {
+    "template": "un_resolution",
+    "sender": "MINISTER",
+    "ministry": "foreign",
+    "responseDays": 4,
+    "defaultOption": "vote",
+    "options": [
+     {
+      "id": "sponsor",
+      "label": "Voter pour et coparrainer le texte",
+      "hint": "Fermeté ; relations dégradées avec l'agresseur",
+      "effects": [
+       {
+        "target": "war.attackers.CONDEMNATION",
+        "amount": -0.06
+       },
+       {
+        "target": "war.defenders.NEGOTIATION_GOODWILL",
+        "amount": 0.04
+       },
+       {
+        "target": "alliance.EU.TALK_CORDIAL",
+        "amount": 0.01
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "vote",
+      "label": "Voter pour",
+      "hint": "Position claire et mesurée",
+      "effects": [
+       {
+        "target": "war.attackers.TALK_TENSE",
+        "amount": -0.03
+       },
+       {
+        "target": "war.defenders.TALK_CORDIAL",
+        "amount": 0.02
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "abstain",
+      "label": "S'abstenir",
+      "hint": "Prudence ; alliés déçus",
+      "effects": [
+       {
+        "target": "war.defenders.TALK_TENSE",
+        "amount": -0.05
+       },
+       {
+        "target": "alliance.EU.TALK_TENSE",
+        "amount": -0.02
+       },
+       {
+        "target": "war.attackers.TALK_CORDIAL",
+        "amount": 0.02
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "un_nuclear",
+   "category": "DIPLOMACY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.025,
+   "cooldownDays": 200,
+   "urgency": "IMPORTANT",
+   "headline": "ONU : la France appelée à soutenir le désarmement nucléaire",
+   "notificationText": "Un traité d'interdiction des armes nucléaires gagne des soutiens.",
+   "conditions": [
+    {
+     "variable": "season.month",
+     "oneOf": [
+      9
+     ]
+    }
+   ],
+   "message": {
+    "template": "un_nuclear",
+    "sender": "MINISTER",
+    "ministry": "foreign",
+    "responseDays": 4,
+    "defaultOption": "transparency",
+    "options": [
+     {
+      "id": "deterrence",
+      "label": "Réaffirmer la doctrine de dissuasion",
+      "hint": "Cohérence stratégique ; image écornée",
+      "effects": [
+       {
+        "target": "memory.USA.TALK_CORDIAL",
+        "amount": 0.01
+       },
+       {
+        "target": "memory.GBR.TALK_CORDIAL",
+        "amount": 0.01
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "REFUSED"
+     },
+     {
+      "id": "transparency",
+      "label": "Proposer des mesures de transparence",
+      "hint": "Compromis",
+      "effects": [
+       {
+        "target": "opinion.group.young",
+        "amount": 0.001
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "dialogue",
+      "label": "Ouvrir un dialogue sur le traité",
+      "hint": "Image améliorée ; alliés inquiets",
+      "effects": [
+       {
+        "target": "memory.USA.TALK_TENSE",
+        "amount": -0.03
+       },
+       {
+        "target": "memory.GBR.TALK_TENSE",
+        "amount": -0.02
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": 0.004
+       }
+      ],
+      "outcome": "ACCEPTED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cop_climate",
+   "category": "DIPLOMACY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.025,
+   "cooldownDays": 200,
+   "urgency": "IMPORTANT",
+   "headline": "COP : la France attendue sur ses engagements climatiques",
+   "notificationText": "La conférence mondiale sur le climat s'ouvre.",
+   "conditions": [
+    {
+     "variable": "season.month",
+     "oneOf": [
+      11
+     ]
+    }
+   ],
+   "message": {
+    "template": "cop_climate",
+    "sender": "MINISTER",
+    "ministry": "foreign",
+    "responseDays": 4,
+    "defaultOption": "maintain",
+    "options": [
+     {
+      "id": "raise",
+      "label": "Rehausser nos objectifs et la finance climat",
+      "hint": "Coût : 1 Md€ ; image et environnement",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 1.0
+       },
+       {
+        "target": "quality.environment",
+        "amount": 0.004
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": 0.005
+       },
+       {
+        "target": "opinion.group.urban",
+        "amount": 0.003
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": -0.003
+       },
+       {
+        "target": "alliance.EU.TALK_CORDIAL",
+        "amount": 0.01
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "maintain",
+      "label": "Tenir les engagements existants",
+      "hint": "Position stable",
+      "effects": [],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "delay",
+      "label": "Temporiser au nom de la compétitivité",
+      "hint": "Industrie soulagée ; critiques internationales",
+      "effects": [
+       {
+        "target": "economy.businessConfidence",
+        "amount": 0.003
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": -0.005
+       },
+       {
+        "target": "alliance.EU.TALK_TENSE",
+        "amount": -0.01
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  }
+ ]
+}

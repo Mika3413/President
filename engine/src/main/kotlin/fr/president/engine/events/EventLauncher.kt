@@ -104,6 +104,11 @@ class EventLauncher(private val ctx: SimulationContext) {
             ctx.playerData.territory!!.cities.filter { it.department == dept }.minByOrNull { it.rank }
                 ?.let { vars["city"] = it.name }
         }
+        // Principale guerre étrangère, pour les sommets et les résolutions : {aggressorThe}, {victimOf}...
+        fr.president.engine.military.Geopolitics(ctx).mainWarWithout(ctx.state.player.countryId)?.let { w ->
+            vars += fr.president.engine.data.CountryNames(ctx.db.country(w.attackers.first()).definition).variables("aggressor")
+            vars += fr.president.engine.data.CountryNames(ctx.db.country(w.defenders.first()).definition).variables("victim")
+        }
         params.forEach { (k, v) -> vars[k] = Formatting.amount(v) }
         params["amount"]?.let { vars["amountText"] = Formatting.billions(it) }
         return vars

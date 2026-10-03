@@ -64,6 +64,11 @@ el={"termYears":5,"secondRoundGapDays":14,
   "spontaneousCensureSupport":0.38,"spontaneousCensureChanceMonthly":0.25,"governmentFallApprovalCost":0.01},
  "referendum":{"campaignDays":30,"minDaysBetween":365,"approvalWeight":0.9,"interestWeight":3.0,"noise":0.03,
   "victorySupportBonus":0.05,"defeatApprovalCost":0.05,"defeatLockDays":1095},
+ # Sénat (renouvelé par moitié, élu par les élus locaux) et élections européennes
+ "senate":{"seats":348,"initialSeats":{"right":145,"centre":60,"left":72,"greens":19,"radical_left":17,"nationalist":35},
+  "renewalYears":3,"firstRenewal":"2029-09-23T08:00:00Z","renewedShare":0.5,"mayorWeight":0.6,"departmentWeight":0.25,"regionWeight":0.15,
+  "passThreshold":0.5,"voteNoise":0.05,"navetteDelayDays":60},
+ "european":{"firstDate":"2029-06-10T08:00:00Z","termYears":5,"seats":81,"turnoutFactor":0.68,"goodScore":0.25,"badScore":0.17,"supportSwing":0.04,"opinionSwing":0.01},
  # Élections locales (calendrier réel : départementales et régionales 2028, municipales 2032)
  "local":{"kinds": [{"id": "departmental", "label": "Départementales", "level": "DEPARTMENT", "termYears": 6, "firstDate": "2028-03-19T08:00:00Z"}, {"id": "regional", "label": "Régionales", "level": "REGION", "termYears": 6, "firstDate": "2028-03-26T08:00:00Z"}, {"id": "municipal", "label": "Municipales", "level": "CITY", "termYears": 6, "firstDate": "2032-03-14T08:00:00Z"}], "swing": 1.6, "noise": 0.05, "incumbentBonus": 0.03, "incumbentRerunChance": 0.7, "parliamentImpact": 0.08}}
 json.dump(el,open("countries/FRA/elections.json","w"),ensure_ascii=False,indent=1)

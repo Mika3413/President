@@ -65,14 +65,25 @@ class ElectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : P
             }
             parliament.nextLegislative?.let { into.add(ui.label("Prochaines législatives : ${Formats.date(it)}", "muted")).left().row() }
         }
+        parliament.europeanResults.lastOrNull()?.let { r ->
+            into.add(ui.label("Européennes du ${Formats.date(r.time)}", "bold")).left().padTop(GAP).row()
+            r.votes.entries.sortedByDescending { it.value }.forEach { (id, share) ->
+                val row = Table()
+                row.add(ui.label(families[id]?.name ?: id, "small")).left().expandX()
+                row.add(ui.label(Formatting.percent(share), "muted")).right().padRight(8f)
+                row.add(ui.label("${r.seats[id] ?: 0} élus", "small")).right()
+                into.add(row).growX().row()
+            }
+        }
         val local = fr.president.engine.elections.LocalElectionService(session.context)
         val kinds = session.db.country(session.state.player.countryId).elections?.local?.kinds.orEmpty().associateBy { it.id }
-        val upcoming = local.upcoming()
+        val upcoming = local.upcoming().map { it.first.label to it.second } +
+            listOfNotNull(parliament.nextEuropean?.let { "Européennes" to it }, parliament.nextSenateRenewal?.let { "Sénatoriales" to it })
         if (upcoming.isNotEmpty()) {
-            into.add(ui.label("Élections locales", "bold")).left().padTop(GAP).row()
-            upcoming.forEach { (kind, at) ->
+            into.add(ui.label("Prochains scrutins", "bold")).left().padTop(GAP).row()
+            upcoming.sortedBy { it.second }.forEach { (label, at) ->
                 val row = Table()
-                row.add(ui.label(kind.label, "small")).left().expandX()
+                row.add(ui.label(label, "small")).left().expandX()
                 row.add(ui.label(Formats.date(at), "muted")).right()
                 into.add(row).growX().row()
             }

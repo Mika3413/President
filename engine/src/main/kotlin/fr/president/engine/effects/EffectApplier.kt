@@ -156,6 +156,15 @@ class EffectApplier(private val ctx: SimulationContext) {
             }
             "memory" -> state.diplomacy.relation(parts[1], state.player.countryId).memories
                 .add(DiplomaticMemory(parts[2], delta, ctx.now))
+            // Souvenir collectif : tous les membres d'une alliance (UE, OTAN...), sauf le joueur.
+            "alliance" -> ctx.db.alliances.firstOrNull { it.id == parts[1] }?.members
+                ?.filter { it != state.player.countryId && it in state.countries }
+                ?.forEach { apply("memory.$it.${parts[2]}", delta) }
+            // Belligérants de la principale guerre étrangère : war.attackers.KIND / war.defenders.KIND.
+            "war" -> fr.president.engine.military.Geopolitics(ctx).mainWarWithout(state.player.countryId)?.let { w ->
+                val side = if (parts[1] == "attackers") w.attackers else w.defenders
+                side.filter { it != state.player.countryId }.forEach { apply("memory.$it.${parts[2]}", delta) }
+            }
             else -> ctx.log("effects", "Cible inconnue : $target")
         }
     }
