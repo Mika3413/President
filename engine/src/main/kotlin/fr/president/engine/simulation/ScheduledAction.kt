@@ -28,6 +28,18 @@ sealed class ScheduledAction {
     data class EventLaunch(override val at: WorldTime, val definitionId: String, val scopeId: String?) : ScheduledAction()
 
     @Serializable
+    data class UnitDelivery(override val at: WorldTime, val orderId: String) : ScheduledAction()
+
+    @Serializable
+    data class StockDelivery(override val at: WorldTime, val ammunition: Double, val fuel: Double) : ScheduledAction()
+
+    @Serializable
+    data class MobilizationComplete(override val at: WorldTime, val units: Int) : ScheduledAction()
+
+    @Serializable
+    data class AllianceCall(override val at: WorldTime, val warId: String, val country: String) : ScheduledAction()
+
+    @Serializable
     data class ProjectCompletion(override val at: WorldTime, val projectId: String) : ScheduledAction()
 }
 

@@ -16,37 +16,33 @@
  "leader": {
   "traitRanges": {
    "aggressiveness": [
-    0.2,
+    0.15,
     0.45
-   ],
-   "pragmatism": [
-    0.55,
-    0.85
    ],
    "nationalism": [
     0.2,
-    0.45
+    0.5
    ],
-   "caution": [
-    0.55,
-    0.85
+   "openness": [
+    0.4,
+    0.7
    ],
    "toughness": [
     0.5,
     0.8
    ],
+   "caution": [
+    0.55,
+    0.85
+   ],
    "militarism": [
     0.25,
     0.55
-   ],
-   "openness": [
-    0.4,
-    0.7
    ]
   },
   "ageRange": [
    44,
-   66
+   70
   ],
   "economicLeaningRange": [
    -0.3,
@@ -55,23 +51,27 @@
  },
  "strategic": {
   "electricityBalanceTWh": -28,
+  "electricityInterconnected": true,
   "tradeWithPartnersBillions": {
-   "FRA": 170,
-   "ITA": 150,
-   "BEL": 110,
-   "ESP": 75,
-   "GBR": 110
+   "FRA": 170
   },
   "alliances": [
    "EU",
    "NATO"
   ],
-  "priorities": [
-   "energy",
-   "industry",
-   "trade"
-  ],
+  "priorities": [],
   "intelligenceQuality": 0.8,
-  "militaryBudgetBillions": 75
+  "militaryBudgetBillions": 75,
+  "nuclear": false,
+  "forces": {
+   "land": 8,
+   "air": 6,
+   "sea": 2
+  },
+  "capital": {
+   "name": "Berlin",
+   "lon": 13.4,
+   "lat": 52.52
+  }
  }
 }

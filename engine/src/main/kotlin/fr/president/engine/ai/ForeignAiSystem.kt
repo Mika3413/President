@@ -32,6 +32,7 @@ class ForeignAiSystem : SimulationSystem {
             country.nextAiDecision = ctx.now.plusDays(interval * ctx.rng.nextDouble(MIN_INTERVAL_FACTOR, MAX_INTERVAL_FACTOR))
             if (due == null) continue
             updateDomesticSituation(country)
+            WarDecisions(ctx).run(country.id)
             decide(ctx, country)
         }
     }
@@ -46,6 +47,7 @@ class ForeignAiSystem : SimulationSystem {
     private fun decide(ctx: SimulationContext, country: CountryState) {
         val player = ctx.state.player.countryId
         val relation = RelationCalculator(ctx).score(country.id, player)
+        if (fr.president.engine.military.Geopolitics(ctx).atWar(country.id, player)) return
         val minimum = ctx.db.diplomacy.evaluation.aiProposalRelationMinimum
         if (relation < minimum) {
             ctx.log("ai", "${country.id} : relation trop faible (%.2f) pour proposer quoi que ce soit".format(relation))
@@ -57,8 +59,17 @@ class ForeignAiSystem : SimulationSystem {
             return
         }
         val leader = ctx.state.characters.getValue(country.leaderId)
-        val need = electricityNeed(ctx, country)
+        val need = if (ctx.db.country(country.id).definition.strategic.electricityInterconnected) electricityNeed(ctx, country) else 0.0
+        val geo = fr.president.engine.military.Geopolitics(ctx)
         when {
+            geo.isAtWar(country.id) && !geo.isAtWar(player) && relation > AID_RELATION && !geo.atWar(country.id, player) -> {
+                ctx.log("ai", "${country.id} en guerre demande une aide militaire à la France")
+                DiplomacyService(ctx).aiPropose(
+                    country.id,
+                    listOf(Clause("MILITARY_AID", player, mapOf("amountBillions" to AID_REQUEST))),
+                    1, "tenir face à l'agression dont nous sommes victimes",
+                )
+            }
             need >= ELECTRICITY_NEED_THRESHOLD && !hasAgreement(ctx, country.id, ClauseValuator.ELECTRICITY) -> {
                 val volume = (need * NEED_COVERAGE).roundToInt().coerceIn(MIN_VOLUME, MAX_VOLUME).toDouble()
                 // Un dirigeant exigeant propose un prix plus bas.
@@ -130,5 +141,7 @@ class ForeignAiSystem : SimulationSystem {
         const val TRADE_RELATION = 0.6
         const val TRADE_INITIATIVE_CHANCE = 0.3
         const val TRADE_PERCENT = 3.0
+        const val AID_RELATION = 0.55
+        const val AID_REQUEST = 2.0
     }
 }

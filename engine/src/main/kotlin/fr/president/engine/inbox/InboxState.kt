@@ -5,7 +5,7 @@ import fr.president.engine.time.WorldTime
 import kotlinx.serialization.Serializable
 
 @Serializable
-enum class MessageOrigin { EVENT, PROPOSAL, DIPLOMATIC_RESPONSE, INFO }
+enum class MessageOrigin { EVENT, PROPOSAL, DIPLOMATIC_RESPONSE, INFO, ALLIANCE_CALL, ULTIMATUM }
 
 @Serializable
 data class MessageOption(val id: String, val label: String, val hint: String = "")

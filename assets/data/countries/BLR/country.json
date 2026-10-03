@@ -1,0 +1,76 @@
+{
+ "id": "BLR",
+ "name": "Biélorussie",
+ "adjective": "biélorusse",
+ "language": "ru",
+ "namePool": "ru",
+ "detail": "LIGHT",
+ "population": 9200000,
+ "economy": "economy/BLR_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Président",
+  "honorificMale": "Monsieur le Président",
+  "honorificFemale": "Madame la Présidente"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.45,
+    0.75
+   ],
+   "nationalism": [
+    0.65,
+    0.95
+   ],
+   "openness": [
+    0.05,
+    0.35
+   ],
+   "toughness": [
+    0.55,
+    0.85
+   ],
+   "caution": [
+    0.25,
+    0.55
+   ],
+   "militarism": [
+    0.55,
+    0.85
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ]
+ },
+ "strategic": {
+  "electricityBalanceTWh": 0,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 1
+  },
+  "alliances": [
+   "CSTO"
+  ],
+  "priorities": [],
+  "intelligenceQuality": 0.5,
+  "militaryBudgetBillions": 1.2,
+  "nuclear": false,
+  "forces": {
+   "land": 3,
+   "air": 1,
+   "sea": 0
+  },
+  "capital": {
+   "name": "Minsk",
+   "lon": 27.56,
+   "lat": 53.9
+  }
+ }
+}

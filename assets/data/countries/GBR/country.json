@@ -19,26 +19,30 @@
     0.3,
     0.6
    ],
-   "pragmatism": [
-    0.5,
-    0.85
-   ],
    "nationalism": [
     0.4,
     0.7
    ],
-   "militarism": [
+   "openness": [
+    0.35,
+    0.65
+   ],
+   "toughness": [
+    0.55,
+    0.85
+   ],
+   "caution": [
     0.45,
     0.75
    ],
-   "toughness": [
-    0.5,
-    0.85
+   "militarism": [
+    0.45,
+    0.75
    ]
   },
   "ageRange": [
    44,
-   66
+   70
   ],
   "economicLeaningRange": [
    -0.3,
@@ -47,19 +51,26 @@
  },
  "strategic": {
   "electricityBalanceTWh": -25,
+  "electricityInterconnected": true,
   "tradeWithPartnersBillions": {
-   "FRA": 65,
-   "DEU": 110
+   "FRA": 65
   },
   "alliances": [
    "NATO"
   ],
-  "priorities": [
-   "finance",
-   "defense",
-   "migration"
-  ],
+  "priorities": [],
   "intelligenceQuality": 0.85,
-  "militaryBudgetBillions": 72
+  "militaryBudgetBillions": 72,
+  "nuclear": true,
+  "forces": {
+   "land": 5,
+   "air": 6,
+   "sea": 4
+  },
+  "capital": {
+   "name": "Londres",
+   "lon": -0.13,
+   "lat": 51.51
+  }
  }
 }

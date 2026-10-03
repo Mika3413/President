@@ -37,7 +37,12 @@ class GameDatabase(
     val diplomacy: DiplomacyDefinitions,
     val names: Map<String, NamePool>,
     val readouts: ReadoutsFile,
+    val zones: fr.president.engine.military.ZoneGraph,
+    val unitTypes: Map<String, UnitTypeDef>,
+    val militaryParameters: MilitaryParameters,
 ) {
+    val alliances: List<AllianceDef> get() = snapshot.alliances
+    fun unitType(id: String): UnitTypeDef = unitTypes[id] ?: error("Type d'unité inconnu : $id")
     fun country(id: String): CountryData = countries[id] ?: error("Pays inconnu : $id")
     fun template(id: String): DialogueTemplate = dialogue[id] ?: error("Modèle de dialogue inconnu : $id")
     fun event(id: String): EventDefinition = events.first { it.id == id }

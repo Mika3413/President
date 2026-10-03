@@ -1,0 +1,74 @@
+{
+ "id": "SAU",
+ "name": "Arabie saoudite",
+ "adjective": "saoudien",
+ "language": "ar",
+ "namePool": "ar",
+ "detail": "LIGHT",
+ "population": 36000000,
+ "economy": "economy/SAU_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Président du Conseil des ministres",
+  "honorificMale": "Votre Altesse",
+  "honorificFemale": "Votre Altesse"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.4,
+    0.7
+   ],
+   "nationalism": [
+    0.55,
+    0.85
+   ],
+   "openness": [
+    0.2,
+    0.5
+   ],
+   "toughness": [
+    0.65,
+    0.95
+   ],
+   "caution": [
+    0.3,
+    0.6
+   ],
+   "militarism": [
+    0.5,
+    0.8
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ]
+ },
+ "strategic": {
+  "electricityBalanceTWh": 0,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 10
+  },
+  "alliances": [],
+  "priorities": [],
+  "intelligenceQuality": 0.65,
+  "militaryBudgetBillions": 70,
+  "nuclear": false,
+  "forces": {
+   "land": 6,
+   "air": 5,
+   "sea": 1
+  },
+  "capital": {
+   "name": "Riyad",
+   "lon": 46.72,
+   "lat": 24.71
+  }
+ }
+}

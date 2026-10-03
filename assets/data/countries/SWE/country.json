@@ -1,0 +1,77 @@
+{
+ "id": "SWE",
+ "name": "Suède",
+ "adjective": "suédois",
+ "language": "sv",
+ "namePool": "sv",
+ "detail": "LIGHT",
+ "population": 10600000,
+ "economy": "economy/SWE_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Premier ministre",
+  "honorificMale": "Monsieur le Premier ministre",
+  "honorificFemale": "Madame la Première ministre"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.15,
+    0.45
+   ],
+   "nationalism": [
+    0.2,
+    0.5
+   ],
+   "openness": [
+    0.45,
+    0.75
+   ],
+   "toughness": [
+    0.45,
+    0.75
+   ],
+   "caution": [
+    0.45,
+    0.75
+   ],
+   "militarism": [
+    0.35,
+    0.65
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ]
+ },
+ "strategic": {
+  "electricityBalanceTWh": 30,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 15
+  },
+  "alliances": [
+   "EU",
+   "NATO"
+  ],
+  "priorities": [],
+  "intelligenceQuality": 0.75,
+  "militaryBudgetBillions": 12,
+  "nuclear": false,
+  "forces": {
+   "land": 3,
+   "air": 3,
+   "sea": 1
+  },
+  "capital": {
+   "name": "Stockholm",
+   "lon": 18.07,
+   "lat": 59.33
+  }
+ }
+}

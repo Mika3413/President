@@ -1,0 +1,77 @@
+{
+ "id": "ROU",
+ "name": "Roumanie",
+ "adjective": "roumain",
+ "language": "ro",
+ "namePool": "ro",
+ "detail": "LIGHT",
+ "population": 19000000,
+ "economy": "economy/ROU_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Premier ministre",
+  "honorificMale": "Monsieur le Premier ministre",
+  "honorificFemale": "Madame la Première ministre"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.2,
+    0.5
+   ],
+   "nationalism": [
+    0.4,
+    0.7
+   ],
+   "openness": [
+    0.4,
+    0.7
+   ],
+   "toughness": [
+    0.4,
+    0.7
+   ],
+   "caution": [
+    0.4,
+    0.7
+   ],
+   "militarism": [
+    0.35,
+    0.65
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ]
+ },
+ "strategic": {
+  "electricityBalanceTWh": 0,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 10
+  },
+  "alliances": [
+   "EU",
+   "NATO"
+  ],
+  "priorities": [],
+  "intelligenceQuality": 0.55,
+  "militaryBudgetBillions": 9,
+  "nuclear": false,
+  "forces": {
+   "land": 4,
+   "air": 2,
+   "sea": 1
+  },
+  "capital": {
+   "name": "Bucarest",
+   "lon": 26.1,
+   "lat": 44.43
+  }
+ }
+}

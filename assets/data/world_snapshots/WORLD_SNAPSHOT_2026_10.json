@@ -1,30 +1,1636 @@
 {
-  "id": "WORLD_SNAPSHOT_2026_10",
-  "label": "Monde — octobre 2026",
-  "startDate": "2026-10-05T09:00:00Z",
-  "dataVersion": 1,
-  "playableCountries": ["FRA"],
-  "countries": [
-    "countries/FRA/country.json",
-    "countries/DEU/country.json",
-    "countries/ESP/country.json",
-    "countries/ITA/country.json",
-    "countries/GBR/country.json",
-    "countries/BEL/country.json"
-  ],
-  "initialRelations": [
-    { "a": "FRA", "b": "DEU", "kind": "EU_PARTNERSHIP", "weight": 0.12, "label": "moteur franco-allemand" },
-    { "a": "FRA", "b": "DEU", "kind": "TRADE_PARTNER", "weight": 0.05, "label": "premier partenaire commercial" },
-    { "a": "FRA", "b": "DEU", "kind": "DISAGREEMENT", "weight": -0.05, "label": "politique énergétique et nucléaire" },
-    { "a": "FRA", "b": "ESP", "kind": "EU_PARTNERSHIP", "weight": 0.1, "label": "Union européenne" },
-    { "a": "FRA", "b": "ESP", "kind": "TRADE_PARTNER", "weight": 0.04, "label": "échanges transpyrénéens" },
-    { "a": "FRA", "b": "ITA", "kind": "EU_PARTNERSHIP", "weight": 0.1, "label": "Union européenne" },
-    { "a": "FRA", "b": "ITA", "kind": "DISAGREEMENT", "weight": -0.04, "label": "politique migratoire" },
-    { "a": "FRA", "b": "BEL", "kind": "EU_PARTNERSHIP", "weight": 0.12, "label": "Union européenne" },
-    { "a": "FRA", "b": "BEL", "kind": "TRADE_PARTNER", "weight": 0.05, "label": "proximité économique" },
-    { "a": "FRA", "b": "GBR", "kind": "ALLIANCE", "weight": 0.08, "label": "alliés au sein de l'OTAN" },
-    { "a": "FRA", "b": "GBR", "kind": "DISAGREEMENT", "weight": -0.05, "label": "traversées de la Manche" },
-    { "a": "DEU", "b": "ITA", "kind": "EU_PARTNERSHIP", "weight": 0.1, "label": "Union européenne" },
-    { "a": "DEU", "b": "BEL", "kind": "EU_PARTNERSHIP", "weight": 0.1, "label": "Union européenne" }
-  ]
+ "id": "WORLD_SNAPSHOT_2026_10",
+ "label": "Monde — octobre 2026",
+ "startDate": "2026-10-05T09:00:00Z",
+ "dataVersion": 1,
+ "playableCountries": [
+  "FRA"
+ ],
+ "countries": [
+  "countries/FRA/country.json",
+  "countries/DEU/country.json",
+  "countries/ESP/country.json",
+  "countries/ITA/country.json",
+  "countries/GBR/country.json",
+  "countries/BEL/country.json",
+  "countries/NLD/country.json",
+  "countries/CHE/country.json",
+  "countries/PRT/country.json",
+  "countries/AUT/country.json",
+  "countries/POL/country.json",
+  "countries/SWE/country.json",
+  "countries/NOR/country.json",
+  "countries/GRC/country.json",
+  "countries/ROU/country.json",
+  "countries/UKR/country.json",
+  "countries/RUS/country.json",
+  "countries/BLR/country.json",
+  "countries/TUR/country.json",
+  "countries/DZA/country.json",
+  "countries/MAR/country.json",
+  "countries/TUN/country.json",
+  "countries/EGY/country.json",
+  "countries/SAU/country.json",
+  "countries/USA/country.json",
+  "countries/CAN/country.json",
+  "countries/CHN/country.json",
+  "countries/JPN/country.json",
+  "countries/IND/country.json",
+  "countries/BRA/country.json"
+ ],
+ "initialRelations": [
+  {
+   "a": "FRA",
+   "b": "DEU",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "FRA",
+   "b": "ESP",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "FRA",
+   "b": "ITA",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "FRA",
+   "b": "BEL",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "FRA",
+   "b": "NLD",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "FRA",
+   "b": "PRT",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "FRA",
+   "b": "AUT",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "FRA",
+   "b": "POL",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "FRA",
+   "b": "SWE",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "FRA",
+   "b": "GRC",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "FRA",
+   "b": "ROU",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "DEU",
+   "b": "ESP",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "DEU",
+   "b": "ITA",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "DEU",
+   "b": "BEL",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "DEU",
+   "b": "NLD",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "DEU",
+   "b": "PRT",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "DEU",
+   "b": "AUT",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "DEU",
+   "b": "POL",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "DEU",
+   "b": "SWE",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "DEU",
+   "b": "GRC",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "DEU",
+   "b": "ROU",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "ESP",
+   "b": "ITA",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "ESP",
+   "b": "BEL",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "ESP",
+   "b": "NLD",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "ESP",
+   "b": "PRT",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "ESP",
+   "b": "AUT",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "ESP",
+   "b": "POL",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "ESP",
+   "b": "SWE",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "ESP",
+   "b": "GRC",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "ESP",
+   "b": "ROU",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "ITA",
+   "b": "BEL",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "ITA",
+   "b": "NLD",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "ITA",
+   "b": "PRT",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "ITA",
+   "b": "AUT",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "ITA",
+   "b": "POL",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "ITA",
+   "b": "SWE",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "ITA",
+   "b": "GRC",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "ITA",
+   "b": "ROU",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "BEL",
+   "b": "NLD",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "BEL",
+   "b": "PRT",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "BEL",
+   "b": "AUT",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "BEL",
+   "b": "POL",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "BEL",
+   "b": "SWE",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "BEL",
+   "b": "GRC",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "BEL",
+   "b": "ROU",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "NLD",
+   "b": "PRT",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "NLD",
+   "b": "AUT",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "NLD",
+   "b": "POL",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "NLD",
+   "b": "SWE",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "NLD",
+   "b": "GRC",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "NLD",
+   "b": "ROU",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "PRT",
+   "b": "AUT",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "PRT",
+   "b": "POL",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "PRT",
+   "b": "SWE",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "PRT",
+   "b": "GRC",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "PRT",
+   "b": "ROU",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "AUT",
+   "b": "POL",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "AUT",
+   "b": "SWE",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "AUT",
+   "b": "GRC",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "AUT",
+   "b": "ROU",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "POL",
+   "b": "SWE",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "POL",
+   "b": "GRC",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "POL",
+   "b": "ROU",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "SWE",
+   "b": "GRC",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "SWE",
+   "b": "ROU",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "GRC",
+   "b": "ROU",
+   "kind": "EU_PARTNERSHIP",
+   "weight": 0.1,
+   "label": "Union européenne"
+  },
+  {
+   "a": "FRA",
+   "b": "DEU",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "FRA",
+   "b": "ESP",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "FRA",
+   "b": "ITA",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "FRA",
+   "b": "GBR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "FRA",
+   "b": "BEL",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "FRA",
+   "b": "NLD",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "FRA",
+   "b": "PRT",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "FRA",
+   "b": "POL",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "FRA",
+   "b": "SWE",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "FRA",
+   "b": "NOR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "FRA",
+   "b": "GRC",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "FRA",
+   "b": "ROU",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "FRA",
+   "b": "TUR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "FRA",
+   "b": "USA",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "FRA",
+   "b": "CAN",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "DEU",
+   "b": "ESP",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "DEU",
+   "b": "ITA",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "DEU",
+   "b": "GBR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "DEU",
+   "b": "BEL",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "DEU",
+   "b": "NLD",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "DEU",
+   "b": "PRT",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "DEU",
+   "b": "POL",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "DEU",
+   "b": "SWE",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "DEU",
+   "b": "NOR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "DEU",
+   "b": "GRC",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "DEU",
+   "b": "ROU",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "DEU",
+   "b": "TUR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "DEU",
+   "b": "USA",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "DEU",
+   "b": "CAN",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ESP",
+   "b": "ITA",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ESP",
+   "b": "GBR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ESP",
+   "b": "BEL",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ESP",
+   "b": "NLD",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ESP",
+   "b": "PRT",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ESP",
+   "b": "POL",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ESP",
+   "b": "SWE",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ESP",
+   "b": "NOR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ESP",
+   "b": "GRC",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ESP",
+   "b": "ROU",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ESP",
+   "b": "TUR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ESP",
+   "b": "USA",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ESP",
+   "b": "CAN",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ITA",
+   "b": "GBR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ITA",
+   "b": "BEL",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ITA",
+   "b": "NLD",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ITA",
+   "b": "PRT",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ITA",
+   "b": "POL",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ITA",
+   "b": "SWE",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ITA",
+   "b": "NOR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ITA",
+   "b": "GRC",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ITA",
+   "b": "ROU",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ITA",
+   "b": "TUR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ITA",
+   "b": "USA",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ITA",
+   "b": "CAN",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "GBR",
+   "b": "BEL",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "GBR",
+   "b": "NLD",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "GBR",
+   "b": "PRT",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "GBR",
+   "b": "POL",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "GBR",
+   "b": "SWE",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "GBR",
+   "b": "NOR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "GBR",
+   "b": "GRC",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "GBR",
+   "b": "ROU",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "GBR",
+   "b": "TUR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "GBR",
+   "b": "USA",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "GBR",
+   "b": "CAN",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "BEL",
+   "b": "NLD",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "BEL",
+   "b": "PRT",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "BEL",
+   "b": "POL",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "BEL",
+   "b": "SWE",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "BEL",
+   "b": "NOR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "BEL",
+   "b": "GRC",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "BEL",
+   "b": "ROU",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "BEL",
+   "b": "TUR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "BEL",
+   "b": "USA",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "BEL",
+   "b": "CAN",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "NLD",
+   "b": "PRT",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "NLD",
+   "b": "POL",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "NLD",
+   "b": "SWE",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "NLD",
+   "b": "NOR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "NLD",
+   "b": "GRC",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "NLD",
+   "b": "ROU",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "NLD",
+   "b": "TUR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "NLD",
+   "b": "USA",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "NLD",
+   "b": "CAN",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "PRT",
+   "b": "POL",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "PRT",
+   "b": "SWE",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "PRT",
+   "b": "NOR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "PRT",
+   "b": "GRC",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "PRT",
+   "b": "ROU",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "PRT",
+   "b": "TUR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "PRT",
+   "b": "USA",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "PRT",
+   "b": "CAN",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "POL",
+   "b": "SWE",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "POL",
+   "b": "NOR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "POL",
+   "b": "GRC",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "POL",
+   "b": "ROU",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "POL",
+   "b": "TUR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "POL",
+   "b": "USA",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "POL",
+   "b": "CAN",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "SWE",
+   "b": "NOR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "SWE",
+   "b": "GRC",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "SWE",
+   "b": "ROU",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "SWE",
+   "b": "TUR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "SWE",
+   "b": "USA",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "SWE",
+   "b": "CAN",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "NOR",
+   "b": "GRC",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "NOR",
+   "b": "ROU",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "NOR",
+   "b": "TUR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "NOR",
+   "b": "USA",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "NOR",
+   "b": "CAN",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "GRC",
+   "b": "ROU",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "GRC",
+   "b": "TUR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "GRC",
+   "b": "USA",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "GRC",
+   "b": "CAN",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ROU",
+   "b": "TUR",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ROU",
+   "b": "USA",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "ROU",
+   "b": "CAN",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "TUR",
+   "b": "USA",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "TUR",
+   "b": "CAN",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "USA",
+   "b": "CAN",
+   "kind": "ALLIANCE",
+   "weight": 0.06,
+   "label": "alliés au sein de l'OTAN"
+  },
+  {
+   "a": "FRA",
+   "b": "DEU",
+   "kind": "TRADE_PARTNER",
+   "weight": 0.05,
+   "label": "premier partenaire commercial"
+  },
+  {
+   "a": "FRA",
+   "b": "DEU",
+   "kind": "DISAGREEMENT",
+   "weight": -0.05,
+   "label": "politique énergétique et nucléaire"
+  },
+  {
+   "a": "FRA",
+   "b": "BEL",
+   "kind": "TRADE_PARTNER",
+   "weight": 0.05,
+   "label": "proximité économique"
+  },
+  {
+   "a": "FRA",
+   "b": "ITA",
+   "kind": "DISAGREEMENT",
+   "weight": -0.04,
+   "label": "politique migratoire"
+  },
+  {
+   "a": "FRA",
+   "b": "GBR",
+   "kind": "DISAGREEMENT",
+   "weight": -0.05,
+   "label": "traversées de la Manche"
+  },
+  {
+   "a": "FRA",
+   "b": "USA",
+   "kind": "DISAGREEMENT",
+   "weight": -0.04,
+   "label": "différends commerciaux"
+  },
+  {
+   "a": "FRA",
+   "b": "CHN",
+   "kind": "TRADE_PARTNER",
+   "weight": 0.03,
+   "label": "échanges commerciaux"
+  },
+  {
+   "a": "FRA",
+   "b": "CHN",
+   "kind": "DISAGREEMENT",
+   "weight": -0.08,
+   "label": "rivalité stratégique et droits humains"
+  },
+  {
+   "a": "FRA",
+   "b": "RUS",
+   "kind": "SANCTION",
+   "weight": -0.18,
+   "label": "sanctions européennes"
+  },
+  {
+   "a": "FRA",
+   "b": "RUS",
+   "kind": "THREAT",
+   "weight": -0.08,
+   "label": "menaces et désinformation"
+  },
+  {
+   "a": "FRA",
+   "b": "BLR",
+   "kind": "SANCTION",
+   "weight": -0.12,
+   "label": "sanctions européennes"
+  },
+  {
+   "a": "FRA",
+   "b": "UKR",
+   "kind": "CRISIS_SOLIDARITY",
+   "weight": 0.12,
+   "label": "soutien face à l'agression"
+  },
+  {
+   "a": "FRA",
+   "b": "UKR",
+   "kind": "AID",
+   "weight": 0.06,
+   "label": "aide militaire et financière"
+  },
+  {
+   "a": "FRA",
+   "b": "TUR",
+   "kind": "DISAGREEMENT",
+   "weight": -0.06,
+   "label": "Méditerranée orientale"
+  },
+  {
+   "a": "FRA",
+   "b": "DZA",
+   "kind": "DISAGREEMENT",
+   "weight": -0.1,
+   "label": "contentieux mémoriel et migratoire"
+  },
+  {
+   "a": "FRA",
+   "b": "MAR",
+   "kind": "TRADE_PARTNER",
+   "weight": 0.06,
+   "label": "partenariat ancien"
+  },
+  {
+   "a": "FRA",
+   "b": "TUN",
+   "kind": "TRADE_PARTNER",
+   "weight": 0.04,
+   "label": "liens humains et économiques"
+  },
+  {
+   "a": "FRA",
+   "b": "EGY",
+   "kind": "TRADE_PARTNER",
+   "weight": 0.04,
+   "label": "contrats d'armement"
+  },
+  {
+   "a": "FRA",
+   "b": "SAU",
+   "kind": "TRADE_PARTNER",
+   "weight": 0.03,
+   "label": "contrats d'armement"
+  },
+  {
+   "a": "FRA",
+   "b": "IND",
+   "kind": "TRADE_PARTNER",
+   "weight": 0.06,
+   "label": "partenariat stratégique"
+  },
+  {
+   "a": "FRA",
+   "b": "JPN",
+   "kind": "TRADE_PARTNER",
+   "weight": 0.04,
+   "label": "partenariat indo-pacifique"
+  },
+  {
+   "a": "FRA",
+   "b": "CHE",
+   "kind": "TRADE_PARTNER",
+   "weight": 0.06,
+   "label": "travailleurs frontaliers"
+  },
+  {
+   "a": "FRA",
+   "b": "BRA",
+   "kind": "TRADE_PARTNER",
+   "weight": 0.03,
+   "label": "partenariat stratégique"
+  },
+  {
+   "a": "FRA",
+   "b": "CAN",
+   "kind": "TRADE_PARTNER",
+   "weight": 0.05,
+   "label": "francophonie"
+  },
+  {
+   "a": "RUS",
+   "b": "UKR",
+   "kind": "THREAT",
+   "weight": -0.35,
+   "label": "conflit armé et occupation"
+  },
+  {
+   "a": "RUS",
+   "b": "UKR",
+   "kind": "DISAGREEMENT",
+   "weight": -0.15,
+   "label": "souveraineté territoriale"
+  },
+  {
+   "a": "RUS",
+   "b": "POL",
+   "kind": "THREAT",
+   "weight": -0.12,
+   "label": "tensions frontalières"
+  },
+  {
+   "a": "RUS",
+   "b": "USA",
+   "kind": "DISAGREEMENT",
+   "weight": -0.15,
+   "label": "rivalité stratégique"
+  },
+  {
+   "a": "RUS",
+   "b": "BLR",
+   "kind": "ALLIANCE",
+   "weight": 0.2,
+   "label": "union d'États"
+  },
+  {
+   "a": "DZA",
+   "b": "MAR",
+   "kind": "DISAGREEMENT",
+   "weight": -0.2,
+   "label": "Sahara occidental"
+  },
+  {
+   "a": "GRC",
+   "b": "TUR",
+   "kind": "DISAGREEMENT",
+   "weight": -0.15,
+   "label": "mer Égée"
+  },
+  {
+   "a": "USA",
+   "b": "CHN",
+   "kind": "DISAGREEMENT",
+   "weight": -0.15,
+   "label": "rivalité commerciale"
+  },
+  {
+   "a": "UKR",
+   "b": "POL",
+   "kind": "CRISIS_SOLIDARITY",
+   "weight": 0.1,
+   "label": "accueil des réfugiés"
+  },
+  {
+   "a": "SAU",
+   "b": "EGY",
+   "kind": "ALLIANCE",
+   "weight": 0.08,
+   "label": "coopération régionale"
+  }
+ ],
+ "alliances": [
+  {
+   "id": "NATO",
+   "name": "OTAN",
+   "defensive": true,
+   "members": [
+    "FRA",
+    "DEU",
+    "ESP",
+    "ITA",
+    "GBR",
+    "BEL",
+    "NLD",
+    "PRT",
+    "POL",
+    "SWE",
+    "NOR",
+    "GRC",
+    "ROU",
+    "TUR",
+    "USA",
+    "CAN"
+   ]
+  },
+  {
+   "id": "EU",
+   "name": "Union européenne",
+   "defensive": true,
+   "members": [
+    "FRA",
+    "DEU",
+    "ESP",
+    "ITA",
+    "BEL",
+    "NLD",
+    "PRT",
+    "AUT",
+    "POL",
+    "SWE",
+    "GRC",
+    "ROU"
+   ]
+  },
+  {
+   "id": "CSTO",
+   "name": "OTSC",
+   "defensive": true,
+   "members": [
+    "RUS",
+    "BLR"
+   ]
+  }
+ ]
 }

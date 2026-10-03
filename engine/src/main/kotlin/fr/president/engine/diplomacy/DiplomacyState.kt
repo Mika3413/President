@@ -57,6 +57,7 @@ class DiplomacyState(
     val relations: MutableMap<String, RelationState> = mutableMapOf(),
     val proposals: MutableList<Proposal> = mutableListOf(),
     val agreements: MutableList<Agreement> = mutableListOf(),
+    val sanctions: MutableList<Sanction> = mutableListOf(),
 ) {
     fun relation(observer: String, target: String): RelationState =
         relations.getOrPut(key(observer, target)) { RelationState() }

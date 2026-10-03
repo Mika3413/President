@@ -21,6 +21,7 @@ groups=[
 ]
 out_groups=[]
 for gid,label,part,share,base,ec,so,turn,sens,attr,el in groups:
+  sens=dict(sens); sens["war"]=0.07 if gid in ("seniors","retirees","young") else 0.05
   g={"id":gid,"label":label,"partition":part,"populationShare":share,"baseApproval":base,"economicLeaning":ec,"socialLeaning":so,"baseTurnout":turn,"sensitivities":sens}
   if attr: g["localAttribute"]=attr; g["localElasticity"]=el
   out_groups.append(g)
@@ -41,6 +42,7 @@ factors=[
  {"id":"debt","label":"Dette publique","variable":"economy.debtRatio","neutral":1.15,"scale":0.15,"lowerIsBetter":T,"relativeToStart":T},
  {"id":"energy_prices","label":"Prix de l'énergie","variable":"energy.priceIndex","neutral":1.0,"scale":0.4,"lowerIsBetter":T},
  {"id":"growth","label":"Activité économique","variable":"economy.growth","neutral":0.01,"scale":0.02},
+ {"id":"war","label":"Guerre","variable":"military.warWeariness","neutral":0.0,"scale":0.5,"lowerIsBetter":T},
 ]
 sg={"partitions":[{"id":"age","label":"Âge"},{"id":"status","label":"Statut"},{"id":"income","label":"Revenus"},{"id":"habitat","label":"Habitat"}],
  "groups":out_groups,"factors":factors,"honeymoonBonus":0.08,"honeymoonDecayMonthly":0.12,"adjustmentMonthly":0.3,"shockDecayMonthly":0.25,"localShockDecayMonthly":0.2,"localUnemploymentWeight":1.5,"localLeaningWeight":0.18}

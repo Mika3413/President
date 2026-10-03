@@ -36,7 +36,8 @@
     "health": 0.02,
     "security": 0.02,
     "household_taxes": 0.03,
-    "transport": 0.02
+    "transport": 0.02,
+    "war": 0.07
    },
    "localAttribute": "nonSeniorShare",
    "localElasticity": 1.0
@@ -60,7 +61,8 @@
     "security": 0.04,
     "debt": 0.02,
     "energy_prices": 0.03,
-    "growth": 0.02
+    "growth": 0.02,
+    "war": 0.05
    },
    "localAttribute": "nonSeniorShare",
    "localElasticity": 1.0
@@ -81,7 +83,8 @@
     "prices": 0.05,
     "household_taxes": 0.03,
     "debt": 0.02,
-    "energy_prices": 0.03
+    "energy_prices": 0.03,
+    "war": 0.07
    },
    "localAttribute": "seniorShare",
    "localElasticity": 1.0
@@ -102,7 +105,8 @@
     "prices": 0.04,
     "growth": 0.03,
     "transport": 0.02,
-    "energy_prices": 0.03
+    "energy_prices": 0.03,
+    "war": 0.05
    }
   },
   {
@@ -120,7 +124,8 @@
     "security": 0.03,
     "purchasing_power": 0.05,
     "social": 0.04,
-    "transport": 0.02
+    "transport": 0.02,
+    "war": 0.05
    }
   },
   {
@@ -138,7 +143,8 @@
     "household_taxes": 0.04,
     "debt": 0.04,
     "energy_prices": 0.04,
-    "security": 0.02
+    "security": 0.02,
+    "war": 0.05
    }
   },
   {
@@ -155,7 +161,8 @@
     "health": 0.07,
     "prices": 0.05,
     "security": 0.05,
-    "energy_prices": 0.03
+    "energy_prices": 0.03,
+    "war": 0.07
    },
    "localAttribute": "seniorShare",
    "localElasticity": 1.0
@@ -174,7 +181,8 @@
     "social": 0.07,
     "education": 0.04,
     "prices": 0.04,
-    "purchasing_power": 0.04
+    "purchasing_power": 0.04,
+    "war": 0.05
    }
   },
   {
@@ -192,7 +200,8 @@
     "social": 0.07,
     "unemployment": 0.06,
     "energy_prices": 0.05,
-    "health": 0.03
+    "health": 0.03,
+    "war": 0.05
    },
    "localAttribute": "incomeIndex",
    "localElasticity": -2.0
@@ -213,7 +222,8 @@
     "education": 0.04,
     "health": 0.04,
     "security": 0.04,
-    "prices": 0.03
+    "prices": 0.03,
+    "war": 0.05
    }
   },
   {
@@ -230,7 +240,8 @@
     "business_taxes": 0.05,
     "growth": 0.05,
     "debt": 0.04,
-    "security": 0.03
+    "security": 0.03,
+    "war": 0.05
    },
    "localAttribute": "incomeIndex",
    "localElasticity": 3.0
@@ -251,7 +262,8 @@
     "purchasing_power": 0.05,
     "unemployment": 0.05,
     "health": 0.03,
-    "prices": 0.03
+    "prices": 0.03,
+    "war": 0.05
    },
    "localAttribute": "urbanShare",
    "localElasticity": 1.0
@@ -272,7 +284,8 @@
     "purchasing_power": 0.06,
     "prices": 0.04,
     "security": 0.03,
-    "household_taxes": 0.03
+    "household_taxes": 0.03,
+    "war": 0.05
    },
    "localAttribute": "ruralShare",
    "localElasticity": 1.0
@@ -401,6 +414,14 @@
    "variable": "economy.growth",
    "neutral": 0.01,
    "scale": 0.02
+  },
+  {
+   "id": "war",
+   "label": "Guerre",
+   "variable": "military.warWeariness",
+   "neutral": 0.0,
+   "scale": 0.5,
+   "lowerIsBetter": true
   }
  ],
  "honeymoonBonus": 0.08,

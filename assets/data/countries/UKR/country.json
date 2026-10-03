@@ -1,0 +1,74 @@
+{
+ "id": "UKR",
+ "name": "Ukraine",
+ "adjective": "ukrainien",
+ "language": "uk",
+ "namePool": "uk",
+ "detail": "LIGHT",
+ "population": 37000000,
+ "economy": "economy/UKR_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Premier ministre",
+  "honorificMale": "Monsieur le Premier ministre",
+  "honorificFemale": "Madame la Première ministre"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.35,
+    0.65
+   ],
+   "nationalism": [
+    0.65,
+    0.95
+   ],
+   "openness": [
+    0.4,
+    0.7
+   ],
+   "toughness": [
+    0.55,
+    0.85
+   ],
+   "caution": [
+    0.25,
+    0.55
+   ],
+   "militarism": [
+    0.7,
+    1
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ]
+ },
+ "strategic": {
+  "electricityBalanceTWh": -10,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 5
+  },
+  "alliances": [],
+  "priorities": [],
+  "intelligenceQuality": 0.7,
+  "militaryBudgetBillions": 40,
+  "nuclear": false,
+  "forces": {
+   "land": 14,
+   "air": 2,
+   "sea": 0
+  },
+  "capital": {
+   "name": "Kyiv",
+   "lon": 30.52,
+   "lat": 50.45
+  }
+ }
+}

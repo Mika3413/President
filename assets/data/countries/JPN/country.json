@@ -1,0 +1,74 @@
+{
+ "id": "JPN",
+ "name": "Japon",
+ "adjective": "japonais",
+ "language": "ja",
+ "namePool": "ja",
+ "detail": "LIGHT",
+ "population": 124000000,
+ "economy": "economy/JPN_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Premier ministre",
+  "honorificMale": "Monsieur le Premier ministre",
+  "honorificFemale": "Madame la Première ministre"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.05,
+    0.35
+   ],
+   "nationalism": [
+    0.35,
+    0.65
+   ],
+   "openness": [
+    0.4,
+    0.7
+   ],
+   "toughness": [
+    0.5,
+    0.8
+   ],
+   "caution": [
+    0.6,
+    0.9
+   ],
+   "militarism": [
+    0.25,
+    0.55
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ]
+ },
+ "strategic": {
+  "electricityBalanceTWh": 0,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 15
+  },
+  "alliances": [],
+  "priorities": [],
+  "intelligenceQuality": 0.8,
+  "militaryBudgetBillions": 50,
+  "nuclear": false,
+  "forces": {
+   "land": 0,
+   "air": 0,
+   "sea": 0
+  },
+  "capital": {
+   "name": "Tokyo",
+   "lon": 139.69,
+   "lat": 35.69
+  }
+ }
+}

@@ -54,4 +54,17 @@ data class StrategicProfile(
     val priorities: List<String> = emptyList(),
     val intelligenceQuality: Double,
     val militaryBudgetBillions: Double,
+    val capital: CapitalDef? = null,
+    /** Puissance nucléaire : dissuasion contre une agression de son territoire. */
+    val nuclear: Boolean = false,
+    /** Réseau électrique interconnecté avec celui du pays joueur. */
+    val electricityInterconnected: Boolean = false,
+    /** Forces conventionnelles (nombre d'unités générées pour les pays IA). */
+    val forces: ForcesDef = ForcesDef(),
 )
+
+@Serializable
+data class CapitalDef(val name: String, val lon: Double, val lat: Double)
+
+@Serializable
+data class ForcesDef(val land: Int = 0, val air: Int = 0, val sea: Int = 0)

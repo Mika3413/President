@@ -19,10 +19,6 @@
     0.2,
     0.5
    ],
-   "pragmatism": [
-    0.5,
-    0.8
-   ],
    "nationalism": [
     0.25,
     0.55
@@ -30,11 +26,23 @@
    "openness": [
     0.5,
     0.8
+   ],
+   "toughness": [
+    0.35,
+    0.65
+   ],
+   "caution": [
+    0.4,
+    0.7
+   ],
+   "militarism": [
+    0.2,
+    0.5
    ]
   },
   "ageRange": [
    44,
-   66
+   70
   ],
   "economicLeaningRange": [
    -0.3,
@@ -43,21 +51,27 @@
  },
  "strategic": {
   "electricityBalanceTWh": 8,
+  "electricityInterconnected": true,
   "tradeWithPartnersBillions": {
-   "FRA": 90,
-   "DEU": 75,
-   "ITA": 45
+   "FRA": 90
   },
   "alliances": [
    "EU",
    "NATO"
   ],
-  "priorities": [
-   "tourism",
-   "trade",
-   "energy"
-  ],
+  "priorities": [],
   "intelligenceQuality": 0.65,
-  "militaryBudgetBillions": 18
+  "militaryBudgetBillions": 18,
+  "nuclear": false,
+  "forces": {
+   "land": 5,
+   "air": 3,
+   "sea": 2
+  },
+  "capital": {
+   "name": "Madrid",
+   "lon": -3.7,
+   "lat": 40.42
+  }
  }
 }

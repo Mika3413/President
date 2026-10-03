@@ -1,0 +1,74 @@
+{
+ "id": "TUN",
+ "name": "Tunisie",
+ "adjective": "tunisien",
+ "language": "ar",
+ "namePool": "ar",
+ "detail": "LIGHT",
+ "population": 12300000,
+ "economy": "economy/TUN_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Chef du gouvernement",
+  "honorificMale": "Monsieur le Chef du gouvernement",
+  "honorificFemale": "Madame la Cheffe du gouvernement"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.1,
+    0.4
+   ],
+   "nationalism": [
+    0.45,
+    0.75
+   ],
+   "openness": [
+    0.35,
+    0.65
+   ],
+   "toughness": [
+    0.35,
+    0.65
+   ],
+   "caution": [
+    0.45,
+    0.75
+   ],
+   "militarism": [
+    0.15,
+    0.45
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ]
+ },
+ "strategic": {
+  "electricityBalanceTWh": 0,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 8
+  },
+  "alliances": [],
+  "priorities": [],
+  "intelligenceQuality": 0.45,
+  "militaryBudgetBillions": 1.2,
+  "nuclear": false,
+  "forces": {
+   "land": 2,
+   "air": 1,
+   "sea": 0
+  },
+  "capital": {
+   "name": "Tunis",
+   "lon": 10.18,
+   "lat": 36.81
+  }
+ }
+}

@@ -1,9 +1,29 @@
 {
   "paces": [
-    { "id": "rapide", "label": "Rapide", "worldHoursPerRealHour": 48.0, "description": "1 heure réelle = 2 jours de jeu. Un mandat dure environ 38 jours réels." },
-    { "id": "normal", "label": "Normal", "worldHoursPerRealHour": 24.0, "description": "1 heure réelle = 1 jour de jeu. Un mandat dure environ 2 mois et demi réels." },
-    { "id": "long", "label": "Long", "worldHoursPerRealHour": 12.0, "description": "1 heure réelle = 12 heures de jeu. Un mandat dure environ 5 mois réels." },
-    { "id": "tres_long", "label": "Très long", "worldHoursPerRealHour": 6.0, "description": "1 heure réelle = 6 heures de jeu. Un mandat dure environ 10 mois réels." }
+    {
+      "id": "rapide",
+      "label": "Rapide",
+      "worldHoursPerRealHour": 48.0,
+      "description": "1 heure réelle = 2 jours de jeu. Un mandat dure environ 38 jours réels."
+    },
+    {
+      "id": "normal",
+      "label": "Normal",
+      "worldHoursPerRealHour": 24.0,
+      "description": "1 heure réelle = 1 jour de jeu. Un mandat dure environ 2 mois et demi réels."
+    },
+    {
+      "id": "long",
+      "label": "Long",
+      "worldHoursPerRealHour": 12.0,
+      "description": "1 heure réelle = 12 heures de jeu. Un mandat dure environ 5 mois réels."
+    },
+    {
+      "id": "tres_long",
+      "label": "Très long",
+      "worldHoursPerRealHour": 6.0,
+      "description": "1 heure réelle = 6 heures de jeu. Un mandat dure environ 10 mois réels."
+    }
   ],
   "defaultPace": "normal",
   "defaultSnapshot": "WORLD_SNAPSHOT_2026_10",
@@ -22,8 +42,41 @@
     "diplomacyClauses": "diplomacy/clauses.json",
     "lexicon": "dialogue/fr/lexicon.json",
     "readouts": "ui/readouts.json",
-    "events": ["events/territory.json", "events/infrastructure.json", "events/society.json", "events/government.json"],
-    "dialogue": ["dialogue/fr/territory.json", "dialogue/fr/incidents.json", "dialogue/fr/society.json", "dialogue/fr/government.json", "dialogue/fr/diplomacy.json"],
-    "names": { "fr": "names/fr.json", "de": "names/de.json", "es": "names/es.json", "it": "names/it.json", "en": "names/en.json", "be": "names/be.json" }
+    "events": [
+      "events/territory.json",
+      "events/infrastructure.json",
+      "events/society.json",
+      "events/government.json"
+    ],
+    "dialogue": [
+      "dialogue/fr/territory.json",
+      "dialogue/fr/incidents.json",
+      "dialogue/fr/society.json",
+      "dialogue/fr/government.json",
+      "dialogue/fr/diplomacy.json"
+    ],
+    "names": {
+      "fr": "names/fr.json",
+      "de": "names/de.json",
+      "es": "names/es.json",
+      "it": "names/it.json",
+      "en": "names/en.json",
+      "be": "names/be.json",
+      "nl": "names/nl.json",
+      "pl": "names/pl.json",
+      "pt": "names/pt.json",
+      "sv": "names/sv.json",
+      "el": "names/el.json",
+      "ro": "names/ro.json",
+      "uk": "names/uk.json",
+      "ru": "names/ru.json",
+      "tr": "names/tr.json",
+      "ar": "names/ar.json",
+      "zh": "names/zh.json",
+      "ja": "names/ja.json",
+      "hi": "names/hi.json"
+    },
+    "zones": "geo/zones.json",
+    "unitTypes": "military/unit_types.json"
   }
 }

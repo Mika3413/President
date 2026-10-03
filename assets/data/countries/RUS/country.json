@@ -1,0 +1,76 @@
+{
+ "id": "RUS",
+ "name": "Russie",
+ "adjective": "russe",
+ "language": "ru",
+ "namePool": "ru",
+ "detail": "LIGHT",
+ "population": 144000000,
+ "economy": "economy/RUS_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Président de la Fédération",
+  "honorificMale": "Monsieur le Président",
+  "honorificFemale": "Madame la Présidente"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.7,
+    1
+   ],
+   "nationalism": [
+    0.75,
+    1
+   ],
+   "openness": [
+    0.05,
+    0.35
+   ],
+   "toughness": [
+    0.7,
+    1
+   ],
+   "caution": [
+    0.15,
+    0.45
+   ],
+   "militarism": [
+    0.75,
+    1
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ]
+ },
+ "strategic": {
+  "electricityBalanceTWh": 15,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 3
+  },
+  "alliances": [
+   "CSTO"
+  ],
+  "priorities": [],
+  "intelligenceQuality": 0.75,
+  "militaryBudgetBillions": 120,
+  "nuclear": true,
+  "forces": {
+   "land": 28,
+   "air": 8,
+   "sea": 4
+  },
+  "capital": {
+   "name": "Moscou",
+   "lon": 37.62,
+   "lat": 55.75
+  }
+ }
+}

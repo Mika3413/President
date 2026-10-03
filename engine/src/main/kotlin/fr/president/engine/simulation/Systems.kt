@@ -11,7 +11,12 @@ import fr.president.engine.events.EventSystem
 import fr.president.engine.government.GovernmentSystem
 import fr.president.engine.inbox.InboxSystem
 import fr.president.engine.infrastructure.InfrastructureSystem
+import fr.president.engine.military.CombatSystem
+import fr.president.engine.military.LogisticsSystem
+import fr.president.engine.military.MilitaryAiSystem
 import fr.president.engine.military.MilitarySystem
+import fr.president.engine.military.MovementSystem
+import fr.president.engine.military.WarSystem
 import fr.president.engine.opinion.OpinionSystem
 import fr.president.engine.territory.TerritorySystem
 
@@ -19,6 +24,11 @@ import fr.president.engine.territory.TerritorySystem
 object Systems {
     fun default(): List<SimulationSystem> = listOf(
         InboxSystem(),
+        MovementSystem(),
+        CombatSystem(),
+        LogisticsSystem(),
+        WarSystem(),
+        MilitaryAiSystem(),
         EffectSystem(),
         InfrastructureSystem(),
         EventSystem(),

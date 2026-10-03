@@ -1,0 +1,74 @@
+{
+ "id": "CHN",
+ "name": "Chine",
+ "adjective": "chinois",
+ "language": "zh",
+ "namePool": "zh",
+ "detail": "LIGHT",
+ "population": 1410000000,
+ "economy": "economy/CHN_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Premier ministre du Conseil des affaires de l'État",
+  "honorificMale": "Monsieur le Premier ministre",
+  "honorificFemale": "Madame la Première ministre"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.4,
+    0.7
+   ],
+   "nationalism": [
+    0.65,
+    0.95
+   ],
+   "openness": [
+    0.2,
+    0.5
+   ],
+   "toughness": [
+    0.7,
+    1
+   ],
+   "caution": [
+    0.45,
+    0.75
+   ],
+   "militarism": [
+    0.45,
+    0.75
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ]
+ },
+ "strategic": {
+  "electricityBalanceTWh": 0,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 80
+  },
+  "alliances": [],
+  "priorities": [],
+  "intelligenceQuality": 0.85,
+  "militaryBudgetBillions": 270,
+  "nuclear": true,
+  "forces": {
+   "land": 0,
+   "air": 0,
+   "sea": 0
+  },
+  "capital": {
+   "name": "Pékin",
+   "lon": 116.4,
+   "lat": 39.9
+  }
+ }
+}

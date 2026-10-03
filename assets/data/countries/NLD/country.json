@@ -1,0 +1,77 @@
+{
+ "id": "NLD",
+ "name": "Pays-Bas",
+ "adjective": "néerlandais",
+ "language": "nl",
+ "namePool": "nl",
+ "detail": "LIGHT",
+ "population": 18000000,
+ "economy": "economy/NLD_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Premier ministre",
+  "honorificMale": "Monsieur le Premier ministre",
+  "honorificFemale": "Madame la Première ministre"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.15,
+    0.45
+   ],
+   "nationalism": [
+    0.2,
+    0.5
+   ],
+   "openness": [
+    0.5,
+    0.8
+   ],
+   "toughness": [
+    0.55,
+    0.85
+   ],
+   "caution": [
+    0.45,
+    0.75
+   ],
+   "militarism": [
+    0.25,
+    0.55
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ]
+ },
+ "strategic": {
+  "electricityBalanceTWh": -5,
+  "electricityInterconnected": true,
+  "tradeWithPartnersBillions": {
+   "FRA": 70
+  },
+  "alliances": [
+   "EU",
+   "NATO"
+  ],
+  "priorities": [],
+  "intelligenceQuality": 0.7,
+  "militaryBudgetBillions": 21,
+  "nuclear": false,
+  "forces": {
+   "land": 3,
+   "air": 2,
+   "sea": 2
+  },
+  "capital": {
+   "name": "Amsterdam",
+   "lon": 4.9,
+   "lat": 52.37
+  }
+ }
+}

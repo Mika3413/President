@@ -1,0 +1,76 @@
+{
+ "id": "NOR",
+ "name": "Norvège",
+ "adjective": "norvégien",
+ "language": "sv",
+ "namePool": "sv",
+ "detail": "LIGHT",
+ "population": 5600000,
+ "economy": "economy/NOR_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Premier ministre",
+  "honorificMale": "Monsieur le Premier ministre",
+  "honorificFemale": "Madame la Première ministre"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.1,
+    0.4
+   ],
+   "nationalism": [
+    0.25,
+    0.55
+   ],
+   "openness": [
+    0.45,
+    0.75
+   ],
+   "toughness": [
+    0.45,
+    0.75
+   ],
+   "caution": [
+    0.5,
+    0.8
+   ],
+   "militarism": [
+    0.3,
+    0.6
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ]
+ },
+ "strategic": {
+  "electricityBalanceTWh": 20,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 12
+  },
+  "alliances": [
+   "NATO"
+  ],
+  "priorities": [],
+  "intelligenceQuality": 0.75,
+  "militaryBudgetBillions": 9,
+  "nuclear": false,
+  "forces": {
+   "land": 2,
+   "air": 2,
+   "sea": 2
+  },
+  "capital": {
+   "name": "Oslo",
+   "lon": 10.75,
+   "lat": 59.91
+  }
+ }
+}

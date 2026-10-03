@@ -1,85 +1,502 @@
 {
-  "clauseTypes": [
+ "clauseTypes": [
+  {
+   "id": "ELECTRICITY_SUPPLY",
+   "label": "Fourniture d'électricité",
+   "description": "Un pays s'engage à livrer chaque année un volume d'électricité à un prix convenu.",
+   "params": [
     {
-      "id": "ELECTRICITY_SUPPLY",
-      "label": "Fourniture d'électricité",
-      "description": "Un pays s'engage à livrer chaque année un volume d'électricité à un prix convenu.",
-      "params": [
-        { "id": "volumeTWh", "label": "Volume", "unit": "TWh/an", "min": 1, "max": 30, "step": 1, "default": 8 },
-        { "id": "pricePercent", "label": "Prix", "unit": "% du marché", "min": 70, "max": 130, "step": 5, "default": 100 }
-      ],
-      "valuation": { "recurring": 1, "needWeight": 0.022, "surplusWeight": 0.002, "priceWeight": 0.28, "sellWeight": 0.008, "strainWeight": 0.05, "credibilityWeight": 0.03 }
+     "id": "volumeTWh",
+     "label": "Volume",
+     "unit": "TWh/an",
+     "min": 1,
+     "max": 30,
+     "step": 1,
+     "default": 8
     },
     {
-      "id": "TARIFF_REDUCTION",
-      "label": "Baisse des barrières commerciales",
-      "description": "Réduction mutuelle des obstacles aux échanges (normes, quotas, droits).",
-      "mutual": true,
-      "params": [ { "id": "percent", "label": "Ampleur", "unit": "%", "min": 1, "max": 10, "step": 1, "default": 3 } ],
-      "valuation": { "recurring": 1, "tradeWeight": 0.012, "protectionWeight": 0.02, "growthPerPercentOfTrade": 0.04 }
-    },
-    {
-      "id": "FINANCIAL_AID",
-      "label": "Aide financière",
-      "description": "Versement ponctuel d'une aide budgétaire.",
-      "params": [ { "id": "amountBillions", "label": "Montant", "unit": "Md€", "min": 0.5, "max": 20, "step": 0.5, "default": 2 } ],
-      "valuation": { "aidWeight": 0.08, "giverCost": 1.3 }
-    },
-    {
-      "id": "DEFENSE_COOPERATION",
-      "label": "Coopération de défense",
-      "description": "Exercices communs, interopérabilité, programmes d'armement partagés.",
-      "mutual": true,
-      "params": [ { "id": "intensity", "label": "Intensité", "unit": "niveau (1-3)", "min": 1, "max": 3, "step": 1, "default": 1 } ],
-      "valuation": { "recurring": 1, "militarismWeight": 0.08, "allianceWeight": 0.03, "sovereigntyWeight": 0.06 }
-    },
-    {
-      "id": "INDUSTRIAL_INVESTMENT",
-      "label": "Investissement industriel",
-      "description": "Engagement d'investissements dans l'économie du partenaire (usines, coentreprises).",
-      "params": [ { "id": "amountBillions", "label": "Montant", "unit": "Md€", "min": 1, "max": 15, "step": 1, "default": 3 } ],
-      "valuation": { "investWeight": 0.03, "giverCost": 0.8 }
+     "id": "pricePercent",
+     "label": "Prix",
+     "unit": "% du marché",
+     "min": 70,
+     "max": 130,
+     "step": 5,
+     "default": 100
     }
-  ],
-  "memoryKinds": [
-    { "id": "EU_PARTNERSHIP", "positiveLabel": "Partenaires européens", "negativeLabel": "Tensions européennes", "halfLifeDays": 0 },
-    { "id": "ALLIANCE", "positiveLabel": "Alliance", "negativeLabel": "Alliance fragilisée", "halfLifeDays": 0 },
-    { "id": "TRADE_PARTNER", "positiveLabel": "Coopération commerciale importante", "negativeLabel": "Différends commerciaux", "halfLifeDays": 0 },
-    { "id": "DISAGREEMENT", "positiveLabel": "Convergence", "negativeLabel": "Désaccord", "halfLifeDays": 0 },
-    { "id": "AGREEMENT_SIGNED", "positiveLabel": "Accord récent", "negativeLabel": "Accord contesté", "halfLifeDays": 540, "defaultWeight": 0.06 },
-    { "id": "AGREEMENT_RESPECTED", "positiveLabel": "Engagements tenus", "negativeLabel": "Engagements discutés", "halfLifeDays": 1095, "affectsTrust": true, "defaultWeight": 0.03 },
-    { "id": "AGREEMENT_BROKEN", "positiveLabel": "Rupture pardonnée", "negativeLabel": "Accord rompu", "halfLifeDays": 1460, "affectsTrust": true, "defaultWeight": -0.25 },
-    { "id": "DELIVERY_SHORTFALL", "positiveLabel": "Livraisons assurées", "negativeLabel": "Livraisons non honorées", "halfLifeDays": 365, "affectsTrust": true, "defaultWeight": -0.04 },
-    { "id": "PROPOSAL_REFUSED", "positiveLabel": "Dialogue", "negativeLabel": "Proposition refusée", "halfLifeDays": 240, "defaultWeight": -0.04 },
-    { "id": "PROPOSAL_IGNORED", "positiveLabel": "Dialogue", "negativeLabel": "Proposition restée sans réponse", "halfLifeDays": 240, "defaultWeight": -0.06 },
-    { "id": "NEGOTIATION_GOODWILL", "positiveLabel": "Négociations constructives", "negativeLabel": "Négociations tendues", "halfLifeDays": 180, "defaultWeight": 0.01 },
-    { "id": "AID", "positiveLabel": "Aide apportée", "negativeLabel": "Aide refusée", "halfLifeDays": 900, "defaultWeight": 0.08 },
-    { "id": "CRISIS_SOLIDARITY", "positiveLabel": "Solidarité dans l'épreuve", "negativeLabel": "Indifférence lors d'une crise", "halfLifeDays": 720, "defaultWeight": 0.05 },
-    { "id": "SANCTION", "positiveLabel": "Sanctions levées", "negativeLabel": "Sanctions", "halfLifeDays": 1095, "defaultWeight": -0.15 },
-    { "id": "THREAT", "positiveLabel": "Garanties", "negativeLabel": "Menaces", "halfLifeDays": 720, "affectsTrust": true, "defaultWeight": -0.12 }
-  ],
-  "evaluation": {
-    "baseThreshold": 0.05,
-    "toughnessThreshold": 0.1,
-    "relationWeight": 0.6,
-    "trustWeight": 0.4,
-    "durationCautionPerYear": 0.012,
-    "maxCounterSteps": 12,
-    "counterReachableGap": 0.35,
-    "responseDelayDaysMin": 1.5,
-    "responseDelayDaysMax": 4.0,
-    "perceptionNoise": 0.08,
-    "proposalExpiryDays": 10,
-    "aiProposalRelationMinimum": 0.45,
-    "aiProposalCooldownDays": 150
+   ],
+   "valuation": {
+    "recurring": 1,
+    "needWeight": 0.022,
+    "surplusWeight": 0.002,
+    "priceWeight": 0.28,
+    "sellWeight": 0.008,
+    "strainWeight": 0.05,
+    "credibilityWeight": 0.03
+   }
   },
-  "relationLabels": [
-    { "upTo": 0.2, "label": "Hostiles" },
-    { "upTo": 0.35, "label": "Tendues" },
-    { "upTo": 0.48, "label": "Froides" },
-    { "upTo": 0.58, "label": "Correctes" },
-    { "upTo": 0.7, "label": "Bonnes" },
-    { "upTo": 0.82, "label": "Très bonnes" },
-    { "upTo": 1.0, "label": "Excellentes" }
-  ]
+  {
+   "id": "TARIFF_REDUCTION",
+   "label": "Baisse des barrières commerciales",
+   "description": "Réduction mutuelle des obstacles aux échanges (normes, quotas, droits).",
+   "mutual": true,
+   "params": [
+    {
+     "id": "percent",
+     "label": "Ampleur",
+     "unit": "%",
+     "min": 1,
+     "max": 10,
+     "step": 1,
+     "default": 3
+    }
+   ],
+   "valuation": {
+    "recurring": 1,
+    "tradeWeight": 0.012,
+    "protectionWeight": 0.02,
+    "growthPerPercentOfTrade": 0.04
+   }
+  },
+  {
+   "id": "FINANCIAL_AID",
+   "label": "Aide financière",
+   "description": "Versement ponctuel d'une aide budgétaire.",
+   "params": [
+    {
+     "id": "amountBillions",
+     "label": "Montant",
+     "unit": "Md€",
+     "min": 0.5,
+     "max": 20,
+     "step": 0.5,
+     "default": 2
+    }
+   ],
+   "valuation": {
+    "aidWeight": 0.08,
+    "giverCost": 1.3
+   }
+  },
+  {
+   "id": "DEFENSE_COOPERATION",
+   "label": "Coopération de défense",
+   "description": "Exercices communs, interopérabilité, programmes d'armement partagés.",
+   "mutual": true,
+   "params": [
+    {
+     "id": "intensity",
+     "label": "Intensité",
+     "unit": "niveau (1-3)",
+     "min": 1,
+     "max": 3,
+     "step": 1,
+     "default": 1
+    }
+   ],
+   "valuation": {
+    "recurring": 1,
+    "militarismWeight": 0.08,
+    "allianceWeight": 0.03,
+    "sovereigntyWeight": 0.06
+   }
+  },
+  {
+   "id": "INDUSTRIAL_INVESTMENT",
+   "label": "Investissement industriel",
+   "description": "Engagement d'investissements dans l'économie du partenaire (usines, coentreprises).",
+   "params": [
+    {
+     "id": "amountBillions",
+     "label": "Montant",
+     "unit": "Md€",
+     "min": 1,
+     "max": 15,
+     "step": 1,
+     "default": 3
+    }
+   ],
+   "valuation": {
+    "investWeight": 0.03,
+    "giverCost": 0.8
+   }
+  },
+  {
+   "id": "CEASEFIRE",
+   "label": "Cessez-le-feu",
+   "description": "Arrêt des combats pour une durée donnée, sans régler le fond du conflit.",
+   "mutual": true,
+   "params": [
+    {
+     "id": "days",
+     "label": "Durée",
+     "unit": "jours",
+     "min": 30,
+     "max": 365,
+     "step": 30,
+     "default": 90
+    }
+   ],
+   "valuation": {
+    "wearinessWeight": 0.8,
+    "advantageWeight": 0.6
+   }
+  },
+  {
+   "id": "PEACE_TREATY",
+   "label": "Traité de paix",
+   "description": "Fin de la guerre. Les zones occupées sont restituées (0) ou annexées par l'occupant (1).",
+   "mutual": true,
+   "params": [
+    {
+     "id": "keepOccupied",
+     "label": "Annexion des zones occupées",
+     "unit": "(0 = non, 1 = oui)",
+     "min": 0,
+     "max": 1,
+     "step": 1,
+     "default": 0
+    }
+   ],
+   "valuation": {
+    "wearinessWeight": 0.9,
+    "zoneWeight": 0.02,
+    "base": -0.1
+   }
+  },
+  {
+   "id": "REPARATIONS",
+   "label": "Réparations de guerre",
+   "description": "Versement compensant les destructions causées.",
+   "params": [
+    {
+     "id": "amountBillions",
+     "label": "Montant",
+     "unit": "Md€",
+     "min": 1,
+     "max": 50,
+     "step": 1,
+     "default": 5
+    }
+   ],
+   "valuation": {
+    "aidWeight": 0.08,
+    "giverCost": 1.3
+   }
+  },
+  {
+   "id": "PRISONER_EXCHANGE",
+   "label": "Échange de prisonniers",
+   "description": "Libération réciproque des prisonniers de guerre.",
+   "mutual": true,
+   "params": [
+    {
+     "id": "scale",
+     "label": "Ampleur",
+     "unit": "niveau",
+     "min": 1,
+     "max": 3,
+     "step": 1,
+     "default": 1
+    }
+   ],
+   "valuation": {
+    "goodwill": 0.04
+   }
+  },
+  {
+   "id": "MILITARY_AID",
+   "label": "Aide militaire",
+   "description": "Livraison de munitions, de matériel et de formation.",
+   "params": [
+    {
+     "id": "amountBillions",
+     "label": "Montant",
+     "unit": "Md€",
+     "min": 0.5,
+     "max": 20,
+     "step": 0.5,
+     "default": 2
+    }
+   ],
+   "valuation": {
+    "aidWeight": 0.1,
+    "giverCost": 1.0,
+    "warMultiplier": 3
+   }
+  },
+  {
+   "id": "ARMS_SALE",
+   "label": "Vente d'armement",
+   "description": "Le fournisseur vend des équipements ; l'acheteur paie le montant convenu.",
+   "params": [
+    {
+     "id": "amountBillions",
+     "label": "Montant",
+     "unit": "Md€",
+     "min": 0.5,
+     "max": 30,
+     "step": 0.5,
+     "default": 3
+    }
+   ],
+   "valuation": {
+    "sellerWeight": 0.012,
+    "buyerWeight": 0.01
+   }
+  },
+  {
+   "id": "PASSAGE_RIGHTS",
+   "label": "Droit de passage",
+   "description": "Les forces du bénéficiaire peuvent traverser le territoire du fournisseur.",
+   "params": [
+    {
+     "id": "scope",
+     "label": "Étendue",
+     "unit": "niveau",
+     "min": 1,
+     "max": 1,
+     "step": 1,
+     "default": 1
+    }
+   ],
+   "valuation": {
+    "grantCost": 0.05,
+    "sovereigntyWeight": 0.1,
+    "receiverValue": 0.04
+   }
+  },
+  {
+   "id": "DEFENSIVE_ALLIANCE",
+   "label": "Alliance défensive",
+   "description": "Chacun s'engage à défendre l'autre s'il est attaqué.",
+   "mutual": true,
+   "params": [
+    {
+     "id": "scope",
+     "label": "Étendue",
+     "unit": "niveau",
+     "min": 1,
+     "max": 1,
+     "step": 1,
+     "default": 1
+    }
+   ],
+   "valuation": {
+    "recurring": 1,
+    "militarismWeight": 0.06,
+    "riskWeight": 0.35,
+    "sovereigntyWeight": 0.05
+   }
+  },
+  {
+   "id": "SECURITY_GUARANTEE",
+   "label": "Garantie de sécurité",
+   "description": "Le garant s'engage à défendre le bénéficiaire en cas d'agression.",
+   "params": [
+    {
+     "id": "scope",
+     "label": "Étendue",
+     "unit": "niveau",
+     "min": 1,
+     "max": 1,
+     "step": 1,
+     "default": 1
+    }
+   ],
+   "valuation": {
+    "recurring": 1,
+    "giverCost": 0.1,
+    "receiverValue": 0.15
+   }
+  }
+ ],
+ "memoryKinds": [
+  {
+   "id": "EU_PARTNERSHIP",
+   "positiveLabel": "Partenaires européens",
+   "negativeLabel": "Tensions européennes",
+   "halfLifeDays": 0
+  },
+  {
+   "id": "ALLIANCE",
+   "positiveLabel": "Alliance",
+   "negativeLabel": "Alliance fragilisée",
+   "halfLifeDays": 0
+  },
+  {
+   "id": "TRADE_PARTNER",
+   "positiveLabel": "Coopération commerciale importante",
+   "negativeLabel": "Différends commerciaux",
+   "halfLifeDays": 0
+  },
+  {
+   "id": "DISAGREEMENT",
+   "positiveLabel": "Convergence",
+   "negativeLabel": "Désaccord",
+   "halfLifeDays": 0
+  },
+  {
+   "id": "AGREEMENT_SIGNED",
+   "positiveLabel": "Accord récent",
+   "negativeLabel": "Accord contesté",
+   "halfLifeDays": 540,
+   "defaultWeight": 0.06
+  },
+  {
+   "id": "AGREEMENT_RESPECTED",
+   "positiveLabel": "Engagements tenus",
+   "negativeLabel": "Engagements discutés",
+   "halfLifeDays": 1095,
+   "affectsTrust": true,
+   "defaultWeight": 0.03
+  },
+  {
+   "id": "AGREEMENT_BROKEN",
+   "positiveLabel": "Rupture pardonnée",
+   "negativeLabel": "Accord rompu",
+   "halfLifeDays": 1460,
+   "affectsTrust": true,
+   "defaultWeight": -0.25
+  },
+  {
+   "id": "DELIVERY_SHORTFALL",
+   "positiveLabel": "Livraisons assurées",
+   "negativeLabel": "Livraisons non honorées",
+   "halfLifeDays": 365,
+   "affectsTrust": true,
+   "defaultWeight": -0.04
+  },
+  {
+   "id": "PROPOSAL_REFUSED",
+   "positiveLabel": "Dialogue",
+   "negativeLabel": "Proposition refusée",
+   "halfLifeDays": 240,
+   "defaultWeight": -0.04
+  },
+  {
+   "id": "PROPOSAL_IGNORED",
+   "positiveLabel": "Dialogue",
+   "negativeLabel": "Proposition restée sans réponse",
+   "halfLifeDays": 240,
+   "defaultWeight": -0.06
+  },
+  {
+   "id": "NEGOTIATION_GOODWILL",
+   "positiveLabel": "Négociations constructives",
+   "negativeLabel": "Négociations tendues",
+   "halfLifeDays": 180,
+   "defaultWeight": 0.01
+  },
+  {
+   "id": "AID",
+   "positiveLabel": "Aide apportée",
+   "negativeLabel": "Aide refusée",
+   "halfLifeDays": 900,
+   "defaultWeight": 0.08
+  },
+  {
+   "id": "CRISIS_SOLIDARITY",
+   "positiveLabel": "Solidarité dans l'épreuve",
+   "negativeLabel": "Indifférence lors d'une crise",
+   "halfLifeDays": 720,
+   "defaultWeight": 0.05
+  },
+  {
+   "id": "SANCTION",
+   "positiveLabel": "Sanctions levées",
+   "negativeLabel": "Sanctions",
+   "halfLifeDays": 1095,
+   "defaultWeight": -0.15
+  },
+  {
+   "id": "THREAT",
+   "positiveLabel": "Garanties",
+   "negativeLabel": "Menaces",
+   "halfLifeDays": 720,
+   "affectsTrust": true,
+   "defaultWeight": -0.12
+  },
+  {
+   "id": "WAR",
+   "positiveLabel": "Paix retrouvée",
+   "negativeLabel": "Guerre et agression",
+   "halfLifeDays": 1825,
+   "affectsTrust": true,
+   "defaultWeight": -0.3
+  },
+  {
+   "id": "ULTIMATUM",
+   "positiveLabel": "Fermeté respectée",
+   "negativeLabel": "Ultimatum",
+   "halfLifeDays": 540,
+   "defaultWeight": -0.1
+  },
+  {
+   "id": "CONDEMNATION",
+   "positiveLabel": "Soutien public",
+   "negativeLabel": "Condamnation publique",
+   "halfLifeDays": 365,
+   "defaultWeight": -0.04
+  },
+  {
+   "id": "MILITARY_SUPPORT",
+   "positiveLabel": "Soutien militaire",
+   "negativeLabel": "Hostilité militaire",
+   "halfLifeDays": 1460,
+   "defaultWeight": 0.12
+  },
+  {
+   "id": "BACKED_DOWN",
+   "positiveLabel": "Retenue",
+   "negativeLabel": "Menaces non suivies d'effet",
+   "halfLifeDays": 540,
+   "affectsTrust": true,
+   "defaultWeight": -0.03
+  }
+ ],
+ "evaluation": {
+  "baseThreshold": 0.05,
+  "toughnessThreshold": 0.1,
+  "relationWeight": 0.6,
+  "trustWeight": 0.4,
+  "durationCautionPerYear": 0.012,
+  "maxCounterSteps": 12,
+  "counterReachableGap": 0.35,
+  "responseDelayDaysMin": 1.5,
+  "responseDelayDaysMax": 4.0,
+  "perceptionNoise": 0.08,
+  "proposalExpiryDays": 10,
+  "aiProposalRelationMinimum": 0.45,
+  "aiProposalCooldownDays": 150
+ },
+ "relationLabels": [
+  {
+   "upTo": 0.2,
+   "label": "Hostiles"
+  },
+  {
+   "upTo": 0.35,
+   "label": "Tendues"
+  },
+  {
+   "upTo": 0.48,
+   "label": "Froides"
+  },
+  {
+   "upTo": 0.58,
+   "label": "Correctes"
+  },
+  {
+   "upTo": 0.7,
+   "label": "Bonnes"
+  },
+  {
+   "upTo": 0.82,
+   "label": "Très bonnes"
+  },
+  {
+   "upTo": 1.0,
+   "label": "Excellentes"
+  }
+ ]
 }

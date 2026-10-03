@@ -27,6 +27,8 @@ class InboxSystem : SimulationSystem {
                 MessageOrigin.EVENT -> EventResolver(ctx).choose(message, optionId, byDefault)
                 MessageOrigin.PROPOSAL, MessageOrigin.DIPLOMATIC_RESPONSE ->
                     DiplomacyService(ctx).answerMessage(message, optionId, byDefault)
+                MessageOrigin.ALLIANCE_CALL -> fr.president.engine.military.WarService(ctx).answerAllianceCall(message, optionId)
+                MessageOrigin.ULTIMATUM -> fr.president.engine.diplomacy.UltimatumService(ctx).answerPlayer(message, optionId)
                 MessageOrigin.INFO -> {
                     message.chosenOptionId = optionId
                     message.read = true

@@ -24,7 +24,7 @@ class VariableResolver(private val ctx: SimulationContext) {
                 "businesses" -> BudgetCalculator.taxBurden(ctx.state.playerCountry.economy, TaxPayer.BUSINESSES)
                 else -> null
             }
-            "military" -> if (parts.getOrNull(1) == "readiness") ctx.state.military.overallReadiness else null
+            "military" -> military(parts.getOrNull(1))
             "season" -> if (parts.getOrNull(1) == "month") ctx.now.month.toDouble() else null
             "scope" -> scoped(parts.getOrNull(1), scope)
             else -> null
@@ -43,6 +43,19 @@ class VariableResolver(private val ctx: SimulationContext) {
             "deficitRatio" -> e.deficitRatio
             "energyPriceIndex" -> e.energyPriceIndex
             "purchasingPower" -> e.wageIndex / e.priceLevel
+            else -> null
+        }
+    }
+
+    private fun military(field: String?): Double? {
+        val geo = fr.president.engine.military.Geopolitics(ctx)
+        return when (field) {
+            "readiness" -> ctx.state.military.overallReadiness
+            "warWeariness" -> ctx.state.military.warWeariness
+            "atWar" -> if (geo.isAtWar(ctx.state.player.countryId)) 1.0 else 0.0
+            "ammunitionStock" -> ctx.state.military.stocks.ammunition
+            // Guerre active impliquant un pays européen (réfugiés, inquiétude, prix).
+            "nearbyWar" -> if (geo.activeWars().any { w -> w.participants.any { it in NEARBY } }) 1.0 else 0.0
             else -> null
         }
     }
@@ -115,6 +128,7 @@ class VariableResolver(private val ctx: SimulationContext) {
     }
 
     private companion object {
+        val NEARBY = setOf("DEU", "ESP", "ITA", "GBR", "BEL", "NLD", "CHE", "PRT", "AUT", "POL", "SWE", "NOR", "GRC", "ROU", "UKR", "RUS", "BLR", "TUR", "DZA", "MAR", "TUN")
         const val MILLION = 1_000_000.0
         const val MW_PER_GW = 1000.0
     }

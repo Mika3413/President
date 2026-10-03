@@ -131,8 +131,10 @@ class DiplomacyService(private val ctx: SimulationContext) {
 
     /** Versements ponctuels (aides, investissements) effectués à la signature. */
     private fun applyOneOffClauses(agreement: Agreement) {
+        AgreementEnactment(ctx).enact(agreement)
         for (clause in agreement.clauses) {
             val amount = clause.params["amountBillions"] ?: continue
+            if (clause.type == "ARMS_SALE") continue
             val receiver = agreement.parties.first { it != clause.giver }
             val giverEconomy = ctx.state.countries.getValue(clause.giver).economy
             val receiverEconomy = ctx.state.countries.getValue(receiver).economy

@@ -25,7 +25,7 @@ class ClauseValuator(private val ctx: SimulationContext) {
             AID -> aid(evaluator, clause, evaluatorGives, w)
             DEFENSE -> defense(evaluator, partner, clause, leader.trait(Traits.MILITARISM), leader.trait(Traits.NATIONALISM), w)
             INVESTMENT -> investment(clause, evaluatorGives, w)
-            else -> Value(0.0, null)
+            else -> WarClauseValuator(ctx).value(evaluator, partner, clause, evaluatorGives, w, leader)
         }
         val recurring = (w["recurring"] ?: 0.0) > 0
         val durationFactor = if (recurring) sqrt(durationYears / REFERENCE_YEARS) else 1.0

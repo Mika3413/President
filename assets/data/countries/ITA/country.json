@@ -20,21 +20,29 @@
     0.6
    ],
    "nationalism": [
-    0.4,
+    0.45,
     0.75
    ],
+   "openness": [
+    0.3,
+    0.6
+   ],
    "toughness": [
-    0.45,
+    0.5,
     0.8
    ],
-   "openness": [
+   "caution": [
+    0.35,
+    0.65
+   ],
+   "militarism": [
     0.3,
     0.6
    ]
   },
   "ageRange": [
    44,
-   66
+   70
   ],
   "economicLeaningRange": [
    -0.3,
@@ -43,21 +51,27 @@
  },
  "strategic": {
   "electricityBalanceTWh": -48,
+  "electricityInterconnected": true,
   "tradeWithPartnersBillions": {
-   "FRA": 95,
-   "DEU": 150,
-   "ESP": 45
+   "FRA": 95
   },
   "alliances": [
    "EU",
    "NATO"
   ],
-  "priorities": [
-   "energy",
-   "migration",
-   "industry"
-  ],
+  "priorities": [],
   "intelligenceQuality": 0.65,
-  "militaryBudgetBillions": 33
+  "militaryBudgetBillions": 33,
+  "nuclear": false,
+  "forces": {
+   "land": 6,
+   "air": 4,
+   "sea": 3
+  },
+  "capital": {
+   "name": "Rome",
+   "lon": 12.5,
+   "lat": 41.9
+  }
  }
 }

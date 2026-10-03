@@ -89,6 +89,7 @@ class NewGameFactory(private val db: GameDatabase) {
             createGovernment(country, president)
             createLocalActors(country)
         }
+        fr.president.engine.military.MilitarySetup(ctx).ensure()
         initOpinion(ctx, country)
         initRelations(state)
         EnergySystem().run(ctx)

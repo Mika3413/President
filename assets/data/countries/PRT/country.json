@@ -1,0 +1,77 @@
+{
+ "id": "PRT",
+ "name": "Portugal",
+ "adjective": "portugais",
+ "language": "pt",
+ "namePool": "pt",
+ "detail": "LIGHT",
+ "population": 10600000,
+ "economy": "economy/PRT_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Premier ministre",
+  "honorificMale": "Monsieur le Premier ministre",
+  "honorificFemale": "Madame la Première ministre"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.05,
+    0.35
+   ],
+   "nationalism": [
+    0.2,
+    0.5
+   ],
+   "openness": [
+    0.55,
+    0.85
+   ],
+   "toughness": [
+    0.3,
+    0.6
+   ],
+   "caution": [
+    0.4,
+    0.7
+   ],
+   "militarism": [
+    0.15,
+    0.45
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ]
+ },
+ "strategic": {
+  "electricityBalanceTWh": 2,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 18
+  },
+  "alliances": [
+   "EU",
+   "NATO"
+  ],
+  "priorities": [],
+  "intelligenceQuality": 0.55,
+  "militaryBudgetBillions": 4.5,
+  "nuclear": false,
+  "forces": {
+   "land": 2,
+   "air": 1,
+   "sea": 1
+  },
+  "capital": {
+   "name": "Lisbonne",
+   "lon": -9.14,
+   "lat": 38.72
+  }
+ }
+}

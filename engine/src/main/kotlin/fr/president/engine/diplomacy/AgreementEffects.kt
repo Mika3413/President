@@ -7,7 +7,7 @@ class AgreementEffects(private val ctx: SimulationContext) {
 
     /** Surcroît de croissance annuelle lié aux accords commerciaux d'un pays. */
     fun growthBoost(countryId: String): Double {
-        var boost = 0.0
+        var boost = SanctionsService(ctx).growthEffect(countryId)
         for (agreement in active(countryId)) {
             val partner = agreement.parties.first { it != countryId }
             for (clause in agreement.clauses.filter { it.type == ClauseValuator.TARIFFS }) {

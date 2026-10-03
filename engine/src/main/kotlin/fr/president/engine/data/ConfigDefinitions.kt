@@ -37,6 +37,8 @@ data class GlobalDataFiles(
     val events: List<String>,
     val dialogue: List<String>,
     val names: Map<String, String>,
+    val zones: String,
+    val unitTypes: String,
 )
 
 /** Photographie initiale du monde (data/world_snapshots/). Une partie la copie puis s'en détache. */
@@ -49,7 +51,12 @@ data class SnapshotDefinition(
     val playableCountries: List<String>,
     val countries: List<String>,
     val initialRelations: List<InitialRelationDef> = emptyList(),
+    val alliances: List<AllianceDef> = emptyList(),
 )
+
+/** Alliance (OTAN, UE...) : une alliance défensive engage ses membres en cas d'agression. */
+@Serializable
+data class AllianceDef(val id: String, val name: String, val defensive: Boolean, val members: List<String>)
 
 @Serializable
 data class InitialRelationDef(

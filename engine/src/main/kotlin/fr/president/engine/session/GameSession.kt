@@ -32,6 +32,11 @@ class GameSession(
     val national = NationalReadouts(context)
     val local = LocalReadouts(context)
     val characters = CharacterReadout(context)
+    val military = MilitaryCommands(context)
+
+    init {
+        fr.president.engine.military.MilitarySetup(context).ensure()
+    }
 
     val isGameOver: Boolean get() = state.player.gameOver != null
 

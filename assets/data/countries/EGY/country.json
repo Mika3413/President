@@ -1,0 +1,74 @@
+{
+ "id": "EGY",
+ "name": "Égypte",
+ "adjective": "égyptien",
+ "language": "ar",
+ "namePool": "ar",
+ "detail": "LIGHT",
+ "population": 114000000,
+ "economy": "economy/EGY_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Premier ministre",
+  "honorificMale": "Monsieur le Premier ministre",
+  "honorificFemale": "Madame la Première ministre"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.25,
+    0.55
+   ],
+   "nationalism": [
+    0.55,
+    0.85
+   ],
+   "openness": [
+    0.25,
+    0.55
+   ],
+   "toughness": [
+    0.55,
+    0.85
+   ],
+   "caution": [
+    0.4,
+    0.7
+   ],
+   "militarism": [
+    0.45,
+    0.75
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ]
+ },
+ "strategic": {
+  "electricityBalanceTWh": 0,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 5
+  },
+  "alliances": [],
+  "priorities": [],
+  "intelligenceQuality": 0.6,
+  "militaryBudgetBillions": 6,
+  "nuclear": false,
+  "forces": {
+   "land": 10,
+   "air": 4,
+   "sea": 2
+  },
+  "capital": {
+   "name": "Le Caire",
+   "lon": 31.24,
+   "lat": 30.04
+  }
+ }
+}

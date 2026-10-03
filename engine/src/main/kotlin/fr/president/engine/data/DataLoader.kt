@@ -16,6 +16,7 @@ class DataLoader(private val source: DataSource) {
         val snapshot = read<SnapshotDefinition>("$SNAPSHOT_DIR/${snapshotId ?: config.defaultSnapshot}.json")
         val countries = snapshot.countries.map { loadCountry(it) }.associateBy { it.id }
         val files = config.files
+        val unitTypes = read<UnitTypesFile>(files.unitTypes)
         val db = GameDatabase(
             config = config,
             snapshot = snapshot,
@@ -28,6 +29,9 @@ class DataLoader(private val source: DataSource) {
             diplomacy = read<DiplomacyDefinitions>(files.diplomacyClauses),
             names = files.names.mapValues { (_, path) -> read<NamePool>(path) },
             readouts = read<ReadoutsFile>(files.readouts),
+            zones = fr.president.engine.military.ZoneGraph(read<ZonesFile>(files.zones)),
+            unitTypes = unitTypes.types.associateBy { it.id },
+            militaryParameters = unitTypes.parameters,
         )
         DataValidator.validate(db)
         return db

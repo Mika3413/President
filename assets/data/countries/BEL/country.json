@@ -16,25 +16,33 @@
  "leader": {
   "traitRanges": {
    "aggressiveness": [
-    0.1,
+    0.05,
     0.35
    ],
-   "pragmatism": [
-    0.6,
-    0.9
+   "nationalism": [
+    0.1,
+    0.4
    ],
    "openness": [
     0.55,
     0.85
    ],
+   "toughness": [
+    0.35,
+    0.65
+   ],
    "caution": [
     0.5,
     0.8
+   ],
+   "militarism": [
+    0.15,
+    0.45
    ]
   },
   "ageRange": [
    44,
-   66
+   70
   ],
   "economicLeaningRange": [
    -0.3,
@@ -43,19 +51,27 @@
  },
  "strategic": {
   "electricityBalanceTWh": -6,
+  "electricityInterconnected": true,
   "tradeWithPartnersBillions": {
-   "FRA": 110,
-   "DEU": 110
+   "FRA": 110
   },
   "alliances": [
    "EU",
    "NATO"
   ],
-  "priorities": [
-   "energy",
-   "europe"
-  ],
+  "priorities": [],
   "intelligenceQuality": 0.6,
-  "militaryBudgetBillions": 8
+  "militaryBudgetBillions": 8,
+  "nuclear": false,
+  "forces": {
+   "land": 2,
+   "air": 1,
+   "sea": 1
+  },
+  "capital": {
+   "name": "Bruxelles",
+   "lon": 4.35,
+   "lat": 50.85
+  }
  }
 }
