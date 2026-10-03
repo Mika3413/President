@@ -91,4 +91,38 @@ class ParliamentTest {
         assertNotNull(session.policy.reformBlocker("pension_age_65"), "Réforme verrouillée après un « non »")
         assertEquals(2, session.state.parliament.referendumResults.size)
     }
+
+    @Test
+    fun `une dissolution ratée impose une cohabitation, résolue par un Premier ministre de la majorité`() {
+        val clock = TestData.FakeClock()
+        val session = TestData.newSession(seed = 9L, clock = clock)
+        clock.advanceWorldDays(400.0)
+        session.advanceToNow()
+        session.parliament.dissolve().getOrThrow()
+        session.state.opinion.groups.replaceAll { _, _ -> GroupOpinion(0.15, 0.0) }
+        session.state.opinion.honeymoon = 0.0
+        clock.advanceWorldDays(22.0)
+        session.advanceToNow()
+        assertEquals(fr.president.engine.government.MajorityStatus.COHABITATION, session.parliament.majorityStatus())
+        val before = session.parliament.supportTarget()
+        val majority = session.parliament.largestFamily()
+        val pm = session.government.candidates("pm").first { session.parliament.familyOf(it).id == majority.id }
+        session.government.appoint("pm", pm.id).getOrThrow()
+        assertTrue(session.parliament.supportTarget() > before + 0.1, "Soutien ${session.parliament.supportTarget()} vs $before")
+    }
+
+    @Test
+    fun `les élections locales renouvellent les exécutifs départementaux`() {
+        val clock = TestData.FakeClock()
+        val session = TestData.newSession(seed = 10L, clock = clock)
+        val next = session.state.localElections.next.getValue("departmental")
+        val before = session.state.territory.departments.mapValues { it.value.presidentId }
+        clock.advanceWorldDays(session.state.time.daysUntil(next) + 1)
+        session.advanceToNow()
+        val result = session.state.localElections.results.first { it.kindId == "departmental" }
+        assertEquals(session.state.territory.departments.size, result.contested)
+        val changed = session.state.territory.departments.count { (code, d) -> d.presidentId != before[code] }
+        assertTrue(changed > 0, "Des exécutifs changent de titulaire")
+        assertTrue(session.state.localElections.next.getValue("departmental") > next)
+    }
 }

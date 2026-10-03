@@ -61,6 +61,7 @@ class WorldState(
     val projects: MutableList<ProjectState> = mutableListOf(),
     val policy: PolicyState = PolicyState(),
     val parliament: fr.president.engine.government.ParliamentState = fr.president.engine.government.ParliamentState(),
+    val localElections: fr.president.engine.elections.LocalElectionState = fr.president.engine.elections.LocalElectionState(),
     var nextId: Long = 1,
     val demography: fr.president.engine.territory.DemographyState = fr.president.engine.territory.DemographyState(),
 ) {

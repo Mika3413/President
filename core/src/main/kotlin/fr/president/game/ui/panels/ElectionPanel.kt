@@ -65,6 +65,25 @@ class ElectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : P
             }
             parliament.nextLegislative?.let { into.add(ui.label("Prochaines législatives : ${Formats.date(it)}", "muted")).left().row() }
         }
+        val local = fr.president.engine.elections.LocalElectionService(session.context)
+        val kinds = session.db.country(session.state.player.countryId).elections?.local?.kinds.orEmpty().associateBy { it.id }
+        val upcoming = local.upcoming()
+        if (upcoming.isNotEmpty()) {
+            into.add(ui.label("Élections locales", "bold")).left().padTop(GAP).row()
+            upcoming.forEach { (kind, at) ->
+                val row = Table()
+                row.add(ui.label(kind.label, "small")).left().expandX()
+                row.add(ui.label(Formats.date(at), "muted")).right()
+                into.add(row).growX().row()
+            }
+        }
+        session.state.localElections.results.asReversed().forEach { r ->
+            val ratio = r.won.toDouble() / r.contested.coerceAtLeast(1)
+            val row = Table()
+            row.add(ui.label("${kinds[r.kindId]?.label ?: r.kindId} (${Formats.date(r.time)})", "small")).left().expandX()
+            row.add(ui.label("${r.won} / ${r.contested} pour votre camp", "small", if (ratio >= 0.5) Theme.good else Theme.bad)).right()
+            into.add(row).growX().row()
+        }
         parliament.referendumResults.asReversed().forEach { r ->
             val title = session.policy.reforms().firstOrNull { it.id == r.reformId }?.title ?: r.reformId
             into.add(ui.label("Référendum du ${Formats.date(r.time)}", "bold")).left().padTop(GAP).row()

@@ -53,6 +53,9 @@ sealed class ScheduledAction {
     data class ReferendumVote(override val at: WorldTime, val reformId: String) : ScheduledAction()
 
     @Serializable
+    data class LocalElection(override val at: WorldTime, val kindId: String) : ScheduledAction()
+
+    @Serializable
     data class ProjectCompletion(override val at: WorldTime, val projectId: String) : ScheduledAction()
 }
 

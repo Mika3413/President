@@ -18,8 +18,8 @@ class IndicatorView(private val ui: Ui, private val indicator: Indicator, privat
     private fun build() {
         clearChildren()
         val header = Table()
-        header.add(ui.label(indicator.label, "bold")).left().expandX()
-        header.add(ui.label(indicator.status, "bold", Theme.tone(indicator.tone))).right()
+        header.add(ui.label(indicator.label, "bold")).left().expandX().minWidth(0f)
+        header.add(ui.label(indicator.status, "bold", Theme.tone(indicator.tone))).right().padLeft(6f)
         add(header).growX().row()
         if (indicator.explanation.isNotBlank()) add(ui.label(indicator.explanation, "muted", wrap = true)).growX().padTop(2f).row()
         if (indicator.details.isNotEmpty()) {

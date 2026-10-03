@@ -32,6 +32,7 @@ class ActionDispatcher(private val ctx: SimulationContext) {
             is ScheduledAction.LegislativeElection -> ParliamentService(ctx).runLegislative(action.at)
             is ScheduledAction.CensureVote -> ParliamentService(ctx).censureVote()
             is ScheduledAction.ReferendumVote -> ParliamentService(ctx).runReferendum(action.reformId)
+            is ScheduledAction.LocalElection -> fr.president.engine.elections.LocalElectionService(ctx).run(action.kindId, action.at)
             is ScheduledAction.ProjectCompletion -> ProjectService(ctx).complete(action.projectId)
         }
     }

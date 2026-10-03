@@ -67,6 +67,13 @@ proximité idéologique + force de la famille + **jugement du bilan du sortant p
 − scandales. Le résultat national agrège les groupes ; une estimation par département est fournie.
 Des sondages bruités sont publiés toutes les deux semaines. Pas de règle « popularité > 50 % ».
 
+**Élections locales** (`LocalElectionService`) : départementales et régionales (mars 2028),
+municipales (mars 2032), puis tous les 6 ans. Chaque exécutif est remporté par le camp présidentiel
+si 50 % + 1,6 × (opinion locale − 50 %) ± prime du sortant ± bruit dépasse 50 %. Les nouveaux élus
+appartiennent à la famille gagnante (opposition la plus proche de l'orientation du territoire) et
+leur relation au président en découle (ton des courriers). Un revers national rend les députés de
+la majorité plus indociles (soutien parlementaire).
+
 ## Gouvernement et Parlement
 
 * Efficacité d'un ministère = compétence, gestion, expérience, loyauté du ministre + priorité

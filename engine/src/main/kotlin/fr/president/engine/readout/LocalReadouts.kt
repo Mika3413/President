@@ -35,8 +35,10 @@ class LocalReadouts(private val ctx: SimulationContext) {
                     if (d.healthAccess < LOW_ACCESS) Tone.WARNING else Tone.NEUTRAL, "", listOf("Accès aux soins (indice)" to Formatting.amount(d.healthAccess * PERCENT))),
                 Indicator("Sécurité", if (d.crime > HIGH_CRIME) "Délinquance élevée" else if (d.crime < LOW_CRIME) "Calme" else "Moyenne",
                     if (d.crime > HIGH_CRIME) Tone.WARNING else Tone.NEUTRAL, "", listOf("Délinquance (indice)" to Formatting.amount(d.crime * PERCENT))),
-                Indicator("Économie locale", "Industrie ${Formatting.percent(d.industryShare)} · Agriculture ${Formatting.percent(d.agricultureShare)}", Tone.NEUTRAL, "",
-                    listOf("Pollution de l'air (indice)" to Formatting.amount(d.pollution * PERCENT))),
+                Indicator("Économie locale", economyProfile(d.industryShare, d.agricultureShare), Tone.NEUTRAL, "",
+                    listOf("Industrie (part de l'emploi)" to Formatting.percent(d.industryShare),
+                        "Agriculture (part de l'emploi)" to Formatting.percent(d.agricultureShare),
+                        "Pollution de l'air (indice)" to Formatting.amount(d.pollution * PERCENT))),
                 Indicator("Territoire", if (d.urbanShare > URBAN) "Plutôt urbain" else if (d.urbanShare < RURAL) "Plutôt rural" else "Mixte",
                     Tone.NEUTRAL, "", listOf("Part urbaine" to Formatting.percent(d.urbanShare), "Part des 65 ans et +" to Formatting.percent(d.seniorShare))),
             ),
@@ -143,9 +145,19 @@ class LocalReadouts(private val ctx: SimulationContext) {
         return Indicator(label, s.label, s.tone, explanation)
     }
 
+    private fun economyProfile(industry: Double, agriculture: Double): String = when {
+        agriculture >= AGRICULTURAL_SHARE -> "Agricole"
+        industry >= INDUSTRIAL_SHARE -> "Industrielle"
+        else -> "Tertiaire"
+    }
+
     private fun person(id: String?, title: String): Pair<String, String>? {
         val c = id?.let { ctx.state.characters[it] } ?: return null
-        return title to "${c.fullName} — ${CharacterReadout(ctx).relationLabel(c.relationWithPlayer)}"
+        val assembly = fr.president.engine.government.ParliamentService(ctx)
+        // Les préfets sont des fonctionnaires : pas d'étiquette politique.
+        val elected = c.role != fr.president.engine.politics.CharacterRole.PREFECT
+        val family = if (elected && assembly.families.isNotEmpty()) " (${assembly.familyOf(c).name})" else ""
+        return title to "${c.fullName}$family — ${CharacterReadout(ctx).relationLabel(c.relationWithPlayer)}"
     }
 
     private fun problems(unemployment: Double, approval: Double): List<String> {
@@ -176,6 +188,8 @@ class LocalReadouts(private val ctx: SimulationContext) {
         const val PERCENT = 100.0
         const val THOUSAND = 1000.0
         const val URBAN = 0.7
+        const val AGRICULTURAL_SHARE = 0.06
+        const val INDUSTRIAL_SHARE = 0.16
         const val RURAL = 0.35
         const val LOCAL_GAP = 0.015
         const val LOW_APPROVAL = 0.33

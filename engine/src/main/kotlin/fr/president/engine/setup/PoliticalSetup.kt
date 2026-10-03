@@ -26,12 +26,13 @@ class PoliticalSetup(private val ctx: SimulationContext) {
     }
 
     /** Vivier de personnalités nommables, de sensibilités variées. */
-    fun refreshCandidates(country: CountryData, ministryId: String, centre: Double) {
+    fun refreshCandidates(country: CountryData, ministryId: String, centre: Double, socialCentre: Double? = null) {
         val def = country.government ?: return
         val pool = ctx.state.government.candidates.getOrPut(ministryId) { mutableListOf() }
         pool.removeAll { id -> ctx.state.characters[id]?.role != CharacterRole.MINISTER_CANDIDATE }
         while (pool.size < def.candidatesPerMinistry) {
-            pool += person(country.id, CharacterRole.MINISTER_CANDIDATE, ministryId, centre, CANDIDATE_SPREAD).id
+            pool += person(country.id, CharacterRole.MINISTER_CANDIDATE, ministryId, centre,
+                if (socialCentre != null) TARGETED_SPREAD else CANDIDATE_SPREAD, socialCentre).id
         }
     }
 
@@ -49,10 +50,10 @@ class PoliticalSetup(private val ctx: SimulationContext) {
         }
     }
 
-    fun person(countryId: String, role: CharacterRole, ref: String?, leaning: Double, spread: Double): Character {
+    fun person(countryId: String, role: CharacterRole, ref: String?, leaning: Double, spread: Double, social: Double? = null): Character {
         val c = ctx.characters.generate(
             ctx.state.newId("chr"),
-            CharacterSpec(countryId, role, ref, year, economicLeaning = leaning, leaningSpread = spread),
+            CharacterSpec(countryId, role, ref, year, economicLeaning = leaning, leaningSpread = spread, socialLeaning = social),
             ctx.rng,
         )
         ctx.state.characters[c.id] = c
@@ -62,6 +63,8 @@ class PoliticalSetup(private val ctx: SimulationContext) {
     private companion object {
         const val GOVERNMENT_SPREAD = 0.2
         const val CANDIDATE_SPREAD = 0.5
+        /** Vivier ciblé sur une famille politique (cohabitation, crise gouvernementale). */
+        const val TARGETED_SPREAD = 0.12
         const val LOCAL_SPREAD = 0.6
         const val PREFECT_SPREAD = 0.15
         const val LOYALTY_BONUS = 0.15

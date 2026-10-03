@@ -15,6 +15,8 @@ data class CharacterSpec(
     val leaningSpread: Double = DEFAULT_LEANING_SPREAD,
     val traitRanges: Map<String, List<Double>> = emptyMap(),
     val female: Boolean? = null,
+    /** Position sociétale visée ; par défaut corrélée à la position économique. */
+    val socialLeaning: Double? = null,
 ) {
     companion object {
         val DEFAULT_AGE_RANGE = 38..68
@@ -37,7 +39,7 @@ class CharacterGenerator(private val db: GameDatabase) {
             if (range != null && range.size == 2) rng.nextDouble(range[0], range[1]) else rng.nextDouble()
         }.toMutableMap()
         val leaning = ((spec.economicLeaning ?: 0.0) + rng.nextGaussian() * spec.leaningSpread).coerceIn(-1.0, 1.0)
-        val social = (leaning * SOCIAL_CORRELATION + rng.nextGaussian() * spec.leaningSpread).coerceIn(-1.0, 1.0)
+        val social = ((spec.socialLeaning ?: (leaning * SOCIAL_CORRELATION)) + rng.nextGaussian() * spec.leaningSpread).coerceIn(-1.0, 1.0)
         val experience = ((age - spec.ageRange.first).toDouble() / AGE_EXPERIENCE_SPAN + rng.nextDouble() * EXPERIENCE_NOISE).clamp01()
         return Character(
             id = id,

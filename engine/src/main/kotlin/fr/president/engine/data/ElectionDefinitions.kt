@@ -18,6 +18,34 @@ data class ElectionsDefinition(
     val scandalPenalty: Double,
     val legislative: LegislativeDef? = null,
     val referendum: ReferendumDef? = null,
+    val local: LocalElectionsDef? = null,
+)
+
+@Serializable
+enum class LocalLevel { REGION, DEPARTMENT, CITY }
+
+/** Élections locales : renouvellement des exécutifs régionaux, départementaux et municipaux. */
+@Serializable
+data class LocalElectionsDef(
+    val kinds: List<LocalElectionKind>,
+    /** Sensibilité du vote local à l'opinion locale envers le président. */
+    val swing: Double,
+    val noise: Double,
+    /** Avantage d'un élu sortant qui se représente. */
+    val incumbentBonus: Double,
+    val incumbentRerunChance: Double,
+    /** Effet d'un mauvais (ou bon) résultat sur la discipline des députés. */
+    val parliamentImpact: Double,
+)
+
+@Serializable
+data class LocalElectionKind(
+    val id: String,
+    val label: String,
+    val level: LocalLevel,
+    val termYears: Int,
+    /** Date du prochain scrutin après le début de partie (ISO-8601). */
+    val firstDate: String,
 )
 
 /**

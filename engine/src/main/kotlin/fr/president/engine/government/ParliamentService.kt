@@ -108,10 +108,10 @@ class ParliamentService(private val ctx: SimulationContext) {
         }
     }
 
-    /** Position de la famille la plus nombreuse de l'Assemblée, où chercher un Premier ministre de compromis. */
-    fun majorityCentre(): Double {
+    /** Famille la plus nombreuse de l'Assemblée, où chercher un Premier ministre de compromis. */
+    fun largestFamily(): PoliticalFamilyDef {
         val largest = state.seats.maxByOrNull { it.value }?.key
-        return families.firstOrNull { it.id == largest }?.economicPosition ?: president().economicLeaning
+        return families.firstOrNull { it.id == largest } ?: presidentFamily()
     }
 
     // ---- Législatives ----
@@ -218,17 +218,25 @@ class ParliamentService(private val ctx: SimulationContext) {
         }
         ctx.notifications.post(NotificationCategory.ELECTIONS, Urgency.URGENT, headline,
             "Participation ${Formatting.percent(turnout)}. Sièges : $ranking. $advice")
-        if (status == MajorityStatus.COHABITATION) refreshPrimeMinisterPool(majorityCentre())
+        if (status == MajorityStatus.COHABITATION) refreshPrimeMinisterPool(largestFamily())
         ctx.log("parliament", "Législatives : $seats, bloc présidentiel $bloc (avant $before), statut $status")
     }
 
-    /** Renouvelle les personnalités pressenties pour Matignon autour d'une ligne politique donnée. */
-    fun refreshPrimeMinisterPool(centre: Double) {
+    /** Renouvelle les personnalités pressenties pour Matignon : moitié issue de [family], moitié du camp présidentiel. */
+    fun refreshPrimeMinisterPool(family: PoliticalFamilyDef) {
         val pmMinistry = ctx.playerData.government?.ministries?.firstOrNull { it.isPrimeMinister } ?: return
         val pool = ctx.state.government.candidates.getOrPut(pmMinistry.id) { mutableListOf() }
         pool.forEach { id -> ctx.state.characters[id]?.let { if (it.role == CharacterRole.MINISTER_CANDIDATE) it.active = false } }
         pool.clear()
-        PoliticalSetup(ctx).refreshCandidates(ctx.playerData, pmMinistry.id, centre)
+        val setup = PoliticalSetup(ctx)
+        val own = presidentFamily()
+        val size = ctx.playerData.government!!.candidatesPerMinistry
+        val fromMajority = (size + 1) / 2
+        repeat(size) { i ->
+            val f = if (i < fromMajority) family else own
+            pool += setup.person(ctx.state.player.countryId, CharacterRole.MINISTER_CANDIDATE, pmMinistry.id,
+                f.economicPosition, POOL_SPREAD, f.socialPosition).id
+        }
     }
 
     // ---- Motion de censure ----
@@ -273,7 +281,7 @@ class ParliamentService(private val ctx: SimulationContext) {
         gov.primeMinisterId = null
         state.governmentsFallen++
         ctx.state.opinion.groups.values.forEach { it.shock -= def.governmentFallApprovalCost }
-        refreshPrimeMinisterPool(majorityCentre())
+        refreshPrimeMinisterPool(largestFamily())
         ctx.notifications.post(NotificationCategory.POLITICS, Urgency.URGENT, "Le gouvernement est renversé",
             "La motion de censure est adoptée${pm?.let { " : ${it.fullName} présente sa démission" } ?: ""}. " +
                 "Les textes engagés sont rejetés. Nommez un Premier ministre capable de réunir une majorité, ou dissolvez l'Assemblée.")
@@ -369,5 +377,6 @@ class ParliamentService(private val ctx: SimulationContext) {
         const val MIN_YES = 0.05
         const val MAX_YES = 0.95
         const val GROUP_PREFIX = "opinion.group."
+        const val POOL_SPREAD = 0.12
     }
 }

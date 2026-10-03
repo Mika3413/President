@@ -39,6 +39,7 @@ class GameSession(
     init {
         fr.president.engine.military.MilitarySetup(context).ensure()
         parliament.ensure()
+        fr.president.engine.elections.LocalElectionService(context).ensure()
     }
 
     val isGameOver: Boolean get() = state.player.gameOver != null
