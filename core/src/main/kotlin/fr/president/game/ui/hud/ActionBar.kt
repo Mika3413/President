@@ -18,6 +18,7 @@ class ActionBar(ui: Ui, private val session: GameSession, open: (PanelId) -> Uni
         root.add(ui.button("Gouvernement") { open(PanelId.GOVERNMENT) })
         root.add(ui.button("Économie") { open(PanelId.ECONOMY) })
         root.add(ui.button("Diplomatie") { open(PanelId.DIPLOMACY) })
+        root.add(ui.button("Armées") { open(PanelId.ARMY) })
         inbox = ui.button("Messages") { open(PanelId.INBOX) }
         root.add(inbox)
         alerts = ui.button("Alertes") { open(PanelId.NOTIFICATIONS) }

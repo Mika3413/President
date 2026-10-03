@@ -24,6 +24,16 @@ class DiplomacyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
 
     private class MutableClause(val type: String, var giver: String, val params: MutableMap<String, Double>)
 
+    /** Prépare une proposition contenant une clause donnée (ex. cessez-le-feu depuis le panneau Armée). */
+    fun prefill(target: String, clauseType: String, params: Map<String, Double>) {
+        country = target
+        counterOf = null
+        draft.clear()
+        draft += MutableClause(clauseType, player, params.toMutableMap())
+        years = 1
+        message = "Vérifiez les termes puis envoyez la proposition."
+    }
+
     /** Prépare une contre-proposition à partir d'une proposition reçue. */
     fun negotiate(proposalId: String) {
         val p = session.diplomacy.proposal(proposalId) ?: return
@@ -53,6 +63,7 @@ class DiplomacyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
             return
         }
         countrySummary(into, id)
+        crisisActions(into, id)
         agreements(into, id)
         editor(into, id)
         pendingProposals(into, id)
@@ -68,6 +79,44 @@ class DiplomacyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
         into.add(ui.label(if (traits.isEmpty()) "Tempérament encore mal connu de nos services." else "Réputé " + traits.joinToString(", ") + ".", "muted", wrap = true)).row()
         into.add(ui.label("Relations : ${relation.label} · Confiance : ${relation.trustLabel}", "bold")).padTop(4f).row()
         relation.factors.forEach { f -> into.add(ui.label("• ${f.label}", "small", if (f.weight >= 0) Theme.good else Theme.bad, wrap = true)).row() }
+    }
+
+    private var confirmWar = false
+
+    /** Sanctions, condamnation, ultimatum, guerre : les leviers de crise. */
+    private fun crisisActions(into: Table, id: String) {
+        val geo = session.military.geo
+        into.add(ui.label("Actions", "bold")).padTop(GAP).row()
+        if (geo.atWar(player, id)) into.add(ui.label("Nous sommes en guerre avec ce pays.", "small", Theme.bad)).row()
+        val row = Table().apply { defaults().padRight(4f).padBottom(4f) }
+        val sanctioning = session.diplomacy.isSanctioning(id)
+        row.add(ui.button(if (sanctioning) "Lever les sanctions" else "Sanctionner", "default") {
+            if (sanctioning) session.diplomacy.liftSanctions(id) else session.diplomacy.sanction(id)
+            message = if (sanctioning) "Sanctions levées." else "Sanctions imposées."
+            nav.refresh()
+        })
+        row.add(ui.button("Condamner publiquement", "default") { session.diplomacy.condemn(id); message = "Condamnation publique prononcée."; nav.refresh() })
+        into.add(row).left().row()
+        if (!geo.atWar(player, id)) {
+            into.add(ui.label("Ultimatum — exiger de ${session.db.country(id).definition.name} :", "muted")).row()
+            val demands = Table().apply { defaults().padRight(4f).padBottom(4f) }
+            fr.president.engine.diplomacy.Demand.entries.forEachIndexed { i, d ->
+                demands.add(ui.button(d.label, "flat") { message = session.diplomacy.ultimatum(id, d).explanation; nav.refresh() })
+                if (i % 2 == 1) demands.row()
+            }
+            into.add(demands).left().row()
+            if (!confirmWar) {
+                into.add(ui.button("Déclarer la guerre…", "flat") { confirmWar = true; nav.refresh() }).left().row()
+            } else {
+                into.add(ui.label("Une guerre aura un coût humain, économique et politique considérable.", "small", Theme.warning, wrap = true)).growX().row()
+                val confirm = Table().apply { defaults().padRight(4f) }
+                confirm.add(ui.button("Confirmer la déclaration de guerre", "accent") {
+                    session.diplomacy.declareWar(id); confirmWar = false; message = "La France est en guerre."; nav.refresh()
+                })
+                confirm.add(ui.button("Annuler") { confirmWar = false; nav.refresh() })
+                into.add(confirm).left().row()
+            }
+        }
     }
 
     private fun agreements(into: Table, id: String) {

@@ -1,81 +1,526 @@
 {
-  "scales": {
-    "unemployment": [
-      { "upTo": 0.05, "label": "TRÈS BAS", "tone": "GOOD" }, { "upTo": 0.065, "label": "BAS", "tone": "GOOD" },
-      { "upTo": 0.08, "label": "MODÉRÉ", "tone": "NEUTRAL" }, { "upTo": 0.1, "label": "ÉLEVÉ", "tone": "WARNING" },
-      { "upTo": 1.0, "label": "TRÈS ÉLEVÉ", "tone": "BAD" } ],
-    "inflation": [
-      { "upTo": -0.005, "label": "DÉFLATION", "tone": "WARNING" }, { "upTo": 0.01, "label": "TRÈS FAIBLE", "tone": "NEUTRAL" },
-      { "upTo": 0.028, "label": "MAÎTRISÉE", "tone": "GOOD" }, { "upTo": 0.045, "label": "ÉLEVÉE", "tone": "WARNING" },
-      { "upTo": 1.0, "label": "FORTE", "tone": "BAD" } ],
-    "growth": [
-      { "upTo": -0.01, "label": "RÉCESSION", "tone": "BAD" }, { "upTo": 0.003, "label": "STAGNATION", "tone": "WARNING" },
-      { "upTo": 0.012, "label": "FAIBLE", "tone": "NEUTRAL" }, { "upTo": 0.025, "label": "SOLIDE", "tone": "GOOD" },
-      { "upTo": 1.0, "label": "FORTE", "tone": "GOOD" } ],
-    "approval": [
-      { "upTo": 0.25, "label": "TRÈS IMPOPULAIRE", "tone": "BAD" }, { "upTo": 0.37, "label": "IMPOPULAIRE", "tone": "BAD" },
-      { "upTo": 0.45, "label": "CONTESTÉ", "tone": "WARNING" }, { "upTo": 0.53, "label": "PARTAGÉE", "tone": "NEUTRAL" },
-      { "upTo": 0.62, "label": "FAVORABLE", "tone": "GOOD" }, { "upTo": 1.0, "label": "TRÈS FAVORABLE", "tone": "GOOD" } ],
-    "debtRatio": [
-      { "upTo": 0.6, "label": "Modérée", "tone": "GOOD" }, { "upTo": 0.9, "label": "Élevée", "tone": "NEUTRAL" },
-      { "upTo": 1.2, "label": "Très élevée", "tone": "WARNING" }, { "upTo": 100.0, "label": "Critique", "tone": "BAD" } ],
-    "confidence": [
-      { "upTo": 0.3, "label": "Très basse", "tone": "BAD" }, { "upTo": 0.43, "label": "Basse", "tone": "WARNING" },
-      { "upTo": 0.57, "label": "Moyenne", "tone": "NEUTRAL" }, { "upTo": 0.7, "label": "Bonne", "tone": "GOOD" },
-      { "upTo": 1.0, "label": "Très bonne", "tone": "GOOD" } ],
-    "quality": [
-      { "upTo": 0.3, "label": "EN CRISE", "tone": "BAD" }, { "upTo": 0.45, "label": "DÉGRADÉE", "tone": "WARNING" },
-      { "upTo": 0.6, "label": "CORRECTE", "tone": "NEUTRAL" }, { "upTo": 0.75, "label": "BONNE", "tone": "GOOD" },
-      { "upTo": 1.0, "label": "EXCELLENTE", "tone": "GOOD" } ],
-    "readiness": [
-      { "upTo": 0.4, "label": "INSUFFISANTE", "tone": "BAD" }, { "upTo": 0.55, "label": "FAIBLE", "tone": "WARNING" },
-      { "upTo": 0.7, "label": "MOYENNE", "tone": "NEUTRAL" }, { "upTo": 0.85, "label": "BONNE", "tone": "GOOD" },
-      { "upTo": 1.0, "label": "EXCELLENTE", "tone": "GOOD" } ],
-    "condition": [
-      { "upTo": 0.3, "label": "CRITIQUE", "tone": "BAD" }, { "upTo": 0.5, "label": "VIEILLISSANT", "tone": "WARNING" },
-      { "upTo": 0.75, "label": "CORRECT", "tone": "NEUTRAL" }, { "upTo": 1.0, "label": "BON", "tone": "GOOD" } ],
-    "energyMargin": [
-      { "upTo": -0.05, "label": "PÉNURIE", "tone": "BAD" }, { "upTo": 0.0, "label": "TENDU", "tone": "WARNING" },
-      { "upTo": 0.08, "label": "ÉQUILIBRÉ", "tone": "NEUTRAL" }, { "upTo": 10.0, "label": "EXCÉDENTAIRE", "tone": "GOOD" } ],
-    "support": [
-      { "upTo": 0.42, "label": "MINORITAIRE", "tone": "BAD" }, { "upTo": 0.5, "label": "FRAGILE", "tone": "WARNING" },
-      { "upTo": 0.58, "label": "MAJORITÉ RELATIVE", "tone": "NEUTRAL" }, { "upTo": 1.0, "label": "SOLIDE", "tone": "GOOD" } ],
-    "stock": [
-      { "upTo": 0.25, "label": "critiques", "tone": "BAD" }, { "upTo": 0.45, "label": "faibles", "tone": "WARNING" },
-      { "upTo": 0.7, "label": "corrects", "tone": "NEUTRAL" }, { "upTo": 1.0, "label": "pleins", "tone": "GOOD" } ],
-    "morale": [
-      { "upTo": 0.35, "label": "bas", "tone": "BAD" }, { "upTo": 0.55, "label": "fragile", "tone": "WARNING" },
-      { "upTo": 0.75, "label": "correct", "tone": "NEUTRAL" }, { "upTo": 1.0, "label": "excellent", "tone": "GOOD" } ],
-    "fatigue": [
-      { "upTo": 0.25, "label": "faible", "tone": "GOOD" }, { "upTo": 0.5, "label": "modérée", "tone": "NEUTRAL" },
-      { "upTo": 0.75, "label": "élevée", "tone": "WARNING" }, { "upTo": 1.0, "label": "épuisement", "tone": "BAD" } ],
-    "skill": [
-      { "upTo": 0.3, "label": "faible", "tone": "BAD" }, { "upTo": 0.45, "label": "limitée", "tone": "WARNING" },
-      { "upTo": 0.6, "label": "moyenne", "tone": "NEUTRAL" }, { "upTo": 0.75, "label": "bonne", "tone": "GOOD" },
-      { "upTo": 1.0, "label": "remarquable", "tone": "GOOD" } ],
-    "relation": [
-      { "upTo": 0.25, "label": "hostile", "tone": "BAD" }, { "upTo": 0.4, "label": "méfiant", "tone": "WARNING" },
-      { "upTo": 0.6, "label": "neutre", "tone": "NEUTRAL" }, { "upTo": 0.75, "label": "bienveillant", "tone": "GOOD" },
-      { "upTo": 1.0, "label": "fidèle", "tone": "GOOD" } ],
-    "trust": [
-      { "upTo": 0.35, "label": "Faible", "tone": "BAD" }, { "upTo": 0.48, "label": "Limitée", "tone": "WARNING" },
-      { "upTo": 0.6, "label": "Normale", "tone": "NEUTRAL" }, { "upTo": 1.0, "label": "Élevée", "tone": "GOOD" } ]
+ "scales": {
+  "unemployment": [
+   {
+    "upTo": 0.05,
+    "label": "TRÈS BAS",
+    "tone": "GOOD"
+   },
+   {
+    "upTo": 0.065,
+    "label": "BAS",
+    "tone": "GOOD"
+   },
+   {
+    "upTo": 0.08,
+    "label": "MODÉRÉ",
+    "tone": "NEUTRAL"
+   },
+   {
+    "upTo": 0.1,
+    "label": "ÉLEVÉ",
+    "tone": "WARNING"
+   },
+   {
+    "upTo": 1.0,
+    "label": "TRÈS ÉLEVÉ",
+    "tone": "BAD"
+   }
+  ],
+  "inflation": [
+   {
+    "upTo": -0.005,
+    "label": "DÉFLATION",
+    "tone": "WARNING"
+   },
+   {
+    "upTo": 0.01,
+    "label": "TRÈS FAIBLE",
+    "tone": "NEUTRAL"
+   },
+   {
+    "upTo": 0.028,
+    "label": "MAÎTRISÉE",
+    "tone": "GOOD"
+   },
+   {
+    "upTo": 0.045,
+    "label": "ÉLEVÉE",
+    "tone": "WARNING"
+   },
+   {
+    "upTo": 1.0,
+    "label": "FORTE",
+    "tone": "BAD"
+   }
+  ],
+  "growth": [
+   {
+    "upTo": -0.01,
+    "label": "RÉCESSION",
+    "tone": "BAD"
+   },
+   {
+    "upTo": 0.003,
+    "label": "STAGNATION",
+    "tone": "WARNING"
+   },
+   {
+    "upTo": 0.012,
+    "label": "FAIBLE",
+    "tone": "NEUTRAL"
+   },
+   {
+    "upTo": 0.025,
+    "label": "SOLIDE",
+    "tone": "GOOD"
+   },
+   {
+    "upTo": 1.0,
+    "label": "FORTE",
+    "tone": "GOOD"
+   }
+  ],
+  "approval": [
+   {
+    "upTo": 0.25,
+    "label": "TRÈS IMPOPULAIRE",
+    "tone": "BAD"
+   },
+   {
+    "upTo": 0.37,
+    "label": "IMPOPULAIRE",
+    "tone": "BAD"
+   },
+   {
+    "upTo": 0.45,
+    "label": "CONTESTÉ",
+    "tone": "WARNING"
+   },
+   {
+    "upTo": 0.53,
+    "label": "PARTAGÉE",
+    "tone": "NEUTRAL"
+   },
+   {
+    "upTo": 0.62,
+    "label": "FAVORABLE",
+    "tone": "GOOD"
+   },
+   {
+    "upTo": 1.0,
+    "label": "TRÈS FAVORABLE",
+    "tone": "GOOD"
+   }
+  ],
+  "debtRatio": [
+   {
+    "upTo": 0.6,
+    "label": "Modérée",
+    "tone": "GOOD"
+   },
+   {
+    "upTo": 0.9,
+    "label": "Élevée",
+    "tone": "NEUTRAL"
+   },
+   {
+    "upTo": 1.2,
+    "label": "Très élevée",
+    "tone": "WARNING"
+   },
+   {
+    "upTo": 100.0,
+    "label": "Critique",
+    "tone": "BAD"
+   }
+  ],
+  "confidence": [
+   {
+    "upTo": 0.3,
+    "label": "Très basse",
+    "tone": "BAD"
+   },
+   {
+    "upTo": 0.43,
+    "label": "Basse",
+    "tone": "WARNING"
+   },
+   {
+    "upTo": 0.57,
+    "label": "Moyenne",
+    "tone": "NEUTRAL"
+   },
+   {
+    "upTo": 0.7,
+    "label": "Bonne",
+    "tone": "GOOD"
+   },
+   {
+    "upTo": 1.0,
+    "label": "Très bonne",
+    "tone": "GOOD"
+   }
+  ],
+  "quality": [
+   {
+    "upTo": 0.3,
+    "label": "EN CRISE",
+    "tone": "BAD"
+   },
+   {
+    "upTo": 0.45,
+    "label": "DÉGRADÉE",
+    "tone": "WARNING"
+   },
+   {
+    "upTo": 0.6,
+    "label": "CORRECTE",
+    "tone": "NEUTRAL"
+   },
+   {
+    "upTo": 0.75,
+    "label": "BONNE",
+    "tone": "GOOD"
+   },
+   {
+    "upTo": 1.0,
+    "label": "EXCELLENTE",
+    "tone": "GOOD"
+   }
+  ],
+  "readiness": [
+   {
+    "upTo": 0.4,
+    "label": "INSUFFISANTE",
+    "tone": "BAD"
+   },
+   {
+    "upTo": 0.55,
+    "label": "FAIBLE",
+    "tone": "WARNING"
+   },
+   {
+    "upTo": 0.7,
+    "label": "MOYENNE",
+    "tone": "NEUTRAL"
+   },
+   {
+    "upTo": 0.85,
+    "label": "BONNE",
+    "tone": "GOOD"
+   },
+   {
+    "upTo": 1.0,
+    "label": "EXCELLENTE",
+    "tone": "GOOD"
+   }
+  ],
+  "condition": [
+   {
+    "upTo": 0.3,
+    "label": "CRITIQUE",
+    "tone": "BAD"
+   },
+   {
+    "upTo": 0.5,
+    "label": "VIEILLISSANT",
+    "tone": "WARNING"
+   },
+   {
+    "upTo": 0.75,
+    "label": "CORRECT",
+    "tone": "NEUTRAL"
+   },
+   {
+    "upTo": 1.0,
+    "label": "BON",
+    "tone": "GOOD"
+   }
+  ],
+  "energyMargin": [
+   {
+    "upTo": -0.05,
+    "label": "PÉNURIE",
+    "tone": "BAD"
+   },
+   {
+    "upTo": 0.0,
+    "label": "TENDU",
+    "tone": "WARNING"
+   },
+   {
+    "upTo": 0.08,
+    "label": "ÉQUILIBRÉ",
+    "tone": "NEUTRAL"
+   },
+   {
+    "upTo": 10.0,
+    "label": "EXCÉDENTAIRE",
+    "tone": "GOOD"
+   }
+  ],
+  "support": [
+   {
+    "upTo": 0.42,
+    "label": "MINORITAIRE",
+    "tone": "BAD"
+   },
+   {
+    "upTo": 0.5,
+    "label": "FRAGILE",
+    "tone": "WARNING"
+   },
+   {
+    "upTo": 0.58,
+    "label": "MAJORITÉ RELATIVE",
+    "tone": "NEUTRAL"
+   },
+   {
+    "upTo": 1.0,
+    "label": "SOLIDE",
+    "tone": "GOOD"
+   }
+  ],
+  "stock": [
+   {
+    "upTo": 0.25,
+    "label": "critiques",
+    "tone": "BAD"
+   },
+   {
+    "upTo": 0.45,
+    "label": "faibles",
+    "tone": "WARNING"
+   },
+   {
+    "upTo": 0.7,
+    "label": "corrects",
+    "tone": "NEUTRAL"
+   },
+   {
+    "upTo": 1.0,
+    "label": "pleins",
+    "tone": "GOOD"
+   }
+  ],
+  "morale": [
+   {
+    "upTo": 0.35,
+    "label": "bas",
+    "tone": "BAD"
+   },
+   {
+    "upTo": 0.55,
+    "label": "fragile",
+    "tone": "WARNING"
+   },
+   {
+    "upTo": 0.75,
+    "label": "correct",
+    "tone": "NEUTRAL"
+   },
+   {
+    "upTo": 1.0,
+    "label": "excellent",
+    "tone": "GOOD"
+   }
+  ],
+  "fatigue": [
+   {
+    "upTo": 0.25,
+    "label": "faible",
+    "tone": "GOOD"
+   },
+   {
+    "upTo": 0.5,
+    "label": "modérée",
+    "tone": "NEUTRAL"
+   },
+   {
+    "upTo": 0.75,
+    "label": "élevée",
+    "tone": "WARNING"
+   },
+   {
+    "upTo": 1.0,
+    "label": "épuisement",
+    "tone": "BAD"
+   }
+  ],
+  "skill": [
+   {
+    "upTo": 0.3,
+    "label": "faible",
+    "tone": "BAD"
+   },
+   {
+    "upTo": 0.45,
+    "label": "limitée",
+    "tone": "WARNING"
+   },
+   {
+    "upTo": 0.6,
+    "label": "moyenne",
+    "tone": "NEUTRAL"
+   },
+   {
+    "upTo": 0.75,
+    "label": "bonne",
+    "tone": "GOOD"
+   },
+   {
+    "upTo": 1.0,
+    "label": "remarquable",
+    "tone": "GOOD"
+   }
+  ],
+  "relation": [
+   {
+    "upTo": 0.25,
+    "label": "hostile",
+    "tone": "BAD"
+   },
+   {
+    "upTo": 0.4,
+    "label": "méfiant",
+    "tone": "WARNING"
+   },
+   {
+    "upTo": 0.6,
+    "label": "neutre",
+    "tone": "NEUTRAL"
+   },
+   {
+    "upTo": 0.75,
+    "label": "bienveillant",
+    "tone": "GOOD"
+   },
+   {
+    "upTo": 1.0,
+    "label": "fidèle",
+    "tone": "GOOD"
+   }
+  ],
+  "trust": [
+   {
+    "upTo": 0.35,
+    "label": "Faible",
+    "tone": "BAD"
+   },
+   {
+    "upTo": 0.48,
+    "label": "Limitée",
+    "tone": "WARNING"
+   },
+   {
+    "upTo": 0.6,
+    "label": "Normale",
+    "tone": "NEUTRAL"
+   },
+   {
+    "upTo": 1.0,
+    "label": "Élevée",
+    "tone": "GOOD"
+   }
+  ],
+  "strength": [
+   {
+    "upTo": 0.3,
+    "label": "décimée",
+    "tone": "BAD"
+   },
+   {
+    "upTo": 0.55,
+    "label": "très affaiblie",
+    "tone": "BAD"
+   },
+   {
+    "upTo": 0.8,
+    "label": "entamée",
+    "tone": "WARNING"
+   },
+   {
+    "upTo": 1.0,
+    "label": "complète",
+    "tone": "GOOD"
+   }
+  ],
+  "weariness": [
+   {
+    "upTo": 0.15,
+    "label": "Résolue",
+    "tone": "GOOD"
+   },
+   {
+    "upTo": 0.35,
+    "label": "Ferme",
+    "tone": "NEUTRAL"
+   },
+   {
+    "upTo": 0.6,
+    "label": "Lasse",
+    "tone": "WARNING"
+   },
+   {
+    "upTo": 1.0,
+    "label": "Épuisée",
+    "tone": "BAD"
+   }
+  ]
+ },
+ "traitLabels": {
+  "aggressiveness": {
+   "high": "interventionniste",
+   "low": "conciliant"
   },
-  "traitLabels": {
-    "aggressiveness": { "high": "interventionniste", "low": "conciliant" },
-    "pragmatism": { "high": "pragmatique", "low": "idéologue" },
-    "nationalism": { "high": "très attaché à la souveraineté", "low": "ouvert à l'international" },
-    "openness": { "high": "chaleureux", "low": "distant" },
-    "ego": { "high": "susceptible", "low": "modeste" },
-    "caution": { "high": "prudent", "low": "audacieux" },
-    "integrity": { "high": "intègre", "low": "aux pratiques douteuses" },
-    "charisma": { "high": "charismatique", "low": "effacé" },
-    "toughness": { "high": "difficile en négociation", "low": "accommodant" },
-    "militarism": { "high": "très attaché aux questions militaires", "low": "peu porté sur les questions militaires" }
+  "pragmatism": {
+   "high": "pragmatique",
+   "low": "idéologue"
   },
-  "domainLabels": {
-    "health": "Santé", "education": "Éducation", "security": "Sécurité", "justice": "Justice",
-    "transport": "Transports", "environment": "Environnement", "agriculture": "Agriculture",
-    "defense": "Défense", "social": "Protection sociale", "pensions": "Retraites"
+  "nationalism": {
+   "high": "très attaché à la souveraineté",
+   "low": "ouvert à l'international"
+  },
+  "openness": {
+   "high": "chaleureux",
+   "low": "distant"
+  },
+  "ego": {
+   "high": "susceptible",
+   "low": "modeste"
+  },
+  "caution": {
+   "high": "prudent",
+   "low": "audacieux"
+  },
+  "integrity": {
+   "high": "intègre",
+   "low": "aux pratiques douteuses"
+  },
+  "charisma": {
+   "high": "charismatique",
+   "low": "effacé"
+  },
+  "toughness": {
+   "high": "difficile en négociation",
+   "low": "accommodant"
+  },
+  "militarism": {
+   "high": "très attaché aux questions militaires",
+   "low": "peu porté sur les questions militaires"
   }
+ },
+ "domainLabels": {
+  "health": "Santé",
+  "education": "Éducation",
+  "security": "Sécurité",
+  "justice": "Justice",
+  "transport": "Transports",
+  "environment": "Environnement",
+  "agriculture": "Agriculture",
+  "defense": "Défense",
+  "social": "Protection sociale",
+  "pensions": "Retraites"
+ }
 }

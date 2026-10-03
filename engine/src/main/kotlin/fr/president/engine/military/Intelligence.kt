@@ -22,7 +22,10 @@ class Intelligence(private val ctx: SimulationContext) {
     fun visibleUnits(observer: String): List<UnitState> {
         val observed = observedZones(observer)
         val friends = geo.coBelligerents(observer) + observer
-        return ctx.state.military.units.values.filter { !it.destroyed && (it.countryId in friends || it.zoneId in observed) }
+        // Les unités au contact sont connues (presse, satellites) ; les alliés partagent leurs positions.
+        return ctx.state.military.units.values.filter {
+            !it.destroyed && (it.countryId in friends || it.zoneId in observed || it.inCombat || geo.allied(observer, it.countryId))
+        }
     }
 
     fun quality(observer: String): Double {

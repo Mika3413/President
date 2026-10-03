@@ -69,6 +69,9 @@ class MainScreen(
     private val toasts = Toasts(ui) { focusOn(it) }
     private val panelSlot = Container<Table>().fill()
     private var currentPanel: Panel? = null
+    private var targeting: Pair<String, fr.president.engine.military.UnitOrder>? = null
+    private val targetingBanner = Table()
+
 
     private val selectionPanel = SelectionPanel(ui, this) { closePanel() }
     private val diplomacyPanel = DiplomacyPanel(ui, this) { closePanel() }
@@ -84,6 +87,7 @@ class MainScreen(
         PanelId.INBOX to inboxPanel,
         PanelId.NOTIFICATIONS to NotificationsPanel(ui, this) { closePanel() },
         PanelId.ELECTIONS to ElectionPanel(ui, this) { closePanel() },
+        PanelId.ARMY to fr.president.game.ui.panels.ArmyPanel(ui, this) { closePanel() },
         PanelId.SETTINGS to SettingsPanel(ui, this) { closePanel() },
     )
 
@@ -91,6 +95,8 @@ class MainScreen(
 
     init {
         buildLayout()
+        mapRenderer.zoneLookup = session.db.zones
+        mapRenderer.holderHostile = { session.military.geo.atWar(playerId, it) }
     }
 
     private fun buildLayout() {
@@ -104,6 +110,8 @@ class MainScreen(
         root.add(actions).colspan(3).center().padBottom(6f)
         stage.addActor(root)
         val overlayTable = Table().apply { setFillParent(true); top().padTop(TOAST_TOP) }
+        overlayTable.add(targetingBanner).padBottom(6f).row()
+        targetingBanner.isVisible = false
         overlayTable.add(toasts.root)
         overlayTable.touchable = com.badlogic.gdx.scenes.scene2d.Touchable.childrenOnly
         stage.addActor(overlayTable)
@@ -124,7 +132,7 @@ class MainScreen(
         camera.update()
         lod = LodPolicy.of(camera.viewportWidth * camera.zoom)
         mapRenderer.render(camera, session.state, layer, lod, selection)
-        overlay.render(camera, session.state, layer, lod, delta, selectedMapId())
+        overlay.render(camera, session, layer, lod, delta, selectedMapId())
         sinceRefresh += delta
         if (sinceRefresh >= REFRESH_SECONDS && !Gdx.input.isTouched) refresh()
         stage.act(delta)
@@ -135,10 +143,40 @@ class MainScreen(
         is MapSelection.City -> s.id
         is MapSelection.Infrastructure -> s.id
         is MapSelection.Base -> s.id
+        is MapSelection.Unit -> s.id
         else -> null
     }
 
+    override fun startTargeting(unitId: String, order: fr.president.engine.military.UnitOrder) {
+        targeting = unitId to order
+        targetingBanner.clearChildren()
+        targetingBanner.setBackground(ui.skin.fill(fr.president.game.ui.Theme.accentDark))
+        targetingBanner.pad(8f)
+        targetingBanner.add(ui.label("${order.label} : touchez la zone cible sur la carte", "bold")).padRight(10f)
+        targetingBanner.add(ui.button("Annuler") { stopTargeting() })
+        targetingBanner.isVisible = true
+    }
+
+    private fun stopTargeting() {
+        targeting = null
+        targetingBanner.isVisible = false
+    }
+
+    override fun prepareProposal(country: String, clauseType: String, params: Map<String, Double>) {
+        diplomacyPanel.prefill(country, clauseType, params)
+        open(PanelId.DIPLOMACY)
+    }
+
     private fun onMapTap(x: Float, y: Float) {
+        targeting?.let { (unitId, order) ->
+            val (lon, lat) = picker.lonLat(camera, x, y)
+            val zone = session.military.zoneAt(lon, lat)
+            val r = session.military.order(unitId, order, zone)
+            selectionPanel.unitSheet.message = if (r is fr.president.engine.military.OrderService.Outcome.Refused) r.reason else "Ordre transmis : ${order.label.lowercase()}."
+            stopTargeting()
+            select(MapSelection.Unit(unitId))
+            return
+        }
         val picked = picker.pick(camera, overlay, x, y, uiScale, lod) ?: return
         if (picked is MapSelection.Country && picked.id == playerId) {
             cameraController.focus(GeoProjection.x(FRANCE_LON), GeoProjection.y(FRANCE_LAT), FRANCE_VIEW_WIDTH)
@@ -168,6 +206,16 @@ class MainScreen(
     }
 
     override fun focusOn(mapId: String) {
+        session.state.military.units[mapId]?.let { u ->
+            val z = session.db.zones.zone(u.zoneId)
+            cameraController.focus(GeoProjection.x(z.lon), GeoProjection.y(z.lat), UNIT_VIEW_WIDTH)
+            select(MapSelection.Unit(u.id))
+            return
+        }
+        session.db.zones.zones[mapId]?.let { z ->
+            cameraController.focus(GeoProjection.x(z.lon), GeoProjection.y(z.lat), DEPARTMENT_VIEW_WIDTH)
+            return
+        }
         val (x, y) = overlay.locate(mapId) ?: return
         val width = when {
             mapData.countriesById.containsKey(mapId) -> COUNTRY_VIEW_WIDTH
@@ -239,6 +287,7 @@ class MainScreen(
         const val COUNTRY_VIEW_WIDTH = 2500f
         const val DEPARTMENT_VIEW_WIDTH = 350f
         const val LOCAL_VIEW_WIDTH = 160f
+        const val UNIT_VIEW_WIDTH = 600f
         const val PANEL_WIDTH = 400f
         const val REFRESH_SECONDS = 3f
         const val TOAST_TOP = 70f

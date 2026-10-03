@@ -10,6 +10,9 @@ interface Navigator {
     fun select(selection: MapSelection)
     fun focusOn(mapId: String)
     fun refresh()
+    /** Attend que le joueur touche la carte pour désigner la zone cible d'un ordre. */
+    fun startTargeting(unitId: String, order: fr.president.engine.military.UnitOrder)
+    fun prepareProposal(country: String, clauseType: String, params: Map<String, Double>)
 }
 
-enum class PanelId { SELECTION, GOVERNMENT, ECONOMY, DIPLOMACY, INBOX, NOTIFICATIONS, ELECTIONS, SETTINGS }
+enum class PanelId { SELECTION, GOVERNMENT, ECONOMY, DIPLOMACY, ARMY, INBOX, NOTIFICATIONS, ELECTIONS, SETTINGS }

@@ -14,6 +14,11 @@ class MapPicker(private val data: MapData, private val db: GameDatabase, private
     fun pick(camera: OrthographicCamera, overlay: OverlayRenderer, screenX: Float, screenY: Float, uiScale: Float, lod: Lod): MapSelection? {
         val sx = screenX / uiScale
         val sy = (camera.viewportHeight - screenY) / uiScale
+        overlay.units.counters
+            .map { it to dist2(it.x, it.y, sx, sy) }
+            .filter { it.second < UNIT_RADIUS * UNIT_RADIUS }
+            .minByOrNull { it.second }
+            ?.let { return MapSelection.Unit(it.first.unitIds.first()) }
         overlay.visibleMarkers
             .map { it to dist2(it.second.x, it.second.y, sx, sy) }
             .filter { it.second < TOUCH_RADIUS * TOUCH_RADIUS }
@@ -30,6 +35,13 @@ class MapPicker(private val data: MapData, private val db: GameDatabase, private
         return data.countryGrid.at(tmp.x, tmp.y).firstOrNull { it.contains(tmp.x, tmp.y) }?.let { MapSelection.Country(it.id) }
     }
 
+    /** Position géographique (lon, lat) d'un toucher, pour désigner une zone cible. */
+    fun lonLat(camera: OrthographicCamera, screenX: Float, screenY: Float): Pair<Double, Double> {
+        tmp.set(screenX, screenY, 0f)
+        camera.unproject(tmp)
+        return GeoProjection.lon(tmp.x) to GeoProjection.lat(tmp.y)
+    }
+
     private fun selectionFor(m: MapMarker): MapSelection = when {
         m.kind == MarkerKind.CITY -> MapSelection.City(m.id)
         m.kind == MarkerKind.MILITARY -> MapSelection.Base(m.id)
@@ -41,5 +53,6 @@ class MapPicker(private val data: MapData, private val db: GameDatabase, private
 
     private companion object {
         const val TOUCH_RADIUS = 16f
+        const val UNIT_RADIUS = 14f
     }
 }

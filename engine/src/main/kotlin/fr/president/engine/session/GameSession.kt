@@ -33,6 +33,7 @@ class GameSession(
     val local = LocalReadouts(context)
     val characters = CharacterReadout(context)
     val military = MilitaryCommands(context)
+    val militaryReadouts = fr.president.engine.readout.MilitaryReadouts(context)
 
     init {
         fr.president.engine.military.MilitarySetup(context).ensure()

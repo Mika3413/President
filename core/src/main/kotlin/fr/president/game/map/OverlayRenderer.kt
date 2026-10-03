@@ -37,7 +37,10 @@ class OverlayRenderer(
     /** Marqueurs effectivement visibles à l'écran (pour la sélection au toucher). */
     val visibleMarkers = mutableListOf<Pair<MapMarker, Vector3>>()
 
-    fun render(camera: OrthographicCamera, state: WorldState, layer: ThematicLayer, lod: Lod, delta: Float, selectedId: String?) {
+    val units = UnitLayer(smallFont, uiScale)
+
+    fun render(camera: OrthographicCamera, session: fr.president.engine.session.GameSession, layer: ThematicLayer, lod: Lod, delta: Float, selectedId: String?) {
+        val state = session.state
         time += delta
         val w = Gdx.graphics.width / uiScale
         val h = Gdx.graphics.height / uiScale
@@ -60,6 +63,7 @@ class OverlayRenderer(
             visibleMarkers += m to p
             drawMarker(m, p, state)
         }
+        units.shapes(shapes, camera, session, lod, layer, selectedId, delta)
         shapes.end()
 
         batch.projectionMatrix = screen
@@ -69,6 +73,7 @@ class OverlayRenderer(
             if (m.kind == MarkerKind.CITY || lod == Lod.LOCAL) label(m.label, p.x + LABEL_OFFSET, p.y + LABEL_OFFSET, if (m.rank == 1) labelFont else smallFont, Theme.text)
         }
         drawAreaLabels(camera, lod)
+        units.labels(batch, session)
         batch.end()
     }
 

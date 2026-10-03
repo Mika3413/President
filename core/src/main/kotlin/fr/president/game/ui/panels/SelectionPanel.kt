@@ -21,6 +21,7 @@ class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
             is MapSelection.Infrastructure -> session.local.infrastructure(s.id).title
             is MapSelection.Base -> session.local.base(s.id).title
             is MapSelection.Country -> session.db.countries[s.id]?.definition?.name ?: "Pays non simulé"
+            is MapSelection.Unit -> session.state.military.units[s.id]?.name ?: "Unité"
             null -> ""
         }
 
@@ -37,6 +38,7 @@ class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
             is MapSelection.Infrastructure -> buildInfrastructure(into, s.id)
             is MapSelection.Base -> into.add(SheetView(ui, session.local.base(s.id), expanded)).row()
             is MapSelection.Country -> buildCountry(into, s.id)
+            is MapSelection.Unit -> unitSheet.build(into, s.id)
             null -> Unit
         }
     }
@@ -83,6 +85,7 @@ class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
     }
 
     private var pendingClose: String? = null
+    val unitSheet = UnitSheet(ui, nav, expanded)
 
     private fun buildCountry(into: Table, id: String) {
         val data = session.db.countries[id]

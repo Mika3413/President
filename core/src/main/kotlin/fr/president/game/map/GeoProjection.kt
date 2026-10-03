@@ -15,6 +15,8 @@ object GeoProjection {
 
     fun x(lon: Double): Float = (lon * lonScale).toFloat()
     fun y(lat: Double): Float = (lat * UNITS_PER_DEGREE).toFloat()
+    fun lon(x: Float): Double = x / lonScale.toDouble()
+    fun lat(y: Float): Double = y / UNITS_PER_DEGREE.toDouble()
     fun project(lon: Double, lat: Double, out: Vector2 = Vector2()): Vector2 = out.set(x(lon), y(lat))
 
     /** Kilomètres carrés représentés par une unité monde au carré (pour les densités). */
