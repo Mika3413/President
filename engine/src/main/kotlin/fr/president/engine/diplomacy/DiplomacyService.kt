@@ -159,7 +159,7 @@ class DiplomacyService(private val ctx: SimulationContext) {
         val leader = ctx.state.characters[country.leaderId]
         val def = ctx.db.country(foreign).definition
         val builder = DialogueContextBuilder(ctx)
-            .sender(leader, "${def.institutions.headOfGovernmentTitle} (${def.name})")
+            .sender(leader, "${def.institutions.headOfGovernment(leader?.female == true)} (${def.name})")
             .tag(responseTag)
             .variables(fr.president.engine.data.CountryNames(def).variables("foreign"))
             .variable("clauses", describer.describeAll(proposal.clauses, proposal.from, proposal.to, proposal.durationYears))
@@ -179,7 +179,7 @@ class DiplomacyService(private val ctx: SimulationContext) {
             InboxMessage(
                 id = ctx.state.newId("msg"),
                 senderId = leader?.id,
-                senderLabel = "${leader?.fullName ?: ""}, ${def.institutions.headOfGovernmentTitle} (${def.name})",
+                senderLabel = "${leader?.fullName ?: ""}, ${def.institutions.headOfGovernment(leader?.female == true)} (${def.name})",
                 subject = composed.subject,
                 body = composed.body,
                 time = ctx.now,

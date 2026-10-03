@@ -40,7 +40,11 @@ data class InstitutionsDefinition(
     val headOfGovernmentTitle: String,
     val honorificMale: String,
     val honorificFemale: String,
-)
+    val headOfGovernmentTitleFemale: String? = null,
+) {
+    /** Titre du chef de gouvernement accordé au genre de la personne. */
+    fun headOfGovernment(female: Boolean): String = if (female) headOfGovernmentTitleFemale ?: headOfGovernmentTitle else headOfGovernmentTitle
+}
 
 /** Tendances du dirigeant généré : chaque trait est tiré dans l'intervalle [min, max]. */
 @Serializable

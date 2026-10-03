@@ -19,6 +19,7 @@
  "institutions": {
   "headOfStateTitle": "Président de la République",
   "headOfGovernmentTitle": "Premier ministre",
+  "headOfGovernmentTitleFemale": "Première ministre",
   "honorificMale": "Monsieur le Président",
   "honorificFemale": "Madame la Présidente"
  },

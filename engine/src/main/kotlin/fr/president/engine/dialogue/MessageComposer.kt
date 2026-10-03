@@ -90,8 +90,11 @@ class MessageComposer(private val ctx: SimulationContext) {
         return chosen
     }
 
+    // Les sections communes (ouverture, rappel, actualité, formule finale) sont partagées entre
+    // modèles : la clé ne dépend pas du modèle, pour qu'une même phrase ne revienne pas d'un courrier à l'autre.
+    @Suppress("UNUSED_PARAMETER")
     private fun phraseKey(templateId: String, sectionId: String, text: String): Long =
-        Hashing.fnv1a64("$templateId|$sectionId|$text")
+        Hashing.fnv1a64("$sectionId|$text")
 
     private fun remember(phrases: List<Long>, senderId: String?) {
         val state = ctx.state.dialogue

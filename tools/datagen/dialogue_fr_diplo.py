@@ -39,7 +39,7 @@ D_WORLD = [
  V("Dans le contexte international actuel, la coopération entre nos pays est plus nécessaire que jamais.", when=["world:war"]),
  V("La guerre que traverse votre pays nous préoccupe ; elle rend nos échanges d'autant plus importants.", when=["world:war", "voice:warm"]),
  V("Nous suivons avec attention l'actualité française ({recentNews}).", when=["news:recent"]),
- V("J'ai vu que {recentNews} ; je vous adresse mes pensées.", when=["news:recent", "news:disaster", "voice:warm"]),
+ V("J'ai appris la nouvelle ({recentNews}) ; je vous adresse mes pensées.", when=["news:recent", "news:disaster", "voice:warm"]),
  V("La conjoncture économique européenne pèse sur nous tous.", when=["economy:bad"]),
 ]
 

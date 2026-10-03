@@ -43,8 +43,8 @@ class LocalReadouts(private val ctx: SimulationContext) {
                     Tone.NEUTRAL, "", listOf("Part urbaine" to Formatting.percent(d.urbanShare), "Part des 65 ans et +" to Formatting.percent(d.seniorShare))),
             ),
             people = listOfNotNull(
-                person(d.presidentId, titles.departmentPresident),
-                person(ctx.state.territory.regions[d.region]?.prefectId, titles.prefect),
+                person(d.presidentId) { titles.departmentPresident(it) },
+                person(ctx.state.territory.regions[d.region]?.prefectId) { titles.prefect(it) },
             ),
             problems = problems(d.unemployment, d.approval),
             projects = projectsAt(territoryDef.cities.filter { it.department == code }.map { it.id } + code),
@@ -62,7 +62,7 @@ class LocalReadouts(private val ctx: SimulationContext) {
             title = def.name,
             subtitle = "${depts.size} départements · " + Formatting.population(population),
             indicators = listOf(opinion(r.approval), scaled("Chômage", "unemployment", unemployment, "Moyenne régionale")),
-            people = listOfNotNull(person(r.presidentId, titles.regionPresident), person(r.prefectId, titles.prefect)),
+            people = listOfNotNull(person(r.presidentId) { titles.regionPresident(it) }, person(r.prefectId) { titles.prefect(it) }),
             problems = problems(unemployment, r.approval),
             projects = projectsAt(depts.map { it.code } + territoryDef.cities.filter { c -> depts.any { it.code == c.department } }.map { it.id }),
         )
@@ -79,7 +79,7 @@ class LocalReadouts(private val ctx: SimulationContext) {
                 scaled("Satisfaction", "approval", c.satisfaction, "Humeur des habitants envers l'État"),
                 scaled("Chômage (département)", "unemployment", dept.unemployment, ""),
             ),
-            people = listOfNotNull(person(c.mayorId, ctx.playerData.government!!.localTitles.mayor)),
+            people = listOfNotNull(person(c.mayorId) { ctx.playerData.government!!.localTitles.mayor(it) }),
             problems = problems(dept.unemployment, c.satisfaction),
             projects = projectsAt(listOf(id)),
         )
@@ -151,8 +151,9 @@ class LocalReadouts(private val ctx: SimulationContext) {
         else -> "Tertiaire"
     }
 
-    private fun person(id: String?, title: String): Pair<String, String>? {
+    private fun person(id: String?, titleOf: (Boolean) -> String): Pair<String, String>? {
         val c = id?.let { ctx.state.characters[it] } ?: return null
+        val title = titleOf(c.female)
         val assembly = fr.president.engine.government.ParliamentService(ctx)
         // Les préfets sont des fonctionnaires : pas d'étiquette politique.
         val elected = c.role != fr.president.engine.politics.CharacterRole.PREFECT

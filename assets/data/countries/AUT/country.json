@@ -11,6 +11,7 @@
  "institutions": {
   "headOfStateTitle": "Chef de l'État",
   "headOfGovernmentTitle": "Chancelier fédéral",
+  "headOfGovernmentTitleFemale": "Chancelière fédérale",
   "honorificMale": "Monsieur le Chancelier",
   "honorificFemale": "Madame la Chancelière"
  },

@@ -90,8 +90,11 @@ class DialogueContextBuilder(private val ctx: SimulationContext) {
     private fun newsTags() {
         val cutoff = ctx.now.plusDays(-NEWS_DAYS)
         // Les nouvelles de l'instant même (l'événement qui motive le courrier) sont exclues.
-        val recent = ctx.state.events.news.lastOrNull { it.time >= cutoff && it.time < ctx.now && it.headline.length <= MAX_NEWS_LENGTH } ?: return
-        variables["recentNews"] = recent.headline.replaceFirstChar { it.lowercaseChar() }
+        // Seule l'actualité nationale (sans lieu précis) est citée, entre guillemets.
+        val recent = ctx.state.events.news.lastOrNull {
+            it.time >= cutoff && it.time < ctx.now && it.focusId == null && it.headline.length <= MAX_NEWS_LENGTH
+        } ?: return
+        variables["recentNews"] = "« ${recent.headline} »"
         tags += "news:recent"
         tags += "news:" + recent.category.name.lowercase()
         if (fr.president.engine.military.Geopolitics(ctx).enemiesOf(ctx.state.player.countryId).isNotEmpty()) tags += "world:war"

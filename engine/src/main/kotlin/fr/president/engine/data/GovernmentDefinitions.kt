@@ -55,7 +55,16 @@ data class LocalTitles(
     val regionPresident: String,
     val departmentPresident: String,
     val mayor: String,
-)
+    val prefectFemale: String? = null,
+    val regionPresidentFemale: String? = null,
+    val departmentPresidentFemale: String? = null,
+    val mayorFemale: String? = null,
+) {
+    fun prefect(female: Boolean) = if (female) prefectFemale ?: prefect else prefect
+    fun regionPresident(female: Boolean) = if (female) regionPresidentFemale ?: regionPresident else regionPresident
+    fun departmentPresident(female: Boolean) = if (female) departmentPresidentFemale ?: departmentPresident else departmentPresident
+    fun mayor(female: Boolean) = if (female) mayorFemale ?: mayor else mayor
+}
 
 @Serializable
 data class MinisterDriftDef(

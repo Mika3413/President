@@ -10,7 +10,7 @@ import fr.president.engine.simulation.SimulationContext
 class WelcomeMessage(private val ctx: SimulationContext) {
     fun send() {
         val pm = ctx.state.government.primeMinisterId?.let { ctx.state.characters[it] }
-        val title = ctx.playerData.definition.institutions.headOfGovernmentTitle
+        val title = ctx.playerData.definition.institutions.headOfGovernment(pm?.female == true)
         val composed = ctx.messages.compose(TEMPLATE, DialogueContextBuilder(ctx).sender(pm, title).build())
         ctx.state.inbox.messages += InboxMessage(
             id = ctx.state.newId("msg"),

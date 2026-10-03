@@ -11,6 +11,7 @@
  "institutions": {
   "headOfStateTitle": "Chef de l'État",
   "headOfGovernmentTitle": "Président du Conseil des ministres",
+  "headOfGovernmentTitleFemale": "Présidente du Conseil des ministres",
   "honorificMale": "Votre Altesse",
   "honorificFemale": "Votre Altesse"
  },

@@ -76,7 +76,7 @@ class DiplomacyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
         into.add(ui.label(def.name, "title")).padTop(GAP).row()
         val head = Table()
         head.add(ui.portraits.image(leader)).size(PORTRAIT).padRight(8f)
-        head.add(ui.label("${def.institutions.headOfGovernmentTitle} : ${leader.fullName}", "small", wrap = true)).growX().left()
+        head.add(ui.label("${def.institutions.headOfGovernment(leader.female)} : ${leader.fullName}", "small", wrap = true)).growX().left()
         into.add(head).growX().left().row()
         val traits = session.characters.knownTraits(leader)
         into.add(ui.label(if (traits.isEmpty()) "Tempérament encore mal connu de nos services." else "Réputé " + traits.joinToString(", ") + ".", "muted", wrap = true)).row()

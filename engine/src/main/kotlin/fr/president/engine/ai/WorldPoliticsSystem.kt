@@ -61,7 +61,7 @@ class WorldPoliticsSystem : SimulationSystem {
             r.memories.replaceAll { m -> if (m.kind in PERSONAL_KINDS) m.copy(weight = m.weight * RESET_FACTOR) else m }
         }
         val important = def.strategic.militaryBudgetBillions > IMPORTANT_BUDGET || id in NEIGHBOURS
-        val text = "${leader.fullName} prend la tête du gouvernement (${def.institutions.headOfGovernmentTitle})."
+        val text = "${leader.fullName} prend la tête du gouvernement (${def.institutions.headOfGovernment(leader.female)})."
         if (important) ctx.notifications.post(NotificationCategory.DIPLOMACY, Urgency.IMPORTANT, "$name : nouveau dirigeant", text, id)
         else ctx.notifications.news(NotificationCategory.DIPLOMACY, "$name : $text", id)
     }

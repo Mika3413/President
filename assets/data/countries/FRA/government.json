@@ -1,17 +1,75 @@
 {
   "ministries": [
-    { "id": "pm", "title": "Premier ministre", "shortTitle": "Matignon", "isPrimeMinister": true },
-    { "id": "economy", "title": "Ministre de l'Économie et des Finances", "shortTitle": "Économie" },
-    { "id": "interior", "title": "Ministre de l'Intérieur", "shortTitle": "Intérieur", "domain": "security" },
-    { "id": "armed_forces", "title": "Ministre des Armées", "shortTitle": "Armées", "domain": "defense" },
-    { "id": "foreign", "title": "Ministre de l'Europe et des Affaires étrangères", "shortTitle": "Affaires étrangères" },
-    { "id": "health", "title": "Ministre de la Santé", "shortTitle": "Santé", "domain": "health" },
-    { "id": "education", "title": "Ministre de l'Éducation nationale", "shortTitle": "Éducation", "domain": "education" },
-    { "id": "labour", "title": "Ministre du Travail et des Solidarités", "shortTitle": "Travail", "domain": "social" },
-    { "id": "justice", "title": "Garde des Sceaux, ministre de la Justice", "shortTitle": "Justice", "domain": "justice" },
-    { "id": "ecology", "title": "Ministre de la Transition écologique et de l'Énergie", "shortTitle": "Écologie", "domain": "environment" },
-    { "id": "transport", "title": "Ministre des Transports", "shortTitle": "Transports", "domain": "transport" },
-    { "id": "agriculture", "title": "Ministre de l'Agriculture", "shortTitle": "Agriculture", "domain": "agriculture" }
+    {
+      "id": "pm",
+      "title": "Premier ministre",
+      "shortTitle": "Matignon",
+      "isPrimeMinister": true
+    },
+    {
+      "id": "economy",
+      "title": "Ministre de l'Économie et des Finances",
+      "shortTitle": "Économie"
+    },
+    {
+      "id": "interior",
+      "title": "Ministre de l'Intérieur",
+      "shortTitle": "Intérieur",
+      "domain": "security"
+    },
+    {
+      "id": "armed_forces",
+      "title": "Ministre des Armées",
+      "shortTitle": "Armées",
+      "domain": "defense"
+    },
+    {
+      "id": "foreign",
+      "title": "Ministre de l'Europe et des Affaires étrangères",
+      "shortTitle": "Affaires étrangères"
+    },
+    {
+      "id": "health",
+      "title": "Ministre de la Santé",
+      "shortTitle": "Santé",
+      "domain": "health"
+    },
+    {
+      "id": "education",
+      "title": "Ministre de l'Éducation nationale",
+      "shortTitle": "Éducation",
+      "domain": "education"
+    },
+    {
+      "id": "labour",
+      "title": "Ministre du Travail et des Solidarités",
+      "shortTitle": "Travail",
+      "domain": "social"
+    },
+    {
+      "id": "justice",
+      "title": "Garde des Sceaux, ministre de la Justice",
+      "shortTitle": "Justice",
+      "domain": "justice"
+    },
+    {
+      "id": "ecology",
+      "title": "Ministre de la Transition écologique et de l'Énergie",
+      "shortTitle": "Écologie",
+      "domain": "environment"
+    },
+    {
+      "id": "transport",
+      "title": "Ministre des Transports",
+      "shortTitle": "Transports",
+      "domain": "transport"
+    },
+    {
+      "id": "agriculture",
+      "title": "Ministre de l'Agriculture",
+      "shortTitle": "Agriculture",
+      "domain": "agriculture"
+    }
   ],
   "maxHighPriorities": 3,
   "candidatesPerMinistry": 3,
@@ -39,7 +97,10 @@
     "prefect": "Préfet de région",
     "regionPresident": "Président du conseil régional",
     "departmentPresident": "Président du conseil départemental",
-    "mayor": "Maire"
+    "mayor": "Maire",
+    "prefectFemale": "Préfète de région",
+    "regionPresidentFemale": "Présidente du conseil régional",
+    "departmentPresidentFemale": "Présidente du conseil départemental"
   },
   "ministerDrift": {
     "loyaltyApprovalWeight": 0.4,

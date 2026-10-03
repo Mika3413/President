@@ -218,11 +218,11 @@ class ConversationService(private val ctx: SimulationContext) {
     private fun titleOf(c: Character): String {
         val titles = ctx.playerData.government?.localTitles
         return when (c.role) {
-            CharacterRole.FOREIGN_LEADER -> foreignCountryOf(c)?.let { ctx.db.country(it).definition.let { d -> "${d.institutions.headOfGovernmentTitle} (${d.name})" } } ?: ""
-            CharacterRole.MAYOR -> "${titles?.mayor ?: "Maire"} de ${localPlace(c) ?: ""}"
-            CharacterRole.DEPARTMENT_PRESIDENT -> "${titles?.departmentPresident ?: "Président du département"} (${localPlace(c) ?: ""})"
-            CharacterRole.REGION_PRESIDENT -> "${titles?.regionPresident ?: "Président de région"} (${localPlace(c) ?: ""})"
-            CharacterRole.PREFECT -> "${titles?.prefect ?: "Préfet"} (${localPlace(c) ?: ""})"
+            CharacterRole.FOREIGN_LEADER -> foreignCountryOf(c)?.let { ctx.db.country(it).definition.let { d -> "${d.institutions.headOfGovernment(c.female)} (${d.name})" } } ?: ""
+            CharacterRole.MAYOR -> "${titles?.mayor(c.female) ?: "Maire"} de ${localPlace(c) ?: ""}"
+            CharacterRole.DEPARTMENT_PRESIDENT -> "${titles?.departmentPresident(c.female) ?: "Président du département"} (${localPlace(c) ?: ""})"
+            CharacterRole.REGION_PRESIDENT -> "${titles?.regionPresident(c.female) ?: "Président de région"} (${localPlace(c) ?: ""})"
+            CharacterRole.PREFECT -> "${titles?.prefect(c.female) ?: "Préfet"} (${localPlace(c) ?: ""})"
             else -> ""
         }
     }

@@ -1,0 +1,3755 @@
+{
+ "events": [
+  {
+   "id": "school_renovation",
+   "category": "TERRITORY",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.00018,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "Collèges vétustes {departmentIn} : le département demande l'aide de l'État",
+   "modifiers": [
+    {
+     "variable": "quality.education",
+     "from": 0.4,
+     "to": 0.7,
+     "factorAtFrom": 1.6,
+     "factorAtTo": 0.7
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.02,
+     "max": 0.06,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "school_renovation",
+    "sender": "DEPARTMENT_PRESIDENT",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "accept",
+      "label": "Financer le plan de rénovation",
+      "hint": "Coût : {amountText}, travaux sur plusieurs mois",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.15
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.025,
+        "days": 20
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "ACCEPTED",
+      "project": {
+       "name": "Rénovation des collèges ({department})",
+       "kind": "education",
+       "durationDays": 540,
+       "costParam": "amount",
+       "costFactor": 1.0,
+       "onCompletion": [
+        {
+         "target": "quality.education",
+         "amount": 0.004
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.02,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "partial",
+      "label": "Financer une version réduite",
+      "hint": "Coût : la moitié, effets plus modestes",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.05
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.01,
+        "days": 20
+       }
+      ],
+      "outcome": "PARTIAL",
+      "project": {
+       "name": "Rénovation des collèges ({department}) (version réduite)",
+       "kind": "education",
+       "durationDays": 648,
+       "costParam": "amount",
+       "costFactor": 0.5,
+       "onCompletion": [
+        {
+         "target": "quality.education",
+         "amount": 0.002
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.01,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "postpone",
+      "label": "Reporter la décision",
+      "hint": "La demande reviendra dans 45 jours",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.03
+       }
+      ],
+      "outcome": "POSTPONED",
+      "reaskAfterDays": 45
+     },
+     {
+      "id": "refuse",
+      "label": "Refuser",
+      "hint": "Aucun coût, mais mécontentement local",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.02,
+        "days": 10
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "medical_desert",
+   "category": "TERRITORY",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.00018,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "Déserts médicaux : {departmentThe} tire la sonnette d'alarme",
+   "modifiers": [
+    {
+     "variable": "scope.healthAccess",
+     "from": 0.7,
+     "to": 1.1,
+     "factorAtFrom": 2.5,
+     "factorAtTo": 0.4
+    },
+    {
+     "variable": "scope.urbanShare",
+     "from": 0.3,
+     "to": 0.8,
+     "factorAtFrom": 1.4,
+     "factorAtTo": 0.6
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.015,
+     "max": 0.05,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "medical_desert",
+    "sender": "DEPARTMENT_PRESIDENT",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "accept",
+      "label": "Financer des centres de santé",
+      "hint": "Coût : {amountText}, travaux sur plusieurs mois",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.15
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.025,
+        "days": 20
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": 0.002
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "ACCEPTED",
+      "project": {
+       "name": "Centres de santé ({department})",
+       "kind": "health",
+       "durationDays": 450,
+       "costParam": "amount",
+       "costFactor": 1.0,
+       "onCompletion": [
+        {
+         "target": "scope.healthAccess",
+         "amount": 0.06
+        },
+        {
+         "target": "quality.health",
+         "amount": 0.002
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.03,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "partial",
+      "label": "Financer une version réduite",
+      "hint": "Coût : la moitié, effets plus modestes",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.05
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.01,
+        "days": 20
+       }
+      ],
+      "outcome": "PARTIAL",
+      "project": {
+       "name": "Centres de santé ({department}) (version réduite)",
+       "kind": "health",
+       "durationDays": 540,
+       "costParam": "amount",
+       "costFactor": 0.5,
+       "onCompletion": [
+        {
+         "target": "scope.healthAccess",
+         "amount": 0.03
+        },
+        {
+         "target": "quality.health",
+         "amount": 0.001
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.015,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "postpone",
+      "label": "Reporter la décision",
+      "hint": "La demande reviendra dans 45 jours",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.03
+       }
+      ],
+      "outcome": "POSTPONED",
+      "reaskAfterDays": 45
+     },
+     {
+      "id": "refuse",
+      "label": "Refuser",
+      "hint": "Aucun coût, mais mécontentement local",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.02,
+        "days": 10
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": -0.002
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "police_reinforcement",
+   "category": "SECURITY",
+   "scope": "CITY",
+   "baseDailyProbability": 0.0003,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "{city} réclame des renforts de police",
+   "modifiers": [
+    {
+     "variable": "scope.crime",
+     "from": 0.9,
+     "to": 1.5,
+     "factorAtFrom": 0.5,
+     "factorAtTo": 2.5
+    },
+    {
+     "variable": "quality.security",
+     "from": 0.35,
+     "to": 0.65,
+     "factorAtFrom": 1.5,
+     "factorAtTo": 0.6
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.01,
+     "max": 0.03,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "police_reinforcement",
+    "sender": "MAYOR",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "reinforce",
+      "label": "Envoyer des renforts et financer",
+      "hint": "Coût : {amountText} ; sécurité améliorée",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 1.0
+       },
+       {
+        "target": "scope.crime",
+        "amount": -0.1
+       },
+       {
+        "target": "sender.relation",
+        "amount": 0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.02,
+        "days": 20
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "temporary",
+      "label": "Renforts temporaires seulement",
+      "hint": "Sans coût budgétaire durable ; effet limité",
+      "effects": [
+       {
+        "target": "scope.crime",
+        "amount": -0.04
+       },
+       {
+        "target": "sender.relation",
+        "amount": 0.04
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "refuse",
+      "label": "Renvoyer vers la police municipale",
+      "hint": "Aucun coût ; la tension monte",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.02,
+        "days": 10
+       },
+       {
+        "target": "scope.crime",
+        "amount": 0.03
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "maxCityRank": 3
+  },
+  {
+   "id": "housing_shortage",
+   "category": "TERRITORY",
+   "scope": "CITY",
+   "baseDailyProbability": 0.0003,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "Crise du logement : {city} demande un plan de l'État",
+   "modifiers": [
+    {
+     "variable": "scope.populationMillions",
+     "from": 0.2,
+     "to": 1.0,
+     "factorAtFrom": 0.7,
+     "factorAtTo": 1.6
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.03,
+     "max": 0.1,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "housing_shortage",
+    "sender": "MAYOR",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "accept",
+      "label": "Lancer le programme de logements",
+      "hint": "Coût : {amountText}, travaux sur plusieurs mois",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.15
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.025,
+        "days": 20
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": 0.002
+       },
+       {
+        "target": "opinion.group.low_income",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "ACCEPTED",
+      "project": {
+       "name": "Programme de logements ({city})",
+       "kind": "housing",
+       "durationDays": 900,
+       "costParam": "amount",
+       "costFactor": 1.0,
+       "onCompletion": [
+        {
+         "target": "scope.satisfaction",
+         "amount": 0.06
+        },
+        {
+         "target": "quality.social",
+         "amount": 0.003
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.02,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "partial",
+      "label": "Financer une version réduite",
+      "hint": "Coût : la moitié, effets plus modestes",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.05
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.01,
+        "days": 20
+       }
+      ],
+      "outcome": "PARTIAL",
+      "project": {
+       "name": "Programme de logements ({city}) (version réduite)",
+       "kind": "housing",
+       "durationDays": 1080,
+       "costParam": "amount",
+       "costFactor": 0.5,
+       "onCompletion": [
+        {
+         "target": "scope.satisfaction",
+         "amount": 0.03
+        },
+        {
+         "target": "quality.social",
+         "amount": 0.0015
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.01,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "postpone",
+      "label": "Reporter la décision",
+      "hint": "La demande reviendra dans 45 jours",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.03
+       }
+      ],
+      "outcome": "POSTPONED",
+      "reaskAfterDays": 45
+     },
+     {
+      "id": "refuse",
+      "label": "Refuser",
+      "hint": "Aucun coût, mais mécontentement local",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.02,
+        "days": 10
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": -0.002
+       },
+       {
+        "target": "opinion.group.low_income",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "maxCityRank": 3
+  },
+  {
+   "id": "rail_line",
+   "category": "TERRITORY",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.00018,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "La région demande à l'État de sauver une petite ligne ferroviaire {departmentIn}",
+   "modifiers": [
+    {
+     "variable": "quality.transport",
+     "from": 0.4,
+     "to": 0.7,
+     "factorAtFrom": 1.5,
+     "factorAtTo": 0.7
+    },
+    {
+     "variable": "scope.urbanShare",
+     "from": 0.3,
+     "to": 0.8,
+     "factorAtFrom": 1.5,
+     "factorAtTo": 0.6
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.04,
+     "max": 0.12,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "rail_line",
+    "sender": "REGION_PRESIDENT",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "accept",
+      "label": "Financer la régénération",
+      "hint": "Coût : {amountText}, travaux sur plusieurs mois",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.15
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.025,
+        "days": 20
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "ACCEPTED",
+      "project": {
+       "name": "Régénération ferroviaire ({department})",
+       "kind": "transport",
+       "durationDays": 720,
+       "costParam": "amount",
+       "costFactor": 1.0,
+       "onCompletion": [
+        {
+         "target": "quality.transport",
+         "amount": 0.004
+        },
+        {
+         "target": "quality.environment",
+         "amount": 0.001
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.02,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "partial",
+      "label": "Financer une version réduite",
+      "hint": "Coût : la moitié, effets plus modestes",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.05
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.01,
+        "days": 20
+       }
+      ],
+      "outcome": "PARTIAL",
+      "project": {
+       "name": "Régénération ferroviaire ({department}) (version réduite)",
+       "kind": "transport",
+       "durationDays": 864,
+       "costParam": "amount",
+       "costFactor": 0.5,
+       "onCompletion": [
+        {
+         "target": "quality.transport",
+         "amount": 0.002
+        },
+        {
+         "target": "quality.environment",
+         "amount": 0.0005
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.01,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "postpone",
+      "label": "Reporter la décision",
+      "hint": "La demande reviendra dans 45 jours",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.03
+       }
+      ],
+      "outcome": "POSTPONED",
+      "reaskAfterDays": 45
+     },
+     {
+      "id": "refuse",
+      "label": "Refuser",
+      "hint": "Aucun coût, mais mécontentement local",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.02,
+        "days": 10
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "broadband",
+   "category": "TERRITORY",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.00018,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "Zones blanches : {departmentThe} réclame la fibre et la 5G",
+   "modifiers": [
+    {
+     "variable": "scope.urbanShare",
+     "from": 0.3,
+     "to": 0.8,
+     "factorAtFrom": 1.8,
+     "factorAtTo": 0.4
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.01,
+     "max": 0.04,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "broadband",
+    "sender": "DEPARTMENT_PRESIDENT",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "accept",
+      "label": "Financer la couverture numérique",
+      "hint": "Coût : {amountText}, travaux sur plusieurs mois",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.15
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.025,
+        "days": 20
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "ACCEPTED",
+      "project": {
+       "name": "Couverture numérique ({department})",
+       "kind": "digital",
+       "durationDays": 600,
+       "costParam": "amount",
+       "costFactor": 1.0,
+       "onCompletion": [
+        {
+         "target": "scope.unemployment",
+         "amount": -0.002,
+         "days": 120
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.02,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "partial",
+      "label": "Financer une version réduite",
+      "hint": "Coût : la moitié, effets plus modestes",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.05
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.01,
+        "days": 20
+       }
+      ],
+      "outcome": "PARTIAL",
+      "project": {
+       "name": "Couverture numérique ({department}) (version réduite)",
+       "kind": "digital",
+       "durationDays": 720,
+       "costParam": "amount",
+       "costFactor": 0.5,
+       "onCompletion": [
+        {
+         "target": "scope.unemployment",
+         "amount": -0.001,
+         "days": 120
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.01,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "postpone",
+      "label": "Reporter la décision",
+      "hint": "La demande reviendra dans 45 jours",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.03
+       }
+      ],
+      "outcome": "POSTPONED",
+      "reaskAfterDays": 45
+     },
+     {
+      "id": "refuse",
+      "label": "Refuser",
+      "hint": "Aucun coût, mais mécontentement local",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.02,
+        "days": 10
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hospital_maternity",
+   "category": "TERRITORY",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.000126,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "Fermeture d'une maternité {departmentIn} : les élus montent au créneau",
+   "modifiers": [
+    {
+     "variable": "scope.healthAccess",
+     "from": 0.7,
+     "to": 1.1,
+     "factorAtFrom": 2.0,
+     "factorAtTo": 0.5
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.01,
+     "max": 0.03,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "hospital_maternity",
+    "sender": "DEPARTMENT_PRESIDENT",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "keep",
+      "label": "Maintenir la maternité",
+      "hint": "Coût : {amountText} par an pendant 3 ans",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.15
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.035,
+        "days": 30
+       },
+       {
+        "target": "scope.healthAccess",
+        "amount": 0.02
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "ACCEPTED",
+      "project": {
+       "name": "Maintien de la maternité ({department})",
+       "kind": "health",
+       "durationDays": 1095,
+       "costParam": "amount",
+       "costFactor": 3.0,
+       "onCompletion": [
+        {
+         "target": "quality.health",
+         "amount": 0.001
+        }
+       ]
+      }
+     },
+     {
+      "id": "transform",
+      "label": "La transformer en centre périnatal",
+      "hint": "Compromis : suivi sur place, accouchements ailleurs",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.02
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.01,
+        "days": 15
+       },
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 0.3
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "refuse",
+      "label": "Suivre l'avis de l'ARS",
+      "hint": "Aucun coût ; colère locale durable",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.15
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.04,
+        "days": 30
+       },
+       {
+        "target": "scope.healthAccess",
+        "amount": -0.03
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": -0.004
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "flood_defense",
+   "category": "DISASTER",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.000144,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "Digues fragiles {departmentIn} : le préfet alerte",
+   "modifiers": [
+    {
+     "variable": "season.month",
+     "from": 9,
+     "to": 12,
+     "factorAtFrom": 1.0,
+     "factorAtTo": 1.8
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.02,
+     "max": 0.08,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "flood_defense",
+    "sender": "PREFECT",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "accept",
+      "label": "Engager les travaux",
+      "hint": "Coût : {amountText}, travaux sur plusieurs mois",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.15
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.025,
+        "days": 20
+       }
+      ],
+      "outcome": "ACCEPTED",
+      "project": {
+       "name": "Confortement des digues ({department})",
+       "kind": "environment",
+       "durationDays": 540,
+       "costParam": "amount",
+       "costFactor": 1.0,
+       "onCompletion": [
+        {
+         "target": "quality.environment",
+         "amount": 0.002
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.01,
+         "days": 20
+        }
+       ]
+      }
+     },
+     {
+      "id": "partial",
+      "label": "Financer une version réduite",
+      "hint": "Coût : la moitié, effets plus modestes",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.05
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.01,
+        "days": 20
+       }
+      ],
+      "outcome": "PARTIAL",
+      "project": {
+       "name": "Confortement des digues ({department}) (version réduite)",
+       "kind": "environment",
+       "durationDays": 648,
+       "costParam": "amount",
+       "costFactor": 0.5,
+       "onCompletion": [
+        {
+         "target": "quality.environment",
+         "amount": 0.001
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.005,
+         "days": 20
+        }
+       ]
+      }
+     },
+     {
+      "id": "postpone",
+      "label": "Reporter la décision",
+      "hint": "La demande reviendra dans 45 jours",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.03
+       }
+      ],
+      "outcome": "POSTPONED",
+      "reaskAfterDays": 45
+     },
+     {
+      "id": "refuse",
+      "label": "Laisser les collectivités s'en charger",
+      "hint": "Aucun coût, mais mécontentement local",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.005,
+        "days": 10
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sports_facility",
+   "category": "TERRITORY",
+   "scope": "CITY",
+   "baseDailyProbability": 0.00017999999999999998,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "{city} sollicite l'État pour un équipement sportif",
+   "modifiers": [
+    {
+     "variable": "economy.growth",
+     "from": -0.01,
+     "to": 0.02,
+     "factorAtFrom": 0.6,
+     "factorAtTo": 1.4
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.01,
+     "max": 0.04,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "sports_facility",
+    "sender": "MAYOR",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "accept",
+      "label": "Financer l'équipement",
+      "hint": "Coût : {amountText}, travaux sur plusieurs mois",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.15
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.025,
+        "days": 20
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "ACCEPTED",
+      "project": {
+       "name": "Complexe sportif ({city})",
+       "kind": "sport",
+       "durationDays": 600,
+       "costParam": "amount",
+       "costFactor": 1.0,
+       "onCompletion": [
+        {
+         "target": "scope.satisfaction",
+         "amount": 0.05
+        },
+        {
+         "target": "scope.crime",
+         "amount": -0.02
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.015,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "partial",
+      "label": "Financer une version réduite",
+      "hint": "Coût : la moitié, effets plus modestes",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.05
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.01,
+        "days": 20
+       }
+      ],
+      "outcome": "PARTIAL",
+      "project": {
+       "name": "Complexe sportif ({city}) (version réduite)",
+       "kind": "sport",
+       "durationDays": 720,
+       "costParam": "amount",
+       "costFactor": 0.5,
+       "onCompletion": [
+        {
+         "target": "scope.satisfaction",
+         "amount": 0.025
+        },
+        {
+         "target": "scope.crime",
+         "amount": -0.01
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.0075,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "postpone",
+      "label": "Reporter la décision",
+      "hint": "La demande reviendra dans 45 jours",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.03
+       }
+      ],
+      "outcome": "POSTPONED",
+      "reaskAfterDays": 45
+     },
+     {
+      "id": "refuse",
+      "label": "Refuser",
+      "hint": "Aucun coût, mais mécontentement local",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.01,
+        "days": 10
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "maxCityRank": 3
+  },
+  {
+   "id": "heritage_restoration",
+   "category": "TERRITORY",
+   "scope": "CITY",
+   "baseDailyProbability": 0.00015,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "{city} demande de l'aide pour restaurer un monument",
+   "modifiers": [],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.01,
+     "max": 0.05,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "heritage_restoration",
+    "sender": "MAYOR",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "accept",
+      "label": "Financer la restauration",
+      "hint": "Coût : {amountText}, travaux sur plusieurs mois",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.15
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.025,
+        "days": 20
+       }
+      ],
+      "outcome": "ACCEPTED",
+      "project": {
+       "name": "Restauration du patrimoine ({city})",
+       "kind": "culture",
+       "durationDays": 900,
+       "costParam": "amount",
+       "costFactor": 1.0,
+       "onCompletion": [
+        {
+         "target": "scope.satisfaction",
+         "amount": 0.05
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.015,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "partial",
+      "label": "Financer une version réduite",
+      "hint": "Coût : la moitié, effets plus modestes",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.05
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.01,
+        "days": 20
+       }
+      ],
+      "outcome": "PARTIAL",
+      "project": {
+       "name": "Restauration du patrimoine ({city}) (version réduite)",
+       "kind": "culture",
+       "durationDays": 1080,
+       "costParam": "amount",
+       "costFactor": 0.5,
+       "onCompletion": [
+        {
+         "target": "scope.satisfaction",
+         "amount": 0.025
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.0075,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "postpone",
+      "label": "Reporter la décision",
+      "hint": "La demande reviendra dans 45 jours",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.03
+       }
+      ],
+      "outcome": "POSTPONED",
+      "reaskAfterDays": 45
+     },
+     {
+      "id": "refuse",
+      "label": "Refuser",
+      "hint": "Aucun coût, mais mécontentement local",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.01,
+        "days": 10
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "maxCityRank": 3
+  },
+  {
+   "id": "water_crisis",
+   "category": "DISASTER",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.000144,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "Eau potable {departmentIn} : les élus réclament des investissements",
+   "modifiers": [
+    {
+     "variable": "season.month",
+     "from": 5,
+     "to": 8,
+     "factorAtFrom": 0.6,
+     "factorAtTo": 2.0
+    },
+    {
+     "variable": "scope.mediterranean",
+     "from": 0,
+     "to": 1,
+     "factorAtFrom": 0.8,
+     "factorAtTo": 1.8
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.02,
+     "max": 0.06,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "water_crisis",
+    "sender": "DEPARTMENT_PRESIDENT",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "accept",
+      "label": "Financer le plan eau",
+      "hint": "Coût : {amountText}, travaux sur plusieurs mois",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.15
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.025,
+        "days": 20
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "ACCEPTED",
+      "project": {
+       "name": "Sécurisation de l'eau ({department})",
+       "kind": "environment",
+       "durationDays": 600,
+       "costParam": "amount",
+       "costFactor": 1.0,
+       "onCompletion": [
+        {
+         "target": "quality.environment",
+         "amount": 0.002
+        },
+        {
+         "target": "quality.agriculture",
+         "amount": 0.001
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.02,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "partial",
+      "label": "Financer une version réduite",
+      "hint": "Coût : la moitié, effets plus modestes",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.05
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.01,
+        "days": 20
+       }
+      ],
+      "outcome": "PARTIAL",
+      "project": {
+       "name": "Sécurisation de l'eau ({department}) (version réduite)",
+       "kind": "environment",
+       "durationDays": 720,
+       "costParam": "amount",
+       "costFactor": 0.5,
+       "onCompletion": [
+        {
+         "target": "quality.environment",
+         "amount": 0.001
+        },
+        {
+         "target": "quality.agriculture",
+         "amount": 0.0005
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.01,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "postpone",
+      "label": "Reporter la décision",
+      "hint": "La demande reviendra dans 45 jours",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.03
+       }
+      ],
+      "outcome": "POSTPONED",
+      "reaskAfterDays": 45
+     },
+     {
+      "id": "refuse",
+      "label": "Refuser",
+      "hint": "Aucun coût, mais mécontentement local",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.02,
+        "days": 10
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "industrial_zone",
+   "category": "ECONOMY",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.000126,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "Implantation industrielle : la région demande l'appui de l'État {departmentIn}",
+   "modifiers": [
+    {
+     "variable": "scope.unemployment",
+     "from": 0.06,
+     "to": 0.12,
+     "factorAtFrom": 0.6,
+     "factorAtTo": 1.8
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.03,
+     "max": 0.1,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "industrial_zone",
+    "sender": "REGION_PRESIDENT",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "support",
+      "label": "Soutenir l'implantation",
+      "hint": "Coût : {amountText} ; emplois et activité",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 1.0
+       },
+       {
+        "target": "scope.unemployment",
+        "amount": -0.006,
+        "days": 360
+       },
+       {
+        "target": "scope.industry",
+        "amount": 0.01
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": 0.003
+       },
+       {
+        "target": "sender.relation",
+        "amount": 0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.03,
+        "days": 30
+       },
+       {
+        "target": "scope.pollution",
+        "amount": 0.03
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "tax",
+      "label": "Proposer des allègements fiscaux plutôt qu'une subvention",
+      "hint": "Coût réparti, chances moindres",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 0.4
+       },
+       {
+        "target": "scope.unemployment",
+        "amount": -0.003,
+        "days": 360
+       },
+       {
+        "target": "sender.relation",
+        "amount": 0.04
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "refuse",
+      "label": "Laisser le marché décider",
+      "hint": "Aucun coût ; l'investisseur risque de partir",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.1
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.02,
+        "days": 15
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "post_office_closure",
+   "category": "TERRITORY",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.000144,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "Services publics en recul {departmentIn} : fermetures de bureaux de poste et de trésoreries",
+   "modifiers": [
+    {
+     "variable": "scope.urbanShare",
+     "from": 0.3,
+     "to": 0.8,
+     "factorAtFrom": 1.8,
+     "factorAtTo": 0.4
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.005,
+     "max": 0.02,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "post_office_closure",
+    "sender": "DEPARTMENT_PRESIDENT",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "accept",
+      "label": "Ouvrir des maisons France Services",
+      "hint": "Coût : {amountText}, travaux sur plusieurs mois",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.15
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.025,
+        "days": 20
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.002
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "ACCEPTED",
+      "project": {
+       "name": "Maisons France Services ({department})",
+       "kind": "public_services",
+       "durationDays": 360,
+       "costParam": "amount",
+       "costFactor": 1.0,
+       "onCompletion": [
+        {
+         "target": "scope.approval",
+         "amount": 0.03,
+         "days": 30
+        },
+        {
+         "target": "quality.social",
+         "amount": 0.001
+        }
+       ]
+      }
+     },
+     {
+      "id": "partial",
+      "label": "Financer une version réduite",
+      "hint": "Coût : la moitié, effets plus modestes",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.05
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.01,
+        "days": 20
+       }
+      ],
+      "outcome": "PARTIAL",
+      "project": {
+       "name": "Maisons France Services ({department}) (version réduite)",
+       "kind": "public_services",
+       "durationDays": 432,
+       "costParam": "amount",
+       "costFactor": 0.5,
+       "onCompletion": [
+        {
+         "target": "scope.approval",
+         "amount": 0.015,
+         "days": 30
+        },
+        {
+         "target": "quality.social",
+         "amount": 0.0005
+        }
+       ]
+      }
+     },
+     {
+      "id": "postpone",
+      "label": "Reporter la décision",
+      "hint": "La demande reviendra dans 45 jours",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.03
+       }
+      ],
+      "outcome": "POSTPONED",
+      "reaskAfterDays": 45
+     },
+     {
+      "id": "refuse",
+      "label": "Poursuivre la rationalisation",
+      "hint": "Aucun coût, mais mécontentement local",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.025,
+        "days": 10
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": -0.002
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bridge_repair",
+   "category": "TERRITORY",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.000126,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "Pont fermé {departmentIn} : le département appelle l'État à l'aide",
+   "modifiers": [
+    {
+     "variable": "quality.transport",
+     "from": 0.4,
+     "to": 0.7,
+     "factorAtFrom": 1.6,
+     "factorAtTo": 0.7
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.01,
+     "max": 0.04,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "bridge_repair",
+    "sender": "DEPARTMENT_PRESIDENT",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "accept",
+      "label": "Financer la reconstruction",
+      "hint": "Coût : {amountText}, travaux sur plusieurs mois",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.15
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.025,
+        "days": 20
+       }
+      ],
+      "outcome": "ACCEPTED",
+      "project": {
+       "name": "Reconstruction du pont ({department})",
+       "kind": "transport",
+       "durationDays": 540,
+       "costParam": "amount",
+       "costFactor": 1.0,
+       "onCompletion": [
+        {
+         "target": "quality.transport",
+         "amount": 0.002
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.02,
+         "days": 30
+        },
+        {
+         "target": "scope.unemployment",
+         "amount": -0.001,
+         "days": 90
+        }
+       ]
+      }
+     },
+     {
+      "id": "partial",
+      "label": "Financer une version réduite",
+      "hint": "Coût : la moitié, effets plus modestes",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.05
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.01,
+        "days": 20
+       }
+      ],
+      "outcome": "PARTIAL",
+      "project": {
+       "name": "Reconstruction du pont ({department}) (version réduite)",
+       "kind": "transport",
+       "durationDays": 648,
+       "costParam": "amount",
+       "costFactor": 0.5,
+       "onCompletion": [
+        {
+         "target": "quality.transport",
+         "amount": 0.001
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.01,
+         "days": 30
+        },
+        {
+         "target": "scope.unemployment",
+         "amount": -0.0005,
+         "days": 90
+        }
+       ]
+      }
+     },
+     {
+      "id": "postpone",
+      "label": "Reporter la décision",
+      "hint": "La demande reviendra dans 45 jours",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.03
+       }
+      ],
+      "outcome": "POSTPONED",
+      "reaskAfterDays": 45
+     },
+     {
+      "id": "refuse",
+      "label": "Refuser",
+      "hint": "Aucun coût, mais mécontentement local",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.02,
+        "days": 10
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "farmers_local",
+   "category": "ECONOMY",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.000144,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "Agriculteurs en détresse {departmentIn} : le préfet s'inquiète",
+   "modifiers": [
+    {
+     "variable": "scope.agricultureShare",
+     "from": 0.02,
+     "to": 0.08,
+     "factorAtFrom": 0.4,
+     "factorAtTo": 2.2
+    },
+    {
+     "variable": "quality.agriculture",
+     "from": 0.4,
+     "to": 0.7,
+     "factorAtFrom": 1.6,
+     "factorAtTo": 0.7
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.01,
+     "max": 0.04,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "farmers_local",
+    "sender": "PREFECT",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "aid",
+      "label": "Débloquer un fonds d'urgence",
+      "hint": "Coût : {amountText}",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 1.0
+       },
+       {
+        "target": "quality.agriculture",
+        "amount": 0.002
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.02,
+        "days": 20
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.004
+       },
+       {
+        "target": "opinion.group.self_employed",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "defer",
+      "label": "Étaler les cotisations sans aide directe",
+      "hint": "Coût limité",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 0.2
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.001
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "refuse",
+      "label": "Renvoyer vers les aides européennes",
+      "hint": "Aucun coût ; risque de blocages",
+      "effects": [
+       {
+        "target": "scope.approval",
+        "amount": -0.02,
+        "days": 15
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": -0.004
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "tourism_fund",
+   "category": "TERRITORY",
+   "scope": "CITY",
+   "baseDailyProbability": 0.00011999999999999999,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "{city} demande un soutien pour son attractivité touristique",
+   "modifiers": [
+    {
+     "variable": "season.month",
+     "from": 2,
+     "to": 5,
+     "factorAtFrom": 1.5,
+     "factorAtTo": 0.8
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.005,
+     "max": 0.02,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "tourism_fund",
+    "sender": "MAYOR",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "accept",
+      "label": "Soutenir le projet",
+      "hint": "Coût : {amountText}, travaux sur plusieurs mois",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.15
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.025,
+        "days": 20
+       }
+      ],
+      "outcome": "ACCEPTED",
+      "project": {
+       "name": "Plan d'attractivité ({city})",
+       "kind": "tourism",
+       "durationDays": 300,
+       "costParam": "amount",
+       "costFactor": 1.0,
+       "onCompletion": [
+        {
+         "target": "scope.satisfaction",
+         "amount": 0.04
+        },
+        {
+         "target": "scope.unemployment",
+         "amount": -0.001,
+         "days": 90
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.01,
+         "days": 20
+        }
+       ]
+      }
+     },
+     {
+      "id": "postpone",
+      "label": "Reporter la décision",
+      "hint": "La demande reviendra dans 45 jours",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.03
+       }
+      ],
+      "outcome": "POSTPONED",
+      "reaskAfterDays": 45
+     },
+     {
+      "id": "refuse",
+      "label": "Refuser",
+      "hint": "Aucun coût, mais mécontentement local",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.005,
+        "days": 10
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "maxCityRank": 3
+  },
+  {
+   "id": "university_campus",
+   "category": "TERRITORY",
+   "scope": "CITY",
+   "baseDailyProbability": 0.00015,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "{city} réclame un investissement pour son université",
+   "modifiers": [
+    {
+     "variable": "quality.education",
+     "from": 0.4,
+     "to": 0.7,
+     "factorAtFrom": 1.5,
+     "factorAtTo": 0.7
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.03,
+     "max": 0.1,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "university_campus",
+    "sender": "MAYOR",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "accept",
+      "label": "Financer le plan campus",
+      "hint": "Coût : {amountText}, travaux sur plusieurs mois",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.15
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.025,
+        "days": 20
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "ACCEPTED",
+      "project": {
+       "name": "Plan campus ({city})",
+       "kind": "education",
+       "durationDays": 900,
+       "costParam": "amount",
+       "costFactor": 1.0,
+       "onCompletion": [
+        {
+         "target": "quality.education",
+         "amount": 0.004
+        },
+        {
+         "target": "economy.potentialGrowth",
+         "amount": 0.0002
+        },
+        {
+         "target": "scope.satisfaction",
+         "amount": 0.04
+        }
+       ]
+      }
+     },
+     {
+      "id": "partial",
+      "label": "Financer une version réduite",
+      "hint": "Coût : la moitié, effets plus modestes",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.05
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.01,
+        "days": 20
+       }
+      ],
+      "outcome": "PARTIAL",
+      "project": {
+       "name": "Plan campus ({city}) (version réduite)",
+       "kind": "education",
+       "durationDays": 1080,
+       "costParam": "amount",
+       "costFactor": 0.5,
+       "onCompletion": [
+        {
+         "target": "quality.education",
+         "amount": 0.002
+        },
+        {
+         "target": "economy.potentialGrowth",
+         "amount": 0.0001
+        },
+        {
+         "target": "scope.satisfaction",
+         "amount": 0.02
+        }
+       ]
+      }
+     },
+     {
+      "id": "postpone",
+      "label": "Reporter la décision",
+      "hint": "La demande reviendra dans 45 jours",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.03
+       }
+      ],
+      "outcome": "POSTPONED",
+      "reaskAfterDays": 45
+     },
+     {
+      "id": "refuse",
+      "label": "Refuser",
+      "hint": "Aucun coût, mais mécontentement local",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.02,
+        "days": 10
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "maxCityRank": 2
+  },
+  {
+   "id": "prison_overcrowding",
+   "category": "SECURITY",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.00010800000000000001,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "Prison surpeuplée {departmentIn} : le préfet alerte",
+   "modifiers": [
+    {
+     "variable": "quality.justice",
+     "from": 0.3,
+     "to": 0.6,
+     "factorAtFrom": 1.8,
+     "factorAtTo": 0.6
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.02,
+     "max": 0.08,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "prison_overcrowding",
+    "sender": "PREFECT",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "accept",
+      "label": "Construire un nouvel établissement",
+      "hint": "Coût : {amountText}, travaux sur plusieurs mois",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.15
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.025,
+        "days": 20
+       }
+      ],
+      "outcome": "ACCEPTED",
+      "project": {
+       "name": "Nouvel établissement pénitentiaire ({department})",
+       "kind": "justice",
+       "durationDays": 1080,
+       "costParam": "amount",
+       "costFactor": 1.0,
+       "onCompletion": [
+        {
+         "target": "quality.justice",
+         "amount": 0.004
+        },
+        {
+         "target": "scope.crime",
+         "amount": -0.02
+        }
+       ]
+      }
+     },
+     {
+      "id": "postpone",
+      "label": "Reporter la décision",
+      "hint": "La demande reviendra dans 45 jours",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.03
+       }
+      ],
+      "outcome": "POSTPONED",
+      "reaskAfterDays": 45
+     },
+     {
+      "id": "refuse",
+      "label": "Privilégier les peines alternatives",
+      "hint": "Aucun coût, mais mécontentement local",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.005,
+        "days": 10
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "migrant_reception",
+   "category": "SECURITY",
+   "scope": "CITY",
+   "baseDailyProbability": 0.00015,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "{city} demande l'aide de l'État pour l'accueil des personnes migrantes",
+   "modifiers": [
+    {
+     "variable": "scope.populationMillions",
+     "from": 0.2,
+     "to": 1.0,
+     "factorAtFrom": 0.7,
+     "factorAtTo": 1.5
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.005,
+     "max": 0.02,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "migrant_reception",
+    "sender": "MAYOR",
+    "responseDays": 7,
+    "defaultOption": "evacuate",
+    "options": [
+     {
+      "id": "shelter",
+      "label": "Ouvrir des places d'hébergement",
+      "hint": "Coût : {amountText} ; humanitaire",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 1.0
+       },
+       {
+        "target": "sender.relation",
+        "amount": 0.1
+       },
+       {
+        "target": "scope.satisfaction",
+        "amount": 0.02
+       },
+       {
+        "target": "opinion.group.urban",
+        "amount": 0.001
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "spread",
+      "label": "Répartir l'accueil dans d'autres départements",
+      "hint": "Coût réduit ; d'autres élus protesteront",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 0.5
+       },
+       {
+        "target": "sender.relation",
+        "amount": 0.05
+       },
+       {
+        "target": "opinion.national",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "evacuate",
+      "label": "Évacuer les campements sans solution",
+      "hint": "Aucun coût ; critiques des associations",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.08
+       },
+       {
+        "target": "scope.satisfaction",
+        "amount": -0.02
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "maxCityRank": 3
+  },
+  {
+   "id": "energy_bills_local",
+   "category": "ENERGY",
+   "scope": "CITY",
+   "baseDailyProbability": 0.00017999999999999998,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "Factures d'énergie : {city} demande un bouclier pour ses équipements publics",
+   "modifiers": [
+    {
+     "variable": "energy.priceIndex",
+     "from": 1.0,
+     "to": 1.6,
+     "factorAtFrom": 0.4,
+     "factorAtTo": 2.5
+    },
+    {
+     "variable": "season.month",
+     "from": 9,
+     "to": 12,
+     "factorAtFrom": 1.0,
+     "factorAtTo": 1.6
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.005,
+     "max": 0.02,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "energy_bills_local",
+    "sender": "MAYOR",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "compensate",
+      "label": "Compenser la hausse",
+      "hint": "Coût : {amountText}",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 1.0
+       },
+       {
+        "target": "sender.relation",
+        "amount": 0.1
+       },
+       {
+        "target": "scope.satisfaction",
+        "amount": 0.03
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "loan",
+      "label": "Proposer une avance remboursable",
+      "hint": "Coût faible pour l'État",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 0.2
+       },
+       {
+        "target": "sender.relation",
+        "amount": 0.02
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "refuse",
+      "label": "Refuser",
+      "hint": "Aucun coût ; services locaux réduits",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.1
+       },
+       {
+        "target": "scope.satisfaction",
+        "amount": -0.03
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.015,
+        "days": 15
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "maxCityRank": 3
+  },
+  {
+   "id": "coastal_erosion",
+   "category": "DISASTER",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 9e-05,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "Érosion du littoral {departmentIn} : des habitations menacées",
+   "modifiers": [
+    {
+     "variable": "scope.mediterranean",
+     "from": 0,
+     "to": 1,
+     "factorAtFrom": 1.0,
+     "factorAtTo": 1.3
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.01,
+     "max": 0.04,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "coastal_erosion",
+    "sender": "DEPARTMENT_PRESIDENT",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "accept",
+      "label": "Créer un fonds d'adaptation",
+      "hint": "Coût : {amountText}, travaux sur plusieurs mois",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.15
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.025,
+        "days": 20
+       }
+      ],
+      "outcome": "ACCEPTED",
+      "project": {
+       "name": "Adaptation du littoral ({department})",
+       "kind": "environment",
+       "durationDays": 720,
+       "costParam": "amount",
+       "costFactor": 1.0,
+       "onCompletion": [
+        {
+         "target": "quality.environment",
+         "amount": 0.002
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.02,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "partial",
+      "label": "Financer une version réduite",
+      "hint": "Coût : la moitié, effets plus modestes",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.05
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.01,
+        "days": 20
+       }
+      ],
+      "outcome": "PARTIAL",
+      "project": {
+       "name": "Adaptation du littoral ({department}) (version réduite)",
+       "kind": "environment",
+       "durationDays": 864,
+       "costParam": "amount",
+       "costFactor": 0.5,
+       "onCompletion": [
+        {
+         "target": "quality.environment",
+         "amount": 0.001
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.01,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "postpone",
+      "label": "Reporter la décision",
+      "hint": "La demande reviendra dans 45 jours",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.03
+       }
+      ],
+      "outcome": "POSTPONED",
+      "reaskAfterDays": 45
+     },
+     {
+      "id": "refuse",
+      "label": "Refuser",
+      "hint": "Aucun coût, mais mécontentement local",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.02,
+        "days": 10
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "conditions": [
+    {
+     "variable": "scope.mediterranean",
+     "min": 0.5
+    }
+   ]
+  },
+  {
+   "id": "public_transport_strike_local",
+   "category": "TERRITORY",
+   "scope": "CITY",
+   "baseDailyProbability": 0.00011999999999999999,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "Transports urbains à {city} : la ville demande une aide d'urgence",
+   "modifiers": [
+    {
+     "variable": "quality.transport",
+     "from": 0.4,
+     "to": 0.7,
+     "factorAtFrom": 1.5,
+     "factorAtTo": 0.7
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.005,
+     "max": 0.03,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "public_transport_local",
+    "sender": "MAYOR",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "accept",
+      "label": "Financer le réseau",
+      "hint": "Coût : {amountText}, travaux sur plusieurs mois",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.15
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.025,
+        "days": 20
+       }
+      ],
+      "outcome": "ACCEPTED",
+      "project": {
+       "name": "Modernisation du réseau ({city})",
+       "kind": "transport",
+       "durationDays": 540,
+       "costParam": "amount",
+       "costFactor": 1.0,
+       "onCompletion": [
+        {
+         "target": "quality.transport",
+         "amount": 0.002
+        },
+        {
+         "target": "scope.satisfaction",
+         "amount": 0.04
+        },
+        {
+         "target": "quality.environment",
+         "amount": 0.001
+        }
+       ]
+      }
+     },
+     {
+      "id": "partial",
+      "label": "Financer une version réduite",
+      "hint": "Coût : la moitié, effets plus modestes",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.05
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.01,
+        "days": 20
+       }
+      ],
+      "outcome": "PARTIAL",
+      "project": {
+       "name": "Modernisation du réseau ({city}) (version réduite)",
+       "kind": "transport",
+       "durationDays": 648,
+       "costParam": "amount",
+       "costFactor": 0.5,
+       "onCompletion": [
+        {
+         "target": "quality.transport",
+         "amount": 0.001
+        },
+        {
+         "target": "scope.satisfaction",
+         "amount": 0.02
+        },
+        {
+         "target": "quality.environment",
+         "amount": 0.0005
+        }
+       ]
+      }
+     },
+     {
+      "id": "postpone",
+      "label": "Reporter la décision",
+      "hint": "La demande reviendra dans 45 jours",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.03
+       }
+      ],
+      "outcome": "POSTPONED",
+      "reaskAfterDays": 45
+     },
+     {
+      "id": "refuse",
+      "label": "Refuser",
+      "hint": "Aucun coût, mais mécontentement local",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.02,
+        "days": 10
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "maxCityRank": 2
+  },
+  {
+   "id": "local_violence_school",
+   "category": "SECURITY",
+   "scope": "CITY",
+   "baseDailyProbability": 0.00011999999999999999,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "Violences aux abords d'un lycée à {city}",
+   "modifiers": [
+    {
+     "variable": "scope.crime",
+     "from": 0.9,
+     "to": 1.5,
+     "factorAtFrom": 0.5,
+     "factorAtTo": 2.0
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.003,
+     "max": 0.01,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "school_violence",
+    "sender": "MAYOR",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "team",
+      "label": "Déployer une équipe mobile et des médiateurs",
+      "hint": "Coût : {amountText}",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 1.0
+       },
+       {
+        "target": "scope.crime",
+        "amount": -0.03
+       },
+       {
+        "target": "quality.education",
+        "amount": 0.001
+       },
+       {
+        "target": "sender.relation",
+        "amount": 0.1
+       },
+       {
+        "target": "opinion.group.middle_income",
+        "amount": 0.001
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "police",
+      "label": "Renforcer seulement la présence policière",
+      "hint": "Sans coût budgétaire",
+      "effects": [
+       {
+        "target": "scope.crime",
+        "amount": -0.015
+       },
+       {
+        "target": "sender.relation",
+        "amount": 0.03
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "refuse",
+      "label": "Laisser l'Éducation nationale gérer",
+      "hint": "Aucun coût",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.1
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.015,
+        "days": 15
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "maxCityRank": 3
+  },
+  {
+   "id": "ehpad_scandal",
+   "category": "TERRITORY",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 9e-05,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "Maltraitance dans un EHPAD {departmentIn} : le département réclame des moyens",
+   "modifiers": [
+    {
+     "variable": "scope.seniorShare",
+     "from": 0.15,
+     "to": 0.3,
+     "factorAtFrom": 0.7,
+     "factorAtTo": 1.6
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.01,
+     "max": 0.04,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "ehpad_scandal",
+    "sender": "DEPARTMENT_PRESIDENT",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "accept",
+      "label": "Lancer un plan grand âge",
+      "hint": "Coût : {amountText}, travaux sur plusieurs mois",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.15
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.025,
+        "days": 20
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "ACCEPTED",
+      "project": {
+       "name": "Plan grand âge ({department})",
+       "kind": "health",
+       "durationDays": 360,
+       "costParam": "amount",
+       "costFactor": 1.0,
+       "onCompletion": [
+        {
+         "target": "quality.health",
+         "amount": 0.002
+        },
+        {
+         "target": "quality.social",
+         "amount": 0.002
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.02,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "partial",
+      "label": "Financer une version réduite",
+      "hint": "Coût : la moitié, effets plus modestes",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.05
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.01,
+        "days": 20
+       }
+      ],
+      "outcome": "PARTIAL",
+      "project": {
+       "name": "Plan grand âge ({department}) (version réduite)",
+       "kind": "health",
+       "durationDays": 432,
+       "costParam": "amount",
+       "costFactor": 0.5,
+       "onCompletion": [
+        {
+         "target": "quality.health",
+         "amount": 0.001
+        },
+        {
+         "target": "quality.social",
+         "amount": 0.001
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.01,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "postpone",
+      "label": "Reporter la décision",
+      "hint": "La demande reviendra dans 45 jours",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.03
+       }
+      ],
+      "outcome": "POSTPONED",
+      "reaskAfterDays": 45
+     },
+     {
+      "id": "refuse",
+      "label": "Refuser",
+      "hint": "Aucun coût, mais mécontentement local",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.02,
+        "days": 10
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "forest_fire_prevention",
+   "category": "DISASTER",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.00010800000000000001,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "Prévention des incendies {departmentIn} : le préfet demande des moyens",
+   "modifiers": [
+    {
+     "variable": "season.month",
+     "from": 3,
+     "to": 6,
+     "factorAtFrom": 0.8,
+     "factorAtTo": 1.8
+    },
+    {
+     "variable": "scope.mediterranean",
+     "from": 0,
+     "to": 1,
+     "factorAtFrom": 0.6,
+     "factorAtTo": 2.0
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.01,
+     "max": 0.04,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "fire_prevention",
+    "sender": "PREFECT",
+    "responseDays": 7,
+    "defaultOption": "minimal",
+    "options": [
+     {
+      "id": "plan",
+      "label": "Financer le plan de prévention",
+      "hint": "Coût : {amountText} ; risque d'incendie réduit",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 1.0
+       },
+       {
+        "target": "quality.environment",
+        "amount": 0.002
+       },
+       {
+        "target": "quality.security",
+        "amount": 0.001
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "minimal",
+      "label": "Moyens habituels seulement",
+      "hint": "Aucun coût supplémentaire",
+      "effects": [],
+      "outcome": "NEUTRAL"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cultural_center",
+   "category": "TERRITORY",
+   "scope": "CITY",
+   "baseDailyProbability": 0.00011999999999999999,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "{city} veut ouvrir un grand équipement culturel",
+   "modifiers": [
+    {
+     "variable": "economy.growth",
+     "from": -0.01,
+     "to": 0.02,
+     "factorAtFrom": 0.6,
+     "factorAtTo": 1.4
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.01,
+     "max": 0.05,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "cultural_center",
+    "sender": "MAYOR",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "accept",
+      "label": "Soutenir le projet culturel",
+      "hint": "Coût : {amountText}, travaux sur plusieurs mois",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.15
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.025,
+        "days": 20
+       }
+      ],
+      "outcome": "ACCEPTED",
+      "project": {
+       "name": "Équipement culturel ({city})",
+       "kind": "culture",
+       "durationDays": 720,
+       "costParam": "amount",
+       "costFactor": 1.0,
+       "onCompletion": [
+        {
+         "target": "scope.satisfaction",
+         "amount": 0.05
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.01,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "partial",
+      "label": "Financer une version réduite",
+      "hint": "Coût : la moitié, effets plus modestes",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.05
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.01,
+        "days": 20
+       }
+      ],
+      "outcome": "PARTIAL",
+      "project": {
+       "name": "Équipement culturel ({city}) (version réduite)",
+       "kind": "culture",
+       "durationDays": 864,
+       "costParam": "amount",
+       "costFactor": 0.5,
+       "onCompletion": [
+        {
+         "target": "scope.satisfaction",
+         "amount": 0.025
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.005,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "postpone",
+      "label": "Reporter la décision",
+      "hint": "La demande reviendra dans 45 jours",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.03
+       }
+      ],
+      "outcome": "POSTPONED",
+      "reaskAfterDays": 45
+     },
+     {
+      "id": "refuse",
+      "label": "Refuser",
+      "hint": "Aucun coût, mais mécontentement local",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.005,
+        "days": 10
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "maxCityRank": 3
+  },
+  {
+   "id": "road_safety",
+   "category": "TERRITORY",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.00010800000000000001,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "Une route meurtrière {departmentIn} : le département demande des travaux",
+   "modifiers": [
+    {
+     "variable": "quality.transport",
+     "from": 0.4,
+     "to": 0.7,
+     "factorAtFrom": 1.5,
+     "factorAtTo": 0.7
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.01,
+     "max": 0.04,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "road_safety",
+    "sender": "DEPARTMENT_PRESIDENT",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "accept",
+      "label": "Financer les travaux",
+      "hint": "Coût : {amountText}, travaux sur plusieurs mois",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.15
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.025,
+        "days": 20
+       }
+      ],
+      "outcome": "ACCEPTED",
+      "project": {
+       "name": "Sécurisation de la route nationale ({department})",
+       "kind": "transport",
+       "durationDays": 720,
+       "costParam": "amount",
+       "costFactor": 1.0,
+       "onCompletion": [
+        {
+         "target": "quality.transport",
+         "amount": 0.002
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.025,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "partial",
+      "label": "Financer une version réduite",
+      "hint": "Coût : la moitié, effets plus modestes",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.05
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.01,
+        "days": 20
+       }
+      ],
+      "outcome": "PARTIAL",
+      "project": {
+       "name": "Sécurisation de la route nationale ({department}) (version réduite)",
+       "kind": "transport",
+       "durationDays": 864,
+       "costParam": "amount",
+       "costFactor": 0.5,
+       "onCompletion": [
+        {
+         "target": "quality.transport",
+         "amount": 0.001
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.0125,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "postpone",
+      "label": "Reporter la décision",
+      "hint": "La demande reviendra dans 45 jours",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.03
+       }
+      ],
+      "outcome": "POSTPONED",
+      "reaskAfterDays": 45
+     },
+     {
+      "id": "refuse",
+      "label": "Refuser",
+      "hint": "Aucun coût, mais mécontentement local",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.02,
+        "days": 10
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "neighborhood_renewal",
+   "category": "TERRITORY",
+   "scope": "CITY",
+   "baseDailyProbability": 0.00015,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "{city} demande un programme de rénovation urbaine",
+   "modifiers": [
+    {
+     "variable": "scope.crime",
+     "from": 0.9,
+     "to": 1.5,
+     "factorAtFrom": 0.7,
+     "factorAtTo": 1.6
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.02,
+     "max": 0.08,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "neighborhood_renewal",
+    "sender": "MAYOR",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "accept",
+      "label": "Lancer la rénovation urbaine",
+      "hint": "Coût : {amountText}, travaux sur plusieurs mois",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.15
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.025,
+        "days": 20
+       },
+       {
+        "target": "opinion.group.low_income",
+        "amount": 0.002
+       },
+       {
+        "target": "opinion.group.urban",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "ACCEPTED",
+      "project": {
+       "name": "Renouvellement urbain ({city})",
+       "kind": "housing",
+       "durationDays": 1080,
+       "costParam": "amount",
+       "costFactor": 1.0,
+       "onCompletion": [
+        {
+         "target": "scope.satisfaction",
+         "amount": 0.06
+        },
+        {
+         "target": "scope.crime",
+         "amount": -0.04
+        },
+        {
+         "target": "quality.social",
+         "amount": 0.002
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.02,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "partial",
+      "label": "Financer une version réduite",
+      "hint": "Coût : la moitié, effets plus modestes",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.05
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.01,
+        "days": 20
+       }
+      ],
+      "outcome": "PARTIAL",
+      "project": {
+       "name": "Renouvellement urbain ({city}) (version réduite)",
+       "kind": "housing",
+       "durationDays": 1296,
+       "costParam": "amount",
+       "costFactor": 0.5,
+       "onCompletion": [
+        {
+         "target": "scope.satisfaction",
+         "amount": 0.03
+        },
+        {
+         "target": "scope.crime",
+         "amount": -0.02
+        },
+        {
+         "target": "quality.social",
+         "amount": 0.001
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.01,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "postpone",
+      "label": "Reporter la décision",
+      "hint": "La demande reviendra dans 45 jours",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.03
+       }
+      ],
+      "outcome": "POSTPONED",
+      "reaskAfterDays": 45
+     },
+     {
+      "id": "refuse",
+      "label": "Refuser",
+      "hint": "Aucun coût, mais mécontentement local",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.02,
+        "days": 10
+       },
+       {
+        "target": "opinion.group.low_income",
+        "amount": -0.002
+       },
+       {
+        "target": "opinion.group.urban",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "maxCityRank": 2
+  },
+  {
+   "id": "airport_noise",
+   "category": "TERRITORY",
+   "scope": "CITY",
+   "baseDailyProbability": 8.999999999999999e-05,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "Nuisances aériennes : {city} demande des mesures",
+   "modifiers": [],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.005,
+     "max": 0.02,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "airport_noise",
+    "sender": "MAYOR",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "insulate",
+      "label": "Financer l'insonorisation et limiter les vols de nuit",
+      "hint": "Coût : {amountText}",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 1.0
+       },
+       {
+        "target": "scope.satisfaction",
+        "amount": 0.04
+       },
+       {
+        "target": "sender.relation",
+        "amount": 0.1
+       },
+       {
+        "target": "economy.output",
+        "amount": -5e-05
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "insulate_only",
+      "label": "Financer seulement l'insonorisation",
+      "hint": "Coût : {amountText}",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 1.0
+       },
+       {
+        "target": "scope.satisfaction",
+        "amount": 0.02
+       },
+       {
+        "target": "sender.relation",
+        "amount": 0.04
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "refuse",
+      "label": "Refuser",
+      "hint": "Aucun coût",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.08
+       },
+       {
+        "target": "scope.satisfaction",
+        "amount": -0.02
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "maxCityRank": 2
+  }
+ ]
+}

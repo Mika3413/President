@@ -11,6 +11,7 @@
  "institutions": {
   "headOfStateTitle": "Chef de l'État",
   "headOfGovernmentTitle": "Président de la Fédération",
+  "headOfGovernmentTitleFemale": "Présidente de la Fédération",
   "honorificMale": "Monsieur le Président",
   "honorificFemale": "Madame la Présidente"
  },

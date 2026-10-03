@@ -295,7 +295,7 @@
        ]
       },
       {
-       "text": "J'ai vu que {recentNews} ; je vous adresse mes pensées.",
+       "text": "J'ai appris la nouvelle ({recentNews}) ; je vous adresse mes pensées.",
        "when": [
         "news:recent",
         "news:disaster",

@@ -675,6 +675,78 @@
        ]
       },
       {
+       "text": "Je mesure que l'actualité vous sollicite ({recentNews}) ; nos difficultés, elles, n'ont pas pris de vacances.",
+       "when": [
+        "news:recent",
+        "sender:elected",
+        "voice:direct"
+       ]
+      },
+      {
+       "text": "Les chaînes d'information tournent en boucle sur {recentNews}. Chez nous, on parle d'autre chose : de fins de mois et d'avenir.",
+       "when": [
+        "news:recent",
+        "sender:elected",
+        "voice:blunt"
+       ]
+      },
+      {
+       "text": "Je ne voudrais pas que {recentNews} fasse oublier ce qui se joue dans nos communes.",
+       "when": [
+        "news:recent",
+        "sender:elected",
+        "voice:warm"
+       ]
+      },
+      {
+       "text": "Au moment où l'attention nationale se porte ailleurs ({recentNews}), je me permets de rappeler que la France, c'est aussi nos territoires.",
+       "when": [
+        "news:recent",
+        "sender:elected",
+        "voice:formal"
+       ]
+      },
+      {
+       "text": "Malgré {recentNews}, nos services ont continué à travailler sur ce dossier ; en voici l'état.",
+       "when": [
+        "news:recent",
+        "sender:elected",
+        "voice:technical"
+       ]
+      },
+      {
+       "text": "Pendant que le pays a les yeux tournés vers {recentNews}, une autre histoire s'écrit ici, plus silencieuse.",
+       "when": [
+        "news:recent",
+        "sender:elected",
+        "voice:lyrical"
+       ]
+      },
+      {
+       "text": "Je sais que {recentNews} mobilise vos équipes ; ce dossier mérite néanmoins votre attention.",
+       "when": [
+        "news:recent",
+        "sender:official",
+        "voice:formal"
+       ]
+      },
+      {
+       "text": "Malgré {recentNews}, je dois vous saisir d'un autre sujet.",
+       "when": [
+        "news:recent",
+        "sender:official",
+        "voice:direct"
+       ]
+      },
+      {
+       "text": "Je n'ignore pas le contexte ({recentNews}) ; je serai donc concis.",
+       "when": [
+        "news:recent",
+        "sender:official",
+        "voice:technical"
+       ]
+      },
+      {
        "text": "Le pays est en guerre, je le sais, et je pèse mes mots ; mais la vie continue ici, et ses besoins aussi.",
        "when": [
         "world:war",

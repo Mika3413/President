@@ -16,30 +16,32 @@ class SenderResolver(private val ctx: SimulationContext) {
         return when (role) {
             SenderRole.MAYOR -> {
                 val city = scope?.id?.let { territory.cities[it] }
-                sender(city?.mayorId, "${titles.mayor} de ${cityName(city?.id)}")
+                sender(city?.mayorId) { f -> "${titles.mayor(f)} de ${cityName(city?.id)}" }
             }
-            SenderRole.PREFECT -> sender(dept?.let { territory.regions[it.region]?.prefectId }, "${titles.prefect} (${regionName(dept?.region)})")
-            SenderRole.REGION_PRESIDENT -> sender(dept?.let { territory.regions[it.region]?.presidentId }, "${titles.regionPresident} (${regionName(dept?.region)})")
-            SenderRole.DEPARTMENT_PRESIDENT -> sender(dept?.presidentId, "${titles.departmentPresident} (${departmentName(deptCode)})")
+            SenderRole.PREFECT -> sender(dept?.let { territory.regions[it.region]?.prefectId }) { f -> "${titles.prefect(f)} (${regionName(dept?.region)})" }
+            SenderRole.REGION_PRESIDENT -> sender(dept?.let { territory.regions[it.region]?.presidentId }) { f -> "${titles.regionPresident(f)} (${regionName(dept?.region)})" }
+            SenderRole.DEPARTMENT_PRESIDENT -> sender(dept?.presidentId) { f -> "${titles.departmentPresident(f)} (${departmentName(deptCode)})" }
             SenderRole.MINISTER -> {
                 val m = ctx.playerData.government!!.ministries.first { it.id == ministry }
-                sender(ctx.state.government.ministers[m.id], m.title)
+                sender(ctx.state.government.ministers[m.id]) { m.title }
             }
-            SenderRole.PRIME_MINISTER -> sender(ctx.state.government.primeMinisterId, ctx.playerData.definition.institutions.headOfGovernmentTitle)
-            SenderRole.SUBJECT -> sender(scope?.id, ministryTitleOf(scope?.id))
+            SenderRole.PRIME_MINISTER -> sender(ctx.state.government.primeMinisterId) { f -> ctx.playerData.definition.institutions.headOfGovernment(f) }
+            SenderRole.SUBJECT -> sender(scope?.id) { ministryTitleOf(scope?.id) }
             SenderRole.FOREIGN_LEADER -> {
                 val country = scope?.id?.let { ctx.state.countries[it] }
                 val def = scope?.id?.let { ctx.db.country(it).definition }
-                sender(country?.leaderId, "${def?.institutions?.headOfGovernmentTitle ?: ""} (${def?.name ?: ""})")
+                sender(country?.leaderId) { f -> "${def?.institutions?.headOfGovernment(f) ?: ""} (${def?.name ?: ""})" }
             }
             SenderRole.NONE -> Sender(null, "", "Cabinet présidentiel")
         }
     }
 
-    private fun sender(id: String?, title: String): Sender {
+    /** [title] reçoit le genre de la personne pour accorder son titre (« Préfète », « Première ministre »). */
+    private fun sender(id: String?, title: (Boolean) -> String): Sender {
         val c = id?.let { ctx.state.characters[it] }
-        val label = c?.let { "${it.fullName}, $title" } ?: title
-        return Sender(c, title, label)
+        val t = title(c?.female ?: false)
+        val label = c?.let { "${it.fullName}, $t" } ?: t
+        return Sender(c, t, label)
     }
 
     fun departmentOf(scope: ScopeRef?): String? {
