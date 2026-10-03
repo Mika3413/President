@@ -357,7 +357,7 @@ add(event("nobel_prize", "POLITICS", "Une chercheuse française reçoit le prix 
   [V("Dans ses premières déclarations, elle a plaidé pour davantage de moyens pour la recherche."),
    V("C'est une occasion unique de valoriser la science française.")],
   [V("Je vous propose de saisir cet élan avec un plan pour la recherche, ou simplement de saluer cette réussite."),
-   V("Le pays attend un geste.")]),
+   V("Le pays attend un geste.")], positive=True),
  "MINISTER", "honor", [
   opt("plan", "Annoncer un plan pour la recherche", "Coût : 1 Md€ ; croissance potentielle", [E("budget.oneOff", 1.0), E("economy.potentialGrowth", 0.0004), E("quality.education", 0.002), E("opinion.national", 0.006)], "ACCEPTED"),
   opt("honor", "La recevoir à l'Élysée et saluer sa réussite", "Aucun coût", [E("opinion.national", 0.003)], "NEUTRAL")],

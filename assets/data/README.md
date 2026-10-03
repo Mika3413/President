@@ -22,7 +22,20 @@ geo/                           Géométrie (générée par tools/mapgen)
 ```
 
 Plusieurs fichiers sont produits par les scripts de `tools/datagen/` (modifiez le script puis
-relancez-le, plutôt que le JSON).
+relancez-le, plutôt que le JSON). Ordre pour les événements et dialogues :
+`dialogue_fr.py`, `events_fr.py`, `events_crises_fr.py`, `events_local_fr.py`, `events_national_fr.py`,
+puis **`finalize_dialogue.py` en dernier** (formulations tirées des options, JSON compact).
+
+### Dialogues
+
+Syntaxe des textes : `{variable}`, `[[mot]]` (synonyme du lexique), `{{a|b|c}}` (alternative).
+Étiquettes utiles : `voice:formal|direct|warm|technical|lyrical|blunt` (style propre à chaque
+personnage), `sender:elected|official|foreign`, `relation:*`, `history:*` (avec `{lastTopic}`,
+`{lastDate}`), `news:recent` (avec `{recentNews}`), `mood:*` et `topic:*` (entretiens).
+Le moteur ne réemploie jamais une phrase déjà écrite par le même personnage, ni une phrase lue dans
+les 40 derniers messages. Variables de lieu accordées : `{departmentIn}` (« dans le Finistère »),
+`{departmentOf}`, `{departmentThe}`, `{infrastructureAt}`, `{infrastructureOf}`, `{foreignIn}`
+(« en Italie »), `{foreignOf}`, `{foreignThe}`, `{ForeignThe}`, `{foreignTo}`.
 
 ## Ajouter un pays IA
 
@@ -49,6 +62,9 @@ Il faudra aussi sa géométrie (`tools/mapgen`).
 | `params` | valeurs tirées (montants...), éventuellement multipliées par une variable (`scaleBy`) |
 | `immediateEffects` | effets au déclenchement |
 | `message` | modèle de dialogue, expéditeur, délai de réponse, options, option par défaut |
+
+Une option peut provoquer la suite d'une histoire : effet `chain.<id>` avec `amount` = probabilité
+(0 à 1) et `delayDays`. L'épisode suivant a en général `baseDailyProbability: 0`.
 
 ### Variables (`variable`, `scaleBy`)
 

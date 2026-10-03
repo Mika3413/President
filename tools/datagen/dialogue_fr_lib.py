@@ -218,7 +218,99 @@ SIGN = [V("{sender}\n{senderTitle}"), V("{sender}, {senderTitle}"), V("— {send
         V("{senderLast}", when=["voice:direct"]), V("{sender}\n{senderTitle}", when=["voice:lyrical"])]
 
 
-def letter(id, subjects, context, problem, request, extra=(), history=None, closing=None, news=True):
+# --- Enrichissement automatique ------------------------------------------------------------------
+# Chaque phrase propre à un courrier est déclinée avec des tournures d'introduction, selon le style
+# de l'auteur : la même information n'est jamais formulée deux fois de la même façon.
+LEADINS = {
+ "context": {
+  None: ["Les faits sont les suivants : ", "Pour être précis, ", "Je vous le résume : ", "Voici la situation : "],
+  "formal": ["!J'ai le regret de porter à votre connaissance que ", "Il m'appartient de vous informer que ", "Je dois vous faire savoir que "],
+  "direct": ["En clair : ", "Concrètement, ", "Les faits : "],
+  "warm": ["!Je dois vous confier, avec tristesse, que ", "!C'est avec inquiétude que je vous écris : ", "Je vous le dis avec le cœur : "],
+  "technical": ["Selon les dernières données disponibles, ", "D'après les remontées de terrain, ", "Les relevés de nos services montrent que "],
+  "lyrical": ["Imaginez la scène : ", "C'est une réalité que l'on peine à croire : ", "Voilà où nous en sommes : "],
+  "blunt": ["Soyons clairs : ", "!Je ne vais pas tourner autour du pot : ", "!Inutile de se voiler la face : "],
+ },
+ "problem": {
+  None: ["À cela s'ajoute que ", "!Plus préoccupant encore, ", "Il faut aussi savoir que ", "Surtout, "],
+  "formal": ["Je me permets d'ajouter que ", "Il convient de souligner que "],
+  "direct": ["Et ce n'est pas tout : ", "Autre point : "],
+  "warm": ["!Ce qui m'inquiète le plus, c'est que ", "Ce qui me touche particulièrement, c'est que "],
+  "technical": ["Les projections indiquent que ", "Nos analyses montrent que "],
+  "lyrical": ["Et pendant ce temps, ", "Derrière les chiffres, il y a ceci : "],
+  "blunt": ["!Le pire, c'est que ", "Et franchement, "],
+ },
+ "request": {
+  None: ["C'est pourquoi ", "En conséquence, ", "Dans ces conditions, "],
+  "formal": ["J'ai donc l'honneur de vous indiquer que ", "Aussi, "],
+  "direct": ["Donc : ", "Ma demande est simple : "],
+  "warm": ["C'est avec confiance que je vous l'écris : ", "Je me tourne vers vous, car "],
+  "technical": ["Au vu de ces éléments, ", "Sur la base de cette analyse, "],
+  "lyrical": ["Alors, aujourd'hui, ", "Il est temps d'agir : "],
+  "blunt": ["Alors voilà : ", "Je vais être direct : "],
+ },
+}
+# Premiers mots qui peuvent passer en minuscule après une tournure d'introduction.
+LOWERABLE = set("""Le La Les Un Une Des Plusieurs Nos Notre Nous Je Il Elle Ils Elles Ce Cette Ces Chaque Depuis Sans Si Après
+Avec Dans Pour Faute Toute Tous Toutes Aucun Aucune Trois Deux Quatre Cinq Six Sept Huit Neuf Dix Une Cet Leur Leurs Mon Ma Mes
+Votre Vos Chaque Certains Certaines Malgré Selon Grâce Faute Entre Sur Sous Avant Pendant Lors Face Plus Moins On Personne Rien
+Tout Quelques Près Huit Vingt Trente Quarante Cinquante Cent Mille Ni Pas Seule Seul Désormais Hier Ce Cela Ça""".split())
+
+
+def _lower_first(text):
+    first = text.split(" ", 1)[0]
+    word = first.split("'", 1)[0] + ("'" if "'" in first else "")
+    if first.startswith("L'") or first.startswith("D'") or first.startswith("J'") or first.startswith("C'") or first.startswith("S'") or first.startswith("N'") or first.startswith("Qu'"):
+        return text[0].lower() + text[1:]
+    if first in LOWERABLE or word.rstrip("'") in LOWERABLE:
+        return text[0].lower() + text[1:]
+    return None
+
+
+def _elide(leadin, rest):
+    # « que il » -> « qu'il », « que elle » -> « qu'elle », « que un » -> « qu'un »...
+    if leadin.endswith("que ") and rest[:1].lower() in "aeiouyéèêh":
+        return leadin[:-2] + "'" + rest
+    return leadin + rest
+
+
+FIRST_PERSON = ("Je ", "J'", "Nous ", "Mon ", "Ma ", "Mes ", "Notre ", "Nos ")
+
+
+def enrich(section_id, variants, positive=False):
+    """positive : courrier porteur d'une bonne nouvelle, sans tournure alarmiste."""
+    table = LEADINS.get(section_id)
+    if not table:
+        return variants
+    out = list(variants)
+    for v in variants:
+        if section_id != "request" and v["text"].startswith(FIRST_PERSON):
+            continue
+        lowered = _lower_first(v["text"])
+        if lowered is None or "\n" in v["text"]:
+            continue
+        for voice, leadins in table.items():
+            for lead in leadins:
+                if lead.startswith("!"):
+                    if positive:
+                        continue
+                    lead = lead[1:]
+                nv = dict(v)
+                nv["text"] = _elide(lead, lowered)
+                when = list(v.get("when", []))
+                if voice:
+                    if any(w.startswith("voice:") and w != "voice:" + voice for w in when):
+                        continue
+                    if "voice:" + voice not in when: when.append("voice:" + voice)
+                if when: nv["when"] = when
+                out.append(nv)
+    return out
+
+
+def letter(id, subjects, context, problem, request, extra=(), history=None, closing=None, news=True, positive=False):
+    context = enrich("context", context, positive)
+    problem = enrich("problem", problem, positive)
+    request = enrich("request", request, positive)
     sections = [sec("intro", INTROS)]
     sections.append(sec("history", history or HISTORY, optional=True, chance=0.85))
     if news:
@@ -227,3 +319,36 @@ def letter(id, subjects, context, problem, request, extra=(), history=None, clos
     for s in extra: sections.append(s)
     sections += [sec("request", request), sec("closing", closing or CLOSINGS_FORMAL), sec("signature", SIGN)]
     return {"id": id, "subject": subjects, "sections": sections}
+
+
+# --- Demandes rédigées à partir des options réelles de l'événement ----------------------------------
+NUMBERS = {2: "deux", 3: "trois", 4: "quatre", 5: "cinq"}
+
+
+def _option_phrase(label):
+    return label[0].lower() + label[1:] if label[:1].isupper() and not label[:2].isupper() else label
+
+
+def option_requests(options):
+    labels = [_option_phrase(o["label"]) for o in options]
+    if len(labels) < 2:
+        return []
+    n = NUMBERS.get(len(labels), str(len(labels)))
+    listing = ", ".join(labels[:-1]) + " ou " + labels[-1]
+    semis = " ; ".join(labels[:-1]) + " ; ou " + labels[-1]
+    return voiced({
+        "formal": [f"Je soumets à votre arbitrage les options suivantes : {listing}.", f"{n.capitalize()} options me paraissent envisageables : {listing}."],
+        "direct": [f"{n.capitalize()} possibilités : {listing}. À vous de trancher.", f"Options : {listing}."],
+        "warm": [f"Je vous fais confiance pour choisir entre ces {n} voies : {listing}.", f"Quelle que soit votre décision — {listing} —, je serai à vos côtés."],
+        "technical": [f"Options étudiées par mes services : {semis}.", f"Scénarios chiffrés : {semis}. Le détail est à votre disposition."],
+        "lyrical": [f"{n.capitalize()} chemins s'ouvrent devant nous : {listing}.", f"L'histoire retiendra notre choix : {listing}."],
+        "blunt": [f"Il faut choisir : {listing}.", f"{n.capitalize()} options, aucune n'est indolore : {listing}."],
+    }, generic=[V(f"Plusieurs options s'offrent à vous : {listing}."), V(f"Les choix possibles sont les suivants : {listing}. Chacun a son prix.")])
+
+
+def with_option_requests(template, options):
+    """Ajoute à la section « request » d'un modèle des formulations tirées des options."""
+    for section in template["sections"]:
+        if section["id"] == "request":
+            section["variants"] += option_requests(options)
+    return template
