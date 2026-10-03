@@ -24,8 +24,8 @@ object Theme {
     val bad = Color.valueOf("e05a4f")
 
     val land = Color.valueOf("3a4a3f")
-    val landForeign = Color.valueOf("33403a")
-    val landSimulated = Color.valueOf("3d4e5c")
+    val landForeign = Color.valueOf("3e4a3c")
+    val landSimulated = Color.valueOf("4d5a4a")
     val france = Color.valueOf("4a5f74")
     val border = Color.valueOf("0b1118")
     val regionBorder = Color.valueOf("d7e3ee")
