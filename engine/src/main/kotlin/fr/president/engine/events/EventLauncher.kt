@@ -83,13 +83,20 @@ class EventLauncher(private val ctx: SimulationContext) {
         val dept = senders.departmentOf(scope)
         if (dept != null) {
             vars["department"] = senders.departmentName(dept)
+            ctx.playerData.territory?.departments?.firstOrNull { it.code == dept }?.let { d ->
+                vars += fr.president.engine.data.PlaceNames.department(d.name, d.article)
+            }
             ctx.state.territory.departments[dept]?.let { vars["region"] = senders.regionName(it.region) }
         }
         when (scope.type) {
             EventScope.CITY -> vars["city"] = senders.cityName(scope.id)
-            EventScope.INFRASTRUCTURE -> vars["infrastructure"] = ctx.catalog.item(scope.id!!)?.name ?: ""
+            EventScope.INFRASTRUCTURE -> {
+                val name = ctx.catalog.item(scope.id!!)?.name ?: ""
+                vars["infrastructure"] = name
+                if (name.isNotBlank()) vars += fr.president.engine.data.PlaceNames.infrastructure(name)
+            }
             EventScope.MINISTER -> ctx.state.characters[scope.id]?.let { vars["minister"] = it.fullName }
-            EventScope.FOREIGN_COUNTRY -> vars["foreignCountry"] = ctx.db.country(scope.id!!).definition.name
+            EventScope.FOREIGN_COUNTRY -> vars += fr.president.engine.data.CountryNames(ctx.db.country(scope.id!!).definition).variables("foreign")
             else -> Unit
         }
         if (scope.type != EventScope.CITY && dept != null) {

@@ -36,6 +36,12 @@ object Formatting {
         return "${d.dayOfMonth} ${monthNames[d.monthValue - 1]} ${d.year}"
     }
 
+    /** « mars 2029 ». */
+    fun monthYear(t: fr.president.engine.time.WorldTime): String {
+        val d = t.toDateTime()
+        return "${monthNames[d.monthValue - 1]} ${d.year}"
+    }
+
     fun population(v: Long): String = when {
         v >= MILLION -> oneDecimal.format(v / MILLION) + " M hab."
         else -> integer.format(v) + " hab."

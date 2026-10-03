@@ -82,7 +82,10 @@ class DiplomacyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
         into.add(ui.label(if (traits.isEmpty()) "Tempérament encore mal connu de nos services." else "Réputé " + traits.joinToString(", ") + ".", "muted", wrap = true)).row()
         into.add(ui.label("Relations : ${relation.label} · Confiance : ${relation.trustLabel}", "bold")).padTop(4f).row()
         relation.factors.forEach { f -> into.add(ui.label("• ${f.label}", "small", if (f.weight >= 0) Theme.good else Theme.bad, wrap = true)).row() }
+        talks.build(into, leader.id, leader.fullName)
     }
+
+    private val talks = fr.president.game.ui.widgets.ConversationControls(ui, nav)
 
     private var confirmWar = false
 

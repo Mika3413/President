@@ -10,6 +10,8 @@ enum class DetailLevel { FULL, LIGHT }
 data class CountryDefinition(
     val id: String,
     val name: String,
+    /** Article défini (« la », « le », « l' », « les ») pour accorder le nom dans les textes. */
+    val article: String = "",
     val adjective: String,
     val language: String,
     val namePool: String,

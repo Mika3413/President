@@ -452,6 +452,27 @@
    "halfLifeDays": 540,
    "affectsTrust": true,
    "defaultWeight": -0.03
+  },
+  {
+   "id": "TALK_CORDIAL",
+   "positiveLabel": "Entretiens cordiaux",
+   "negativeLabel": "Entretiens décevants",
+   "halfLifeDays": 200,
+   "defaultWeight": 0.03
+  },
+  {
+   "id": "TALK_TENSE",
+   "positiveLabel": "Franchise appréciée",
+   "negativeLabel": "Entretien tendu",
+   "halfLifeDays": 200,
+   "defaultWeight": -0.04
+  },
+  {
+   "id": "WARNING",
+   "positiveLabel": "Fermeté respectée",
+   "negativeLabel": "Mise en garde",
+   "halfLifeDays": 300,
+   "defaultWeight": -0.03
   }
  ],
  "evaluation": {

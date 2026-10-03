@@ -55,7 +55,8 @@
       "dialogue/fr/society.json",
       "dialogue/fr/government.json",
       "dialogue/fr/diplomacy.json",
-      "dialogue/fr/crises.json"
+      "dialogue/fr/crises.json",
+      "dialogue/fr/conversations.json"
     ],
     "names": {
       "fr": "names/fr.json",

@@ -38,6 +38,8 @@ C = [
  ("IND","Inde","indien","hi","hi",1440.0,"Premier ministre","Monsieur le Premier ministre","Madame la Première ministre",3900,0.065,0.045,0.075,0.82,0.19,0.27,0,False,13,[],0.7,75,True,(0,0,0),("New Delhi",77.21,28.61),(0.45,0.75,0.45,0.75,0.5,0.6)),
  ("BRA","Brésil","brésilien","pt","pt",212.0,"Président de la République","Monsieur le Président","Madame la Présidente",2100,0.021,0.045,0.068,0.88,0.38,0.45,0,False,8,[],0.6,22,False,(0,0,0),("Brasilia",-47.88,-15.79),(0.3,0.6,0.6,0.6,0.5,0.4)),
 ]
+# Article défini, pour accorder le nom du pays dans les textes (« de l'Italie », « au Brésil »).
+ARTICLES = {"AUT": "l'", "BEL": "la", "BLR": "la", "BRA": "le", "CAN": "le", "CHE": "la", "CHN": "la", "DEU": "l'", "DZA": "l'", "EGY": "l'", "ESP": "l'", "GBR": "le", "GRC": "la", "IND": "l'", "ITA": "l'", "JPN": "le", "MAR": "le", "NLD": "les", "NOR": "la", "POL": "la", "PRT": "le", "ROU": "la", "RUS": "la", "SAU": "l'", "SWE": "la", "TUN": "la", "TUR": "la", "UKR": "l'", "USA": "les"}
 countries = []
 for (cid,name,adj,lang,pool,pop,hog,hm,hf,gdp,g,inf,u,debt,rev,spend,elec,inter,trade,alli,intel,mil,nuc,forces,cap,temper) in C:
     a,n,o,t,c,m = temper
@@ -49,7 +51,7 @@ for (cid,name,adj,lang,pool,pop,hog,hm,hf,gdp,g,inf,u,debt,rev,spend,elec,inter,
          "aggregateBudget": {"revenueRatio": rev, "spendingRatio": spend}}
     json.dump(e, open(f"economy/{cid}_2026_10.json", "w"), ensure_ascii=False, indent=1)
     os.makedirs(f"countries/{cid}", exist_ok=True)
-    d = {"id": cid, "name": name, "adjective": adj, "language": lang, "namePool": pool, "detail": "LIGHT", "population": int(pop*1e6),
+    d = {"id": cid, "name": name, "article": ARTICLES[cid], "adjective": adj, "language": lang, "namePool": pool, "detail": "LIGHT", "population": int(pop*1e6),
          "economy": f"economy/{cid}_2026_10.json",
          "institutions": {"headOfStateTitle": "Chef de l'État", "headOfGovernmentTitle": hog, "honorificMale": hm, "honorificFemale": hf},
          "leader": {"traitRanges": {"aggressiveness": rng(a), "nationalism": rng(n), "openness": rng(o), "toughness": rng(t), "caution": rng(c), "militarism": rng(m)},

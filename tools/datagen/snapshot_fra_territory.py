@@ -1,5 +1,7 @@
 """Génère une partie des données du snapshot FRANCE 2026-10 (valeurs arrondies, sources publiques).
 Exécuter depuis n'importe où : écrit dans assets/data/."""
+# Article défini de chaque département (« le Finistère », « la Gironde », « l'Ain », « les Landes »).
+ARTICLES = {"Ain": "l'", "Aisne": "l'", "Allier": "l'", "Alpes-de-Haute-Provence": "les", "Hautes-Alpes": "les", "Alpes-Maritimes": "les", "Ardèche": "l'", "Ardennes": "les", "Ariège": "l'", "Aube": "l'", "Aude": "l'", "Aveyron": "l'", "Bouches-du-Rhône": "les", "Calvados": "le", "Cantal": "le", "Charente": "la", "Charente-Maritime": "la", "Cher": "le", "Corrèze": "la", "Corse-du-Sud": "la", "Haute-Corse": "la", "Côte-d'Or": "la", "Côtes-d'Armor": "les", "Creuse": "la", "Dordogne": "la", "Doubs": "le", "Drôme": "la", "Eure": "l'", "Eure-et-Loir": "l'", "Finistère": "le", "Gard": "le", "Haute-Garonne": "la", "Gers": "le", "Gironde": "la", "Hérault": "l'", "Ille-et-Vilaine": "l'", "Indre": "l'", "Indre-et-Loire": "l'", "Isère": "l'", "Jura": "le", "Landes": "les", "Loir-et-Cher": "le", "Loire": "la", "Haute-Loire": "la", "Loire-Atlantique": "la", "Loiret": "le", "Lot": "le", "Lot-et-Garonne": "le", "Lozère": "la", "Maine-et-Loire": "le", "Manche": "la", "Marne": "la", "Haute-Marne": "la", "Mayenne": "la", "Meurthe-et-Moselle": "la", "Meuse": "la", "Morbihan": "le", "Moselle": "la", "Nièvre": "la", "Nord": "le", "Oise": "l'", "Orne": "l'", "Pas-de-Calais": "le", "Puy-de-Dôme": "le", "Pyrénées-Atlantiques": "les", "Hautes-Pyrénées": "les", "Pyrénées-Orientales": "les", "Bas-Rhin": "le", "Haut-Rhin": "le", "Rhône": "le", "Haute-Saône": "la", "Saône-et-Loire": "la", "Sarthe": "la", "Savoie": "la", "Haute-Savoie": "la", "Paris": "", "Seine-Maritime": "la", "Seine-et-Marne": "la", "Yvelines": "les", "Deux-Sèvres": "les", "Somme": "la", "Tarn": "le", "Tarn-et-Garonne": "le", "Var": "le", "Vaucluse": "le", "Vendée": "la", "Vienne": "la", "Haute-Vienne": "la", "Vosges": "les", "Yonne": "l'", "Territoire de Belfort": "le", "Essonne": "l'", "Hauts-de-Seine": "les", "Seine-Saint-Denis": "la", "Val-de-Marne": "le", "Val-d'Oise": "le"}
 import os
 os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "assets", "data"))
 import json
@@ -139,7 +141,7 @@ for line in pops.splitlines():
   if code in leaning: prof["politicalLeaning"]=leaning[code]
   for key,table in (("healthAccess",HEALTH),("crime",CRIME),("industryShare",INDUSTRY),("agricultureShare",AGRI),("pollution",POLL)):
     if code in table: prof[key]=table[code]
-  d={"code":code,"name":name,"region":R[code],"population":pop}
+  d={"code":code,"name":name,"article":ARTICLES[name],"region":R[code],"population":pop}
   if prof: d["profile"]=prof
   depts.append(d)
 cities_raw="""paris|Paris|75|2.352|48.857|2133000|13100000|1

@@ -6,7 +6,8 @@
    "essentiel",
    "déterminant",
    "structurant",
-   "décisif"
+   "décisif",
+   "de premier plan"
   ],
   "urgent": [
    "urgent",
@@ -18,94 +19,110 @@
    "difficulté",
    "situation préoccupante",
    "problème",
-   "situation délicate"
+   "situation délicate",
+   "impasse"
   ],
   "residents": [
    "habitants",
    "administrés",
    "concitoyens",
    "familles",
-   "usagers"
+   "usagers",
+   "riverains"
   ],
   "project": [
    "projet",
    "programme",
    "chantier",
-   "dossier"
+   "dossier",
+   "plan"
   ],
   "quickly": [
    "rapidement",
    "sans tarder",
    "dans les meilleurs délais",
    "au plus vite",
-   "dès que possible"
+   "dès que possible",
+   "à brève échéance"
   ],
   "concern": [
    "préoccupation",
    "inquiétude",
-   "crainte"
+   "crainte",
+   "appréhension"
   ],
   "support": [
    "soutien",
    "appui",
    "concours",
-   "engagement"
+   "engagement",
+   "aide"
   ],
   "crucial": [
    "crucial",
    "vital",
    "indispensable",
-   "capital"
+   "capital",
+   "primordial"
   ],
   "worsen": [
    "se dégrade",
    "s'aggrave",
    "se détériore",
-   "empire"
+   "empire",
+   "se tend"
   ],
   "decision": [
    "décision",
    "arbitrage",
-   "choix"
+   "choix",
+   "réponse"
   ],
   "examine": [
    "examiner",
    "étudier",
    "considérer",
-   "regarder avec attention"
+   "regarder avec attention",
+   "instruire"
   ],
   "grateful": [
    "reconnaissant",
    "sensible à votre attention",
-   "très attentif à votre réponse"
+   "très attentif à votre réponse",
+   "obligé"
   ],
   "today": [
    "aujourd'hui",
    "à ce jour",
    "en ce moment",
-   "actuellement"
+   "actuellement",
+   "désormais"
   ],
   "strongly": [
    "vivement",
    "fermement",
    "instamment",
-   "solennellement"
+   "solennellement",
+   "avec insistance"
   ],
   "situation": [
    "situation",
    "conjoncture",
-   "contexte"
+   "contexte",
+   "état des lieux"
   ],
   "tension": [
    "tension",
    "exaspération",
    "colère",
-   "lassitude"
+   "lassitude",
+   "inquiétude"
   ],
   "measure": [
    "mesure",
    "initiative",
-   "réponse"
+   "réponse",
+   "geste"
   ],
   "partner": [
    "partenaire",
@@ -115,7 +132,50 @@
   "cooperation": [
    "coopération",
    "collaboration",
-   "partenariat"
+   "partenariat",
+   "relation de travail"
+  ],
+  "territory": [
+   "territoire",
+   "bassin de vie",
+   "département",
+   "secteur"
+  ],
+  "people": [
+   "la population",
+   "nos concitoyens",
+   "les habitants",
+   "les familles",
+   "les élus locaux"
+  ],
+  "soon": [
+   "prochainement",
+   "dans les semaines à venir",
+   "très vite",
+   "bientôt"
+  ],
+  "honestly": [
+   "franchement",
+   "sincèrement",
+   "en toute honnêteté",
+   "sans détour"
+  ],
+  "deeply": [
+   "profondément",
+   "sincèrement",
+   "vivement",
+   "réellement"
+  ],
+  "trust": [
+   "confiance",
+   "loyauté",
+   "bonne foi"
+  ],
+  "hope": [
+   "espère",
+   "souhaite",
+   "forme le vœu",
+   "veux croire"
   ]
  }
 }

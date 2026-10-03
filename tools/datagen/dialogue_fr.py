@@ -40,9 +40,9 @@ details = {"id": "territorial_request_details", "subject": [V("Précisions")], "
                     V("Nous sommes ouverts à un phasage des travaux pour alléger l'effort annuel de l'État.")], optional=True, chance=0.8)]}
 
 hospital = letter("hospital_overload",
- [V("Urgences saturées dans le département {department}"), V("Alerte hospitalière : {department}"), V("Situation sanitaire préoccupante à {city}", when=["has:city"]),
-  V("Hôpitaux du département {department} : appel à l'État")],
- [V("Les services d'urgence du département {department} fonctionnent depuis plusieurs semaines au-delà de leurs capacités."),
+ [V("Urgences saturées {departmentIn}"), V("Alerte hospitalière : {department}"), V("Situation sanitaire préoccupante à {city}", when=["has:city"]),
+  V("Hôpitaux {departmentOf} : appel à l'État")],
+ [V("Les services d'urgence {departmentOf} fonctionnent depuis plusieurs semaines au-delà de leurs capacités."),
   V("Les soignants de l'hôpital de {city} m'alertent quotidiennement sur leur épuisement.", when=["has:city"]),
   V("Les soignants des hôpitaux du département m'alertent quotidiennement sur leur épuisement."),
   V("Faute de lits disponibles, des patients patientent désormais plus de vingt-quatre heures sur des brancards."),
@@ -57,11 +57,11 @@ hospital = letter("hospital_overload",
   V("J'en appelle à votre arbitrage : {amountText} suffiraient à rouvrir les lits fermés.")])
 
 factory = letter("factory_closure",
- [V("Menace sur {jobs} emplois dans le département {department}"), V("Fermeture annoncée d'un site industriel près de {city}", when=["has:city"]), V("Fermeture annoncée d'un site industriel ({department})"),
+ [V("Menace sur {jobs} emplois {departmentIn}"), V("Fermeture annoncée d'un site industriel près de {city}", when=["has:city"]), V("Fermeture annoncée d'un site industriel ({department})"),
   V("Urgence industrielle : {department}"), V("Plan social : {jobs} emplois menacés")],
  [V("La direction d'un grand groupe industriel vient d'annoncer son intention de fermer son site près de {city}.", when=["has:city"]),
-  V("La direction d'un grand groupe industriel vient d'annoncer son intention de fermer son site dans le département {department}."),
-  V("Un site industriel historique du département {department} est menacé de fermeture."),
+  V("La direction d'un grand groupe industriel vient d'annoncer son intention de fermer son site {departmentIn}."),
+  V("Un site industriel historique {departmentOf} est menacé de fermeture."),
   V("La hausse des coûts de l'énergie a fragilisé l'usine, qui emploie {jobs} salariés.", when=["economy:bad"]),
   V("Malgré un carnet de commandes correct, le groupe souhaite délocaliser sa production.")],
  [V("Ce sont {jobs} emplois directs, et bien davantage chez les sous-traitants, qui sont en jeu."),
@@ -73,10 +73,10 @@ factory = letter("factory_closure",
   V("Une aide publique de {amountText} pourrait sauver l'essentiel des emplois.")])
 
 nuclear = letter("nuclear_incident",
- [V("Incident technique à {infrastructure}"), V("Arrêt de {infrastructure} : point de situation"), V("Note urgente : {infrastructure}")],
- [V("Un incident technique a conduit à l'arrêt automatique d'un réacteur de {infrastructure}."),
-  V("Les équipes de {infrastructure} ont procédé à la mise à l'arrêt d'une unité après la détection d'une anomalie."),
-  V("L'Autorité de sûreté a été immédiatement informée d'un événement sur {infrastructure}.")],
+ [V("Incident technique {infrastructureAt}"), V("Arrêt {infrastructureOf} : point de situation"), V("Note urgente : {infrastructure}")],
+ [V("Un incident technique a conduit à l'arrêt automatique d'un réacteur {infrastructureOf}."),
+  V("Les équipes {infrastructureOf} ont procédé à la mise à l'arrêt d'une unité après la détection d'une anomalie."),
+  V("L'Autorité de sûreté a été immédiatement informée d'un événement sur le site {infrastructureOf}.")],
  [V("Il n'y a aucune conséquence pour la population, mais l'arrêt devrait durer environ {days} jours."),
   V("L'installation restera indisponible quelques semaines, ce qui réduit nos marges de production électrique."),
   V("L'état général de la centrale explique en partie cet incident ; un entretien renforcé est recommandé.", when=["urgency:high"]),
@@ -87,10 +87,10 @@ nuclear = letter("nuclear_incident",
   V("Je recommande un redémarrage rapide : chaque jour d'arrêt coûte cher.", when=["trait:pragmatic"])])
 
 refinery = letter("refinery_accident",
- [V("Accident à la {infrastructure}"), V("Incendie industriel : {infrastructure}"), V("Point de situation — {infrastructure}")],
- [V("Un incendie s'est déclaré cette nuit sur le site de la {infrastructure}."),
-  V("Une explosion a été entendue à plusieurs kilomètres de la {infrastructure}."),
-  V("Les secours sont intervenus en nombre sur la {infrastructure} après un accident industriel.")],
+ [V("Accident {infrastructureAt}"), V("Incendie industriel : {infrastructure}"), V("Point de situation — {infrastructure}")],
+ [V("Un incendie s'est déclaré cette nuit sur le site {infrastructureOf}."),
+  V("Une explosion a été entendue à plusieurs kilomètres {infrastructureOf}."),
+  V("Les secours sont intervenus en nombre sur le site {infrastructureOf} après un accident industriel.")],
  [V("Les riverains s'inquiètent de la qualité de l'air et demandent des comptes."),
   V("Le site restera fermé plusieurs semaines ; l'approvisionnement en carburant de la région pourrait être perturbé."),
   V("Le vieillissement des installations est pointé du doigt par les syndicats.")],
@@ -131,11 +131,11 @@ heat = letter("heatwave",
   V("Le dispositif habituel peut suffire, mais un renforcement protégerait mieux les plus vulnérables.")])
 
 flood = letter("flood",
- [V("Inondations : {department}"), V("Crues dans le département {department}"), V("Catastrophe naturelle : {department}")],
- [V("De fortes pluies ont provoqué des crues dans le département {department}."),
+ [V("Inondations : {department}"), V("Crues {departmentIn}"), V("Catastrophe naturelle : {department}")],
+ [V("De fortes pluies ont provoqué des crues {departmentIn}."),
   V("Plusieurs communes autour de {city} sont sous les eaux.", when=["has:city"]),
   V("Plusieurs communes du département sont sous les eaux."),
-  V("Les cours d'eau du département {department} ont atteint des niveaux records.")],
+  V("Les cours d'eau {departmentOf} ont atteint des niveaux records.")],
  [V("Des centaines d'habitations ont été évacuées et les dégâts sont considérables."),
   V("Les sinistrés attendent un geste fort de l'État."),
   V("Les agriculteurs du secteur ont perdu une partie de leurs récoltes.")],
@@ -172,56 +172,16 @@ welcome = {"id": "welcome", "subject": [V("Premiers jours à l'Élysée"), V("Bi
  sec("closing", [V("Le gouvernement est à votre disposition."), V("Je reste à vos côtés pour mettre en œuvre votre projet.")]),
  sec("signature", SIGN)]}
 
-# Diplomatie
-D_INTRO = [V("{honorific},"), V("{honorific}, cher collègue,", when=["relation:good"]),
- V("{honorific}, au nom du gouvernement de {foreignCountry},"),
- V("{honorific}, j'espère que ce message vous trouve en bonne santé.", when=["trait:warm"]),
- V("{honorific}, allons droit au but.", when=["trait:pragmatic"])]
-D_CLOSE = [V("Avec ma haute considération."), V("Bien cordialement.", when=["relation:good"]),
- V("Dans l'attente de votre réponse."), V("Je vous adresse mes salutations distinguées."),
- V("Au plaisir de poursuivre nos échanges.", when=["trait:warm"])]
-proposal = {"id": "diplomatic_proposal", "subject": [V("Proposition du gouvernement de {foreignCountry}"), V("{foreignCountry} : proposition d'accord"), V("Une offre de {foreignCountry}")], "sections": [
- sec("intro", D_INTRO),
- sec("memory", [V("À la suite de notre coopération récente, je souhaite aller plus loin.", when=["history:cooperated"]),
-                V("Nos échanges passés n'ont pas toujours abouti, mais je crois en une nouvelle étape.", when=["history:refused"]),
-                V("Nos deux pays entretiennent des liens anciens.", when=["relation:good"]),
-                V("Nos relations ont connu des moments difficiles ; cette proposition se veut un geste.", when=["relation:bad"])], optional=True),
- sec("motive", [V("Mon gouvernement souhaite {motive}."), V("Afin de {motive}, je vous soumets la proposition suivante."),
-                V("Nous avons besoin de {motive} et pensons que la France peut y contribuer.")]),
- sec("terms", [V("Termes proposés :\n{clauses}"), V("Voici ce que nous proposons :\n{clauses}")]),
- sec("request", [V("Je serais heureux de connaître votre position."), V("Nous attendons votre réponse dans les prochains jours."),
-                 V("Nous sommes ouverts à la discussion sur les modalités.", when=["trait:pragmatic"]),
-                 V("Je vous serais reconnaissant de ne pas laisser cette offre sans réponse.", when=["trait:proud"])]),
- sec("closing", D_CLOSE), sec("signature", SIGN)]}
-response = {"id": "diplomatic_response", "subject": [
-  V("Réponse de {foreignCountry} : accord", when=["response:accepted"]), V("{foreignCountry} accepte votre proposition", when=["response:accepted"]),
-  V("Réponse de {foreignCountry} : refus", when=["response:refused"]), V("{foreignCountry} décline votre proposition", when=["response:refused"]),
-  V("Contre-proposition de {foreignCountry}", when=["response:countered"]), V("{foreignCountry} propose d'amender l'accord", when=["response:countered"])], "sections": [
- sec("intro", D_INTRO),
- sec("analysis", [V("Mon gouvernement a étudié attentivement votre proposition."), V("Nos ministères ont analysé votre offre en détail."),
-                  V("Votre proposition a fait l'objet d'un examen approfondi.")]),
- sec("verdict", [
-  V("Je suis heureux de vous annoncer que nous l'acceptons.", when=["response:accepted"]),
-  V("Elle répond à nos attentes : nous sommes prêts à signer.", when=["response:accepted"]),
-  V("C'est une bonne nouvelle pour nos deux pays : nous acceptons.", when=["response:accepted", "relation:good"]),
-  V("Nous ne pouvons malheureusement pas l'accepter en l'état : {reasons}.", when=["response:refused"]),
-  V("Je dois vous dire franchement que cette offre ne nous convient pas : {reasons}.", when=["response:refused", "trait:tough"]),
-  V("À regret, nous déclinons : {reasons}.", when=["response:refused"]),
-  V("Nous ne pouvons l'accepter telle quelle ({reasons}), mais nous vous soumettons une version amendée.", when=["response:countered"]),
-  V("Plutôt qu'un refus, nous préférons vous faire une contre-proposition, car {reasons}.", when=["response:countered"])]),
- sec("terms", [V("Termes :\n{clauses}", when=["response:accepted"]), V("Notre contre-proposition :\n{clauses}", when=["response:countered"]),
-               V("Ce que nous pourrions accepter :\n{clauses}", when=["response:countered"])], optional=True),
- sec("future", [V("La porte reste ouverte à de futures discussions.", when=["response:refused"]),
-                V("Je me réjouis de cette nouvelle étape de notre coopération.", when=["response:accepted"]),
-                V("Nous espérons que ces ajustements vous conviendront.", when=["response:countered"])], optional=True),
- sec("closing", D_CLOSE), sec("signature", SIGN)]}
+# Diplomatie et entretiens : voir dialogue_fr_diplo.py
+from dialogue_fr_diplo import DIPLOMACY_TEMPLATES, CONVERSATION_TEMPLATES
 
 files = {
  "territory.json": [transport, details, hospital, factory],
  "incidents.json": [nuclear, refinery],
  "society.json": [strike, demo, heat, flood, cyber],
  "government.json": [scandal, welcome],
- "diplomacy.json": [proposal, response],
+ "diplomacy.json": DIPLOMACY_TEMPLATES,
+ "conversations.json": CONVERSATION_TEMPLATES,
 }
 for name, templates in files.items():
     json.dump({"templates": templates}, open(name, "w"), ensure_ascii=False, indent=1)

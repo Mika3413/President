@@ -1,6 +1,7 @@
 {
  "id": "FRA",
  "name": "France",
+ "article": "la",
  "adjective": "français",
  "language": "fr",
  "namePool": "fr",

@@ -28,7 +28,7 @@ class EventResolver(private val ctx: SimulationContext) {
             }
             option.reaskAfterDays != null -> {
                 instance.reasks++
-                message.senderId?.let { ctx.memory.record(it, def.id, InteractionOutcome.POSTPONED) }
+                message.senderId?.let { ctx.memory.record(it, def.id, InteractionOutcome.POSTPONED, topicLabel(message.subject)) }
                 ctx.scheduler.schedule(ScheduledAction.EventReask(ctx.now.plusDays(option.reaskAfterDays), instance.id))
                 return
             }
@@ -36,7 +36,7 @@ class EventResolver(private val ctx: SimulationContext) {
         option.effects.forEach { ctx.effects.trigger(it, scope, instance.params, def.id) }
         option.project?.let { startProject(it, scope, instance, def) }
         message.senderId?.let { senderId ->
-            ctx.memory.record(senderId, def.id, option.outcome)
+            ctx.memory.record(senderId, def.id, option.outcome, topicLabel(message.subject))
             revealTrait(senderId)
         }
         instance.resolved = true
@@ -89,4 +89,8 @@ class EventResolver(private val ctx: SimulationContext) {
         const val DETAILS_DELAY_DAYS = 1.0
         const val REVEAL_CHANCE = 0.5
     }
+
+    /** Sujet d'un courrier, tel qu'un interlocuteur le rappellera plus tard. */
+    private fun topicLabel(subject: String): String = subject.replaceFirstChar { it.lowercaseChar() }
+
 }

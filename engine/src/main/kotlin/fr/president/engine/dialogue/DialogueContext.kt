@@ -1,6 +1,7 @@
 package fr.president.engine.dialogue
 
 import fr.president.engine.politics.Character
+import fr.president.engine.politics.CharacterRole
 import fr.president.engine.politics.Traits
 import fr.president.engine.simulation.SimulationContext
 
@@ -8,12 +9,15 @@ import fr.president.engine.simulation.SimulationContext
 data class DialogueContext(
     val variables: Map<String, String>,
     val tags: Set<String>,
+    /** Auteur du message : ses phrases déjà employées ne sont jamais reprises. */
+    val senderId: String? = null,
 )
 
 /** Construit le contexte de dialogue à partir de l'expéditeur, de la relation et de l'historique. */
 class DialogueContextBuilder(private val ctx: SimulationContext) {
     private val variables = mutableMapOf<String, String>()
     private val tags = mutableSetOf<String>()
+    private var senderId: String? = null
 
     init {
         val president = ctx.state.characters.getValue(ctx.state.player.presidentId)
@@ -24,11 +28,13 @@ class DialogueContextBuilder(private val ctx: SimulationContext) {
         tags += if (president.female) "president:female" else "president:male"
         tags += seasonTag(ctx.now.month)
         economyTags()
+        newsTags()
     }
 
     fun sender(character: Character?, title: String): DialogueContextBuilder {
         variables["senderTitle"] = title
         if (character == null) return this
+        senderId = character.id
         variables["sender"] = character.fullName
         variables["senderLast"] = character.lastName
         tags += if (character.female) "sender:female" else "sender:male"
@@ -39,14 +45,28 @@ class DialogueContextBuilder(private val ctx: SimulationContext) {
             else -> "relation:neutral"
         }
         tags += ctx.memory.historyTags(character.id)
+        tags += Voice.of(character).tag
+        tags += when (character.role) {
+            CharacterRole.MAYOR, CharacterRole.DEPARTMENT_PRESIDENT, CharacterRole.REGION_PRESIDENT -> "sender:elected"
+            CharacterRole.MINISTER, CharacterRole.PRIME_MINISTER, CharacterRole.PREFECT -> "sender:official"
+            CharacterRole.FOREIGN_LEADER -> "sender:foreign"
+            else -> "sender:other"
+        }
+        ctx.memory.lastRecord(character.id)?.let { last ->
+            last.label?.let { variables["lastTopic"] = it; tags += "history:topic" }
+            variables["lastDate"] = fr.president.engine.util.Formatting.monthYear(last.time)
+            val months = last.time.daysUntil(ctx.now) / DAYS_PER_MONTH
+            tags += if (months < RECENT_MONTHS) "history:recent" else "history:old"
+        }
         return this
     }
 
     fun variable(key: String, value: String) = apply { variables[key] = value }
+    fun variables(values: Map<String, String>) = apply { variables += values }
     fun tag(tag: String) = apply { tags += tag }
     fun tags(values: Collection<String>) = apply { tags += values }
 
-    fun build() = DialogueContext(variables.toMap(), tags.toSet())
+    fun build() = DialogueContext(variables.toMap(), tags.toSet(), senderId)
 
     private fun traitTags(c: Character) {
         if (c.trait(Traits.AGGRESSIVENESS) > HIGH) tags += "trait:aggressive"
@@ -66,6 +86,17 @@ class DialogueContextBuilder(private val ctx: SimulationContext) {
         if (ctx.state.opinion.nationalApproval > POPULAR) tags += "president:popular"
     }
 
+    /** Actualité récente : les interlocuteurs y font allusion (« alors que la grève... »). */
+    private fun newsTags() {
+        val cutoff = ctx.now.plusDays(-NEWS_DAYS)
+        // Les nouvelles de l'instant même (l'événement qui motive le courrier) sont exclues.
+        val recent = ctx.state.events.news.lastOrNull { it.time >= cutoff && it.time < ctx.now && it.headline.length <= MAX_NEWS_LENGTH } ?: return
+        variables["recentNews"] = recent.headline.replaceFirstChar { it.lowercaseChar() }
+        tags += "news:recent"
+        tags += "news:" + recent.category.name.lowercase()
+        if (fr.president.engine.military.Geopolitics(ctx).enemiesOf(ctx.state.player.countryId).isNotEmpty()) tags += "world:war"
+    }
+
     private fun seasonTag(month: Int) = when (month) {
         in WINTER_MONTHS -> "season:winter"
         in SPRING_MONTHS -> "season:spring"
@@ -75,6 +106,10 @@ class DialogueContextBuilder(private val ctx: SimulationContext) {
 
     private companion object {
         const val HIGH = 0.65
+        const val NEWS_DAYS = 20L
+        const val MAX_NEWS_LENGTH = 90
+        const val DAYS_PER_MONTH = 30.0
+        const val RECENT_MONTHS = 4
         const val GOOD_RELATION = 0.62
         const val BAD_RELATION = 0.38
         const val CRISIS_GAP = 0.01

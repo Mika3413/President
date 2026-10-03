@@ -6,13 +6,15 @@ import fr.president.engine.simulation.SimulationContext
 /** Mémoire des échanges entre le président et chaque personnage. */
 class InteractionMemory(private val ctx: SimulationContext) {
 
-    fun record(characterId: String, topic: String, outcome: InteractionOutcome) {
+    fun record(characterId: String, topic: String, outcome: InteractionOutcome, label: String? = null) {
         val records = ctx.state.dialogue.interactions.getOrPut(characterId) { mutableListOf() }
-        records.add(InteractionRecord(topic, outcome, ctx.now))
+        records.add(InteractionRecord(topic, outcome, ctx.now, label))
         val retention = ctx.db.config.simulation.memoryRetentionDays.toLong()
         val cutoff = ctx.now.plusDays(-retention)
         records.removeAll { it.time < cutoff }
     }
+
+    fun lastRecord(characterId: String): InteractionRecord? = records(characterId).lastOrNull()
 
     fun records(characterId: String): List<InteractionRecord> =
         ctx.state.dialogue.interactions[characterId].orEmpty()

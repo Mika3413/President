@@ -21,5 +21,5 @@ class ProposalDescriber(private val db: GameDatabase) {
     }
 
     fun describeAll(clauses: List<Clause>, from: String, to: String, years: Int): String =
-        clauses.joinToString("\n") { "• " + describe(it, from, to) } + "\n• Durée : $years an(s)"
+        clauses.joinToString("\n") { "• " + describe(it, from, to) } + "\n• Durée : $years an" + if (years > 1) "s" else ""
 }

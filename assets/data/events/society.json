@@ -296,7 +296,7 @@
    "cooldownDays": 25,
    "scopeCooldownDays": 300,
    "urgency": "URGENT",
-   "headline": "Inondations dans le département {department}",
+   "headline": "Inondations {departmentIn}",
    "notificationText": "Des habitations ont été évacuées. Le préfet sollicite l'État.",
    "conditions": [
     {

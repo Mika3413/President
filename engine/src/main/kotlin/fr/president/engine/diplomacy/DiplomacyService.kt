@@ -83,7 +83,7 @@ class DiplomacyService(private val ctx: SimulationContext) {
                 OPTION_NEGOTIATE -> InteractionOutcome.PARTIAL
                 else -> InteractionOutcome.REFUSED
             }
-            ctx.memory.record(leader, "diplomacy", outcome)
+            ctx.memory.record(leader, "diplomacy", outcome, "l'accord envisagé (${mainClauseLabel(proposal)})")
         }
         when (optionId) {
             OPTION_ACCEPT -> {
@@ -161,7 +161,7 @@ class DiplomacyService(private val ctx: SimulationContext) {
         val builder = DialogueContextBuilder(ctx)
             .sender(leader, "${def.institutions.headOfGovernmentTitle} (${def.name})")
             .tag(responseTag)
-            .variable("foreignCountry", def.name)
+            .variables(fr.president.engine.data.CountryNames(def).variables("foreign"))
             .variable("clauses", describer.describeAll(proposal.clauses, proposal.from, proposal.to, proposal.durationYears))
             .variable("reasons", reasons.joinToString(", ").ifBlank { "plusieurs points restent à éclaircir" })
             .variable("motive", motive)

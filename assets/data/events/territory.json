@@ -201,7 +201,7 @@
    "baseDailyProbability": 5e-05,
    "cooldownDays": 14,
    "scopeCooldownDays": 300,
-   "headline": "Urgences saturées dans le département {department}",
+   "headline": "Urgences saturées {departmentIn}",
    "modifiers": [
     {
      "variable": "quality.health",

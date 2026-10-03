@@ -161,6 +161,7 @@
   {
    "code": "01",
    "name": "Ain",
+   "article": "l'",
    "region": "84",
    "population": 657000,
    "profile": {
@@ -174,6 +175,7 @@
   {
    "code": "02",
    "name": "Aisne",
+   "article": "l'",
    "region": "32",
    "population": 529000,
    "profile": {
@@ -188,6 +190,7 @@
   {
    "code": "03",
    "name": "Allier",
+   "article": "l'",
    "region": "84",
    "population": 335000,
    "profile": {
@@ -199,6 +202,7 @@
   {
    "code": "04",
    "name": "Alpes-de-Haute-Provence",
+   "article": "les",
    "region": "93",
    "population": 166000,
    "profile": {
@@ -211,6 +215,7 @@
   {
    "code": "05",
    "name": "Hautes-Alpes",
+   "article": "les",
    "region": "93",
    "population": 141000,
    "profile": {
@@ -221,6 +226,7 @@
   {
    "code": "06",
    "name": "Alpes-Maritimes",
+   "article": "les",
    "region": "93",
    "population": 1098000,
    "profile": {
@@ -238,6 +244,7 @@
   {
    "code": "07",
    "name": "Ardèche",
+   "article": "l'",
    "region": "84",
    "population": 330000,
    "profile": {
@@ -247,6 +254,7 @@
   {
    "code": "08",
    "name": "Ardennes",
+   "article": "les",
    "region": "44",
    "population": 270000,
    "profile": {
@@ -259,6 +267,7 @@
   {
    "code": "09",
    "name": "Ariège",
+   "article": "l'",
    "region": "76",
    "population": 155000,
    "profile": {
@@ -270,6 +279,7 @@
   {
    "code": "10",
    "name": "Aube",
+   "article": "l'",
    "region": "44",
    "population": 310000,
    "profile": {
@@ -280,6 +290,7 @@
   {
    "code": "11",
    "name": "Aude",
+   "article": "l'",
    "region": "76",
    "population": 377000,
    "profile": {
@@ -292,6 +303,7 @@
   {
    "code": "12",
    "name": "Aveyron",
+   "article": "l'",
    "region": "76",
    "population": 279000,
    "profile": {
@@ -306,6 +318,7 @@
   {
    "code": "13",
    "name": "Bouches-du-Rhône",
+   "article": "les",
    "region": "93",
    "population": 2056000,
    "profile": {
@@ -323,6 +336,7 @@
   {
    "code": "14",
    "name": "Calvados",
+   "article": "le",
    "region": "28",
    "population": 699000,
    "profile": {
@@ -332,6 +346,7 @@
   {
    "code": "15",
    "name": "Cantal",
+   "article": "le",
    "region": "84",
    "population": 144000,
    "profile": {
@@ -346,6 +361,7 @@
   {
    "code": "16",
    "name": "Charente",
+   "article": "la",
    "region": "75",
    "population": 352000,
    "profile": {
@@ -355,6 +371,7 @@
   {
    "code": "17",
    "name": "Charente-Maritime",
+   "article": "la",
    "region": "75",
    "population": 655000,
    "profile": {
@@ -365,6 +382,7 @@
   {
    "code": "18",
    "name": "Cher",
+   "article": "le",
    "region": "24",
    "population": 300000,
    "profile": {
@@ -375,6 +393,7 @@
   {
    "code": "19",
    "name": "Corrèze",
+   "article": "la",
    "region": "75",
    "population": 240000,
    "profile": {
@@ -389,6 +408,7 @@
   {
    "code": "2A",
    "name": "Corse-du-Sud",
+   "article": "la",
    "region": "94",
    "population": 160000,
    "profile": {
@@ -402,6 +422,7 @@
   {
    "code": "2B",
    "name": "Haute-Corse",
+   "article": "la",
    "region": "94",
    "population": 182000,
    "profile": {
@@ -417,6 +438,7 @@
   {
    "code": "21",
    "name": "Côte-d'Or",
+   "article": "la",
    "region": "27",
    "population": 535000,
    "profile": {
@@ -426,6 +448,7 @@
   {
    "code": "22",
    "name": "Côtes-d'Armor",
+   "article": "les",
    "region": "53",
    "population": 604000,
    "profile": {
@@ -436,6 +459,7 @@
   {
    "code": "23",
    "name": "Creuse",
+   "article": "la",
    "region": "75",
    "population": 115000,
    "profile": {
@@ -452,6 +476,7 @@
   {
    "code": "24",
    "name": "Dordogne",
+   "article": "la",
    "region": "75",
    "population": 413000,
    "profile": {
@@ -463,6 +488,7 @@
   {
    "code": "25",
    "name": "Doubs",
+   "article": "le",
    "region": "27",
    "population": 545000,
    "profile": {
@@ -472,6 +498,7 @@
   {
    "code": "26",
    "name": "Drôme",
+   "article": "la",
    "region": "84",
    "population": 520000,
    "profile": {
@@ -481,6 +508,7 @@
   {
    "code": "27",
    "name": "Eure",
+   "article": "l'",
    "region": "28",
    "population": 600000,
    "profile": {
@@ -491,6 +519,7 @@
   {
    "code": "28",
    "name": "Eure-et-Loir",
+   "article": "l'",
    "region": "24",
    "population": 431000,
    "profile": {
@@ -501,6 +530,7 @@
   {
    "code": "29",
    "name": "Finistère",
+   "article": "le",
    "region": "53",
    "population": 918000,
    "profile": {
@@ -512,6 +542,7 @@
   {
    "code": "30",
    "name": "Gard",
+   "article": "le",
    "region": "76",
    "population": 750000,
    "profile": {
@@ -525,6 +556,7 @@
   {
    "code": "31",
    "name": "Haute-Garonne",
+   "article": "la",
    "region": "76",
    "population": 1435000,
    "profile": {
@@ -542,6 +574,7 @@
   {
    "code": "32",
    "name": "Gers",
+   "article": "le",
    "region": "76",
    "population": 192000,
    "profile": {
@@ -555,6 +588,7 @@
   {
    "code": "33",
    "name": "Gironde",
+   "article": "la",
    "region": "75",
    "population": 1654000,
    "profile": {
@@ -570,6 +604,7 @@
   {
    "code": "34",
    "name": "Hérault",
+   "article": "l'",
    "region": "76",
    "population": 1201000,
    "profile": {
@@ -585,6 +620,7 @@
   {
    "code": "35",
    "name": "Ille-et-Vilaine",
+   "article": "l'",
    "region": "53",
    "population": 1100000,
    "profile": {
@@ -599,6 +635,7 @@
   {
    "code": "36",
    "name": "Indre",
+   "article": "l'",
    "region": "24",
    "population": 217000,
    "profile": {
@@ -611,12 +648,14 @@
   {
    "code": "37",
    "name": "Indre-et-Loire",
+   "article": "l'",
    "region": "24",
    "population": 612000
   },
   {
    "code": "38",
    "name": "Isère",
+   "article": "l'",
    "region": "84",
    "population": 1277000,
    "profile": {
@@ -631,6 +670,7 @@
   {
    "code": "39",
    "name": "Jura",
+   "article": "le",
    "region": "27",
    "population": 259000,
    "profile": {
@@ -641,6 +681,7 @@
   {
    "code": "40",
    "name": "Landes",
+   "article": "les",
    "region": "75",
    "population": 419000,
    "profile": {
@@ -650,12 +691,14 @@
   {
    "code": "41",
    "name": "Loir-et-Cher",
+   "article": "le",
    "region": "24",
    "population": 329000
   },
   {
    "code": "42",
    "name": "Loire",
+   "article": "la",
    "region": "84",
    "population": 766000,
    "profile": {
@@ -665,6 +708,7 @@
   {
    "code": "43",
    "name": "Haute-Loire",
+   "article": "la",
    "region": "84",
    "population": 228000,
    "profile": {
@@ -676,6 +720,7 @@
   {
    "code": "44",
    "name": "Loire-Atlantique",
+   "article": "la",
    "region": "52",
    "population": 1460000,
    "profile": {
@@ -691,6 +736,7 @@
   {
    "code": "45",
    "name": "Loiret",
+   "article": "le",
    "region": "24",
    "population": 683000,
    "profile": {
@@ -701,6 +747,7 @@
   {
    "code": "46",
    "name": "Lot",
+   "article": "le",
    "region": "76",
    "population": 175000,
    "profile": {
@@ -714,6 +761,7 @@
   {
    "code": "47",
    "name": "Lot-et-Garonne",
+   "article": "le",
    "region": "75",
    "population": 332000,
    "profile": {
@@ -723,6 +771,7 @@
   {
    "code": "48",
    "name": "Lozère",
+   "article": "la",
    "region": "76",
    "population": 77000,
    "profile": {
@@ -737,6 +786,7 @@
   {
    "code": "49",
    "name": "Maine-et-Loire",
+   "article": "le",
    "region": "52",
    "population": 822000,
    "profile": {
@@ -746,6 +796,7 @@
   {
    "code": "50",
    "name": "Manche",
+   "article": "la",
    "region": "28",
    "population": 495000,
    "profile": {
@@ -755,6 +806,7 @@
   {
    "code": "51",
    "name": "Marne",
+   "article": "la",
    "region": "44",
    "population": 566000,
    "profile": {
@@ -764,6 +816,7 @@
   {
    "code": "52",
    "name": "Haute-Marne",
+   "article": "la",
    "region": "44",
    "population": 172000,
    "profile": {
@@ -775,6 +828,7 @@
   {
    "code": "53",
    "name": "Mayenne",
+   "article": "la",
    "region": "52",
    "population": 307000,
    "profile": {
@@ -789,12 +843,14 @@
   {
    "code": "54",
    "name": "Meurthe-et-Moselle",
+   "article": "la",
    "region": "44",
    "population": 732000
   },
   {
    "code": "55",
    "name": "Meuse",
+   "article": "la",
    "region": "44",
    "population": 183000,
    "profile": {
@@ -806,6 +862,7 @@
   {
    "code": "56",
    "name": "Morbihan",
+   "article": "le",
    "region": "53",
    "population": 763000,
    "profile": {
@@ -815,6 +872,7 @@
   {
    "code": "57",
    "name": "Moselle",
+   "article": "la",
    "region": "44",
    "population": 1046000,
    "profile": {
@@ -827,6 +885,7 @@
   {
    "code": "58",
    "name": "Nièvre",
+   "article": "la",
    "region": "27",
    "population": 202000,
    "profile": {
@@ -839,6 +898,7 @@
   {
    "code": "59",
    "name": "Nord",
+   "article": "le",
    "region": "32",
    "population": 2611000,
    "profile": {
@@ -856,6 +916,7 @@
   {
    "code": "60",
    "name": "Oise",
+   "article": "l'",
    "region": "32",
    "population": 830000,
    "profile": {
@@ -868,6 +929,7 @@
   {
    "code": "61",
    "name": "Orne",
+   "article": "l'",
    "region": "28",
    "population": 278000,
    "profile": {
@@ -879,6 +941,7 @@
   {
    "code": "62",
    "name": "Pas-de-Calais",
+   "article": "le",
    "region": "32",
    "population": 1462000,
    "profile": {
@@ -893,6 +956,7 @@
   {
    "code": "63",
    "name": "Puy-de-Dôme",
+   "article": "le",
    "region": "84",
    "population": 668000,
    "profile": {
@@ -902,6 +966,7 @@
   {
    "code": "64",
    "name": "Pyrénées-Atlantiques",
+   "article": "les",
    "region": "75",
    "population": 688000,
    "profile": {
@@ -911,6 +976,7 @@
   {
    "code": "65",
    "name": "Hautes-Pyrénées",
+   "article": "les",
    "region": "76",
    "population": 229000,
    "profile": {
@@ -921,6 +987,7 @@
   {
    "code": "66",
    "name": "Pyrénées-Orientales",
+   "article": "les",
    "region": "76",
    "population": 482000,
    "profile": {
@@ -935,6 +1002,7 @@
   {
    "code": "67",
    "name": "Bas-Rhin",
+   "article": "le",
    "region": "44",
    "population": 1150000,
    "profile": {
@@ -951,6 +1019,7 @@
   {
    "code": "68",
    "name": "Haut-Rhin",
+   "article": "le",
    "region": "44",
    "population": 767000,
    "profile": {
@@ -964,6 +1033,7 @@
   {
    "code": "69",
    "name": "Rhône",
+   "article": "le",
    "region": "84",
    "population": 1891000,
    "profile": {
@@ -981,6 +1051,7 @@
   {
    "code": "70",
    "name": "Haute-Saône",
+   "article": "la",
    "region": "27",
    "population": 233000,
    "profile": {
@@ -990,6 +1061,7 @@
   {
    "code": "71",
    "name": "Saône-et-Loire",
+   "article": "la",
    "region": "27",
    "population": 551000,
    "profile": {
@@ -1000,6 +1072,7 @@
   {
    "code": "72",
    "name": "Sarthe",
+   "article": "la",
    "region": "52",
    "population": 566000,
    "profile": {
@@ -1009,12 +1082,14 @@
   {
    "code": "73",
    "name": "Savoie",
+   "article": "la",
    "region": "84",
    "population": 439000
   },
   {
    "code": "74",
    "name": "Haute-Savoie",
+   "article": "la",
    "region": "84",
    "population": 834000,
    "profile": {
@@ -1028,6 +1103,7 @@
   {
    "code": "75",
    "name": "Paris",
+   "article": "",
    "region": "11",
    "population": 2133000,
    "profile": {
@@ -1046,6 +1122,7 @@
   {
    "code": "76",
    "name": "Seine-Maritime",
+   "article": "la",
    "region": "28",
    "population": 1255000,
    "profile": {
@@ -1058,6 +1135,7 @@
   {
    "code": "77",
    "name": "Seine-et-Marne",
+   "article": "la",
    "region": "11",
    "population": 1427000,
    "profile": {
@@ -1074,6 +1152,7 @@
   {
    "code": "78",
    "name": "Yvelines",
+   "article": "les",
    "region": "11",
    "population": 1450000,
    "profile": {
@@ -1089,6 +1168,7 @@
   {
    "code": "79",
    "name": "Deux-Sèvres",
+   "article": "les",
    "region": "75",
    "population": 375000,
    "profile": {
@@ -1098,6 +1178,7 @@
   {
    "code": "80",
    "name": "Somme",
+   "article": "la",
    "region": "32",
    "population": 570000,
    "profile": {
@@ -1110,6 +1191,7 @@
   {
    "code": "81",
    "name": "Tarn",
+   "article": "le",
    "region": "76",
    "population": 390000,
    "profile": {
@@ -1120,6 +1202,7 @@
   {
    "code": "82",
    "name": "Tarn-et-Garonne",
+   "article": "le",
    "region": "76",
    "population": 262000,
    "profile": {
@@ -1130,6 +1213,7 @@
   {
    "code": "83",
    "name": "Var",
+   "article": "le",
    "region": "93",
    "population": 1090000,
    "profile": {
@@ -1142,6 +1226,7 @@
   {
    "code": "84",
    "name": "Vaucluse",
+   "article": "le",
    "region": "93",
    "population": 562000,
    "profile": {
@@ -1152,6 +1237,7 @@
   {
    "code": "85",
    "name": "Vendée",
+   "article": "la",
    "region": "52",
    "population": 690000,
    "profile": {
@@ -1165,6 +1251,7 @@
   {
    "code": "86",
    "name": "Vienne",
+   "article": "la",
    "region": "75",
    "population": 439000,
    "profile": {
@@ -1174,6 +1261,7 @@
   {
    "code": "87",
    "name": "Haute-Vienne",
+   "article": "la",
    "region": "75",
    "population": 372000,
    "profile": {
@@ -1185,6 +1273,7 @@
   {
    "code": "88",
    "name": "Vosges",
+   "article": "les",
    "region": "44",
    "population": 362000,
    "profile": {
@@ -1194,6 +1283,7 @@
   {
    "code": "89",
    "name": "Yonne",
+   "article": "l'",
    "region": "27",
    "population": 335000,
    "profile": {
@@ -1204,6 +1294,7 @@
   {
    "code": "90",
    "name": "Territoire de Belfort",
+   "article": "le",
    "region": "27",
    "population": 141000,
    "profile": {
@@ -1214,6 +1305,7 @@
   {
    "code": "91",
    "name": "Essonne",
+   "article": "l'",
    "region": "11",
    "population": 1306000,
    "profile": {
@@ -1229,6 +1321,7 @@
   {
    "code": "92",
    "name": "Hauts-de-Seine",
+   "article": "les",
    "region": "11",
    "population": 1625000,
    "profile": {
@@ -1246,6 +1339,7 @@
   {
    "code": "93",
    "name": "Seine-Saint-Denis",
+   "article": "la",
    "region": "11",
    "population": 1655000,
    "profile": {
@@ -1264,6 +1358,7 @@
   {
    "code": "94",
    "name": "Val-de-Marne",
+   "article": "le",
    "region": "11",
    "population": 1407000,
    "profile": {
@@ -1280,6 +1375,7 @@
   {
    "code": "95",
    "name": "Val-d'Oise",
+   "article": "le",
    "region": "11",
    "population": 1250000,
    "profile": {

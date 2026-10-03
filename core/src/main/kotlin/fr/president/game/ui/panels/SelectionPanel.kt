@@ -30,17 +30,31 @@ class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
         when (val s = selection) {
             is MapSelection.Department -> {
                 into.add(SheetView(ui, session.local.department(s.code), expanded)).row()
+                electedTalk(into, session.state.territory.departments[s.code]?.presidentId)
                 val region = session.state.territory.departments.getValue(s.code).region
                 into.add(ui.button("Voir la région", "default") { nav.select(MapSelection.Region(region)) }).left().row()
             }
-            is MapSelection.Region -> into.add(SheetView(ui, session.local.region(s.code), expanded)).row()
-            is MapSelection.City -> into.add(SheetView(ui, session.local.city(s.id), expanded)).row()
+            is MapSelection.Region -> {
+                into.add(SheetView(ui, session.local.region(s.code), expanded)).row()
+                electedTalk(into, session.state.territory.regions[s.code]?.presidentId)
+            }
+            is MapSelection.City -> {
+                into.add(SheetView(ui, session.local.city(s.id), expanded)).row()
+                electedTalk(into, session.state.territory.cities[s.id]?.mayorId)
+            }
             is MapSelection.Infrastructure -> buildInfrastructure(into, s.id)
             is MapSelection.Base -> into.add(SheetView(ui, session.local.base(s.id), expanded)).row()
             is MapSelection.Country -> buildCountry(into, s.id)
             is MapSelection.Unit -> unitSheet.build(into, s.id)
             null -> Unit
         }
+    }
+
+    private val talks = fr.president.game.ui.widgets.ConversationControls(ui, nav)
+
+    private fun electedTalk(into: Table, characterId: String?) {
+        val c = characterId?.let { session.state.characters[it] } ?: return
+        talks.build(into, c.id, c.fullName)
     }
 
     private fun buildInfrastructure(into: Table, id: String) {

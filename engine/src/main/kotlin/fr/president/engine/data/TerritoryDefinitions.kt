@@ -42,6 +42,8 @@ data class RegionDef(
 data class DepartmentDef(
     val code: String,
     val name: String,
+    /** Article défini (« le », « la », « l' », « les », vide pour Paris). */
+    val article: String = "le",
     val region: String,
     val population: Long,
     val profile: LocalProfileDef = LocalProfileDef(),

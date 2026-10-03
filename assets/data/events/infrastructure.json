@@ -11,7 +11,7 @@
    "cooldownDays": 15,
    "scopeCooldownDays": 120,
    "urgency": "URGENT",
-   "headline": "Arrêt de {infrastructure} après un incident technique",
+   "headline": "Arrêt {infrastructureOf} après un incident technique",
    "notificationText": "La centrale a été arrêtée par sécurité. Le ministère attend vos instructions.",
    "modifiers": [
     {
@@ -117,7 +117,7 @@
    "cooldownDays": 20,
    "scopeCooldownDays": 300,
    "urgency": "IMPORTANT",
-   "headline": "Sécheresse : production réduite au {infrastructure}",
+   "headline": "Sécheresse : production réduite {infrastructureAt}",
    "notificationText": "Le niveau des retenues est au plus bas. L'agriculture locale est également touchée.",
    "conditions": [
     {
@@ -172,7 +172,7 @@
    "cooldownDays": 30,
    "scopeCooldownDays": 365,
    "urgency": "URGENT",
-   "headline": "Accident industriel à la {infrastructure}",
+   "headline": "Accident industriel {infrastructureAt}",
    "notificationText": "Un incendie s'est déclaré sur le site. Les secours sont mobilisés.",
    "modifiers": [
     {
@@ -294,7 +294,7 @@
    "cooldownDays": 25,
    "scopeCooldownDays": 200,
    "urgency": "IMPORTANT",
-   "headline": "Grève des dockers : le {infrastructure} paralysé",
+   "headline": "Grève des dockers : {infrastructureThe} à l'arrêt",
    "notificationText": "Les exportations sont ralenties.",
    "modifiers": [
     {

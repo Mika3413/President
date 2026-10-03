@@ -512,7 +512,7 @@
    "cooldownDays": 30,
    "scopeCooldownDays": 300,
    "urgency": "IMPORTANT",
-   "headline": "Tempête violente : dégâts dans le département {department}",
+   "headline": "Tempête violente : dégâts {departmentIn}",
    "notificationText": "Toitures arrachées, routes coupées, foyers privés d'électricité.",
    "conditions": [
     {
@@ -604,7 +604,7 @@
    "cooldownDays": 20,
    "scopeCooldownDays": 200,
    "urgency": "URGENT",
-   "headline": "Incendies de forêt dans le département {department}",
+   "headline": "Incendies de forêt {departmentIn}",
    "notificationText": "Des milliers d'hectares brûlent ; des habitants sont évacués.",
    "conditions": [
     {
@@ -1005,7 +1005,7 @@
    "cooldownDays": 60,
    "scopeCooldownDays": 365,
    "urgency": "IMPORTANT",
-   "headline": "Incident diplomatique avec : {foreignCountry}",
+   "headline": "Incident diplomatique avec {foreignThe}",
    "notificationText": "Des propos de responsables étrangers provoquent un tollé.",
    "modifiers": [
     {
