@@ -34,6 +34,7 @@ class WarService(private val ctx: SimulationContext) {
                 fr.president.engine.diplomacy.DiplomaticMemory("WAR", weight, ctx.now, "agression contre ${name(defender)}")
         }
         val involvesPlayer = attacker == player || defender == player
+        if (attacker == player) ctx.state.player.warsThisTerm++
         ctx.notifications.post(NotificationCategory.MILITARY, Urgency.URGENT,
             "Guerre : ${name(attacker)} contre ${name(defender)}", cause, defender)
         ctx.notifications.news(NotificationCategory.MILITARY, "${name(attacker)} entre en guerre contre ${name(defender)}", defender)
@@ -112,7 +113,10 @@ class WarService(private val ctx: SimulationContext) {
         ctx.notifications.post(NotificationCategory.MILITARY, Urgency.URGENT,
             "${name(country)} entre en guerre",
             "${name(country)} rejoint ${if (defenderSide) "les défenseurs" else "les assaillants"} contre ${enemies.joinToString { name(it) }}.", country)
-        if (country == player) ctx.state.opinion.groups.values.forEach { it.shock += JOIN_COST }
+        if (country == player) {
+            ctx.state.opinion.groups.values.forEach { it.shock += JOIN_COST }
+            ctx.state.player.warsThisTerm++
+        }
     }
 
     fun ceasefire(war: War, days: Int) {

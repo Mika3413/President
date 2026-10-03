@@ -18,6 +18,22 @@ class ElectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : P
         into.add(ui.label("Prochain scrutin : ${Formats.date(e.nextElection)}", "large")).row()
         into.add(ui.label("Dans $days jours · mandat n°${session.state.player.termNumber}", "muted")).row()
         into.add(ui.label("Le vote dépend de votre bilan tel que le perçoit chaque catégorie de Français : emploi, prix, services publics, sécurité, impôts, crises récentes.", "muted", wrap = true)).growX().padTop(4f).row()
+        val promises = fr.president.engine.elections.PromiseEvaluator(session.context)
+        if (promises.chosen().isNotEmpty()) {
+            into.add(ui.label("Vos promesses de campagne", "bold")).padTop(GAP).row()
+            promises.chosen().forEach { p ->
+                val st = promises.status(p)
+                val color = when (st) {
+                    fr.president.engine.elections.PromiseStatus.KEPT, fr.president.engine.elections.PromiseStatus.ON_TRACK -> Theme.good
+                    fr.president.engine.elections.PromiseStatus.AT_RISK -> Theme.warning
+                    fr.president.engine.elections.PromiseStatus.BROKEN -> Theme.bad
+                }
+                val row = Table()
+                row.add(ui.label(p.label, "small", wrap = true)).growX().left()
+                row.add(ui.label(st.label, "small", color)).right()
+                into.add(row).growX().row()
+            }
+        }
         e.latestPoll?.let {
             into.add(ui.label("Sondage — premier tour", "bold")).padTop(GAP).row()
             shares(into, it)

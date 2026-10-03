@@ -82,5 +82,13 @@
    "lon": 2.35,
    "lat": 48.86
   }
+ },
+ "reforms": "countries/FRA/reforms.json",
+ "promises": "countries/FRA/promises.json",
+ "demography": {
+  "birthRate": 0.0105,
+  "deathRate": 0.0095,
+  "netMigrationRate": 0.0025,
+  "agingPerYear": 0.0025
  }
 }

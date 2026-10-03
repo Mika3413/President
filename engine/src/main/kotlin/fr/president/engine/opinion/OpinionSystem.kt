@@ -15,8 +15,6 @@ class OpinionSystem : SimulationSystem {
     override val name = "opinion"
     override val cadence = Cadence.DAILY
 
-    private var composition: LocalComposition? = null
-
     override fun run(ctx: SimulationContext) {
         val def = ctx.playerData.socialGroups ?: return
         val opinion = ctx.state.opinion
@@ -51,7 +49,9 @@ class OpinionSystem : SimulationSystem {
     private fun updateTerritories(ctx: SimulationContext, rate: Double) {
         val def = ctx.playerData.socialGroups!!
         val territory = ctx.state.territory
-        val local = composition ?: LocalComposition(def, territory.departments.values).also { composition = it }
+        // Recalculée à chaque pas : la composition sociale évolue (vieillissement) et
+        // aucun état caché ne doit échapper à la sauvegarde.
+        val local = LocalComposition(def, territory.departments.values)
         val nationalUnemployment = ctx.state.playerCountry.economy.unemployment
         val localKeep = 1.0 - perStepRate(def.localShockDecayMonthly, DAYS_PER_MONTH)
         val presidentLeaning = ctx.state.characters.getValue(ctx.state.player.presidentId).economicLeaning

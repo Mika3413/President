@@ -11,4 +11,5 @@ data class NewGameOptions(
     /** Tendance politique abstraite, de -1 (gauche) à +1 (droite). */
     val economicLeaning: Double = 0.0,
     val countryId: String? = null,
+    val promises: List<String> = emptyList(),
 )

@@ -24,7 +24,7 @@ class ElectionSimulator(private val ctx: SimulationContext) {
                 val approval = ctx.state.opinion.groups[group.id]?.effective ?: group.baseApproval
                 val turnout = turnout(group.baseTurnout, approval)
                 turnoutSum += group.populationShare * turnout
-                val prefs = preferences(group.economicLeaning, group.socialLeaning, approval, candidates)
+                val prefs = preferences(group.economicLeaning, group.socialLeaning, approval, candidates, promises.electoralEffect(group.id))
                 prefs.forEach { (id, share) -> votes.merge(id, group.populationShare * turnout * share, Double::plus) }
             }
         }
@@ -40,7 +40,9 @@ class ElectionSimulator(private val ctx: SimulationContext) {
         (base + elections.turnoutDiscontentWeight * (NEUTRAL - approval).coerceAtLeast(0.0) +
             elections.turnoutEnthusiasmWeight * (approval - NEUTRAL).coerceAtLeast(0.0)).clamp01()
 
-    private fun preferences(econ: Double, social: Double, approval: Double, candidates: List<Candidate>): Map<String, Double> {
+    private val promises = PromiseEvaluator(ctx)
+
+    private fun preferences(econ: Double, social: Double, approval: Double, candidates: List<Candidate>, promiseEffect: Double): Map<String, Double> {
         val utilities = candidates.associate { c ->
             val family = elections.families.first { it.id == c.familyId }
             val distance = hypot(econ - c.economicPosition, social - c.socialPosition) / MAX_DISTANCE
@@ -48,6 +50,7 @@ class ElectionSimulator(private val ctx: SimulationContext) {
             if (c.incumbent) {
                 u += elections.incumbentRecordWeight * (approval - NEUTRAL)
                 u -= elections.scandalPenalty * (ctx.state.characters[c.characterId]?.scandals ?: 0)
+                u += promiseEffect
             }
             c.characterId to u
         }

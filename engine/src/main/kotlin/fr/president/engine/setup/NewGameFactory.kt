@@ -91,6 +91,9 @@ class NewGameFactory(private val db: GameDatabase) {
         }
         fr.president.engine.military.MilitarySetup(ctx).ensure()
         initOpinion(ctx, country)
+        val maxPromises = country.promises?.maxPromises ?: 0
+        state.player.promises += options.promises.filter { id -> country.promises?.promises?.any { it.id == id } == true }.distinct().take(maxPromises)
+        fr.president.engine.elections.PromiseEvaluator(ctx).setBaselines()
         initRelations(state)
         EnergySystem().run(ctx)
         state.opinion.startValues[EnergySystem.REFERENCE_MARGIN_KEY] = state.energy.margin

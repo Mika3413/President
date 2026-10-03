@@ -93,6 +93,7 @@ class ElectionService(private val ctx: SimulationContext) {
                 "Avec ${Formatting.percent(incumbentShare)} des voix, vous entamez votre mandat n°${player.termNumber}.")
             prepareCandidates()
             schedule()
+            PromiseEvaluator(ctx).setBaselines()
         } else {
             ctx.state.player.gameOver = GameOver(ctx.now, "Battu par ${winner.fullName} à l'élection présidentielle.")
             ctx.notifications.post(NotificationCategory.ELECTIONS, Urgency.URGENT, "Défaite électorale",

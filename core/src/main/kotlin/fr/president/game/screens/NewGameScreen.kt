@@ -18,6 +18,7 @@ import fr.president.engine.setup.NewGameOptions
 import fr.president.engine.util.GameRandom
 import fr.president.game.ui.Theme
 import fr.president.game.ui.Ui
+import fr.president.game.ui.onClick
 
 /**
  * Lancement d'une partie : le joueur choisit son rythme (verrouillé ensuite)
@@ -38,12 +39,13 @@ class NewGameScreen(
     private val first = TextField("", ui.s)
     private val last = TextField("", ui.s)
     private var seed = nowMillis()
+    private val promises = linkedSetOf<String>()
 
     init {
         regenerateName()
         val content = Table().apply { pad(24f); defaults().left().padBottom(8f) }
         content.add(ui.label("PRÉSIDENT", "headline")).row()
-        content.add(ui.label("Vous venez d'être élu à la tête de la ${db.country(db.snapshot.playableCountries.first()).definition.name}. Le monde ne s'arrêtera pas pour vous attendre.", "default", wrap = true)).width(CONTENT_WIDTH).row()
+        content.add(ui.label("Vous venez d'être élu(e) à la tête de la ${db.country(db.snapshot.playableCountries.first()).definition.name}. Le monde ne s'arrêtera pas pour vous attendre.", "default", wrap = true)).width(CONTENT_WIDTH).row()
         errorMessage?.let { content.add(ui.label(it, "small", Theme.bad, wrap = true)).width(CONTENT_WIDTH).row() }
 
         content.add(ui.label("Rythme de la partie", "title")).padTop(12f).row()
@@ -88,8 +90,24 @@ class NewGameScreen(
             leanings.add(b).padRight(6f)
         }
         content.add(leanings).row()
+        val promiseFile = db.country(db.snapshot.playableCountries.first()).promises
+        if (promiseFile != null) {
+            content.add(ui.label("Vos promesses de campagne", "title")).padTop(12f).row()
+            content.add(ui.label("Choisissez jusqu'à ${promiseFile.maxPromises} engagements : les électeurs les jugeront à la prochaine élection.", "muted", wrap = true)).width(CONTENT_WIDTH).row()
+            val grid = Table().apply { defaults().padRight(6f).padBottom(4f).left() }
+            promiseFile.promises.forEachIndexed { i, p ->
+                val b = ui.button(p.label, "toggle") {}
+                b.onClick {
+                    if (b.isChecked && promises.size >= promiseFile.maxPromises) b.isChecked = false
+                    if (b.isChecked) promises += p.id else promises -= p.id
+                }
+                grid.add(b)
+                if (i % 2 == 1) grid.row()
+            }
+            content.add(grid).row()
+        }
         content.add(ui.button("Prendre ses fonctions", "accent") {
-            onStart(NewGameOptions(pace, seed, nowMillis(), first.text, last.text, female, leaning))
+            onStart(NewGameOptions(pace, seed, nowMillis(), first.text, last.text, female, leaning, promises = promises.toList()))
         }).padTop(16f).row()
         content.add(ui.label("Pays, institutions et données de départ inspirés du monde réel (${db.snapshot.label}). Tous les personnages sont fictifs.", "muted", wrap = true)).width(CONTENT_WIDTH).row()
 

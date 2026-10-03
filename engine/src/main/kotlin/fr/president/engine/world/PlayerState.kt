@@ -13,4 +13,8 @@ class PlayerState(
     var termStart: WorldTime,
     var termNumber: Int = 1,
     var gameOver: GameOver? = null,
+    /** Promesses de campagne et valeurs de référence au début du mandat. */
+    val promises: MutableList<String> = mutableListOf(),
+    val promiseBaselines: MutableMap<String, Double> = mutableMapOf(),
+    var warsThisTerm: Int = 0,
 )

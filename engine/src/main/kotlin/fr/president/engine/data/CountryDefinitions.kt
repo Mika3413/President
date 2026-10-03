@@ -27,6 +27,9 @@ data class CountryDefinition(
     val energy: String? = null,
     val transport: String? = null,
     val military: String? = null,
+    val reforms: String? = null,
+    val promises: String? = null,
+    val demography: fr.president.engine.government.DemographyDef? = null,
 )
 
 @Serializable

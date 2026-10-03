@@ -40,6 +40,7 @@ object Systems {
         EconomySystem(),
         ServiceQualitySystem(),
         TerritorySystem(),
+        fr.president.engine.territory.DemographySystem(),
         GovernmentSystem(),
         MilitarySystem(),
     )

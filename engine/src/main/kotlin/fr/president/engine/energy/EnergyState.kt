@@ -14,4 +14,6 @@ class EnergyState(
     var margin: Double = 0.0,
     var priceIndex: Double = 1.0,
     val referenceDemandTWh: Double = demandTWh,
+    /** Capacités ajoutées par les grands programmes (MW par parc agrégé). */
+    val extraCapacityMW: MutableMap<String, Double> = mutableMapOf(),
 )

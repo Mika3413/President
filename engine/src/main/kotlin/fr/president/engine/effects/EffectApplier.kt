@@ -71,12 +71,19 @@ class EffectApplier(private val ctx: SimulationContext) {
         when (parts[0]) {
             "economy" -> when (parts[1]) {
                 "output" -> economy.pendingOutputShock += delta
+                "potentialGrowth" -> economy.potentialGrowth += delta
+                "naturalUnemployment" -> economy.naturalUnemployment = (economy.naturalUnemployment + delta).coerceAtLeast(MIN_RATE)
                 "consumerConfidence" -> economy.consumerConfidence = (economy.consumerConfidence + delta).clamp01()
                 "businessConfidence" -> economy.businessConfidence = (economy.businessConfidence + delta).clamp01()
                 "inflation" -> economy.inflation += delta
                 "unemployment" -> economy.unemployment = (economy.unemployment + delta).coerceAtLeast(MIN_RATE)
             }
             "budget" -> if (parts[1] == "oneOff") economy.pendingOneOffBillions += delta
+            "spending" -> economy.budget?.spending?.get(parts[1])?.let { it.policyFactor = (it.policyFactor + delta).coerceAtLeast(0.0) }
+            "revenue" -> economy.budget?.revenues?.get(parts[1])?.let { it.rate = (it.rate + delta).coerceAtLeast(0.0) }
+            "demography" -> if (parts[1] == "immigration") state.demography.immigrationFactor = (state.demography.immigrationFactor + delta).coerceAtLeast(0.0)
+            "energy" -> if (parts[1] == "capacity") state.energy.extraCapacityMW.merge(parts[2], delta, Double::plus)
+            "president" -> apply("character.${state.player.presidentId}.${parts[1]}", delta)
             "opinion" -> when (parts[1]) {
                 "national" -> state.opinion.groups.values.forEach { it.shock += delta }
                 "group" -> state.opinion.groups[parts[2]]?.let { it.shock += delta }
@@ -109,13 +116,17 @@ class EffectApplier(private val ctx: SimulationContext) {
                     "loyalty" -> c.loyalty = (c.loyalty + delta).clamp01()
                     "popularity" -> c.popularity = (c.popularity + delta).clamp01()
                     "dismiss" -> if (delta > 0) GovernmentChanges(ctx).dismiss(c.id)
+                    "scandal" -> if (delta > 0) c.scandals++
                 }
             }
             "government" -> if (parts[1] == "parliamentSupport") {
                 state.government.parliamentSupport = (state.government.parliamentSupport + delta).clamp01()
             }
-            "military" -> if (parts[1] == "readiness") {
-                state.military.units.values.forEach { it.readiness = (it.readiness + delta).clamp01() }
+            "military" -> when (parts[1]) {
+                "readiness" -> state.military.units.values.filter { it.countryId == state.player.countryId }
+                    .forEach { it.readiness = (it.readiness + delta).clamp01() }
+                "ammoStock" -> state.military.stocks.ammunition = (state.military.stocks.ammunition + delta).clamp01()
+                "fuelStock" -> state.military.stocks.fuel = (state.military.stocks.fuel + delta).clamp01()
             }
             "memory" -> state.diplomacy.relation(parts[1], state.player.countryId).memories
                 .add(DiplomaticMemory(parts[2], delta, ctx.now))

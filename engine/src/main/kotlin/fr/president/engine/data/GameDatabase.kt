@@ -17,6 +17,8 @@ class CountryData(
     val energy: EnergyFile?,
     val transport: TransportFile?,
     val military: MilitaryFile?,
+    val reforms: fr.president.engine.government.ReformsFile? = null,
+    val promises: fr.president.engine.government.PromisesFile? = null,
 ) {
     val id: String get() = definition.id
 }

@@ -532,6 +532,18 @@
    "label": "Autres centrales thermiques",
    "capacityMW": 8000,
    "capacityFactor": 0.1
+  },
+  {
+   "id": "new_nuclear",
+   "label": "Nouveaux réacteurs",
+   "capacityMW": 0,
+   "capacityFactor": 0.82
+  },
+  {
+   "id": "new_renewables",
+   "label": "Nouveaux parcs renouvelables",
+   "capacityMW": 0,
+   "capacityFactor": 0.2
   }
  ]
 }

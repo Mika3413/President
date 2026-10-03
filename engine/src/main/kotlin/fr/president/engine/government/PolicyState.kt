@@ -4,7 +4,7 @@ import fr.president.engine.time.WorldTime
 import kotlinx.serialization.Serializable
 
 @Serializable
-enum class PolicyKind { TAX_RATE, SPENDING }
+enum class PolicyKind { TAX_RATE, SPENDING, REFORM }
 
 @Serializable
 enum class PolicyStatus { PENDING_VOTE, ADOPTED, REJECTED, FORCED }
@@ -24,4 +24,7 @@ class PolicyProposal(
 )
 
 @Serializable
-class PolicyState(val proposals: MutableList<PolicyProposal> = mutableListOf())
+class PolicyState(
+    val proposals: MutableList<PolicyProposal> = mutableListOf(),
+    val adoptedReforms: MutableMap<String, fr.president.engine.time.WorldTime> = mutableMapOf(),
+)

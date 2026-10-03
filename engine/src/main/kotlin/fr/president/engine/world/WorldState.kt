@@ -61,6 +61,7 @@ class WorldState(
     val projects: MutableList<ProjectState> = mutableListOf(),
     val policy: PolicyState = PolicyState(),
     var nextId: Long = 1,
+    val demography: fr.president.engine.territory.DemographyState = fr.president.engine.territory.DemographyState(),
 ) {
     val playerCountry: CountryState get() = countries.getValue(player.countryId)
 

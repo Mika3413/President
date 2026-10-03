@@ -27,7 +27,7 @@ class DepartmentState(
     var unemployment: Double,
     var incomeIndex: Double,
     val urbanShare: Double,
-    val seniorShare: Double,
+    var seniorShare: Double,
     /** Orientation politique dominante (-1 gauche, +1 droite). */
     val politicalLeaning: Double = 0.0,
     var approval: Double = 0.5,

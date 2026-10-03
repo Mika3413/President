@@ -1,0 +1,141 @@
+{
+ "promises": [
+  {
+   "id": "unemployment_7",
+   "label": "Ramener le chômage sous 7 %",
+   "kind": "BELOW",
+   "variable": "economy.unemployment",
+   "threshold": 0.07,
+   "groups": [
+    "private_employees",
+    "inactive",
+    "young"
+   ]
+  },
+  {
+   "id": "deficit_3",
+   "label": "Ramener le déficit sous 3 % du PIB",
+   "kind": "BELOW",
+   "variable": "economy.deficitRatio",
+   "threshold": 0.03,
+   "groups": [
+    "high_income",
+    "self_employed",
+    "seniors"
+   ]
+  },
+  {
+   "id": "no_tax_increase",
+   "label": "Ne pas augmenter les impôts des ménages",
+   "kind": "NOT_ABOVE_START",
+   "variable": "tax.households",
+   "threshold": 0.002,
+   "groups": [
+    "middle_income",
+    "high_income",
+    "rural"
+   ]
+  },
+  {
+   "id": "security",
+   "label": "Améliorer nettement la sécurité",
+   "kind": "ABOVE_START",
+   "variable": "quality.security",
+   "threshold": 0.04,
+   "groups": [
+    "seniors",
+    "rural",
+    "retirees"
+   ]
+  },
+  {
+   "id": "health",
+   "label": "Sauver l'hôpital",
+   "kind": "ABOVE_START",
+   "variable": "quality.health",
+   "threshold": 0.04,
+   "groups": [
+    "seniors",
+    "retirees",
+    "civil_servants"
+   ]
+  },
+  {
+   "id": "purchasing_power",
+   "label": "Augmenter le pouvoir d'achat",
+   "kind": "ABOVE_START",
+   "variable": "economy.purchasingPower",
+   "threshold": 0.02,
+   "groups": [
+    "low_income",
+    "middle_income",
+    "private_employees"
+   ]
+  },
+  {
+   "id": "pension_reform",
+   "label": "Réformer les retraites (âge légal)",
+   "kind": "REFORM_ADOPTED",
+   "reform": "pension_age_65",
+   "groups": [
+    "self_employed",
+    "high_income"
+   ]
+  },
+  {
+   "id": "no_pension_reform",
+   "label": "Ne pas reculer l'âge de la retraite",
+   "kind": "REFORM_NOT_ADOPTED",
+   "reform": "pension_age_65",
+   "groups": [
+    "private_employees",
+    "civil_servants"
+   ]
+  },
+  {
+   "id": "nuclear",
+   "label": "Relancer le nucléaire",
+   "kind": "REFORM_ADOPTED",
+   "reform": "nuclear_program",
+   "groups": [
+    "rural",
+    "self_employed"
+   ]
+  },
+  {
+   "id": "no_war",
+   "label": "Ne pas engager la France dans une guerre",
+   "kind": "NO_WAR",
+   "groups": [
+    "young",
+    "low_income",
+    "urban"
+   ]
+  },
+  {
+   "id": "debt",
+   "label": "Réduire la dette publique",
+   "kind": "BELOW_START",
+   "variable": "economy.debtRatio",
+   "threshold": 0.0,
+   "groups": [
+    "high_income",
+    "seniors"
+   ]
+  },
+  {
+   "id": "environment",
+   "label": "Accélérer la transition écologique",
+   "kind": "ABOVE_START",
+   "variable": "quality.environment",
+   "threshold": 0.04,
+   "groups": [
+    "young",
+    "urban"
+   ]
+  }
+ ],
+ "maxPromises": 3,
+ "keptBonus": 0.06,
+ "brokenPenalty": 0.08
+}

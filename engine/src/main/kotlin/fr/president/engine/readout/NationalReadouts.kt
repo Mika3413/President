@@ -10,7 +10,21 @@ class NationalReadouts(private val ctx: SimulationContext) {
     private val scales = ctx.db.readouts
     private val e get() = ctx.state.playerCountry.economy
 
-    fun all(): List<Indicator> = listOf(approval(), growth(), unemployment(), inflation(), debt(), energy(), parliament(), military())
+    fun all(): List<Indicator> = listOf(approval(), growth(), unemployment(), inflation(), debt(), energy(), parliament(), military(), demography())
+
+    fun demography(): Indicator {
+        val d = ctx.state.demography
+        val pop = ctx.state.playerCountry.population
+        val net = d.birthsLastYear - d.deathsLastYear + d.netMigrationLastYear
+        return Indicator("Population", Formatting.population(pop), Tone.NEUTRAL,
+            if (net >= 0) "La population augmente de ${Formatting.integer(net)} habitants par an." else "La population diminue.",
+            listOf(
+                "Naissances (rythme annuel)" to Formatting.integer(d.birthsLastYear),
+                "Décès (rythme annuel)" to Formatting.integer(d.deathsLastYear),
+                "Solde migratoire (rythme annuel)" to Formatting.integer(d.netMigrationLastYear),
+                "Politique migratoire" to Formatting.percent(d.immigrationFactor) + " de la tendance",
+            ))
+    }
 
     fun debt(): Indicator {
         val rising = e.deficitBillions > 0

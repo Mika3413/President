@@ -29,6 +29,25 @@ class PolicyService(private val ctx: SimulationContext) {
         return submit(PolicyKind.SPENDING, itemId, pendingValue(itemId) ?: item.policyFactor, factor, gov.parliament.spendingVoteDelayDays)
     }
 
+    fun reforms(): List<ReformDef> = ctx.playerData.reforms?.reforms.orEmpty()
+
+    /** Une réforme peut-elle être déposée ? (null = oui, sinon la raison) */
+    fun reformBlocker(id: String): String? {
+        val def = reforms().firstOrNull { it.id == id } ?: return "Réforme inconnue"
+        val policy = ctx.state.policy
+        if (id in policy.adoptedReforms) return "Déjà adoptée"
+        if (policy.proposals.any { it.itemId == id && it.status == PolicyStatus.PENDING_VOTE }) return "Vote en attente"
+        def.exclusiveWith.firstOrNull { it in policy.adoptedReforms }?.let { other ->
+            return "Incompatible avec « ${reforms().first { it.id == other }.title} »"
+        }
+        return null
+    }
+
+    fun proposeReform(id: String): Result<PolicyProposal> = runCatching {
+        reformBlocker(id)?.let { error(it) }
+        submit(PolicyKind.REFORM, id, 0.0, 1.0, ctx.playerData.reforms!!.voteDelayDays)
+    }
+
     /** Valeur visée par une mesure déjà en attente sur le même poste, s'il y en a une. */
     fun pendingValue(itemId: String): Double? = ctx.state.policy.proposals
         .lastOrNull { it.itemId == itemId && it.status == PolicyStatus.PENDING_VOTE }?.newValue
@@ -50,7 +69,8 @@ class PolicyService(private val ctx: SimulationContext) {
         val p = gov.parliament
         val support = ctx.state.government.parliamentSupport + ctx.rng.nextGaussian() * p.voteNoise
         proposal.supportAtVote = support
-        if (support >= p.passThreshold) {
+        val difficulty = if (proposal.kind == PolicyKind.REFORM) reforms().firstOrNull { it.id == proposal.itemId }?.difficulty ?: 0.0 else 0.0
+        if (support >= p.passThreshold + difficulty) {
             proposal.status = PolicyStatus.ADOPTED
             apply(proposal)
             ctx.notifications.post(NotificationCategory.POLITICS, Urgency.IMPORTANT, "Mesure adoptée", label(proposal))
@@ -75,6 +95,10 @@ class PolicyService(private val ctx: SimulationContext) {
     }
 
     private fun apply(proposal: PolicyProposal) {
+        if (proposal.kind == PolicyKind.REFORM) {
+            applyReform(proposal.itemId)
+            return
+        }
         val economy = ctx.state.playerCountry.economy
         val params = ctx.db.economyParameters
         val revenueBefore = economy.revenueBillions
@@ -84,6 +108,7 @@ class PolicyService(private val ctx: SimulationContext) {
         when (proposal.kind) {
             PolicyKind.TAX_RATE -> economy.budget!!.revenues.getValue(proposal.itemId).rate = proposal.newValue
             PolicyKind.SPENDING -> economy.budget!!.spending.getValue(proposal.itemId).policyFactor = proposal.newValue
+            PolicyKind.REFORM -> Unit
         }
         BudgetCalculator.recompute(economy)
         // Impulsion budgétaire : moins de demande quand l'État prélève plus ou dépense moins.
@@ -97,9 +122,17 @@ class PolicyService(private val ctx: SimulationContext) {
             .format(impulse, householdDelta, businessDelta))
     }
 
+    private fun applyReform(id: String) {
+        val def = reforms().first { it.id == id }
+        ctx.state.policy.adoptedReforms[id] = ctx.now
+        (def.immediateEffects + def.longTermEffects).forEach { ctx.effects.trigger(it, null, emptyMap(), id) }
+        ctx.notifications.news(NotificationCategory.POLITICS, "Réforme adoptée : ${def.title}")
+    }
+
     fun label(p: PolicyProposal): String {
         val budget = ctx.playerData.economy.budget!!
         return when (p.kind) {
+            PolicyKind.REFORM -> "Réforme : " + (reforms().firstOrNull { it.id == p.itemId }?.title ?: p.itemId)
             PolicyKind.TAX_RATE -> {
                 val def = budget.revenues.first { it.id == p.itemId }
                 "${def.label} : ${Formatting.amount(p.oldValue)} → ${Formatting.amount(p.newValue)} ${def.rateLabel}"

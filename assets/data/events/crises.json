@@ -1,0 +1,1333 @@
+{
+ "events": [
+  {
+   "id": "president_scandal",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0012,
+   "cooldownDays": 300,
+   "urgency": "URGENT",
+   "headline": "Révélations visant l'entourage du président",
+   "notificationText": "La presse publie une enquête embarrassante.",
+   "modifiers": [
+    {
+     "variable": "president.integrity",
+     "from": 0.2,
+     "to": 0.8,
+     "factorAtFrom": 3.0,
+     "factorAtTo": 0.3
+    }
+   ],
+   "immediateEffects": [
+    {
+     "target": "president.scandal",
+     "amount": 1
+    },
+    {
+     "target": "opinion.national",
+     "amount": -0.012
+    }
+   ],
+   "message": {
+    "template": "president_scandal",
+    "sender": "PRIME_MINISTER",
+    "responseDays": 3,
+    "defaultOption": "silence",
+    "options": [
+     {
+      "id": "assume",
+      "label": "Reconnaître les faits et sanctionner",
+      "hint": "Coût immédiat, l'affaire s'éteint plus vite",
+      "effects": [
+       {
+        "target": "opinion.national",
+        "amount": -0.008
+       },
+       {
+        "target": "sender.relation",
+        "amount": 0.05
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "inquiry",
+      "label": "Saisir une autorité indépendante",
+      "hint": "Transparence, procédure longue",
+      "effects": [
+       {
+        "target": "opinion.national",
+        "amount": 0.004
+       },
+       {
+        "target": "budget.oneOff",
+        "amount": 0.01
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "deny",
+      "label": "Démentir fermement",
+      "hint": "Risque d'un second scandale",
+      "effects": [
+       {
+        "target": "opinion.national",
+        "amount": -0.02,
+        "days": 10,
+        "delayDays": 25
+       },
+       {
+        "target": "president.scandal",
+        "amount": 1,
+        "delayDays": 25
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "silence",
+      "label": "Ne pas commenter",
+      "hint": "L'affaire suit son cours",
+      "effects": [
+       {
+        "target": "opinion.national",
+        "amount": -0.01,
+        "days": 15
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ]
+   }
+  },
+  {
+   "id": "epidemic",
+   "category": "DISASTER",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.003,
+   "cooldownDays": 400,
+   "urgency": "URGENT",
+   "headline": "Épidémie : les hôpitaux sous tension",
+   "notificationText": "Un virus respiratoire se propage rapidement.",
+   "conditions": [
+    {
+     "variable": "season.month",
+     "oneOf": [
+      11,
+      12,
+      1,
+      2,
+      3
+     ]
+    }
+   ],
+   "modifiers": [
+    {
+     "variable": "quality.health",
+     "from": 0.35,
+     "to": 0.65,
+     "factorAtFrom": 2.0,
+     "factorAtTo": 0.6
+    }
+   ],
+   "immediateEffects": [
+    {
+     "target": "quality.health",
+     "amount": -0.02,
+     "days": 30
+    },
+    {
+     "target": "economy.output",
+     "amount": -0.0005,
+     "days": 30
+    }
+   ],
+   "message": {
+    "template": "epidemic",
+    "sender": "MINISTER",
+    "responseDays": 3,
+    "defaultOption": "minimal",
+    "options": [
+     {
+      "id": "restrictions",
+      "label": "Mesures de restriction ciblées",
+      "hint": "Freine l'épidémie, pèse sur l'activité",
+      "effects": [
+       {
+        "target": "economy.output",
+        "amount": -0.003,
+        "days": 45
+       },
+       {
+        "target": "quality.health",
+        "amount": 0.015,
+        "days": 30
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": -0.02
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": 0.02
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "vaccination",
+      "label": "Campagne massive de vaccination",
+      "hint": "Coût : 1,5 Md€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 1.5,
+        "days": 60
+       },
+       {
+        "target": "quality.health",
+        "amount": 0.02,
+        "days": 60
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.005
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "minimal",
+      "label": "Recommandations sanitaires",
+      "hint": "Aucun coût, risque de saturation",
+      "effects": [
+       {
+        "target": "quality.health",
+        "amount": -0.02,
+        "days": 30
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": -0.02
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ],
+    "ministry": "health"
+   }
+  },
+  {
+   "id": "blackout",
+   "category": "ENERGY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.02,
+   "cooldownDays": 60,
+   "urgency": "URGENT",
+   "headline": "Coupures d'électricité dans plusieurs régions",
+   "notificationText": "La production ne couvre plus la demande aux heures de pointe.",
+   "conditions": [
+    {
+     "variable": "energy.margin",
+     "max": 0.01
+    }
+   ],
+   "immediateEffects": [
+    {
+     "target": "economy.output",
+     "amount": -0.0008,
+     "days": 10
+    },
+    {
+     "target": "opinion.national",
+     "amount": -0.012
+    }
+   ],
+   "message": {
+    "template": "blackout",
+    "sender": "MINISTER",
+    "responseDays": 2,
+    "defaultOption": "shedding",
+    "options": [
+     {
+      "id": "import",
+      "label": "Importer de l'électricité en urgence",
+      "hint": "Coût : 800 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.8
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.006
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "shedding",
+      "label": "Délestages tournants organisés",
+      "hint": "Aucun coût, mécontentement",
+      "effects": [
+       {
+        "target": "opinion.group.rural",
+        "amount": -0.02
+       },
+       {
+        "target": "economy.output",
+        "amount": -0.0005,
+        "days": 20
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "gas",
+      "label": "Relancer toutes les centrales à gaz",
+      "hint": "Coût : 400 M€, émissions accrues",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.4
+       },
+       {
+        "target": "quality.environment",
+        "amount": -0.01
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ],
+    "ministry": "ecology"
+   }
+  },
+  {
+   "id": "fuel_shortage",
+   "category": "ENERGY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.002,
+   "cooldownDays": 200,
+   "urgency": "IMPORTANT",
+   "headline": "Pénurie de carburant dans les stations-service",
+   "notificationText": "Files d'attente et ruptures d'approvisionnement.",
+   "modifiers": [
+    {
+     "variable": "energy.priceIndex",
+     "from": 1.0,
+     "to": 1.6,
+     "factorAtFrom": 1.0,
+     "factorAtTo": 4.0
+    },
+    {
+     "variable": "opinion.group.private_employees",
+     "from": 0.25,
+     "to": 0.5,
+     "factorAtFrom": 2.0,
+     "factorAtTo": 0.7
+    }
+   ],
+   "immediateEffects": [
+    {
+     "target": "economy.output",
+     "amount": -0.0005,
+     "days": 15
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.015
+    }
+   ],
+   "message": {
+    "template": "fuel_shortage",
+    "sender": "MINISTER",
+    "responseDays": 2,
+    "defaultOption": "wait",
+    "options": [
+     {
+      "id": "reserves",
+      "label": "Libérer les stocks stratégiques",
+      "hint": "Puise dans les réserves de carburant des armées",
+      "effects": [
+       {
+        "target": "military.fuelStock",
+        "amount": -0.15
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.015
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "price_cap",
+      "label": "Remise à la pompe financée par l'État",
+      "hint": "Coût : 2 Md€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 2.0,
+        "days": 60
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.02
+       },
+       {
+        "target": "opinion.group.low_income",
+        "amount": 0.01
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "wait",
+      "label": "Laisser le marché se rééquilibrer",
+      "hint": "Aucun coût",
+      "effects": [
+       {
+        "target": "opinion.group.rural",
+        "amount": -0.01,
+        "days": 15
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ],
+    "ministry": "ecology"
+   }
+  },
+  {
+   "id": "terror_attack",
+   "category": "SECURITY",
+   "scope": "CITY",
+   "maxCityRank": 2,
+   "baseDailyProbability": 3e-05,
+   "cooldownDays": 240,
+   "urgency": "URGENT",
+   "headline": "Attentat à {city}",
+   "notificationText": "Le pays est sous le choc. Le ministre de l'Intérieur attend vos décisions.",
+   "modifiers": [
+    {
+     "variable": "quality.security",
+     "from": 0.35,
+     "to": 0.65,
+     "factorAtFrom": 2.5,
+     "factorAtTo": 0.5
+    },
+    {
+     "variable": "military.atWar",
+     "from": 0,
+     "to": 1,
+     "factorAtFrom": 1.0,
+     "factorAtTo": 2.5
+    }
+   ],
+   "immediateEffects": [
+    {
+     "target": "opinion.national",
+     "amount": 0.01
+    },
+    {
+     "target": "scope.satisfaction",
+     "amount": -0.05
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.02
+    }
+   ],
+   "message": {
+    "template": "terror_attack",
+    "sender": "MINISTER",
+    "responseDays": 1,
+    "defaultOption": "unity",
+    "options": [
+     {
+      "id": "emergency",
+      "label": "Décréter l'état d'urgence",
+      "hint": "Sécurité renforcée, libertés restreintes",
+      "effects": [
+       {
+        "target": "quality.security",
+        "amount": 0.02,
+        "days": 60
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": -0.02
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": 0.02
+       },
+       {
+        "target": "opinion.group.urban",
+        "amount": -0.01
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "intelligence",
+      "label": "Renforcer le renseignement intérieur",
+      "hint": "Coût : 600 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.6,
+        "days": 180
+       },
+       {
+        "target": "quality.security",
+        "amount": 0.03,
+        "days": 365
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "unity",
+      "label": "Hommage national et appel à l'unité",
+      "hint": "Apaise sans répondre au fond",
+      "effects": [
+       {
+        "target": "opinion.national",
+        "amount": 0.006
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ],
+    "ministry": "interior"
+   }
+  },
+  {
+   "id": "storm",
+   "category": "DISASTER",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 8e-05,
+   "cooldownDays": 30,
+   "scopeCooldownDays": 300,
+   "urgency": "IMPORTANT",
+   "headline": "Tempête violente : dégâts dans le département {department}",
+   "notificationText": "Toitures arrachées, routes coupées, foyers privés d'électricité.",
+   "conditions": [
+    {
+     "variable": "season.month",
+     "oneOf": [
+      10,
+      11,
+      12,
+      1,
+      2
+     ]
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.04,
+     "max": 0.25,
+     "scaleBy": "scope.populationMillions",
+     "minScale": 0.3,
+     "round": 0.005
+    }
+   ],
+   "immediateEffects": [
+    {
+     "target": "scope.approval",
+     "amount": -0.01
+    },
+    {
+     "target": "economy.output",
+     "amount": -0.0001,
+     "days": 10
+    }
+   ],
+   "message": {
+    "template": "storm",
+    "sender": "PREFECT",
+    "responseDays": 3,
+    "defaultOption": "minimal",
+    "options": [
+     {
+      "id": "full",
+      "label": "Fonds d'urgence et reconnaissance de catastrophe naturelle",
+      "hint": "Coût : {amountText}",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 1.0
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.03,
+        "days": 10
+       },
+       {
+        "target": "sender.relation",
+        "amount": 0.06
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "minimal",
+      "label": "Mobiliser les services de l'État sans aide spécifique",
+      "hint": "Coût réduit",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 0.2
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.01,
+        "days": 10
+       }
+      ],
+      "outcome": "PARTIAL"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wildfire",
+   "category": "DISASTER",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.00012,
+   "cooldownDays": 20,
+   "scopeCooldownDays": 200,
+   "urgency": "URGENT",
+   "headline": "Incendies de forêt dans le département {department}",
+   "notificationText": "Des milliers d'hectares brûlent ; des habitants sont évacués.",
+   "conditions": [
+    {
+     "variable": "season.month",
+     "oneOf": [
+      6,
+      7,
+      8,
+      9
+     ]
+    }
+   ],
+   "modifiers": [
+    {
+     "variable": "scope.mediterranean",
+     "from": 0,
+     "to": 1,
+     "factorAtFrom": 0.2,
+     "factorAtTo": 2.5
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.03,
+     "max": 0.15,
+     "round": 0.005
+    }
+   ],
+   "immediateEffects": [
+    {
+     "target": "scope.approval",
+     "amount": -0.015
+    },
+    {
+     "target": "quality.environment",
+     "amount": -0.005
+    }
+   ],
+   "message": {
+    "template": "wildfire",
+    "sender": "PREFECT",
+    "responseDays": 2,
+    "defaultOption": "standard",
+    "options": [
+     {
+      "id": "reinforce",
+      "label": "Envoyer des renforts aériens et militaires",
+      "hint": "Coût : {amountText}",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 1.0
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.03,
+        "days": 10
+       },
+       {
+        "target": "military.readiness",
+        "amount": -0.01
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "standard",
+      "label": "Laisser agir les moyens habituels",
+      "hint": "Aucun coût supplémentaire",
+      "effects": [
+       {
+        "target": "scope.approval",
+        "amount": -0.01
+       },
+       {
+        "target": "quality.environment",
+        "amount": -0.005
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bankruptcy",
+   "category": "ECONOMY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0015,
+   "cooldownDays": 240,
+   "urgency": "URGENT",
+   "headline": "Un grand groupe industriel au bord de la faillite",
+   "notificationText": "Des dizaines de milliers d'emplois sont menacés.",
+   "modifiers": [
+    {
+     "variable": "economy.businessConfidence",
+     "from": 0.3,
+     "to": 0.55,
+     "factorAtFrom": 3.0,
+     "factorAtTo": 0.4
+    },
+    {
+     "variable": "energy.priceIndex",
+     "from": 1.0,
+     "to": 1.5,
+     "factorAtFrom": 1.0,
+     "factorAtTo": 2.0
+    }
+   ],
+   "message": {
+    "template": "bankruptcy",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "let_go",
+    "options": [
+     {
+      "id": "nationalize",
+      "label": "Nationalisation temporaire",
+      "hint": "Coût : 4 Md€, emplois sauvés",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 4.0
+       },
+       {
+        "target": "opinion.group.private_employees",
+        "amount": 0.02
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": -0.01
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "loan",
+      "label": "Prêt garanti par l'État",
+      "hint": "Coût : 600 M€, sauvetage partiel",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.6
+       },
+       {
+        "target": "economy.unemployment",
+        "amount": 0.001,
+        "days": 120
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "let_go",
+      "label": "Laisser la procédure suivre son cours",
+      "hint": "Aucun coût, choc social",
+      "effects": [
+       {
+        "target": "economy.unemployment",
+        "amount": 0.003,
+        "days": 120
+       },
+       {
+        "target": "opinion.group.private_employees",
+        "amount": -0.02
+       },
+       {
+        "target": "economy.output",
+        "amount": -0.001,
+        "days": 90
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ],
+    "ministry": "economy"
+   }
+  },
+  {
+   "id": "farmers_protest",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.004,
+   "cooldownDays": 300,
+   "urgency": "IMPORTANT",
+   "headline": "Colère agricole : blocages dans tout le pays",
+   "notificationText": "Les agriculteurs dénoncent leurs revenus et les normes.",
+   "conditions": [
+    {
+     "variable": "season.month",
+     "oneOf": [
+      1,
+      2,
+      3,
+      11,
+      12
+     ]
+    }
+   ],
+   "modifiers": [
+    {
+     "variable": "quality.agriculture",
+     "from": 0.35,
+     "to": 0.6,
+     "factorAtFrom": 2.5,
+     "factorAtTo": 0.5
+    },
+    {
+     "variable": "energy.priceIndex",
+     "from": 1.0,
+     "to": 1.4,
+     "factorAtFrom": 1.0,
+     "factorAtTo": 2.0
+    }
+   ],
+   "immediateEffects": [
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.01
+    },
+    {
+     "target": "economy.output",
+     "amount": -0.0003,
+     "days": 14
+    }
+   ],
+   "message": {
+    "template": "farmers_protest",
+    "sender": "MINISTER",
+    "responseDays": 3,
+    "defaultOption": "firm",
+    "options": [
+     {
+      "id": "aid",
+      "label": "Plan d'aide d'urgence",
+      "hint": "Coût : 1,2 Md€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 1.2
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.03
+       },
+       {
+        "target": "quality.agriculture",
+        "amount": 0.02,
+        "days": 90
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "simplify",
+      "label": "Suspendre certaines normes environnementales",
+      "hint": "Aucun coût, environnement affaibli",
+      "effects": [
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.02
+       },
+       {
+        "target": "quality.environment",
+        "amount": -0.02
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": -0.01
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "firm",
+      "label": "Fermeté et dialogue",
+      "hint": "Les blocages peuvent durer",
+      "effects": [
+       {
+        "target": "opinion.group.rural",
+        "amount": -0.02,
+        "days": 20
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ],
+    "ministry": "agriculture"
+   }
+  },
+  {
+   "id": "teachers_strike",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.003,
+   "cooldownDays": 240,
+   "urgency": "IMPORTANT",
+   "headline": "Grève massive dans l'Éducation nationale",
+   "notificationText": "Les enseignants réclament des moyens et des revalorisations.",
+   "conditions": [
+    {
+     "variable": "season.month",
+     "oneOf": [
+      9,
+      10,
+      11,
+      1,
+      2,
+      3,
+      4,
+      5
+     ]
+    }
+   ],
+   "modifiers": [
+    {
+     "variable": "quality.education",
+     "from": 0.35,
+     "to": 0.6,
+     "factorAtFrom": 3.0,
+     "factorAtTo": 0.4
+    },
+    {
+     "variable": "economy.inflation",
+     "from": 0.01,
+     "to": 0.04,
+     "factorAtFrom": 0.8,
+     "factorAtTo": 2.0
+    }
+   ],
+   "message": {
+    "template": "teachers_strike",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "firm",
+    "options": [
+     {
+      "id": "raise",
+      "label": "Revalorisation salariale",
+      "hint": "Budget de l'éducation +2 %",
+      "effects": [
+       {
+        "target": "spending.education",
+        "amount": 0.02
+       },
+       {
+        "target": "opinion.group.civil_servants",
+        "amount": 0.03
+       },
+       {
+        "target": "quality.education",
+        "amount": 0.01,
+        "days": 90
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "dialogue",
+      "label": "Ouvrir une concertation",
+      "hint": "Apaisement partiel",
+      "effects": [
+       {
+        "target": "opinion.group.civil_servants",
+        "amount": 0.01
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "firm",
+      "label": "Tenir bon",
+      "hint": "Mobilisation prolongée",
+      "effects": [
+       {
+        "target": "opinion.group.civil_servants",
+        "amount": -0.03
+       },
+       {
+        "target": "quality.education",
+        "amount": -0.01,
+        "days": 30
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ],
+    "ministry": "education"
+   }
+  },
+  {
+   "id": "diplomatic_incident",
+   "category": "DIPLOMACY",
+   "scope": "FOREIGN_COUNTRY",
+   "baseDailyProbability": 0.0008,
+   "cooldownDays": 60,
+   "scopeCooldownDays": 365,
+   "urgency": "IMPORTANT",
+   "headline": "Incident diplomatique avec : {foreignCountry}",
+   "notificationText": "Des propos de responsables étrangers provoquent un tollé.",
+   "modifiers": [
+    {
+     "variable": "scope.relation",
+     "from": 0.2,
+     "to": 0.6,
+     "factorAtFrom": 3.0,
+     "factorAtTo": 0.3
+    }
+   ],
+   "message": {
+    "template": "diplomatic_incident",
+    "sender": "MINISTER",
+    "responseDays": 3,
+    "defaultOption": "protest",
+    "options": [
+     {
+      "id": "summon",
+      "label": "Convoquer l'ambassadeur",
+      "hint": "Fermeté, relations dégradées",
+      "effects": [
+       {
+        "target": "country.DISAGREEMENT",
+        "amount": -0.04
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.004
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "protest",
+      "label": "Protestation diplomatique discrète",
+      "hint": "Mesuré",
+      "effects": [
+       {
+        "target": "country.DISAGREEMENT",
+        "amount": -0.015
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "appease",
+      "label": "Apaiser et passer outre",
+      "hint": "Relations préservées, image de faiblesse",
+      "effects": [
+       {
+        "target": "country.NEGOTIATION_GOODWILL",
+        "amount": 0.02
+       },
+       {
+        "target": "opinion.national",
+        "amount": -0.004
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ],
+    "ministry": "foreign"
+   }
+  },
+  {
+   "id": "military_accident",
+   "category": "MILITARY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.001,
+   "cooldownDays": 200,
+   "urgency": "IMPORTANT",
+   "headline": "Accident militaire lors d'un exercice",
+   "notificationText": "Plusieurs militaires ont perdu la vie.",
+   "modifiers": [
+    {
+     "variable": "military.readiness",
+     "from": 0.4,
+     "to": 0.75,
+     "factorAtFrom": 3.0,
+     "factorAtTo": 0.5
+    }
+   ],
+   "immediateEffects": [
+    {
+     "target": "military.readiness",
+     "amount": -0.01
+    },
+    {
+     "target": "opinion.national",
+     "amount": -0.003
+    }
+   ],
+   "message": {
+    "template": "military_accident",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "inquiry",
+    "options": [
+     {
+      "id": "maintenance",
+      "label": "Plan d'urgence pour l'entretien des matériels",
+      "hint": "Budget de la défense +3 %",
+      "effects": [
+       {
+        "target": "spending.defense",
+        "amount": 0.03
+       },
+       {
+        "target": "military.readiness",
+        "amount": 0.03,
+        "days": 180
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "inquiry",
+      "label": "Enquête de commandement",
+      "hint": "Aucun coût",
+      "effects": [
+       {
+        "target": "opinion.national",
+        "amount": 0.001
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ],
+    "ministry": "armed_forces"
+   }
+  },
+  {
+   "id": "refugee_crisis",
+   "category": "SECURITY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.01,
+   "cooldownDays": 180,
+   "urgency": "IMPORTANT",
+   "headline": "Afflux de réfugiés fuyant la guerre",
+   "notificationText": "Des milliers de personnes arrivent aux frontières de l'Europe.",
+   "conditions": [
+    {
+     "variable": "military.nearbyWar",
+     "min": 1
+    }
+   ],
+   "message": {
+    "template": "refugee_crisis",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "european",
+    "options": [
+     {
+      "id": "welcome",
+      "label": "Accueil large et intégration",
+      "hint": "Coût : 1,5 Md€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 1.5,
+        "days": 180
+       },
+       {
+        "target": "opinion.group.urban",
+        "amount": 0.02
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": 0.02
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": -0.02
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": -0.01
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "european",
+      "label": "Répartition européenne négociée",
+      "hint": "Équilibre",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.5,
+        "days": 180
+       },
+       {
+        "target": "memory.DEU.NEGOTIATION_GOODWILL",
+        "amount": 0.02
+       },
+       {
+        "target": "memory.ITA.NEGOTIATION_GOODWILL",
+        "amount": 0.02
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "closed",
+      "label": "Contrôles renforcés aux frontières",
+      "hint": "Populaire chez certains, critiqué par nos partenaires",
+      "effects": [
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.02
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": -0.02
+       },
+       {
+        "target": "memory.DEU.DISAGREEMENT",
+        "amount": -0.02
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ],
+    "ministry": "interior"
+   }
+  },
+  {
+   "id": "investment_announcement",
+   "category": "ECONOMY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.004,
+   "cooldownDays": 120,
+   "headline": "Un géant industriel annonce une usine géante en France",
+   "notificationText": "Des milliers d'emplois à la clé.",
+   "modifiers": [
+    {
+     "variable": "economy.businessConfidence",
+     "from": 0.4,
+     "to": 0.65,
+     "factorAtFrom": 0.3,
+     "factorAtTo": 3.0
+    }
+   ],
+   "immediateEffects": [
+    {
+     "target": "economy.output",
+     "amount": 0.0015,
+     "days": 365
+    },
+    {
+     "target": "economy.unemployment",
+     "amount": -0.001,
+     "days": 365
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": 0.01
+    },
+    {
+     "target": "opinion.national",
+     "amount": 0.004
+    }
+   ]
+  },
+  {
+   "id": "sports_victory",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0008,
+   "cooldownDays": 365,
+   "headline": "Victoire historique de l'équipe de France",
+   "notificationText": "Le pays célèbre ses champions.",
+   "immediateEffects": [
+    {
+     "target": "opinion.national",
+     "amount": 0.015
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": 0.01
+    }
+   ]
+  },
+  {
+   "id": "drought",
+   "category": "DISASTER",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.006,
+   "cooldownDays": 300,
+   "urgency": "IMPORTANT",
+   "headline": "Sécheresse historique : restrictions d'eau",
+   "notificationText": "Les récoltes sont menacées, les prix alimentaires montent.",
+   "conditions": [
+    {
+     "variable": "season.month",
+     "oneOf": [
+      7,
+      8
+     ]
+    }
+   ],
+   "immediateEffects": [
+    {
+     "target": "economy.inflation",
+     "amount": 0.002,
+     "days": 90
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.015
+    },
+    {
+     "target": "quality.agriculture",
+     "amount": -0.02,
+     "days": 60
+    },
+    {
+     "target": "economy.output",
+     "amount": -0.0005,
+     "days": 60
+    }
+   ]
+  }
+ ]
+}

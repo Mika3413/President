@@ -54,7 +54,8 @@ class EnergySystem : SimulationSystem {
                 mwh += def.capacityMW * def.capacityFactor * availability * HOURS_PER_YEAR
             }
             for (aggregate in energyData.nationalGeneration) {
-                mwh += aggregate.capacityMW * aggregate.capacityFactor * HOURS_PER_YEAR
+                val capacity = aggregate.capacityMW + (ctx.state.energy.extraCapacityMW[aggregate.id] ?: 0.0)
+                mwh += capacity * aggregate.capacityFactor * HOURS_PER_YEAR
             }
             return mwh / MWH_PER_TWH
         }

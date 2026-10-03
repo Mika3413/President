@@ -27,6 +27,13 @@ class VariableResolver(private val ctx: SimulationContext) {
             "military" -> military(parts.getOrNull(1))
             "season" -> if (parts.getOrNull(1) == "month") ctx.now.month.toDouble() else null
             "scope" -> scoped(parts.getOrNull(1), scope)
+            "president" -> ctx.state.characters[ctx.state.player.presidentId]?.let { p ->
+                when (parts.getOrNull(1)) {
+                    "scandals" -> p.scandals.toDouble()
+                    null -> null
+                    else -> p.trait(parts[1])
+                }
+            }
             else -> null
         }
     }
@@ -123,6 +130,7 @@ class VariableResolver(private val ctx: SimulationContext) {
             "urbanShare" -> d.urbanShare
             "seniorShare" -> d.seniorShare
             "populationMillions" -> d.population / MILLION
+            "mediterranean" -> if (d.region in MEDITERRANEAN_REGIONS) 1.0 else 0.0
             else -> null
         }
     }
@@ -130,6 +138,7 @@ class VariableResolver(private val ctx: SimulationContext) {
     private companion object {
         val NEARBY = setOf("DEU", "ESP", "ITA", "GBR", "BEL", "NLD", "CHE", "PRT", "AUT", "POL", "SWE", "NOR", "GRC", "ROU", "UKR", "RUS", "BLR", "TUR", "DZA", "MAR", "TUN")
         const val MILLION = 1_000_000.0
+        val MEDITERRANEAN_REGIONS = setOf("93", "94", "76")
         const val MW_PER_GW = 1000.0
     }
 }

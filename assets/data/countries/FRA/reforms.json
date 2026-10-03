@@ -1,0 +1,667 @@
+{
+ "reforms": [
+  {
+   "id": "pension_age_65",
+   "title": "Report de l'âge légal de départ à 65 ans",
+   "category": "Retraites",
+   "description": "Relève progressivement l'âge légal de départ. Réduit les dépenses de retraite et augmente la population active, au prix d'une forte contestation.",
+   "difficulty": 0.08,
+   "immediateEffects": [
+    {
+     "target": "opinion.group.private_employees",
+     "amount": -0.06
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.02
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": -0.02
+    },
+    {
+     "target": "opinion.group.civil_servants",
+     "amount": -0.04
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": 0.02
+    }
+   ],
+   "longTermEffects": [
+    {
+     "target": "spending.pensions",
+     "amount": -0.05,
+     "days": 1460
+    },
+    {
+     "target": "economy.potentialGrowth",
+     "amount": 0.0015,
+     "days": 1460
+    },
+    {
+     "target": "economy.naturalUnemployment",
+     "amount": 0.001,
+     "days": 730
+    }
+   ],
+   "exclusiveWith": [
+    "pension_age_62"
+   ],
+   "summary": "Retraites −5 % sur 4 ans, croissance potentielle accrue ; très impopulaire chez les actifs."
+  },
+  {
+   "id": "pension_age_62",
+   "title": "Retour à la retraite à 62 ans",
+   "category": "Retraites",
+   "description": "Abaisse l'âge légal de départ. Mesure populaire, coûteuse pour les finances publiques et la population active.",
+   "difficulty": 0.05,
+   "immediateEffects": [
+    {
+     "target": "opinion.group.private_employees",
+     "amount": 0.05
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": -0.03
+    },
+    {
+     "target": "opinion.group.high_income",
+     "amount": -0.02
+    }
+   ],
+   "longTermEffects": [
+    {
+     "target": "spending.pensions",
+     "amount": 0.05,
+     "days": 730
+    },
+    {
+     "target": "economy.potentialGrowth",
+     "amount": -0.0015,
+     "days": 1460
+    }
+   ],
+   "exclusiveWith": [
+    "pension_age_65"
+   ],
+   "summary": "Retraites +5 %, croissance potentielle réduite."
+  },
+  {
+   "id": "unemployment_insurance",
+   "title": "Durcissement de l'assurance chômage",
+   "category": "Travail",
+   "description": "Réduit la durée et le montant des indemnités pour inciter au retour à l'emploi.",
+   "difficulty": 0.04,
+   "immediateEffects": [
+    {
+     "target": "opinion.group.inactive",
+     "amount": -0.06
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": -0.03
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": 0.02
+    }
+   ],
+   "longTermEffects": [
+    {
+     "target": "spending.unemployment_benefits",
+     "amount": -0.12,
+     "days": 365
+    },
+    {
+     "target": "economy.naturalUnemployment",
+     "amount": -0.004,
+     "days": 1095
+    }
+   ],
+   "exclusiveWith": [],
+   "summary": "Indemnités −12 %, chômage structurel −0,4 point en 3 ans."
+  },
+  {
+   "id": "labour_code",
+   "title": "Assouplissement du code du travail",
+   "category": "Travail",
+   "description": "Facilite les embauches et les licenciements, développe la négociation d'entreprise.",
+   "difficulty": 0.05,
+   "immediateEffects": [
+    {
+     "target": "opinion.group.private_employees",
+     "amount": -0.04
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": 0.05
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": 0.03
+    }
+   ],
+   "longTermEffects": [
+    {
+     "target": "economy.naturalUnemployment",
+     "amount": -0.004,
+     "days": 1095
+    },
+    {
+     "target": "economy.potentialGrowth",
+     "amount": 0.001,
+     "days": 1095
+    }
+   ],
+   "exclusiveWith": [],
+   "summary": "Chômage structurel −0,4 point, confiance des entreprises accrue."
+  },
+  {
+   "id": "minimum_wage",
+   "title": "Hausse du salaire minimum de 5 %",
+   "category": "Travail",
+   "description": "Augmente le SMIC au-delà de l'inflation.",
+   "difficulty": 0.0,
+   "immediateEffects": [
+    {
+     "target": "opinion.group.low_income",
+     "amount": 0.05
+    },
+    {
+     "target": "opinion.group.private_employees",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": -0.04
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.02
+    }
+   ],
+   "longTermEffects": [
+    {
+     "target": "economy.inflation",
+     "amount": 0.002,
+     "days": 180
+    },
+    {
+     "target": "economy.naturalUnemployment",
+     "amount": 0.002,
+     "days": 730
+    },
+    {
+     "target": "spending.solidarity",
+     "amount": 0.01,
+     "days": 180
+    }
+   ],
+   "exclusiveWith": [],
+   "summary": "Pouvoir d'achat des plus modestes ; un peu d'inflation et de chômage."
+  },
+  {
+   "id": "police_recruitment",
+   "title": "Recrutement de 10 000 policiers et gendarmes",
+   "category": "Sécurité",
+   "description": "Plan pluriannuel de recrutement et d'équipement des forces de l'ordre.",
+   "difficulty": 0.0,
+   "immediateEffects": [
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.01
+    }
+   ],
+   "longTermEffects": [
+    {
+     "target": "spending.police",
+     "amount": 0.08,
+     "days": 365
+    },
+    {
+     "target": "quality.security",
+     "amount": 0.04,
+     "days": 730
+    }
+   ],
+   "exclusiveWith": [],
+   "summary": "Sécurité intérieure +, dépense +8 % sur la police."
+  },
+  {
+   "id": "prison_plan",
+   "title": "Plan de 15 000 places de prison",
+   "category": "Justice",
+   "description": "Construction de nouveaux établissements pénitentiaires.",
+   "difficulty": 0.0,
+   "immediateEffects": [
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.01
+    }
+   ],
+   "longTermEffects": [
+    {
+     "target": "budget.oneOff",
+     "amount": 5.0,
+     "days": 1460
+    },
+    {
+     "target": "quality.justice",
+     "amount": 0.06,
+     "days": 1460
+    },
+    {
+     "target": "quality.security",
+     "amount": 0.01,
+     "days": 1460
+    }
+   ],
+   "exclusiveWith": [],
+   "summary": "5 Md€ sur 4 ans ; justice et sécurité améliorées."
+  },
+  {
+   "id": "hospital_plan",
+   "title": "Grand plan pour l'hôpital",
+   "category": "Santé",
+   "description": "Revalorisations, recrutements et rénovation des hôpitaux.",
+   "difficulty": 0.0,
+   "immediateEffects": [
+    {
+     "target": "opinion.group.civil_servants",
+     "amount": 0.03
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.02
+    }
+   ],
+   "longTermEffects": [
+    {
+     "target": "spending.health",
+     "amount": 0.04,
+     "days": 365
+    },
+    {
+     "target": "quality.health",
+     "amount": 0.06,
+     "days": 1095
+    }
+   ],
+   "exclusiveWith": [],
+   "summary": "Santé +4 % de budget, qualité des soins accrue en 3 ans."
+  },
+  {
+   "id": "teachers_plan",
+   "title": "Revalorisation des enseignants",
+   "category": "Éducation",
+   "description": "Hausse des salaires et du recrutement dans l'Éducation nationale.",
+   "difficulty": 0.0,
+   "immediateEffects": [
+    {
+     "target": "opinion.group.civil_servants",
+     "amount": 0.04
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": 0.01
+    }
+   ],
+   "longTermEffects": [
+    {
+     "target": "spending.education",
+     "amount": 0.05,
+     "days": 365
+    },
+    {
+     "target": "quality.education",
+     "amount": 0.05,
+     "days": 1095
+    }
+   ],
+   "exclusiveWith": [],
+   "summary": "Éducation +5 % de budget, qualité accrue."
+  },
+  {
+   "id": "housing_plan",
+   "title": "Plan de construction de logements",
+   "category": "Logement",
+   "description": "Soutien massif à la construction neuve et à la rénovation.",
+   "difficulty": 0.0,
+   "immediateEffects": [
+    {
+     "target": "opinion.group.young",
+     "amount": 0.03
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.urban",
+     "amount": 0.02
+    }
+   ],
+   "longTermEffects": [
+    {
+     "target": "budget.oneOff",
+     "amount": 12.0,
+     "days": 1095
+    },
+    {
+     "target": "economy.output",
+     "amount": 0.003,
+     "days": 1095
+    },
+    {
+     "target": "economy.unemployment",
+     "amount": -0.002,
+     "days": 1095
+    }
+   ],
+   "exclusiveWith": [],
+   "summary": "12 Md€ sur 3 ans : activité et emploi dans le BTP."
+  },
+  {
+   "id": "immigration_strict",
+   "title": "Durcissement de la politique migratoire",
+   "category": "Immigration",
+   "description": "Restreint l'immigration et accélère les éloignements.",
+   "difficulty": 0.04,
+   "immediateEffects": [
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.03
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.03
+    },
+    {
+     "target": "opinion.group.urban",
+     "amount": -0.02
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": -0.03
+    }
+   ],
+   "longTermEffects": [
+    {
+     "target": "demography.immigration",
+     "amount": -0.4,
+     "days": 365
+    },
+    {
+     "target": "economy.potentialGrowth",
+     "amount": -0.0008,
+     "days": 1460
+    }
+   ],
+   "exclusiveWith": [
+    "immigration_work"
+   ],
+   "summary": "Immigration −40 % ; population active moins dynamique."
+  },
+  {
+   "id": "immigration_work",
+   "title": "Immigration de travail ciblée",
+   "category": "Immigration",
+   "description": "Facilite le recrutement de travailleurs étrangers dans les métiers en tension.",
+   "difficulty": 0.03,
+   "immediateEffects": [
+    {
+     "target": "opinion.group.self_employed",
+     "amount": 0.03
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.02
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.02
+    }
+   ],
+   "longTermEffects": [
+    {
+     "target": "demography.immigration",
+     "amount": 0.25,
+     "days": 365
+    },
+    {
+     "target": "economy.potentialGrowth",
+     "amount": 0.0008,
+     "days": 1460
+    }
+   ],
+   "exclusiveWith": [
+    "immigration_strict"
+   ],
+   "summary": "Immigration +25 %, croissance potentielle accrue."
+  },
+  {
+   "id": "nuclear_program",
+   "title": "Programme de six nouveaux réacteurs EPR2",
+   "category": "Énergie",
+   "description": "Construction de six réacteurs sur des sites existants. Long, coûteux, structurant.",
+   "difficulty": 0.02,
+   "immediateEffects": [
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.01
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": 0.01
+    }
+   ],
+   "longTermEffects": [
+    {
+     "target": "budget.oneOff",
+     "amount": 60.0,
+     "days": 4380
+    },
+    {
+     "target": "energy.capacity.new_nuclear",
+     "amount": 9900,
+     "delayDays": 4380
+    },
+    {
+     "target": "economy.output",
+     "amount": 0.002,
+     "days": 4380
+    }
+   ],
+   "exclusiveWith": [],
+   "summary": "60 Md€ sur 12 ans ; +9,9 GW de production pilotable à terme."
+  },
+  {
+   "id": "renewables_plan",
+   "title": "Accélération des énergies renouvelables",
+   "category": "Énergie",
+   "description": "Simplifie les procédures et finance l'éolien en mer et le solaire.",
+   "difficulty": 0.0,
+   "immediateEffects": [
+    {
+     "target": "opinion.group.young",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.urban",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.01
+    }
+   ],
+   "longTermEffects": [
+    {
+     "target": "budget.oneOff",
+     "amount": 15.0,
+     "days": 1825
+    },
+    {
+     "target": "energy.capacity.new_renewables",
+     "amount": 18000,
+     "days": 1825
+    },
+    {
+     "target": "quality.environment",
+     "amount": 0.05,
+     "days": 1825
+    }
+   ],
+   "exclusiveWith": [],
+   "summary": "15 Md€ sur 5 ans ; +18 GW éolien et solaire, environnement amélioré."
+  },
+  {
+   "id": "carbon_tax",
+   "title": "Hausse de la taxe carbone",
+   "category": "Écologie",
+   "description": "Renchérit progressivement les énergies fossiles.",
+   "difficulty": 0.05,
+   "immediateEffects": [
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.06
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": -0.03
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": 0.01
+    }
+   ],
+   "longTermEffects": [
+    {
+     "target": "revenue.energy_taxes",
+     "amount": 20,
+     "days": 365
+    },
+    {
+     "target": "quality.environment",
+     "amount": 0.04,
+     "days": 1095
+    },
+    {
+     "target": "economy.inflation",
+     "amount": 0.002,
+     "days": 365
+    }
+   ],
+   "exclusiveWith": [],
+   "summary": "Recettes +, environnement + ; colère des ruraux."
+  },
+  {
+   "id": "wealth_tax",
+   "title": "Rétablissement de l'impôt sur la fortune",
+   "category": "Fiscalité",
+   "description": "Réintroduit un impôt sur l'ensemble du patrimoine des plus aisés.",
+   "difficulty": 0.04,
+   "immediateEffects": [
+    {
+     "target": "opinion.group.high_income",
+     "amount": -0.07
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": 0.03
+    },
+    {
+     "target": "opinion.group.middle_income",
+     "amount": 0.01
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.02
+    }
+   ],
+   "longTermEffects": [
+    {
+     "target": "revenue.property_taxes",
+     "amount": 5,
+     "days": 180
+    },
+    {
+     "target": "economy.potentialGrowth",
+     "amount": -0.0005,
+     "days": 1460
+    }
+   ],
+   "exclusiveWith": [],
+   "summary": "Recettes +, signal de justice fiscale ; capitaux plus frileux."
+  },
+  {
+   "id": "defense_programming",
+   "title": "Loi de programmation militaire renforcée",
+   "category": "Défense",
+   "description": "Hausse de 25 % du budget des armées sur cinq ans.",
+   "difficulty": 0.0,
+   "immediateEffects": [
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.01
+    }
+   ],
+   "longTermEffects": [
+    {
+     "target": "spending.defense",
+     "amount": 0.25,
+     "days": 1825
+    },
+    {
+     "target": "military.readiness",
+     "amount": 0.08,
+     "days": 1825
+    },
+    {
+     "target": "economy.output",
+     "amount": 0.001,
+     "days": 1825
+    }
+   ],
+   "exclusiveWith": [],
+   "summary": "Armées +25 % sur 5 ans : disponibilité et stocks."
+  },
+  {
+   "id": "decentralization",
+   "title": "Nouvelle étape de décentralisation",
+   "category": "Territoires",
+   "description": "Transfère des compétences et des ressources aux régions et départements.",
+   "difficulty": 0.03,
+   "immediateEffects": [
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.02
+    }
+   ],
+   "longTermEffects": [
+    {
+     "target": "spending.local_authorities",
+     "amount": 0.04,
+     "days": 365
+    },
+    {
+     "target": "quality.transport",
+     "amount": 0.02,
+     "days": 1095
+    }
+   ],
+   "exclusiveWith": [],
+   "summary": "Collectivités +4 % ; services de proximité améliorés."
+  }
+ ],
+ "voteDelayDays": 30
+}

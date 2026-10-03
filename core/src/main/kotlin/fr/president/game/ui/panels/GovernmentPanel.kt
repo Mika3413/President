@@ -14,8 +14,18 @@ class GovernmentPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) :
     private var message: String? = null
     private val session get() = nav.session
 
+    private var reformsTab = false
+
     override fun build(into: Table) {
+        val tabs = Table().apply { defaults().padRight(4f) }
+        tabs.add(ui.button("Équipe", "toggle") { reformsTab = false; nav.refresh() }.also { it.isChecked = !reformsTab })
+        tabs.add(ui.button("Réformes", "toggle") { reformsTab = true; nav.refresh() }.also { it.isChecked = reformsTab })
+        into.add(tabs).left().padBottom(GAP).row()
         message?.let { into.add(ui.label(it, "small", Theme.accent, wrap = true)).padBottom(GAP).row() }
+        if (reformsTab) {
+            reforms(into)
+            return
+        }
         into.add(com.badlogic.gdx.scenes.scene2d.ui.Table().also { t ->
             val ind = session.national.parliament()
             t.add(fr.president.game.ui.widgets.IndicatorView(ui, ind, expanded)).growX()
@@ -40,6 +50,34 @@ class GovernmentPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) :
             }).left().row()
             if (replacing == ministry.id) candidates(box, ministry.id)
             into.add(box).growX().padBottom(GAP).row()
+        }
+    }
+
+    private fun reforms(into: Table) {
+        into.add(ui.label("Une réforme est votée par le Parlement après un mois ; les plus difficiles exigent une majorité plus large. Ses effets sont progressifs.", "muted", wrap = true)).growX().padBottom(GAP).row()
+        into.add(fr.president.game.ui.widgets.IndicatorView(ui, session.national.parliament(), expanded)).growX().padBottom(GAP).row()
+        session.policy.reforms().groupBy { it.category }.forEach { (category, list) ->
+            into.add(ui.label(category, "bold")).padTop(4f).row()
+            list.forEach { r ->
+                val box = Table().apply { defaults().left(); pad(6f); setBackground(ui.skin.fill(Theme.panelAlt)) }
+                box.add(ui.label(r.title, "bold", wrap = true)).growX().row()
+                box.add(ui.label(r.summary, "small", wrap = true)).growX().row()
+                if (r.id in expanded) box.add(ui.label(r.description, "muted", wrap = true)).growX().row()
+                val actions = Table().apply { defaults().padRight(4f) }
+                actions.add(ui.button(if (r.id in expanded) "Moins" else "Détails", "flat") { if (r.id in expanded) expanded -= r.id else expanded += r.id; nav.refresh() })
+                val adopted = session.state.policy.adoptedReforms[r.id]
+                val blocker = session.policy.reformBlocker(r.id)
+                when {
+                    adopted != null -> actions.add(ui.label("Adoptée le ${fr.president.game.ui.Formats.date(adopted)}", "small", Theme.good))
+                    blocker != null -> actions.add(ui.label(blocker, "small", Theme.textMuted))
+                    else -> actions.add(ui.button("Déposer au Parlement", "accent") {
+                        message = session.policy.proposeReform(r.id).fold({ "Réforme déposée : vote dans un mois." }, { it.message }); nav.refresh()
+                    })
+                }
+                if (r.difficulty > 0.03) actions.add(ui.label("Adoption difficile", "small", Theme.warning))
+                box.add(actions).left().row()
+                into.add(box).growX().padBottom(4f).row()
+            }
         }
     }
 
