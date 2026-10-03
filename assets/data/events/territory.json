@@ -1,0 +1,458 @@
+{
+ "events": [
+  {
+   "id": "city_transport_request",
+   "category": "TERRITORY",
+   "scope": "CITY",
+   "maxCityRank": 2,
+   "baseDailyProbability": 0.002,
+   "cooldownDays": 8,
+   "scopeCooldownDays": 300,
+   "headline": "{city} sollicite l'État pour un projet de transport",
+   "modifiers": [
+    {
+     "variable": "quality.transport",
+     "from": 0.4,
+     "to": 0.7,
+     "factorAtFrom": 1.6,
+     "factorAtTo": 0.7
+    },
+    {
+     "variable": "scope.satisfaction",
+     "from": 0.3,
+     "to": 0.6,
+     "factorAtFrom": 1.3,
+     "factorAtTo": 0.9
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.15,
+     "max": 0.4,
+     "scaleBy": "scope.populationMillions",
+     "minScale": 0.25,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "territorial_transport_request",
+    "detailsTemplate": "territorial_request_details",
+    "sender": "MAYOR",
+    "responseDays": 7,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "accept",
+      "label": "Financer intégralement",
+      "hint": "Coût : {amountText} étalés sur 2 ans",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.15
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.03,
+        "days": 20
+       }
+      ],
+      "outcome": "ACCEPTED",
+      "project": {
+       "name": "Transports de {city}",
+       "kind": "transport",
+       "durationDays": 720,
+       "costParam": "amount",
+       "costFactor": 1.0,
+       "onCompletion": [
+        {
+         "target": "scope.satisfaction",
+         "amount": 0.06
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.02,
+         "days": 30
+        },
+        {
+         "target": "quality.transport",
+         "amount": 0.004
+        },
+        {
+         "target": "scope.unemployment",
+         "amount": -0.001,
+         "days": 90
+        }
+       ]
+      }
+     },
+     {
+      "id": "partial",
+      "label": "Financer à moitié",
+      "hint": "Coût : la moitié, projet réduit",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.05
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.01,
+        "days": 20
+       }
+      ],
+      "outcome": "PARTIAL",
+      "project": {
+       "name": "Transports de {city} (version réduite)",
+       "kind": "transport",
+       "durationDays": 900,
+       "costParam": "amount",
+       "costFactor": 0.5,
+       "onCompletion": [
+        {
+         "target": "scope.satisfaction",
+         "amount": 0.03
+        },
+        {
+         "target": "quality.transport",
+         "amount": 0.002
+        }
+       ]
+      }
+     },
+     {
+      "id": "cofinance",
+      "label": "Proposer un cofinancement avec la région",
+      "hint": "L'État ne paie que 30 % ; la région est sollicitée",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.02
+       },
+       {
+        "target": "region.approval",
+        "amount": -0.005
+       }
+      ],
+      "outcome": "PARTIAL",
+      "project": {
+       "name": "Transports de {city} (cofinancés)",
+       "kind": "transport",
+       "durationDays": 1000,
+       "costParam": "amount",
+       "costFactor": 0.3,
+       "onCompletion": [
+        {
+         "target": "scope.satisfaction",
+         "amount": 0.03
+        },
+        {
+         "target": "quality.transport",
+         "amount": 0.002
+        }
+       ]
+      }
+     },
+     {
+      "id": "postpone",
+      "label": "Reporter la décision",
+      "hint": "La demande reviendra dans 45 jours",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.03
+       }
+      ],
+      "outcome": "POSTPONED",
+      "reaskAfterDays": 45
+     },
+     {
+      "id": "details",
+      "label": "Demander davantage d'informations",
+      "hint": "Le maire précisera son dossier",
+      "effects": [],
+      "outcome": "NEUTRAL",
+      "requestDetails": true
+     },
+     {
+      "id": "refuse",
+      "label": "Refuser",
+      "hint": "Aucun coût, mais mécontentement local",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.02,
+        "days": 10
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hospital_overload",
+   "category": "TERRITORY",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 5e-05,
+   "cooldownDays": 14,
+   "scopeCooldownDays": 300,
+   "headline": "Urgences saturées dans le département {department}",
+   "modifiers": [
+    {
+     "variable": "quality.health",
+     "from": 0.35,
+     "to": 0.65,
+     "factorAtFrom": 3.0,
+     "factorAtTo": 0.4
+    },
+    {
+     "variable": "scope.seniorShare",
+     "from": 0.15,
+     "to": 0.3,
+     "factorAtFrom": 0.8,
+     "factorAtTo": 1.5
+    },
+    {
+     "variable": "season.month",
+     "from": 1,
+     "to": 2,
+     "factorAtFrom": 1.5,
+     "factorAtTo": 1.0
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.03,
+     "max": 0.12,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "hospital_overload",
+    "sender": "DEPARTMENT_PRESIDENT",
+    "responseDays": 5,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "emergency",
+      "label": "Débloquer des moyens d'urgence",
+      "hint": "Coût immédiat : {amountText}",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 1.0
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.03,
+        "days": 15
+       },
+       {
+        "target": "quality.health",
+        "amount": 0.003
+       },
+       {
+        "target": "sender.relation",
+        "amount": 0.1
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "plan",
+      "label": "Lancer un plan de modernisation",
+      "hint": "Coût : 3 × {amountText} sur 18 mois",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": 0.08
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.01,
+        "days": 15
+       }
+      ],
+      "outcome": "ACCEPTED",
+      "project": {
+       "name": "Modernisation hospitalière ({department})",
+       "kind": "health",
+       "durationDays": 540,
+       "costParam": "amount",
+       "costFactor": 3.0,
+       "onCompletion": [
+        {
+         "target": "quality.health",
+         "amount": 0.008
+        },
+        {
+         "target": "scope.approval",
+         "amount": 0.03,
+         "days": 30
+        }
+       ]
+      }
+     },
+     {
+      "id": "refuse",
+      "label": "S'en remettre à l'ARS",
+      "hint": "Aucun coût ; risque de dégradation",
+      "effects": [
+       {
+        "target": "sender.relation",
+        "amount": -0.08
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.03,
+        "days": 10
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": -0.004
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "factory_closure",
+   "category": "ECONOMY",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 3e-05,
+   "cooldownDays": 20,
+   "scopeCooldownDays": 365,
+   "urgency": "IMPORTANT",
+   "headline": "Menace de fermeture d'un site industriel ({department})",
+   "notificationText": "Le préfet demande une réponse rapide de l'État.",
+   "modifiers": [
+    {
+     "variable": "economy.businessConfidence",
+     "from": 0.3,
+     "to": 0.6,
+     "factorAtFrom": 3.0,
+     "factorAtTo": 0.5
+    },
+    {
+     "variable": "energy.priceIndex",
+     "from": 1.0,
+     "to": 1.5,
+     "factorAtFrom": 1.0,
+     "factorAtTo": 2.0
+    },
+    {
+     "variable": "scope.unemployment",
+     "from": 0.06,
+     "to": 0.11,
+     "factorAtFrom": 0.8,
+     "factorAtTo": 1.5
+    }
+   ],
+   "params": [
+    {
+     "name": "jobs",
+     "min": 300,
+     "max": 2500,
+     "round": 50
+    },
+    {
+     "name": "amount",
+     "min": 0.08,
+     "max": 0.35,
+     "round": 0.01
+    },
+    {
+     "name": "impact",
+     "min": 0.0015,
+     "max": 0.005
+    }
+   ],
+   "message": {
+    "template": "factory_closure",
+    "sender": "PREFECT",
+    "responseDays": 6,
+    "defaultOption": "let_go",
+    "options": [
+     {
+      "id": "rescue",
+      "label": "Soutenir la reprise avec des fonds publics",
+      "hint": "Coût : {amountText}",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 1.0
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.03,
+        "days": 10
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": 0.005
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "broker",
+      "label": "Chercher un repreneur privé",
+      "hint": "Coût faible ; succès partiel",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 0.15
+       },
+       {
+        "target": "scope.unemployment",
+        "param": "impact",
+        "factor": 0.5,
+        "days": 120
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.01,
+        "days": 10
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "let_go",
+      "label": "Laisser faire le marché",
+      "hint": "Aucun coût ; {jobs} emplois menacés",
+      "effects": [
+       {
+        "target": "scope.unemployment",
+        "param": "impact",
+        "factor": 1.0,
+        "days": 120
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.04,
+        "days": 20
+       },
+       {
+        "target": "opinion.group.private_employees",
+        "amount": -0.004
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  }
+ ]
+}

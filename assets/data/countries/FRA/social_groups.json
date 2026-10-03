@@ -1,0 +1,413 @@
+{
+ "partitions": [
+  {
+   "id": "age",
+   "label": "Âge"
+  },
+  {
+   "id": "status",
+   "label": "Statut"
+  },
+  {
+   "id": "income",
+   "label": "Revenus"
+  },
+  {
+   "id": "habitat",
+   "label": "Habitat"
+  }
+ ],
+ "groups": [
+  {
+   "id": "young",
+   "label": "18-29 ans",
+   "partition": "age",
+   "populationShare": 0.18,
+   "baseApproval": 0.46,
+   "economicLeaning": -0.2,
+   "socialLeaning": -0.4,
+   "baseTurnout": 0.58,
+   "sensitivities": {
+    "unemployment": 0.08,
+    "prices": 0.04,
+    "purchasing_power": 0.06,
+    "education": 0.05,
+    "environment": 0.06,
+    "health": 0.02,
+    "security": 0.02,
+    "household_taxes": 0.03,
+    "transport": 0.02
+   },
+   "localAttribute": "nonSeniorShare",
+   "localElasticity": 1.0
+  },
+  {
+   "id": "adults",
+   "label": "30-64 ans",
+   "partition": "age",
+   "populationShare": 0.55,
+   "baseApproval": 0.45,
+   "economicLeaning": 0.0,
+   "socialLeaning": 0.0,
+   "baseTurnout": 0.75,
+   "sensitivities": {
+    "unemployment": 0.07,
+    "prices": 0.05,
+    "purchasing_power": 0.06,
+    "household_taxes": 0.05,
+    "health": 0.04,
+    "education": 0.04,
+    "security": 0.04,
+    "debt": 0.02,
+    "energy_prices": 0.03,
+    "growth": 0.02
+   },
+   "localAttribute": "nonSeniorShare",
+   "localElasticity": 1.0
+  },
+  {
+   "id": "seniors",
+   "label": "65 ans et plus",
+   "partition": "age",
+   "populationShare": 0.27,
+   "baseApproval": 0.47,
+   "economicLeaning": 0.2,
+   "socialLeaning": 0.3,
+   "baseTurnout": 0.86,
+   "sensitivities": {
+    "pensions": 0.09,
+    "health": 0.07,
+    "security": 0.06,
+    "prices": 0.05,
+    "household_taxes": 0.03,
+    "debt": 0.02,
+    "energy_prices": 0.03
+   },
+   "localAttribute": "seniorShare",
+   "localElasticity": 1.0
+  },
+  {
+   "id": "private_employees",
+   "label": "Salariés du privé",
+   "partition": "status",
+   "populationShare": 0.38,
+   "baseApproval": 0.45,
+   "economicLeaning": 0.0,
+   "socialLeaning": 0.0,
+   "baseTurnout": 0.72,
+   "sensitivities": {
+    "unemployment": 0.09,
+    "purchasing_power": 0.08,
+    "household_taxes": 0.05,
+    "prices": 0.04,
+    "growth": 0.03,
+    "transport": 0.02,
+    "energy_prices": 0.03
+   }
+  },
+  {
+   "id": "civil_servants",
+   "label": "Fonctionnaires",
+   "partition": "status",
+   "populationShare": 0.12,
+   "baseApproval": 0.44,
+   "economicLeaning": -0.35,
+   "socialLeaning": -0.2,
+   "baseTurnout": 0.8,
+   "sensitivities": {
+    "education": 0.06,
+    "health": 0.06,
+    "security": 0.03,
+    "purchasing_power": 0.05,
+    "social": 0.04,
+    "transport": 0.02
+   }
+  },
+  {
+   "id": "self_employed",
+   "label": "Indépendants et chefs d'entreprise",
+   "partition": "status",
+   "populationShare": 0.08,
+   "baseApproval": 0.44,
+   "economicLeaning": 0.5,
+   "socialLeaning": 0.2,
+   "baseTurnout": 0.8,
+   "sensitivities": {
+    "business_taxes": 0.09,
+    "growth": 0.07,
+    "household_taxes": 0.04,
+    "debt": 0.04,
+    "energy_prices": 0.04,
+    "security": 0.02
+   }
+  },
+  {
+   "id": "retirees",
+   "label": "Retraités",
+   "partition": "status",
+   "populationShare": 0.27,
+   "baseApproval": 0.47,
+   "economicLeaning": 0.2,
+   "socialLeaning": 0.3,
+   "baseTurnout": 0.86,
+   "sensitivities": {
+    "pensions": 0.1,
+    "health": 0.07,
+    "prices": 0.05,
+    "security": 0.05,
+    "energy_prices": 0.03
+   },
+   "localAttribute": "seniorShare",
+   "localElasticity": 1.0
+  },
+  {
+   "id": "inactive",
+   "label": "Étudiants et sans emploi",
+   "partition": "status",
+   "populationShare": 0.15,
+   "baseApproval": 0.44,
+   "economicLeaning": -0.3,
+   "socialLeaning": 0.0,
+   "baseTurnout": 0.55,
+   "sensitivities": {
+    "unemployment": 0.1,
+    "social": 0.07,
+    "education": 0.04,
+    "prices": 0.04,
+    "purchasing_power": 0.04
+   }
+  },
+  {
+   "id": "low_income",
+   "label": "Revenus modestes",
+   "partition": "income",
+   "populationShare": 0.3,
+   "baseApproval": 0.43,
+   "economicLeaning": -0.35,
+   "socialLeaning": 0.15,
+   "baseTurnout": 0.6,
+   "sensitivities": {
+    "prices": 0.07,
+    "purchasing_power": 0.08,
+    "social": 0.07,
+    "unemployment": 0.06,
+    "energy_prices": 0.05,
+    "health": 0.03
+   },
+   "localAttribute": "incomeIndex",
+   "localElasticity": -2.0
+  },
+  {
+   "id": "middle_income",
+   "label": "Classes moyennes",
+   "partition": "income",
+   "populationShare": 0.5,
+   "baseApproval": 0.46,
+   "economicLeaning": 0.0,
+   "socialLeaning": 0.0,
+   "baseTurnout": 0.76,
+   "sensitivities": {
+    "household_taxes": 0.07,
+    "purchasing_power": 0.06,
+    "unemployment": 0.05,
+    "education": 0.04,
+    "health": 0.04,
+    "security": 0.04,
+    "prices": 0.03
+   }
+  },
+  {
+   "id": "high_income",
+   "label": "Hauts revenus",
+   "partition": "income",
+   "populationShare": 0.2,
+   "baseApproval": 0.47,
+   "economicLeaning": 0.4,
+   "socialLeaning": -0.15,
+   "baseTurnout": 0.86,
+   "sensitivities": {
+    "household_taxes": 0.08,
+    "business_taxes": 0.05,
+    "growth": 0.05,
+    "debt": 0.04,
+    "security": 0.03
+   },
+   "localAttribute": "incomeIndex",
+   "localElasticity": 3.0
+  },
+  {
+   "id": "urban",
+   "label": "Urbains",
+   "partition": "habitat",
+   "populationShare": 0.6,
+   "baseApproval": 0.46,
+   "economicLeaning": -0.15,
+   "socialLeaning": -0.3,
+   "baseTurnout": 0.72,
+   "sensitivities": {
+    "transport": 0.05,
+    "environment": 0.05,
+    "security": 0.05,
+    "purchasing_power": 0.05,
+    "unemployment": 0.05,
+    "health": 0.03,
+    "prices": 0.03
+   },
+   "localAttribute": "urbanShare",
+   "localElasticity": 1.0
+  },
+  {
+   "id": "rural",
+   "label": "Ruraux",
+   "partition": "habitat",
+   "populationShare": 0.4,
+   "baseApproval": 0.45,
+   "economicLeaning": 0.2,
+   "socialLeaning": 0.35,
+   "baseTurnout": 0.79,
+   "sensitivities": {
+    "energy_prices": 0.07,
+    "health": 0.06,
+    "transport": 0.05,
+    "purchasing_power": 0.06,
+    "prices": 0.04,
+    "security": 0.03,
+    "household_taxes": 0.03
+   },
+   "localAttribute": "ruralShare",
+   "localElasticity": 1.0
+  }
+ ],
+ "factors": [
+  {
+   "id": "unemployment",
+   "label": "Chômage",
+   "variable": "economy.unemployment",
+   "neutral": 0.075,
+   "scale": 0.02,
+   "lowerIsBetter": true,
+   "relativeToStart": true
+  },
+  {
+   "id": "prices",
+   "label": "Prix",
+   "variable": "economy.inflation",
+   "neutral": 0.02,
+   "scale": 0.03,
+   "lowerIsBetter": true
+  },
+  {
+   "id": "purchasing_power",
+   "label": "Pouvoir d'achat",
+   "variable": "economy.purchasingPower",
+   "neutral": 1.0,
+   "scale": 0.08,
+   "relativeToStart": true
+  },
+  {
+   "id": "household_taxes",
+   "label": "Impôts des ménages",
+   "variable": "tax.households",
+   "neutral": 0.3,
+   "scale": 0.01,
+   "lowerIsBetter": true,
+   "relativeToStart": true
+  },
+  {
+   "id": "business_taxes",
+   "label": "Fiscalité des entreprises",
+   "variable": "tax.businesses",
+   "neutral": 0.03,
+   "scale": 0.005,
+   "lowerIsBetter": true,
+   "relativeToStart": true
+  },
+  {
+   "id": "health",
+   "label": "Système de santé",
+   "variable": "quality.health",
+   "neutral": 0.5,
+   "scale": 0.2,
+   "relativeToStart": true
+  },
+  {
+   "id": "education",
+   "label": "École",
+   "variable": "quality.education",
+   "neutral": 0.5,
+   "scale": 0.2,
+   "relativeToStart": true
+  },
+  {
+   "id": "security",
+   "label": "Sécurité",
+   "variable": "quality.security",
+   "neutral": 0.5,
+   "scale": 0.2,
+   "relativeToStart": true
+  },
+  {
+   "id": "pensions",
+   "label": "Retraites",
+   "variable": "quality.pensions",
+   "neutral": 0.5,
+   "scale": 0.2,
+   "relativeToStart": true
+  },
+  {
+   "id": "social",
+   "label": "Protection sociale",
+   "variable": "quality.social",
+   "neutral": 0.5,
+   "scale": 0.2,
+   "relativeToStart": true
+  },
+  {
+   "id": "transport",
+   "label": "Transports",
+   "variable": "quality.transport",
+   "neutral": 0.5,
+   "scale": 0.2,
+   "relativeToStart": true
+  },
+  {
+   "id": "environment",
+   "label": "Environnement",
+   "variable": "quality.environment",
+   "neutral": 0.5,
+   "scale": 0.2,
+   "relativeToStart": true
+  },
+  {
+   "id": "debt",
+   "label": "Dette publique",
+   "variable": "economy.debtRatio",
+   "neutral": 1.15,
+   "scale": 0.15,
+   "lowerIsBetter": true,
+   "relativeToStart": true
+  },
+  {
+   "id": "energy_prices",
+   "label": "Prix de l'énergie",
+   "variable": "energy.priceIndex",
+   "neutral": 1.0,
+   "scale": 0.4,
+   "lowerIsBetter": true
+  },
+  {
+   "id": "growth",
+   "label": "Activité économique",
+   "variable": "economy.growth",
+   "neutral": 0.01,
+   "scale": 0.02
+  }
+ ],
+ "honeymoonBonus": 0.08,
+ "honeymoonDecayMonthly": 0.12,
+ "adjustmentMonthly": 0.3,
+ "shockDecayMonthly": 0.25,
+ "localShockDecayMonthly": 0.2,
+ "localUnemploymentWeight": 1.5,
+ "localLeaningWeight": 0.18
+}

@@ -1,0 +1,44 @@
+package fr.president.engine.data
+
+import fr.president.engine.dialogue.DialogueTemplate
+import fr.president.engine.dialogue.Lexicon
+import fr.president.engine.diplomacy.DiplomacyDefinitions
+import fr.president.engine.events.EventDefinition
+import fr.president.engine.readout.ReadoutsFile
+
+/** Définitions complètes chargées pour un pays. Les blocs détaillés sont absents en mode allégé. */
+class CountryData(
+    val definition: CountryDefinition,
+    val economy: EconomySnapshot,
+    val territory: TerritoryDefinition?,
+    val government: GovernmentDefinition?,
+    val socialGroups: SocialGroupsDefinition?,
+    val elections: ElectionsDefinition?,
+    val energy: EnergyFile?,
+    val transport: TransportFile?,
+    val military: MilitaryFile?,
+) {
+    val id: String get() = definition.id
+}
+
+/**
+ * Base de données immuable du jeu : tout ce qui vient des fichiers de données.
+ * Le moteur ne contient aucune valeur propre à un pays ; tout passe par ici.
+ */
+class GameDatabase(
+    val config: GameConfig,
+    val snapshot: SnapshotDefinition,
+    val countries: Map<String, CountryData>,
+    val economyParameters: EconomyParameters,
+    val infrastructureTypes: Map<String, InfrastructureTypeDef>,
+    val events: List<EventDefinition>,
+    val dialogue: Map<String, DialogueTemplate>,
+    val lexicon: Lexicon,
+    val diplomacy: DiplomacyDefinitions,
+    val names: Map<String, NamePool>,
+    val readouts: ReadoutsFile,
+) {
+    fun country(id: String): CountryData = countries[id] ?: error("Pays inconnu : $id")
+    fun template(id: String): DialogueTemplate = dialogue[id] ?: error("Modèle de dialogue inconnu : $id")
+    fun event(id: String): EventDefinition = events.first { it.id == id }
+}

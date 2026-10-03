@@ -1,0 +1,30 @@
+{
+  "id": "WORLD_SNAPSHOT_2026_10",
+  "label": "Monde — octobre 2026",
+  "startDate": "2026-10-05T09:00:00Z",
+  "dataVersion": 1,
+  "playableCountries": ["FRA"],
+  "countries": [
+    "countries/FRA/country.json",
+    "countries/DEU/country.json",
+    "countries/ESP/country.json",
+    "countries/ITA/country.json",
+    "countries/GBR/country.json",
+    "countries/BEL/country.json"
+  ],
+  "initialRelations": [
+    { "a": "FRA", "b": "DEU", "kind": "EU_PARTNERSHIP", "weight": 0.12, "label": "moteur franco-allemand" },
+    { "a": "FRA", "b": "DEU", "kind": "TRADE_PARTNER", "weight": 0.05, "label": "premier partenaire commercial" },
+    { "a": "FRA", "b": "DEU", "kind": "DISAGREEMENT", "weight": -0.05, "label": "politique énergétique et nucléaire" },
+    { "a": "FRA", "b": "ESP", "kind": "EU_PARTNERSHIP", "weight": 0.1, "label": "Union européenne" },
+    { "a": "FRA", "b": "ESP", "kind": "TRADE_PARTNER", "weight": 0.04, "label": "échanges transpyrénéens" },
+    { "a": "FRA", "b": "ITA", "kind": "EU_PARTNERSHIP", "weight": 0.1, "label": "Union européenne" },
+    { "a": "FRA", "b": "ITA", "kind": "DISAGREEMENT", "weight": -0.04, "label": "politique migratoire" },
+    { "a": "FRA", "b": "BEL", "kind": "EU_PARTNERSHIP", "weight": 0.12, "label": "Union européenne" },
+    { "a": "FRA", "b": "BEL", "kind": "TRADE_PARTNER", "weight": 0.05, "label": "proximité économique" },
+    { "a": "FRA", "b": "GBR", "kind": "ALLIANCE", "weight": 0.08, "label": "alliés au sein de l'OTAN" },
+    { "a": "FRA", "b": "GBR", "kind": "DISAGREEMENT", "weight": -0.05, "label": "traversées de la Manche" },
+    { "a": "DEU", "b": "ITA", "kind": "EU_PARTNERSHIP", "weight": 0.1, "label": "Union européenne" },
+    { "a": "DEU", "b": "BEL", "kind": "EU_PARTNERSHIP", "weight": 0.1, "label": "Union européenne" }
+  ]
+}

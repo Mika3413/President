@@ -1,0 +1,33 @@
+{
+  "id": "FRA",
+  "name": "France",
+  "adjective": "français",
+  "language": "fr",
+  "namePool": "fr",
+  "detail": "FULL",
+  "population": 68600000,
+  "capitalCityId": "paris",
+  "economy": "economy/FRA_2026_10.json",
+  "territory": "countries/FRA/territory.json",
+  "government": "countries/FRA/government.json",
+  "socialGroups": "countries/FRA/social_groups.json",
+  "elections": "countries/FRA/elections.json",
+  "energy": "infrastructure/FRA_energy.json",
+  "transport": "infrastructure/FRA_transport.json",
+  "military": "military/FRA_2026_10.json",
+  "institutions": {
+    "headOfStateTitle": "Président de la République",
+    "headOfGovernmentTitle": "Premier ministre",
+    "honorificMale": "Monsieur le Président",
+    "honorificFemale": "Madame la Présidente"
+  },
+  "leader": { "traitRanges": {}, "ageRange": [45, 60], "economicLeaningRange": [-0.2, 0.2] },
+  "strategic": {
+    "electricityBalanceTWh": 80,
+    "tradeWithPartnersBillions": { "DEU": 170, "BEL": 110, "ITA": 95, "ESP": 90, "GBR": 65 },
+    "alliances": ["EU", "NATO"],
+    "priorities": ["energy", "europe", "defense"],
+    "intelligenceQuality": 0.8,
+    "militaryBudgetBillions": 55
+  }
+}

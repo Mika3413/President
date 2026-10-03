@@ -1,0 +1,372 @@
+{
+ "budgetSpendingItem": "defense",
+ "bases": [
+  {
+   "id": "toulon_base",
+   "name": "Base navale de Toulon",
+   "branch": "Marine",
+   "lon": 5.92,
+   "lat": 43.11,
+   "department": "83",
+   "capacityUnits": 6
+  },
+  {
+   "id": "brest_base",
+   "name": "Base navale de Brest",
+   "branch": "Marine",
+   "lon": -4.5,
+   "lat": 48.38,
+   "department": "29",
+   "capacityUnits": 4
+  },
+  {
+   "id": "ile_longue",
+   "name": "Base de l'Île Longue",
+   "branch": "Forces stratégiques",
+   "lon": -4.51,
+   "lat": 48.3,
+   "department": "29",
+   "capacityUnits": 2
+  },
+  {
+   "id": "istres",
+   "name": "Base aérienne d'Istres",
+   "branch": "Armée de l'air",
+   "lon": 4.92,
+   "lat": 43.52,
+   "department": "13",
+   "capacityUnits": 3
+  },
+  {
+   "id": "saint_dizier",
+   "name": "Base aérienne de Saint-Dizier",
+   "branch": "Armée de l'air",
+   "lon": 4.9,
+   "lat": 48.64,
+   "department": "52",
+   "capacityUnits": 3
+  },
+  {
+   "id": "mont_de_marsan",
+   "name": "Base aérienne de Mont-de-Marsan",
+   "branch": "Armée de l'air",
+   "lon": -0.5,
+   "lat": 43.91,
+   "department": "40",
+   "capacityUnits": 3
+  },
+  {
+   "id": "evreux",
+   "name": "Base aérienne d'Évreux",
+   "branch": "Armée de l'air",
+   "lon": 1.22,
+   "lat": 49.03,
+   "department": "27",
+   "capacityUnits": 2
+  },
+  {
+   "id": "mourmelon",
+   "name": "Camp de Mourmelon",
+   "branch": "Armée de terre",
+   "lon": 4.36,
+   "lat": 49.13,
+   "department": "51",
+   "capacityUnits": 3
+  },
+  {
+   "id": "canjuers",
+   "name": "Camp de Canjuers",
+   "branch": "Armée de terre",
+   "lon": 6.47,
+   "lat": 43.65,
+   "department": "83",
+   "capacityUnits": 3
+  },
+  {
+   "id": "satory",
+   "name": "Satory",
+   "branch": "Armée de terre",
+   "lon": 2.12,
+   "lat": 48.78,
+   "department": "78",
+   "capacityUnits": 2
+  },
+  {
+   "id": "strasbourg_base",
+   "name": "Quartier de Strasbourg",
+   "branch": "Armée de terre",
+   "lon": 7.75,
+   "lat": 48.58,
+   "department": "67",
+   "capacityUnits": 2
+  },
+  {
+   "id": "nimes_base",
+   "name": "Quartier de Nîmes",
+   "branch": "Armée de terre",
+   "lon": 4.36,
+   "lat": 43.83,
+   "department": "30",
+   "capacityUnits": 2
+  },
+  {
+   "id": "carcassonne",
+   "name": "Quartier de Carcassonne",
+   "branch": "Armée de terre",
+   "lon": 2.35,
+   "lat": 43.21,
+   "department": "11",
+   "capacityUnits": 2
+  },
+  {
+   "id": "varces",
+   "name": "Quartier de Varces",
+   "branch": "Armée de terre",
+   "lon": 5.68,
+   "lat": 45.09,
+   "department": "38",
+   "capacityUnits": 2
+  }
+ ],
+ "units": [
+  {
+   "id": "u_2bb",
+   "name": "2e brigade blindée",
+   "branch": "Armée de terre",
+   "type": "ARMORED_BRIGADE",
+   "baseId": "strasbourg_base",
+   "personnel": 7500,
+   "equipment": {
+    "Chars Leclerc": 60,
+    "Véhicules blindés": 320,
+    "Pièces d'artillerie": 24
+   },
+   "readiness": 0.7,
+   "morale": 0.68,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_7bb",
+   "name": "7e brigade blindée",
+   "branch": "Armée de terre",
+   "type": "ARMORED_BRIGADE",
+   "baseId": "mourmelon",
+   "personnel": 7200,
+   "equipment": {
+    "Chars Leclerc": 55,
+    "Véhicules blindés": 300,
+    "Pièces d'artillerie": 24
+   },
+   "readiness": 0.66,
+   "morale": 0.65,
+   "ammunition": 0.5,
+   "fuel": 0.62
+  },
+  {
+   "id": "u_6blb",
+   "name": "6e brigade légère blindée",
+   "branch": "Armée de terre",
+   "type": "LIGHT_ARMORED_BRIGADE",
+   "baseId": "nimes_base",
+   "personnel": 6500,
+   "equipment": {
+    "Véhicules blindés": 260,
+    "Pièces d'artillerie": 18
+   },
+   "readiness": 0.72,
+   "morale": 0.7,
+   "ammunition": 0.55,
+   "fuel": 0.65
+  },
+  {
+   "id": "u_9bima",
+   "name": "9e brigade d'infanterie de marine",
+   "branch": "Armée de terre",
+   "type": "MARINE_BRIGADE",
+   "baseId": "canjuers",
+   "personnel": 6800,
+   "equipment": {
+    "Véhicules blindés": 240,
+    "Pièces d'artillerie": 18
+   },
+   "readiness": 0.7,
+   "morale": 0.7,
+   "ammunition": 0.52,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_11bp",
+   "name": "11e brigade parachutiste",
+   "branch": "Armée de terre",
+   "type": "AIRBORNE_BRIGADE",
+   "baseId": "carcassonne",
+   "personnel": 7000,
+   "equipment": {
+    "Véhicules légers": 350,
+    "Pièces d'artillerie": 12
+   },
+   "readiness": 0.75,
+   "morale": 0.75,
+   "ammunition": 0.5,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_27bim",
+   "name": "27e brigade d'infanterie de montagne",
+   "branch": "Armée de terre",
+   "type": "MOUNTAIN_BRIGADE",
+   "baseId": "varces",
+   "personnel": 6000,
+   "equipment": {
+    "Véhicules légers": 300,
+    "Pièces d'artillerie": 12
+   },
+   "readiness": 0.72,
+   "morale": 0.73,
+   "ammunition": 0.55,
+   "fuel": 0.62
+  },
+  {
+   "id": "u_gan",
+   "name": "Groupe aéronaval",
+   "branch": "Marine",
+   "type": "CARRIER_GROUP",
+   "baseId": "toulon_base",
+   "personnel": 3500,
+   "equipment": {
+    "Porte-avions": 1,
+    "Frégates": 3,
+    "Rafale Marine": 30
+   },
+   "readiness": 0.62,
+   "morale": 0.7,
+   "ammunition": 0.6,
+   "fuel": 0.65
+  },
+  {
+   "id": "u_fregates_med",
+   "name": "Force d'action navale — Méditerranée",
+   "branch": "Marine",
+   "type": "SURFACE_GROUP",
+   "baseId": "toulon_base",
+   "personnel": 4000,
+   "equipment": {
+    "Frégates": 8,
+    "Bâtiments de soutien": 3
+   },
+   "readiness": 0.65,
+   "morale": 0.68,
+   "ammunition": 0.55,
+   "fuel": 0.62
+  },
+  {
+   "id": "u_fregates_atl",
+   "name": "Force d'action navale — Atlantique",
+   "branch": "Marine",
+   "type": "SURFACE_GROUP",
+   "baseId": "brest_base",
+   "personnel": 3500,
+   "equipment": {
+    "Frégates": 6,
+    "Chasseurs de mines": 8
+   },
+   "readiness": 0.63,
+   "morale": 0.66,
+   "ammunition": 0.55,
+   "fuel": 0.62
+  },
+  {
+   "id": "u_fost",
+   "name": "Force océanique stratégique",
+   "branch": "Forces stratégiques",
+   "type": "SSBN_FORCE",
+   "baseId": "ile_longue",
+   "personnel": 3000,
+   "equipment": {
+    "Sous-marins lanceurs d'engins": 4,
+    "Sous-marins d'attaque": 6
+   },
+   "readiness": 0.85,
+   "morale": 0.8,
+   "ammunition": 0.8,
+   "fuel": 0.8
+  },
+  {
+   "id": "u_ec_st_dizier",
+   "name": "Escadre de chasse de Saint-Dizier",
+   "branch": "Armée de l'air",
+   "type": "FIGHTER_WING",
+   "baseId": "saint_dizier",
+   "personnel": 1800,
+   "equipment": {
+    "Rafale": 40
+   },
+   "readiness": 0.64,
+   "morale": 0.7,
+   "ammunition": 0.45,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_ec_mdm",
+   "name": "Escadre de chasse de Mont-de-Marsan",
+   "branch": "Armée de l'air",
+   "type": "FIGHTER_WING",
+   "baseId": "mont_de_marsan",
+   "personnel": 1800,
+   "equipment": {
+    "Rafale": 35
+   },
+   "readiness": 0.66,
+   "morale": 0.7,
+   "ammunition": 0.45,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_ravitailleurs",
+   "name": "Escadre de ravitaillement d'Istres",
+   "branch": "Armée de l'air",
+   "type": "TANKER_WING",
+   "baseId": "istres",
+   "personnel": 1500,
+   "equipment": {
+    "A330 MRTT": 12
+   },
+   "readiness": 0.7,
+   "morale": 0.7,
+   "ammunition": 0.6,
+   "fuel": 0.65
+  },
+  {
+   "id": "u_transport",
+   "name": "Escadre de transport d'Évreux",
+   "branch": "Armée de l'air",
+   "type": "TRANSPORT_WING",
+   "baseId": "evreux",
+   "personnel": 1500,
+   "equipment": {
+    "A400M": 15,
+    "C-130": 10
+   },
+   "readiness": 0.6,
+   "morale": 0.68,
+   "ammunition": 0.6,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_soutien_idf",
+   "name": "Brigade de soutien d'Île-de-France",
+   "branch": "Armée de terre",
+   "type": "SUPPORT_BRIGADE",
+   "baseId": "satory",
+   "personnel": 5000,
+   "equipment": {
+    "Camions logistiques": 600
+   },
+   "readiness": 0.68,
+   "morale": 0.65,
+   "ammunition": 0.6,
+   "fuel": 0.6
+  }
+ ]
+}

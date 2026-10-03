@@ -1,0 +1,396 @@
+{
+ "templates": [
+  {
+   "id": "diplomatic_proposal",
+   "subject": [
+    {
+     "text": "Proposition du gouvernement de {foreignCountry}"
+    },
+    {
+     "text": "{foreignCountry} : proposition d'accord"
+    },
+    {
+     "text": "Une offre de {foreignCountry}"
+    }
+   ],
+   "sections": [
+    {
+     "id": "intro",
+     "variants": [
+      {
+       "text": "{honorific},"
+      },
+      {
+       "text": "{honorific}, cher collègue,",
+       "when": [
+        "relation:good"
+       ]
+      },
+      {
+       "text": "{honorific}, au nom du gouvernement de {foreignCountry},"
+      },
+      {
+       "text": "{honorific}, j'espère que ce message vous trouve en bonne santé.",
+       "when": [
+        "trait:warm"
+       ]
+      },
+      {
+       "text": "{honorific}, allons droit au but.",
+       "when": [
+        "trait:pragmatic"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "memory",
+     "variants": [
+      {
+       "text": "À la suite de notre coopération récente, je souhaite aller plus loin.",
+       "when": [
+        "history:cooperated"
+       ]
+      },
+      {
+       "text": "Nos échanges passés n'ont pas toujours abouti, mais je crois en une nouvelle étape.",
+       "when": [
+        "history:refused"
+       ]
+      },
+      {
+       "text": "Nos deux pays entretiennent des liens anciens.",
+       "when": [
+        "relation:good"
+       ]
+      },
+      {
+       "text": "Nos relations ont connu des moments difficiles ; cette proposition se veut un geste.",
+       "when": [
+        "relation:bad"
+       ]
+      }
+     ],
+     "optional": true
+    },
+    {
+     "id": "motive",
+     "variants": [
+      {
+       "text": "Mon gouvernement souhaite {motive}."
+      },
+      {
+       "text": "Afin de {motive}, je vous soumets la proposition suivante."
+      },
+      {
+       "text": "Nous avons besoin de {motive} et pensons que la France peut y contribuer."
+      }
+     ]
+    },
+    {
+     "id": "terms",
+     "variants": [
+      {
+       "text": "Termes proposés :\n{clauses}"
+      },
+      {
+       "text": "Voici ce que nous proposons :\n{clauses}"
+      }
+     ]
+    },
+    {
+     "id": "request",
+     "variants": [
+      {
+       "text": "Je serais heureux de connaître votre position."
+      },
+      {
+       "text": "Nous attendons votre réponse dans les prochains jours."
+      },
+      {
+       "text": "Nous sommes ouverts à la discussion sur les modalités.",
+       "when": [
+        "trait:pragmatic"
+       ]
+      },
+      {
+       "text": "Je vous serais reconnaissant de ne pas laisser cette offre sans réponse.",
+       "when": [
+        "trait:proud"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "closing",
+     "variants": [
+      {
+       "text": "Avec ma haute considération."
+      },
+      {
+       "text": "Bien cordialement.",
+       "when": [
+        "relation:good"
+       ]
+      },
+      {
+       "text": "Dans l'attente de votre réponse."
+      },
+      {
+       "text": "Je vous adresse mes salutations distinguées."
+      },
+      {
+       "text": "Au plaisir de poursuivre nos échanges.",
+       "when": [
+        "trait:warm"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "signature",
+     "variants": [
+      {
+       "text": "{sender}\n{senderTitle}"
+      },
+      {
+       "text": "{sender}, {senderTitle}"
+      },
+      {
+       "text": "— {sender}"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "diplomatic_response",
+   "subject": [
+    {
+     "text": "Réponse de {foreignCountry} : accord",
+     "when": [
+      "response:accepted"
+     ]
+    },
+    {
+     "text": "{foreignCountry} accepte votre proposition",
+     "when": [
+      "response:accepted"
+     ]
+    },
+    {
+     "text": "Réponse de {foreignCountry} : refus",
+     "when": [
+      "response:refused"
+     ]
+    },
+    {
+     "text": "{foreignCountry} décline votre proposition",
+     "when": [
+      "response:refused"
+     ]
+    },
+    {
+     "text": "Contre-proposition de {foreignCountry}",
+     "when": [
+      "response:countered"
+     ]
+    },
+    {
+     "text": "{foreignCountry} propose d'amender l'accord",
+     "when": [
+      "response:countered"
+     ]
+    }
+   ],
+   "sections": [
+    {
+     "id": "intro",
+     "variants": [
+      {
+       "text": "{honorific},"
+      },
+      {
+       "text": "{honorific}, cher collègue,",
+       "when": [
+        "relation:good"
+       ]
+      },
+      {
+       "text": "{honorific}, au nom du gouvernement de {foreignCountry},"
+      },
+      {
+       "text": "{honorific}, j'espère que ce message vous trouve en bonne santé.",
+       "when": [
+        "trait:warm"
+       ]
+      },
+      {
+       "text": "{honorific}, allons droit au but.",
+       "when": [
+        "trait:pragmatic"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "analysis",
+     "variants": [
+      {
+       "text": "Mon gouvernement a étudié attentivement votre proposition."
+      },
+      {
+       "text": "Nos ministères ont analysé votre offre en détail."
+      },
+      {
+       "text": "Votre proposition a fait l'objet d'un examen approfondi."
+      }
+     ]
+    },
+    {
+     "id": "verdict",
+     "variants": [
+      {
+       "text": "Je suis heureux de vous annoncer que nous l'acceptons.",
+       "when": [
+        "response:accepted"
+       ]
+      },
+      {
+       "text": "Elle répond à nos attentes : nous sommes prêts à signer.",
+       "when": [
+        "response:accepted"
+       ]
+      },
+      {
+       "text": "C'est une bonne nouvelle pour nos deux pays : nous acceptons.",
+       "when": [
+        "response:accepted",
+        "relation:good"
+       ]
+      },
+      {
+       "text": "Nous ne pouvons malheureusement pas l'accepter en l'état : {reasons}.",
+       "when": [
+        "response:refused"
+       ]
+      },
+      {
+       "text": "Je dois vous dire franchement que cette offre ne nous convient pas : {reasons}.",
+       "when": [
+        "response:refused",
+        "trait:tough"
+       ]
+      },
+      {
+       "text": "À regret, nous déclinons : {reasons}.",
+       "when": [
+        "response:refused"
+       ]
+      },
+      {
+       "text": "Nous ne pouvons l'accepter telle quelle ({reasons}), mais nous vous soumettons une version amendée.",
+       "when": [
+        "response:countered"
+       ]
+      },
+      {
+       "text": "Plutôt qu'un refus, nous préférons vous faire une contre-proposition, car {reasons}.",
+       "when": [
+        "response:countered"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "terms",
+     "variants": [
+      {
+       "text": "Termes :\n{clauses}",
+       "when": [
+        "response:accepted"
+       ]
+      },
+      {
+       "text": "Notre contre-proposition :\n{clauses}",
+       "when": [
+        "response:countered"
+       ]
+      },
+      {
+       "text": "Ce que nous pourrions accepter :\n{clauses}",
+       "when": [
+        "response:countered"
+       ]
+      }
+     ],
+     "optional": true
+    },
+    {
+     "id": "future",
+     "variants": [
+      {
+       "text": "La porte reste ouverte à de futures discussions.",
+       "when": [
+        "response:refused"
+       ]
+      },
+      {
+       "text": "Je me réjouis de cette nouvelle étape de notre coopération.",
+       "when": [
+        "response:accepted"
+       ]
+      },
+      {
+       "text": "Nous espérons que ces ajustements vous conviendront.",
+       "when": [
+        "response:countered"
+       ]
+      }
+     ],
+     "optional": true
+    },
+    {
+     "id": "closing",
+     "variants": [
+      {
+       "text": "Avec ma haute considération."
+      },
+      {
+       "text": "Bien cordialement.",
+       "when": [
+        "relation:good"
+       ]
+      },
+      {
+       "text": "Dans l'attente de votre réponse."
+      },
+      {
+       "text": "Je vous adresse mes salutations distinguées."
+      },
+      {
+       "text": "Au plaisir de poursuivre nos échanges.",
+       "when": [
+        "trait:warm"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "signature",
+     "variants": [
+      {
+       "text": "{sender}\n{senderTitle}"
+      },
+      {
+       "text": "{sender}, {senderTitle}"
+      },
+      {
+       "text": "— {sender}"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

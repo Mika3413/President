@@ -1,0 +1,341 @@
+{
+ "events": [
+  {
+   "id": "nuclear_incident",
+   "category": "ENERGY",
+   "scope": "INFRASTRUCTURE",
+   "infraTypes": [
+    "NUCLEAR_PLANT"
+   ],
+   "baseDailyProbability": 0.00035,
+   "cooldownDays": 15,
+   "scopeCooldownDays": 120,
+   "urgency": "URGENT",
+   "headline": "Arrêt de {infrastructure} après un incident technique",
+   "notificationText": "La centrale a été arrêtée par sécurité. Le ministère attend vos instructions.",
+   "modifiers": [
+    {
+     "variable": "scope.condition",
+     "from": 0.3,
+     "to": 0.8,
+     "factorAtFrom": 4.0,
+     "factorAtTo": 0.5
+    },
+    {
+     "variable": "scope.maintenance",
+     "from": 0.5,
+     "to": 1.5,
+     "factorAtFrom": 2.0,
+     "factorAtTo": 0.6
+    }
+   ],
+   "params": [
+    {
+     "name": "days",
+     "min": 12,
+     "max": 60,
+     "round": 1
+    }
+   ],
+   "immediateEffects": [
+    {
+     "target": "scope.offlineDays",
+     "param": "days",
+     "factor": 1.0
+    },
+    {
+     "target": "scope.condition",
+     "amount": -0.03
+    }
+   ],
+   "message": {
+    "template": "nuclear_incident",
+    "sender": "MINISTER",
+    "ministry": "ecology",
+    "responseDays": 3,
+    "defaultOption": "standard",
+    "options": [
+     {
+      "id": "inspection",
+      "label": "Inspection approfondie et entretien renforcé",
+      "hint": "Arrêt prolongé, coût 80 M€, risque futur réduit",
+      "effects": [
+       {
+        "target": "scope.offlineDays",
+        "param": "days",
+        "factor": 1.5
+       },
+       {
+        "target": "scope.maintenance",
+        "amount": 0.3
+       },
+       {
+        "target": "budget.oneOff",
+        "amount": 0.08
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.004
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "standard",
+      "label": "Procédure normale de redémarrage",
+      "hint": "Reprise dans les délais prévus",
+      "effects": [],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "transparency",
+      "label": "Communiquer largement sur l'incident",
+      "hint": "Rassure l'opinion, inquiète nos voisins",
+      "effects": [
+       {
+        "target": "opinion.national",
+        "amount": 0.006
+       },
+       {
+        "target": "memory.DEU.DISAGREEMENT",
+        "amount": -0.01
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dam_drought",
+   "category": "DISASTER",
+   "scope": "INFRASTRUCTURE",
+   "infraTypes": [
+    "HYDRO_DAM"
+   ],
+   "baseDailyProbability": 0.004,
+   "cooldownDays": 20,
+   "scopeCooldownDays": 300,
+   "urgency": "IMPORTANT",
+   "headline": "Sécheresse : production réduite au {infrastructure}",
+   "notificationText": "Le niveau des retenues est au plus bas. L'agriculture locale est également touchée.",
+   "conditions": [
+    {
+     "variable": "season.month",
+     "oneOf": [
+      6,
+      7,
+      8,
+      9
+     ]
+    }
+   ],
+   "params": [
+    {
+     "name": "days",
+     "min": 20,
+     "max": 50,
+     "round": 1
+    }
+   ],
+   "immediateEffects": [
+    {
+     "target": "scope.offlineDays",
+     "param": "days",
+     "factor": 1.0
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.006,
+     "days": 20
+    },
+    {
+     "target": "economy.output",
+     "amount": -0.0002,
+     "days": 30
+    },
+    {
+     "target": "economy.inflation",
+     "amount": 0.0005,
+     "days": 60
+    }
+   ]
+  },
+  {
+   "id": "refinery_accident",
+   "category": "SECURITY",
+   "scope": "INFRASTRUCTURE",
+   "infraTypes": [
+    "REFINERY"
+   ],
+   "baseDailyProbability": 0.0003,
+   "cooldownDays": 30,
+   "scopeCooldownDays": 365,
+   "urgency": "URGENT",
+   "headline": "Accident industriel à la {infrastructure}",
+   "notificationText": "Un incendie s'est déclaré sur le site. Les secours sont mobilisés.",
+   "modifiers": [
+    {
+     "variable": "scope.condition",
+     "from": 0.3,
+     "to": 0.8,
+     "factorAtFrom": 4.0,
+     "factorAtTo": 0.4
+    },
+    {
+     "variable": "scope.maintenance",
+     "from": 0.5,
+     "to": 1.5,
+     "factorAtFrom": 2.0,
+     "factorAtTo": 0.6
+    }
+   ],
+   "params": [
+    {
+     "name": "days",
+     "min": 15,
+     "max": 90,
+     "round": 1
+    }
+   ],
+   "immediateEffects": [
+    {
+     "target": "scope.offlineDays",
+     "param": "days",
+     "factor": 1.0
+    },
+    {
+     "target": "scope.condition",
+     "amount": -0.08
+    },
+    {
+     "target": "scope.approval",
+     "amount": -0.03,
+     "days": 10
+    },
+    {
+     "target": "economy.output",
+     "amount": -0.0003,
+     "days": 30
+    }
+   ],
+   "message": {
+    "template": "refinery_accident",
+    "sender": "MINISTER",
+    "ministry": "interior",
+    "responseDays": 3,
+    "defaultOption": "investigate",
+    "options": [
+     {
+      "id": "investigate",
+      "label": "Ouvrir une enquête administrative",
+      "hint": "Pas de coût ; l'exploitant reste responsable",
+      "effects": [
+       {
+        "target": "scope.approval",
+        "amount": 0.005
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "prevention",
+      "label": "Imposer un plan de prévention renforcé",
+      "hint": "Coût public : 60 M€ ; risque futur réduit",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.06
+       },
+       {
+        "target": "scope.maintenance",
+        "amount": 0.4
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.02,
+        "days": 10
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": -0.003
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "support",
+      "label": "Indemniser rapidement les riverains",
+      "hint": "Coût : 120 M€ ; apaise la colère locale",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.04,
+        "days": 10
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ]
+   }
+  },
+  {
+   "id": "port_strike",
+   "category": "ECONOMY",
+   "scope": "INFRASTRUCTURE",
+   "infraTypes": [
+    "PORT"
+   ],
+   "baseDailyProbability": 0.0004,
+   "cooldownDays": 25,
+   "scopeCooldownDays": 200,
+   "urgency": "IMPORTANT",
+   "headline": "Grève des dockers : le {infrastructure} paralysé",
+   "notificationText": "Les exportations sont ralenties.",
+   "modifiers": [
+    {
+     "variable": "opinion.group.private_employees",
+     "from": 0.25,
+     "to": 0.55,
+     "factorAtFrom": 3.0,
+     "factorAtTo": 0.4
+    },
+    {
+     "variable": "economy.inflation",
+     "from": 0.01,
+     "to": 0.05,
+     "factorAtFrom": 0.8,
+     "factorAtTo": 2.0
+    }
+   ],
+   "params": [
+    {
+     "name": "days",
+     "min": 3,
+     "max": 14,
+     "round": 1
+    }
+   ],
+   "immediateEffects": [
+    {
+     "target": "scope.offlineDays",
+     "param": "days",
+     "factor": 1.0
+    },
+    {
+     "target": "economy.output",
+     "amount": -0.0002,
+     "days": 14
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.004
+    }
+   ]
+  }
+ ]
+}

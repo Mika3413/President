@@ -1,0 +1,164 @@
+package fr.president.game.ui.panels
+
+import com.badlogic.gdx.scenes.scene2d.ui.Table
+import fr.president.engine.diplomacy.Clause
+import fr.president.engine.diplomacy.ProposalDescriber
+import fr.president.engine.diplomacy.ProposalStatus
+import fr.president.engine.util.Formatting
+import fr.president.game.ui.Theme
+import fr.president.game.ui.Ui
+
+/**
+ * Diplomatie structurée : relations expliquées, accords en vigueur et rédaction
+ * de propositions clause par clause. Les réponses arrivent après un délai, par message.
+ */
+class DiplomacyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel(ui, onClose) {
+    override val title = "Diplomatie"
+    private val session get() = nav.session
+    private val player get() = session.state.player.countryId
+    var country: String? = null
+    private var counterOf: String? = null
+    private val draft = mutableListOf<MutableClause>()
+    private var years = DEFAULT_YEARS
+    private var message: String? = null
+
+    private class MutableClause(val type: String, var giver: String, val params: MutableMap<String, Double>)
+
+    /** Prépare une contre-proposition à partir d'une proposition reçue. */
+    fun negotiate(proposalId: String) {
+        val p = session.diplomacy.proposal(proposalId) ?: return
+        country = if (p.from == player) p.to else p.from
+        counterOf = p.id
+        draft.clear()
+        p.clauses.forEach { draft += MutableClause(it.type, it.giver, it.params.toMutableMap()) }
+        years = p.durationYears
+        message = "Modifiez les termes puis envoyez votre contre-proposition."
+    }
+
+    override fun build(into: Table) {
+        message?.let { into.add(ui.label(it, "small", Theme.accent, wrap = true)).padBottom(GAP).row() }
+        val list = Table().apply { defaults().padRight(4f).padBottom(4f) }
+        session.diplomacy.foreignCountries().forEachIndexed { i, id ->
+            val b = ui.button(session.db.country(id).definition.name, "toggle") {
+                if (country != id) { country = id; draft.clear(); counterOf = null; message = null }
+                nav.refresh()
+            }
+            b.isChecked = id == country
+            list.add(b)
+            if (i % COUNTRIES_PER_ROW == COUNTRIES_PER_ROW - 1) list.row()
+        }
+        into.add(list).left().row()
+        val id = country ?: run {
+            into.add(ui.label("Choisissez un pays pour consulter vos relations et négocier.", "muted", wrap = true)).row()
+            return
+        }
+        countrySummary(into, id)
+        agreements(into, id)
+        editor(into, id)
+        pendingProposals(into, id)
+    }
+
+    private fun countrySummary(into: Table, id: String) {
+        val def = session.db.country(id).definition
+        val leader = session.state.characters.getValue(session.state.countries.getValue(id).leaderId)
+        val relation = session.diplomacy.relation(id)
+        into.add(ui.label(def.name, "title")).padTop(GAP).row()
+        into.add(ui.label("${def.institutions.headOfGovernmentTitle} : ${leader.fullName}", "small")).row()
+        val traits = session.characters.knownTraits(leader)
+        into.add(ui.label(if (traits.isEmpty()) "Tempérament encore mal connu de nos services." else "Réputé " + traits.joinToString(", ") + ".", "muted", wrap = true)).row()
+        into.add(ui.label("Relations : ${relation.label} · Confiance : ${relation.trustLabel}", "bold")).padTop(4f).row()
+        relation.factors.forEach { f -> into.add(ui.label("• ${f.label}", "small", if (f.weight >= 0) Theme.good else Theme.bad, wrap = true)).row() }
+    }
+
+    private fun agreements(into: Table, id: String) {
+        val agreements = session.diplomacy.agreementsWith(id)
+        if (agreements.isEmpty()) return
+        into.add(ui.label("Accords en vigueur", "bold")).padTop(GAP).row()
+        val describer = ProposalDescriber(session.db)
+        agreements.forEach { a ->
+            into.add(ui.label(describer.describeAll(a.clauses, a.parties[0], a.parties[1], 0).substringBeforeLast("\n"), "small", wrap = true)).row()
+            into.add(ui.label("Jusqu'au ${a.expiresAt.toDateTime().toLocalDate()}", "muted")).row()
+            into.add(ui.button("Rompre l'accord (grave)", "flat") { session.diplomacy.breakAgreement(a.id); nav.refresh() }).left().row()
+        }
+    }
+
+    private fun editor(into: Table, id: String) {
+        into.add(ui.label(if (counterOf != null) "Contre-proposition" else "Nouvelle proposition", "bold")).padTop(GAP).row()
+        val types = Table().apply { defaults().padRight(4f).padBottom(4f) }
+        session.db.diplomacy.clauseTypes.forEachIndexed { i, t ->
+            types.add(ui.button("+ ${t.label}", "flat") {
+                draft += MutableClause(t.id, player, t.params.associate { it.id to it.default }.toMutableMap())
+                nav.refresh()
+            })
+            if (i % 2 == 1) types.row()
+        }
+        into.add(types).left().row()
+        draft.toList().forEach { c -> clauseEditor(into, c, id) }
+        if (draft.isEmpty()) return
+        val duration = Table().apply { defaults().padRight(4f) }
+        duration.add(ui.label("Durée", "muted"))
+        duration.add(ui.button("−") { years = (years - 1).coerceAtLeast(1); nav.refresh() })
+        duration.add(ui.label("$years an(s)"))
+        duration.add(ui.button("+") { years = (years + 1).coerceAtMost(MAX_YEARS); nav.refresh() })
+        into.add(duration).left().padTop(4f).row()
+        into.add(ui.button("Envoyer la proposition", "accent") {
+            val clauses = draft.map { Clause(it.type, it.giver, it.params.toMap()) }
+            session.diplomacy.propose(id, clauses, years, counterOf)
+            draft.clear(); counterOf = null
+            message = "Proposition transmise. La réponse arrivera dans quelques jours."
+            nav.refresh()
+        }).left().padTop(4f).row()
+    }
+
+    private fun clauseEditor(into: Table, c: MutableClause, partner: String) {
+        val def = session.db.diplomacy.clause(c.type)
+        val box = Table().apply { defaults().left(); pad(6f); setBackground(ui.skin.fill(Theme.panelAlt)) }
+        box.add(ui.label(def.label, "bold")).expandX().left()
+        box.add(ui.button("✕", "flat") { draft.remove(c); nav.refresh() }).right().row()
+        box.add(ui.label(def.description, "muted", wrap = true)).colspan(2).growX().row()
+        if (!def.mutual) {
+            val giver = Table().apply { defaults().padRight(4f) }
+            giver.add(ui.label("Fournisseur", "muted"))
+            listOf(player, partner).forEach { g ->
+                giver.add(ui.button(session.db.country(g).definition.name, "toggle") { c.giver = g; nav.refresh() }.also { it.isChecked = c.giver == g })
+            }
+            box.add(giver).colspan(2).left().row()
+        }
+        def.params.forEach { p ->
+            val v = c.params[p.id] ?: p.default
+            val row = Table().apply { defaults().padRight(4f) }
+            row.add(ui.label(p.label, "muted"))
+            row.add(ui.button("−") { c.params[p.id] = (v - p.step).coerceAtLeast(p.min); nav.refresh() })
+            row.add(ui.label("${Formatting.amount(v)} ${p.unit}"))
+            row.add(ui.button("+") { c.params[p.id] = (v + p.step).coerceAtMost(p.max); nav.refresh() })
+            box.add(row).colspan(2).left().row()
+        }
+        into.add(box).growX().padBottom(4f).row()
+    }
+
+    private fun pendingProposals(into: Table, id: String) {
+        val mine = session.state.diplomacy.proposals.filter { (it.to == id || it.from == id) }.takeLast(MAX_HISTORY).reversed()
+        if (mine.isEmpty()) return
+        into.add(ui.label("Historique des propositions", "bold")).padTop(GAP).row()
+        mine.forEach { p ->
+            val status = when (p.status) {
+                ProposalStatus.PENDING -> if (p.from == player) "En attente de réponse" else "Attend votre réponse"
+                ProposalStatus.ACCEPTED -> "Acceptée"
+                ProposalStatus.REFUSED -> "Refusée"
+                ProposalStatus.COUNTERED -> "Contre-proposition"
+                ProposalStatus.EXPIRED -> "Restée sans réponse"
+                ProposalStatus.WITHDRAWN -> "Retirée"
+            }
+            val who = if (p.from == player) "Vous" else session.db.country(p.from).definition.name
+            into.add(ui.label("$who · ${p.createdAt.toDateTime().toLocalDate()} · $status", "small")).row()
+            if (p.reasons.isNotEmpty()) into.add(ui.label("Motifs : " + p.reasons.joinToString(", "), "muted", wrap = true)).row()
+        }
+    }
+
+    private companion object {
+        const val DEFAULT_YEARS = 5
+        const val MAX_YEARS = 15
+        const val COUNTRIES_PER_ROW = 3
+        const val MAX_HISTORY = 6
+    }
+}

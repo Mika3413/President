@@ -1,0 +1,61 @@
+{
+ "id": "BEL",
+ "name": "Belgique",
+ "adjective": "belge",
+ "language": "fr",
+ "namePool": "be",
+ "detail": "LIGHT",
+ "population": 11900000,
+ "economy": "economy/BEL_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Premier ministre",
+  "honorificMale": "Monsieur le Premier ministre",
+  "honorificFemale": "Madame la Première ministre"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.1,
+    0.35
+   ],
+   "pragmatism": [
+    0.6,
+    0.9
+   ],
+   "openness": [
+    0.55,
+    0.85
+   ],
+   "caution": [
+    0.5,
+    0.8
+   ]
+  },
+  "ageRange": [
+   44,
+   66
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ]
+ },
+ "strategic": {
+  "electricityBalanceTWh": -6,
+  "tradeWithPartnersBillions": {
+   "FRA": 110,
+   "DEU": 110
+  },
+  "alliances": [
+   "EU",
+   "NATO"
+  ],
+  "priorities": [
+   "energy",
+   "europe"
+  ],
+  "intelligenceQuality": 0.6,
+  "militaryBudgetBillions": 8
+ }
+}

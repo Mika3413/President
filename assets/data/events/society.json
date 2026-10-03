@@ -1,0 +1,500 @@
+{
+ "events": [
+  {
+   "id": "national_strike",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.004,
+   "cooldownDays": 90,
+   "urgency": "URGENT",
+   "headline": "Mouvement social : grève interprofessionnelle",
+   "notificationText": "Les syndicats appellent à une journée de mobilisation nationale.",
+   "conditions": [
+    {
+     "variable": "opinion.group.private_employees",
+     "max": 0.42
+    }
+   ],
+   "modifiers": [
+    {
+     "variable": "opinion.group.private_employees",
+     "from": 0.25,
+     "to": 0.42,
+     "factorAtFrom": 3.0,
+     "factorAtTo": 0.6
+    },
+    {
+     "variable": "economy.inflation",
+     "from": 0.01,
+     "to": 0.05,
+     "factorAtFrom": 0.8,
+     "factorAtTo": 2.5
+    },
+    {
+     "variable": "tax.households",
+     "from": 0.25,
+     "to": 0.32,
+     "factorAtFrom": 0.8,
+     "factorAtTo": 1.5
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 1.5,
+     "max": 4.0,
+     "round": 0.1
+    }
+   ],
+   "immediateEffects": [
+    {
+     "target": "economy.output",
+     "amount": -0.0008,
+     "days": 10
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.01
+    }
+   ],
+   "message": {
+    "template": "national_strike",
+    "sender": "MINISTER",
+    "ministry": "labour",
+    "responseDays": 4,
+    "defaultOption": "firm",
+    "options": [
+     {
+      "id": "negotiate",
+      "label": "Ouvrir des négociations salariales",
+      "hint": "Coût : {amountText} par an de mesures",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 1.0
+       },
+       {
+        "target": "opinion.group.private_employees",
+        "amount": 0.03,
+        "days": 20
+       },
+       {
+        "target": "opinion.group.low_income",
+        "amount": 0.02,
+        "days": 20
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": -0.01
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "partial",
+      "label": "Concessions ciblées",
+      "hint": "Coût : un tiers ; apaisement partiel",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 0.33
+       },
+       {
+        "target": "opinion.group.private_employees",
+        "amount": 0.01,
+        "days": 20
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "firm",
+      "label": "Tenir bon",
+      "hint": "Aucun coût ; le mouvement peut durer",
+      "effects": [
+       {
+        "target": "opinion.group.private_employees",
+        "amount": -0.02,
+        "days": 20
+       },
+       {
+        "target": "economy.output",
+        "amount": -0.0005,
+        "days": 20
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": 0.005
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ]
+   }
+  },
+  {
+   "id": "city_demonstration",
+   "category": "SECURITY",
+   "scope": "CITY",
+   "maxCityRank": 2,
+   "baseDailyProbability": 0.0006,
+   "cooldownDays": 6,
+   "scopeCooldownDays": 60,
+   "urgency": "IMPORTANT",
+   "headline": "Importante manifestation à {city}",
+   "notificationText": "Des milliers de personnes défilent contre la politique du gouvernement.",
+   "modifiers": [
+    {
+     "variable": "scope.satisfaction",
+     "from": 0.25,
+     "to": 0.5,
+     "factorAtFrom": 4.0,
+     "factorAtTo": 0.2
+    },
+    {
+     "variable": "economy.inflation",
+     "from": 0.01,
+     "to": 0.05,
+     "factorAtFrom": 0.8,
+     "factorAtTo": 1.8
+    }
+   ],
+   "immediateEffects": [
+    {
+     "target": "scope.approval",
+     "amount": -0.01
+    }
+   ],
+   "message": {
+    "template": "demonstration",
+    "sender": "PREFECT",
+    "responseDays": 2,
+    "defaultOption": "order",
+    "options": [
+     {
+      "id": "dialogue",
+      "label": "Recevoir les organisateurs",
+      "hint": "Apaisement local, image de faiblesse pour certains",
+      "effects": [
+       {
+        "target": "scope.approval",
+        "amount": 0.015,
+        "days": 10
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "order",
+      "label": "Maintenir l'ordre avec fermeté",
+      "hint": "Rassure une partie de l'opinion",
+      "effects": [
+       {
+        "target": "opinion.group.seniors",
+        "amount": 0.004
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": -0.005
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.005
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ]
+   }
+  },
+  {
+   "id": "heatwave",
+   "category": "DISASTER",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.02,
+   "cooldownDays": 120,
+   "urgency": "IMPORTANT",
+   "headline": "Canicule sur une grande partie du pays",
+   "notificationText": "Les hôpitaux se préparent à un afflux de patients.",
+   "conditions": [
+    {
+     "variable": "season.month",
+     "oneOf": [
+      6,
+      7,
+      8
+     ]
+    }
+   ],
+   "immediateEffects": [
+    {
+     "target": "quality.health",
+     "amount": -0.01,
+     "days": 20
+    },
+    {
+     "target": "economy.output",
+     "amount": -0.0002,
+     "days": 20
+    }
+   ],
+   "message": {
+    "template": "heatwave",
+    "sender": "MINISTER",
+    "ministry": "health",
+    "responseDays": 2,
+    "defaultOption": "standard",
+    "options": [
+     {
+      "id": "plan",
+      "label": "Déclencher le plan canicule renforcé",
+      "hint": "Coût : 200 M€ ; protège les plus fragiles",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.2
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": 0.015,
+        "days": 15
+       },
+       {
+        "target": "quality.health",
+        "amount": 0.006
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "standard",
+      "label": "Appliquer le dispositif habituel",
+      "hint": "Aucun coût supplémentaire",
+      "effects": [
+       {
+        "target": "opinion.group.seniors",
+        "amount": -0.006,
+        "days": 15
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ]
+   }
+  },
+  {
+   "id": "flood",
+   "category": "DISASTER",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.00012,
+   "cooldownDays": 25,
+   "scopeCooldownDays": 300,
+   "urgency": "URGENT",
+   "headline": "Inondations dans le département {department}",
+   "notificationText": "Des habitations ont été évacuées. Le préfet sollicite l'État.",
+   "conditions": [
+    {
+     "variable": "season.month",
+     "oneOf": [
+      10,
+      11,
+      12,
+      1,
+      2,
+      3
+     ]
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.05,
+     "max": 0.4,
+     "scaleBy": "scope.populationMillions",
+     "minScale": 0.3,
+     "round": 0.005
+    }
+   ],
+   "immediateEffects": [
+    {
+     "target": "scope.approval",
+     "amount": -0.01
+    },
+    {
+     "target": "economy.output",
+     "amount": -0.0001,
+     "days": 15
+    }
+   ],
+   "message": {
+    "template": "flood",
+    "sender": "PREFECT",
+    "responseDays": 3,
+    "defaultOption": "minimal",
+    "options": [
+     {
+      "id": "full",
+      "label": "Reconnaissance de catastrophe naturelle et fonds d'urgence",
+      "hint": "Coût : {amountText}",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 1.0
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.04,
+        "days": 10
+       },
+       {
+        "target": "sender.relation",
+        "amount": 0.08
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "minimal",
+      "label": "Aide minimale de l'État",
+      "hint": "Coût : 25 % ; la population attendait plus",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 0.25
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.01,
+        "days": 10
+       }
+      ],
+      "outcome": "PARTIAL"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cyberattack",
+   "category": "SECURITY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0015,
+   "cooldownDays": 120,
+   "urgency": "URGENT",
+   "headline": "Cyberattaque contre des services publics",
+   "notificationText": "Plusieurs hôpitaux et administrations sont touchés.",
+   "modifiers": [
+    {
+     "variable": "quality.security",
+     "from": 0.35,
+     "to": 0.65,
+     "factorAtFrom": 2.5,
+     "factorAtTo": 0.5
+    }
+   ],
+   "immediateEffects": [
+    {
+     "target": "quality.health",
+     "amount": -0.005
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.005
+    }
+   ],
+   "message": {
+    "template": "cyberattack",
+    "sender": "MINISTER",
+    "ministry": "interior",
+    "responseDays": 3,
+    "defaultOption": "contain",
+    "options": [
+     {
+      "id": "invest",
+      "label": "Plan national de cybersécurité",
+      "hint": "Coût : 500 M€ sur un an",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.5,
+        "days": 365
+       },
+       {
+        "target": "quality.security",
+        "amount": 0.01,
+        "days": 180
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.004
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "contain",
+      "label": "Gérer la crise avec les moyens existants",
+      "hint": "Aucun coût supplémentaire",
+      "effects": [
+       {
+        "target": "quality.security",
+        "amount": -0.003
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rating_downgrade",
+   "category": "ECONOMY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.004,
+   "cooldownDays": 180,
+   "urgency": "URGENT",
+   "headline": "Une agence de notation dégrade la note de la France",
+   "notificationText": "Les marchés s'inquiètent de la trajectoire des finances publiques.",
+   "conditions": [
+    {
+     "variable": "economy.debtRatio",
+     "min": 1.2
+    },
+    {
+     "variable": "economy.deficitRatio",
+     "min": 0.05
+    }
+   ],
+   "modifiers": [
+    {
+     "variable": "economy.deficitRatio",
+     "from": 0.05,
+     "to": 0.08,
+     "factorAtFrom": 1.0,
+     "factorAtTo": 3.0
+    }
+   ],
+   "immediateEffects": [
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.03
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.01
+    },
+    {
+     "target": "opinion.national",
+     "amount": -0.005
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,934 @@
+{
+ "templates": [
+  {
+   "id": "territorial_transport_request",
+   "subject": [
+    {
+     "text": "Demande de financement : transports à {city}"
+    },
+    {
+     "text": "{city} : un projet de transport en attente de l'État"
+    },
+    {
+     "text": "Mobilité à {city} — sollicitation de l'État"
+    },
+    {
+     "text": "Projet de transport à {city}"
+    },
+    {
+     "text": "Requête de la ville de {city}"
+    }
+   ],
+   "sections": [
+    {
+     "id": "intro",
+     "variants": [
+      {
+       "text": "{honorific},"
+      },
+      {
+       "text": "{honorific}, permettez-moi de vous écrire directement."
+      },
+      {
+       "text": "{honorific}, je me permets de vous saisir personnellement."
+      },
+      {
+       "text": "{honorific}, je vous adresse ce courrier au nom de nos [[residents]]."
+      },
+      {
+       "text": "{honorific}, je sais votre agenda chargé et serai bref.",
+       "when": [
+        "trait:pragmatic"
+       ]
+      },
+      {
+       "text": "{honorific}, je n'ai pas pour habitude de prendre la plume pour rien.",
+       "when": [
+        "trait:proud"
+       ]
+      },
+      {
+       "text": "{honorific}, cher ami,",
+       "when": [
+        "relation:good",
+        "trait:warm"
+       ]
+      },
+      {
+       "text": "{honorific}, je reviens vers vous comme convenu.",
+       "when": [
+        "followup:reask"
+       ]
+      },
+      {
+       "text": "{honorific}, je me vois contraint de vous solliciter à nouveau.",
+       "when": [
+        "followup:reask",
+        "sender:male"
+       ]
+      },
+      {
+       "text": "{honorific}, je me vois contrainte de vous solliciter à nouveau.",
+       "when": [
+        "followup:reask",
+        "sender:female"
+       ]
+      },
+      {
+       "text": "{honorific}, en cette période estivale, je me permets de vous écrire.",
+       "when": [
+        "season:summer"
+       ]
+      },
+      {
+       "text": "{honorific}, alors que l'hiver approche, je souhaite attirer votre attention.",
+       "when": [
+        "season:autumn"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "variants": [
+      {
+       "text": "Après vos précédents refus, je mesure combien ma démarche peut sembler insistante.",
+       "when": [
+        "history:refused"
+       ]
+      },
+      {
+       "text": "Malgré les refus répétés opposés à nos demandes, je veux croire que le dialogue reste possible.",
+       "when": [
+        "history:refused_many"
+       ]
+      },
+      {
+       "text": "Je n'ai pas oublié votre réponse négative de l'an passé, mais la situation a changé.",
+       "when": [
+        "history:refused"
+       ]
+      },
+      {
+       "text": "À la suite de notre coopération récente, je me tourne de nouveau vers vous avec confiance.",
+       "when": [
+        "history:cooperated"
+       ]
+      },
+      {
+       "text": "Votre soutien lors de nos derniers échanges a été apprécié de tous, et je vous en remercie encore.",
+       "when": [
+        "history:cooperated"
+       ]
+      },
+      {
+       "text": "Compte tenu de l'aide que l'État nous a déjà accordée à plusieurs reprises, je mesure la portée de ma demande.",
+       "when": [
+        "history:cooperated_many"
+       ]
+      },
+      {
+       "text": "Vous m'aviez demandé de patienter ; nous avons patienté.",
+       "when": [
+        "history:postponed"
+       ]
+      },
+      {
+       "text": "Le report de votre décision n'a malheureusement pas fait disparaître le problème.",
+       "when": [
+        "history:postponed"
+       ]
+      },
+      {
+       "text": "C'est la première fois que je m'adresse directement à vous depuis votre élection.",
+       "when": [
+        "history:none"
+       ]
+      },
+      {
+       "text": "Nous ne nous connaissons pas encore, mais je crois en la qualité de notre future relation.",
+       "when": [
+        "history:none",
+        "trait:warm"
+       ]
+      }
+     ],
+     "optional": true,
+     "chance": 0.85
+    },
+    {
+     "id": "context",
+     "variants": [
+      {
+       "text": "Notre agglomération connaît une croissance démographique soutenue et nos réseaux de transport arrivent à saturation."
+      },
+      {
+       "text": "Chaque matin, des milliers de [[residents]] de {city} passent plus d'une heure dans les embouteillages."
+      },
+      {
+       "text": "Le développement économique de {city} dépend désormais directement de la qualité de ses transports."
+      },
+      {
+       "text": "Les entreprises qui s'installent à {city} nous le répètent : la desserte de nos zones d'activité est insuffisante."
+      },
+      {
+       "text": "Malgré les difficultés économiques du moment, {city} continue d'attirer de nouveaux habitants.",
+       "when": [
+        "economy:bad"
+       ]
+      },
+      {
+       "text": "La dynamique économique actuelle est une chance pour {city}, encore faut-il pouvoir l'accompagner.",
+       "when": [
+        "economy:good"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "problem",
+     "variants": [
+      {
+       "text": "Nous avons conçu un [[project]] [[important]] de transport collectif, mais son financement dépasse nos seules capacités."
+      },
+      {
+       "text": "Le [[project]] que nous portons est prêt techniquement ; il ne manque que la participation de l'État."
+      },
+      {
+       "text": "Sans [[support]] national, ce [[project]] [[crucial]] devra être abandonné ou repoussé de plusieurs années."
+      },
+      {
+       "text": "Le conseil municipal a voté le principe du [[project]] à une large majorité, mais nos finances ne suffiront pas."
+      },
+      {
+       "text": "Je ne vous cache pas que la patience de nos [[residents]] s'épuise.",
+       "when": [
+        "relation:bad"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "request",
+     "variants": [
+      {
+       "text": "Je sollicite donc une participation de l'État à hauteur de {amountText}."
+      },
+      {
+       "text": "Le montant demandé à l'État s'élève à {amountText}, étalés sur la durée des travaux."
+      },
+      {
+       "text": "Une contribution de {amountText} permettrait de lancer les travaux dès cette année."
+      },
+      {
+       "text": "Je vous demande [[strongly]] d'accorder à {city} une aide de {amountText}."
+      },
+      {
+       "text": "Nous attendons de l'État un engagement clair : {amountText}. Pas moins.",
+       "when": [
+        "trait:aggressive"
+       ]
+      },
+      {
+       "text": "Toute participation, même partielle, de l'ordre de {amountText} serait déterminante.",
+       "when": [
+        "trait:pragmatic"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "closing",
+     "variants": [
+      {
+       "text": "Je vous prie d'agréer, {honorific}, l'expression de ma très haute considération."
+      },
+      {
+       "text": "Je vous prie de croire, {honorific}, à l'assurance de mon profond respect."
+      },
+      {
+       "text": "Veuillez agréer, {honorific}, l'expression de mes sentiments les plus respectueux."
+      },
+      {
+       "text": "Dans l'attente de votre [[decision]], je vous prie d'agréer, {honorific}, mes salutations les plus respectueuses."
+      },
+      {
+       "text": "Je reste à votre disposition et vous prie d'agréer, {honorific}, l'assurance de ma haute considération."
+      },
+      {
+       "text": "Avec mes respectueuses salutations.",
+       "when": [
+        "relation:good"
+       ]
+      },
+      {
+       "text": "Je compte sur vous, comme toujours.",
+       "when": [
+        "relation:good",
+        "history:cooperated"
+       ]
+      },
+      {
+       "text": "Je sais pouvoir compter sur votre sens de l'intérêt général.",
+       "when": [
+        "trait:warm"
+       ]
+      },
+      {
+       "text": "Je ne doute pas que vous saurez prendre la mesure de l'enjeu.",
+       "when": [
+        "trait:aggressive"
+       ]
+      },
+      {
+       "text": "J'attends votre réponse avec une certaine impatience, je ne vous le cache pas.",
+       "when": [
+        "relation:bad"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "signature",
+     "variants": [
+      {
+       "text": "{sender}\n{senderTitle}"
+      },
+      {
+       "text": "{sender}, {senderTitle}"
+      },
+      {
+       "text": "— {sender}"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "territorial_request_details",
+   "subject": [
+    {
+     "text": "Précisions"
+    }
+   ],
+   "sections": [
+    {
+     "id": "details_intro",
+     "variants": [
+      {
+       "text": "Comme vous me l'avez demandé, voici quelques précisions sur notre dossier."
+      },
+      {
+       "text": "Suite à votre demande d'informations complémentaires, je vous transmets les éléments suivants."
+      },
+      {
+       "text": "Vos services souhaitaient en savoir davantage : voici l'essentiel."
+      }
+     ]
+    },
+    {
+     "id": "details_body",
+     "variants": [
+      {
+       "text": "Le coût total est estimé à {amountText} pour l'État. Les études d'impact prévoient une baisse sensible de la circulation automobile et la création d'emplois pendant les travaux."
+      },
+      {
+       "text": "Le [[project]] représenterait {amountText} pour l'État. Selon nos estimations, plusieurs dizaines de milliers d'usagers en bénéficieraient chaque jour."
+      },
+      {
+       "text": "La participation demandée ({amountText}) serait versée progressivement. La collectivité prendra en charge l'exploitation du réseau."
+      }
+     ]
+    },
+    {
+     "id": "details_alt",
+     "variants": [
+      {
+       "text": "Un cofinancement avec la région est envisageable si l'État s'engage le premier."
+      },
+      {
+       "text": "Une version réduite du [[project]] est possible, au prix d'un service moins ambitieux."
+      },
+      {
+       "text": "Nous sommes ouverts à un phasage des travaux pour alléger l'effort annuel de l'État."
+      }
+     ],
+     "optional": true,
+     "chance": 0.8
+    }
+   ]
+  },
+  {
+   "id": "hospital_overload",
+   "subject": [
+    {
+     "text": "Urgences saturées dans le département {department}"
+    },
+    {
+     "text": "Alerte hospitalière : {department}"
+    },
+    {
+     "text": "Situation sanitaire préoccupante à {city}",
+     "when": [
+      "has:city"
+     ]
+    },
+    {
+     "text": "Hôpitaux du département {department} : appel à l'État"
+    }
+   ],
+   "sections": [
+    {
+     "id": "intro",
+     "variants": [
+      {
+       "text": "{honorific},"
+      },
+      {
+       "text": "{honorific}, permettez-moi de vous écrire directement."
+      },
+      {
+       "text": "{honorific}, je me permets de vous saisir personnellement."
+      },
+      {
+       "text": "{honorific}, je vous adresse ce courrier au nom de nos [[residents]]."
+      },
+      {
+       "text": "{honorific}, je sais votre agenda chargé et serai bref.",
+       "when": [
+        "trait:pragmatic"
+       ]
+      },
+      {
+       "text": "{honorific}, je n'ai pas pour habitude de prendre la plume pour rien.",
+       "when": [
+        "trait:proud"
+       ]
+      },
+      {
+       "text": "{honorific}, cher ami,",
+       "when": [
+        "relation:good",
+        "trait:warm"
+       ]
+      },
+      {
+       "text": "{honorific}, je reviens vers vous comme convenu.",
+       "when": [
+        "followup:reask"
+       ]
+      },
+      {
+       "text": "{honorific}, je me vois contraint de vous solliciter à nouveau.",
+       "when": [
+        "followup:reask",
+        "sender:male"
+       ]
+      },
+      {
+       "text": "{honorific}, je me vois contrainte de vous solliciter à nouveau.",
+       "when": [
+        "followup:reask",
+        "sender:female"
+       ]
+      },
+      {
+       "text": "{honorific}, en cette période estivale, je me permets de vous écrire.",
+       "when": [
+        "season:summer"
+       ]
+      },
+      {
+       "text": "{honorific}, alors que l'hiver approche, je souhaite attirer votre attention.",
+       "when": [
+        "season:autumn"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "variants": [
+      {
+       "text": "Après vos précédents refus, je mesure combien ma démarche peut sembler insistante.",
+       "when": [
+        "history:refused"
+       ]
+      },
+      {
+       "text": "Malgré les refus répétés opposés à nos demandes, je veux croire que le dialogue reste possible.",
+       "when": [
+        "history:refused_many"
+       ]
+      },
+      {
+       "text": "Je n'ai pas oublié votre réponse négative de l'an passé, mais la situation a changé.",
+       "when": [
+        "history:refused"
+       ]
+      },
+      {
+       "text": "À la suite de notre coopération récente, je me tourne de nouveau vers vous avec confiance.",
+       "when": [
+        "history:cooperated"
+       ]
+      },
+      {
+       "text": "Votre soutien lors de nos derniers échanges a été apprécié de tous, et je vous en remercie encore.",
+       "when": [
+        "history:cooperated"
+       ]
+      },
+      {
+       "text": "Compte tenu de l'aide que l'État nous a déjà accordée à plusieurs reprises, je mesure la portée de ma demande.",
+       "when": [
+        "history:cooperated_many"
+       ]
+      },
+      {
+       "text": "Vous m'aviez demandé de patienter ; nous avons patienté.",
+       "when": [
+        "history:postponed"
+       ]
+      },
+      {
+       "text": "Le report de votre décision n'a malheureusement pas fait disparaître le problème.",
+       "when": [
+        "history:postponed"
+       ]
+      },
+      {
+       "text": "C'est la première fois que je m'adresse directement à vous depuis votre élection.",
+       "when": [
+        "history:none"
+       ]
+      },
+      {
+       "text": "Nous ne nous connaissons pas encore, mais je crois en la qualité de notre future relation.",
+       "when": [
+        "history:none",
+        "trait:warm"
+       ]
+      }
+     ],
+     "optional": true,
+     "chance": 0.85
+    },
+    {
+     "id": "context",
+     "variants": [
+      {
+       "text": "Les services d'urgence du département {department} fonctionnent depuis plusieurs semaines au-delà de leurs capacités."
+      },
+      {
+       "text": "Les soignants de l'hôpital de {city} m'alertent quotidiennement sur leur épuisement.",
+       "when": [
+        "has:city"
+       ]
+      },
+      {
+       "text": "Les soignants des hôpitaux du département m'alertent quotidiennement sur leur épuisement."
+      },
+      {
+       "text": "Faute de lits disponibles, des patients patientent désormais plus de vingt-quatre heures sur des brancards."
+      },
+      {
+       "text": "L'épidémie hivernale a achevé de déstabiliser un système déjà fragile.",
+       "when": [
+        "season:winter"
+       ]
+      },
+      {
+       "text": "La vague de chaleur a fortement accru l'afflux de patients âgés.",
+       "when": [
+        "season:summer"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "problem",
+     "variants": [
+      {
+       "text": "La [[situation]] [[worsen]] de jour en jour et plusieurs services menacent de fermer la nuit."
+      },
+      {
+       "text": "Sans renfort rapide, nous ne pourrons plus garantir la sécurité des patients."
+      },
+      {
+       "text": "Le personnel parle ouvertement de démissions collectives."
+      },
+      {
+       "text": "Je crains un drame que personne ne pourrait justifier.",
+       "when": [
+        "trait:aggressive"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "request",
+     "variants": [
+      {
+       "text": "Je vous demande un [[measure]] d'urgence de l'ordre de {amountText} pour renforcer les équipes."
+      },
+      {
+       "text": "Une aide immédiate de {amountText} permettrait de passer le cap, en attendant une réforme de fond."
+      },
+      {
+       "text": "J'en appelle à votre arbitrage : {amountText} suffiraient à rouvrir les lits fermés."
+      }
+     ]
+    },
+    {
+     "id": "closing",
+     "variants": [
+      {
+       "text": "Je vous prie d'agréer, {honorific}, l'expression de ma très haute considération."
+      },
+      {
+       "text": "Je vous prie de croire, {honorific}, à l'assurance de mon profond respect."
+      },
+      {
+       "text": "Veuillez agréer, {honorific}, l'expression de mes sentiments les plus respectueux."
+      },
+      {
+       "text": "Dans l'attente de votre [[decision]], je vous prie d'agréer, {honorific}, mes salutations les plus respectueuses."
+      },
+      {
+       "text": "Je reste à votre disposition et vous prie d'agréer, {honorific}, l'assurance de ma haute considération."
+      },
+      {
+       "text": "Avec mes respectueuses salutations.",
+       "when": [
+        "relation:good"
+       ]
+      },
+      {
+       "text": "Je compte sur vous, comme toujours.",
+       "when": [
+        "relation:good",
+        "history:cooperated"
+       ]
+      },
+      {
+       "text": "Je sais pouvoir compter sur votre sens de l'intérêt général.",
+       "when": [
+        "trait:warm"
+       ]
+      },
+      {
+       "text": "Je ne doute pas que vous saurez prendre la mesure de l'enjeu.",
+       "when": [
+        "trait:aggressive"
+       ]
+      },
+      {
+       "text": "J'attends votre réponse avec une certaine impatience, je ne vous le cache pas.",
+       "when": [
+        "relation:bad"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "signature",
+     "variants": [
+      {
+       "text": "{sender}\n{senderTitle}"
+      },
+      {
+       "text": "{sender}, {senderTitle}"
+      },
+      {
+       "text": "— {sender}"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "factory_closure",
+   "subject": [
+    {
+     "text": "Menace sur {jobs} emplois dans le département {department}"
+    },
+    {
+     "text": "Fermeture annoncée d'un site industriel près de {city}",
+     "when": [
+      "has:city"
+     ]
+    },
+    {
+     "text": "Fermeture annoncée d'un site industriel ({department})"
+    },
+    {
+     "text": "Urgence industrielle : {department}"
+    },
+    {
+     "text": "Plan social : {jobs} emplois menacés"
+    }
+   ],
+   "sections": [
+    {
+     "id": "intro",
+     "variants": [
+      {
+       "text": "{honorific},"
+      },
+      {
+       "text": "{honorific}, permettez-moi de vous écrire directement."
+      },
+      {
+       "text": "{honorific}, je me permets de vous saisir personnellement."
+      },
+      {
+       "text": "{honorific}, je vous adresse ce courrier au nom de nos [[residents]]."
+      },
+      {
+       "text": "{honorific}, je sais votre agenda chargé et serai bref.",
+       "when": [
+        "trait:pragmatic"
+       ]
+      },
+      {
+       "text": "{honorific}, je n'ai pas pour habitude de prendre la plume pour rien.",
+       "when": [
+        "trait:proud"
+       ]
+      },
+      {
+       "text": "{honorific}, cher ami,",
+       "when": [
+        "relation:good",
+        "trait:warm"
+       ]
+      },
+      {
+       "text": "{honorific}, je reviens vers vous comme convenu.",
+       "when": [
+        "followup:reask"
+       ]
+      },
+      {
+       "text": "{honorific}, je me vois contraint de vous solliciter à nouveau.",
+       "when": [
+        "followup:reask",
+        "sender:male"
+       ]
+      },
+      {
+       "text": "{honorific}, je me vois contrainte de vous solliciter à nouveau.",
+       "when": [
+        "followup:reask",
+        "sender:female"
+       ]
+      },
+      {
+       "text": "{honorific}, en cette période estivale, je me permets de vous écrire.",
+       "when": [
+        "season:summer"
+       ]
+      },
+      {
+       "text": "{honorific}, alors que l'hiver approche, je souhaite attirer votre attention.",
+       "when": [
+        "season:autumn"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "variants": [
+      {
+       "text": "Après vos précédents refus, je mesure combien ma démarche peut sembler insistante.",
+       "when": [
+        "history:refused"
+       ]
+      },
+      {
+       "text": "Malgré les refus répétés opposés à nos demandes, je veux croire que le dialogue reste possible.",
+       "when": [
+        "history:refused_many"
+       ]
+      },
+      {
+       "text": "Je n'ai pas oublié votre réponse négative de l'an passé, mais la situation a changé.",
+       "when": [
+        "history:refused"
+       ]
+      },
+      {
+       "text": "À la suite de notre coopération récente, je me tourne de nouveau vers vous avec confiance.",
+       "when": [
+        "history:cooperated"
+       ]
+      },
+      {
+       "text": "Votre soutien lors de nos derniers échanges a été apprécié de tous, et je vous en remercie encore.",
+       "when": [
+        "history:cooperated"
+       ]
+      },
+      {
+       "text": "Compte tenu de l'aide que l'État nous a déjà accordée à plusieurs reprises, je mesure la portée de ma demande.",
+       "when": [
+        "history:cooperated_many"
+       ]
+      },
+      {
+       "text": "Vous m'aviez demandé de patienter ; nous avons patienté.",
+       "when": [
+        "history:postponed"
+       ]
+      },
+      {
+       "text": "Le report de votre décision n'a malheureusement pas fait disparaître le problème.",
+       "when": [
+        "history:postponed"
+       ]
+      },
+      {
+       "text": "C'est la première fois que je m'adresse directement à vous depuis votre élection.",
+       "when": [
+        "history:none"
+       ]
+      },
+      {
+       "text": "Nous ne nous connaissons pas encore, mais je crois en la qualité de notre future relation.",
+       "when": [
+        "history:none",
+        "trait:warm"
+       ]
+      }
+     ],
+     "optional": true,
+     "chance": 0.85
+    },
+    {
+     "id": "context",
+     "variants": [
+      {
+       "text": "La direction d'un grand groupe industriel vient d'annoncer son intention de fermer son site près de {city}.",
+       "when": [
+        "has:city"
+       ]
+      },
+      {
+       "text": "La direction d'un grand groupe industriel vient d'annoncer son intention de fermer son site dans le département {department}."
+      },
+      {
+       "text": "Un site industriel historique du département {department} est menacé de fermeture."
+      },
+      {
+       "text": "La hausse des coûts de l'énergie a fragilisé l'usine, qui emploie {jobs} salariés.",
+       "when": [
+        "economy:bad"
+       ]
+      },
+      {
+       "text": "Malgré un carnet de commandes correct, le groupe souhaite délocaliser sa production."
+      }
+     ]
+    },
+    {
+     "id": "problem",
+     "variants": [
+      {
+       "text": "Ce sont {jobs} emplois directs, et bien davantage chez les sous-traitants, qui sont en jeu."
+      },
+      {
+       "text": "Pour le bassin d'emploi, déjà fragile, ce serait un choc [[important]]."
+      },
+      {
+       "text": "Les élus locaux et les syndicats demandent une intervention de l'État."
+      },
+      {
+       "text": "La [[tension]] monte sur le site ; des blocages sont annoncés."
+      }
+     ]
+    },
+    {
+     "id": "request",
+     "variants": [
+      {
+       "text": "Plusieurs options s'offrent à l'État : une aide à la reprise, la recherche d'un repreneur ou le laisser-faire. J'attends vos instructions."
+      },
+      {
+       "text": "Je sollicite votre [[decision]] [[quickly]] : un repreneur pourrait se manifester si l'État apporte des garanties."
+      },
+      {
+       "text": "Une aide publique de {amountText} pourrait sauver l'essentiel des emplois."
+      }
+     ]
+    },
+    {
+     "id": "closing",
+     "variants": [
+      {
+       "text": "Je vous prie d'agréer, {honorific}, l'expression de ma très haute considération."
+      },
+      {
+       "text": "Je vous prie de croire, {honorific}, à l'assurance de mon profond respect."
+      },
+      {
+       "text": "Veuillez agréer, {honorific}, l'expression de mes sentiments les plus respectueux."
+      },
+      {
+       "text": "Dans l'attente de votre [[decision]], je vous prie d'agréer, {honorific}, mes salutations les plus respectueuses."
+      },
+      {
+       "text": "Je reste à votre disposition et vous prie d'agréer, {honorific}, l'assurance de ma haute considération."
+      },
+      {
+       "text": "Avec mes respectueuses salutations.",
+       "when": [
+        "relation:good"
+       ]
+      },
+      {
+       "text": "Je compte sur vous, comme toujours.",
+       "when": [
+        "relation:good",
+        "history:cooperated"
+       ]
+      },
+      {
+       "text": "Je sais pouvoir compter sur votre sens de l'intérêt général.",
+       "when": [
+        "trait:warm"
+       ]
+      },
+      {
+       "text": "Je ne doute pas que vous saurez prendre la mesure de l'enjeu.",
+       "when": [
+        "trait:aggressive"
+       ]
+      },
+      {
+       "text": "J'attends votre réponse avec une certaine impatience, je ne vous le cache pas.",
+       "when": [
+        "relation:bad"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "signature",
+     "variants": [
+      {
+       "text": "{sender}\n{senderTitle}"
+      },
+      {
+       "text": "{sender}, {senderTitle}"
+      },
+      {
+       "text": "— {sender}"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

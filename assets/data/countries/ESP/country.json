@@ -1,0 +1,63 @@
+{
+ "id": "ESP",
+ "name": "Espagne",
+ "adjective": "espagnol",
+ "language": "es",
+ "namePool": "es",
+ "detail": "LIGHT",
+ "population": 48600000,
+ "economy": "economy/ESP_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Président du gouvernement",
+  "honorificMale": "Monsieur le Président",
+  "honorificFemale": "Madame la Présidente"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.2,
+    0.5
+   ],
+   "pragmatism": [
+    0.5,
+    0.8
+   ],
+   "nationalism": [
+    0.25,
+    0.55
+   ],
+   "openness": [
+    0.5,
+    0.8
+   ]
+  },
+  "ageRange": [
+   44,
+   66
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ]
+ },
+ "strategic": {
+  "electricityBalanceTWh": 8,
+  "tradeWithPartnersBillions": {
+   "FRA": 90,
+   "DEU": 75,
+   "ITA": 45
+  },
+  "alliances": [
+   "EU",
+   "NATO"
+  ],
+  "priorities": [
+   "tourism",
+   "trade",
+   "energy"
+  ],
+  "intelligenceQuality": 0.65,
+  "militaryBudgetBillions": 18
+ }
+}

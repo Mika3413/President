@@ -1,0 +1,29 @@
+{
+  "paces": [
+    { "id": "rapide", "label": "Rapide", "worldHoursPerRealHour": 48.0, "description": "1 heure réelle = 2 jours de jeu. Un mandat dure environ 38 jours réels." },
+    { "id": "normal", "label": "Normal", "worldHoursPerRealHour": 24.0, "description": "1 heure réelle = 1 jour de jeu. Un mandat dure environ 2 mois et demi réels." },
+    { "id": "long", "label": "Long", "worldHoursPerRealHour": 12.0, "description": "1 heure réelle = 12 heures de jeu. Un mandat dure environ 5 mois réels." },
+    { "id": "tres_long", "label": "Très long", "worldHoursPerRealHour": 6.0, "description": "1 heure réelle = 6 heures de jeu. Un mandat dure environ 10 mois réels." }
+  ],
+  "defaultPace": "normal",
+  "defaultSnapshot": "WORLD_SNAPSHOT_2026_10",
+  "simulation": {
+    "notificationFeedSize": 200,
+    "inboxHistorySize": 300,
+    "messageUniquenessAttempts": 32,
+    "maxCatchUpDays": 3650,
+    "pollIntervalDays": 14,
+    "aiDecisionIntervalDays": 20,
+    "memoryRetentionDays": 1825
+  },
+  "files": {
+    "economyParameters": "economy/model_parameters.json",
+    "infrastructureTypes": "infrastructure/types.json",
+    "diplomacyClauses": "diplomacy/clauses.json",
+    "lexicon": "dialogue/fr/lexicon.json",
+    "readouts": "ui/readouts.json",
+    "events": ["events/territory.json", "events/infrastructure.json", "events/society.json", "events/government.json"],
+    "dialogue": ["dialogue/fr/territory.json", "dialogue/fr/incidents.json", "dialogue/fr/society.json", "dialogue/fr/government.json", "dialogue/fr/diplomacy.json"],
+    "names": { "fr": "names/fr.json", "de": "names/de.json", "es": "names/es.json", "it": "names/it.json", "en": "names/en.json", "be": "names/be.json" }
+  }
+}

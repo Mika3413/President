@@ -1,0 +1,73 @@
+package fr.president.engine.data
+
+import fr.president.engine.dialogue.DialogueFile
+import fr.president.engine.dialogue.Lexicon
+import fr.president.engine.diplomacy.DiplomacyDefinitions
+import fr.president.engine.events.EventFile
+import fr.president.engine.readout.ReadoutsFile
+import kotlinx.serialization.DeserializationStrategy
+import kotlinx.serialization.serializer
+
+/** Charge et valide tous les fichiers de données à partir d'un [DataSource]. */
+class DataLoader(private val source: DataSource) {
+
+    fun load(snapshotId: String? = null): GameDatabase {
+        val config = read<GameConfig>(CONFIG_PATH)
+        val snapshot = read<SnapshotDefinition>("$SNAPSHOT_DIR/${snapshotId ?: config.defaultSnapshot}.json")
+        val countries = snapshot.countries.map { loadCountry(it) }.associateBy { it.id }
+        val files = config.files
+        val db = GameDatabase(
+            config = config,
+            snapshot = snapshot,
+            countries = countries,
+            economyParameters = read(files.economyParameters),
+            infrastructureTypes = read<InfrastructureTypesFile>(files.infrastructureTypes).types.associateBy { it.id },
+            events = files.events.flatMap { read<EventFile>(it).events },
+            dialogue = files.dialogue.flatMap { read<DialogueFile>(it).templates }.associateBy { it.id },
+            lexicon = read<Lexicon>(files.lexicon),
+            diplomacy = read<DiplomacyDefinitions>(files.diplomacyClauses),
+            names = files.names.mapValues { (_, path) -> read<NamePool>(path) },
+            readouts = read<ReadoutsFile>(files.readouts),
+        )
+        DataValidator.validate(db)
+        return db
+    }
+
+    private fun loadCountry(path: String): CountryData {
+        val def = read<CountryDefinition>(path)
+        return CountryData(
+            definition = def,
+            economy = read(def.economy),
+            territory = def.territory?.let { read(it) },
+            government = def.government?.let { read(it) },
+            socialGroups = def.socialGroups?.let { read(it) },
+            elections = def.elections?.let { read(it) },
+            energy = def.energy?.let { read(it) },
+            transport = def.transport?.let { read(it) },
+            military = def.military?.let { read(it) },
+        )
+    }
+
+    private inline fun <reified T> read(path: String): T = decode(serializer<T>(), path)
+
+    private fun <T> decode(strategy: DeserializationStrategy<T>, path: String): T {
+        val text = try {
+            source.read("$DATA_ROOT/$path")
+        } catch (e: Exception) {
+            throw DataException("Fichier de données introuvable : $path", e)
+        }
+        return try {
+            GameJson.data.decodeFromString(strategy, text)
+        } catch (e: Exception) {
+            throw DataException("Fichier de données invalide : $path (${e.message})", e)
+        }
+    }
+
+    companion object {
+        const val DATA_ROOT = "data"
+        const val CONFIG_PATH = "config/game_config.json"
+        const val SNAPSHOT_DIR = "world_snapshots"
+    }
+}
+
+class DataException(message: String, cause: Throwable? = null) : RuntimeException(message, cause)

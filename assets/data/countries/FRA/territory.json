@@ -1,0 +1,1575 @@
+{
+ "regions": [
+  {
+   "code": "11",
+   "name": "Île-de-France",
+   "capitalCityId": "paris",
+   "defaults": {
+    "unemployment": 0.071,
+    "incomeIndex": 1.08,
+    "urbanShare": 0.85,
+    "seniorShare": 0.16,
+    "politicalLeaning": -0.05
+   }
+  },
+  {
+   "code": "24",
+   "name": "Centre-Val de Loire",
+   "capitalCityId": "orleans",
+   "defaults": {
+    "unemployment": 0.07,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.45,
+    "seniorShare": 0.24,
+    "politicalLeaning": 0.15
+   }
+  },
+  {
+   "code": "27",
+   "name": "Bourgogne-Franche-Comté",
+   "capitalCityId": "dijon",
+   "defaults": {
+    "unemployment": 0.064,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.4,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.1
+   }
+  },
+  {
+   "code": "28",
+   "name": "Normandie",
+   "capitalCityId": "rouen",
+   "defaults": {
+    "unemployment": 0.072,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.45,
+    "seniorShare": 0.24,
+    "politicalLeaning": 0.05
+   }
+  },
+  {
+   "code": "32",
+   "name": "Hauts-de-France",
+   "capitalCityId": "lille",
+   "defaults": {
+    "unemployment": 0.089,
+    "incomeIndex": 0.9,
+    "urbanShare": 0.55,
+    "seniorShare": 0.19,
+    "politicalLeaning": 0.2
+   }
+  },
+  {
+   "code": "44",
+   "name": "Grand Est",
+   "capitalCityId": "strasbourg",
+   "defaults": {
+    "unemployment": 0.073,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.5,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.25
+   }
+  },
+  {
+   "code": "52",
+   "name": "Pays de la Loire",
+   "capitalCityId": "nantes",
+   "defaults": {
+    "unemployment": 0.059,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.48,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.0
+   }
+  },
+  {
+   "code": "53",
+   "name": "Bretagne",
+   "capitalCityId": "rennes",
+   "defaults": {
+    "unemployment": 0.059,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.45,
+    "seniorShare": 0.24,
+    "politicalLeaning": -0.15
+   }
+  },
+  {
+   "code": "75",
+   "name": "Nouvelle-Aquitaine",
+   "capitalCityId": "bordeaux",
+   "defaults": {
+    "unemployment": 0.069,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.42,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.1
+   }
+  },
+  {
+   "code": "76",
+   "name": "Occitanie",
+   "capitalCityId": "toulouse",
+   "defaults": {
+    "unemployment": 0.087,
+    "incomeIndex": 0.94,
+    "urbanShare": 0.48,
+    "seniorShare": 0.24,
+    "politicalLeaning": -0.15
+   }
+  },
+  {
+   "code": "84",
+   "name": "Auvergne-Rhône-Alpes",
+   "capitalCityId": "lyon",
+   "defaults": {
+    "unemployment": 0.065,
+    "incomeIndex": 1.02,
+    "urbanShare": 0.55,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.1
+   }
+  },
+  {
+   "code": "93",
+   "name": "Provence-Alpes-Côte d'Azur",
+   "capitalCityId": "marseille",
+   "defaults": {
+    "unemployment": 0.08,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.7,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.35
+   }
+  },
+  {
+   "code": "94",
+   "name": "Corse",
+   "capitalCityId": "ajaccio",
+   "defaults": {
+    "unemployment": 0.063,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.4,
+    "seniorShare": 0.26,
+    "politicalLeaning": 0.2
+   }
+  }
+ ],
+ "departments": [
+  {
+   "code": "01",
+   "name": "Ain",
+   "region": "84",
+   "population": 657000,
+   "profile": {
+    "unemployment": 0.055,
+    "incomeIndex": 1.1,
+    "seniorShare": 0.18
+   }
+  },
+  {
+   "code": "02",
+   "name": "Aisne",
+   "region": "32",
+   "population": 529000,
+   "profile": {
+    "unemployment": 0.105,
+    "incomeIndex": 0.87,
+    "politicalLeaning": 0.4
+   }
+  },
+  {
+   "code": "03",
+   "name": "Allier",
+   "region": "84",
+   "population": 335000,
+   "profile": {
+    "seniorShare": 0.28
+   }
+  },
+  {
+   "code": "04",
+   "name": "Alpes-de-Haute-Provence",
+   "region": "93",
+   "population": 166000,
+   "profile": {
+    "urbanShare": 0.3,
+    "seniorShare": 0.28
+   }
+  },
+  {
+   "code": "05",
+   "name": "Hautes-Alpes",
+   "region": "93",
+   "population": 141000
+  },
+  {
+   "code": "06",
+   "name": "Alpes-Maritimes",
+   "region": "93",
+   "population": 1098000,
+   "profile": {
+    "incomeIndex": 1.0,
+    "urbanShare": 0.85,
+    "seniorShare": 0.27,
+    "politicalLeaning": 0.45
+   }
+  },
+  {
+   "code": "07",
+   "name": "Ardèche",
+   "region": "84",
+   "population": 330000
+  },
+  {
+   "code": "08",
+   "name": "Ardennes",
+   "region": "44",
+   "population": 270000,
+   "profile": {
+    "unemployment": 0.093,
+    "incomeIndex": 0.87,
+    "politicalLeaning": 0.35
+   }
+  },
+  {
+   "code": "09",
+   "name": "Ariège",
+   "region": "76",
+   "population": 155000,
+   "profile": {
+    "urbanShare": 0.3,
+    "politicalLeaning": -0.3
+   }
+  },
+  {
+   "code": "10",
+   "name": "Aube",
+   "region": "44",
+   "population": 310000,
+   "profile": {
+    "unemployment": 0.09
+   }
+  },
+  {
+   "code": "11",
+   "name": "Aude",
+   "region": "76",
+   "population": 377000,
+   "profile": {
+    "unemployment": 0.11,
+    "incomeIndex": 0.85,
+    "politicalLeaning": 0.25
+   }
+  },
+  {
+   "code": "12",
+   "name": "Aveyron",
+   "region": "76",
+   "population": 279000,
+   "profile": {
+    "unemployment": 0.05,
+    "urbanShare": 0.25,
+    "seniorShare": 0.27
+   }
+  },
+  {
+   "code": "13",
+   "name": "Bouches-du-Rhône",
+   "region": "93",
+   "population": 2056000,
+   "profile": {
+    "unemployment": 0.088,
+    "incomeIndex": 0.95,
+    "urbanShare": 0.9,
+    "politicalLeaning": 0.2
+   }
+  },
+  {
+   "code": "14",
+   "name": "Calvados",
+   "region": "28",
+   "population": 699000
+  },
+  {
+   "code": "15",
+   "name": "Cantal",
+   "region": "84",
+   "population": 144000,
+   "profile": {
+    "unemployment": 0.045,
+    "urbanShare": 0.2,
+    "seniorShare": 0.28
+   }
+  },
+  {
+   "code": "16",
+   "name": "Charente",
+   "region": "75",
+   "population": 352000
+  },
+  {
+   "code": "17",
+   "name": "Charente-Maritime",
+   "region": "75",
+   "population": 655000,
+   "profile": {
+    "seniorShare": 0.29
+   }
+  },
+  {
+   "code": "18",
+   "name": "Cher",
+   "region": "24",
+   "population": 300000
+  },
+  {
+   "code": "19",
+   "name": "Corrèze",
+   "region": "75",
+   "population": 240000,
+   "profile": {
+    "urbanShare": 0.3,
+    "seniorShare": 0.28,
+    "politicalLeaning": -0.2
+   }
+  },
+  {
+   "code": "2A",
+   "name": "Corse-du-Sud",
+   "region": "94",
+   "population": 160000,
+   "profile": {
+    "urbanShare": 0.45,
+    "politicalLeaning": 0.3
+   }
+  },
+  {
+   "code": "2B",
+   "name": "Haute-Corse",
+   "region": "94",
+   "population": 182000,
+   "profile": {
+    "unemployment": 0.07,
+    "incomeIndex": 0.88,
+    "urbanShare": 0.4,
+    "politicalLeaning": 0.3
+   }
+  },
+  {
+   "code": "21",
+   "name": "Côte-d'Or",
+   "region": "27",
+   "population": 535000
+  },
+  {
+   "code": "22",
+   "name": "Côtes-d'Armor",
+   "region": "53",
+   "population": 604000
+  },
+  {
+   "code": "23",
+   "name": "Creuse",
+   "region": "75",
+   "population": 115000,
+   "profile": {
+    "incomeIndex": 0.85,
+    "urbanShare": 0.15,
+    "seniorShare": 0.31,
+    "politicalLeaning": -0.1
+   }
+  },
+  {
+   "code": "24",
+   "name": "Dordogne",
+   "region": "75",
+   "population": 413000,
+   "profile": {
+    "seniorShare": 0.29,
+    "politicalLeaning": -0.05
+   }
+  },
+  {
+   "code": "25",
+   "name": "Doubs",
+   "region": "27",
+   "population": 545000
+  },
+  {
+   "code": "26",
+   "name": "Drôme",
+   "region": "84",
+   "population": 520000
+  },
+  {
+   "code": "27",
+   "name": "Eure",
+   "region": "28",
+   "population": 600000
+  },
+  {
+   "code": "28",
+   "name": "Eure-et-Loir",
+   "region": "24",
+   "population": 431000
+  },
+  {
+   "code": "29",
+   "name": "Finistère",
+   "region": "53",
+   "population": 918000,
+   "profile": {
+    "politicalLeaning": -0.25
+   }
+  },
+  {
+   "code": "30",
+   "name": "Gard",
+   "region": "76",
+   "population": 750000,
+   "profile": {
+    "unemployment": 0.105,
+    "incomeIndex": 0.9,
+    "politicalLeaning": 0.2
+   }
+  },
+  {
+   "code": "31",
+   "name": "Haute-Garonne",
+   "region": "76",
+   "population": 1435000,
+   "profile": {
+    "incomeIndex": 1.05,
+    "urbanShare": 0.75,
+    "seniorShare": 0.17,
+    "politicalLeaning": -0.35
+   }
+  },
+  {
+   "code": "32",
+   "name": "Gers",
+   "region": "76",
+   "population": 192000,
+   "profile": {
+    "urbanShare": 0.2,
+    "seniorShare": 0.28
+   }
+  },
+  {
+   "code": "33",
+   "name": "Gironde",
+   "region": "75",
+   "population": 1654000,
+   "profile": {
+    "incomeIndex": 1.02,
+    "urbanShare": 0.7,
+    "politicalLeaning": -0.2
+   }
+  },
+  {
+   "code": "34",
+   "name": "Hérault",
+   "region": "76",
+   "population": 1201000,
+   "profile": {
+    "unemployment": 0.096,
+    "incomeIndex": 0.92,
+    "urbanShare": 0.7,
+    "politicalLeaning": -0.1
+   }
+  },
+  {
+   "code": "35",
+   "name": "Ille-et-Vilaine",
+   "region": "53",
+   "population": 1100000,
+   "profile": {
+    "unemployment": 0.055,
+    "incomeIndex": 1.02,
+    "urbanShare": 0.6,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.25
+   }
+  },
+  {
+   "code": "36",
+   "name": "Indre",
+   "region": "24",
+   "population": 217000,
+   "profile": {
+    "urbanShare": 0.3,
+    "seniorShare": 0.28
+   }
+  },
+  {
+   "code": "37",
+   "name": "Indre-et-Loire",
+   "region": "24",
+   "population": 612000
+  },
+  {
+   "code": "38",
+   "name": "Isère",
+   "region": "84",
+   "population": 1277000,
+   "profile": {
+    "incomeIndex": 1.05,
+    "urbanShare": 0.6,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.15
+   }
+  },
+  {
+   "code": "39",
+   "name": "Jura",
+   "region": "27",
+   "population": 259000,
+   "profile": {
+    "unemployment": 0.052
+   }
+  },
+  {
+   "code": "40",
+   "name": "Landes",
+   "region": "75",
+   "population": 419000
+  },
+  {
+   "code": "41",
+   "name": "Loir-et-Cher",
+   "region": "24",
+   "population": 329000
+  },
+  {
+   "code": "42",
+   "name": "Loire",
+   "region": "84",
+   "population": 766000
+  },
+  {
+   "code": "43",
+   "name": "Haute-Loire",
+   "region": "84",
+   "population": 228000,
+   "profile": {
+    "urbanShare": 0.25
+   }
+  },
+  {
+   "code": "44",
+   "name": "Loire-Atlantique",
+   "region": "52",
+   "population": 1460000,
+   "profile": {
+    "unemployment": 0.06,
+    "incomeIndex": 1.03,
+    "urbanShare": 0.65,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.15
+   }
+  },
+  {
+   "code": "45",
+   "name": "Loiret",
+   "region": "24",
+   "population": 683000
+  },
+  {
+   "code": "46",
+   "name": "Lot",
+   "region": "76",
+   "population": 175000,
+   "profile": {
+    "urbanShare": 0.2,
+    "seniorShare": 0.3
+   }
+  },
+  {
+   "code": "47",
+   "name": "Lot-et-Garonne",
+   "region": "75",
+   "population": 332000
+  },
+  {
+   "code": "48",
+   "name": "Lozère",
+   "region": "76",
+   "population": 77000,
+   "profile": {
+    "unemployment": 0.045,
+    "incomeIndex": 0.92,
+    "urbanShare": 0.15
+   }
+  },
+  {
+   "code": "49",
+   "name": "Maine-et-Loire",
+   "region": "52",
+   "population": 822000
+  },
+  {
+   "code": "50",
+   "name": "Manche",
+   "region": "28",
+   "population": 495000
+  },
+  {
+   "code": "51",
+   "name": "Marne",
+   "region": "44",
+   "population": 566000
+  },
+  {
+   "code": "52",
+   "name": "Haute-Marne",
+   "region": "44",
+   "population": 172000,
+   "profile": {
+    "urbanShare": 0.3
+   }
+  },
+  {
+   "code": "53",
+   "name": "Mayenne",
+   "region": "52",
+   "population": 307000,
+   "profile": {
+    "unemployment": 0.05,
+    "politicalLeaning": 0.1
+   }
+  },
+  {
+   "code": "54",
+   "name": "Meurthe-et-Moselle",
+   "region": "44",
+   "population": 732000
+  },
+  {
+   "code": "55",
+   "name": "Meuse",
+   "region": "44",
+   "population": 183000,
+   "profile": {
+    "urbanShare": 0.3
+   }
+  },
+  {
+   "code": "56",
+   "name": "Morbihan",
+   "region": "53",
+   "population": 763000
+  },
+  {
+   "code": "57",
+   "name": "Moselle",
+   "region": "44",
+   "population": 1046000,
+   "profile": {
+    "urbanShare": 0.6,
+    "politicalLeaning": 0.3
+   }
+  },
+  {
+   "code": "58",
+   "name": "Nièvre",
+   "region": "27",
+   "population": 202000,
+   "profile": {
+    "urbanShare": 0.3,
+    "seniorShare": 0.29
+   }
+  },
+  {
+   "code": "59",
+   "name": "Nord",
+   "region": "32",
+   "population": 2611000,
+   "profile": {
+    "unemployment": 0.095,
+    "incomeIndex": 0.88,
+    "urbanShare": 0.85,
+    "seniorShare": 0.17,
+    "politicalLeaning": 0.0
+   }
+  },
+  {
+   "code": "60",
+   "name": "Oise",
+   "region": "32",
+   "population": 830000,
+   "profile": {
+    "unemployment": 0.079,
+    "politicalLeaning": 0.25
+   }
+  },
+  {
+   "code": "61",
+   "name": "Orne",
+   "region": "28",
+   "population": 278000
+  },
+  {
+   "code": "62",
+   "name": "Pas-de-Calais",
+   "region": "32",
+   "population": 1462000,
+   "profile": {
+    "unemployment": 0.09,
+    "incomeIndex": 0.85,
+    "urbanShare": 0.6,
+    "politicalLeaning": 0.3
+   }
+  },
+  {
+   "code": "63",
+   "name": "Puy-de-Dôme",
+   "region": "84",
+   "population": 668000
+  },
+  {
+   "code": "64",
+   "name": "Pyrénées-Atlantiques",
+   "region": "75",
+   "population": 688000
+  },
+  {
+   "code": "65",
+   "name": "Hautes-Pyrénées",
+   "region": "76",
+   "population": 229000,
+   "profile": {
+    "politicalLeaning": -0.25
+   }
+  },
+  {
+   "code": "66",
+   "name": "Pyrénées-Orientales",
+   "region": "76",
+   "population": 482000,
+   "profile": {
+    "unemployment": 0.115,
+    "incomeIndex": 0.85,
+    "seniorShare": 0.27,
+    "politicalLeaning": 0.35
+   }
+  },
+  {
+   "code": "67",
+   "name": "Bas-Rhin",
+   "region": "44",
+   "population": 1150000,
+   "profile": {
+    "incomeIndex": 1.05,
+    "urbanShare": 0.7,
+    "seniorShare": 0.18,
+    "politicalLeaning": 0.1
+   }
+  },
+  {
+   "code": "68",
+   "name": "Haut-Rhin",
+   "region": "44",
+   "population": 767000,
+   "profile": {
+    "incomeIndex": 1.03,
+    "urbanShare": 0.6,
+    "politicalLeaning": 0.2
+   }
+  },
+  {
+   "code": "69",
+   "name": "Rhône",
+   "region": "84",
+   "population": 1891000,
+   "profile": {
+    "incomeIndex": 1.1,
+    "urbanShare": 0.85,
+    "seniorShare": 0.17,
+    "politicalLeaning": -0.05
+   }
+  },
+  {
+   "code": "70",
+   "name": "Haute-Saône",
+   "region": "27",
+   "population": 233000
+  },
+  {
+   "code": "71",
+   "name": "Saône-et-Loire",
+   "region": "27",
+   "population": 551000
+  },
+  {
+   "code": "72",
+   "name": "Sarthe",
+   "region": "52",
+   "population": 566000
+  },
+  {
+   "code": "73",
+   "name": "Savoie",
+   "region": "84",
+   "population": 439000
+  },
+  {
+   "code": "74",
+   "name": "Haute-Savoie",
+   "region": "84",
+   "population": 834000,
+   "profile": {
+    "unemployment": 0.055,
+    "incomeIndex": 1.25,
+    "seniorShare": 0.18,
+    "politicalLeaning": 0.2
+   }
+  },
+  {
+   "code": "75",
+   "name": "Paris",
+   "region": "11",
+   "population": 2133000,
+   "profile": {
+    "unemployment": 0.062,
+    "incomeIndex": 1.35,
+    "urbanShare": 1.0,
+    "seniorShare": 0.17,
+    "politicalLeaning": -0.3
+   }
+  },
+  {
+   "code": "76",
+   "name": "Seine-Maritime",
+   "region": "28",
+   "population": 1255000,
+   "profile": {
+    "unemployment": 0.08,
+    "urbanShare": 0.6
+   }
+  },
+  {
+   "code": "77",
+   "name": "Seine-et-Marne",
+   "region": "11",
+   "population": 1427000,
+   "profile": {
+    "unemployment": 0.065,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.65,
+    "seniorShare": 0.15
+   }
+  },
+  {
+   "code": "78",
+   "name": "Yvelines",
+   "region": "11",
+   "population": 1450000,
+   "profile": {
+    "unemployment": 0.06,
+    "incomeIndex": 1.3,
+    "urbanShare": 0.8,
+    "seniorShare": 0.16,
+    "politicalLeaning": 0.25
+   }
+  },
+  {
+   "code": "79",
+   "name": "Deux-Sèvres",
+   "region": "75",
+   "population": 375000
+  },
+  {
+   "code": "80",
+   "name": "Somme",
+   "region": "32",
+   "population": 570000,
+   "profile": {
+    "unemployment": 0.088,
+    "politicalLeaning": 0.2
+   }
+  },
+  {
+   "code": "81",
+   "name": "Tarn",
+   "region": "76",
+   "population": 390000,
+   "profile": {
+    "politicalLeaning": -0.1
+   }
+  },
+  {
+   "code": "82",
+   "name": "Tarn-et-Garonne",
+   "region": "76",
+   "population": 262000,
+   "profile": {
+    "politicalLeaning": 0.1
+   }
+  },
+  {
+   "code": "83",
+   "name": "Var",
+   "region": "93",
+   "population": 1090000,
+   "profile": {
+    "urbanShare": 0.7,
+    "seniorShare": 0.28,
+    "politicalLeaning": 0.5
+   }
+  },
+  {
+   "code": "84",
+   "name": "Vaucluse",
+   "region": "93",
+   "population": 562000,
+   "profile": {
+    "politicalLeaning": 0.4
+   }
+  },
+  {
+   "code": "85",
+   "name": "Vendée",
+   "region": "52",
+   "population": 690000,
+   "profile": {
+    "unemployment": 0.054,
+    "politicalLeaning": 0.2
+   }
+  },
+  {
+   "code": "86",
+   "name": "Vienne",
+   "region": "75",
+   "population": 439000
+  },
+  {
+   "code": "87",
+   "name": "Haute-Vienne",
+   "region": "75",
+   "population": 372000,
+   "profile": {
+    "seniorShare": 0.25,
+    "politicalLeaning": -0.3
+   }
+  },
+  {
+   "code": "88",
+   "name": "Vosges",
+   "region": "44",
+   "population": 362000
+  },
+  {
+   "code": "89",
+   "name": "Yonne",
+   "region": "27",
+   "population": 335000
+  },
+  {
+   "code": "90",
+   "name": "Territoire de Belfort",
+   "region": "27",
+   "population": 141000,
+   "profile": {
+    "urbanShare": 0.6
+   }
+  },
+  {
+   "code": "91",
+   "name": "Essonne",
+   "region": "11",
+   "population": 1306000,
+   "profile": {
+    "unemployment": 0.066,
+    "incomeIndex": 1.1,
+    "urbanShare": 0.8,
+    "seniorShare": 0.15
+   }
+  },
+  {
+   "code": "92",
+   "name": "Hauts-de-Seine",
+   "region": "11",
+   "population": 1625000,
+   "profile": {
+    "unemployment": 0.059,
+    "incomeIndex": 1.35,
+    "urbanShare": 1.0,
+    "seniorShare": 0.16,
+    "politicalLeaning": 0.2
+   }
+  },
+  {
+   "code": "93",
+   "name": "Seine-Saint-Denis",
+   "region": "11",
+   "population": 1655000,
+   "profile": {
+    "unemployment": 0.11,
+    "incomeIndex": 0.75,
+    "urbanShare": 1.0,
+    "seniorShare": 0.13,
+    "politicalLeaning": -0.6
+   }
+  },
+  {
+   "code": "94",
+   "name": "Val-de-Marne",
+   "region": "11",
+   "population": 1407000,
+   "profile": {
+    "unemployment": 0.075,
+    "incomeIndex": 1.05,
+    "urbanShare": 1.0,
+    "seniorShare": 0.15,
+    "politicalLeaning": -0.35
+   }
+  },
+  {
+   "code": "95",
+   "name": "Val-d'Oise",
+   "region": "11",
+   "population": 1250000,
+   "profile": {
+    "unemployment": 0.082,
+    "incomeIndex": 1.0,
+    "urbanShare": 0.85,
+    "seniorShare": 0.14
+   }
+  }
+ ],
+ "cities": [
+  {
+   "id": "paris",
+   "name": "Paris",
+   "department": "75",
+   "lon": 2.352,
+   "lat": 48.857,
+   "population": 2133000,
+   "urbanAreaPopulation": 13100000,
+   "rank": 1
+  },
+  {
+   "id": "marseille",
+   "name": "Marseille",
+   "department": "13",
+   "lon": 5.37,
+   "lat": 43.296,
+   "population": 873000,
+   "urbanAreaPopulation": 1900000,
+   "rank": 1
+  },
+  {
+   "id": "lyon",
+   "name": "Lyon",
+   "department": "69",
+   "lon": 4.836,
+   "lat": 45.764,
+   "population": 522000,
+   "urbanAreaPopulation": 2300000,
+   "rank": 1
+  },
+  {
+   "id": "toulouse",
+   "name": "Toulouse",
+   "department": "31",
+   "lon": 1.444,
+   "lat": 43.605,
+   "population": 504000,
+   "urbanAreaPopulation": 1500000,
+   "rank": 1
+  },
+  {
+   "id": "nice",
+   "name": "Nice",
+   "department": "06",
+   "lon": 7.262,
+   "lat": 43.71,
+   "population": 348000,
+   "urbanAreaPopulation": 620000,
+   "rank": 1
+  },
+  {
+   "id": "nantes",
+   "name": "Nantes",
+   "department": "44",
+   "lon": -1.554,
+   "lat": 47.218,
+   "population": 323000,
+   "urbanAreaPopulation": 1000000,
+   "rank": 1
+  },
+  {
+   "id": "montpellier",
+   "name": "Montpellier",
+   "department": "34",
+   "lon": 3.877,
+   "lat": 43.611,
+   "population": 302000,
+   "urbanAreaPopulation": 820000,
+   "rank": 1
+  },
+  {
+   "id": "strasbourg",
+   "name": "Strasbourg",
+   "department": "67",
+   "lon": 7.752,
+   "lat": 48.573,
+   "population": 291000,
+   "urbanAreaPopulation": 860000,
+   "rank": 1
+  },
+  {
+   "id": "bordeaux",
+   "name": "Bordeaux",
+   "department": "33",
+   "lon": -0.579,
+   "lat": 44.838,
+   "population": 261000,
+   "urbanAreaPopulation": 1400000,
+   "rank": 1
+  },
+  {
+   "id": "lille",
+   "name": "Lille",
+   "department": "59",
+   "lon": 3.057,
+   "lat": 50.629,
+   "population": 236000,
+   "urbanAreaPopulation": 1500000,
+   "rank": 1
+  },
+  {
+   "id": "rennes",
+   "name": "Rennes",
+   "department": "35",
+   "lon": -1.678,
+   "lat": 48.117,
+   "population": 225000,
+   "urbanAreaPopulation": 770000,
+   "rank": 1
+  },
+  {
+   "id": "toulon",
+   "name": "Toulon",
+   "department": "83",
+   "lon": 5.928,
+   "lat": 43.124,
+   "population": 180000,
+   "urbanAreaPopulation": 580000,
+   "rank": 2
+  },
+  {
+   "id": "reims",
+   "name": "Reims",
+   "department": "51",
+   "lon": 4.032,
+   "lat": 49.258,
+   "population": 180000,
+   "urbanAreaPopulation": 330000,
+   "rank": 2
+  },
+  {
+   "id": "saint_etienne",
+   "name": "Saint-Étienne",
+   "department": "42",
+   "lon": 4.39,
+   "lat": 45.434,
+   "population": 173000,
+   "urbanAreaPopulation": 520000,
+   "rank": 2
+  },
+  {
+   "id": "le_havre",
+   "name": "Le Havre",
+   "department": "76",
+   "lon": 0.108,
+   "lat": 49.494,
+   "population": 166000,
+   "urbanAreaPopulation": 320000,
+   "rank": 2
+  },
+  {
+   "id": "grenoble",
+   "name": "Grenoble",
+   "department": "38",
+   "lon": 5.724,
+   "lat": 45.188,
+   "population": 157000,
+   "urbanAreaPopulation": 720000,
+   "rank": 2
+  },
+  {
+   "id": "dijon",
+   "name": "Dijon",
+   "department": "21",
+   "lon": 5.041,
+   "lat": 47.322,
+   "population": 159000,
+   "urbanAreaPopulation": 390000,
+   "rank": 2
+  },
+  {
+   "id": "angers",
+   "name": "Angers",
+   "department": "49",
+   "lon": -0.563,
+   "lat": 47.478,
+   "population": 157000,
+   "urbanAreaPopulation": 440000,
+   "rank": 2
+  },
+  {
+   "id": "nimes",
+   "name": "Nîmes",
+   "department": "30",
+   "lon": 4.36,
+   "lat": 43.837,
+   "population": 148000,
+   "urbanAreaPopulation": 380000,
+   "rank": 2
+  },
+  {
+   "id": "clermont",
+   "name": "Clermont-Ferrand",
+   "department": "63",
+   "lon": 3.087,
+   "lat": 45.777,
+   "population": 147000,
+   "urbanAreaPopulation": 500000,
+   "rank": 2
+  },
+  {
+   "id": "aix",
+   "name": "Aix-en-Provence",
+   "department": "13",
+   "lon": 5.447,
+   "lat": 43.529,
+   "population": 145000,
+   "urbanAreaPopulation": 400000,
+   "rank": 3
+  },
+  {
+   "id": "le_mans",
+   "name": "Le Mans",
+   "department": "72",
+   "lon": 0.199,
+   "lat": 48.006,
+   "population": 145000,
+   "urbanAreaPopulation": 350000,
+   "rank": 2
+  },
+  {
+   "id": "brest",
+   "name": "Brest",
+   "department": "29",
+   "lon": -4.486,
+   "lat": 48.39,
+   "population": 139000,
+   "urbanAreaPopulation": 320000,
+   "rank": 2
+  },
+  {
+   "id": "tours",
+   "name": "Tours",
+   "department": "37",
+   "lon": 0.684,
+   "lat": 47.394,
+   "population": 136000,
+   "urbanAreaPopulation": 520000,
+   "rank": 2
+  },
+  {
+   "id": "amiens",
+   "name": "Amiens",
+   "department": "80",
+   "lon": 2.295,
+   "lat": 49.894,
+   "population": 133000,
+   "urbanAreaPopulation": 300000,
+   "rank": 2
+  },
+  {
+   "id": "limoges",
+   "name": "Limoges",
+   "department": "87",
+   "lon": 1.261,
+   "lat": 45.833,
+   "population": 130000,
+   "urbanAreaPopulation": 300000,
+   "rank": 2
+  },
+  {
+   "id": "annecy",
+   "name": "Annecy",
+   "department": "74",
+   "lon": 6.129,
+   "lat": 45.899,
+   "population": 131000,
+   "urbanAreaPopulation": 250000,
+   "rank": 3
+  },
+  {
+   "id": "perpignan",
+   "name": "Perpignan",
+   "department": "66",
+   "lon": 2.895,
+   "lat": 42.699,
+   "population": 120000,
+   "urbanAreaPopulation": 330000,
+   "rank": 2
+  },
+  {
+   "id": "besancon",
+   "name": "Besançon",
+   "department": "25",
+   "lon": 6.024,
+   "lat": 47.238,
+   "population": 119000,
+   "urbanAreaPopulation": 280000,
+   "rank": 2
+  },
+  {
+   "id": "metz",
+   "name": "Metz",
+   "department": "57",
+   "lon": 6.176,
+   "lat": 49.119,
+   "population": 118000,
+   "urbanAreaPopulation": 400000,
+   "rank": 2
+  },
+  {
+   "id": "orleans",
+   "name": "Orléans",
+   "department": "45",
+   "lon": 1.909,
+   "lat": 47.902,
+   "population": 117000,
+   "urbanAreaPopulation": 450000,
+   "rank": 2
+  },
+  {
+   "id": "rouen",
+   "name": "Rouen",
+   "department": "76",
+   "lon": 1.099,
+   "lat": 49.443,
+   "population": 114000,
+   "urbanAreaPopulation": 700000,
+   "rank": 2
+  },
+  {
+   "id": "caen",
+   "name": "Caen",
+   "department": "14",
+   "lon": -0.371,
+   "lat": 49.182,
+   "population": 108000,
+   "urbanAreaPopulation": 470000,
+   "rank": 2
+  },
+  {
+   "id": "mulhouse",
+   "name": "Mulhouse",
+   "department": "68",
+   "lon": 7.336,
+   "lat": 47.75,
+   "population": 107000,
+   "urbanAreaPopulation": 280000,
+   "rank": 3
+  },
+  {
+   "id": "nancy",
+   "name": "Nancy",
+   "department": "54",
+   "lon": 6.184,
+   "lat": 48.692,
+   "population": 104000,
+   "urbanAreaPopulation": 430000,
+   "rank": 2
+  },
+  {
+   "id": "avignon",
+   "name": "Avignon",
+   "department": "84",
+   "lon": 4.806,
+   "lat": 43.949,
+   "population": 91000,
+   "urbanAreaPopulation": 530000,
+   "rank": 3
+  },
+  {
+   "id": "poitiers",
+   "name": "Poitiers",
+   "department": "86",
+   "lon": 0.34,
+   "lat": 46.58,
+   "population": 89000,
+   "urbanAreaPopulation": 270000,
+   "rank": 3
+  },
+  {
+   "id": "dunkerque",
+   "name": "Dunkerque",
+   "department": "59",
+   "lon": 2.377,
+   "lat": 51.034,
+   "population": 87000,
+   "urbanAreaPopulation": 250000,
+   "rank": 3
+  },
+  {
+   "id": "cherbourg",
+   "name": "Cherbourg-en-Cotentin",
+   "department": "50",
+   "lon": -1.616,
+   "lat": 49.639,
+   "population": 79000,
+   "urbanAreaPopulation": 120000,
+   "rank": 3
+  },
+  {
+   "id": "la_rochelle",
+   "name": "La Rochelle",
+   "department": "17",
+   "lon": -1.151,
+   "lat": 46.16,
+   "population": 78000,
+   "urbanAreaPopulation": 230000,
+   "rank": 3
+  },
+  {
+   "id": "pau",
+   "name": "Pau",
+   "department": "64",
+   "lon": -0.37,
+   "lat": 43.295,
+   "population": 76000,
+   "urbanAreaPopulation": 240000,
+   "rank": 3
+  },
+  {
+   "id": "ajaccio",
+   "name": "Ajaccio",
+   "department": "2A",
+   "lon": 8.738,
+   "lat": 41.919,
+   "population": 72000,
+   "urbanAreaPopulation": 110000,
+   "rank": 3
+  },
+  {
+   "id": "saint_nazaire",
+   "name": "Saint-Nazaire",
+   "department": "44",
+   "lon": -2.214,
+   "lat": 47.273,
+   "population": 72000,
+   "urbanAreaPopulation": 220000,
+   "rank": 3
+  },
+  {
+   "id": "calais",
+   "name": "Calais",
+   "department": "62",
+   "lon": 1.858,
+   "lat": 50.951,
+   "population": 67000,
+   "urbanAreaPopulation": 140000,
+   "rank": 3
+  },
+  {
+   "id": "valence",
+   "name": "Valence",
+   "department": "26",
+   "lon": 4.892,
+   "lat": 44.933,
+   "population": 65000,
+   "urbanAreaPopulation": 180000,
+   "rank": 3
+  },
+  {
+   "id": "bourges",
+   "name": "Bourges",
+   "department": "18",
+   "lon": 2.399,
+   "lat": 47.081,
+   "population": 64000,
+   "urbanAreaPopulation": 150000,
+   "rank": 3
+  },
+  {
+   "id": "troyes",
+   "name": "Troyes",
+   "department": "10",
+   "lon": 4.074,
+   "lat": 48.297,
+   "population": 62000,
+   "urbanAreaPopulation": 200000,
+   "rank": 3
+  },
+  {
+   "id": "chambery",
+   "name": "Chambéry",
+   "department": "73",
+   "lon": 5.917,
+   "lat": 45.564,
+   "population": 60000,
+   "urbanAreaPopulation": 250000,
+   "rank": 3
+  },
+  {
+   "id": "lorient",
+   "name": "Lorient",
+   "department": "56",
+   "lon": -3.37,
+   "lat": 47.748,
+   "population": 57000,
+   "urbanAreaPopulation": 200000,
+   "rank": 3
+  },
+  {
+   "id": "narbonne",
+   "name": "Narbonne",
+   "department": "11",
+   "lon": 3.004,
+   "lat": 43.184,
+   "population": 56000,
+   "urbanAreaPopulation": 130000,
+   "rank": 3
+  },
+  {
+   "id": "bayonne",
+   "name": "Bayonne",
+   "department": "64",
+   "lon": -1.475,
+   "lat": 43.493,
+   "population": 52000,
+   "urbanAreaPopulation": 320000,
+   "rank": 3
+  },
+  {
+   "id": "bastia",
+   "name": "Bastia",
+   "department": "2B",
+   "lon": 9.45,
+   "lat": 42.697,
+   "population": 48000,
+   "urbanAreaPopulation": 100000,
+   "rank": 3
+  },
+  {
+   "id": "brive",
+   "name": "Brive-la-Gaillarde",
+   "department": "19",
+   "lon": 1.533,
+   "lat": 45.159,
+   "population": 46000,
+   "urbanAreaPopulation": 110000,
+   "rank": 3
+  }
+ ]
+}

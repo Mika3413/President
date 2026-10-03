@@ -1,0 +1,79 @@
+{
+ "events": [
+  {
+   "id": "minister_scandal",
+   "category": "GOVERNMENT",
+   "scope": "MINISTER",
+   "baseDailyProbability": 0.00012,
+   "cooldownDays": 45,
+   "scopeCooldownDays": 365,
+   "urgency": "URGENT",
+   "headline": "Révélations dans la presse : {minister} mis en cause",
+   "notificationText": "Le Premier ministre souhaite connaître votre position.",
+   "modifiers": [
+    {
+     "variable": "scope.integrity",
+     "from": 0.15,
+     "to": 0.8,
+     "factorAtFrom": 5.0,
+     "factorAtTo": 0.15
+    }
+   ],
+   "immediateEffects": [
+    {
+     "target": "subject.popularity",
+     "amount": -0.15
+    },
+    {
+     "target": "opinion.national",
+     "amount": -0.008
+    }
+   ],
+   "message": {
+    "template": "minister_scandal",
+    "sender": "PRIME_MINISTER",
+    "responseDays": 3,
+    "defaultOption": "support",
+    "options": [
+     {
+      "id": "support",
+      "label": "Maintenir le ministre",
+      "hint": "Fidélité accrue, mais l'affaire pèse sur l'opinion",
+      "effects": [
+       {
+        "target": "subject.loyalty",
+        "amount": 0.15
+       },
+       {
+        "target": "opinion.national",
+        "amount": -0.012,
+        "days": 20
+       },
+       {
+        "target": "government.parliamentSupport",
+        "amount": -0.01
+       }
+      ],
+      "outcome": "NEUTRAL"
+     },
+     {
+      "id": "dismiss",
+      "label": "Demander sa démission",
+      "hint": "Le ministère passera en intérim",
+      "effects": [
+       {
+        "target": "subject.dismiss",
+        "amount": 1.0
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.006
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,10 @@
+{
+  "types": [
+    { "id": "NUCLEAR_PLANT", "label": "Centrale nucléaire", "category": "ENERGY", "producesElectricity": true, "degradationPerYear": 0.03, "renovationCostPerMW": 0.4, "renovationBaseCostMillions": 300, "renovationDays": 540, "canClose": true },
+    { "id": "HYDRO_DAM", "label": "Barrage hydroélectrique", "category": "ENERGY", "producesElectricity": true, "degradationPerYear": 0.015, "renovationCostPerMW": 0.3, "renovationBaseCostMillions": 60, "renovationDays": 365, "canClose": false },
+    { "id": "GAS_PLANT", "label": "Centrale à gaz", "category": "ENERGY", "producesElectricity": true, "degradationPerYear": 0.03, "renovationCostPerMW": 0.15, "renovationBaseCostMillions": 40, "renovationDays": 240, "canClose": true },
+    { "id": "REFINERY", "label": "Raffinerie", "category": "INDUSTRY", "degradationPerYear": 0.035, "renovationBaseCostMillions": 250, "renovationDays": 300, "canClose": true },
+    { "id": "PORT", "label": "Grand port maritime", "category": "TRANSPORT", "degradationPerYear": 0.02, "renovationBaseCostMillions": 400, "renovationDays": 720 },
+    { "id": "AIRPORT", "label": "Aéroport international", "category": "TRANSPORT", "degradationPerYear": 0.02, "renovationBaseCostMillions": 350, "renovationDays": 600 }
+  ]
+}

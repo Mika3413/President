@@ -1,0 +1,77 @@
+{
+ "id": "DEU",
+ "name": "Allemagne",
+ "adjective": "allemand",
+ "language": "de",
+ "namePool": "de",
+ "detail": "LIGHT",
+ "population": 83500000,
+ "economy": "economy/DEU_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Chancelier fédéral",
+  "honorificMale": "Monsieur le Chancelier",
+  "honorificFemale": "Madame la Chancelière"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.2,
+    0.45
+   ],
+   "pragmatism": [
+    0.55,
+    0.85
+   ],
+   "nationalism": [
+    0.2,
+    0.45
+   ],
+   "caution": [
+    0.55,
+    0.85
+   ],
+   "toughness": [
+    0.5,
+    0.8
+   ],
+   "militarism": [
+    0.25,
+    0.55
+   ],
+   "openness": [
+    0.4,
+    0.7
+   ]
+  },
+  "ageRange": [
+   44,
+   66
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ]
+ },
+ "strategic": {
+  "electricityBalanceTWh": -28,
+  "tradeWithPartnersBillions": {
+   "FRA": 170,
+   "ITA": 150,
+   "BEL": 110,
+   "ESP": 75,
+   "GBR": 110
+  },
+  "alliances": [
+   "EU",
+   "NATO"
+  ],
+  "priorities": [
+   "energy",
+   "industry",
+   "trade"
+  ],
+  "intelligenceQuality": 0.8,
+  "militaryBudgetBillions": 75
+ }
+}

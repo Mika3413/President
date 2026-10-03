@@ -1,0 +1,60 @@
+package fr.president.engine.session
+
+import fr.president.engine.data.GameDatabase
+import fr.president.engine.government.PolicyService
+import fr.president.engine.inbox.InboxSystem
+import fr.president.engine.readout.CharacterReadout
+import fr.president.engine.readout.LocalReadouts
+import fr.president.engine.readout.NationalReadouts
+import fr.president.engine.save.SaveFile
+import fr.president.engine.setup.NewGameFactory
+import fr.president.engine.setup.NewGameOptions
+import fr.president.engine.simulation.SimulationContext
+import fr.president.engine.simulation.Simulator
+import fr.president.engine.world.WorldState
+
+/**
+ * Façade d'une partie en cours, utilisée par toutes les interfaces (libGDX, Android, tests).
+ * Elle ne contient pas de règles : elle délègue aux commandes et aux systèmes.
+ */
+class GameSession(
+    val db: GameDatabase,
+    val state: WorldState,
+    private val realClock: () -> Long = System::currentTimeMillis,
+) {
+    val context = SimulationContext(state, db)
+    private val simulator = Simulator(context)
+
+    val government = GovernmentCommands(context)
+    val infrastructure = InfrastructureCommands(context)
+    val diplomacy = DiplomacyCommands(context)
+    val policy = PolicyService(context)
+    val national = NationalReadouts(context)
+    val local = LocalReadouts(context)
+    val characters = CharacterReadout(context)
+
+    val isGameOver: Boolean get() = state.player.gameOver != null
+
+    /** Rattrape le temps réel écoulé : à appeler au retour du joueur puis régulièrement. */
+    fun advanceToNow(): Simulator.Report = simulator.advanceTo(state.meta.clock.worldTimeAt(realClock()))
+
+    fun answer(messageId: String, optionId: String) {
+        val message = state.inbox.messages.first { it.id == messageId }
+        if (!message.awaitingAnswer) return
+        InboxSystem.answer(context, message, optionId, byDefault = false)
+    }
+
+    fun markRead(messageId: String) {
+        state.inbox.messages.firstOrNull { it.id == messageId }?.read = true
+    }
+
+    fun toSaveFile(gameVersion: String): SaveFile = SaveFile(SaveFile.CURRENT_FORMAT, realClock(), gameVersion, state)
+
+    companion object {
+        fun newGame(db: GameDatabase, options: NewGameOptions, realClock: () -> Long = System::currentTimeMillis) =
+            GameSession(db, NewGameFactory(db).create(options), realClock)
+
+        fun fromSave(db: GameDatabase, save: SaveFile, realClock: () -> Long = System::currentTimeMillis) =
+            GameSession(db, save.state, realClock)
+    }
+}

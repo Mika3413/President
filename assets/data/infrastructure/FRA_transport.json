@@ -1,0 +1,507 @@
+{
+ "items": [
+  {
+   "id": "port_le_havre",
+   "type": "PORT",
+   "name": "Port du Havre",
+   "lon": 0.11,
+   "lat": 49.48,
+   "department": "76",
+   "employees": 3000,
+   "maintenanceCostMillions": 120,
+   "initialCondition": 0.68,
+   "commissionedYear": 1960,
+   "description": "Porte d'entrée du commerce extérieur."
+  },
+  {
+   "id": "port_marseille",
+   "type": "PORT",
+   "name": "Port de Marseille-Fos",
+   "lon": 4.9,
+   "lat": 43.41,
+   "department": "13",
+   "employees": 3000,
+   "maintenanceCostMillions": 120,
+   "initialCondition": 0.68,
+   "commissionedYear": 1960,
+   "description": "Porte d'entrée du commerce extérieur."
+  },
+  {
+   "id": "port_dunkerque",
+   "type": "PORT",
+   "name": "Port de Dunkerque",
+   "lon": 2.32,
+   "lat": 51.03,
+   "department": "59",
+   "employees": 3000,
+   "maintenanceCostMillions": 120,
+   "initialCondition": 0.68,
+   "commissionedYear": 1960,
+   "description": "Porte d'entrée du commerce extérieur."
+  },
+  {
+   "id": "port_nantes",
+   "type": "PORT",
+   "name": "Port de Nantes-Saint-Nazaire",
+   "lon": -2.2,
+   "lat": 47.27,
+   "department": "44",
+   "employees": 3000,
+   "maintenanceCostMillions": 120,
+   "initialCondition": 0.68,
+   "commissionedYear": 1960,
+   "description": "Porte d'entrée du commerce extérieur."
+  },
+  {
+   "id": "port_rouen",
+   "type": "PORT",
+   "name": "Port de Rouen",
+   "lon": 1.07,
+   "lat": 49.44,
+   "department": "76",
+   "employees": 3000,
+   "maintenanceCostMillions": 120,
+   "initialCondition": 0.68,
+   "commissionedYear": 1960,
+   "description": "Porte d'entrée du commerce extérieur."
+  },
+  {
+   "id": "port_bordeaux",
+   "type": "PORT",
+   "name": "Port de Bordeaux",
+   "lon": -0.54,
+   "lat": 44.87,
+   "department": "33",
+   "employees": 3000,
+   "maintenanceCostMillions": 120,
+   "initialCondition": 0.68,
+   "commissionedYear": 1960,
+   "description": "Porte d'entrée du commerce extérieur."
+  },
+  {
+   "id": "port_la_rochelle",
+   "type": "PORT",
+   "name": "Port de La Rochelle",
+   "lon": -1.22,
+   "lat": 46.15,
+   "department": "17",
+   "employees": 3000,
+   "maintenanceCostMillions": 120,
+   "initialCondition": 0.68,
+   "commissionedYear": 1960,
+   "description": "Porte d'entrée du commerce extérieur."
+  },
+  {
+   "id": "cdg",
+   "type": "AIRPORT",
+   "name": "Aéroport Paris-Charles-de-Gaulle",
+   "lon": 2.55,
+   "lat": 49.01,
+   "department": "95",
+   "employees": 90000,
+   "maintenanceCostMillions": 80,
+   "initialCondition": 0.72,
+   "commissionedYear": 1975,
+   "description": "Plateforme aéroportuaire internationale."
+  },
+  {
+   "id": "orly",
+   "type": "AIRPORT",
+   "name": "Aéroport de Paris-Orly",
+   "lon": 2.37,
+   "lat": 48.73,
+   "department": "94",
+   "employees": 28000,
+   "maintenanceCostMillions": 80,
+   "initialCondition": 0.72,
+   "commissionedYear": 1975,
+   "description": "Plateforme aéroportuaire internationale."
+  },
+  {
+   "id": "nice_airport",
+   "type": "AIRPORT",
+   "name": "Aéroport Nice-Côte d'Azur",
+   "lon": 7.21,
+   "lat": 43.66,
+   "department": "06",
+   "employees": 6000,
+   "maintenanceCostMillions": 80,
+   "initialCondition": 0.72,
+   "commissionedYear": 1975,
+   "description": "Plateforme aéroportuaire internationale."
+  },
+  {
+   "id": "lyon_airport",
+   "type": "AIRPORT",
+   "name": "Aéroport Lyon-Saint-Exupéry",
+   "lon": 5.08,
+   "lat": 45.72,
+   "department": "69",
+   "employees": 5000,
+   "maintenanceCostMillions": 80,
+   "initialCondition": 0.72,
+   "commissionedYear": 1975,
+   "description": "Plateforme aéroportuaire internationale."
+  },
+  {
+   "id": "marseille_airport",
+   "type": "AIRPORT",
+   "name": "Aéroport Marseille-Provence",
+   "lon": 5.22,
+   "lat": 43.44,
+   "department": "13",
+   "employees": 5000,
+   "maintenanceCostMillions": 80,
+   "initialCondition": 0.72,
+   "commissionedYear": 1975,
+   "description": "Plateforme aéroportuaire internationale."
+  },
+  {
+   "id": "toulouse_airport",
+   "type": "AIRPORT",
+   "name": "Aéroport Toulouse-Blagnac",
+   "lon": 1.37,
+   "lat": 43.63,
+   "department": "31",
+   "employees": 5000,
+   "maintenanceCostMillions": 80,
+   "initialCondition": 0.72,
+   "commissionedYear": 1975,
+   "description": "Plateforme aéroportuaire internationale."
+  },
+  {
+   "id": "basel_airport",
+   "type": "AIRPORT",
+   "name": "EuroAirport Bâle-Mulhouse",
+   "lon": 7.53,
+   "lat": 47.59,
+   "department": "68",
+   "employees": 6000,
+   "maintenanceCostMillions": 80,
+   "initialCondition": 0.72,
+   "commissionedYear": 1975,
+   "description": "Plateforme aéroportuaire internationale."
+  },
+  {
+   "id": "bordeaux_airport",
+   "type": "AIRPORT",
+   "name": "Aéroport de Bordeaux-Mérignac",
+   "lon": -0.72,
+   "lat": 44.83,
+   "department": "33",
+   "employees": 3000,
+   "maintenanceCostMillions": 80,
+   "initialCondition": 0.72,
+   "commissionedYear": 1975,
+   "description": "Plateforme aéroportuaire internationale."
+  },
+  {
+   "id": "nantes_airport",
+   "type": "AIRPORT",
+   "name": "Aéroport de Nantes-Atlantique",
+   "lon": -1.61,
+   "lat": 47.15,
+   "department": "44",
+   "employees": 2500,
+   "maintenanceCostMillions": 80,
+   "initialCondition": 0.72,
+   "commissionedYear": 1975,
+   "description": "Plateforme aéroportuaire internationale."
+  }
+ ],
+ "networks": [
+  {
+   "id": "lgv_sud_est",
+   "kind": "RAIL_HIGH_SPEED",
+   "name": "LGV Sud-Est",
+   "cityIds": [
+    "paris",
+    "dijon",
+    "lyon"
+   ]
+  },
+  {
+   "id": "lgv_mediterranee",
+   "kind": "RAIL_HIGH_SPEED",
+   "name": "LGV Méditerranée",
+   "cityIds": [
+    "lyon",
+    "valence",
+    "avignon",
+    "aix",
+    "marseille"
+   ]
+  },
+  {
+   "id": "lgv_mediterranee_ouest",
+   "kind": "RAIL_HIGH_SPEED",
+   "name": "Contournement Nîmes-Montpellier",
+   "cityIds": [
+    "avignon",
+    "nimes",
+    "montpellier"
+   ]
+  },
+  {
+   "id": "lgv_atlantique",
+   "kind": "RAIL_HIGH_SPEED",
+   "name": "LGV Atlantique / Sud Europe Atlantique",
+   "cityIds": [
+    "paris",
+    "tours",
+    "poitiers",
+    "bordeaux"
+   ]
+  },
+  {
+   "id": "lgv_bretagne",
+   "kind": "RAIL_HIGH_SPEED",
+   "name": "LGV Bretagne-Pays de la Loire",
+   "cityIds": [
+    "paris",
+    "le_mans",
+    "rennes"
+   ]
+  },
+  {
+   "id": "lgv_nord",
+   "kind": "RAIL_HIGH_SPEED",
+   "name": "LGV Nord",
+   "cityIds": [
+    "paris",
+    "amiens",
+    "lille",
+    "calais"
+   ]
+  },
+  {
+   "id": "lgv_est",
+   "kind": "RAIL_HIGH_SPEED",
+   "name": "LGV Est européenne",
+   "cityIds": [
+    "paris",
+    "reims",
+    "metz",
+    "strasbourg"
+   ]
+  },
+  {
+   "id": "lgv_rhin_rhone",
+   "kind": "RAIL_HIGH_SPEED",
+   "name": "LGV Rhin-Rhône",
+   "cityIds": [
+    "dijon",
+    "besancon",
+    "mulhouse"
+   ]
+  },
+  {
+   "id": "a1",
+   "kind": "MOTORWAY",
+   "name": "A1",
+   "cityIds": [
+    "paris",
+    "amiens",
+    "lille"
+   ]
+  },
+  {
+   "id": "a6_a7",
+   "kind": "MOTORWAY",
+   "name": "A6 / A7",
+   "cityIds": [
+    "paris",
+    "dijon",
+    "lyon",
+    "valence",
+    "avignon",
+    "aix",
+    "marseille"
+   ]
+  },
+  {
+   "id": "a8",
+   "kind": "MOTORWAY",
+   "name": "A8",
+   "cityIds": [
+    "aix",
+    "toulon",
+    "nice"
+   ]
+  },
+  {
+   "id": "a9",
+   "kind": "MOTORWAY",
+   "name": "A9",
+   "cityIds": [
+    "avignon",
+    "nimes",
+    "montpellier",
+    "narbonne",
+    "perpignan"
+   ]
+  },
+  {
+   "id": "a10",
+   "kind": "MOTORWAY",
+   "name": "A10",
+   "cityIds": [
+    "paris",
+    "orleans",
+    "tours",
+    "poitiers",
+    "bordeaux"
+   ]
+  },
+  {
+   "id": "a61_a62",
+   "kind": "MOTORWAY",
+   "name": "A62 / A61",
+   "cityIds": [
+    "bordeaux",
+    "toulouse",
+    "narbonne"
+   ]
+  },
+  {
+   "id": "a4",
+   "kind": "MOTORWAY",
+   "name": "A4",
+   "cityIds": [
+    "paris",
+    "reims",
+    "metz",
+    "strasbourg"
+   ]
+  },
+  {
+   "id": "a11",
+   "kind": "MOTORWAY",
+   "name": "A11",
+   "cityIds": [
+    "paris",
+    "le_mans",
+    "angers",
+    "nantes"
+   ]
+  },
+  {
+   "id": "a13_a84",
+   "kind": "MOTORWAY",
+   "name": "A13 / A84",
+   "cityIds": [
+    "paris",
+    "rouen",
+    "caen",
+    "rennes"
+   ]
+  },
+  {
+   "id": "a43",
+   "kind": "MOTORWAY",
+   "name": "A43",
+   "cityIds": [
+    "lyon",
+    "chambery"
+   ]
+  },
+  {
+   "id": "a75",
+   "kind": "MOTORWAY",
+   "name": "A75",
+   "cityIds": [
+    "clermont",
+    "montpellier"
+   ]
+  },
+  {
+   "id": "a71",
+   "kind": "MOTORWAY",
+   "name": "A71",
+   "cityIds": [
+    "orleans",
+    "bourges",
+    "clermont"
+   ]
+  },
+  {
+   "id": "a20",
+   "kind": "MOTORWAY",
+   "name": "A20",
+   "cityIds": [
+    "orleans",
+    "limoges",
+    "brive",
+    "toulouse"
+   ]
+  },
+  {
+   "id": "a31",
+   "kind": "MOTORWAY",
+   "name": "A31",
+   "cityIds": [
+    "dijon",
+    "nancy",
+    "metz"
+   ]
+  },
+  {
+   "id": "a63",
+   "kind": "MOTORWAY",
+   "name": "A63",
+   "cityIds": [
+    "bordeaux",
+    "bayonne"
+   ]
+  },
+  {
+   "id": "a64",
+   "kind": "MOTORWAY",
+   "name": "A64",
+   "cityIds": [
+    "bayonne",
+    "pau",
+    "toulouse"
+   ]
+  },
+  {
+   "id": "a16",
+   "kind": "MOTORWAY",
+   "name": "A16",
+   "cityIds": [
+    "paris",
+    "amiens",
+    "calais",
+    "dunkerque"
+   ]
+  },
+  {
+   "id": "a41",
+   "kind": "MOTORWAY",
+   "name": "A41",
+   "cityIds": [
+    "chambery",
+    "annecy"
+   ]
+  },
+  {
+   "id": "a48",
+   "kind": "MOTORWAY",
+   "name": "A48",
+   "cityIds": [
+    "lyon",
+    "grenoble"
+   ]
+  },
+  {
+   "id": "a72",
+   "kind": "MOTORWAY",
+   "name": "A72",
+   "cityIds": [
+    "lyon",
+    "saint_etienne",
+    "clermont"
+   ]
+  }
+ ]
+}

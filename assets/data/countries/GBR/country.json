@@ -1,0 +1,65 @@
+{
+ "id": "GBR",
+ "name": "Royaume-Uni",
+ "adjective": "britannique",
+ "language": "en",
+ "namePool": "en",
+ "detail": "LIGHT",
+ "population": 69300000,
+ "economy": "economy/GBR_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Premier ministre",
+  "honorificMale": "Monsieur le Premier ministre",
+  "honorificFemale": "Madame la Première ministre"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.3,
+    0.6
+   ],
+   "pragmatism": [
+    0.5,
+    0.85
+   ],
+   "nationalism": [
+    0.4,
+    0.7
+   ],
+   "militarism": [
+    0.45,
+    0.75
+   ],
+   "toughness": [
+    0.5,
+    0.85
+   ]
+  },
+  "ageRange": [
+   44,
+   66
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ]
+ },
+ "strategic": {
+  "electricityBalanceTWh": -25,
+  "tradeWithPartnersBillions": {
+   "FRA": 65,
+   "DEU": 110
+  },
+  "alliances": [
+   "NATO"
+  ],
+  "priorities": [
+   "finance",
+   "defense",
+   "migration"
+  ],
+  "intelligenceQuality": 0.85,
+  "militaryBudgetBillions": 72
+ }
+}

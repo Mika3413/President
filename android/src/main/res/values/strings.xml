@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Président</string>
+    <string name="channel_urgent">Alertes urgentes</string>
+    <string name="channel_important">Événements importants</string>
+</resources>

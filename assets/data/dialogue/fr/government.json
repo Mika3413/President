@@ -1,0 +1,343 @@
+{
+ "templates": [
+  {
+   "id": "minister_scandal",
+   "subject": [
+    {
+     "text": "Affaire {minister} : quelle position ?"
+    },
+    {
+     "text": "Révélations visant {minister}"
+    },
+    {
+     "text": "Note confidentielle : {minister}"
+    }
+   ],
+   "sections": [
+    {
+     "id": "intro",
+     "variants": [
+      {
+       "text": "{honorific},"
+      },
+      {
+       "text": "{honorific}, permettez-moi de vous écrire directement."
+      },
+      {
+       "text": "{honorific}, je me permets de vous saisir personnellement."
+      },
+      {
+       "text": "{honorific}, je vous adresse ce courrier au nom de nos [[residents]]."
+      },
+      {
+       "text": "{honorific}, je sais votre agenda chargé et serai bref.",
+       "when": [
+        "trait:pragmatic"
+       ]
+      },
+      {
+       "text": "{honorific}, je n'ai pas pour habitude de prendre la plume pour rien.",
+       "when": [
+        "trait:proud"
+       ]
+      },
+      {
+       "text": "{honorific}, cher ami,",
+       "when": [
+        "relation:good",
+        "trait:warm"
+       ]
+      },
+      {
+       "text": "{honorific}, je reviens vers vous comme convenu.",
+       "when": [
+        "followup:reask"
+       ]
+      },
+      {
+       "text": "{honorific}, je me vois contraint de vous solliciter à nouveau.",
+       "when": [
+        "followup:reask",
+        "sender:male"
+       ]
+      },
+      {
+       "text": "{honorific}, je me vois contrainte de vous solliciter à nouveau.",
+       "when": [
+        "followup:reask",
+        "sender:female"
+       ]
+      },
+      {
+       "text": "{honorific}, en cette période estivale, je me permets de vous écrire.",
+       "when": [
+        "season:summer"
+       ]
+      },
+      {
+       "text": "{honorific}, alors que l'hiver approche, je souhaite attirer votre attention.",
+       "when": [
+        "season:autumn"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "history",
+     "variants": [
+      {
+       "text": "Après vos précédents refus, je mesure combien ma démarche peut sembler insistante.",
+       "when": [
+        "history:refused"
+       ]
+      },
+      {
+       "text": "Malgré les refus répétés opposés à nos demandes, je veux croire que le dialogue reste possible.",
+       "when": [
+        "history:refused_many"
+       ]
+      },
+      {
+       "text": "Je n'ai pas oublié votre réponse négative de l'an passé, mais la situation a changé.",
+       "when": [
+        "history:refused"
+       ]
+      },
+      {
+       "text": "À la suite de notre coopération récente, je me tourne de nouveau vers vous avec confiance.",
+       "when": [
+        "history:cooperated"
+       ]
+      },
+      {
+       "text": "Votre soutien lors de nos derniers échanges a été apprécié de tous, et je vous en remercie encore.",
+       "when": [
+        "history:cooperated"
+       ]
+      },
+      {
+       "text": "Compte tenu de l'aide que l'État nous a déjà accordée à plusieurs reprises, je mesure la portée de ma demande.",
+       "when": [
+        "history:cooperated_many"
+       ]
+      },
+      {
+       "text": "Vous m'aviez demandé de patienter ; nous avons patienté.",
+       "when": [
+        "history:postponed"
+       ]
+      },
+      {
+       "text": "Le report de votre décision n'a malheureusement pas fait disparaître le problème.",
+       "when": [
+        "history:postponed"
+       ]
+      },
+      {
+       "text": "C'est la première fois que je m'adresse directement à vous depuis votre élection.",
+       "when": [
+        "history:none"
+       ]
+      },
+      {
+       "text": "Nous ne nous connaissons pas encore, mais je crois en la qualité de notre future relation.",
+       "when": [
+        "history:none",
+        "trait:warm"
+       ]
+      }
+     ],
+     "optional": true,
+     "chance": 0.85
+    },
+    {
+     "id": "context",
+     "variants": [
+      {
+       "text": "Un hebdomadaire publie des révélations embarrassantes concernant {minister}."
+      },
+      {
+       "text": "La presse met en cause {minister} pour des faits anciens de conflit d'intérêts."
+      },
+      {
+       "text": "Des documents compromettants visant {minister} circulent depuis ce matin."
+      }
+     ]
+    },
+    {
+     "id": "problem",
+     "variants": [
+      {
+       "text": "L'opposition réclame déjà sa démission."
+      },
+      {
+       "text": "L'affaire menace de parasiter l'action du gouvernement pendant des semaines."
+      },
+      {
+       "text": "Pour l'instant, l'intéressé nie fermement."
+      }
+     ]
+    },
+    {
+     "id": "request",
+     "variants": [
+      {
+       "text": "Souhaitez-vous le maintenir, ou dois-je lui demander de se retirer ?"
+      },
+      {
+       "text": "Je me range à votre arbitrage, mais je crois qu'un départ protégerait le gouvernement.",
+       "when": [
+        "trait:cautious"
+       ]
+      },
+      {
+       "text": "Je vous suggère de le maintenir : la présomption d'innocence doit prévaloir.",
+       "when": [
+        "trait:proud"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "closing",
+     "variants": [
+      {
+       "text": "Je vous prie d'agréer, {honorific}, l'expression de ma très haute considération."
+      },
+      {
+       "text": "Je vous prie de croire, {honorific}, à l'assurance de mon profond respect."
+      },
+      {
+       "text": "Veuillez agréer, {honorific}, l'expression de mes sentiments les plus respectueux."
+      },
+      {
+       "text": "Dans l'attente de votre [[decision]], je vous prie d'agréer, {honorific}, mes salutations les plus respectueuses."
+      },
+      {
+       "text": "Je reste à votre disposition et vous prie d'agréer, {honorific}, l'assurance de ma haute considération."
+      },
+      {
+       "text": "Avec mes respectueuses salutations.",
+       "when": [
+        "relation:good"
+       ]
+      },
+      {
+       "text": "Je compte sur vous, comme toujours.",
+       "when": [
+        "relation:good",
+        "history:cooperated"
+       ]
+      },
+      {
+       "text": "Je sais pouvoir compter sur votre sens de l'intérêt général.",
+       "when": [
+        "trait:warm"
+       ]
+      },
+      {
+       "text": "Je ne doute pas que vous saurez prendre la mesure de l'enjeu.",
+       "when": [
+        "trait:aggressive"
+       ]
+      },
+      {
+       "text": "J'attends votre réponse avec une certaine impatience, je ne vous le cache pas.",
+       "when": [
+        "relation:bad"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "signature",
+     "variants": [
+      {
+       "text": "{sender}\n{senderTitle}"
+      },
+      {
+       "text": "{sender}, {senderTitle}"
+      },
+      {
+       "text": "— {sender}"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "welcome",
+   "subject": [
+    {
+     "text": "Premiers jours à l'Élysée"
+    },
+    {
+     "text": "Bienvenue, {honorific}"
+    },
+    {
+     "text": "Note du Premier ministre"
+    }
+   ],
+   "sections": [
+    {
+     "id": "intro",
+     "variants": [
+      {
+       "text": "{honorific},"
+      },
+      {
+       "text": "{honorific}, permettez-moi de vous féliciter une nouvelle fois pour votre élection."
+      }
+     ]
+    },
+    {
+     "id": "context",
+     "variants": [
+      {
+       "text": "Le pays vous a confié les rênes dans une période exigeante : la dette publique est élevée, la croissance reste modeste et les Français attendent des résultats sur leur pouvoir d'achat."
+      },
+      {
+       "text": "Les attentes sont immenses : pouvoir d'achat, services publics, sécurité, finances publiques. Chaque décision comptera."
+      }
+     ]
+    },
+    {
+     "id": "advice",
+     "variants": [
+      {
+       "text": "Je vous suggère de commencer par examiner le budget et la composition du gouvernement, puis de parcourir la carte pour prendre le pouls des territoires."
+      },
+      {
+       "text": "Les maires, préfets et présidents de région vont rapidement vous solliciter. Nos partenaires européens aussi."
+      }
+     ]
+    },
+    {
+     "id": "closing",
+     "variants": [
+      {
+       "text": "Le gouvernement est à votre disposition."
+      },
+      {
+       "text": "Je reste à vos côtés pour mettre en œuvre votre projet."
+      }
+     ]
+    },
+    {
+     "id": "signature",
+     "variants": [
+      {
+       "text": "{sender}\n{senderTitle}"
+      },
+      {
+       "text": "{sender}, {senderTitle}"
+      },
+      {
+       "text": "— {sender}"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

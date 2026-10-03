@@ -1,0 +1,57 @@
+package fr.president.engine.data
+
+import kotlinx.serialization.Serializable
+
+/** Niveau de simulation d'un pays : complet (jouable) ou allégé (IA). */
+@Serializable
+enum class DetailLevel { FULL, LIGHT }
+
+@Serializable
+data class CountryDefinition(
+    val id: String,
+    val name: String,
+    val adjective: String,
+    val language: String,
+    val namePool: String,
+    val detail: DetailLevel,
+    val population: Long,
+    val capitalCityId: String? = null,
+    val economy: String,
+    val leader: LeaderProfile,
+    val strategic: StrategicProfile,
+    val institutions: InstitutionsDefinition,
+    val territory: String? = null,
+    val government: String? = null,
+    val socialGroups: String? = null,
+    val elections: String? = null,
+    val energy: String? = null,
+    val transport: String? = null,
+    val military: String? = null,
+)
+
+@Serializable
+data class InstitutionsDefinition(
+    val headOfStateTitle: String,
+    val headOfGovernmentTitle: String,
+    val honorificMale: String,
+    val honorificFemale: String,
+)
+
+/** Tendances du dirigeant généré : chaque trait est tiré dans l'intervalle [min, max]. */
+@Serializable
+data class LeaderProfile(
+    val traitRanges: Map<String, List<Double>>,
+    val ageRange: List<Int>,
+    val economicLeaningRange: List<Double>,
+)
+
+@Serializable
+data class StrategicProfile(
+    /** Solde électrique annuel (TWh) ; négatif = besoin d'importer. */
+    val electricityBalanceTWh: Double,
+    val tradeWithPartnersBillions: Map<String, Double> = emptyMap(),
+    val alliances: List<String> = emptyList(),
+    val priorities: List<String> = emptyList(),
+    val intelligenceQuality: Double,
+    val militaryBudgetBillions: Double,
+)

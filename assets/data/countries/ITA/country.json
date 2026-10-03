@@ -1,0 +1,63 @@
+{
+ "id": "ITA",
+ "name": "Italie",
+ "adjective": "italien",
+ "language": "it",
+ "namePool": "it",
+ "detail": "LIGHT",
+ "population": 58900000,
+ "economy": "economy/ITA_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Président du Conseil",
+  "honorificMale": "Monsieur le Président du Conseil",
+  "honorificFemale": "Madame la Présidente du Conseil"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.3,
+    0.6
+   ],
+   "nationalism": [
+    0.4,
+    0.75
+   ],
+   "toughness": [
+    0.45,
+    0.8
+   ],
+   "openness": [
+    0.3,
+    0.6
+   ]
+  },
+  "ageRange": [
+   44,
+   66
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ]
+ },
+ "strategic": {
+  "electricityBalanceTWh": -48,
+  "tradeWithPartnersBillions": {
+   "FRA": 95,
+   "DEU": 150,
+   "ESP": 45
+  },
+  "alliances": [
+   "EU",
+   "NATO"
+  ],
+  "priorities": [
+   "energy",
+   "migration",
+   "industry"
+  ],
+  "intelligenceQuality": 0.65,
+  "militaryBudgetBillions": 33
+ }
+}

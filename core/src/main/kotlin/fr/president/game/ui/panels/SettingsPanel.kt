@@ -1,0 +1,47 @@
+package fr.president.game.ui.panels
+
+import com.badlogic.gdx.scenes.scene2d.ui.Table
+import fr.president.engine.notifications.NotificationCategory
+import fr.president.engine.notifications.NotificationLevel
+import fr.president.game.ui.Formats
+import fr.president.game.ui.Ui
+
+/** Réglages : notifications par catégorie, informations sur la partie, journal de debug. */
+class SettingsPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel(ui, onClose) {
+    override val title = "Réglages"
+    private val session get() = nav.session
+    private var showDebug = false
+
+    override fun build(into: Table) {
+        val settings = session.state.notifications.settings
+        into.add(ui.label("Notifications Android", "bold")).row()
+        into.add(ui.button(if (settings.enabled) "Activées — tout désactiver" else "Désactivées — réactiver", "toggle") {
+            settings.enabled = !settings.enabled; nav.refresh()
+        }.also { it.isChecked = settings.enabled }).left().padBottom(GAP).row()
+        NotificationCategory.entries.forEach { c ->
+            val row = Table()
+            row.add(ui.label(c.label, "small")).left().expandX()
+            row.add(ui.button(settings.level(c).label, "default") {
+                val levels = NotificationLevel.entries
+                settings.levels[c] = levels[(levels.indexOf(settings.level(c)) + 1) % levels.size]
+                nav.refresh()
+            }).right()
+            into.add(row).growX().padBottom(2f).row()
+        }
+        val meta = session.state.meta
+        val pace = session.db.config.paces.firstOrNull { it.id == meta.clock.paceId }
+        into.add(ui.label("Partie", "bold")).padTop(GAP).row()
+        into.add(ui.label("Rythme : ${pace?.label} (verrouillé) — ${pace?.description}", "small", wrap = true)).growX().row()
+        into.add(ui.label("Début : ${Formats.date(meta.startTime)} · Snapshot : ${meta.snapshotId} · Graine : ${meta.seed}", "muted", wrap = true)).growX().row()
+        into.add(ui.button(if (showDebug) "Masquer le journal de debug" else "Journal de debug (IA, économie)", "flat") { showDebug = !showDebug; nav.refresh() }).left().padTop(GAP).row()
+        if (showDebug) {
+            session.context.debug.recent().takeLast(DEBUG_LINES).asReversed().forEach {
+                into.add(ui.label("[${it.category}] ${it.message}", "muted", wrap = true)).growX().row()
+            }
+        }
+    }
+
+    private companion object {
+        const val DEBUG_LINES = 60
+    }
+}
