@@ -54,14 +54,17 @@ Il faudra aussi sa géométrie (`tools/mapgen`).
 
 `economy.unemployment|inflation|growth|consumerConfidence|businessConfidence|debtRatio|deficitRatio|energyPriceIndex|purchasingPower`,
 `energy.margin|priceIndex`, `opinion.national`, `opinion.group.<id>`, `quality.<domaine>`,
-`tax.households|businesses`, `government.parliamentSupport`, `military.readiness`, `season.month`,
-et pour la cible : `scope.approval|unemployment|incomeIndex|urbanShare|seniorShare|populationMillions|satisfaction|condition|maintenance|capacityGW|integrity|loyalty|competence|popularity|relation|electricityBalance`.
+`tax.households|businesses`, `government.parliamentSupport`, `military.readiness|warWeariness|atWar|nearbyWar|ammunitionStock`,
+`president.<trait>|scandals`, `season.month`,
+et pour la cible : `scope.approval|unemployment|incomeIndex|urbanShare|seniorShare|populationMillions|mediterranean|healthAccess|crime|industryShare|agricultureShare|pollution|satisfaction|condition|maintenance|capacityGW|integrity|loyalty|competence|popularity|relation|electricityBalance`.
 
 ### Effets (`target`)
 
 `economy.output|consumerConfidence|businessConfidence|inflation|unemployment`, `budget.oneOff` (Md€),
 `opinion.national`, `opinion.group.<id>`, `quality.<domaine>`, `government.parliamentSupport`,
-`military.readiness`, `memory.<PAYS>.<TYPE>` (souvenir diplomatique),
+`military.readiness|ammoStock|fuelStock`, `memory.<PAYS>.<TYPE>` (souvenir diplomatique),
+`economy.potentialGrowth|naturalUnemployment`, `spending.<poste>` (multiplicateur budgétaire), `revenue.<prélèvement>` (taux),
+`demography.immigration`, `energy.capacity.<parc>` (MW), `president.scandal|popularity...`,
 et génériques résolus selon la cible : `scope.approval|unemployment|satisfaction|condition|maintenance|offlineDays`,
 `region.approval`, `sender.relation|loyalty|popularity`, `subject.popularity|loyalty|dismiss`.
 `amount` ou `param` (+ `factor`), `days` (étalement), `delayDays`.
@@ -75,3 +78,15 @@ Un modèle = `subject` + `sections`. Chaque variante peut exiger (`when`) ou exc
 `urgency:high`, `followup:reask`, `has:city`, `response:accepted|refused|countered`.
 `{variable}` est remplacée (`honorific`, `sender`, `senderTitle`, `city`, `department`, `region`,
 `amountText`, `clauses`, `reasons`...), `[[mot]]` tire un synonyme du lexique.
+
+## Armée (`military/`)
+
+`unit_types.json` : types d'unités (domaine, attaque, défense, vitesse, rayon d'action, consommations,
+coût, délai de production) et paramètres militaires (pertes, ravitaillement, lassitude, stocks,
+mobilisation). `FRA_2026_10.json` : bases et unités françaises. Les armées étrangères sont générées
+depuis `strategic.forces` de chaque pays. La grille des zones (`geo/zones.json`) est produite par
+`tools/mapgen/build_zones.py`.
+
+## Réformes et promesses
+
+`countries/FRA/reforms.json` et `promises.json`, générés par `tools/datagen/reforms_fr.py`.

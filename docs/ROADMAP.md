@@ -1,32 +1,18 @@
 # Feuille de route
 
-La tranche verticale pose le moteur. Les étapes suivantes s'appuient dessus sans le réécrire.
+Le jeu couvre désormais l'ensemble du cahier des charges initial. Pistes d'enrichissement :
 
-## Prochaines étapes (ordre conseillé)
-
-1. **Validation Android** : compiler `:android`, tester sur appareil (cycle pause/reprise,
-   WorkManager, permission de notification, densités d'écran, performance de la carte).
-2. **Armée jouable** : ordres aux unités sur la carte (déplacement, défense, attaque, repli,
-   patrouille), logistique par routes/ports/bases, consommation de munitions et carburant,
-   production et achats, renseignement.
-3. **Guerre** intégrée : coûts, pertes, opinion, sanctions, réfugiés, infrastructures détruites,
-   cessez-le-feu et paix négociés via le moteur de diplomatie existant.
-4. **Diplomatie étendue** : sanctions, alliances, ultimatums, droits de passage, garanties,
-   médiation ; relations entre pays IA ; davantage de pays (données).
-5. **Réformes** structurelles (retraites, travail, fiscalité) en plus des leviers budgétaires,
-   avec promesses de campagne suivies par l'électorat.
-6. **Territoires** : plus de demandes locales (écoles, logement, sécurité), présidents de région
-   et de département actifs, élections locales influençant le climat politique.
-7. **Carte fine** : tuiles chargées à la demande (communes, routes détaillées, zones
-   industrielles, agriculture), légende des cartes de chaleur.
-8. **Contenu** : plus d'événements (épidémie, pénurie, attentat, faillite, accident militaire...),
-   plus de variantes de dialogue, portraits générés.
-9. **Seconde nationalité jouable** : ajouter un pays en `detail: FULL` avec ses fichiers
-   (territoire, gouvernement, groupes sociaux, élections) — le moteur ne contient aucune valeur
-   propre à la France.
-
-## Dette technique connue
-
-* Migrations de sauvegarde : le cadre existe, aucune migration n'est encore nécessaire (format 1).
-* L'interface reconstruit les panneaux toutes les 3 s ; à optimiser si des panneaux deviennent lourds.
-* Les tracés de réseaux (LGV, autoroutes) sont schématiques (segments entre villes).
+1. **Test sur appareils** : performance de la carte sur les petits téléphones, ergonomie tactile,
+   durée réelle des mandats selon les rythmes, consommation de la simulation d'arrière-plan.
+2. **Contenu** : davantage d'événements et de variantes de dialogues, demandes territoriales plus
+   variées (écoles, logement, sécurité), élections locales et législatives, référendums.
+3. **Carte fine** : communes et routes détaillées chargées par tuiles, zones agricoles et
+   industrielles dessinées, outre-mer.
+4. **Guerre** : opérations amphibies et aéroportées dédiées, frappes stratégiques, guerre
+   électronique et cyber, opérations extérieures hors de la grille actuelle (Indo-Pacifique).
+5. **Diplomatie** : votes aux Nations unies et au Conseil européen, organisations internationales,
+   sommets, crises régionales scénarisées, accords multilatéraux.
+6. **Autres pays jouables** : un pays devient jouable en fournissant ses fichiers `FULL`
+   (territoire, gouvernement, groupes sociaux, élections, réformes) — le moteur ne contient aucune
+   valeur propre à la France.
+7. **Équilibrage** continu à partir des retours de parties réelles (journal de debug intégré).

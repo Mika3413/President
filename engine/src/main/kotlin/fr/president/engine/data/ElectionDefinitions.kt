@@ -8,6 +8,8 @@ data class ElectionsDefinition(
     val secondRoundGapDays: Int,
     val families: List<PoliticalFamilyDef>,
     val incumbentRecordWeight: Double,
+    /** Prime au sortant : notoriété et stature présidentielle. */
+    val incumbentBonus: Double = 0.0,
     val affinityWeight: Double,
     val choiceTemperature: Double,
     val turnoutDiscontentWeight: Double,

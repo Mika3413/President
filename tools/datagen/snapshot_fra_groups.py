@@ -55,6 +55,6 @@ el={"termYears":5,"secondRoundGapDays":14,
   {"id":"centre","name":"Centre libéral","economicPosition":0.15,"socialPosition":-0.15,"baseStrength":0.0},
   {"id":"right","name":"Droite républicaine","economicPosition":0.55,"socialPosition":0.3,"baseStrength":0.0},
   {"id":"nationalist","name":"Droite nationaliste","economicPosition":0.2,"socialPosition":0.85,"baseStrength":0.1}],
- "incumbentRecordWeight":1.8,"affinityWeight":1.5,"choiceTemperature":0.3,"turnoutDiscontentWeight":0.3,"turnoutEnthusiasmWeight":0.2,"pollNoise":0.04,"scandalPenalty":0.1}
+ "incumbentRecordWeight":1.8,"incumbentBonus":0.22,"affinityWeight":1.5,"choiceTemperature":0.3,"turnoutDiscontentWeight":0.3,"turnoutEnthusiasmWeight":0.2,"pollNoise":0.04,"scandalPenalty":0.1}
 json.dump(el,open("countries/FRA/elections.json","w"),ensure_ascii=False,indent=1)
 print("ok")

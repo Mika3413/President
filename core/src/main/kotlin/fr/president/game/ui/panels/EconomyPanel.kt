@@ -63,7 +63,7 @@ class EconomyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pa
     }
 
     private fun spending(into: Table) {
-        into.add(ui.label("Les budgets non indexés perdent du pouvoir d'achat avec l'inflation : la qualité des services s'en ressent.", "muted", wrap = true)).padBottom(GAP).row()
+        into.add(ui.label("Les budgets suivent l'inflation. Pour améliorer un service public, augmentez ses moyens réels ; pour réduire le déficit, il faut des économies réelles.", "muted", wrap = true)).padBottom(GAP).row()
         val economy = session.state.playerCountry.economy
         val defs = session.db.country(session.state.player.countryId).economy.budget!!.spending
         for (def in defs) {

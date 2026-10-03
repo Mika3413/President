@@ -110,3 +110,48 @@ chacune avec de nombreuses variantes filtrées par des étiquettes : tempéramen
 relation, **historique des échanges** (« Après vos précédents refus… »), urgence, saison, conjoncture,
 popularité du président. Les synonymes `[[mot]]` multiplient les combinaisons. La signature de chaque
 texte est mémorisée dans la sauvegarde : un texte identique n'est jamais réaffiché.
+
+## Armée et guerre
+
+* **Théâtre** : grille de zones d'1° (Europe, Afrique du Nord, Moyen-Orient), terrestres (rattachées
+  à un pays, et à un département pour la France) ou maritimes côtières. Contrôle, occupation et
+  annexions sont suivis par zone.
+* **Unités** (brigades, escadres, groupes navals) : disponibilité, effectifs, moral, munitions,
+  carburant, fatigue, expérience. Ordres : déplacer, attaquer, défendre, tenir, repli, soutien aérien,
+  patrouille. Les escadres agissent dans leur rayon d'action (allongé par les ravitailleurs).
+* **Déplacement** horaire le long d'un itinéraire calculé (A*) ; il faut un droit de passage pour
+  traverser un pays non allié ; la progression est lente en territoire hostile.
+* **Ravitaillement** : une unité est ravitaillée si une chaîne de zones amies la relie au territoire
+  national (portée allongée par les brigades logistiques). Ravitaillée, elle puise dans les stocks
+  nationaux ; isolée, elle s'use et peut se rendre si elle est encerclée.
+* **Combat** horaire : puissance = valeur d'attaque ou de défense × effectifs × disponibilité ×
+  moral × munitions × fatigue × expérience, posture défensive et territoire national favorisés,
+  soutien aérien et naval. Pertes proportionnelles au rapport de forces ; le camp qui craque se
+  replie et la zone change de mains.
+* **Guerres** : alliances défensives appelées à l'aide (le joueur choisit d'entrer en guerre, d'aider
+  sans combattre ou de rester à l'écart), lassitude croissante avec les pertes et la durée,
+  mobilisation des réserves, capitulation à la chute de la capitale, cessez-le-feu et traités de paix
+  (frontières d'avant-guerre ou annexion des zones occupées). Une capitale française occupée 30 jours
+  met fin à la partie.
+* **IA** : offensives là où le rapport de forces local est favorable, défense des fronts menacés,
+  repli des unités usées, soutien aérien des batailles. Déclaration de guerre rare, contre un voisin
+  hostile jugé plus faible, et jamais contre une puissance nucléaire ou ses alliés (dissuasion).
+* **Renseignement** : seules les unités proches de nos forces, au contact ou alliées sont connues ;
+  leurs effectifs sont estimés avec une erreur dépendant de la qualité du renseignement.
+
+## Réformes, promesses, démographie
+
+* Les **réformes** (fichier `countries/FRA/reforms.json`) sont votées après un mois, avec une
+  exigence parlementaire propre ; elles combinent chocs d'opinion par groupe et effets progressifs
+  (dépenses, croissance potentielle, chômage structurel, qualité des services, capacités
+  électriques...). Certaines sont incompatibles entre elles.
+* Les **promesses** choisies au lancement sont évaluées en continu et jugées au scrutin : tenues,
+  elles améliorent le vote des groupes concernés ; rompues, elles le dégradent.
+* La **démographie** suit naissances, décès et solde migratoire (modulé par la politique
+  migratoire) ; les territoires vieillissent, ce qui modifie leur composition sociale.
+
+## Monde vivant
+
+Les pays étrangers changent de dirigeant (alternance ou reconduction selon leur popularité), nouent
+des coopérations ou entrent en tension entre eux, sanctionnent les agresseurs, demandent de l'aide,
+cherchent à acheter des armements français.

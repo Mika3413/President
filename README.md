@@ -9,32 +9,34 @@ et le dirige tant qu'il est réélu. Une élection perdue met fin à la partie.
 Inspirations : *Supremacy 1914* pour la carte et la prise en main, *Geo-Political Simulator*
 pour la profondeur — sans leurs défauts.
 
-## État actuel : première tranche verticale jouable
+## Contenu
 
-| Élément | État |
+| Domaine | Ce qui est simulé |
 |---|---|
-| Projet multi-module (moteur pur / libGDX / PC / Android) | ✅ |
-| Carte 2D vectorielle : monde → Europe → France → région → local, LOD, culling, index spatial | ✅ |
-| 13 régions, 96 départements, 53 villes, centrales, barrages, raffineries, ports, aéroports, LGV, autoroutes, bases | ✅ |
-| Couches : administratif, opinion, chômage, population, revenus, énergie, transports, militaire, crises | ✅ |
-| Temps du monde persistant (rythme verrouillé), rattrapage `simulate(from, to)` déterministe | ✅ |
-| Sauvegarde robuste (gzip, écriture atomique, copie de secours, version de format + migrations) | ✅ |
-| Économie macro interconnectée (budget détaillé, confiance, impulsions différées, taux, dette, énergie) | ✅ |
-| Gouvernement : Premier ministre, 11 ministres, priorités, nominations, Parlement, vote des mesures | ✅ |
-| Opinion par groupes sociaux (13 groupes, 4 partitions) et par territoire | ✅ |
-| Événements dynamiques dépendant de l'état (16 types) avec décisions et effets différés | ✅ |
-| Messages procéduraux sans IA générative, mémoire des échanges, unicité garantie | ✅ |
-| Diplomatie structurée (5 pays IA, clauses, contre-propositions, mémoire diplomatique, perception imparfaite) | ✅ |
-| Élections présidentielles à deux tours (participation, familles politiques, bilan par groupe) | ✅ |
-| Notifications internes + Android (WorkManager, réglages par catégorie) | ✅ (Android non compilé ici, voir ci-dessous) |
-| Armée : unités cohérentes et bases (consultation, disponibilité) — ordres et guerre | 🔜 |
+| Carte | Monde → Europe → France → région → local (LOD, culling, index spatial) ; 13 régions, 96 départements, 53 villes, centrales, barrages, raffineries, ports, aéroports, LGV, autoroutes, bases ; 14 couches (opinion, chômage, revenus, santé, sécurité, industrie, agriculture, pollution, énergie, transports, militaire, crises...) avec légende |
+| Temps | Monde persistant, rythme verrouillé, rattrapage déterministe après absence, simulation d'arrière-plan Android (WorkManager) |
+| Économie | Modèle macro interconnecté (confiance, impulsions différées, taux, dette, énergie, commerce, sanctions), budget détaillé voté au Parlement |
+| Société | Opinion de 13 groupes sociaux et de chaque territoire, services publics, démographie, immigration |
+| Politique | Gouvernement (Premier ministre, 11 ministres, priorités), Parlement, 18 réformes structurelles, promesses de campagne, scandales |
+| Élections | Présidentielle à deux tours, participation, 6 familles politiques, bilan jugé par chaque groupe, promesses tenues ou rompues |
+| Territoires | Demandes des maires, préfets, présidents de collectivités (accepter, partiellement, cofinancer, reporter, se renseigner, refuser), grands projets |
+| Événements | 30 types dépendant de l'état du monde (incidents industriels, catastrophes, crises sociales, attentats, scandales, épidémies...) |
+| Diplomatie | 29 pays IA, mémoire diplomatique, négociation par clauses (14 types), contre-propositions, sanctions, ultimatums, condamnations, alliances (OTAN, UE, OTSC), alternances politiques à l'étranger |
+| Armée et guerre | Unités sur une grille de 5 000 zones de théâtre, ordres (déplacer, attaquer, défendre, repli, soutien aérien, patrouille), ravitaillement, stocks, production, mobilisation, renseignement imparfait, combats, occupations, capitulations, cessez-le-feu et paix, dissuasion nucléaire |
+| Dialogues | Messages procéduraux sans IA générative, mémoire des échanges, jamais deux fois le même texte |
+| Interface | Panneaux contextuels lisibles avec « Détails », portraits procéduraux, tutoriel progressif, aide et glossaire, notifications réglables par catégorie, mise en page téléphone |
+
+## Installer l'APK
+
+Chaque push déclenche la CI GitHub (onglet **Actions** → workflow *Build*) : tests du moteur puis
+assemblage de l'APK de débogage, téléchargeable dans l'artefact **president-debug-apk**.
 
 ## Compiler et lancer
 
 Prérequis : JDK 17+.
 
 ```bash
-./gradlew :engine:test        # tests du moteur (25 tests : déterminisme, sauvegarde, diplomatie, élections...)
+./gradlew :engine:test        # tests du moteur (déterminisme, sauvegarde, diplomatie, guerre, réformes, endurance...)
 ./gradlew :desktop:run        # lanceur PC de développement (même jeu que sur Android)
 ```
 
@@ -45,9 +47,8 @@ Le module `android` n'est inclus que si un SDK Android est configuré (`local.pr
 ./gradlew :android:assembleDebug
 ```
 
-> Note : l'environnement de développement initial n'avait pas accès au dépôt Maven de Google ;
-> le module Android a été écrit mais n'a pas pu être compilé ici. Le moteur, le rendu et
-> l'interface sont validés via le lanceur PC (mêmes classes `core`).
+> Le module Android est compilé et assemblé par la CI GitHub. Le lanceur PC utilise exactement
+> les mêmes classes `core` et sert au développement.
 
 Options de développement du lanceur PC :
 

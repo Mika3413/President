@@ -46,6 +46,7 @@
   }
  ],
  "incumbentRecordWeight": 1.8,
+ "incumbentBonus": 0.22,
  "affinityWeight": 1.5,
  "choiceTemperature": 0.3,
  "turnoutDiscontentWeight": 0.3,

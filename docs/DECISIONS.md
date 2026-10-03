@@ -26,3 +26,10 @@ Décisions secondaires prises pendant le développement, documentées comme dema
 | 20 | Notifications | Au premier plan : bandeaux en jeu ; en arrière-plan : notifications système filtrées par catégorie | Pas de doublons, réglage fin par le joueur |
 | 21 | Fin de partie | Défaite électorale = écran de fin et nouvelle partie | Conforme au cahier des charges (pas de rôle d'opposant) |
 | 22 | Valeurs de départ | Ordres de grandeur publics arrondis (fin 2025 / prévisions 2026) | Snapshot crédible ; à affiner avec des sources officielles datées |
+| 23 | Théâtre militaire | Grille régulière de zones de 1° plutôt que des provinces dessinées | Couvre tous les pays sans données supplémentaires ; lisible ; reproductible par script |
+| 24 | Combat | Résolution horaire à pertes proportionnelles, sans tirage par bataille | Fronts stables et compréhensibles ; aucune microgestion nécessaire |
+| 25 | Dissuasion | L'IA n'attaque jamais une puissance nucléaire ni ses alliés défensifs | Réalisme stratégique ; le territoire français n'est exposé que si le joueur provoque |
+| 26 | Budgets | Les dépenses sont revalorisées avec l'inflation par défaut | Évite une austérité cachée irréaliste ; toute amélioration exige des moyens réels |
+| 27 | Prime au sortant | Bonus électoral de notoriété pour le président sortant | Calibrage : un bilan moyen donne une élection disputée, un mauvais bilan une défaite |
+| 28 | Portraits | Générés par programme depuis la graine du personnage | Aucune image de personne réelle ; visages stables d'une session à l'autre |
+| 29 | Android | APK construit par la CI GitHub (dépôt Maven de Google inaccessible depuis l'environnement de développement) | Validation réelle de la compilation Android à chaque push |
