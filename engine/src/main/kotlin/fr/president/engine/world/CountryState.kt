@@ -20,4 +20,5 @@ class CountryState(
     var leaderApproval: Double = 0.5,
     var militaryBudgetBillions: Double = 0.0,
     var nextAiDecision: WorldTime? = null,
+    var nextLeadershipChange: WorldTime? = null,
 )

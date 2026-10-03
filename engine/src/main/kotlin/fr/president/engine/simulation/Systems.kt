@@ -35,6 +35,7 @@ object Systems {
         OpinionSystem(),
         ElectionSystem(),
         ForeignAiSystem(),
+        fr.president.engine.ai.WorldPoliticsSystem(),
         AgreementSystem(),
         EnergySystem(),
         EconomySystem(),

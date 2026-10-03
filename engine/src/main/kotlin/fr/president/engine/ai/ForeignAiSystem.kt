@@ -91,6 +91,22 @@ class ForeignAiSystem : SimulationSystem {
                     LONG_DEAL, "approfondir nos échanges commerciaux",
                 )
             }
+            ctx.db.country(country.id).definition.strategic.militaryBudgetBillions > ARMS_BUYER_BUDGET && relation > TRADE_RELATION &&
+                !ctx.db.country(country.id).definition.strategic.nuclear && ctx.rng.chance(ARMS_CHANCE * leader.trait(Traits.MILITARISM)) -> {
+                val amount = (ARMS_MIN + ctx.rng.nextDouble() * ARMS_SPREAD).roundTo(1.0)
+                ctx.log("ai", "${country.id} souhaite acheter des armements français (%.0f Md€)".format(amount))
+                DiplomacyService(ctx).aiPropose(
+                    country.id, listOf(Clause("ARMS_SALE", player, mapOf("amountBillions" to amount))), 1,
+                    "moderniser nos forces armées avec des équipements français",
+                )
+            }
+            country.economy.realGrowth < CRISIS_GROWTH && relation > AID_RELATION && ctx.rng.chance(ARMS_CHANCE) -> {
+                ctx.log("ai", "${country.id} en crise économique demande une aide financière")
+                DiplomacyService(ctx).aiPropose(
+                    country.id, listOf(Clause(ClauseValuator.AID, player, mapOf("amountBillions" to AID_REQUEST))), 1,
+                    "surmonter la grave crise économique que nous traversons",
+                )
+            }
             else -> ctx.log("ai", "${country.id} : aucune initiative (besoin électrique %.1f TWh, relation %.2f)".format(need, relation))
         }
     }
@@ -143,5 +159,10 @@ class ForeignAiSystem : SimulationSystem {
         const val TRADE_PERCENT = 3.0
         const val AID_RELATION = 0.55
         const val AID_REQUEST = 2.0
+        const val ARMS_BUYER_BUDGET = 5.0
+        const val ARMS_CHANCE = 0.12
+        const val ARMS_MIN = 2.0
+        const val ARMS_SPREAD = 6.0
+        const val CRISIS_GROWTH = -0.015
     }
 }
