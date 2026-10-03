@@ -15,6 +15,6 @@ class DesktopPlatform : PlatformServices {
         println("[notification] ${notification.title} — ${notification.body}")
     }
 
-    override fun onBackgrounded() = Unit
+    override fun onBackgrounded(nextKeyMomentUtcMillis: Long?) = Unit
     override fun onForegrounded() = Unit
 }

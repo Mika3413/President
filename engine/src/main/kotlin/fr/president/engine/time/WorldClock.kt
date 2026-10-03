@@ -24,6 +24,10 @@ data class WorldClock(
     fun realMillisFor(worldSeconds: Long): Long =
         (worldSeconds / worldHoursPerRealHour * MILLIS_PER_SECOND).toLong()
 
+    /** Instant réel (ms UTC) où le monde atteindra [world]. */
+    fun realMillisAt(world: WorldTime): Long =
+        anchorRealUtcMillis + realMillisFor(world.seconds - anchorWorld.seconds)
+
     private companion object {
         const val MILLIS_PER_SECOND = 1000.0
     }

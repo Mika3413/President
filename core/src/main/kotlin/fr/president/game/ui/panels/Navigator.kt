@@ -6,6 +6,7 @@ import fr.president.game.map.MapSelection
 /** Navigation entre panneaux et carte, fournie par l'écran principal. */
 interface Navigator {
     val session: GameSession
+    val platform: fr.president.game.platform.PlatformServices
     fun open(panel: PanelId, argument: String? = null)
     fun select(selection: MapSelection)
     fun focusOn(mapId: String)

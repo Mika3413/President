@@ -1,18 +1,19 @@
 package fr.president.android
 
+import android.annotation.SuppressLint
 import android.content.Context
-import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
+import android.content.Intent
+import android.net.Uri
+import android.os.PowerManager
+import android.provider.Settings
 import fr.president.engine.notifications.GameNotification
 import fr.president.game.platform.PlatformServices
 import java.io.File
-import java.util.concurrent.TimeUnit
 
 /**
  * Services Android. Le processus peut être tué à tout moment : rien ne dépend de lui.
- * En arrière-plan, WorkManager relance périodiquement une simulation de rattrapage
- * qui met la sauvegarde à jour et publie les notifications importantes.
+ * En arrière-plan, la simulation continue grâce à WorkManager et à une alarme ciblée,
+ * qui mettent la sauvegarde à jour et publient les notifications importantes.
  */
 class AndroidPlatform(private val context: Context) : PlatformServices {
     override val saveDirectory: File = saveDirectory(context)
@@ -21,23 +22,33 @@ class AndroidPlatform(private val context: Context) : PlatformServices {
     override fun postSystemNotification(notification: GameNotification) =
         GameNotifier(context).post(notification)
 
-    override fun onBackgrounded() {
-        val request = PeriodicWorkRequestBuilder<BackgroundSimulationWorker>(PERIOD_MINUTES, TimeUnit.MINUTES)
-            .setInitialDelay(PERIOD_MINUTES, TimeUnit.MINUTES)
-            .build()
-        WorkManager.getInstance(context).enqueueUniquePeriodicWork(WORK_NAME, ExistingPeriodicWorkPolicy.UPDATE, request)
+    override fun onBackgrounded(nextKeyMomentUtcMillis: Long?) {
         ForegroundFlag.set(saveDirectory, false)
+        BackgroundScheduler.schedule(context, nextKeyMomentUtcMillis)
     }
 
     override fun onForegrounded() {
         ForegroundFlag.set(saveDirectory, true)
-        WorkManager.getInstance(context).cancelUniqueWork(WORK_NAME)
+        BackgroundScheduler.ensurePeriodic(context)
+        BackgroundScheduler.cancelTargeted(context)
+        GameNotifier(context).clearAll()
+    }
+
+    override fun onHeartbeat() = ForegroundFlag.set(saveDirectory, true)
+
+    override val backgroundRestricted: Boolean
+        get() = context.getSystemService(PowerManager::class.java)?.isIgnoringBatteryOptimizations(context.packageName) == false
+
+    @SuppressLint("BatteryLife")
+    override fun requestBackgroundExemption() {
+        val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS, Uri.parse("package:${context.packageName}"))
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        runCatching { context.startActivity(intent) }.onFailure {
+            runCatching { context.startActivity(Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)) }
+        }
     }
 
     companion object {
-        /** Intervalle minimal autorisé par Android pour un travail périodique. */
-        const val PERIOD_MINUTES = 15L
-        const val WORK_NAME = "president-background-simulation"
         fun saveDirectory(context: Context) = File(context.filesDir, "saves")
     }
 }

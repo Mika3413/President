@@ -26,7 +26,11 @@ class EventLauncher(private val ctx: SimulationContext) {
         val focus = focusOf(scope)
         ctx.notifications.news(def.category, headline, focus)
         if (def.message != null) {
-            deliverMessage(def, instance, scope, vars, details = false)
+            val message = deliverMessage(def, instance, scope, vars, details = false)
+            // Un courrier qui attend une réponse mérite une notification même s'il n'est pas urgent.
+            if (def.urgency == Urgency.INFO && message != null) {
+                ctx.notifications.post(def.category, Urgency.IMPORTANT, "Courrier : ${message.senderLabel}", message.subject, focus)
+            }
         } else {
             instance.resolved = true
         }
@@ -38,8 +42,8 @@ class EventLauncher(private val ctx: SimulationContext) {
     }
 
     /** Envoie (ou renvoie) le message associé à une instance d'événement. */
-    fun deliverMessage(def: EventDefinition, instance: EventInstance, scope: ScopeRef, vars: Map<String, String>, details: Boolean) {
-        val m = def.message ?: return
+    fun deliverMessage(def: EventDefinition, instance: EventInstance, scope: ScopeRef, vars: Map<String, String>, details: Boolean): InboxMessage? {
+        val m = def.message ?: return null
         val sender = senders.resolve(m.sender, m.ministry, scope)
         val builder = DialogueContextBuilder(ctx).sender(sender.character, sender.title)
         vars.forEach { (k, v) -> builder.variable(k, v) }
@@ -71,6 +75,7 @@ class EventLauncher(private val ctx: SimulationContext) {
         instance.messageId = message.id
         ctx.state.inbox.messages.add(message)
         trimInbox()
+        return message
     }
 
     fun variables(def: EventDefinition, scope: ScopeRef, params: Map<String, Double>): Map<String, String> {

@@ -52,6 +52,7 @@ class MainScreen(
     private val onAbandon: () -> Unit = {},
 ) : ScreenAdapter(), Navigator {
     override val session: GameSession get() = controller.session
+    override val platform get() = controller.platform
     private val playerId = session.state.player.countryId
     private val camera = OrthographicCamera()
     private val stage = Stage(ScreenViewport().apply { unitsPerPixel = 1f / uiScale })

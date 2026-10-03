@@ -21,7 +21,8 @@ import kotlin.math.roundToInt
  */
 class ForeignAiSystem : SimulationSystem {
     override val name = "foreign-ai"
-    override val cadence = Cadence.DAILY
+    // Vérification horaire : les décisions tombent à toute heure, pas seulement à minuit.
+    override val cadence = Cadence.HOURLY
 
     override fun run(ctx: SimulationContext) {
         val interval = ctx.db.config.simulation.aiDecisionIntervalDays.toDouble()

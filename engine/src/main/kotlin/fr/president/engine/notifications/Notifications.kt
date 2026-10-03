@@ -40,9 +40,16 @@ data class GameNotification(
 @Serializable
 data class NotificationSettings(
     var enabled: Boolean = true,
-    val levels: MutableMap<NotificationCategory, NotificationLevel> =
-        NotificationCategory.entries.associateWith { NotificationLevel.URGENT_ONLY }.toMutableMap(),
+    val levels: MutableMap<NotificationCategory, NotificationLevel> = defaultLevels(),
 ) {
+    companion object {
+        /** Catégories plus techniques : seules les urgences sont poussées par défaut. */
+        private val QUIET = setOf(NotificationCategory.ECONOMY, NotificationCategory.PROJECTS)
+
+        fun defaultLevels(): MutableMap<NotificationCategory, NotificationLevel> =
+            NotificationCategory.entries.associateWith { if (it in QUIET) NotificationLevel.URGENT_ONLY else NotificationLevel.ALL }.toMutableMap()
+    }
+
     fun level(category: NotificationCategory): NotificationLevel = levels[category] ?: NotificationLevel.URGENT_ONLY
 
     /** Faut-il pousser cette notification vers le système (Android) ? */

@@ -215,6 +215,6 @@ class NewGameFactory(private val db: GameDatabase) {
         const val DEFAULT_INDUSTRY = 0.12
         const val DEFAULT_AGRICULTURE = 0.03
         const val FIRST_AI_DECISION_MIN = 4.0
-        const val FIRST_AI_DECISION_MAX = 12.0
+        const val FIRST_AI_DECISION_MAX = 45.0
     }
 }

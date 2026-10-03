@@ -19,6 +19,12 @@ class SettingsPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit, pri
         into.add(ui.button(if (settings.enabled) "Activées — tout désactiver" else "Désactivées — réactiver", "toggle") {
             settings.enabled = !settings.enabled; nav.refresh()
         }.also { it.isChecked = settings.enabled }).left().padBottom(GAP).row()
+        into.add(ui.label("La partie continue quand le jeu est fermé : vous êtes prévenu des événements marquants. " +
+            "Si le téléphone ne fait rien en arrière-plan (fréquent sur certaines marques), autorisez le jeu à ignorer l'optimisation de la batterie.",
+            "muted", wrap = true)).growX().row()
+        if (nav.platform.backgroundRestricted) {
+            into.add(ui.button("Autoriser l'activité en arrière-plan", "accent") { nav.platform.requestBackgroundExemption() }).left().padBottom(GAP).row()
+        }
         NotificationCategory.entries.forEach { c ->
             val row = Table()
             row.add(ui.label(c.label, "small")).left().expandX()

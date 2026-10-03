@@ -14,7 +14,7 @@ import fr.president.game.platform.PlatformServices
 class GameController(
     val session: GameSession,
     private val saves: SaveRepository,
-    private val platform: PlatformServices,
+    val platform: PlatformServices,
 ) {
     private var sinceTick = 0f
     private var sinceSave = 0f
@@ -53,6 +53,7 @@ class GameController(
             val file = session.toSaveFile(GAME_VERSION)
             saves.write(file)
             lastSaveMillis = file.savedAtRealUtcMillis
+            if (foreground) platform.onHeartbeat()
         } catch (e: Exception) {
             Gdx.app?.error(TAG, "Échec de la sauvegarde", e)
         }
@@ -62,7 +63,7 @@ class GameController(
         foreground = false
         advance()
         save()
-        platform.onBackgrounded()
+        platform.onBackgrounded(session.nextKeyMomentRealMillis())
     }
 
     fun onResume(): Simulator.Report {

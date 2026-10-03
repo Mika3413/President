@@ -44,6 +44,17 @@ class GameSession(
 
     val isGameOver: Boolean get() = state.player.gameOver != null
 
+    /**
+     * Instant réel (ms UTC) du prochain moment marquant déjà planifié (vote, scrutin, réponse
+     * diplomatique, événement...). Sert à réveiller l'application fermée au bon moment.
+     */
+    fun nextKeyMomentRealMillis(): Long? {
+        val next = state.scheduler.actions
+            .filter { it !is fr.president.engine.simulation.ScheduledAction.Tutorial && it.at > state.time }
+            .minOfOrNull { it.at } ?: return null
+        return state.meta.clock.realMillisAt(next)
+    }
+
     /** Rattrape le temps réel écoulé : à appeler au retour du joueur puis régulièrement. */
     fun advanceToNow(): Simulator.Report = simulator.advanceTo(state.meta.clock.worldTimeAt(realClock()))
 
