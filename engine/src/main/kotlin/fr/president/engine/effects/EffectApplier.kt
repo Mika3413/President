@@ -45,7 +45,7 @@ class EffectApplier(private val ctx: SimulationContext) {
     }
 
     private fun resolveScoped(field: String, scope: ScopeRef?): String? = when (field) {
-        "approval", "unemployment" -> departmentOf(scope)?.let { "dept.$it.$field" }
+        "approval", "unemployment", "industry", "crime", "healthAccess", "pollution" -> departmentOf(scope)?.let { "dept.$it.$field" }
             ?: if (field == "approval") "opinion.national" else null
         "condition", "offlineDays", "maintenance" ->
             scope?.id?.takeIf { scope.type == EventScope.INFRASTRUCTURE }?.let { "infra.$it.$field" }
@@ -92,6 +92,10 @@ class EffectApplier(private val ctx: SimulationContext) {
                 when (parts[2]) {
                     "approval" -> d.localShock += delta
                     "unemployment" -> d.unemploymentOffset += delta
+                    "industry" -> d.industryShare = (d.industryShare + delta).coerceIn(0.0, 1.0)
+                    "crime" -> d.crime = (d.crime + delta).coerceAtLeast(0.1)
+                    "healthAccess" -> d.healthAccess = (d.healthAccess + delta).coerceAtLeast(0.1)
+                    "pollution" -> d.pollution = (d.pollution + delta).coerceAtLeast(0.1)
                 }
             }
             "region" -> state.territory.departments.values.filter { it.region == parts[1] }

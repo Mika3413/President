@@ -69,7 +69,13 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
             return
         }
         val map = mapData ?: MapData(db, skin.white, session.state.player.countryId).also { mapData = it }
-        val screen = MainScreen(c, ui, map, platform.uiScale) { Gdx.app.postRunnable { showGameOver(session) } }
+        val screen = MainScreen(c, ui, map, platform.uiScale, { Gdx.app.postRunnable { showGameOver(session) } }) {
+            Gdx.app.postRunnable {
+                controller = null
+                saves.delete()
+                showNewGame(null)
+            }
+        }
         switchTo(screen)
         if (resumed) screen.showAbsence(report)
     }
@@ -112,6 +118,7 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
         controller?.save()
         screen?.dispose()
         skin.dispose()
+        ui.portraits.dispose()
     }
 
     /** Écran courant, pour l'automatisation de développement. */

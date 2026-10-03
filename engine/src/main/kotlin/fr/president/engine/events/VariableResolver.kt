@@ -131,6 +131,11 @@ class VariableResolver(private val ctx: SimulationContext) {
             "seniorShare" -> d.seniorShare
             "populationMillions" -> d.population / MILLION
             "mediterranean" -> if (d.region in MEDITERRANEAN_REGIONS) 1.0 else 0.0
+            "healthAccess" -> d.healthAccess
+            "crime" -> d.crime
+            "industryShare" -> d.industryShare
+            "agricultureShare" -> d.agricultureShare
+            "pollution" -> d.pollution
             else -> null
         }
     }

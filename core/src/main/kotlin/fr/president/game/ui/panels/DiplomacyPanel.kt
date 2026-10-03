@@ -74,7 +74,10 @@ class DiplomacyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
         val leader = session.state.characters.getValue(session.state.countries.getValue(id).leaderId)
         val relation = session.diplomacy.relation(id)
         into.add(ui.label(def.name, "title")).padTop(GAP).row()
-        into.add(ui.label("${def.institutions.headOfGovernmentTitle} : ${leader.fullName}", "small")).row()
+        val head = Table()
+        head.add(ui.portraits.image(leader)).size(PORTRAIT).padRight(8f)
+        head.add(ui.label("${def.institutions.headOfGovernmentTitle} : ${leader.fullName}", "small", wrap = true)).growX().left()
+        into.add(head).growX().left().row()
         val traits = session.characters.knownTraits(leader)
         into.add(ui.label(if (traits.isEmpty()) "Tempérament encore mal connu de nos services." else "Réputé " + traits.joinToString(", ") + ".", "muted", wrap = true)).row()
         into.add(ui.label("Relations : ${relation.label} · Confiance : ${relation.trustLabel}", "bold")).padTop(4f).row()
@@ -209,5 +212,6 @@ class DiplomacyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
         const val MAX_YEARS = 15
         const val COUNTRIES_PER_ROW = 3
         const val MAX_HISTORY = 6
+        const val PORTRAIT = 48f
     }
 }

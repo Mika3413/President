@@ -39,7 +39,17 @@ data class GlobalDataFiles(
     val names: Map<String, String>,
     val zones: String,
     val unitTypes: String,
+    val help: String,
 )
+
+@Serializable
+data class HelpFile(val tutorial: List<TutorialDef>, val glossary: List<GlossaryDef>)
+
+@Serializable
+data class TutorialDef(val delayHours: Int, val subject: String, val body: String)
+
+@Serializable
+data class GlossaryDef(val term: String, val definition: String)
 
 /** Photographie initiale du monde (data/world_snapshots/). Une partie la copie puis s'en détache. */
 @Serializable

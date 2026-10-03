@@ -27,6 +27,7 @@ class ActionDispatcher(private val ctx: SimulationContext) {
             is ScheduledAction.StockDelivery -> ProductionService(ctx).receiveStocks(action.ammunition, action.fuel)
             is ScheduledAction.MobilizationComplete -> ProductionService(ctx).completeMobilization(action.units)
             is ScheduledAction.AllianceCall -> WarService(ctx).handleAllianceCall(action.warId, action.country)
+            is ScheduledAction.Tutorial -> fr.president.engine.setup.WelcomeMessage(ctx).tutorial(action.index)
             is ScheduledAction.ProjectCompletion -> ProjectService(ctx).complete(action.projectId)
         }
     }

@@ -36,7 +36,10 @@ class GovernmentPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) :
             val minister = effectiveness.ministerOf(ministry.id)
             val box = Table().apply { defaults().left(); pad(6f); setBackground(ui.skin.fill(Theme.panelAlt)) }
             box.add(ui.label(ministry.title, "muted", wrap = true)).growX().row()
-            box.add(ui.label(minister?.fullName ?: "Vacant — intérim", "bold", if (minister == null) Theme.warning else null)).row()
+            val who = Table()
+            minister?.let { who.add(ui.portraits.image(it)).size(PORTRAIT).padRight(6f) }
+            who.add(ui.label(minister?.fullName ?: "Vacant — intérim", "bold", if (minister == null) Theme.warning else null)).left().growX()
+            box.add(who).left().growX().row()
             minister?.let { m ->
                 val summary = session.characters.summary(m).filter { it.first in SHOWN }.joinToString(" · ") { "${it.first} : ${it.second}" }
                 box.add(ui.label(summary, "small", wrap = true)).growX().row()
@@ -99,7 +102,10 @@ class GovernmentPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) :
     private fun candidates(box: Table, ministryId: String) {
         session.government.candidates(ministryId).forEach { c: Character ->
             val t = Table().apply { defaults().left(); pad(4f); setBackground(ui.skin.fill(Theme.panel)) }
-            t.add(ui.label(c.fullName, "bold")).row()
+            val head = Table()
+            head.add(ui.portraits.image(c)).size(PORTRAIT).padRight(6f)
+            head.add(ui.label(c.fullName, "bold")).left()
+            t.add(head).left().row()
             t.add(ui.label(session.characters.summary(c).filter { it.first in CANDIDATE_SHOWN }.joinToString(" · ") { "${it.first} : ${it.second}" }, "small", wrap = true)).growX().row()
             t.add(ui.button("Nommer", "accent") {
                 message = session.government.appoint(ministryId, c.id).fold({ "${c.fullName} est nommé(e)." }, { it.message })
@@ -112,6 +118,7 @@ class GovernmentPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) :
 
     private companion object {
         val SHOWN = setOf("Compétence", "Loyauté", "Popularité")
+        const val PORTRAIT = 40f
         val CANDIDATE_SHOWN = setOf("Âge", "Compétence", "Gestion", "Expérience", "Popularité", "Sensibilité")
     }
 }

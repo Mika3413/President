@@ -30,6 +30,11 @@ class DepartmentState(
     var seniorShare: Double,
     /** Orientation politique dominante (-1 gauche, +1 droite). */
     val politicalLeaning: Double = 0.0,
+    var healthAccess: Double = 1.0,
+    var crime: Double = 1.0,
+    var industryShare: Double = 0.12,
+    var agricultureShare: Double = 0.03,
+    var pollution: Double = 1.0,
     var approval: Double = 0.5,
     /** Choc d'opinion local (décroît avec le temps). */
     var localShock: Double = 0.0,

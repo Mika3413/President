@@ -24,6 +24,11 @@ class MapStyle(private val data: MapData) {
                 val v = (Math.log10(density.coerceAtLeast(1f).toDouble()) / MAX_DENSITY_LOG).toFloat().coerceIn(0f, 1f)
                 tmp.set(Theme.france).lerp(Theme.accent, v)
             }
+            ThematicLayer.HEALTH -> Theme.heat(norm(d.healthAccess, HEALTH_LOW, HEALTH_HIGH), tmp)
+            ThematicLayer.SECURITY -> Theme.heat(1f - norm(d.crime, CRIME_LOW, CRIME_HIGH), tmp)
+            ThematicLayer.POLLUTION -> Theme.heat(1f - norm(d.pollution, POLLUTION_LOW, POLLUTION_HIGH), tmp)
+            ThematicLayer.INDUSTRY -> tmp.set(Theme.france).lerp(INDUSTRY_COLOR, norm(d.industryShare, 0.03, 0.27))
+            ThematicLayer.AGRICULTURE -> tmp.set(Theme.france).lerp(AGRICULTURE_COLOR, norm(d.agricultureShare, 0.0, 0.1))
             ThematicLayer.ADMIN -> regionColor(regionCode)
             else -> tmp.set(regionColor(regionCode)).lerp(Theme.france, MUTED)
         }
@@ -45,5 +50,13 @@ class MapStyle(private val data: MapData) {
         const val INCOME_HIGH = 1.3
         const val MAX_DENSITY_LOG = 4.4
         const val MUTED = 0.6f
+        const val HEALTH_LOW = 0.6
+        const val HEALTH_HIGH = 1.4
+        const val CRIME_LOW = 0.5
+        const val CRIME_HIGH = 1.8
+        const val POLLUTION_LOW = 0.5
+        const val POLLUTION_HIGH = 1.7
+        val INDUSTRY_COLOR: Color = Color.valueOf("b08968")
+        val AGRICULTURE_COLOR: Color = Color.valueOf("8fbf5a")
     }
 }

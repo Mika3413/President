@@ -39,7 +39,11 @@ class InboxPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit, privat
 
     private fun message(into: Table, m: InboxMessage) {
         into.add(ui.button("← Tous les messages", "flat") { openMessage = null; nav.refresh() }).left().row()
-        into.add(ui.label(m.subject, "large", wrap = true)).growX().padTop(4f).row()
+        val sender = m.senderId?.let { session.state.characters[it] }
+        val head = Table()
+        sender?.let { head.add(ui.portraits.image(it)).size(PORTRAIT).padRight(8f) }
+        head.add(ui.label(m.subject, "large", wrap = true)).growX().left()
+        into.add(head).growX().padTop(4f).row()
         into.add(ui.label("${m.senderLabel} · ${Formats.dateTime(m.time)}", "muted", wrap = true)).growX().row()
         into.add(ui.label(m.body, "default", wrap = true)).growX().padTop(GAP).row()
         m.focusId?.let { focus -> into.add(ui.button("Voir sur la carte", "flat") { nav.focusOn(focus) }).left().padTop(4f).row() }
@@ -64,5 +68,6 @@ class InboxPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit, privat
 
     private companion object {
         const val MAX_LISTED = 60
+        const val PORTRAIT = 48f
     }
 }

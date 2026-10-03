@@ -49,6 +49,7 @@ class MainScreen(
     private val mapData: MapData,
     private val uiScale: Float,
     private val onGameOver: () -> Unit,
+    private val onAbandon: () -> Unit = {},
 ) : ScreenAdapter(), Navigator {
     override val session: GameSession get() = controller.session
     private val playerId = session.state.player.countryId
@@ -67,6 +68,7 @@ class MainScreen(
     private val topBar = TopBar(ui, session) { open(it) }
     private val actionBar = ActionBar(ui, session) { open(it) }
     private val toasts = Toasts(ui) { focusOn(it) }
+    private val legend = fr.president.game.ui.hud.Legend(ui)
     private val panelSlot = Container<Table>().fill()
     private var currentPanel: Panel? = null
     private var targeting: Pair<String, fr.president.engine.military.UnitOrder>? = null
@@ -88,7 +90,8 @@ class MainScreen(
         PanelId.NOTIFICATIONS to NotificationsPanel(ui, this) { closePanel() },
         PanelId.ELECTIONS to ElectionPanel(ui, this) { closePanel() },
         PanelId.ARMY to fr.president.game.ui.panels.ArmyPanel(ui, this) { closePanel() },
-        PanelId.SETTINGS to SettingsPanel(ui, this) { closePanel() },
+        PanelId.SETTINGS to SettingsPanel(ui, this, { closePanel() }, onAbandon),
+        PanelId.HELP to fr.president.game.ui.panels.HelpPanel(ui, this) { closePanel() },
     )
 
     private var cameraReady = false
@@ -103,9 +106,12 @@ class MainScreen(
         val root = Table().apply { setFillParent(true) }
         root.add(topBar.root).growX().colspan(3).row()
         val layers = LayerBar(ui, layer) { layer = it }
-        root.add(layers.root).top().left().pad(6f)
+        val left = Table()
+        left.add(ScrollPane(layers.root).apply { setScrollingDisabled(true, false) }).top().left().minHeight(0f).prefHeight(0f).growY().row()
+        left.add(legend.root).left().bottom().padTop(6f)
+        root.add(left).top().left().growY().pad(6f)
         root.add().expand()
-        root.add(panelSlot).width(PANEL_WIDTH).minHeight(0f).prefHeight(0f).growY().pad(6f).row()
+        root.add(panelSlot).width(com.badlogic.gdx.scenes.scene2d.ui.Value.percentWidth(PANEL_SHARE, root)).maxWidth(PANEL_WIDTH).minHeight(0f).prefHeight(0f).growY().pad(6f).row()
         val actions = ScrollPane(actionBar.root).apply { setScrollingDisabled(false, true) }
         root.add(actions).colspan(3).center().padBottom(6f)
         stage.addActor(root)
@@ -131,6 +137,7 @@ class MainScreen(
         while (controller.freshNotifications.isNotEmpty()) toasts.show(controller.freshNotifications.removeFirst())
         camera.update()
         lod = LodPolicy.of(camera.viewportWidth * camera.zoom)
+        legend.update(layer)
         mapRenderer.render(camera, session.state, layer, lod, selection)
         overlay.render(camera, session, layer, lod, delta, selectedMapId())
         sinceRefresh += delta
@@ -288,7 +295,8 @@ class MainScreen(
         const val DEPARTMENT_VIEW_WIDTH = 350f
         const val LOCAL_VIEW_WIDTH = 160f
         const val UNIT_VIEW_WIDTH = 600f
-        const val PANEL_WIDTH = 400f
+        const val PANEL_WIDTH = 420f
+        const val PANEL_SHARE = 0.48f
         const val REFRESH_SECONDS = 3f
         const val TOAST_TOP = 70f
         const val MIN_ABSENCE_DAYS = 0.5

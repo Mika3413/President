@@ -40,6 +40,9 @@ sealed class ScheduledAction {
     data class AllianceCall(override val at: WorldTime, val warId: String, val country: String) : ScheduledAction()
 
     @Serializable
+    data class Tutorial(override val at: WorldTime, val index: Int) : ScheduledAction()
+
+    @Serializable
     data class ProjectCompletion(override val at: WorldTime, val projectId: String) : ScheduledAction()
 }
 

@@ -105,6 +105,7 @@ class NewGameFactory(private val db: GameDatabase) {
             poll()
         }
         WelcomeMessage(ctx).send()
+        WelcomeMessage(ctx).scheduleTutorial()
         return state
     }
 
@@ -154,7 +155,13 @@ class NewGameFactory(private val db: GameDatabase) {
                 urbanShare = d.profile.urbanShare ?: defaults.urbanShare ?: DEFAULT_URBAN,
                 seniorShare = d.profile.seniorShare ?: defaults.seniorShare ?: DEFAULT_SENIOR,
                 politicalLeaning = d.profile.politicalLeaning ?: defaults.politicalLeaning ?: 0.0,
-            )
+            ).apply {
+                healthAccess = d.profile.healthAccess ?: defaults.healthAccess ?: 1.0
+                crime = d.profile.crime ?: defaults.crime ?: 1.0
+                industryShare = d.profile.industryShare ?: defaults.industryShare ?: DEFAULT_INDUSTRY
+                agricultureShare = d.profile.agricultureShare ?: defaults.agricultureShare ?: DEFAULT_AGRICULTURE
+                pollution = d.profile.pollution ?: defaults.pollution ?: 1.0
+            }
         }
         territory.cities.forEach { state.territory.cities[it.id] = CityState(it.id, it.department, it.population) }
     }
@@ -203,6 +210,8 @@ class NewGameFactory(private val db: GameDatabase) {
         const val DEFAULT_TERM_YEARS = 5
         const val DEFAULT_URBAN = 0.5
         const val DEFAULT_SENIOR = 0.21
+        const val DEFAULT_INDUSTRY = 0.12
+        const val DEFAULT_AGRICULTURE = 0.03
         const val FIRST_AI_DECISION_MIN = 4.0
         const val FIRST_AI_DECISION_MAX = 12.0
     }

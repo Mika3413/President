@@ -18,6 +18,16 @@ data class LocalProfileDef(
     val seniorShare: Double? = null,
     /** Orientation politique dominante du territoire, de -1 (gauche) à +1 (droite). */
     val politicalLeaning: Double? = null,
+    /** Accès aux soins (1 = moyenne nationale). */
+    val healthAccess: Double? = null,
+    /** Délinquance (1 = moyenne nationale). */
+    val crime: Double? = null,
+    /** Part de l'industrie dans l'emploi local. */
+    val industryShare: Double? = null,
+    /** Part de l'agriculture dans l'emploi local. */
+    val agricultureShare: Double? = null,
+    /** Pollution de l'air (1 = moyenne nationale). */
+    val pollution: Double? = null,
 )
 
 @Serializable

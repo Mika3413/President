@@ -166,7 +166,9 @@
    "profile": {
     "unemployment": 0.055,
     "incomeIndex": 1.1,
-    "seniorShare": 0.18
+    "seniorShare": 0.18,
+    "healthAccess": 0.75,
+    "industryShare": 0.25
    }
   },
   {
@@ -177,7 +179,10 @@
    "profile": {
     "unemployment": 0.105,
     "incomeIndex": 0.87,
-    "politicalLeaning": 0.4
+    "politicalLeaning": 0.4,
+    "healthAccess": 0.7,
+    "industryShare": 0.18,
+    "agricultureShare": 0.06
    }
   },
   {
@@ -186,7 +191,9 @@
    "region": "84",
    "population": 335000,
    "profile": {
-    "seniorShare": 0.28
+    "seniorShare": 0.28,
+    "healthAccess": 0.7,
+    "agricultureShare": 0.06
    }
   },
   {
@@ -196,14 +203,20 @@
    "population": 166000,
    "profile": {
     "urbanShare": 0.3,
-    "seniorShare": 0.28
+    "seniorShare": 0.28,
+    "crime": 0.75,
+    "pollution": 0.65
    }
   },
   {
    "code": "05",
    "name": "Hautes-Alpes",
    "region": "93",
-   "population": 141000
+   "population": 141000,
+   "profile": {
+    "crime": 0.7,
+    "pollution": 0.6
+   }
   },
   {
    "code": "06",
@@ -214,14 +227,22 @@
     "incomeIndex": 1.0,
     "urbanShare": 0.85,
     "seniorShare": 0.27,
-    "politicalLeaning": 0.45
+    "politicalLeaning": 0.45,
+    "healthAccess": 1.3,
+    "crime": 1.3,
+    "industryShare": 0.06,
+    "agricultureShare": 0.01,
+    "pollution": 1.3
    }
   },
   {
    "code": "07",
    "name": "Ardèche",
    "region": "84",
-   "population": 330000
+   "population": 330000,
+   "profile": {
+    "agricultureShare": 0.06
+   }
   },
   {
    "code": "08",
@@ -231,7 +252,8 @@
    "profile": {
     "unemployment": 0.093,
     "incomeIndex": 0.87,
-    "politicalLeaning": 0.35
+    "politicalLeaning": 0.35,
+    "industryShare": 0.22
    }
   },
   {
@@ -241,7 +263,8 @@
    "population": 155000,
    "profile": {
     "urbanShare": 0.3,
-    "politicalLeaning": -0.3
+    "politicalLeaning": -0.3,
+    "agricultureShare": 0.07
    }
   },
   {
@@ -250,7 +273,8 @@
    "region": "44",
    "population": 310000,
    "profile": {
-    "unemployment": 0.09
+    "unemployment": 0.09,
+    "agricultureShare": 0.07
    }
   },
   {
@@ -261,7 +285,8 @@
    "profile": {
     "unemployment": 0.11,
     "incomeIndex": 0.85,
-    "politicalLeaning": 0.25
+    "politicalLeaning": 0.25,
+    "agricultureShare": 0.08
    }
   },
   {
@@ -272,7 +297,10 @@
    "profile": {
     "unemployment": 0.05,
     "urbanShare": 0.25,
-    "seniorShare": 0.27
+    "seniorShare": 0.27,
+    "crime": 0.55,
+    "agricultureShare": 0.1,
+    "pollution": 0.6
    }
   },
   {
@@ -284,14 +312,22 @@
     "unemployment": 0.088,
     "incomeIndex": 0.95,
     "urbanShare": 0.9,
-    "politicalLeaning": 0.2
+    "politicalLeaning": 0.2,
+    "healthAccess": 1.25,
+    "crime": 1.7,
+    "industryShare": 0.1,
+    "agricultureShare": 0.01,
+    "pollution": 1.6
    }
   },
   {
    "code": "14",
    "name": "Calvados",
    "region": "28",
-   "population": 699000
+   "population": 699000,
+   "profile": {
+    "agricultureShare": 0.05
+   }
   },
   {
    "code": "15",
@@ -301,14 +337,20 @@
    "profile": {
     "unemployment": 0.045,
     "urbanShare": 0.2,
-    "seniorShare": 0.28
+    "seniorShare": 0.28,
+    "crime": 0.45,
+    "agricultureShare": 0.11,
+    "pollution": 0.5
    }
   },
   {
    "code": "16",
    "name": "Charente",
    "region": "75",
-   "population": 352000
+   "population": 352000,
+   "profile": {
+    "agricultureShare": 0.07
+   }
   },
   {
    "code": "17",
@@ -316,14 +358,19 @@
    "region": "75",
    "population": 655000,
    "profile": {
-    "seniorShare": 0.29
+    "seniorShare": 0.29,
+    "agricultureShare": 0.06
    }
   },
   {
    "code": "18",
    "name": "Cher",
    "region": "24",
-   "population": 300000
+   "population": 300000,
+   "profile": {
+    "healthAccess": 0.65,
+    "agricultureShare": 0.06
+   }
   },
   {
    "code": "19",
@@ -333,7 +380,10 @@
    "profile": {
     "urbanShare": 0.3,
     "seniorShare": 0.28,
-    "politicalLeaning": -0.2
+    "politicalLeaning": -0.2,
+    "crime": 0.6,
+    "agricultureShare": 0.07,
+    "pollution": 0.6
    }
   },
   {
@@ -343,7 +393,10 @@
    "population": 160000,
    "profile": {
     "urbanShare": 0.45,
-    "politicalLeaning": 0.3
+    "politicalLeaning": 0.3,
+    "crime": 1.1,
+    "industryShare": 0.04,
+    "pollution": 0.6
    }
   },
   {
@@ -355,20 +408,30 @@
     "unemployment": 0.07,
     "incomeIndex": 0.88,
     "urbanShare": 0.4,
-    "politicalLeaning": 0.3
+    "politicalLeaning": 0.3,
+    "crime": 1.2,
+    "industryShare": 0.04,
+    "pollution": 0.6
    }
   },
   {
    "code": "21",
    "name": "Côte-d'Or",
    "region": "27",
-   "population": 535000
+   "population": 535000,
+   "profile": {
+    "agricultureShare": 0.05
+   }
   },
   {
    "code": "22",
    "name": "Côtes-d'Armor",
    "region": "53",
-   "population": 604000
+   "population": 604000,
+   "profile": {
+    "agricultureShare": 0.08,
+    "pollution": 0.6
+   }
   },
   {
    "code": "23",
@@ -379,7 +442,11 @@
     "incomeIndex": 0.85,
     "urbanShare": 0.15,
     "seniorShare": 0.31,
-    "politicalLeaning": -0.1
+    "politicalLeaning": -0.1,
+    "healthAccess": 0.6,
+    "crime": 0.5,
+    "agricultureShare": 0.1,
+    "pollution": 0.5
    }
   },
   {
@@ -389,32 +456,47 @@
    "population": 413000,
    "profile": {
     "seniorShare": 0.29,
-    "politicalLeaning": -0.05
+    "politicalLeaning": -0.05,
+    "agricultureShare": 0.07
    }
   },
   {
    "code": "25",
    "name": "Doubs",
    "region": "27",
-   "population": 545000
+   "population": 545000,
+   "profile": {
+    "industryShare": 0.25
+   }
   },
   {
    "code": "26",
    "name": "Drôme",
    "region": "84",
-   "population": 520000
+   "population": 520000,
+   "profile": {
+    "agricultureShare": 0.06
+   }
   },
   {
    "code": "27",
    "name": "Eure",
    "region": "28",
-   "population": 600000
+   "population": 600000,
+   "profile": {
+    "healthAccess": 0.6,
+    "industryShare": 0.2
+   }
   },
   {
    "code": "28",
    "name": "Eure-et-Loir",
    "region": "24",
-   "population": 431000
+   "population": 431000,
+   "profile": {
+    "healthAccess": 0.6,
+    "agricultureShare": 0.05
+   }
   },
   {
    "code": "29",
@@ -422,7 +504,9 @@
    "region": "53",
    "population": 918000,
    "profile": {
-    "politicalLeaning": -0.25
+    "politicalLeaning": -0.25,
+    "agricultureShare": 0.06,
+    "pollution": 0.6
    }
   },
   {
@@ -433,7 +517,9 @@
    "profile": {
     "unemployment": 0.105,
     "incomeIndex": 0.9,
-    "politicalLeaning": 0.2
+    "politicalLeaning": 0.2,
+    "crime": 1.25,
+    "industryShare": 0.09
    }
   },
   {
@@ -445,7 +531,12 @@
     "incomeIndex": 1.05,
     "urbanShare": 0.75,
     "seniorShare": 0.17,
-    "politicalLeaning": -0.35
+    "politicalLeaning": -0.35,
+    "healthAccess": 1.2,
+    "crime": 1.25,
+    "industryShare": 0.12,
+    "agricultureShare": 0.02,
+    "pollution": 1.1
    }
   },
   {
@@ -455,7 +546,10 @@
    "population": 192000,
    "profile": {
     "urbanShare": 0.2,
-    "seniorShare": 0.28
+    "seniorShare": 0.28,
+    "crime": 0.6,
+    "agricultureShare": 0.1,
+    "pollution": 0.6
    }
   },
   {
@@ -466,7 +560,11 @@
    "profile": {
     "incomeIndex": 1.02,
     "urbanShare": 0.7,
-    "politicalLeaning": -0.2
+    "politicalLeaning": -0.2,
+    "healthAccess": 1.15,
+    "industryShare": 0.1,
+    "agricultureShare": 0.03,
+    "pollution": 1.1
    }
   },
   {
@@ -478,7 +576,10 @@
     "unemployment": 0.096,
     "incomeIndex": 0.92,
     "urbanShare": 0.7,
-    "politicalLeaning": -0.1
+    "politicalLeaning": -0.1,
+    "healthAccess": 1.25,
+    "crime": 1.3,
+    "industryShare": 0.06
    }
   },
   {
@@ -491,7 +592,8 @@
     "incomeIndex": 1.02,
     "urbanShare": 0.6,
     "seniorShare": 0.18,
-    "politicalLeaning": -0.25
+    "politicalLeaning": -0.25,
+    "agricultureShare": 0.05
    }
   },
   {
@@ -501,7 +603,9 @@
    "population": 217000,
    "profile": {
     "urbanShare": 0.3,
-    "seniorShare": 0.28
+    "seniorShare": 0.28,
+    "healthAccess": 0.6,
+    "agricultureShare": 0.08
    }
   },
   {
@@ -519,7 +623,9 @@
     "incomeIndex": 1.05,
     "urbanShare": 0.6,
     "seniorShare": 0.19,
-    "politicalLeaning": -0.15
+    "politicalLeaning": -0.15,
+    "industryShare": 0.18,
+    "pollution": 1.2
    }
   },
   {
@@ -528,14 +634,18 @@
    "region": "27",
    "population": 259000,
    "profile": {
-    "unemployment": 0.052
+    "unemployment": 0.052,
+    "industryShare": 0.24
    }
   },
   {
    "code": "40",
    "name": "Landes",
    "region": "75",
-   "population": 419000
+   "population": 419000,
+   "profile": {
+    "agricultureShare": 0.06
+   }
   },
   {
    "code": "41",
@@ -547,7 +657,10 @@
    "code": "42",
    "name": "Loire",
    "region": "84",
-   "population": 766000
+   "population": 766000,
+   "profile": {
+    "industryShare": 0.2
+   }
   },
   {
    "code": "43",
@@ -555,7 +668,9 @@
    "region": "84",
    "population": 228000,
    "profile": {
-    "urbanShare": 0.25
+    "urbanShare": 0.25,
+    "crime": 0.55,
+    "agricultureShare": 0.08
    }
   },
   {
@@ -568,14 +683,20 @@
     "incomeIndex": 1.03,
     "urbanShare": 0.65,
     "seniorShare": 0.19,
-    "politicalLeaning": -0.15
+    "politicalLeaning": -0.15,
+    "industryShare": 0.16,
+    "pollution": 1.1
    }
   },
   {
    "code": "45",
    "name": "Loiret",
    "region": "24",
-   "population": 683000
+   "population": 683000,
+   "profile": {
+    "healthAccess": 0.8,
+    "agricultureShare": 0.04
+   }
   },
   {
    "code": "46",
@@ -584,14 +705,20 @@
    "population": 175000,
    "profile": {
     "urbanShare": 0.2,
-    "seniorShare": 0.3
+    "seniorShare": 0.3,
+    "crime": 0.6,
+    "agricultureShare": 0.08,
+    "pollution": 0.6
    }
   },
   {
    "code": "47",
    "name": "Lot-et-Garonne",
    "region": "75",
-   "population": 332000
+   "population": 332000,
+   "profile": {
+    "agricultureShare": 0.09
+   }
   },
   {
    "code": "48",
@@ -601,26 +728,38 @@
    "profile": {
     "unemployment": 0.045,
     "incomeIndex": 0.92,
-    "urbanShare": 0.15
+    "urbanShare": 0.15,
+    "crime": 0.4,
+    "agricultureShare": 0.11,
+    "pollution": 0.45
    }
   },
   {
    "code": "49",
    "name": "Maine-et-Loire",
    "region": "52",
-   "population": 822000
+   "population": 822000,
+   "profile": {
+    "industryShare": 0.18
+   }
   },
   {
    "code": "50",
    "name": "Manche",
    "region": "28",
-   "population": 495000
+   "population": 495000,
+   "profile": {
+    "agricultureShare": 0.08
+   }
   },
   {
    "code": "51",
    "name": "Marne",
    "region": "44",
-   "population": 566000
+   "population": 566000,
+   "profile": {
+    "agricultureShare": 0.09
+   }
   },
   {
    "code": "52",
@@ -628,7 +767,9 @@
    "region": "44",
    "population": 172000,
    "profile": {
-    "urbanShare": 0.3
+    "urbanShare": 0.3,
+    "healthAccess": 0.65,
+    "agricultureShare": 0.07
    }
   },
   {
@@ -638,7 +779,11 @@
    "population": 307000,
    "profile": {
     "unemployment": 0.05,
-    "politicalLeaning": 0.1
+    "politicalLeaning": 0.1,
+    "healthAccess": 0.7,
+    "crime": 0.6,
+    "industryShare": 0.21,
+    "agricultureShare": 0.08
    }
   },
   {
@@ -653,14 +798,19 @@
    "region": "44",
    "population": 183000,
    "profile": {
-    "urbanShare": 0.3
+    "urbanShare": 0.3,
+    "healthAccess": 0.65,
+    "agricultureShare": 0.07
    }
   },
   {
    "code": "56",
    "name": "Morbihan",
    "region": "53",
-   "population": 763000
+   "population": 763000,
+   "profile": {
+    "agricultureShare": 0.07
+   }
   },
   {
    "code": "57",
@@ -669,7 +819,9 @@
    "population": 1046000,
    "profile": {
     "urbanShare": 0.6,
-    "politicalLeaning": 0.3
+    "politicalLeaning": 0.3,
+    "industryShare": 0.17,
+    "pollution": 1.2
    }
   },
   {
@@ -679,7 +831,9 @@
    "population": 202000,
    "profile": {
     "urbanShare": 0.3,
-    "seniorShare": 0.29
+    "seniorShare": 0.29,
+    "healthAccess": 0.65,
+    "agricultureShare": 0.07
    }
   },
   {
@@ -692,7 +846,11 @@
     "incomeIndex": 0.88,
     "urbanShare": 0.85,
     "seniorShare": 0.17,
-    "politicalLeaning": 0.0
+    "politicalLeaning": 0.0,
+    "crime": 1.3,
+    "industryShare": 0.17,
+    "agricultureShare": 0.01,
+    "pollution": 1.4
    }
   },
   {
@@ -702,14 +860,21 @@
    "population": 830000,
    "profile": {
     "unemployment": 0.079,
-    "politicalLeaning": 0.25
+    "politicalLeaning": 0.25,
+    "healthAccess": 0.75,
+    "industryShare": 0.17
    }
   },
   {
    "code": "61",
    "name": "Orne",
    "region": "28",
-   "population": 278000
+   "population": 278000,
+   "profile": {
+    "healthAccess": 0.65,
+    "industryShare": 0.2,
+    "agricultureShare": 0.08
+   }
   },
   {
    "code": "62",
@@ -720,20 +885,28 @@
     "unemployment": 0.09,
     "incomeIndex": 0.85,
     "urbanShare": 0.6,
-    "politicalLeaning": 0.3
+    "politicalLeaning": 0.3,
+    "industryShare": 0.18,
+    "pollution": 1.2
    }
   },
   {
    "code": "63",
    "name": "Puy-de-Dôme",
    "region": "84",
-   "population": 668000
+   "population": 668000,
+   "profile": {
+    "agricultureShare": 0.04
+   }
   },
   {
    "code": "64",
    "name": "Pyrénées-Atlantiques",
    "region": "75",
-   "population": 688000
+   "population": 688000,
+   "profile": {
+    "agricultureShare": 0.05
+   }
   },
   {
    "code": "65",
@@ -741,7 +914,8 @@
    "region": "76",
    "population": 229000,
    "profile": {
-    "politicalLeaning": -0.25
+    "politicalLeaning": -0.25,
+    "agricultureShare": 0.05
    }
   },
   {
@@ -753,7 +927,9 @@
     "unemployment": 0.115,
     "incomeIndex": 0.85,
     "seniorShare": 0.27,
-    "politicalLeaning": 0.35
+    "politicalLeaning": 0.35,
+    "crime": 1.2,
+    "industryShare": 0.06
    }
   },
   {
@@ -765,7 +941,11 @@
     "incomeIndex": 1.05,
     "urbanShare": 0.7,
     "seniorShare": 0.18,
-    "politicalLeaning": 0.1
+    "politicalLeaning": 0.1,
+    "healthAccess": 1.15,
+    "industryShare": 0.17,
+    "agricultureShare": 0.01,
+    "pollution": 1.3
    }
   },
   {
@@ -776,7 +956,9 @@
    "profile": {
     "incomeIndex": 1.03,
     "urbanShare": 0.6,
-    "politicalLeaning": 0.2
+    "politicalLeaning": 0.2,
+    "industryShare": 0.22,
+    "pollution": 1.1
    }
   },
   {
@@ -788,26 +970,41 @@
     "incomeIndex": 1.1,
     "urbanShare": 0.85,
     "seniorShare": 0.17,
-    "politicalLeaning": -0.05
+    "politicalLeaning": -0.05,
+    "healthAccess": 1.2,
+    "crime": 1.4,
+    "industryShare": 0.15,
+    "agricultureShare": 0.01,
+    "pollution": 1.5
    }
   },
   {
    "code": "70",
    "name": "Haute-Saône",
    "region": "27",
-   "population": 233000
+   "population": 233000,
+   "profile": {
+    "industryShare": 0.23
+   }
   },
   {
    "code": "71",
    "name": "Saône-et-Loire",
    "region": "27",
-   "population": 551000
+   "population": 551000,
+   "profile": {
+    "industryShare": 0.19,
+    "agricultureShare": 0.06
+   }
   },
   {
    "code": "72",
    "name": "Sarthe",
    "region": "52",
-   "population": 566000
+   "population": 566000,
+   "profile": {
+    "healthAccess": 0.75
+   }
   },
   {
    "code": "73",
@@ -824,7 +1021,8 @@
     "unemployment": 0.055,
     "incomeIndex": 1.25,
     "seniorShare": 0.18,
-    "politicalLeaning": 0.2
+    "politicalLeaning": 0.2,
+    "industryShare": 0.22
    }
   },
   {
@@ -837,7 +1035,12 @@
     "incomeIndex": 1.35,
     "urbanShare": 1.0,
     "seniorShare": 0.17,
-    "politicalLeaning": -0.3
+    "politicalLeaning": -0.3,
+    "healthAccess": 1.6,
+    "crime": 1.9,
+    "industryShare": 0.04,
+    "agricultureShare": 0.0,
+    "pollution": 1.8
    }
   },
   {
@@ -847,7 +1050,9 @@
    "population": 1255000,
    "profile": {
     "unemployment": 0.08,
-    "urbanShare": 0.6
+    "urbanShare": 0.6,
+    "industryShare": 0.17,
+    "pollution": 1.3
    }
   },
   {
@@ -859,7 +1064,11 @@
     "unemployment": 0.065,
     "incomeIndex": 1.05,
     "urbanShare": 0.65,
-    "seniorShare": 0.15
+    "seniorShare": 0.15,
+    "healthAccess": 0.7,
+    "crime": 1.1,
+    "agricultureShare": 0.02,
+    "pollution": 1.1
    }
   },
   {
@@ -872,14 +1081,19 @@
     "incomeIndex": 1.3,
     "urbanShare": 0.8,
     "seniorShare": 0.16,
-    "politicalLeaning": 0.25
+    "politicalLeaning": 0.25,
+    "agricultureShare": 0.01,
+    "pollution": 1.2
    }
   },
   {
    "code": "79",
    "name": "Deux-Sèvres",
    "region": "75",
-   "population": 375000
+   "population": 375000,
+   "profile": {
+    "agricultureShare": 0.08
+   }
   },
   {
    "code": "80",
@@ -888,7 +1102,9 @@
    "population": 570000,
    "profile": {
     "unemployment": 0.088,
-    "politicalLeaning": 0.2
+    "politicalLeaning": 0.2,
+    "industryShare": 0.16,
+    "agricultureShare": 0.06
    }
   },
   {
@@ -897,7 +1113,8 @@
    "region": "76",
    "population": 390000,
    "profile": {
-    "politicalLeaning": -0.1
+    "politicalLeaning": -0.1,
+    "agricultureShare": 0.06
    }
   },
   {
@@ -906,7 +1123,8 @@
    "region": "76",
    "population": 262000,
    "profile": {
-    "politicalLeaning": 0.1
+    "politicalLeaning": 0.1,
+    "agricultureShare": 0.08
    }
   },
   {
@@ -917,7 +1135,8 @@
    "profile": {
     "urbanShare": 0.7,
     "seniorShare": 0.28,
-    "politicalLeaning": 0.5
+    "politicalLeaning": 0.5,
+    "industryShare": 0.07
    }
   },
   {
@@ -926,7 +1145,8 @@
    "region": "93",
    "population": 562000,
    "profile": {
-    "politicalLeaning": 0.4
+    "politicalLeaning": 0.4,
+    "agricultureShare": 0.06
    }
   },
   {
@@ -936,14 +1156,20 @@
    "population": 690000,
    "profile": {
     "unemployment": 0.054,
-    "politicalLeaning": 0.2
+    "politicalLeaning": 0.2,
+    "crime": 0.65,
+    "industryShare": 0.2,
+    "agricultureShare": 0.07
    }
   },
   {
    "code": "86",
    "name": "Vienne",
    "region": "75",
-   "population": 439000
+   "population": 439000,
+   "profile": {
+    "agricultureShare": 0.06
+   }
   },
   {
    "code": "87",
@@ -952,20 +1178,28 @@
    "population": 372000,
    "profile": {
     "seniorShare": 0.25,
-    "politicalLeaning": -0.3
+    "politicalLeaning": -0.3,
+    "agricultureShare": 0.05
    }
   },
   {
    "code": "88",
    "name": "Vosges",
    "region": "44",
-   "population": 362000
+   "population": 362000,
+   "profile": {
+    "industryShare": 0.21
+   }
   },
   {
    "code": "89",
    "name": "Yonne",
    "region": "27",
-   "population": 335000
+   "population": 335000,
+   "profile": {
+    "healthAccess": 0.65,
+    "agricultureShare": 0.06
+   }
   },
   {
    "code": "90",
@@ -973,7 +1207,8 @@
    "region": "27",
    "population": 141000,
    "profile": {
-    "urbanShare": 0.6
+    "urbanShare": 0.6,
+    "industryShare": 0.27
    }
   },
   {
@@ -985,7 +1220,10 @@
     "unemployment": 0.066,
     "incomeIndex": 1.1,
     "urbanShare": 0.8,
-    "seniorShare": 0.15
+    "seniorShare": 0.15,
+    "crime": 1.2,
+    "agricultureShare": 0.01,
+    "pollution": 1.3
    }
   },
   {
@@ -998,7 +1236,11 @@
     "incomeIndex": 1.35,
     "urbanShare": 1.0,
     "seniorShare": 0.16,
-    "politicalLeaning": 0.2
+    "politicalLeaning": 0.2,
+    "crime": 1.2,
+    "industryShare": 0.07,
+    "agricultureShare": 0.0,
+    "pollution": 1.7
    }
   },
   {
@@ -1011,7 +1253,12 @@
     "incomeIndex": 0.75,
     "urbanShare": 1.0,
     "seniorShare": 0.13,
-    "politicalLeaning": -0.6
+    "politicalLeaning": -0.6,
+    "healthAccess": 0.7,
+    "crime": 2.2,
+    "industryShare": 0.08,
+    "agricultureShare": 0.0,
+    "pollution": 1.7
    }
   },
   {
@@ -1024,7 +1271,10 @@
     "incomeIndex": 1.05,
     "urbanShare": 1.0,
     "seniorShare": 0.15,
-    "politicalLeaning": -0.35
+    "politicalLeaning": -0.35,
+    "crime": 1.5,
+    "agricultureShare": 0.0,
+    "pollution": 1.6
    }
   },
   {
@@ -1036,7 +1286,11 @@
     "unemployment": 0.082,
     "incomeIndex": 1.0,
     "urbanShare": 0.85,
-    "seniorShare": 0.14
+    "seniorShare": 0.14,
+    "healthAccess": 0.75,
+    "crime": 1.4,
+    "agricultureShare": 0.01,
+    "pollution": 1.4
    }
   }
  ],

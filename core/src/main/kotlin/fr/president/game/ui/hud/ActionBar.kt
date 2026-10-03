@@ -25,6 +25,7 @@ class ActionBar(ui: Ui, private val session: GameSession, open: (PanelId) -> Uni
         root.add(alerts)
         root.add(ui.button("Élections") { open(PanelId.ELECTIONS) })
         root.add(ui.button("Réglages") { open(PanelId.SETTINGS) })
+        root.add(ui.button("Aide") { open(PanelId.HELP) })
     }
 
     fun refresh() {

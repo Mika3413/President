@@ -25,7 +25,25 @@ class WelcomeMessage(private val ctx: SimulationContext) {
         )
     }
 
+    /** Messages de prise en main, distribués progressivement. */
+    fun scheduleTutorial() {
+        ctx.db.help.tutorial.forEachIndexed { i, t ->
+            ctx.scheduler.schedule(fr.president.engine.simulation.ScheduledAction.Tutorial(ctx.now.plusHours(t.delayHours.toLong()), i))
+        }
+    }
+
+    fun tutorial(index: Int) {
+        val t = ctx.db.help.tutorial.getOrNull(index) ?: return
+        val honorific = DialogueContextBuilder(ctx).build().variables["honorific"] ?: ""
+        ctx.state.inbox.messages += InboxMessage(
+            id = ctx.state.newId("msg"), senderId = null, senderLabel = TUTORIAL_SENDER,
+            subject = t.subject, body = t.body.replace("Monsieur le Président", honorific),
+            time = ctx.now, category = NotificationCategory.GOVERNMENT, origin = MessageOrigin.INFO, originId = null,
+        )
+    }
+
     private companion object {
+        const val TUTORIAL_SENDER = "Secrétaire général de la présidence"
         const val TEMPLATE = "welcome"
     }
 }

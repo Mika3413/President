@@ -63,7 +63,7 @@ territory = [
    "options": [
     opt("rescue", "Soutenir la reprise avec des fonds publics", "Coût : {amountText}", [E("budget.oneOff", param="amount"), E("scope.approval", 0.03, days=10), E("economy.businessConfidence", 0.005)], "ACCEPTED"),
     opt("broker", "Chercher un repreneur privé", "Coût faible ; succès partiel", [E("budget.oneOff", param="amount", factor=0.15), E("scope.unemployment", param="impact", factor=0.5, days=120), E("scope.approval", -0.01, days=10)], "PARTIAL"),
-    opt("let_go", "Laisser faire le marché", "Aucun coût ; {jobs} emplois menacés", [E("scope.unemployment", param="impact", days=120), E("scope.approval", -0.04, days=20), E("opinion.group.private_employees", -0.004)], "REFUSED"),
+    opt("let_go", "Laisser faire le marché", "Aucun coût ; {jobs} emplois menacés", [E("scope.unemployment", param="impact", days=120), E("scope.industry", -0.01, days=120), E("scope.approval", -0.04, days=20), E("opinion.group.private_employees", -0.004)], "REFUSED"),
    ]}},
 ]
 

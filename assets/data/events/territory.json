@@ -440,6 +440,11 @@
         "days": 120
        },
        {
+        "target": "scope.industry",
+        "amount": -0.01,
+        "days": 120
+       },
+       {
         "target": "scope.approval",
         "amount": -0.04,
         "days": 20

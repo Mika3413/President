@@ -7,7 +7,8 @@ import fr.president.game.ui.Formats
 import fr.president.game.ui.Ui
 
 /** Réglages : notifications par catégorie, informations sur la partie, journal de debug. */
-class SettingsPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel(ui, onClose) {
+class SettingsPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit, private val onAbandon: () -> Unit) : Panel(ui, onClose) {
+    private var confirmAbandon = false
     override val title = "Réglages"
     private val session get() = nav.session
     private var showDebug = false
@@ -34,6 +35,16 @@ class SettingsPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : P
         into.add(ui.label("Rythme : ${pace?.label} (verrouillé) — ${pace?.description}", "small", wrap = true)).growX().row()
         into.add(ui.label("Début : ${Formats.date(meta.startTime)} · Snapshot : ${meta.snapshotId} · Graine : ${meta.seed}", "muted", wrap = true)).growX().row()
         into.add(ui.button(if (showDebug) "Masquer le journal de debug" else "Journal de debug (IA, économie)", "flat") { showDebug = !showDebug; nav.refresh() }).left().padTop(GAP).row()
+        into.add(ui.label("Partie en cours", "bold")).padTop(GAP).row()
+        if (!confirmAbandon) {
+            into.add(ui.button("Abandonner et recommencer…", "flat") { confirmAbandon = true; nav.refresh() }).left().row()
+        } else {
+            into.add(ui.label("La partie actuelle sera définitivement perdue.", "small", fr.president.game.ui.Theme.bad)).row()
+            val row = Table().apply { defaults().padRight(4f) }
+            row.add(ui.button("Confirmer l'abandon", "accent") { onAbandon() })
+            row.add(ui.button("Annuler") { confirmAbandon = false; nav.refresh() })
+            into.add(row).left().row()
+        }
         if (showDebug) {
             session.context.debug.recent().takeLast(DEBUG_LINES).asReversed().forEach {
                 into.add(ui.label("[${it.category}] ${it.message}", "muted", wrap = true)).growX().row()

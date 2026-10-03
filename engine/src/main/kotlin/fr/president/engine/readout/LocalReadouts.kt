@@ -31,6 +31,12 @@ class LocalReadouts(private val ctx: SimulationContext) {
                 scaled("Chômage", "unemployment", d.unemployment, "Taux local : ${Formatting.percent(d.unemployment)}"),
                 Indicator("Revenus", incomeLabel(d.incomeIndex), Tone.NEUTRAL, "",
                     listOf("Indice de revenu" to Formatting.amount(d.incomeIndex * PERCENT))),
+                Indicator("Santé", if (d.healthAccess < LOW_ACCESS) "Désert médical" else if (d.healthAccess > HIGH_ACCESS) "Bien doté" else "Accès moyen",
+                    if (d.healthAccess < LOW_ACCESS) Tone.WARNING else Tone.NEUTRAL, "", listOf("Accès aux soins (indice)" to Formatting.amount(d.healthAccess * PERCENT))),
+                Indicator("Sécurité", if (d.crime > HIGH_CRIME) "Délinquance élevée" else if (d.crime < LOW_CRIME) "Calme" else "Moyenne",
+                    if (d.crime > HIGH_CRIME) Tone.WARNING else Tone.NEUTRAL, "", listOf("Délinquance (indice)" to Formatting.amount(d.crime * PERCENT))),
+                Indicator("Économie locale", "Industrie ${Formatting.percent(d.industryShare)} · Agriculture ${Formatting.percent(d.agricultureShare)}", Tone.NEUTRAL, "",
+                    listOf("Pollution de l'air (indice)" to Formatting.amount(d.pollution * PERCENT))),
                 Indicator("Territoire", if (d.urbanShare > URBAN) "Plutôt urbain" else if (d.urbanShare < RURAL) "Plutôt rural" else "Mixte",
                     Tone.NEUTRAL, "", listOf("Part urbaine" to Formatting.percent(d.urbanShare), "Part des 65 ans et +" to Formatting.percent(d.seniorShare))),
             ),
@@ -173,6 +179,10 @@ class LocalReadouts(private val ctx: SimulationContext) {
         const val RURAL = 0.35
         const val LOCAL_GAP = 0.015
         const val LOW_APPROVAL = 0.33
+        const val LOW_ACCESS = 0.8
+        const val HIGH_ACCESS = 1.2
+        const val HIGH_CRIME = 1.3
+        const val LOW_CRIME = 0.75
         const val HIGH_INCOME = 1.1
         const val LOW_INCOME = 0.92
         const val REDUCED = 0.9

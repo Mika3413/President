@@ -32,6 +32,7 @@ class DataLoader(private val source: DataSource) {
             zones = fr.president.engine.military.ZoneGraph(read<ZonesFile>(files.zones)),
             unitTypes = unitTypes.types.associateBy { it.id },
             militaryParameters = unitTypes.parameters,
+            help = read(files.help),
         )
         DataValidator.validate(db)
         return db
