@@ -17,12 +17,15 @@ import fr.president.engine.territory.ProjectStatus
  */
 class NationalActionCommands(private val ctx: SimulationContext) {
     private val presenter = ActionPresenter(ctx)
+    private val agenda = AgendaService(ctx)
 
     val categories: List<ActionCategory> get() = ctx.playerData.nationalActions?.categories.orEmpty()
     val definitions: List<LocalActionDef> get() = ctx.playerData.nationalActions?.actions.orEmpty()
 
     fun actions(category: String? = null): List<ActionPresenter.ActionView> =
-        definitions.filter { category == null || it.category == category }.map { presenter.view(it, blocker(it), !presenter.unlocked(it)) }
+        definitions.filter { category == null || it.category == category }.map {
+            presenter.view(it, blocker(it), !presenter.unlocked(it)).copy(agenda = agenda.describe(agenda.costOfAction(it.id)))
+        }
 
     /** Nombre de décisions possibles tout de suite, par rubrique (pastilles de l'interface). */
     fun availableCount(category: String): Int = definitions.count { it.category == category && blocker(it) == null }
@@ -43,6 +46,7 @@ class NationalActionCommands(private val ctx: SimulationContext) {
             ctx.effects.trigger(EffectSpec("budget.oneOff", def.costBillions, days = def.durationDays.coerceAtLeast(1).toDouble()), null, emptyMap(), source)
         }
         ctx.state.localActions[key(def.id)] = ctx.now
+        agenda.costOfAction(def.id)?.let { agenda.book(def.label, it) }
         fr.president.engine.stats.JournalService(ctx).add("Décision", def.label, fr.president.engine.readout.Tone.GOOD)
         if (def.durationDays > 0) {
             val project = ProjectState(
@@ -71,7 +75,7 @@ class NationalActionCommands(private val ctx: SimulationContext) {
         if (!presenter.unlocked(def)) return "Disponible seulement : ${def.requiresText.ifBlank { "dans certaines situations" }}."
         if (ctx.state.projects.any { it.kind == KIND + def.id && it.status == ProjectStatus.IN_PROGRESS }) return "Déjà en cours."
         presenter.wait(key(def.id), def.cooldownDays)?.let { return "Possible à nouveau dans $it." }
-        return null
+        return agenda.blocker(agenda.costOfAction(def.id))
     }
 
     private companion object {

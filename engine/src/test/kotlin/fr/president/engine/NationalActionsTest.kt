@@ -44,6 +44,7 @@ class NationalActionsTest {
                 assertTrue(s.nationalActions.perform(def.id).isFailure, "${def.id} verrouillée")
                 continue
             }
+            s.state.agenda.entries.clear()
             val r = s.nationalActions.perform(def.id)
             assertTrue(r.isSuccess, "${def.id} : ${r.exceptionOrNull()?.message}")
             assertNotNull(s.nationalActions.actions(def.category).first { it.def.id == def.id }.blocker, def.id)

@@ -29,6 +29,7 @@ object ActionCards {
         head.add(cost).right().padLeft(6f)
         card.add(head).growX().row()
         card.add(ui.label(a.def.description, "muted", wrap = true)).growX().padTop(2f).row()
+        a.agenda?.let { card.add(ui.label(it, "small", Theme.accent, wrap = true)).growX().row() }
         // Effets à gauche, bouton à droite : une ligne de moins par carte.
         val foot = Table()
         foot.add(chips(ui, a.effects)).growX().left().bottom().minWidth(0f)

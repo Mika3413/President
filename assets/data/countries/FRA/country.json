@@ -18,6 +18,7 @@
  "military": "military/FRA_2026_10.json",
  "measures": "countries/FRA/measures.json",
  "cabinet": "countries/FRA/cabinet.json",
+ "agenda": "countries/FRA/agenda.json",
  "institutions": {
   "headOfStateTitle": "Président de la République",
   "headOfGovernmentTitle": "Premier ministre",

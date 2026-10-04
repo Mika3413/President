@@ -56,6 +56,7 @@ class ConversationService(private val ctx: SimulationContext) {
                 return "Aucun contact direct avec un pays en guerre contre nous"
             }
         }
+        fr.president.engine.session.AgendaService(ctx).let { a -> a.blocker(a.costOfTalk(c.role == CharacterRole.FOREIGN_LEADER, visit = false)) }?.let { return it }
         val last = ctx.state.dialogue.lastConversation[characterId] ?: return null
         val cooldown = if (c.role == CharacterRole.FOREIGN_LEADER) FOREIGN_COOLDOWN_DAYS else LOCAL_COOLDOWN_DAYS
         val wait = cooldown - last.daysUntil(ctx.now)
@@ -66,6 +67,10 @@ class ConversationService(private val ctx: SimulationContext) {
         blocker(characterId)?.let { error(it) }
         val c = ctx.state.characters.getValue(characterId)
         require(topic in topicsFor(c)) { "Sujet inadapté à cet interlocuteur" }
+        val agenda = fr.president.engine.session.AgendaService(ctx)
+        val cost = agenda.costOfTalk(c.role == CharacterRole.FOREIGN_LEADER, topic == ConversationTopic.VISIT)
+        agenda.blocker(cost)?.let { error(it) }
+        agenda.book(if (topic == ConversationTopic.VISIT) "Visite : ${c.fullName}" else "Entretien : ${c.fullName}", cost)
         val mood = moodOf(c, topic)
         ctx.state.dialogue.lastConversation[characterId] = ctx.now
         val summary = if (c.role == CharacterRole.FOREIGN_LEADER) applyForeign(c, topic, mood) else applyLocal(c, topic, mood)

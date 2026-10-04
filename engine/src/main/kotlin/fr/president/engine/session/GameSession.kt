@@ -41,6 +41,7 @@ class GameSession(
     val worldCities = fr.president.engine.readout.WorldCityReadout(context)
     val measures = fr.president.engine.crisis.MeasureCommands(context)
     val risks = fr.president.engine.readout.RiskReadout(context)
+    val agenda = AgendaService(context)
     val characters = CharacterReadout(context)
     val military = MilitaryCommands(context)
     val militaryReadouts = fr.president.engine.readout.MilitaryReadouts(context)

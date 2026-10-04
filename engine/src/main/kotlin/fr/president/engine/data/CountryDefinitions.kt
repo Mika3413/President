@@ -36,6 +36,8 @@ data class CountryDefinition(
     val measures: String? = null,
     /** Initiatives et disputes des ministres (facultatif). */
     val cabinet: String? = null,
+    /** Règles de l'agenda présidentiel (facultatif). */
+    val agenda: String? = null,
     val demography: fr.president.engine.government.DemographyDef? = null,
 )
 

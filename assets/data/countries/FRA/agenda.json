@@ -1,0 +1,153 @@
+{
+ "_doc": "Agenda du président. Généré par tools/datagen/agenda_fr.py.",
+ "weeklyDays": 5.0,
+ "actions": {
+  "eu_tour": {
+   "days": 3,
+   "abroad": true,
+   "place": "Berlin, Rome, Madrid, Varsovie"
+  },
+  "washington_visit": {
+   "days": 3,
+   "abroad": true,
+   "place": "Washington"
+  },
+  "beijing_visit": {
+   "days": 3,
+   "abroad": true,
+   "place": "Pékin"
+  },
+  "africa_summit": {
+   "days": 2,
+   "abroad": true,
+   "place": "Afrique"
+  },
+  "peace_conference": {
+   "days": 2
+  },
+  "tour_of_france": {
+   "days": 4
+  },
+  "great_debate": {
+   "days": 3
+  },
+  "business_summit": {
+   "days": 1
+  },
+  "press_conference": {
+   "days": 0.5
+  },
+  "tv_address": {
+   "days": 0.5
+  },
+  "unity_address": {
+   "days": 0.5
+  },
+  "youth_media": {
+   "days": 0.5
+  },
+  "joint_exercise": {
+   "days": 1
+  },
+  "citizens_convention": {
+   "days": 1
+  },
+  "refugee_reception": {
+   "days": 1
+  }
+ },
+ "eventOptions": {
+  "x_visit": {
+   "days": 1
+  },
+  "visit": {
+   "days": 1
+  },
+  "reception": {
+   "days": 0.5
+  },
+  "x_dinner": {
+   "days": 0.5
+  },
+  "x_tv": {
+   "days": 0.5
+  },
+  "x_address": {
+   "days": 0.5
+  },
+  "x_press": {
+   "days": 0.5
+  },
+  "x_mayors": {
+   "days": 0.5
+  },
+  "x_defense_council": {
+   "days": 0.5
+  }
+ },
+ "summits": {
+  "eu_budget": {
+   "days": 2,
+   "abroad": true,
+   "place": "Bruxelles"
+  },
+  "eu_migration": {
+   "days": 2,
+   "abroad": true,
+   "place": "Bruxelles"
+  },
+  "eu_defense": {
+   "days": 2,
+   "abroad": true,
+   "place": "Bruxelles"
+  },
+  "eu_sanctions_war": {
+   "days": 2,
+   "abroad": true,
+   "place": "Bruxelles"
+  },
+  "eu_common_debt": {
+   "days": 2,
+   "abroad": true,
+   "place": "Bruxelles"
+  },
+  "g7_tax": {
+   "days": 2,
+   "abroad": true,
+   "place": "sommet du G7"
+  },
+  "g7_africa": {
+   "days": 2,
+   "abroad": true,
+   "place": "sommet du G7"
+  },
+  "nato_spending": {
+   "days": 2,
+   "abroad": true,
+   "place": "sommet de l'OTAN"
+  },
+  "nato_war_support": {
+   "days": 2,
+   "abroad": true,
+   "place": "sommet de l'OTAN"
+  },
+  "un_resolution": {
+   "days": 2,
+   "abroad": true,
+   "place": "New York"
+  },
+  "un_nuclear": {
+   "days": 2,
+   "abroad": true,
+   "place": "New York"
+  },
+  "cop_climate": {
+   "days": 2,
+   "abroad": true,
+   "place": "COP"
+  }
+ },
+ "foreignTalkDays": 0.25,
+ "localTalkDays": 0.25,
+ "localVisitDays": 1.0
+}

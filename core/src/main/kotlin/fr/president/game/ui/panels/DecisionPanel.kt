@@ -49,6 +49,7 @@ class DecisionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : P
         into.add(grid).growX().padBottom(GAP).row()
 
         message?.let { into.add(ui.label(it, "small", Theme.accent, wrap = true)).padBottom(GAP).row() }
+        agenda(into)
         crisisLink(into)
         situational(into)
         running(into)
@@ -64,6 +65,31 @@ class DecisionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : P
             }).growX().padBottom(4f).row()
         }
     }
+
+    /** Agenda de la semaine : jours de déplacement engagés, voyage en cours, prochains rendez-vous. */
+    private fun agenda(into: Table) {
+        val a = session.agenda.summary()
+        val box = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(5f, 8f, 5f, 8f); defaults().left() }
+        val head = Table()
+        head.add(ui.label("◷ Agenda de la semaine", "bold")).left().expandX()
+        val full = a.usedDays >= a.capacity - 0.01
+        head.add(ui.label("${fmt(a.usedDays)} / ${fmt(a.capacity)} j", "small", if (full) Theme.warning else Theme.good)).right()
+        box.add(head).growX().row()
+        val gauge = Table().apply { setBackground(ui.skin.fill(Theme.panel)) }
+        gauge.add(Table().apply { setBackground(ui.skin.fill(if (full) Theme.warning else Theme.accent)) })
+            .width(Value.percentWidth((a.usedDays / a.capacity).toFloat().coerceIn(MIN_BAR, 1f), gauge)).height(BAR).left().expandX()
+        box.add(gauge).growX().height(BAR).padTop(2f).row()
+        val lines = buildList {
+            a.current?.let { add("En cours : ${it.label}" + if (it.abroad) " (à l'étranger)" else "") }
+            a.upcoming.take(2).forEach { add("À venir : ${it.label}") }
+            if (isEmpty()) a.recent.take(2).forEach { add("Fait : ${it.label}") }
+        }
+        val text = lines.joinToString("\n").ifBlank { "Déplacements, sommets et visites prennent du temps : 5 jours par semaine au plus." }
+        box.add(ui.label(text, "small", Theme.textMuted, wrap = true)).growX().padTop(2f).row()
+        into.add(box).growX().padBottom(GAP).row()
+    }
+
+    private fun fmt(v: Double) = if (v == Math.floor(v)) v.toInt().toString() else String.format(java.util.Locale.FRENCH, "%.1f", v)
 
     /** Accès aux mesures de crise (confinement, couvre-feu, ORSEC...) et aux risques du moment. */
     private fun crisisLink(into: Table) {

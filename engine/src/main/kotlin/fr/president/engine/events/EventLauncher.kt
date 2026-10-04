@@ -50,6 +50,9 @@ class EventLauncher(private val ctx: SimulationContext) {
             level.second.factor <= MINOR && def.urgency == Urgency.URGENT -> Urgency.IMPORTANT
             else -> def.urgency
         }
+        val agenda = fr.president.engine.session.AgendaService(ctx)
+        agenda.attendSummit(def.id, headline)
+        if (urgency == Urgency.URGENT && def.scope != EventScope.FOREIGN_COUNTRY) agenda.crisisWhileAway(headline)
         if (urgency != Urgency.INFO || def.message == null) {
             val text = substitute(def.notificationText, vars) + (level?.let { " Ampleur : ${it.second.label}." } ?: "")
             ctx.notifications.post(def.category, urgency, headline, text.trim(), focus)
@@ -68,6 +71,7 @@ class EventLauncher(private val ctx: SimulationContext) {
         if ("city" in vars) builder.tag("has:city")
         if (def.urgency == Urgency.URGENT) builder.tag("urgency:high")
         val composed = ctx.messages.compose(m.template, builder.build())
+        val agendaRules = ctx.playerData.agenda
         val factor = instance.params[EventIntensity.FACTOR] ?: 1.0
         var body = composed.body
         vars["intensity"]?.let { body = "Ampleur estimée : $it.\n\n$body" }
@@ -75,7 +79,11 @@ class EventLauncher(private val ctx: SimulationContext) {
             body = ctx.messages.compose(m.detailsTemplate, builder.tag("details").build()).body + "\n\n" + body
         }
         val options = m.options.filter { !(details && it.requestDetails) }
-            .map { MessageOption(it.id, EventIntensity.scaleCosts(substitute(it.label, vars), factor), EventIntensity.scaleCosts(substitute(it.hint, vars), factor)) }
+            .map {
+                val time = agendaRules?.eventOptions?.get(it.id)?.let { c -> fr.president.engine.session.AgendaService(ctx).describe(c) }
+                val hint = EventIntensity.scaleCosts(substitute(it.hint, vars), factor)
+                MessageOption(it.id, EventIntensity.scaleCosts(substitute(it.label, vars), factor), listOfNotNull(hint.ifBlank { null }, time).joinToString(" · "))
+            }
         val message = InboxMessage(
             id = ctx.state.newId("msg"),
             senderId = sender.character?.id,

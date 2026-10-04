@@ -63,6 +63,7 @@ class DataLoader(private val source: DataSource) {
             nationalActions = def.nationalActions?.let { read(it) },
             measures = def.measures?.let { read(it) },
             cabinet = def.cabinet?.let { read(it) },
+            agenda = def.agenda?.let { read(it) },
         )
     }
 

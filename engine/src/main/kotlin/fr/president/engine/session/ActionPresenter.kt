@@ -27,6 +27,8 @@ class ActionPresenter(private val ctx: SimulationContext) {
         val forecast: List<EffectLine> = emptyList(),
         /** Décision verrouillée tant que la situation ne s'y prête pas. */
         val locked: Boolean = false,
+        /** Temps pris dans l'agenda présidentiel (« ◷ 3 j d'agenda · à l'étranger »). */
+        val agenda: String? = null,
     ) {
         /** Faut-il confirmer avant d'agir ? */
         val needsConfirmation: Boolean get() = def.confirm || def.costBillions >= HEAVY_COST
