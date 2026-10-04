@@ -203,9 +203,16 @@ class MainScreen(
         val p = panels.getValue(panel)
         if (panel == PanelId.DIPLOMACY && argument != null) diplomacyPanel.country = argument
         else if (argument != null) p.applyArgument(argument)
+        val changed = currentPanel !== p
         currentPanel = p
         panelSlot.actor = p.root
         p.refresh()
+        // Apparition en fondu quand on change de panneau (pas lors d'un simple rafraîchissement).
+        if (changed) {
+            p.root.clearActions()
+            p.root.color.a = 0f
+            p.root.addAction(com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn(PANEL_FADE_SECONDS, com.badlogic.gdx.math.Interpolation.fade))
+        }
     }
 
     private fun closePanel() {
@@ -290,6 +297,7 @@ class MainScreen(
     }
 
     private companion object {
+        const val PANEL_FADE_SECONDS = 0.18f
         const val FRANCE_LON = 2.4
         const val FRANCE_LAT = 46.6
         const val FRANCE_VIEW_WIDTH = 1500f

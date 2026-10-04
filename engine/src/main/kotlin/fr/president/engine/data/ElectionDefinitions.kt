@@ -16,6 +16,10 @@ data class ElectionsDefinition(
     val turnoutEnthusiasmWeight: Double,
     val pollNoise: Double,
     val scandalPenalty: Double,
+    /** Dispersion idéologique des électeurs au sein de chaque groupe (0 = groupe homogène). */
+    val voterSpread: Double = 0.0,
+    /** Indulgence des électeurs proches du sortant envers son bilan. */
+    val partisanLoyalty: Double = 0.0,
     val legislative: LegislativeDef? = null,
     val referendum: ReferendumDef? = null,
     val local: LocalElectionsDef? = null,

@@ -19,7 +19,7 @@ def msg(template, sender, days, default, options, ministry=None):
     return m
 G = "opinion.group."
 events = [
- {"id": "president_scandal", "category": "POLITICS", "scope": "NATIONAL", "baseDailyProbability": 0.0012, "cooldownDays": 300, "urgency": "URGENT",
+ {"id": "president_scandal", "category": "POLITICS", "scope": "NATIONAL", "baseDailyProbability": 0.0008, "cooldownDays": 500, "urgency": "URGENT",
   "headline": "Révélations visant l'entourage du président", "notificationText": "La presse publie une enquête embarrassante.",
   "modifiers": [mod("president.integrity", 0.2, 0.8, 3.0, 0.3)],
   "immediateEffects": [E("president.scandal", 1), E("opinion.national", -0.012)],

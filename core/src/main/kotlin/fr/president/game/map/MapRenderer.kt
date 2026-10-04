@@ -128,8 +128,10 @@ class MapRenderer(private val data: MapData, private val playerCountryId: String
             is MapSelection.Country -> data.countriesById[selection.id]
             else -> null
         } ?: return
-        shapes.color = Theme.highlight
-        feature.rings.forEach { thickPolygon(it.vertices, pixel * SELECTION_PX) }
+        // Contour de sélection légèrement pulsant.
+        val pulse = (Math.sin(System.nanoTime() / NANOS_PER_SECOND * SELECTION_PULSE_SPEED) + 1.0).toFloat() / 2f
+        shapes.color = Color(Theme.highlight.r, Theme.highlight.g, Theme.highlight.b, SELECTION_MIN_ALPHA + (1f - SELECTION_MIN_ALPHA) * pulse)
+        feature.rings.forEach { thickPolygon(it.vertices, pixel * SELECTION_PX * (1f + SELECTION_PULSE_WIDTH * pulse)) }
     }
 
     private fun thickPolygon(v: FloatArray, width: Float) {
@@ -148,6 +150,10 @@ class MapRenderer(private val data: MapData, private val playerCountryId: String
     }
 
     private companion object {
+        const val NANOS_PER_SECOND = 1_000_000_000.0
+        const val SELECTION_PULSE_SPEED = 3.0
+        const val SELECTION_MIN_ALPHA = 0.55f
+        const val SELECTION_PULSE_WIDTH = 0.6f
         const val REGION_BORDER_PX = 1.8f
         const val NETWORK_PX = 1.5f
         const val EMPHASIZED_NETWORK_PX = 3f

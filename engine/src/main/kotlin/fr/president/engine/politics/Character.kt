@@ -53,6 +53,8 @@ class Character(
     /** Traits que le joueur a appris à connaître au fil des interactions. */
     val knownTraits: MutableSet<String> = mutableSetOf(),
     var scandals: Int = 0,
+    /** Dates (secondes du monde) des scandales : leur effet électoral s'estompe avec le temps. */
+    val scandalDates: MutableList<Long> = mutableListOf(),
     var active: Boolean = true,
 ) {
     val fullName: String get() = "$firstName $lastName"

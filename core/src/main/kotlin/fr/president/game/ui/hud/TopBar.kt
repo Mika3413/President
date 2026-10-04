@@ -16,6 +16,9 @@ class TopBar(private val ui: Ui, private val session: GameSession, private val o
     private val date = ui.label("", "bold")
     private val pace = ui.label("", "muted")
     private val chips = Table()
+    /** Dernier statut affiché par indicateur : un changement fait clignoter la pastille. */
+    private val lastStatus = HashMap<String, String>()
+    private val flashStart = HashMap<String, Long>()
 
     init {
         root.pad(6f, 10f, 6f, 10f)
@@ -48,10 +51,20 @@ class TopBar(private val ui: Ui, private val session: GameSession, private val o
         box.add(ui.label(indicator.label, "muted")).row()
         box.add(Label(indicator.status, ui.s, "small").apply { color = Theme.tone(indicator.tone) })
         box.onClick { open(panel) }
+        val previous = lastStatus.put(indicator.label, indicator.status)
+        val now = System.currentTimeMillis()
+        if (previous != null && previous != indicator.status) flashStart[indicator.label] = now
+        // La pastille est reconstruite à chaque rafraîchissement : la teinte dépend du temps écoulé.
+        flashStart[indicator.label]?.let { start ->
+            val progress = (now - start) / FLASH_MILLIS
+            if (progress < 1f) box.color.set(Theme.highlight).lerp(com.badlogic.gdx.graphics.Color.WHITE, progress)
+            else flashStart.remove(indicator.label)
+        }
         chips.add(box).padLeft(6f)
     }
 
     private companion object {
         const val WARNING_DAYS = 120
+        const val FLASH_MILLIS = 2500f
     }
 }

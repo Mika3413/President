@@ -20,7 +20,9 @@ class Toasts(private val ui: Ui, private val onFocus: (String) -> Unit) {
         toast.add(ui.label(n.title, "bold", color, wrap = true)).width(TOAST_WIDTH).row()
         if (n.body.isNotBlank()) toast.add(ui.label(n.body, "small", wrap = true)).width(TOAST_WIDTH).row()
         n.focusId?.let { f -> toast.onClick { onFocus(f) } }
-        toast.addAction(Actions.sequence(Actions.delay(DISPLAY_SECONDS), Actions.fadeOut(FADE_SECONDS), Actions.removeActor()))
+        toast.color.a = 0f
+        toast.addAction(Actions.sequence(Actions.fadeIn(FADE_IN_SECONDS, com.badlogic.gdx.math.Interpolation.fade),
+            Actions.delay(DISPLAY_SECONDS), Actions.fadeOut(FADE_SECONDS), Actions.removeActor()))
         while (root.children.size >= MAX_VISIBLE) root.children.first().remove()
         root.addActor(toast)
     }
@@ -29,6 +31,7 @@ class Toasts(private val ui: Ui, private val onFocus: (String) -> Unit) {
         const val TOAST_WIDTH = 320f
         const val DISPLAY_SECONDS = 6f
         const val FADE_SECONDS = 0.6f
+        const val FADE_IN_SECONDS = 0.25f
         const val MAX_VISIBLE = 3
     }
 }

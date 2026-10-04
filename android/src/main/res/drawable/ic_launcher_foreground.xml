@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Premier plan : façade à colonnes surmontée d'un drapeau tricolore (zone utile centrale de 66 dp). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
+    <!-- Mât et drapeau -->
+    <path android:fillColor="#FFE8EDF2" android:pathData="M53,24h1.6v14h-1.6z" />
+    <path android:fillColor="#FF2A5F93" android:pathData="M54.6,24h5v7h-5z" />
+    <path android:fillColor="#FFE8EDF2" android:pathData="M59.6,24h5v7h-5z" />
+    <path android:fillColor="#FFE05A4F" android:pathData="M64.6,24h5v7h-5z" />
+    <!-- Fronton -->
+    <path android:fillColor="#FFE8EDF2" android:pathData="M30,48L54,38L78,48v3H30z" />
+    <!-- Colonnes -->
+    <path android:fillColor="#FFE8EDF2" android:pathData="M33,53h5v18h-5z M43,53h5v18h-5z M60,53h5v18h-5z M70,53h5v18h-5z" />
+    <!-- Porte centrale -->
+    <path android:fillColor="#FFE8EDF2" android:pathData="M50,57h8v14h-8z" />
+    <!-- Soubassement -->
+    <path android:fillColor="#FFE8EDF2" android:pathData="M28,73h52v4H28z M25,79h58v4H25z" />
+</vector>

@@ -22,6 +22,8 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
     val counters = mutableListOf<Counter>()
     private val tmp = Vector3()
     private var time = 0f
+    /** Position affichée de chaque unité (coordonnées monde), qui glisse vers sa zone réelle. */
+    private val displayed = HashMap<String, FloatArray>()
 
     fun shapes(shapes: ShapeRenderer, camera: OrthographicCamera, session: GameSession, lod: Lod, layer: ThematicLayer, selectedUnit: String?, delta: Float) {
         time += delta
@@ -54,17 +56,28 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
             shapes.color = Color(Theme.bad.r, Theme.bad.g, Theme.bad.b, BATTLE_ALPHA * (1 - pulse))
             shapes.circle(p.x, p.y, BATTLE_RADIUS + pulse * BATTLE_RADIUS, SEGMENTS)
         }
+        // Glissement des pions : la position affichée rejoint la zone réelle en quelques dixièmes de seconde.
+        val follow = 1f - Math.exp((-delta * GLIDE_SPEED).toDouble()).toFloat()
+        val alive = HashSet<String>()
         for ((zoneId, units) in visible.groupBy { it.zoneId }) {
             val z = zones.zones[zoneId] ?: continue
             val base = project(camera, z.lon, z.lat) ?: continue
+            val tx = GeoProjection.x(z.lon)
+            val ty = GeoProjection.y(z.lat)
             val sorted = units.sortedByDescending { it.countryId == player }
             val shown = sorted.take(MAX_STACK)
             shown.forEachIndexed { i, u ->
+                alive += u.id
+                val pos = displayed.getOrPut(u.id) { floatArrayOf(tx, ty) }
+                pos[0] += (tx - pos[0]) * follow
+                pos[1] += (ty - pos[1]) * follow
+                val p = projectWorld(camera, pos[0], pos[1])
                 val domain = session.db.unitTypes[u.type]?.domain ?: Domain.LAND
-                drawCounter(shapes, u, domain, base.x + i * STACK_OFFSET, base.y - i * STACK_OFFSET, colorOf(session, u), u.id == selectedUnit)
+                drawCounter(shapes, u, domain, p.x + i * STACK_OFFSET, p.y - i * STACK_OFFSET, colorOf(session, u), u.id == selectedUnit)
             }
             counters += Counter(sorted.map { it.id }, base.x, base.y)
         }
+        displayed.keys.retainAll(alive)
     }
 
     fun labels(batch: SpriteBatch, session: GameSession) {
@@ -128,6 +141,12 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
         }
     }
 
+    private fun projectWorld(camera: OrthographicCamera, x: Float, y: Float): Vector3 {
+        tmp.set(x, y, 0f)
+        camera.project(tmp)
+        return Vector3(tmp.x / uiScale, tmp.y / uiScale, 0f)
+    }
+
     private fun project(camera: OrthographicCamera, lon: Double, lat: Double): Vector3? {
         tmp.set(GeoProjection.x(lon), GeoProjection.y(lat), 0f)
         camera.project(tmp)
@@ -140,6 +159,7 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
         val PATH: Color = Color.valueOf("4c9be8b3")
         val NEUTRAL: Color = Color.valueOf("8a8f98")
         const val COUNTER_W = 14f
+        const val GLIDE_SPEED = 6f
         const val COUNTER_H = 10f
         const val STACK_OFFSET = 3f
         const val MAX_STACK = 3

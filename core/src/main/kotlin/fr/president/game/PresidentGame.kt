@@ -15,6 +15,7 @@ import fr.president.game.platform.PlatformServices
 import fr.president.game.screens.GameOverScreen
 import fr.president.game.screens.MainScreen
 import fr.president.game.screens.NewGameScreen
+import fr.president.game.screens.TitleScreen
 import fr.president.game.ui.Ui
 import fr.president.game.ui.UiSkin
 
@@ -37,18 +38,24 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
         db = DataLoader(GdxDataSource()).load()
         saves = SaveRepository(platform.saveDirectory)
         platform.onForegrounded()
-        if (saves.exists()) {
-            try {
-                val session = GameSession.fromSave(db, saves.read(), platform::nowUtcMillis)
-                startSession(session, resumed = true)
-                return
-            } catch (e: Exception) {
-                Gdx.app.error(TAG, "Sauvegarde illisible", e)
-                showNewGame("Votre sauvegarde n'a pas pu être lue (${e.message}). Une copie a été conservée.")
-                return
-            }
+        showTitle()
+    }
+
+    /** Écran d'accueil : continuer la partie en cours ou en commencer une nouvelle. */
+    private fun showTitle() {
+        val map = mapData ?: MapData(db, skin.white, db.snapshot.playableCountries.first()).also { mapData = it }
+        switchTo(TitleScreen(ui, map, platform.uiScale, saves.exists(), null, onContinue = { Gdx.app.postRunnable { resumeSave() } },
+            onNewGame = { Gdx.app.postRunnable { showNewGame(null) } }))
+    }
+
+    private fun resumeSave() {
+        try {
+            val session = GameSession.fromSave(db, saves.read(), platform::nowUtcMillis)
+            startSession(session, resumed = true)
+        } catch (e: Exception) {
+            Gdx.app.error(TAG, "Sauvegarde illisible", e)
+            showNewGame("Votre sauvegarde n'a pas pu être lue (${e.message}). Une copie a été conservée.")
         }
-        showNewGame(null)
     }
 
     private fun showNewGame(error: String?) {

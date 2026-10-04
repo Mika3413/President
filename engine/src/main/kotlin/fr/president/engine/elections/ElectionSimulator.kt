@@ -18,14 +18,22 @@ class ElectionSimulator(private val ctx: SimulationContext) {
 
     fun simulate(candidates: List<Candidate>, noise: Double = 0.0): RoundResult {
         val votes = mutableMapOf<String, Double>()
+        val incumbent = candidates.firstOrNull { it.incumbent }
         var turnoutSum = 0.0
         for (partition in groups.partitions) {
             for (group in groups.groups.filter { it.partition == partition.id }) {
                 val approval = ctx.state.opinion.groups[group.id]?.effective ?: group.baseApproval
                 val turnout = turnout(group.baseTurnout, approval)
                 turnoutSum += group.populationShare * turnout
-                val prefs = preferences(group.economicLeaning, group.socialLeaning, approval, candidates, promises.electoralEffect(group.id))
-                prefs.forEach { (id, share) -> votes.merge(id, group.populationShare * turnout * share, Double::plus) }
+                val promiseEffect = promises.electoralEffect(group.id)
+                // Diversité interne du groupe : des électeurs plus à gauche, plus à droite, plus ou moins conservateurs.
+                for ((dx, dy, w) in subVoters()) {
+                    val econ = group.economicLeaning + dx
+                    val social = group.socialLeaning + dy
+                    val subApproval = (approval + loyalty(group.economicLeaning, group.socialLeaning, econ, social, incumbent)).clamp01()
+                    val prefs = preferences(econ, social, subApproval, candidates, promiseEffect)
+                    prefs.forEach { (id, share) -> votes.merge(id, group.populationShare * turnout * share * w, Double::plus) }
+                }
             }
         }
         if (noise > 0) votes.replaceAll { _, v -> (v * (1.0 + ctx.rng.nextGaussian() * noise)).coerceAtLeast(0.0) }
@@ -34,6 +42,29 @@ class ElectionSimulator(private val ctx: SimulationContext) {
             turnout = turnoutSum / groups.partitions.size,
             shares = votes.mapValues { it.value / total },
         )
+    }
+
+    /** Poids des scandales : chaque affaire pèse moins à mesure qu'elle s'éloigne (demi-vie). */
+    private fun scandalWeight(characterId: String): Double {
+        val c = ctx.state.characters[characterId] ?: return 0.0
+        if (c.scandalDates.isEmpty()) return c.scandals * LEGACY_SCANDAL_WEIGHT
+        return c.scandalDates.sumOf { Math.pow(HALF, (ctx.now.seconds - it) / SECONDS_PER_DAY / SCANDAL_HALF_LIFE_DAYS) }
+    }
+
+    /** Grille 3×3 de positions autour du centre du groupe, pondérée (le centre compte davantage). */
+    private fun subVoters(): List<Triple<Double, Double, Double>> {
+        val spread = elections.voterSpread
+        if (spread <= 0.0) return listOf(Triple(0.0, 0.0, 1.0))
+        val steps = listOf(-1.0 to SIDE_WEIGHT, 0.0 to CENTER_WEIGHT, 1.0 to SIDE_WEIGHT)
+        return steps.flatMap { (sx, wx) -> steps.map { (sy, wy) -> Triple(sx * spread, sy * spread, wx * wy) } }
+    }
+
+    /** Les électeurs proches du sortant jugent son bilan avec plus d'indulgence (et inversement). */
+    private fun loyalty(groupEcon: Double, groupSocial: Double, econ: Double, social: Double, incumbent: Candidate?): Double {
+        incumbent ?: return 0.0
+        val center = hypot(groupEcon - incumbent.economicPosition, groupSocial - incumbent.socialPosition)
+        val here = hypot(econ - incumbent.economicPosition, social - incumbent.socialPosition)
+        return elections.partisanLoyalty * (center - here)
     }
 
     private fun turnout(base: Double, approval: Double): Double =
@@ -49,7 +80,7 @@ class ElectionSimulator(private val ctx: SimulationContext) {
             var u = elections.affinityWeight * (1.0 - distance) + family.baseStrength + c.momentum
             if (c.incumbent) {
                 u += elections.incumbentRecordWeight * (approval - NEUTRAL) + elections.incumbentBonus
-                u -= elections.scandalPenalty * (ctx.state.characters[c.characterId]?.scandals ?: 0)
+                u -= elections.scandalPenalty * scandalWeight(c.characterId)
                 u += promiseEffect
             }
             c.characterId to u
@@ -70,6 +101,12 @@ class ElectionSimulator(private val ctx: SimulationContext) {
 
     private companion object {
         const val NEUTRAL = 0.5
+        const val SIDE_WEIGHT = 0.25
+        const val HALF = 0.5
+        const val SECONDS_PER_DAY = 86_400.0
+        const val SCANDAL_HALF_LIFE_DAYS = 500.0
+        const val LEGACY_SCANDAL_WEIGHT = 0.5
+        const val CENTER_WEIGHT = 0.5
         /** Distance maximale entre deux positions dans l'espace [-1,1]². */
         const val MAX_DISTANCE = 2.8284271247
         const val LOCAL_SWING = 1.2

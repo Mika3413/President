@@ -142,7 +142,7 @@ class EffectApplier(private val ctx: SimulationContext) {
                     "loyalty" -> c.loyalty = (c.loyalty + delta).clamp01()
                     "popularity" -> c.popularity = (c.popularity + delta).clamp01()
                     "dismiss" -> if (delta > 0) GovernmentChanges(ctx).dismiss(c.id)
-                    "scandal" -> if (delta > 0) c.scandals++
+                    "scandal" -> if (delta > 0) { c.scandals++; c.scandalDates += ctx.now.seconds }
                 }
             }
             "government" -> if (parts[1] == "parliamentSupport") {

@@ -66,6 +66,16 @@ enthousiastes), puis choix entre candidats fictifs de 6 familles politiques par 
 proximité idéologique + force de la famille + **jugement du bilan du sortant par ce groupe**
 − scandales. Le résultat national agrège les groupes ; une estimation par département est fournie.
 Des sondages bruités sont publiés toutes les deux semaines. Pas de règle « popularité > 50 % ».
+Chaque groupe social n'est pas un électeur unique : il est représenté par une grille 3×3 de
+sous-électeurs dispersés autour de sa position (`voterSpread`), et les électeurs proches du sortant
+jugent son bilan avec plus d'indulgence (`partisanLoyalty`). Sans cela, le candidat du centre
+captait mécaniquement tous les mécontents. Les scandales pèsent sur le vote avec une demi-vie de 500 jours.
+
+**Équilibrage vérifié** (`BalanceProbeTest`, lancé avec `-Dbalance=true`) : des joueurs automatiques
+jouent un mandat complet sur plusieurs graines et pour trois sensibilités (gauche, centre, droite).
+Résultat de référence : président passif réélu 0 à 1 fois sur 6 ; gestion raisonnable (répondre aux
+courriers en pesant coût et bénéfice, réformes populaires, entretiens) 4 à 6 fois sur 6 ; seconds tours
+serrés (51 à 62 %). Sans action du joueur, l'économie reste stable : déficit vers 5,5 %, chômage vers 8 %.
 
 **Élections locales** (`LocalElectionService`) : départementales et régionales (mars 2028),
 municipales (mars 2032), puis tous les 6 ans. Chaque exécutif est remporté par le camp présidentiel
