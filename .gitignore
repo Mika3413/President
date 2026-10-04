@@ -8,3 +8,4 @@ local.properties
 android/libs/
 *.apk
 __pycache__/
+.kotlin/
