@@ -77,7 +77,9 @@ class ElectionSimulator(private val ctx: SimulationContext) {
         val utilities = candidates.associate { c ->
             val family = elections.families.first { it.id == c.familyId }
             val distance = hypot(econ - c.economicPosition, social - c.socialPosition) / MAX_DISTANCE
-            var u = elections.affinityWeight * (1.0 - distance) + family.baseStrength + c.momentum
+            // Au pouvoir, le bilan du président pèse plus que l'implantation structurelle de son parti.
+            val strength = if (c.incumbent) family.baseStrength * INCUMBENT_STRENGTH_SHARE else family.baseStrength
+            var u = elections.affinityWeight * (1.0 - distance) + strength + c.momentum
             if (c.incumbent) {
                 u += elections.incumbentRecordWeight * (approval - NEUTRAL) + elections.incumbentBonus
                 u -= elections.scandalPenalty * scandalWeight(c.characterId)
@@ -101,6 +103,7 @@ class ElectionSimulator(private val ctx: SimulationContext) {
 
     private companion object {
         const val NEUTRAL = 0.5
+        const val INCUMBENT_STRENGTH_SHARE = 0.5
         const val SIDE_WEIGHT = 0.25
         const val HALF = 0.5
         const val SECONDS_PER_DAY = 86_400.0
