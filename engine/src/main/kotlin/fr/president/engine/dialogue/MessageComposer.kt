@@ -137,9 +137,9 @@ class MessageComposer(private val ctx: SimulationContext) {
         const val MAX_PHRASES_PER_SENDER = 800
         const val MAX_TRACKED_PHRASES = 20_000
         const val PHRASE_MEMORY_MESSAGES = 3_000L
-        val ALTERNATIVE_PATTERN = Regex("""\{\{([^{}]+)}}""")
-        val LEXICON_PATTERN = Regex("""\[\[([a-z_]+)]]""")
-        val VARIABLE_PATTERN = Regex("""\{([a-zA-Z_]+)}""")
+        val ALTERNATIVE_PATTERN = Regex("""\{\{([^\{\}]+)\}\}""")
+        val LEXICON_PATTERN = Regex("""\[\[([a-z_]+)\]\]""")
+        val VARIABLE_PATTERN = Regex("""\{([a-zA-Z_]+)\}""")
         val DATE_FORMAT: DateTimeFormatter = DateTimeFormatter.ofPattern("d MMMM yyyy 'à' HH'h'mm", Locale.FRENCH)
     }
 }

@@ -136,7 +136,7 @@ class EventLauncher(private val ctx: SimulationContext) {
     }
 
     companion object {
-        private val VAR = Regex("""\{([a-zA-Z_]+)}""")
+        private val VAR = Regex("""\{([a-zA-Z_]+)\}""")
         fun substitute(text: String, vars: Map<String, String>): String =
             VAR.replace(text) { vars[it.groupValues[1]] ?: it.value }
     }

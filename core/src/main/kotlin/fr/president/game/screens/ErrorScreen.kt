@@ -29,7 +29,7 @@ class ErrorScreen(
         content.add(ui.label("Le jeu ne s'est pas fermé : votre partie est sauvegardée régulièrement. " +
             "Faites une capture de cet écran et transmettez-la pour que le problème soit corrigé.", "default", wrap = true)).width(TEXT_WIDTH).row()
         content.add(ui.label("Étape : $where", "bold", Theme.warning)).row()
-        content.add(ui.label(report.lines().take(MAX_LINES).joinToString("\n"), "small", Theme.textMuted, wrap = true)).width(TEXT_WIDTH).row()
+        content.add(ui.label(report.replace("\t", "  ").lines().take(MAX_LINES).joinToString("\n"), "small", Theme.textMuted, wrap = true)).width(TEXT_WIDTH).row()
         content.add(ui.button("Revenir à l'accueil", "accent") { Gdx.app.postRunnable(onHome) }).width(BUTTON_WIDTH).padTop(12f).row()
         val root = Table().apply { setFillParent(true) }
         root.add(ScrollPane(content, ui.s)).grow()
