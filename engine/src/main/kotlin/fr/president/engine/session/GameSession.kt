@@ -38,6 +38,7 @@ class GameSession(
     val stats = fr.president.engine.readout.StatsReadout(context)
     val briefing = fr.president.engine.readout.BriefingReadout(context)
     val media = fr.president.engine.readout.MediaReadout(context)
+    val worldCities = fr.president.engine.readout.WorldCityReadout(context)
     val characters = CharacterReadout(context)
     val military = MilitaryCommands(context)
     val militaryReadouts = fr.president.engine.readout.MilitaryReadouts(context)

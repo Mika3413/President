@@ -102,6 +102,7 @@
     "zones": "geo/zones.json",
     "unitTypes": "military/unit_types.json",
     "help": "ui/help.json",
-    "media": "media/fr.json"
+    "media": "media/fr.json",
+    "worldCities": "geo/world_cities.json"
   }
 }

@@ -8,7 +8,7 @@ import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 
-enum class MarkerKind { CITY, NUCLEAR, POWER, INDUSTRY, PORT, AIRPORT, MILITARY }
+enum class MarkerKind { CITY, FOREIGN_CITY, NUCLEAR, POWER, INDUSTRY, PORT, AIRPORT, MILITARY }
 
 /** Élément ponctuel de la carte (ville, centrale, base...). */
 class MapMarker(
@@ -35,6 +35,8 @@ class MapData(db: GameDatabase, white: TextureRegion, playerCountryId: String) {
     val countriesById = countries.associateBy { it.id }
     val markers: List<MapMarker>
     val markersById: Map<String, MapMarker>
+    /** Pays de chaque ville étrangère. */
+    val foreignCountry: Map<String, String>
     val networks: List<NetworkLine>
     /** Habitants par km² et par département. */
     val density: Map<String, Float>
@@ -64,7 +66,12 @@ class MapData(db: GameDatabase, white: TextureRegion, playerCountryId: String) {
         val bases = country.military?.bases.orEmpty().map {
             MapMarker(it.id, MarkerKind.MILITARY, it.name, GeoProjection.x(it.lon), GeoProjection.y(it.lat), 2)
         }
-        markers = cityMarkers + infra + bases
+        // Villes étrangères : capitales et grandes villes des pays simulés (rang 1 = capitale).
+        val foreign = db.worldCities.map {
+            MapMarker(it.id, MarkerKind.FOREIGN_CITY, it.name, GeoProjection.x(it.lon), GeoProjection.y(it.lat), it.rank)
+        }
+        foreignCountry = db.worldCities.associate { it.id to it.country }
+        markers = cityMarkers + infra + bases + foreign
         markersById = markers.associateBy { it.id }
         val cities = cityMarkers.associateBy { it.id }
         networks = country.transport?.networks.orEmpty().map { n ->

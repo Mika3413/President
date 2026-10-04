@@ -61,7 +61,7 @@ class OverlayRenderer(
             if (!visible(m, lod, layer) && m.id != selectedId) continue
             val p = toScreen(camera, m.x, m.y) ?: continue
             visibleMarkers += m to p
-            drawMarker(m, p, state)
+            drawMarker(m, p, state, session)
         }
         units.shapes(shapes, camera, session, lod, layer, selectedId, delta)
         shapes.end()
@@ -70,7 +70,9 @@ class OverlayRenderer(
         batch.begin()
         // Les villes sont prioritaires sur les noms de territoires en cas de chevauchement.
         for ((m, p) in visibleMarkers.sortedBy { it.first.rank }) {
-            if (m.kind == MarkerKind.CITY || lod == Lod.LOCAL) label(m.label, p.x + LABEL_OFFSET, p.y + LABEL_OFFSET, if (m.rank == 1) labelFont else smallFont, Theme.text)
+            if (m.kind == MarkerKind.CITY || m.kind == MarkerKind.FOREIGN_CITY || lod == Lod.LOCAL) {
+                label(m.label, p.x + LABEL_OFFSET, p.y + LABEL_OFFSET, if (m.rank == 1) labelFont else smallFont, if (m.kind == MarkerKind.FOREIGN_CITY && m.rank > 1) Theme.textMuted else Theme.text)
+            }
         }
         drawAreaLabels(camera, lod, layer, state)
         units.labels(batch, session)
@@ -85,19 +87,50 @@ class OverlayRenderer(
             Lod.REGION -> m.rank <= 2
             Lod.LOCAL -> true
         }
+        // Villes étrangères : capitales vues de loin, grandes villes à l'échelle de l'Europe.
+        MarkerKind.FOREIGN_CITY -> when (lod) {
+            Lod.WORLD -> m.rank == 1
+            Lod.EUROPE -> m.rank <= 2
+            else -> true
+        }
         MarkerKind.NUCLEAR, MarkerKind.POWER, MarkerKind.INDUSTRY ->
             lod >= Lod.REGION || (lod == Lod.FRANCE && layer == ThematicLayer.ENERGY)
         MarkerKind.PORT, MarkerKind.AIRPORT -> lod >= Lod.REGION || (lod == Lod.FRANCE && layer == ThematicLayer.TRANSPORT)
         MarkerKind.MILITARY -> lod >= Lod.REGION || (lod == Lod.FRANCE && layer == ThematicLayer.MILITARY)
     }
 
-    private fun drawMarker(m: MapMarker, p: Vector3, state: WorldState) {
+    /** Couleur de l'anneau d'une ville étrangère selon qui la tient (rien si son propriétaire). */
+    private fun holderRing(session: fr.president.engine.session.GameSession, id: String): Color? {
+        val owner = data.foreignCountry[id] ?: return null
+        val holder = session.worldCities.holder(id) ?: return null
+        val player = session.state.player.countryId
+        return when {
+            holder == player -> Theme.accent
+            session.military.geo.atWar(player, holder) -> Theme.bad
+            holder != owner -> Theme.warning
+            else -> null
+        }
+    }
+
+    private fun drawMarker(m: MapMarker, p: Vector3, state: WorldState, session: fr.president.engine.session.GameSession) {
         val offline = state.infrastructure[m.id]?.let { !it.isOperational(state.time) } ?: false
         when (m.kind) {
             MarkerKind.CITY -> {
                 val r = if (m.rank == 1) CITY_MAJOR else if (m.rank == 2) CITY_MEDIUM else CITY_MINOR
                 shapes.color = Theme.border; shapes.circle(p.x, p.y, r + 1.5f, SEGMENTS)
                 shapes.color = if (m.id == CAPITAL) Theme.highlight else Color.WHITE; shapes.circle(p.x, p.y, r, SEGMENTS)
+            }
+            MarkerKind.FOREIGN_CITY -> {
+                holderRing(session, m.id)?.let { ring -> shapes.color = ring; shapes.circle(p.x, p.y, CITY_MAJOR + RING, SEGMENTS) }
+                if (m.rank == 1) {
+                    // Capitale : carré blanc cerclé, comme sur les cartes de Supremacy.
+                    square(p, Color.WHITE, CITY_MEDIUM)
+                    shapes.color = Theme.border; shapes.rect(p.x - 1.5f, p.y - 1.5f, 3f, 3f)
+                } else {
+                    val r = if (m.rank == 2) CITY_MEDIUM else CITY_MINOR
+                    shapes.color = Theme.border; shapes.circle(p.x, p.y, r + 1.5f, SEGMENTS)
+                    shapes.color = FOREIGN_CITY_COLOR; shapes.circle(p.x, p.y, r, SEGMENTS)
+                }
             }
             MarkerKind.NUCLEAR, MarkerKind.POWER -> square(p, if (offline) Theme.bad else Color.valueOf("ffd23f"), ICON)
             MarkerKind.INDUSTRY -> square(p, if (offline) Theme.bad else Color.valueOf("b08968"), ICON * 0.8f)
@@ -215,6 +248,8 @@ class OverlayRenderer(
         const val PROJECT_RADIUS = 8f
         const val SELECTION_RADIUS = 10f
         val PROJECT_COLOR: Color = Color.valueOf("f77f00b3")
+        val FOREIGN_CITY_COLOR: Color = Color.valueOf("e6e1d3")
+        const val RING = 3f
         const val MIN_LABEL_AREA = 400f
         const val WORLD_LABEL_FACTOR = 8f
     }

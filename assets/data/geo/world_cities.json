@@ -1,0 +1,2525 @@
+{
+ "_doc": "Villes des pays étrangers simulés. Généré par tools/datagen/world_cities.py.",
+ "cities": [
+  {
+   "id": "deu-berlin",
+   "name": "Berlin",
+   "country": "DEU",
+   "lat": 52.52,
+   "lon": 13.4,
+   "populationMillions": 3.7,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "deu-hambourg",
+   "name": "Hambourg",
+   "country": "DEU",
+   "lat": 53.55,
+   "lon": 9.99,
+   "populationMillions": 1.9,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "deu-munich",
+   "name": "Munich",
+   "country": "DEU",
+   "lat": 48.14,
+   "lon": 11.58,
+   "populationMillions": 1.5,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "deu-cologne",
+   "name": "Cologne",
+   "country": "DEU",
+   "lat": 50.94,
+   "lon": 6.96,
+   "populationMillions": 1.1,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "deu-francfort",
+   "name": "Francfort",
+   "country": "DEU",
+   "lat": 50.11,
+   "lon": 8.68,
+   "populationMillions": 0.8,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "deu-stuttgart",
+   "name": "Stuttgart",
+   "country": "DEU",
+   "lat": 48.78,
+   "lon": 9.18,
+   "populationMillions": 0.6,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "deu-dusseldorf",
+   "name": "Düsseldorf",
+   "country": "DEU",
+   "lat": 51.23,
+   "lon": 6.78,
+   "populationMillions": 0.6,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "deu-leipzig",
+   "name": "Leipzig",
+   "country": "DEU",
+   "lat": 51.34,
+   "lon": 12.37,
+   "populationMillions": 0.6,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "deu-dresde",
+   "name": "Dresde",
+   "country": "DEU",
+   "lat": 51.05,
+   "lon": 13.74,
+   "populationMillions": 0.56,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "deu-hanovre",
+   "name": "Hanovre",
+   "country": "DEU",
+   "lat": 52.37,
+   "lon": 9.73,
+   "populationMillions": 0.54,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "deu-breme",
+   "name": "Brême",
+   "country": "DEU",
+   "lat": 53.08,
+   "lon": 8.8,
+   "populationMillions": 0.57,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "deu-nuremberg",
+   "name": "Nuremberg",
+   "country": "DEU",
+   "lat": 49.45,
+   "lon": 11.08,
+   "populationMillions": 0.52,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "deu-kiel",
+   "name": "Kiel",
+   "country": "DEU",
+   "lat": 54.32,
+   "lon": 10.14,
+   "populationMillions": 0.25,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "esp-madrid",
+   "name": "Madrid",
+   "country": "ESP",
+   "lat": 40.42,
+   "lon": -3.7,
+   "populationMillions": 6.7,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "esp-barcelone",
+   "name": "Barcelone",
+   "country": "ESP",
+   "lat": 41.39,
+   "lon": 2.17,
+   "populationMillions": 5.6,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "esp-valence",
+   "name": "Valence",
+   "country": "ESP",
+   "lat": 39.47,
+   "lon": -0.38,
+   "populationMillions": 1.6,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "esp-seville",
+   "name": "Séville",
+   "country": "ESP",
+   "lat": 37.39,
+   "lon": -5.98,
+   "populationMillions": 1.5,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "esp-bilbao",
+   "name": "Bilbao",
+   "country": "ESP",
+   "lat": 43.26,
+   "lon": -2.93,
+   "populationMillions": 1.0,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "esp-malaga",
+   "name": "Malaga",
+   "country": "ESP",
+   "lat": 36.72,
+   "lon": -4.42,
+   "populationMillions": 1.0,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "esp-saragosse",
+   "name": "Saragosse",
+   "country": "ESP",
+   "lat": 41.65,
+   "lon": -0.89,
+   "populationMillions": 0.7,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "esp-palma",
+   "name": "Palma",
+   "country": "ESP",
+   "lat": 39.57,
+   "lon": 2.65,
+   "populationMillions": 0.4,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "esp-cadix",
+   "name": "Cadix",
+   "country": "ESP",
+   "lat": 36.53,
+   "lon": -6.29,
+   "populationMillions": 0.12,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "ita-rome",
+   "name": "Rome",
+   "country": "ITA",
+   "lat": 41.9,
+   "lon": 12.5,
+   "populationMillions": 4.3,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "ita-milan",
+   "name": "Milan",
+   "country": "ITA",
+   "lat": 45.46,
+   "lon": 9.19,
+   "populationMillions": 3.2,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "ita-naples",
+   "name": "Naples",
+   "country": "ITA",
+   "lat": 40.85,
+   "lon": 14.27,
+   "populationMillions": 3.0,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "ita-turin",
+   "name": "Turin",
+   "country": "ITA",
+   "lat": 45.07,
+   "lon": 7.69,
+   "populationMillions": 1.7,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "ita-palerme",
+   "name": "Palerme",
+   "country": "ITA",
+   "lat": 38.12,
+   "lon": 13.36,
+   "populationMillions": 1.2,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "ita-genes",
+   "name": "Gênes",
+   "country": "ITA",
+   "lat": 44.41,
+   "lon": 8.93,
+   "populationMillions": 0.8,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "ita-bologne",
+   "name": "Bologne",
+   "country": "ITA",
+   "lat": 44.49,
+   "lon": 11.34,
+   "populationMillions": 0.6,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "ita-florence",
+   "name": "Florence",
+   "country": "ITA",
+   "lat": 43.77,
+   "lon": 11.26,
+   "populationMillions": 0.7,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "ita-venise",
+   "name": "Venise",
+   "country": "ITA",
+   "lat": 45.44,
+   "lon": 12.32,
+   "populationMillions": 0.6,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "ita-bari",
+   "name": "Bari",
+   "country": "ITA",
+   "lat": 41.12,
+   "lon": 16.87,
+   "populationMillions": 0.6,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "ita-tarente",
+   "name": "Tarente",
+   "country": "ITA",
+   "lat": 40.47,
+   "lon": 17.24,
+   "populationMillions": 0.2,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "gbr-londres",
+   "name": "Londres",
+   "country": "GBR",
+   "lat": 51.51,
+   "lon": -0.13,
+   "populationMillions": 9.5,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "gbr-birmingham",
+   "name": "Birmingham",
+   "country": "GBR",
+   "lat": 52.49,
+   "lon": -1.89,
+   "populationMillions": 2.9,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "gbr-manchester",
+   "name": "Manchester",
+   "country": "GBR",
+   "lat": 53.48,
+   "lon": -2.24,
+   "populationMillions": 2.8,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "gbr-glasgow",
+   "name": "Glasgow",
+   "country": "GBR",
+   "lat": 55.86,
+   "lon": -4.25,
+   "populationMillions": 1.7,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "gbr-leeds",
+   "name": "Leeds",
+   "country": "GBR",
+   "lat": 53.8,
+   "lon": -1.55,
+   "populationMillions": 1.9,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "gbr-liverpool",
+   "name": "Liverpool",
+   "country": "GBR",
+   "lat": 53.41,
+   "lon": -2.98,
+   "populationMillions": 0.9,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "gbr-edimbourg",
+   "name": "Édimbourg",
+   "country": "GBR",
+   "lat": 55.95,
+   "lon": -3.19,
+   "populationMillions": 0.55,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "gbr-bristol",
+   "name": "Bristol",
+   "country": "GBR",
+   "lat": 51.45,
+   "lon": -2.59,
+   "populationMillions": 0.7,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "gbr-belfast",
+   "name": "Belfast",
+   "country": "GBR",
+   "lat": 54.6,
+   "lon": -5.93,
+   "populationMillions": 0.6,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "gbr-cardiff",
+   "name": "Cardiff",
+   "country": "GBR",
+   "lat": 51.48,
+   "lon": -3.18,
+   "populationMillions": 0.5,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "gbr-portsmouth",
+   "name": "Portsmouth",
+   "country": "GBR",
+   "lat": 50.82,
+   "lon": -1.09,
+   "populationMillions": 0.25,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "gbr-plymouth",
+   "name": "Plymouth",
+   "country": "GBR",
+   "lat": 50.38,
+   "lon": -4.14,
+   "populationMillions": 0.26,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "bel-bruxelles",
+   "name": "Bruxelles",
+   "country": "BEL",
+   "lat": 50.85,
+   "lon": 4.35,
+   "populationMillions": 2.1,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "bel-anvers",
+   "name": "Anvers",
+   "country": "BEL",
+   "lat": 51.22,
+   "lon": 4.4,
+   "populationMillions": 1.1,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "bel-gand",
+   "name": "Gand",
+   "country": "BEL",
+   "lat": 51.05,
+   "lon": 3.72,
+   "populationMillions": 0.6,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "bel-liege",
+   "name": "Liège",
+   "country": "BEL",
+   "lat": 50.63,
+   "lon": 5.57,
+   "populationMillions": 0.75,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "bel-charleroi",
+   "name": "Charleroi",
+   "country": "BEL",
+   "lat": 50.41,
+   "lon": 4.44,
+   "populationMillions": 0.5,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "bel-bruges",
+   "name": "Bruges",
+   "country": "BEL",
+   "lat": 51.21,
+   "lon": 3.22,
+   "populationMillions": 0.12,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "nld-amsterdam",
+   "name": "Amsterdam",
+   "country": "NLD",
+   "lat": 52.37,
+   "lon": 4.9,
+   "populationMillions": 2.5,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "nld-rotterdam",
+   "name": "Rotterdam",
+   "country": "NLD",
+   "lat": 51.92,
+   "lon": 4.48,
+   "populationMillions": 1.8,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "nld-la-haye",
+   "name": "La Haye",
+   "country": "NLD",
+   "lat": 52.08,
+   "lon": 4.3,
+   "populationMillions": 1.1,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "nld-utrecht",
+   "name": "Utrecht",
+   "country": "NLD",
+   "lat": 52.09,
+   "lon": 5.12,
+   "populationMillions": 0.7,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "nld-eindhoven",
+   "name": "Eindhoven",
+   "country": "NLD",
+   "lat": 51.44,
+   "lon": 5.48,
+   "populationMillions": 0.75,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "nld-groningue",
+   "name": "Groningue",
+   "country": "NLD",
+   "lat": 53.22,
+   "lon": 6.57,
+   "populationMillions": 0.35,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "che-berne",
+   "name": "Berne",
+   "country": "CHE",
+   "lat": 46.95,
+   "lon": 7.45,
+   "populationMillions": 0.43,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "che-zurich",
+   "name": "Zurich",
+   "country": "CHE",
+   "lat": 47.38,
+   "lon": 8.54,
+   "populationMillions": 1.4,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "che-geneve",
+   "name": "Genève",
+   "country": "CHE",
+   "lat": 46.2,
+   "lon": 6.14,
+   "populationMillions": 0.6,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "che-bale",
+   "name": "Bâle",
+   "country": "CHE",
+   "lat": 47.56,
+   "lon": 7.59,
+   "populationMillions": 0.55,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "che-lausanne",
+   "name": "Lausanne",
+   "country": "CHE",
+   "lat": 46.52,
+   "lon": 6.63,
+   "populationMillions": 0.42,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "che-lugano",
+   "name": "Lugano",
+   "country": "CHE",
+   "lat": 46.0,
+   "lon": 8.95,
+   "populationMillions": 0.15,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "prt-lisbonne",
+   "name": "Lisbonne",
+   "country": "PRT",
+   "lat": 38.72,
+   "lon": -9.14,
+   "populationMillions": 2.9,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "prt-porto",
+   "name": "Porto",
+   "country": "PRT",
+   "lat": 41.15,
+   "lon": -8.61,
+   "populationMillions": 1.7,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "prt-braga",
+   "name": "Braga",
+   "country": "PRT",
+   "lat": 41.55,
+   "lon": -8.42,
+   "populationMillions": 0.2,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "prt-coimbra",
+   "name": "Coimbra",
+   "country": "PRT",
+   "lat": 40.21,
+   "lon": -8.43,
+   "populationMillions": 0.15,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "prt-faro",
+   "name": "Faro",
+   "country": "PRT",
+   "lat": 37.02,
+   "lon": -7.93,
+   "populationMillions": 0.12,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "aut-vienne",
+   "name": "Vienne",
+   "country": "AUT",
+   "lat": 48.21,
+   "lon": 16.37,
+   "populationMillions": 2.0,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "aut-graz",
+   "name": "Graz",
+   "country": "AUT",
+   "lat": 47.07,
+   "lon": 15.44,
+   "populationMillions": 0.33,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "aut-linz",
+   "name": "Linz",
+   "country": "AUT",
+   "lat": 48.31,
+   "lon": 14.29,
+   "populationMillions": 0.21,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "aut-salzbourg",
+   "name": "Salzbourg",
+   "country": "AUT",
+   "lat": 47.81,
+   "lon": 13.06,
+   "populationMillions": 0.16,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "aut-innsbruck",
+   "name": "Innsbruck",
+   "country": "AUT",
+   "lat": 47.27,
+   "lon": 11.4,
+   "populationMillions": 0.13,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "pol-varsovie",
+   "name": "Varsovie",
+   "country": "POL",
+   "lat": 52.23,
+   "lon": 21.01,
+   "populationMillions": 3.1,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "pol-cracovie",
+   "name": "Cracovie",
+   "country": "POL",
+   "lat": 50.06,
+   "lon": 19.94,
+   "populationMillions": 1.4,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "pol-odz",
+   "name": "Łódź",
+   "country": "POL",
+   "lat": 51.76,
+   "lon": 19.46,
+   "populationMillions": 1.1,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "pol-wrocaw",
+   "name": "Wrocław",
+   "country": "POL",
+   "lat": 51.11,
+   "lon": 17.03,
+   "populationMillions": 1.0,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "pol-poznan",
+   "name": "Poznań",
+   "country": "POL",
+   "lat": 52.41,
+   "lon": 16.93,
+   "populationMillions": 1.0,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "pol-gdansk",
+   "name": "Gdańsk",
+   "country": "POL",
+   "lat": 54.35,
+   "lon": 18.65,
+   "populationMillions": 1.1,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "pol-szczecin",
+   "name": "Szczecin",
+   "country": "POL",
+   "lat": 53.43,
+   "lon": 14.55,
+   "populationMillions": 0.7,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "pol-lublin",
+   "name": "Lublin",
+   "country": "POL",
+   "lat": 51.25,
+   "lon": 22.57,
+   "populationMillions": 0.65,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "pol-rzeszow",
+   "name": "Rzeszów",
+   "country": "POL",
+   "lat": 50.04,
+   "lon": 22.0,
+   "populationMillions": 0.2,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "swe-stockholm",
+   "name": "Stockholm",
+   "country": "SWE",
+   "lat": 59.33,
+   "lon": 18.07,
+   "populationMillions": 2.4,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "swe-goteborg",
+   "name": "Göteborg",
+   "country": "SWE",
+   "lat": 57.71,
+   "lon": 11.97,
+   "populationMillions": 1.0,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "swe-malmo",
+   "name": "Malmö",
+   "country": "SWE",
+   "lat": 55.6,
+   "lon": 13.0,
+   "populationMillions": 0.7,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "swe-uppsala",
+   "name": "Uppsala",
+   "country": "SWE",
+   "lat": 59.86,
+   "lon": 17.64,
+   "populationMillions": 0.23,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "swe-lulea",
+   "name": "Luleå",
+   "country": "SWE",
+   "lat": 65.58,
+   "lon": 22.15,
+   "populationMillions": 0.08,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "swe-gotland--visby",
+   "name": "Gotland (Visby)",
+   "country": "SWE",
+   "lat": 57.64,
+   "lon": 18.3,
+   "populationMillions": 0.06,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "nor-oslo",
+   "name": "Oslo",
+   "country": "NOR",
+   "lat": 59.91,
+   "lon": 10.75,
+   "populationMillions": 1.6,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "nor-bergen",
+   "name": "Bergen",
+   "country": "NOR",
+   "lat": 60.39,
+   "lon": 5.32,
+   "populationMillions": 0.42,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "nor-trondheim",
+   "name": "Trondheim",
+   "country": "NOR",
+   "lat": 63.43,
+   "lon": 10.4,
+   "populationMillions": 0.2,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "nor-stavanger",
+   "name": "Stavanger",
+   "country": "NOR",
+   "lat": 58.97,
+   "lon": 5.73,
+   "populationMillions": 0.24,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "nor-troms",
+   "name": "Tromsø",
+   "country": "NOR",
+   "lat": 69.65,
+   "lon": 18.96,
+   "populationMillions": 0.08,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "nor-bod",
+   "name": "Bodø",
+   "country": "NOR",
+   "lat": 67.28,
+   "lon": 14.4,
+   "populationMillions": 0.05,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "grc-athenes",
+   "name": "Athènes",
+   "country": "GRC",
+   "lat": 37.98,
+   "lon": 23.73,
+   "populationMillions": 3.6,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "grc-thessalonique",
+   "name": "Thessalonique",
+   "country": "GRC",
+   "lat": 40.64,
+   "lon": 22.94,
+   "populationMillions": 1.1,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "grc-patras",
+   "name": "Patras",
+   "country": "GRC",
+   "lat": 38.25,
+   "lon": 21.73,
+   "populationMillions": 0.2,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "grc-heraklion",
+   "name": "Héraklion",
+   "country": "GRC",
+   "lat": 35.34,
+   "lon": 25.13,
+   "populationMillions": 0.2,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "grc-rhodes",
+   "name": "Rhodes",
+   "country": "GRC",
+   "lat": 36.43,
+   "lon": 28.22,
+   "populationMillions": 0.12,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "grc-alexandroupoli",
+   "name": "Alexandroúpoli",
+   "country": "GRC",
+   "lat": 40.85,
+   "lon": 25.87,
+   "populationMillions": 0.07,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "rou-bucarest",
+   "name": "Bucarest",
+   "country": "ROU",
+   "lat": 44.43,
+   "lon": 26.1,
+   "populationMillions": 2.2,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "rou-cluj-napoca",
+   "name": "Cluj-Napoca",
+   "country": "ROU",
+   "lat": 46.77,
+   "lon": 23.6,
+   "populationMillions": 0.4,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "rou-timisoara",
+   "name": "Timișoara",
+   "country": "ROU",
+   "lat": 45.75,
+   "lon": 21.23,
+   "populationMillions": 0.32,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "rou-iasi",
+   "name": "Iași",
+   "country": "ROU",
+   "lat": 47.16,
+   "lon": 27.59,
+   "populationMillions": 0.36,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "rou-constanta",
+   "name": "Constanța",
+   "country": "ROU",
+   "lat": 44.18,
+   "lon": 28.63,
+   "populationMillions": 0.3,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "rou-brasov",
+   "name": "Brașov",
+   "country": "ROU",
+   "lat": 45.65,
+   "lon": 25.61,
+   "populationMillions": 0.25,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "ukr-kyiv",
+   "name": "Kyiv",
+   "country": "UKR",
+   "lat": 50.45,
+   "lon": 30.52,
+   "populationMillions": 3.0,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "ukr-kharkiv",
+   "name": "Kharkiv",
+   "country": "UKR",
+   "lat": 49.99,
+   "lon": 36.23,
+   "populationMillions": 1.4,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "ukr-odessa",
+   "name": "Odessa",
+   "country": "UKR",
+   "lat": 46.48,
+   "lon": 30.73,
+   "populationMillions": 1.0,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "ukr-dnipro",
+   "name": "Dnipro",
+   "country": "UKR",
+   "lat": 48.46,
+   "lon": 35.05,
+   "populationMillions": 1.0,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "ukr-lviv",
+   "name": "Lviv",
+   "country": "UKR",
+   "lat": 49.84,
+   "lon": 24.03,
+   "populationMillions": 0.72,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "ukr-zaporijjia",
+   "name": "Zaporijjia",
+   "country": "UKR",
+   "lat": 47.84,
+   "lon": 35.14,
+   "populationMillions": 0.7,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "ukr-kryvyi-rih",
+   "name": "Kryvyï Rih",
+   "country": "UKR",
+   "lat": 47.91,
+   "lon": 33.39,
+   "populationMillions": 0.6,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "ukr-mykolaiv",
+   "name": "Mykolaïv",
+   "country": "UKR",
+   "lat": 46.97,
+   "lon": 31.99,
+   "populationMillions": 0.47,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "ukr-tchernihiv",
+   "name": "Tchernihiv",
+   "country": "UKR",
+   "lat": 51.49,
+   "lon": 31.29,
+   "populationMillions": 0.28,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "ukr-soumy",
+   "name": "Soumy",
+   "country": "UKR",
+   "lat": 50.91,
+   "lon": 34.8,
+   "populationMillions": 0.26,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "blr-minsk",
+   "name": "Minsk",
+   "country": "BLR",
+   "lat": 53.9,
+   "lon": 27.56,
+   "populationMillions": 2.0,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "blr-homiel",
+   "name": "Homiel",
+   "country": "BLR",
+   "lat": 52.44,
+   "lon": 30.98,
+   "populationMillions": 0.5,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "blr-moguilev",
+   "name": "Moguilev",
+   "country": "BLR",
+   "lat": 53.9,
+   "lon": 30.33,
+   "populationMillions": 0.36,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "blr-vitebsk",
+   "name": "Vitebsk",
+   "country": "BLR",
+   "lat": 55.19,
+   "lon": 30.2,
+   "populationMillions": 0.36,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "blr-hrodna",
+   "name": "Hrodna",
+   "country": "BLR",
+   "lat": 53.68,
+   "lon": 23.83,
+   "populationMillions": 0.36,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "blr-brest",
+   "name": "Brest",
+   "country": "BLR",
+   "lat": 52.1,
+   "lon": 23.69,
+   "populationMillions": 0.34,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "rus-moscou",
+   "name": "Moscou",
+   "country": "RUS",
+   "lat": 55.76,
+   "lon": 37.62,
+   "populationMillions": 12.6,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "rus-saint-petersbourg",
+   "name": "Saint-Pétersbourg",
+   "country": "RUS",
+   "lat": 59.94,
+   "lon": 30.31,
+   "populationMillions": 5.4,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "rus-kaliningrad",
+   "name": "Kaliningrad",
+   "country": "RUS",
+   "lat": 54.71,
+   "lon": 20.51,
+   "populationMillions": 0.49,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "rus-mourmansk",
+   "name": "Mourmansk",
+   "country": "RUS",
+   "lat": 68.97,
+   "lon": 33.08,
+   "populationMillions": 0.27,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "rus-smolensk",
+   "name": "Smolensk",
+   "country": "RUS",
+   "lat": 54.78,
+   "lon": 32.05,
+   "populationMillions": 0.32,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "rus-briansk",
+   "name": "Briansk",
+   "country": "RUS",
+   "lat": 53.24,
+   "lon": 34.36,
+   "populationMillions": 0.4,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "rus-koursk",
+   "name": "Koursk",
+   "country": "RUS",
+   "lat": 51.73,
+   "lon": 36.19,
+   "populationMillions": 0.44,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "rus-belgorod",
+   "name": "Belgorod",
+   "country": "RUS",
+   "lat": 50.6,
+   "lon": 36.59,
+   "populationMillions": 0.34,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "rus-voronej",
+   "name": "Voronej",
+   "country": "RUS",
+   "lat": 51.66,
+   "lon": 39.2,
+   "populationMillions": 1.05,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "rus-rostov-sur-le-don",
+   "name": "Rostov-sur-le-Don",
+   "country": "RUS",
+   "lat": 47.24,
+   "lon": 39.71,
+   "populationMillions": 1.14,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "rus-volgograd",
+   "name": "Volgograd",
+   "country": "RUS",
+   "lat": 48.71,
+   "lon": 44.51,
+   "populationMillions": 1.0,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "rus-sebastopol",
+   "name": "Sébastopol",
+   "country": "RUS",
+   "lat": 44.62,
+   "lon": 33.52,
+   "populationMillions": 0.5,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "rus-novorossiisk",
+   "name": "Novorossiisk",
+   "country": "RUS",
+   "lat": 44.72,
+   "lon": 37.77,
+   "populationMillions": 0.27,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "rus-kazan",
+   "name": "Kazan",
+   "country": "RUS",
+   "lat": 55.79,
+   "lon": 49.12,
+   "populationMillions": 1.3,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "rus-nijni-novgorod",
+   "name": "Nijni Novgorod",
+   "country": "RUS",
+   "lat": 56.33,
+   "lon": 44.0,
+   "populationMillions": 1.2,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "rus-samara",
+   "name": "Samara",
+   "country": "RUS",
+   "lat": 53.2,
+   "lon": 50.15,
+   "populationMillions": 1.15,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "rus-iekaterinbourg",
+   "name": "Iekaterinbourg",
+   "country": "RUS",
+   "lat": 56.84,
+   "lon": 60.61,
+   "populationMillions": 1.5,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "rus-novossibirsk",
+   "name": "Novossibirsk",
+   "country": "RUS",
+   "lat": 55.03,
+   "lon": 82.92,
+   "populationMillions": 1.6,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "rus-vladivostok",
+   "name": "Vladivostok",
+   "country": "RUS",
+   "lat": 43.12,
+   "lon": 131.89,
+   "populationMillions": 0.6,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "tur-ankara",
+   "name": "Ankara",
+   "country": "TUR",
+   "lat": 39.93,
+   "lon": 32.86,
+   "populationMillions": 5.7,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "tur-istanbul",
+   "name": "Istanbul",
+   "country": "TUR",
+   "lat": 41.01,
+   "lon": 28.98,
+   "populationMillions": 15.6,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "tur-izmir",
+   "name": "Izmir",
+   "country": "TUR",
+   "lat": 38.42,
+   "lon": 27.14,
+   "populationMillions": 4.4,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "tur-bursa",
+   "name": "Bursa",
+   "country": "TUR",
+   "lat": 40.19,
+   "lon": 29.06,
+   "populationMillions": 3.1,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "tur-antalya",
+   "name": "Antalya",
+   "country": "TUR",
+   "lat": 36.9,
+   "lon": 30.7,
+   "populationMillions": 2.6,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "tur-adana",
+   "name": "Adana",
+   "country": "TUR",
+   "lat": 37.0,
+   "lon": 35.32,
+   "populationMillions": 2.3,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "tur-gaziantep",
+   "name": "Gaziantep",
+   "country": "TUR",
+   "lat": 37.07,
+   "lon": 37.38,
+   "populationMillions": 2.1,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "tur-konya",
+   "name": "Konya",
+   "country": "TUR",
+   "lat": 37.87,
+   "lon": 32.48,
+   "populationMillions": 2.3,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "tur-trabzon",
+   "name": "Trabzon",
+   "country": "TUR",
+   "lat": 41.0,
+   "lon": 39.72,
+   "populationMillions": 0.8,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "tur-diyarbakr",
+   "name": "Diyarbakır",
+   "country": "TUR",
+   "lat": 37.91,
+   "lon": 40.24,
+   "populationMillions": 1.8,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "dza-alger",
+   "name": "Alger",
+   "country": "DZA",
+   "lat": 36.75,
+   "lon": 3.06,
+   "populationMillions": 3.9,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "dza-oran",
+   "name": "Oran",
+   "country": "DZA",
+   "lat": 35.7,
+   "lon": -0.63,
+   "populationMillions": 1.6,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "dza-constantine",
+   "name": "Constantine",
+   "country": "DZA",
+   "lat": 36.37,
+   "lon": 6.61,
+   "populationMillions": 0.95,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "dza-annaba",
+   "name": "Annaba",
+   "country": "DZA",
+   "lat": 36.9,
+   "lon": 7.77,
+   "populationMillions": 0.6,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "dza-setif",
+   "name": "Sétif",
+   "country": "DZA",
+   "lat": 36.19,
+   "lon": 5.41,
+   "populationMillions": 0.3,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "dza-tamanrasset",
+   "name": "Tamanrasset",
+   "country": "DZA",
+   "lat": 22.79,
+   "lon": 5.52,
+   "populationMillions": 0.1,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "mar-rabat",
+   "name": "Rabat",
+   "country": "MAR",
+   "lat": 34.02,
+   "lon": -6.84,
+   "populationMillions": 1.9,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "mar-casablanca",
+   "name": "Casablanca",
+   "country": "MAR",
+   "lat": 33.57,
+   "lon": -7.59,
+   "populationMillions": 3.8,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "mar-marrakech",
+   "name": "Marrakech",
+   "country": "MAR",
+   "lat": 31.63,
+   "lon": -7.99,
+   "populationMillions": 1.0,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "mar-fes",
+   "name": "Fès",
+   "country": "MAR",
+   "lat": 34.03,
+   "lon": -5.0,
+   "populationMillions": 1.2,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "mar-tanger",
+   "name": "Tanger",
+   "country": "MAR",
+   "lat": 35.76,
+   "lon": -5.83,
+   "populationMillions": 1.3,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "mar-agadir",
+   "name": "Agadir",
+   "country": "MAR",
+   "lat": 30.43,
+   "lon": -9.6,
+   "populationMillions": 0.9,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "tun-tunis",
+   "name": "Tunis",
+   "country": "TUN",
+   "lat": 36.81,
+   "lon": 10.18,
+   "populationMillions": 2.7,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "tun-sfax",
+   "name": "Sfax",
+   "country": "TUN",
+   "lat": 34.74,
+   "lon": 10.76,
+   "populationMillions": 0.95,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "tun-sousse",
+   "name": "Sousse",
+   "country": "TUN",
+   "lat": 35.83,
+   "lon": 10.64,
+   "populationMillions": 0.7,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "tun-bizerte",
+   "name": "Bizerte",
+   "country": "TUN",
+   "lat": 37.27,
+   "lon": 9.87,
+   "populationMillions": 0.15,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "tun-gabes",
+   "name": "Gabès",
+   "country": "TUN",
+   "lat": 33.88,
+   "lon": 10.1,
+   "populationMillions": 0.15,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "egy-le-caire",
+   "name": "Le Caire",
+   "country": "EGY",
+   "lat": 30.04,
+   "lon": 31.24,
+   "populationMillions": 21.7,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "egy-alexandrie",
+   "name": "Alexandrie",
+   "country": "EGY",
+   "lat": 31.2,
+   "lon": 29.92,
+   "populationMillions": 5.4,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "egy-gizeh",
+   "name": "Gizeh",
+   "country": "EGY",
+   "lat": 30.01,
+   "lon": 31.21,
+   "populationMillions": 4.4,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "egy-port-said",
+   "name": "Port-Saïd",
+   "country": "EGY",
+   "lat": 31.27,
+   "lon": 32.3,
+   "populationMillions": 0.75,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "egy-suez",
+   "name": "Suez",
+   "country": "EGY",
+   "lat": 29.97,
+   "lon": 32.53,
+   "populationMillions": 0.75,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "egy-assouan",
+   "name": "Assouan",
+   "country": "EGY",
+   "lat": 24.09,
+   "lon": 32.9,
+   "populationMillions": 0.3,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "egy-louxor",
+   "name": "Louxor",
+   "country": "EGY",
+   "lat": 25.69,
+   "lon": 32.64,
+   "populationMillions": 0.5,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "sau-riyad",
+   "name": "Riyad",
+   "country": "SAU",
+   "lat": 24.71,
+   "lon": 46.68,
+   "populationMillions": 7.7,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "sau-djeddah",
+   "name": "Djeddah",
+   "country": "SAU",
+   "lat": 21.49,
+   "lon": 39.19,
+   "populationMillions": 4.7,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "sau-la-mecque",
+   "name": "La Mecque",
+   "country": "SAU",
+   "lat": 21.39,
+   "lon": 39.86,
+   "populationMillions": 2.0,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "sau-medine",
+   "name": "Médine",
+   "country": "SAU",
+   "lat": 24.47,
+   "lon": 39.61,
+   "populationMillions": 1.5,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "sau-dammam",
+   "name": "Dammam",
+   "country": "SAU",
+   "lat": 26.43,
+   "lon": 50.1,
+   "populationMillions": 1.3,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "sau-tabouk",
+   "name": "Tabouk",
+   "country": "SAU",
+   "lat": 28.38,
+   "lon": 36.57,
+   "populationMillions": 0.6,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "usa-washington",
+   "name": "Washington",
+   "country": "USA",
+   "lat": 38.91,
+   "lon": -77.04,
+   "populationMillions": 6.3,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "usa-new-york",
+   "name": "New York",
+   "country": "USA",
+   "lat": 40.71,
+   "lon": -74.01,
+   "populationMillions": 19.5,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "usa-los-angeles",
+   "name": "Los Angeles",
+   "country": "USA",
+   "lat": 34.05,
+   "lon": -118.24,
+   "populationMillions": 13.0,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "usa-chicago",
+   "name": "Chicago",
+   "country": "USA",
+   "lat": 41.88,
+   "lon": -87.63,
+   "populationMillions": 9.4,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "usa-houston",
+   "name": "Houston",
+   "country": "USA",
+   "lat": 29.76,
+   "lon": -95.37,
+   "populationMillions": 7.3,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "usa-dallas",
+   "name": "Dallas",
+   "country": "USA",
+   "lat": 32.78,
+   "lon": -96.8,
+   "populationMillions": 7.9,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "usa-philadelphie",
+   "name": "Philadelphie",
+   "country": "USA",
+   "lat": 39.95,
+   "lon": -75.17,
+   "populationMillions": 6.2,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "usa-miami",
+   "name": "Miami",
+   "country": "USA",
+   "lat": 25.76,
+   "lon": -80.19,
+   "populationMillions": 6.1,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "usa-atlanta",
+   "name": "Atlanta",
+   "country": "USA",
+   "lat": 33.75,
+   "lon": -84.39,
+   "populationMillions": 6.2,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "usa-boston",
+   "name": "Boston",
+   "country": "USA",
+   "lat": 42.36,
+   "lon": -71.06,
+   "populationMillions": 4.9,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "usa-san-francisco",
+   "name": "San Francisco",
+   "country": "USA",
+   "lat": 37.77,
+   "lon": -122.42,
+   "populationMillions": 4.6,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "usa-seattle",
+   "name": "Seattle",
+   "country": "USA",
+   "lat": 47.61,
+   "lon": -122.33,
+   "populationMillions": 4.0,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "usa-san-diego",
+   "name": "San Diego",
+   "country": "USA",
+   "lat": 32.72,
+   "lon": -117.16,
+   "populationMillions": 3.3,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "usa-norfolk",
+   "name": "Norfolk",
+   "country": "USA",
+   "lat": 36.85,
+   "lon": -76.29,
+   "populationMillions": 1.8,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "usa-honolulu",
+   "name": "Honolulu",
+   "country": "USA",
+   "lat": 21.31,
+   "lon": -157.86,
+   "populationMillions": 1.0,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "usa-anchorage",
+   "name": "Anchorage",
+   "country": "USA",
+   "lat": 61.22,
+   "lon": -149.9,
+   "populationMillions": 0.4,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "can-ottawa",
+   "name": "Ottawa",
+   "country": "CAN",
+   "lat": 45.42,
+   "lon": -75.7,
+   "populationMillions": 1.5,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "can-toronto",
+   "name": "Toronto",
+   "country": "CAN",
+   "lat": 43.65,
+   "lon": -79.38,
+   "populationMillions": 6.4,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "can-montreal",
+   "name": "Montréal",
+   "country": "CAN",
+   "lat": 45.5,
+   "lon": -73.57,
+   "populationMillions": 4.3,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "can-vancouver",
+   "name": "Vancouver",
+   "country": "CAN",
+   "lat": 49.28,
+   "lon": -123.12,
+   "populationMillions": 2.6,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "can-calgary",
+   "name": "Calgary",
+   "country": "CAN",
+   "lat": 51.05,
+   "lon": -114.07,
+   "populationMillions": 1.5,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "can-edmonton",
+   "name": "Edmonton",
+   "country": "CAN",
+   "lat": 53.55,
+   "lon": -113.49,
+   "populationMillions": 1.4,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "can-quebec",
+   "name": "Québec",
+   "country": "CAN",
+   "lat": 46.81,
+   "lon": -71.21,
+   "populationMillions": 0.84,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "can-halifax",
+   "name": "Halifax",
+   "country": "CAN",
+   "lat": 44.65,
+   "lon": -63.58,
+   "populationMillions": 0.45,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "bra-brasilia",
+   "name": "Brasília",
+   "country": "BRA",
+   "lat": -15.79,
+   "lon": -47.88,
+   "populationMillions": 4.8,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "bra-sao-paulo",
+   "name": "São Paulo",
+   "country": "BRA",
+   "lat": -23.55,
+   "lon": -46.63,
+   "populationMillions": 22.4,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "bra-rio-de-janeiro",
+   "name": "Rio de Janeiro",
+   "country": "BRA",
+   "lat": -22.91,
+   "lon": -43.17,
+   "populationMillions": 13.6,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "bra-belo-horizonte",
+   "name": "Belo Horizonte",
+   "country": "BRA",
+   "lat": -19.92,
+   "lon": -43.94,
+   "populationMillions": 6.1,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "bra-salvador",
+   "name": "Salvador",
+   "country": "BRA",
+   "lat": -12.97,
+   "lon": -38.5,
+   "populationMillions": 3.9,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "bra-fortaleza",
+   "name": "Fortaleza",
+   "country": "BRA",
+   "lat": -3.73,
+   "lon": -38.53,
+   "populationMillions": 4.1,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "bra-recife",
+   "name": "Recife",
+   "country": "BRA",
+   "lat": -8.05,
+   "lon": -34.88,
+   "populationMillions": 4.1,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "bra-manaus",
+   "name": "Manaus",
+   "country": "BRA",
+   "lat": -3.12,
+   "lon": -60.02,
+   "populationMillions": 2.3,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "bra-porto-alegre",
+   "name": "Porto Alegre",
+   "country": "BRA",
+   "lat": -30.03,
+   "lon": -51.23,
+   "populationMillions": 4.3,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "chn-pekin",
+   "name": "Pékin",
+   "country": "CHN",
+   "lat": 39.9,
+   "lon": 116.41,
+   "populationMillions": 21.9,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "chn-shanghai",
+   "name": "Shanghai",
+   "country": "CHN",
+   "lat": 31.23,
+   "lon": 121.47,
+   "populationMillions": 29.2,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "chn-canton",
+   "name": "Canton",
+   "country": "CHN",
+   "lat": 23.13,
+   "lon": 113.26,
+   "populationMillions": 19.0,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "chn-shenzhen",
+   "name": "Shenzhen",
+   "country": "CHN",
+   "lat": 22.54,
+   "lon": 114.06,
+   "populationMillions": 17.6,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "chn-chongqing",
+   "name": "Chongqing",
+   "country": "CHN",
+   "lat": 29.56,
+   "lon": 106.55,
+   "populationMillions": 17.0,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "chn-tianjin",
+   "name": "Tianjin",
+   "country": "CHN",
+   "lat": 39.34,
+   "lon": 117.36,
+   "populationMillions": 14.0,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "chn-chengdu",
+   "name": "Chengdu",
+   "country": "CHN",
+   "lat": 30.66,
+   "lon": 104.07,
+   "populationMillions": 16.0,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "chn-wuhan",
+   "name": "Wuhan",
+   "country": "CHN",
+   "lat": 30.59,
+   "lon": 114.31,
+   "populationMillions": 8.9,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "chn-xi-an",
+   "name": "Xi'an",
+   "country": "CHN",
+   "lat": 34.34,
+   "lon": 108.94,
+   "populationMillions": 8.9,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "chn-hangzhou",
+   "name": "Hangzhou",
+   "country": "CHN",
+   "lat": 30.27,
+   "lon": 120.16,
+   "populationMillions": 9.0,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "chn-nankin",
+   "name": "Nankin",
+   "country": "CHN",
+   "lat": 32.06,
+   "lon": 118.8,
+   "populationMillions": 9.0,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "chn-hong-kong",
+   "name": "Hong Kong",
+   "country": "CHN",
+   "lat": 22.32,
+   "lon": 114.17,
+   "populationMillions": 7.5,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "chn-qingdao",
+   "name": "Qingdao",
+   "country": "CHN",
+   "lat": 36.07,
+   "lon": 120.38,
+   "populationMillions": 6.2,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "chn-dalian",
+   "name": "Dalian",
+   "country": "CHN",
+   "lat": 38.91,
+   "lon": 121.6,
+   "populationMillions": 4.5,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "chn-xiamen",
+   "name": "Xiamen",
+   "country": "CHN",
+   "lat": 24.48,
+   "lon": 118.09,
+   "populationMillions": 4.0,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "chn-harbin",
+   "name": "Harbin",
+   "country": "CHN",
+   "lat": 45.8,
+   "lon": 126.53,
+   "populationMillions": 5.0,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "chn-urumqi",
+   "name": "Ürümqi",
+   "country": "CHN",
+   "lat": 43.83,
+   "lon": 87.62,
+   "populationMillions": 4.0,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "jpn-tokyo",
+   "name": "Tokyo",
+   "country": "JPN",
+   "lat": 35.68,
+   "lon": 139.69,
+   "populationMillions": 37.2,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "jpn-osaka",
+   "name": "Osaka",
+   "country": "JPN",
+   "lat": 34.69,
+   "lon": 135.5,
+   "populationMillions": 19.0,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "jpn-nagoya",
+   "name": "Nagoya",
+   "country": "JPN",
+   "lat": 35.18,
+   "lon": 136.91,
+   "populationMillions": 9.5,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "jpn-fukuoka",
+   "name": "Fukuoka",
+   "country": "JPN",
+   "lat": 33.59,
+   "lon": 130.4,
+   "populationMillions": 5.5,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "jpn-sapporo",
+   "name": "Sapporo",
+   "country": "JPN",
+   "lat": 43.06,
+   "lon": 141.35,
+   "populationMillions": 2.7,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "jpn-sendai",
+   "name": "Sendai",
+   "country": "JPN",
+   "lat": 38.27,
+   "lon": 140.87,
+   "populationMillions": 2.3,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "jpn-hiroshima",
+   "name": "Hiroshima",
+   "country": "JPN",
+   "lat": 34.39,
+   "lon": 132.46,
+   "populationMillions": 1.4,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "jpn-yokosuka",
+   "name": "Yokosuka",
+   "country": "JPN",
+   "lat": 35.28,
+   "lon": 139.67,
+   "populationMillions": 0.4,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "jpn-naha--okinawa",
+   "name": "Naha (Okinawa)",
+   "country": "JPN",
+   "lat": 26.21,
+   "lon": 127.68,
+   "populationMillions": 0.8,
+   "capital": false,
+   "rank": 3
+  },
+  {
+   "id": "ind-new-delhi",
+   "name": "New Delhi",
+   "country": "IND",
+   "lat": 28.61,
+   "lon": 77.21,
+   "populationMillions": 32.9,
+   "capital": true,
+   "rank": 1
+  },
+  {
+   "id": "ind-bombay",
+   "name": "Bombay",
+   "country": "IND",
+   "lat": 19.08,
+   "lon": 72.88,
+   "populationMillions": 21.3,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "ind-calcutta",
+   "name": "Calcutta",
+   "country": "IND",
+   "lat": 22.57,
+   "lon": 88.36,
+   "populationMillions": 15.3,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "ind-bangalore",
+   "name": "Bangalore",
+   "country": "IND",
+   "lat": 12.97,
+   "lon": 77.59,
+   "populationMillions": 13.6,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "ind-madras",
+   "name": "Madras",
+   "country": "IND",
+   "lat": 13.08,
+   "lon": 80.27,
+   "populationMillions": 11.8,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "ind-hyderabad",
+   "name": "Hyderabad",
+   "country": "IND",
+   "lat": 17.39,
+   "lon": 78.49,
+   "populationMillions": 10.8,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "ind-ahmedabad",
+   "name": "Ahmedabad",
+   "country": "IND",
+   "lat": 23.02,
+   "lon": 72.57,
+   "populationMillions": 8.6,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "ind-pune",
+   "name": "Pune",
+   "country": "IND",
+   "lat": 18.52,
+   "lon": 73.86,
+   "populationMillions": 7.2,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "ind-jaipur",
+   "name": "Jaipur",
+   "country": "IND",
+   "lat": 26.91,
+   "lon": 75.79,
+   "populationMillions": 4.1,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "ind-lucknow",
+   "name": "Lucknow",
+   "country": "IND",
+   "lat": 26.85,
+   "lon": 80.95,
+   "populationMillions": 3.9,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "ind-visakhapatnam",
+   "name": "Visakhapatnam",
+   "country": "IND",
+   "lat": 17.69,
+   "lon": 83.22,
+   "populationMillions": 2.3,
+   "capital": false,
+   "rank": 2
+  },
+  {
+   "id": "ind-srinagar",
+   "name": "Srinagar",
+   "country": "IND",
+   "lat": 34.08,
+   "lon": 74.8,
+   "populationMillions": 1.5,
+   "capital": false,
+   "rank": 2
+  }
+ ]
+}

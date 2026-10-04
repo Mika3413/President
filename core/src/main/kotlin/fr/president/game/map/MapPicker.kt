@@ -44,6 +44,7 @@ class MapPicker(private val data: MapData, private val db: GameDatabase, private
 
     private fun selectionFor(m: MapMarker): MapSelection = when {
         m.kind == MarkerKind.CITY -> MapSelection.City(m.id)
+        m.kind == MarkerKind.FOREIGN_CITY -> MapSelection.ForeignCity(m.id)
         m.kind == MarkerKind.MILITARY -> MapSelection.Base(m.id)
         m.id in infraTypes -> MapSelection.Infrastructure(m.id)
         else -> MapSelection.City(m.id)

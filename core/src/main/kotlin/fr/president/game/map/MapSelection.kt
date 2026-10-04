@@ -9,4 +9,5 @@ sealed class MapSelection {
     data class Base(val id: String) : MapSelection()
     data class Country(val id: String) : MapSelection()
     data class Unit(val id: String) : MapSelection()
+    data class ForeignCity(val id: String) : MapSelection()
 }

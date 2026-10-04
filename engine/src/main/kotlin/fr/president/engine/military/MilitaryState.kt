@@ -112,6 +112,8 @@ class MilitaryState(
     val production: MutableList<ProductionOrder> = mutableListOf(),
     /** Lassitude de guerre de l'opinion du pays joueur (0..1). */
     var warWeariness: Double = 0.0,
+    /** Dernier contrôleur connu de chaque ville (pour annoncer les prises et les pertes). */
+    val cityControl: MutableMap<String, String> = mutableMapOf(),
     var recentCasualties: Int = 0,
     /** Durée d'occupation de la capitale du joueur (jours). */
     var capitalOccupiedDays: Int = 0,

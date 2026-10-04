@@ -31,6 +31,7 @@ class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
             is MapSelection.Base -> session.local.base(s.id).title
             is MapSelection.Country -> session.db.countries[s.id]?.definition?.name ?: "Pays non simulé"
             is MapSelection.Unit -> session.state.military.units[s.id]?.name ?: "Unité"
+            is MapSelection.ForeignCity -> session.worldCities.sheet(s.id)?.sheet?.title ?: "Ville"
             null -> ""
         }
 
@@ -55,6 +56,7 @@ class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
             is MapSelection.Base -> into.add(SheetView(ui, session.local.base(s.id), expanded)).row()
             is MapSelection.Country -> buildCountry(into, s.id)
             is MapSelection.Unit -> unitSheet.build(into, s.id)
+            is MapSelection.ForeignCity -> buildForeignCity(into, s.id)
             null -> Unit
         }
     }
@@ -143,6 +145,22 @@ class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
                 }).left().row()
             }
         }
+    }
+
+    /** Ville étrangère : contrôle, garnison connue, et accès au pays ou aux unités présentes. */
+    private fun buildForeignCity(into: Table, id: String) {
+        val city = session.worldCities.sheet(id) ?: return
+        into.add(SheetView(ui, city.sheet, expanded)).row()
+        if (city.garrison.isNotEmpty()) {
+            into.add(ui.label("Unités dans la ville", "bold")).padTop(4f).row()
+            city.garrison.forEach { uid ->
+                session.state.military.units[uid]?.let { u -> into.add(ui.button(u.name, "flat") { nav.select(MapSelection.Unit(u.id)) }).left().row() }
+            }
+        }
+        val row = Table().apply { defaults().padRight(4f) }
+        row.add(ui.colorButton("☎ ${session.db.countries[city.country]?.definition?.name ?: city.country}", Theme.catDiplomacy) { nav.select(MapSelection.Country(city.country)) })
+        if (city.holder != city.country) row.add(ui.button("Occupant", "default") { nav.select(MapSelection.Country(city.holder)) })
+        into.add(row).left().padTop(GAP).row()
     }
 
     private var pendingClose: String? = null

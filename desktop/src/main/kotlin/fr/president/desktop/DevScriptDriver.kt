@@ -58,6 +58,7 @@ class DevScriptDriver(private val game: PresidentGame, script: String) : Applica
             "infra" -> MapSelection.Infrastructure(id)
             "base" -> MapSelection.Base(id)
             "unit" -> MapSelection.Unit(id)
+            "fcity" -> MapSelection.ForeignCity(id)
             else -> MapSelection.Country(id)
         }
         game.mainScreen?.select(selection)

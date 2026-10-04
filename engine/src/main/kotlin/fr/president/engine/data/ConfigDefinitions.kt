@@ -42,7 +42,24 @@ data class GlobalDataFiles(
     val help: String,
     /** Presse et sondages (facultatif). */
     val media: String? = null,
+    /** Villes des pays étrangers (facultatif). */
+    val worldCities: String? = null,
 )
+
+@kotlinx.serialization.Serializable
+data class WorldCityDef(
+    val id: String,
+    val name: String,
+    val country: String,
+    val lat: Double,
+    val lon: Double,
+    val populationMillions: Double,
+    val capital: Boolean = false,
+    val rank: Int = 3,
+)
+
+@kotlinx.serialization.Serializable
+data class WorldCitiesFile(val cities: List<WorldCityDef>)
 
 @Serializable
 data class HelpFile(val tutorial: List<TutorialDef>, val glossary: List<GlossaryDef>)

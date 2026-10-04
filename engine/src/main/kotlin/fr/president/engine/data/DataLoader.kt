@@ -34,6 +34,7 @@ class DataLoader(private val source: DataSource) {
             militaryParameters = unitTypes.parameters,
             help = read(files.help),
             media = files.media?.let { read(it) },
+            worldCities = files.worldCities?.let { read<WorldCitiesFile>(it).cities }.orEmpty(),
         )
         DataValidator.validate(db)
         return db

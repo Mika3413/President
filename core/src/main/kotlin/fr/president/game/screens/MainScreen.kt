@@ -206,6 +206,7 @@ class MainScreen(
         is MapSelection.Infrastructure -> s.id
         is MapSelection.Base -> s.id
         is MapSelection.Unit -> s.id
+        is MapSelection.ForeignCity -> s.id
         else -> null
     }
 
@@ -293,6 +294,7 @@ class MainScreen(
         val (x, y) = overlay.locate(mapId) ?: return
         val width = when {
             mapData.countriesById.containsKey(mapId) -> COUNTRY_VIEW_WIDTH
+            mapData.foreignCountry.containsKey(mapId) -> DEPARTMENT_VIEW_WIDTH * 2
             mapData.departmentsById.containsKey(mapId) -> DEPARTMENT_VIEW_WIDTH
             else -> LOCAL_VIEW_WIDTH
         }
@@ -303,6 +305,7 @@ class MainScreen(
             session.state.territory.cities.containsKey(mapId) -> MapSelection.City(mapId)
             session.state.infrastructure.containsKey(mapId) -> MapSelection.Infrastructure(mapId)
             session.context.catalog.bases.containsKey(mapId) -> MapSelection.Base(mapId)
+            mapData.foreignCountry.containsKey(mapId) -> MapSelection.ForeignCity(mapId)
             else -> null
         }
         target?.let { select(it) }
