@@ -1,0 +1,32 @@
+{
+ "_doc": "Multiplicateurs de fréquence des événements (1 = inchangé), réglés avec la sonde d'équilibrage BalanceProbeTest. Un réglage par événement remplace celui de sa catégorie.",
+ "categories": {
+  "TERRITORY": 0.4
+ },
+ "events": {
+  "nuclear_incident": 0.15,
+  "blackout": 0.3,
+  "dam_drought": 0.4,
+  "cyclone": 0.5,
+  "wildfire": 4.0,
+  "forest_fire_prevention": 0.4,
+  "medical_desert": 0.35,
+  "post_office_closure": 0.35,
+  "farmers_local": 0.4,
+  "water_crisis": 0.35,
+  "hospital_maternity": 0.35,
+  "police_reinforcement": 0.4,
+  "energy_bills_local": 0.4,
+  "housing_shortage": 0.5,
+  "industrial_zone": 0.5,
+  "prison_overcrowding": 0.5,
+  "cost_of_living_overseas": 0.4,
+  "overseas_water": 0.5,
+  "diplomatic_incident": 0.5,
+  "city_demonstration": 0.6,
+  "local_violence_school": 0.6,
+  "migrant_reception": 0.6,
+  "hospital_overload": 0.6,
+  "factory_closure": 0.7
+ }
+}

@@ -49,8 +49,8 @@ class RiskReadout(private val ctx: SimulationContext) {
 
     fun risk(id: String): Risk? = risks().firstOrNull { it.def.id == id }
 
-    /** Risques élevés sans aucune mesure de réduction en vigueur : ce que le conseiller signale. */
-    fun unattended(): List<Risk> = risks().filter { it.probability >= HIGH && it.activeMeasures.isEmpty() && it.measures.isNotEmpty() }
+    /** Risques très élevés sans aucune mesure de réduction en vigueur : ce que le conseiller signale. */
+    fun unattended(): List<Risk> = risks().filter { it.probability >= VERY_HIGH && it.activeMeasures.isEmpty() && it.measures.isNotEmpty() }
 
     private fun risk(r: RiskDef, measures: List<MeasureDef>, activeIds: Set<String>): Risk {
         var none = 1.0
@@ -58,8 +58,9 @@ class RiskReadout(private val ctx: SimulationContext) {
         var bestP = 0.0
         for (id in r.events) {
             val def = ctx.db.events.firstOrNull { it.id == id } ?: continue
-            val (daily, scope) = events.dailyRisk(ctx, def)
-            none *= (1 - daily).pow(HORIZON_DAYS)
+            // Un drame vient d'avoir lieu : le risque ne court que sur la fin de la période.
+            val (daily, scope) = events.dailyRisk(ctx, def, ignoreCooldown = true)
+            none *= (1 - daily).pow((HORIZON_DAYS - events.cooldownLeft(ctx, def)).coerceAtLeast(0.0))
             if (daily > bestP && scope?.id != null) { bestP = daily; best = scope }
         }
         val p = 1 - none

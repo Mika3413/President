@@ -48,7 +48,18 @@ data class GlobalDataFiles(
     val eventIntensity: String? = null,
     /** Options de réponse et mesures supplémentaires par famille d'événements (facultatif). */
     val eventResponses: String? = null,
+    /** Réglage de la fréquence des événements par catégorie et par événement (facultatif). */
+    val eventFrequency: String? = null,
 )
+
+/** Multiplicateurs de fréquence : l'outil d'équilibrage du rythme des événements. */
+@Serializable
+data class EventFrequency(
+    val categories: Map<String, Double> = emptyMap(),
+    val events: Map<String, Double> = emptyMap(),
+) {
+    fun factor(id: String, category: String): Double = events[id] ?: categories[category] ?: 1.0
+}
 
 @kotlinx.serialization.Serializable
 data class WorldCityDef(

@@ -105,6 +105,7 @@
     "media": "media/fr.json",
     "worldCities": "geo/world_cities.json",
     "eventIntensity": "events/intensity.json",
-    "eventResponses": "events/responses.json"
+    "eventResponses": "events/responses.json",
+    "eventFrequency": "config/event_frequency.json"
   }
 }

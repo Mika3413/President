@@ -32,7 +32,7 @@ class EventSystem : SimulationSystem {
     }
 
     fun probability(ctx: SimulationContext, def: EventDefinition, scope: ScopeRef): Double {
-        var p = def.baseDailyProbability
+        var p = def.baseDailyProbability * (ctx.db.frequency?.factor(def.id, def.category.name) ?: 1.0)
         for (m in def.modifiers) {
             val value = ctx.variables.resolve(m.variable, scope) ?: continue
             p *= lerp(m.factorAtFrom, m.factorAtTo, inverseLerp(m.from, m.to, value))
@@ -46,8 +46,8 @@ class EventSystem : SimulationSystem {
      * Risque quotidien d'un événement (toutes cibles confondues) et la cible la plus exposée.
      * Sert à l'affichage des risques ; ne tire rien au hasard.
      */
-    fun dailyRisk(ctx: SimulationContext, def: EventDefinition): Pair<Double, ScopeRef?> {
-        if (onCooldown(def.cooldownDays, ctx.state.events.lastFired[def.id], ctx.now)) return 0.0 to null
+    fun dailyRisk(ctx: SimulationContext, def: EventDefinition, ignoreCooldown: Boolean = false): Pair<Double, ScopeRef?> {
+        if (!ignoreCooldown && onCooldown(def.cooldownDays, ctx.state.events.lastFired[def.id], ctx.now)) return 0.0 to null
         var none = 1.0
         var best: ScopeRef? = null
         var bestP = 0.0
@@ -59,6 +59,12 @@ class EventSystem : SimulationSystem {
             if (p > bestP) { bestP = p; best = scope }
         }
         return (1 - none) to best
+    }
+
+    /** Jours restants avant que l'événement puisse se reproduire (0 s'il le peut déjà). */
+    fun cooldownLeft(ctx: SimulationContext, def: EventDefinition): Double {
+        val last = ctx.state.events.lastFired[def.id] ?: return 0.0
+        return (def.cooldownDays - last.daysUntil(ctx.now)).coerceAtLeast(0.0)
     }
 
     private fun eligible(ctx: SimulationContext, def: EventDefinition, scope: ScopeRef): Boolean {

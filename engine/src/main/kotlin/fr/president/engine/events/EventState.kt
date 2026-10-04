@@ -30,6 +30,8 @@ data class NewsEntry(
 class EventState(
     val lastFired: MutableMap<String, WorldTime> = mutableMapOf(),
     val lastFiredScope: MutableMap<String, WorldTime> = mutableMapOf(),
+    /** Nombre de survenues de chaque événement depuis le début de la partie. */
+    val firedCount: MutableMap<String, Int> = mutableMapOf(),
     val active: MutableList<EventInstance> = mutableListOf(),
     val news: MutableList<NewsEntry> = mutableListOf(),
 )

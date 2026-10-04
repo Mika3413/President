@@ -23,6 +23,7 @@ class EventLauncher(private val ctx: SimulationContext) {
         val instance = EventInstance(ctx.state.newId("evt"), def.id, scope.id, params, ctx.now)
         ctx.state.events.active.add(instance)
         ctx.state.events.lastFired[def.id] = ctx.now
+        ctx.state.events.firedCount.merge(def.id, 1, Int::plus)
         scope.id?.let { ctx.state.events.lastFiredScope["${def.id}:$it"] = ctx.now }
         def.immediateEffects.forEach { ctx.effects.trigger(EventIntensity.scale(it, factor), scope, params, def.id) }
         // Conséquences en chaîne propres au type d'événement (économie, services, voisins...).

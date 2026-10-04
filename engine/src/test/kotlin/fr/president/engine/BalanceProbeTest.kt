@@ -30,6 +30,7 @@ class BalanceProbeTest {
                 val clock = TestData.FakeClock()
                 val s = GameSession.newGame(TestData.db, fr.president.engine.setup.NewGameOptions("normal", seed, clock.now, economicLeaning = leaning, socialLeaning = social), clock)
                 play(s, clock, strategy)
+                s.state.events.firedCount.forEach { (k, v) -> eventCounts.merge(k, v, Int::plus) }
                 val e = s.state.playerCountry.economy
                 val won = s.state.elections.results.firstOrNull()?.incumbentWon == true
                 if (won) reelected++
@@ -44,9 +45,17 @@ class BalanceProbeTest {
                     " scandales=" + s.state.characters.getValue(s.state.player.presidentId).scandals + " momentum=" + s.state.elections.candidates.joinToString { "%.2f".format(it.momentum) }
             }
             println("BALANCE $strategy : réélu $reelected / ${seeds.size}")
+            println("BALANCE   événements par mandat (moyenne) : " + eventCounts.entries.sortedByDescending { it.value }.take(200)
+                .joinToString { "${it.key}=%.1f".format(it.value.toDouble() / seeds.size) })
+            println("BALANCE   total événements par mandat : %.0f".format(eventCounts.values.sum().toDouble() / seeds.size))
+            println("BALANCE   par catégorie : " + eventCounts.entries.groupBy { e -> TestData.db.event(e.key).category }
+                .mapValues { it.value.sumOf { e -> e.value } / seeds.size }.entries.sortedByDescending { it.value }.joinToString { "${it.key}=${it.value}" })
+            eventCounts.clear()
             lines.forEach { println("BALANCE $it") }
         }
     }
+
+    private val eventCounts = mutableMapOf<String, Int>()
 
     private fun play(s: GameSession, clock: TestData.FakeClock, strategy: Strategy) {
         val target = s.state.elections.nextElection.plusDays(20)
