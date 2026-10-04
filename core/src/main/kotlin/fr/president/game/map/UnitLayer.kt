@@ -20,6 +20,12 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
     class Counter(val unitIds: List<String>, val x: Float, val y: Float)
 
     val counters = mutableListOf<Counter>()
+    /** Destinations de nos unités en mouvement (écran) et temps restant, pour les étiquettes. */
+    private class Arrival(val x: Float, val y: Float, val hours: Double)
+    private val arrivals = mutableListOf<Arrival>()
+    /** Batailles visibles (écran) et rapport de forces de notre camp, s'il y participe. */
+    private class Battle(val x: Float, val y: Float, val ratio: Double?)
+    private val battles = mutableListOf<Battle>()
     private val tmp = Vector3()
     private var time = 0f
     /** Position affichée de chaque unité (coordonnées monde), qui glisse vers sa zone réelle. */
@@ -28,6 +34,8 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
     fun shapes(shapes: ShapeRenderer, camera: OrthographicCamera, session: GameSession, lod: Lod, layer: ThematicLayer, selectedUnit: String?, delta: Float) {
         time += delta
         counters.clear()
+        arrivals.clear()
+        battles.clear()
         val player = session.state.player.countryId
         val geo = session.military.geo
         val atWar = geo.isAtWar(player)
@@ -38,15 +46,29 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
         val zones = session.db.zones
         // Itinéraires des unités du joueur en mouvement.
         shapes.set(ShapeRenderer.ShapeType.Filled)
+        val preview = session.military.preview
         for (u in visible.filter { it.countryId == player && it.path.isNotEmpty() }) {
             var prev = project(camera, zones.zone(u.zoneId).lon, zones.zone(u.zoneId).lat) ?: continue
-            shapes.color = if (u.id == selectedUnit) Theme.highlight else PATH
+            val attacking = u.order == fr.president.engine.military.UnitOrder.ATTACK
+            shapes.color = if (u.id == selectedUnit) Theme.highlight else if (attacking) ATTACK_PATH else PATH
+            var before = prev
             for (z in u.path) {
                 val zz = zones.zones[z] ?: break
                 val next = project(camera, zz.lon, zz.lat) ?: break
-                shapes.rectLine(prev.x, prev.y, next.x, next.y, PATH_WIDTH)
+                shapes.rectLine(prev.x, prev.y, next.x, next.y, if (attacking) PATH_WIDTH * 1.5f else PATH_WIDTH)
+                before = prev
                 prev = next
             }
+            // Pointe de flèche à l'arrivée, orientée selon le dernier tronçon.
+            val dx = prev.x - before.x
+            val dy = prev.y - before.y
+            val len = Math.sqrt((dx * dx + dy * dy).toDouble()).toFloat()
+            if (len > 0.5f) {
+                val ux = dx / len; val uy = dy / len
+                shapes.triangle(prev.x, prev.y, prev.x - ux * ARROW + uy * ARROW / 2, prev.y - uy * ARROW - ux * ARROW / 2,
+                    prev.x - ux * ARROW - uy * ARROW / 2, prev.y - uy * ARROW + ux * ARROW / 2)
+            }
+            preview.remainingHours(u)?.let { arrivals += Arrival(prev.x, prev.y, it) }
         }
         // Combats : halo rouge pulsant.
         val pulse = (Math.sin(time * PULSE.toDouble()).toFloat() + 1) / 2
@@ -55,6 +77,15 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
             val p = project(camera, z.lon, z.lat) ?: continue
             shapes.color = Color(Theme.bad.r, Theme.bad.g, Theme.bad.b, BATTLE_ALPHA * (1 - pulse))
             shapes.circle(p.x, p.y, BATTLE_RADIUS + pulse * BATTLE_RADIUS, SEGMENTS)
+            // Épées croisées au-dessus de la bataille.
+            val bx = p.x; val by = p.y + BATTLE_RADIUS + 6f
+            shapes.color = Theme.border; shapes.circle(bx, by, SWORD + 3f, SEGMENTS)
+            shapes.color = Theme.bad; shapes.circle(bx, by, SWORD + 2f, SEGMENTS)
+            shapes.color = Color.WHITE
+            shapes.rectLine(bx - SWORD, by - SWORD, bx + SWORD, by + SWORD, 1.6f)
+            shapes.rectLine(bx - SWORD, by + SWORD, bx + SWORD, by - SWORD, 1.6f)
+            val involved = visible.any { it.zoneId == zone && (it.countryId == player || it.countryId in geo.coBelligerents(player)) }
+            battles += Battle(bx, by, if (involved) preview.battleRatio(zone, player) else null)
         }
         // Glissement des pions : la position affichée rejoint la zone réelle en quelques dixièmes de seconde.
         val follow = 1f - Math.exp((-delta * GLIDE_SPEED).toDouble()).toFloat()
@@ -82,6 +113,16 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
 
     fun labels(batch: SpriteBatch, session: GameSession) {
         val units = session.state.military.units
+        for (a in arrivals) {
+            val h = Math.round(a.hours).toInt().coerceAtLeast(1)
+            font.color = Theme.highlight
+            font.draw(batch, "◷ " + if (h < 24) "$h h" else "${h / 24} j ${h % 24} h", a.x + 6f, a.y - 4f)
+        }
+        for (b in battles) {
+            val r = b.ratio ?: continue
+            font.color = if (r >= 1.3) Theme.good else if (r >= 0.8) Theme.warning else Theme.bad
+            font.draw(batch, String.format(java.util.Locale.FRENCH, "%.1f : 1", r), b.x + SWORD + 6f, b.y + 5f)
+        }
         for (c in counters) {
             if (c.unitIds.size > 1) {
                 font.color = Color.WHITE
@@ -156,7 +197,10 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
     }
 
     private companion object {
-        val PATH: Color = Color.valueOf("4c9be8b3")
+        val PATH: Color = Color.valueOf("4c9be8cc")
+        val ATTACK_PATH: Color = Color.valueOf("ff6b5ee6")
+        const val ARROW = 9f
+        const val SWORD = 4f
         val NEUTRAL: Color = Color.valueOf("8a8f98")
         const val COUNTER_W = 14f
         const val GLIDE_SPEED = 6f

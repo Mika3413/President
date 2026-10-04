@@ -30,6 +30,7 @@ class DevScriptDriver(private val game: PresidentGame, script: String) : Applica
             "wait" -> waitFrames = arg.toInt()
             "shot" -> screenshot(arg)
             "zoom" -> arg.split(',').let { (lon, lat, w) -> game.mainScreen?.devZoom(lon.toDouble(), lat.toDouble(), w.toFloat()) }
+            "tap" -> arg.split(',').let { (lon, lat) -> game.mainScreen?.devTap(lon.toDouble(), lat.toDouble()) }
             "layer" -> game.mainScreen?.devLayer(ThematicLayer.valueOf(arg))
             "click" -> click(arg)
             "open" -> arg.split('/').let { parts -> game.mainScreen?.open(PanelId.valueOf(parts[0]), parts.getOrNull(1)) }

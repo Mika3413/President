@@ -25,6 +25,7 @@ class MilitaryCommands(private val ctx: SimulationContext) {
     }
 
     val operations get() = fr.president.engine.military.OperationsService(ctx)
+    val preview get() = fr.president.engine.military.OrderPreview(ctx)
 
     fun visibleUnits(): List<UnitState> = intelligence.visibleUnits(player)
 

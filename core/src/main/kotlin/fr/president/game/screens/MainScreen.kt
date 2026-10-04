@@ -82,6 +82,13 @@ class MainScreen(
     private var currentPanel: Panel? = null
     private var targeting: Pair<String, fr.president.engine.military.UnitOrder>? = null
     private val targetingBanner = Table()
+    private var pendingInspect: MapSelection? = null
+    private val quickOrders by lazy {
+        fr.president.game.ui.hud.QuickOrders(ui, session, { unitId, msg ->
+            selectionPanel.unitSheet.message = msg
+            select(MapSelection.Unit(unitId))
+        }) { pendingInspect?.let { select(it) } }
+    }
     private val briefing = fr.president.game.ui.hud.BriefingDialog(ui) { open(PanelId.INBOX) }
 
 
@@ -148,6 +155,7 @@ class MainScreen(
         stage.addActor(overlayTable)
         stage.addActor(briefing.root)
         stage.addActor(tour.highlight)
+        stage.addActor(quickOrders.root)
         stage.addActor(hints.bubble)
         stage.addListener(object : com.badlogic.gdx.scenes.scene2d.InputListener() {
             override fun keyDown(event: com.badlogic.gdx.scenes.scene2d.InputEvent?, keycode: Int): Boolean = onBack(keycode)
@@ -169,6 +177,7 @@ class MainScreen(
     private fun onBack(keycode: Int): Boolean {
         if (keycode != com.badlogic.gdx.Input.Keys.BACK && keycode != com.badlogic.gdx.Input.Keys.ESCAPE) return false
         when {
+            quickOrders.root.isVisible -> quickOrders.hide()
             briefing.root.isVisible -> briefing.hide()
             targeting != null -> stopTargeting()
             currentPanel != null -> closePanel()
@@ -242,7 +251,26 @@ class MainScreen(
             select(MapSelection.Unit(unitId))
             return
         }
-        val picked = picker.pick(camera, overlay, x, y, uiScale, lod) ?: return
+        quickOrders.hide()
+        val picked = picker.pick(camera, overlay, x, y, uiScale, lod)
+        // Une de nos unités est sélectionnée : toucher ailleurs propose directement des ordres.
+        val current = selection
+        val commanded = (current as? MapSelection.Unit)?.let { session.state.military.units[it.id] }
+            ?.takeIf { it.countryId == playerId && !it.destroyed && session.db.unitType(it.type).domain != fr.president.engine.data.Domain.STRATEGIC }
+        if (commanded != null) {
+            val ownUnit = (picked as? MapSelection.Unit)?.let { session.state.military.units[it.id] }?.takeIf { it.countryId == playerId }
+            if (ownUnit == null) {
+                val (lon, lat) = picker.lonLat(camera, x, y)
+                val zone = session.military.zoneAt(lon, lat)
+                if (zone != null && zone != commanded.zoneId) {
+                    pendingInspect = picked
+                    val p = stage.screenToStageCoordinates(com.badlogic.gdx.math.Vector2(x, y))
+                    quickOrders.show(commanded.id, zone, p.x, p.y, stage.width, stage.height)
+                    return
+                }
+            }
+        }
+        picked ?: return
         if (picked is MapSelection.Country && picked.id == playerId) {
             cameraController.focus(GeoProjection.x(FRANCE_LON), GeoProjection.y(FRANCE_LAT), FRANCE_VIEW_WIDTH)
             return
@@ -332,6 +360,12 @@ class MainScreen(
     /** Accès pour l'automatisation de développement (captures d'écran). */
     fun devZoom(lon: Double, lat: Double, width: Float) = cameraController.focus(GeoProjection.x(lon), GeoProjection.y(lat), width)
     fun devLayer(l: ThematicLayer) { layer = l }
+    /** Simule un toucher sur la carte à une position géographique. */
+    fun devTap(lon: Double, lat: Double) {
+        val v = com.badlogic.gdx.math.Vector3(GeoProjection.x(lon), GeoProjection.y(lat), 0f)
+        camera.project(v)
+        onMapTap(v.x, camera.viewportHeight - v.y)
+    }
     fun devOpenFirstPendingMessage() {
         inboxPanel.openMessage = session.state.inbox.messages.lastOrNull { it.awaitingAnswer }?.id
         refresh()

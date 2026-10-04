@@ -22,18 +22,24 @@ class OperationsService(private val ctx: SimulationContext) {
     private val units get() = ctx.state.military.units.values
 
     // ------------------------------------------------------------------ Parachutage
+    /** Raison pour laquelle le parachutage est impossible, ou null. */
+    fun airborneCheck(unit: UnitState, target: String): String? {
+        if (unit.type != AIRBORNE) return "Seule une brigade parachutiste peut être larguée."
+        cooldown(unit)?.let { return it }
+        val zone = zones.zones[target] ?: return "Zone inconnue"
+        if (zone.sea) return "Impossible de sauter en mer."
+        if (units.none { it.countryId == unit.countryId && it.type == TRANSPORT && !it.destroyed }) return "Il faut une escadre de transport disponible."
+        val distance = zones.distanceKm(unit.zoneId, target)
+        if (distance > AIRBORNE_RANGE_KM) return "Zone de saut trop lointaine (${distance.toInt()} km, maximum ${AIRBORNE_RANGE_KM.toInt()} km)."
+        val controller = geo.controllerOf(target)
+        if (!geo.atWar(unit.countryId, controller) && controller != unit.countryId && !geo.allied(unit.countryId, controller)) return "Aucun droit d'opérer sur ce territoire."
+        return null
+    }
+
     fun airborne(unitId: String, target: String): OrderService.Outcome {
         val unit = ctx.state.military.units[unitId] ?: return refused("Unité inconnue")
-        if (unit.type != AIRBORNE) return refused("Seule une brigade parachutiste peut être larguée.")
-        cooldown(unit)?.let { return refused(it) }
-        val zone = zones.zones[target] ?: return refused("Zone inconnue")
-        if (zone.sea) return refused("Impossible de sauter en mer.")
-        if (units.none { it.countryId == unit.countryId && it.type == TRANSPORT && !it.destroyed }) return refused("Il faut une escadre de transport disponible.")
-        val distance = zones.distanceKm(unit.zoneId, target)
-        if (distance > AIRBORNE_RANGE_KM) return refused("Zone de saut trop lointaine (${distance.toInt()} km, maximum ${AIRBORNE_RANGE_KM.toInt()} km).")
-        val controller = geo.controllerOf(target)
-        val hostile = geo.atWar(unit.countryId, controller)
-        if (!hostile && controller != unit.countryId && !geo.allied(unit.countryId, controller)) return refused("Aucun droit d'opérer sur ce territoire.")
+        airborneCheck(unit, target)?.let { return refused(it) }
+        val hostile = geo.atWar(unit.countryId, geo.controllerOf(target))
         unit.zoneId = target
         unit.path.clear()
         unit.legProgressKm = 0.0
@@ -47,19 +53,26 @@ class OperationsService(private val ctx: SimulationContext) {
     }
 
     // ------------------------------------------------------------------ Débarquement
-    fun amphibious(unitId: String, target: String): OrderService.Outcome {
-        val unit = ctx.state.military.units[unitId] ?: return refused("Unité inconnue")
-        if (ctx.db.unitType(unit.type).domain != Domain.LAND) return refused("Seules les unités terrestres débarquent.")
-        cooldown(unit)?.let { return refused(it) }
-        val zone = zones.zones[target] ?: return refused("Zone inconnue")
-        if (zone.sea || !zone.coastal) return refused("Choisissez une zone côtière.")
+    /** Itinéraire maritime du débarquement, ou la raison pour laquelle il est impossible. */
+    fun amphibiousCheck(unit: UnitState, target: String): Pair<List<String>?, String?> {
+        if (ctx.db.unitType(unit.type).domain != Domain.LAND) return null to "Seules les unités terrestres débarquent."
+        cooldown(unit)?.let { return null to it }
+        val zone = zones.zones[target] ?: return null to "Zone inconnue"
+        if (zone.sea || !zone.coastal) return null to "Choisissez une zone côtière."
         val escort = units.any { it.countryId == unit.countryId && !it.destroyed && ctx.db.unitType(it.type).domain == Domain.SEA &&
             zones.distanceKm(it.zoneId, target) <= ESCORT_KM }
-        if (!escort) return refused("Un débarquement exige une escorte navale à moins de ${ESCORT_KM.toInt()} km de la plage.")
+        if (!escort) return null to "Un débarquement exige une escorte navale à moins de ${ESCORT_KM.toInt()} km de la plage."
         val start = zones.zone(unit.zoneId)
-        if (!start.coastal && zones.neighbors(unit.zoneId).none { it.sea }) return refused("L'unité doit d'abord rejoindre un port ou une côte.")
+        if (!start.coastal && zones.neighbors(unit.zoneId).none { it.sea }) return null to "L'unité doit d'abord rejoindre un port ou une côte."
         val path = zones.path(unit.zoneId, target) { it.sea || it.id == target || it.id == unit.zoneId }
-            ?: return refused("Aucune route maritime vers cette plage.")
+            ?: return null to "Aucune route maritime vers cette plage."
+        return path to null
+    }
+
+    fun amphibious(unitId: String, target: String): OrderService.Outcome {
+        val unit = ctx.state.military.units[unitId] ?: return refused("Unité inconnue")
+        val (path, reason) = amphibiousCheck(unit, target)
+        if (path == null) return refused(reason ?: "Impossible")
         val hostile = geo.atWar(unit.countryId, geo.controllerOf(target))
         unit.path.clear(); unit.path.addAll(path)
         unit.legProgressKm = 0.0

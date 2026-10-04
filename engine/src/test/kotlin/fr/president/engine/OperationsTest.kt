@@ -64,4 +64,18 @@ class OperationsTest {
         assertTrue(ops.aiCyber("DEU", "FRA"))
         assertTrue(s.stats.journal().any { it.text.contains("Cyberattaque") })
     }
+
+    @Test
+    fun orderPreviewGivesTimeAndOddsWithoutMovingTheUnit() {
+        val s = TestData.newSession()
+        WarService(s.context).declare("FRA", "DEU", "test")
+        val unit = s.state.military.units.getValue("u_2bb")
+        val zoneBefore = unit.zoneId
+        val target = s.military.zoneAt(9.2, 48.9)!!
+        val p = assertNotNull(s.military.preview.preview(unit.id, target))
+        assertTrue(p.hostile)
+        val attack = p.options.first { it.order == UnitOrder.ATTACK }
+        assertTrue(attack.available && (attack.etaHours ?: 0.0) > 0 && attack.odds != null)
+        assertTrue(unit.zoneId == zoneBefore && unit.path.isEmpty(), "l'aperçu ne déplace rien")
+    }
 }
