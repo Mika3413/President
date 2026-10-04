@@ -12,6 +12,9 @@ enum class UnitOrder(val label: String) {
     RETREAT("Repli"),
     SUPPORT("Soutien"),
     PATROL("Patrouille"),
+    /** Opérations spéciales (ciblées sur la carte, exécutées par OperationsService). */
+    AIRBORNE("Opération aéroportée"),
+    AMPHIBIOUS("Débarquement"),
 }
 
 /** Unité cohérente (brigade, escadre, groupe naval) : jamais de soldat individuel. */
@@ -44,6 +47,8 @@ class UnitState(
     var supplied: Boolean = true,
     var inCombat: Boolean = false,
     var destroyed: Boolean = false,
+    /** Dernière opération spéciale (parachutage, débarquement) : délai avant la suivante. */
+    var lastOperationAt: fr.president.engine.time.WorldTime? = null,
 )
 
 @Serializable

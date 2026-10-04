@@ -97,6 +97,9 @@ class ArmyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel
                 val enemy = (if (side == War.ATTACKER) w.defenders else w.attackers).first()
                 row.add(ui.button("Proposer un cessez-le-feu") { nav.prepareProposal(enemy, "CEASEFIRE", mapOf("days" to 90.0)) })
                 row.add(ui.button("Proposer la paix") { nav.prepareProposal(enemy, "PEACE_TREATY", mapOf("keepOccupied" to 0.0)) })
+                into.add(row).left().row()
+                specialOps(into, enemy)
+                continue
             } else {
                 row.add(ui.button("Aider ${session.db.country(w.defenders.first()).definition.name}", "flat") {
                     nav.prepareProposal(w.defenders.first(), "MILITARY_AID", mapOf("amountBillions" to 2.0))
@@ -107,6 +110,23 @@ class ArmyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel
             }
             into.add(row).left().row()
         }
+    }
+
+    /** Frappes et cyberattaque contre un ennemi : effets et limites affichés avant d'agir. */
+    private fun specialOps(into: Table, enemy: String) {
+        val ops = session.military.operations
+        val box = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(6f, 8f, 6f, 8f); defaults().left() }
+        box.add(ui.label("Opérations spéciales", "bold", Theme.catArmy)).row()
+        val strike = ops.strikeBlocker(enemy)
+        box.add(ui.label("✹ Frappes de missiles : affaiblissent la plus forte concentration ennemie à portée (0,2 Md€, munitions, risque de victimes civiles).", "small", wrap = true)).growX().row()
+        if (strike == null) box.add(ui.colorButton("✹ Frapper", Theme.catArmy) { message = ops.strike(enemy).fold({ it }, { it.message }); nav.refresh() }).left().padBottom(4f).row()
+        else box.add(ui.label("↻ $strike", "small", Theme.warning, wrap = true)).growX().padBottom(4f).row()
+        val cyber = ops.cyberBlocker(enemy)
+        box.add(ui.label("⚡ Cyberattaque : perturbe leur économie et leurs armées (0,05 Md€).", "small", wrap = true)).growX().row()
+        if (cyber == null) box.add(ui.colorButton("⚡ Lancer la cyberattaque", Theme.catArmy) { message = ops.cyber(enemy).fold({ it }, { it.message }); nav.refresh() }).left().row()
+        else box.add(ui.label("↻ $cyber", "small", Theme.warning, wrap = true)).growX().row()
+        box.add(ui.label("Parachutage et débarquement : sélectionnez une brigade sur la carte.", "muted", wrap = true)).growX().padTop(2f).row()
+        into.add(box).growX().padBottom(GAP).row()
     }
 
     private fun intel(into: Table) {

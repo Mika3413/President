@@ -31,6 +31,8 @@ class OrderService(private val ctx: SimulationContext) {
             UnitOrder.RETREAT -> retreat(unit, type)
             UnitOrder.SUPPORT, UnitOrder.PATROL -> project(unit, type, order, targetZone ?: return Outcome.Refused("Choisissez une zone"))
             UnitOrder.MOVE, UnitOrder.ATTACK -> move(unit, type, order, targetZone ?: return Outcome.Refused("Choisissez une destination"))
+            UnitOrder.AIRBORNE -> OperationsService(ctx).airborne(unitId, targetZone ?: return Outcome.Refused("Choisissez une zone de saut"))
+            UnitOrder.AMPHIBIOUS -> OperationsService(ctx).amphibious(unitId, targetZone ?: return Outcome.Refused("Choisissez une plage"))
         }
     }
 

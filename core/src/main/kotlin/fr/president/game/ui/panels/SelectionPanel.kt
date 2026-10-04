@@ -6,6 +6,7 @@ import fr.president.game.map.MapSelection
 import fr.president.game.ui.Theme
 import fr.president.game.ui.Ui
 import fr.president.game.ui.widgets.SheetView
+import fr.president.game.ui.hint
 
 /** Panneau contextuel ouvert depuis la carte : territoire, ville, équipement, base, pays. */
 class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel(ui, onClose) {
@@ -213,6 +214,14 @@ class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
             message = "Condamnation publique prononcée."
             nav.refresh()
         }).row()
+        hostile.add(ui.colorButton("⚡ Cyberattaque", Theme.catAlerts) {
+            message = session.military.operations.cyber(id).fold({ it }, { it.message }); nav.refresh()
+        }.hint(ui, "Perturbe leur économie et leurs armées. Hors guerre, nos services peuvent être démasqués (crise diplomatique)."))
+        if (geo.atWar(player, id)) {
+            hostile.add(ui.colorButton("✹ Frappes", Theme.catArmy) {
+                message = session.military.operations.strike(id).fold({ it }, { it.message }); nav.refresh()
+            }.hint(ui, "Missiles de croisière sur la plus forte concentration ennemie à portée.")).row()
+        } else hostile.row()
         if (!geo.atWar(player, id)) {
             hostile.add(ui.colorButton("⚠ Ultimatum…", Theme.catAlerts) { nav.open(PanelId.DIPLOMACY, id) })
             hostile.add(ui.colorButton("⚔ Guerre…", Theme.catArmy) { confirmWar = id; nav.refresh() }).row()

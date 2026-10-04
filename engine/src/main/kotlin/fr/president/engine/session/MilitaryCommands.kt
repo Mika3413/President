@@ -24,6 +24,8 @@ class MilitaryCommands(private val ctx: SimulationContext) {
         return OrderService(ctx).issue(unitId, order, zone)
     }
 
+    val operations get() = fr.president.engine.military.OperationsService(ctx)
+
     fun visibleUnits(): List<UnitState> = intelligence.visibleUnits(player)
 
     fun wars(): List<War> = geo.ongoingWars()

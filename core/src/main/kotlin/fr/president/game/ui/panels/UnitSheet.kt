@@ -50,6 +50,15 @@ class UnitSheet(private val ui: Ui, private val nav: Navigator, private val expa
             row.add(ui.button("$label…", "accent") { nav.startTargeting(unitId, order) })
         }
         into.add(row).left().row()
+        if (domain == Domain.LAND) {
+            // Opérations spéciales : débarquement pour toutes, parachutage pour les parachutistes.
+            val ops = Table().apply { defaults().padRight(4f).padBottom(4f) }
+            ops.add(ui.colorButton("⚓ Débarquer…", Theme.catDiplomacy) { nav.startTargeting(unitId, UnitOrder.AMPHIBIOUS) })
+            if (unit.type == "AIRBORNE_BRIGADE") ops.add(ui.colorButton("✈ Parachuter…", Theme.catArmy) { nav.startTargeting(unitId, UnitOrder.AIRBORNE) })
+            into.add(ops).left().row()
+            into.add(ui.label(if (unit.type == "AIRBORNE_BRIGADE") "Parachutage : jusqu'à 1 500 km, avec une escadre de transport. Débarquement : côte ennemie, escorte navale à moins de 600 km."
+                else "Débarquement : vers une côte, avec une escorte navale à moins de 600 km de la plage. L'infanterie de marine y excelle.", "muted", wrap = true)).growX().row()
+        }
         val immediate = Table().apply { defaults().padRight(4f).padBottom(4f) }
         val simple = if (domain == Domain.LAND) listOf(UnitOrder.DEFEND to "Défendre", UnitOrder.HOLD to "Tenir", UnitOrder.RETREAT to "Repli")
         else listOf(UnitOrder.HOLD to "Rester en position", UnitOrder.RETREAT to "Retour à la base")
