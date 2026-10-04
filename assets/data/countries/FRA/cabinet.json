@@ -1,0 +1,773 @@
+{
+ "_doc": "Initiatives et disputes des ministres. Généré par tools/datagen/cabinet_fr.py.",
+ "initiatives": [
+  {
+   "id": "simplification",
+   "ministry": "economy",
+   "label": "Choc de simplification pour les entreprises",
+   "description": "Formulaires supprimés, délais de paiement de l'État raccourcis.",
+   "costBillions": 0.1,
+   "effects": [
+    {
+     "target": "economy.businessConfidence",
+     "amount": 0.012
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": 0.012
+    }
+   ]
+  },
+  {
+   "id": "made_in_france",
+   "ministry": "economy",
+   "label": "Label « Fabriqué en France » et commande publique",
+   "description": "Préférence aux produits français dans les achats de l'État.",
+   "costBillions": 0.3,
+   "effects": [
+    {
+     "target": "economy.output",
+     "amount": 0.0003,
+     "days": 365
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.006
+    },
+    {
+     "target": "alliance.EU.DISAGREEMENT",
+     "amount": -0.005
+    }
+   ]
+  },
+  {
+   "id": "tax_fraud",
+   "ministry": "economy",
+   "label": "Grand plan contre la fraude fiscale",
+   "description": "Recrutement d'inspecteurs, croisement des données.",
+   "costBillions": 0.15,
+   "effects": [
+    {
+     "target": "budget.oneOff",
+     "amount": -1.2,
+     "days": 365,
+     "delayDays": 180
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": 0.006
+    },
+    {
+     "target": "opinion.group.high_income",
+     "amount": -0.006
+    }
+   ]
+  },
+  {
+   "id": "police_stations",
+   "ministry": "interior",
+   "label": "Ouvrir 200 commissariats et brigades",
+   "description": "Présence policière dans les villes moyennes et les campagnes.",
+   "costBillions": 0.6,
+   "effects": [
+    {
+     "target": "quality.security",
+     "amount": 0.012,
+     "delayDays": 180
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.01
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.008
+    }
+   ]
+  },
+  {
+   "id": "cameras",
+   "ministry": "interior",
+   "label": "Vidéoprotection dans les transports",
+   "description": "Caméras dans les gares et les rames.",
+   "costBillions": 0.25,
+   "effects": [
+    {
+     "target": "quality.security",
+     "amount": 0.006
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": -0.005
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.006
+    }
+   ]
+  },
+  {
+   "id": "reserve",
+   "ministry": "armed_forces",
+   "label": "Doubler la réserve opérationnelle",
+   "description": "Plus de réservistes, mieux formés, mieux payés.",
+   "costBillions": 0.4,
+   "effects": [
+    {
+     "target": "military.readiness",
+     "amount": 0.02,
+     "delayDays": 120
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": 0.004
+    }
+   ]
+  },
+  {
+   "id": "drones",
+   "ministry": "armed_forces",
+   "label": "Programme national de drones",
+   "description": "Une filière française de drones militaires.",
+   "costBillions": 0.8,
+   "effects": [
+    {
+     "target": "military.readiness",
+     "amount": 0.015,
+     "delayDays": 365
+    },
+    {
+     "target": "economy.output",
+     "amount": 0.0002,
+     "days": 365
+    }
+   ]
+  },
+  {
+   "id": "francophonie",
+   "ministry": "foreign",
+   "label": "Relance de la Francophonie",
+   "description": "Bourses, lycées français, médias internationaux.",
+   "costBillions": 0.2,
+   "effects": [
+    {
+     "target": "memory.MAR.NEGOTIATION_GOODWILL",
+     "amount": 0.03
+    },
+    {
+     "target": "memory.DZA.NEGOTIATION_GOODWILL",
+     "amount": 0.02
+    },
+    {
+     "target": "memory.EGY.NEGOTIATION_GOODWILL",
+     "amount": 0.02
+    }
+   ]
+  },
+  {
+   "id": "eu_tour",
+   "ministry": "foreign",
+   "label": "Tournée des capitales européennes",
+   "description": "Préparer les prochains Conseils européens.",
+   "costBillions": 0.01,
+   "effects": [
+    {
+     "target": "alliance.EU.NEGOTIATION_GOODWILL",
+     "amount": 0.012
+    }
+   ]
+  },
+  {
+   "id": "nurse_practice",
+   "ministry": "health",
+   "label": "Infirmiers en pratique avancée",
+   "description": "Les infirmiers peuvent prescrire dans les déserts médicaux.",
+   "costBillions": 0.1,
+   "effects": [
+    {
+     "target": "quality.health",
+     "amount": 0.008,
+     "delayDays": 90
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.01
+    },
+    {
+     "target": "opinion.group.civil_servants",
+     "amount": 0.004
+    }
+   ]
+  },
+  {
+   "id": "prevention",
+   "ministry": "health",
+   "label": "Grand plan de prévention santé",
+   "description": "Tabac, alcool, sport, dépistages gratuits.",
+   "costBillions": 0.3,
+   "effects": [
+    {
+     "target": "quality.health",
+     "amount": 0.006,
+     "delayDays": 180
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.004
+    }
+   ]
+  },
+  {
+   "id": "small_classes",
+   "ministry": "education",
+   "label": "Classes à 15 élèves en maternelle",
+   "description": "Dans les quartiers prioritaires puis partout.",
+   "costBillions": 0.9,
+   "effects": [
+    {
+     "target": "quality.education",
+     "amount": 0.012,
+     "delayDays": 365
+    },
+    {
+     "target": "opinion.group.adults",
+     "amount": 0.008
+    },
+    {
+     "target": "opinion.group.civil_servants",
+     "amount": 0.006
+    }
+   ]
+  },
+  {
+   "id": "uniform",
+   "ministry": "education",
+   "label": "Expérimenter l'uniforme à l'école",
+   "description": "Volontariat des établissements.",
+   "costBillions": 0.05,
+   "effects": [
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.01
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": -0.008
+    }
+   ]
+  },
+  {
+   "id": "apprenticeship",
+   "ministry": "labour",
+   "label": "Apprentissage pour tous",
+   "description": "Aide à l'embauche d'apprentis prolongée.",
+   "costBillions": 0.8,
+   "effects": [
+    {
+     "target": "economy.naturalUnemployment",
+     "amount": -0.0006,
+     "delayDays": 180
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": 0.01
+    }
+   ]
+  },
+  {
+   "id": "four_day_week",
+   "ministry": "labour",
+   "label": "Expérimenter la semaine de quatre jours",
+   "description": "Dans la fonction publique volontaire.",
+   "costBillions": 0.05,
+   "effects": [
+    {
+     "target": "opinion.group.civil_servants",
+     "amount": 0.012
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.004
+    }
+   ]
+  },
+  {
+   "id": "fast_courts",
+   "ministry": "justice",
+   "label": "Tribunaux de proximité",
+   "description": "Juger plus vite les petits délits.",
+   "costBillions": 0.3,
+   "effects": [
+    {
+     "target": "quality.justice",
+     "amount": 0.012,
+     "delayDays": 180
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.006
+    }
+   ]
+  },
+  {
+   "id": "prisons",
+   "ministry": "justice",
+   "label": "Construire 5 000 places de prison",
+   "description": "Pour mettre fin à la surpopulation.",
+   "costBillions": 1.0,
+   "effects": [
+    {
+     "target": "quality.justice",
+     "amount": 0.008,
+     "delayDays": 365
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.008
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": -0.004
+    }
+   ]
+  },
+  {
+   "id": "renovation",
+   "ministry": "ecology",
+   "label": "Rénovation thermique accélérée",
+   "description": "Les passoires énergétiques rénovées en priorité.",
+   "costBillions": 1.0,
+   "effects": [
+    {
+     "target": "quality.environment",
+     "amount": 0.012,
+     "delayDays": 180
+    },
+    {
+     "target": "economy.output",
+     "amount": 0.0003,
+     "days": 365
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": 0.006
+    }
+   ]
+  },
+  {
+   "id": "bike_plan",
+   "ministry": "ecology",
+   "label": "Plan vélo national",
+   "description": "Pistes cyclables et aides à l'achat.",
+   "costBillions": 0.25,
+   "effects": [
+    {
+     "target": "quality.environment",
+     "amount": 0.005
+    },
+    {
+     "target": "opinion.group.urban",
+     "amount": 0.008
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.004
+    }
+   ]
+  },
+  {
+   "id": "night_trains",
+   "ministry": "transport",
+   "label": "Retour des trains de nuit",
+   "description": "Six lignes de nuit relancées.",
+   "costBillions": 0.3,
+   "effects": [
+    {
+     "target": "quality.transport",
+     "amount": 0.008,
+     "delayDays": 180
+    },
+    {
+     "target": "quality.environment",
+     "amount": 0.003
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": 0.006
+    }
+   ]
+  },
+  {
+   "id": "rural_roads",
+   "ministry": "transport",
+   "label": "Plan routes rurales",
+   "description": "Réfection des routes départementales.",
+   "costBillions": 0.6,
+   "effects": [
+    {
+     "target": "quality.transport",
+     "amount": 0.008,
+     "delayDays": 120
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.012
+    }
+   ]
+  },
+  {
+   "id": "young_farmers",
+   "ministry": "agriculture",
+   "label": "Installer 20 000 jeunes agriculteurs",
+   "description": "Prêts bonifiés et accès au foncier.",
+   "costBillions": 0.4,
+   "effects": [
+    {
+     "target": "quality.agriculture",
+     "amount": 0.01,
+     "delayDays": 365
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.012
+    }
+   ]
+  },
+  {
+   "id": "local_canteens",
+   "ministry": "agriculture",
+   "label": "Produits locaux dans les cantines",
+   "description": "50 % de produits locaux dans la restauration collective.",
+   "costBillions": 0.2,
+   "effects": [
+    {
+     "target": "quality.agriculture",
+     "amount": 0.006
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.006
+    },
+    {
+     "target": "opinion.group.adults",
+     "amount": 0.004
+    }
+   ]
+  }
+ ],
+ "disputes": [
+  {
+   "id": "budget_cuts",
+   "a": "economy",
+   "b": "education",
+   "subject": "les économies demandées à l'Éducation nationale",
+   "aLabel": "Tenir les économies",
+   "aEffects": [
+    {
+     "target": "budget.oneOff",
+     "amount": -0.8,
+     "days": 365
+    },
+    {
+     "target": "opinion.group.civil_servants",
+     "amount": -0.01
+    }
+   ],
+   "bLabel": "Préserver le budget de l'école",
+   "bEffects": [
+    {
+     "target": "quality.education",
+     "amount": 0.004
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.003
+    }
+   ]
+  },
+  {
+   "id": "glyphosate",
+   "a": "agriculture",
+   "b": "ecology",
+   "subject": "l'interdiction d'un pesticide",
+   "aLabel": "Ne pas interdire : protéger les agriculteurs",
+   "aEffects": [
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.01
+    },
+    {
+     "target": "quality.environment",
+     "amount": -0.006
+    }
+   ],
+   "bLabel": "Interdire dans trois ans",
+   "bEffects": [
+    {
+     "target": "quality.environment",
+     "amount": 0.008
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.012
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": 0.006
+    }
+   ]
+  },
+  {
+   "id": "nuclear_vs_renewables",
+   "a": "economy",
+   "b": "ecology",
+   "subject": "la part du nucléaire et des renouvelables",
+   "aLabel": "Priorité au nucléaire",
+   "aEffects": [
+    {
+     "target": "economy.businessConfidence",
+     "amount": 0.005
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": -0.004
+    }
+   ],
+   "bLabel": "Priorité aux renouvelables",
+   "bEffects": [
+    {
+     "target": "quality.environment",
+     "amount": 0.006
+    },
+    {
+     "target": "budget.oneOff",
+     "amount": 0.3
+    }
+   ]
+  },
+  {
+   "id": "immigration",
+   "a": "interior",
+   "b": "labour",
+   "subject": "l'immigration de travail",
+   "aLabel": "Durcir l'accueil",
+   "aEffects": [
+    {
+     "target": "demography.immigration",
+     "amount": -0.05
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.008
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.004
+    }
+   ],
+   "bLabel": "Ouvrir les métiers en tension",
+   "bEffects": [
+    {
+     "target": "demography.immigration",
+     "amount": 0.05
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": 0.006
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.006
+    }
+   ]
+  },
+  {
+   "id": "defense_budget",
+   "a": "armed_forces",
+   "b": "economy",
+   "subject": "la hausse du budget des armées",
+   "aLabel": "Accorder la hausse",
+   "aEffects": [
+    {
+     "target": "military.readiness",
+     "amount": 0.01,
+     "delayDays": 120
+    },
+    {
+     "target": "budget.oneOff",
+     "amount": 1.0,
+     "days": 365
+    }
+   ],
+   "bLabel": "Reporter la hausse",
+   "bEffects": [
+    {
+     "target": "military.readiness",
+     "amount": -0.005
+    },
+    {
+     "target": "alliance.NATO.DISAGREEMENT",
+     "amount": -0.005
+    }
+   ]
+  },
+  {
+   "id": "prisons_vs_alternatives",
+   "a": "justice",
+   "b": "interior",
+   "subject": "la réponse à la surpopulation carcérale",
+   "aLabel": "Peines alternatives",
+   "aEffects": [
+    {
+     "target": "quality.justice",
+     "amount": 0.005
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.006
+    }
+   ],
+   "bLabel": "Plus de places de prison",
+   "bEffects": [
+    {
+     "target": "budget.oneOff",
+     "amount": 0.5,
+     "days": 365
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.006
+    }
+   ]
+  },
+  {
+   "id": "hospital_vs_savings",
+   "a": "health",
+   "b": "economy",
+   "subject": "le budget des hôpitaux",
+   "aLabel": "Rallonge pour les hôpitaux",
+   "aEffects": [
+    {
+     "target": "budget.oneOff",
+     "amount": 0.8
+    },
+    {
+     "target": "quality.health",
+     "amount": 0.006
+    },
+    {
+     "target": "opinion.group.civil_servants",
+     "amount": 0.006
+    }
+   ],
+   "bLabel": "Maîtriser les dépenses",
+   "bEffects": [
+    {
+     "target": "budget.oneOff",
+     "amount": -0.3
+    },
+    {
+     "target": "quality.health",
+     "amount": -0.004
+    }
+   ]
+  },
+  {
+   "id": "motorway_vs_rail",
+   "a": "transport",
+   "b": "ecology",
+   "subject": "un projet d'autoroute contesté",
+   "aLabel": "Construire l'autoroute",
+   "aEffects": [
+    {
+     "target": "quality.transport",
+     "amount": 0.004
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.006
+    },
+    {
+     "target": "quality.environment",
+     "amount": -0.006
+    }
+   ],
+   "bLabel": "Investir dans le train à la place",
+   "bEffects": [
+    {
+     "target": "quality.environment",
+     "amount": 0.004
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.004
+    },
+    {
+     "target": "budget.oneOff",
+     "amount": 0.2
+    }
+   ]
+  },
+  {
+   "id": "sanctions_trade",
+   "a": "foreign",
+   "b": "economy",
+   "subject": "des sanctions qui pénalisent nos exportateurs",
+   "aLabel": "Maintenir les sanctions",
+   "aEffects": [
+    {
+     "target": "alliance.EU.NEGOTIATION_GOODWILL",
+     "amount": 0.006
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.004
+    }
+   ],
+   "bLabel": "Demander des exemptions",
+   "bEffects": [
+    {
+     "target": "economy.businessConfidence",
+     "amount": 0.004
+    },
+    {
+     "target": "alliance.EU.DISAGREEMENT",
+     "amount": -0.006
+    }
+   ]
+  },
+  {
+   "id": "pension_age",
+   "a": "labour",
+   "b": "economy",
+   "subject": "l'âge de départ à la retraite",
+   "aLabel": "Ne pas y toucher",
+   "aEffects": [
+    {
+     "target": "opinion.group.private_employees",
+     "amount": 0.008
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.004
+    }
+   ],
+   "bLabel": "Le relever progressivement",
+   "bEffects": [
+    {
+     "target": "budget.oneOff",
+     "amount": -1.0,
+     "days": 365
+    },
+    {
+     "target": "opinion.group.private_employees",
+     "amount": -0.012
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.006
+    }
+   ]
+  }
+ ]
+}

@@ -34,6 +34,8 @@ data class CountryDefinition(
     val localActions: String? = null,
     val nationalActions: String? = null,
     val measures: String? = null,
+    /** Initiatives et disputes des ministres (facultatif). */
+    val cabinet: String? = null,
     val demography: fr.president.engine.government.DemographyDef? = null,
 )
 

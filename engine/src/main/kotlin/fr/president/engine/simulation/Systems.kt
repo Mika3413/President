@@ -46,6 +46,7 @@ object Systems {
         TerritorySystem(),
         fr.president.engine.territory.DemographySystem(),
         GovernmentSystem(),
+        fr.president.engine.government.CabinetSystem(),
         MilitarySystem(),
         fr.president.engine.stats.StatsSystem(),
         fr.president.engine.media.MediaSystem(),
