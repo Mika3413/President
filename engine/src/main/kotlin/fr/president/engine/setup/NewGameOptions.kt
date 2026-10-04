@@ -14,4 +14,6 @@ data class NewGameOptions(
     val socialLeaning: Double? = null,
     val countryId: String? = null,
     val promises: List<String> = emptyList(),
+    /** Scénario de départ (null : la situation réelle). */
+    val scenarioId: String? = null,
 )

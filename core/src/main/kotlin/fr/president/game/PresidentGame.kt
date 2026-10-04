@@ -88,7 +88,10 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
         }
         val map = mapData ?: MapData(db, skin.white, db.snapshot.playableCountries.first()).also { mapData = it }
         switchTo(TitleScreen(ui, map, scale, saves.exists(), null, onContinue = { Gdx.app.postRunnable { safely("reprise de la partie") { resumeSave() } } },
-            onNewGame = { Gdx.app.postRunnable { safely("nouvelle partie") { showNewGame(null) } } }))
+            onNewGame = { Gdx.app.postRunnable { safely("nouvelle partie") { showNewGame(null) } } },
+            slots = saves.slots().map { TitleScreen.SlotEntry(it.id, it.meta.title.ifBlank { "Partie" }, it.meta.detail, it.id == saves.activeSlot) },
+            onLoad = { id -> Gdx.app.postRunnable { safely("reprise de la partie") { saves.activeSlot = id; resumeSave() } } },
+            onDelete = { id -> Gdx.app.postRunnable { safely("accueil") { saves.delete(id); showTitle() } } }))
     }
 
     private fun resumeSave() {
@@ -110,6 +113,8 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
     }
 
     fun newGame(options: NewGameOptions) {
+        // Une nouvelle partie ne remplace jamais les précédentes : elle prend un emplacement libre.
+        if (saves.exists()) saves.activeSlot = saves.newSlotId()
         prepareSession("prise de fonctions", "Passation de pouvoirs", resumed = false) { GameSession.newGame(db, options, platform::nowUtcMillis) }
     }
 

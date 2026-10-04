@@ -52,6 +52,8 @@ data class GlobalDataFiles(
     val eventFrequency: String? = null,
     /** Textes européens votés au Conseil (facultatif). */
     val eu: String? = null,
+    /** Scénarios de départ (facultatif). */
+    val scenarios: String? = null,
 )
 
 /** Multiplicateurs de fréquence : l'outil d'équilibrage du rythme des événements. */

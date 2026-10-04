@@ -41,6 +41,7 @@ class DataLoader(private val source: DataSource) {
             intensity = files.eventIntensity?.let { read(it) },
             frequency = files.eventFrequency?.let { read(it) },
             eu = files.eu?.let { read(it) },
+            scenarios = files.scenarios?.let { read<fr.president.engine.setup.ScenariosFile>(it).scenarios }.orEmpty(),
         )
         DataValidator.validate(db)
         return db

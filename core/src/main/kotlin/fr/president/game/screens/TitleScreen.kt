@@ -30,7 +30,14 @@ class TitleScreen(
     subtitle: String?,
     private val onContinue: () -> Unit,
     private val onNewGame: () -> Unit,
+    private val slots: List<SlotEntry> = emptyList(),
+    private val onLoad: (String) -> Unit = {},
+    private val onDelete: (String) -> Unit = {},
 ) : ScreenAdapter(), HasStage {
+    /** Une partie sauvegardée, telle qu'affichée dans « Mes parties ». */
+    data class SlotEntry(val id: String, val title: String, val detail: String, val active: Boolean)
+
+    private var confirmDelete: String? = null
     override val stage = Stage(ScreenViewport().apply { unitsPerPixel = 1f / uiScale })
     private val camera = OrthographicCamera()
     private val polygons = PolygonSpriteBatch()
@@ -47,6 +54,7 @@ class TitleScreen(
         box.add(ui.label("Gouverner la France, une décision après l'autre.", "default")).padBottom(18f).row()
         subtitle?.let { box.add(ui.label(it, "small", Theme.warning, wrap = true)).width(TEXT_WIDTH).row() }
         if (hasSave) box.add(ui.button("Continuer la partie", "accent") { leave(onContinue) }).width(BUTTON_WIDTH).height(BUTTON_HEIGHT).row()
+        if (slots.size > 1) box.add(ui.button("Mes parties (${slots.size})", "default") { showSlots(box) }).width(BUTTON_WIDTH).height(BUTTON_HEIGHT).row()
         box.add(ui.button(if (hasSave) "Nouvelle partie…" else "Commencer une partie", if (hasSave) "default" else "accent") { leave(onNewGame) })
             .width(BUTTON_WIDTH).height(BUTTON_HEIGHT).row()
         box.add(ui.label("Le monde continue de tourner quand l'application est fermée.", "muted")).padTop(18f).row()
@@ -55,6 +63,28 @@ class TitleScreen(
         root.addAction(Actions.fadeIn(FADE_IN, Interpolation.fade))
         stage.addActor(root)
         Gdx.input.inputProcessor = stage
+    }
+
+    /** Liste des parties sauvegardées : reprendre ou supprimer (avec confirmation). */
+    private fun showSlots(box: Table) {
+        box.clearChildren()
+        box.add(ui.label("Mes parties", "title")).padBottom(10f).row()
+        slots.forEach { s ->
+            val card = Table().apply { setBackground(ui.skin.fill(Theme.panel)); pad(8f); defaults().left() }
+            card.add(ui.label(s.title + if (s.active) " · dernière jouée" else "", "bold")).left().row()
+            if (s.detail.isNotBlank()) card.add(ui.label(s.detail, "small", Theme.textMuted, wrap = true)).width(TEXT_WIDTH).left().row()
+            val buttons = Table().apply { defaults().padRight(6f).padTop(4f) }
+            buttons.add(ui.button("▶ Reprendre", "accent") { leave { onLoad(s.id) } })
+            if (confirmDelete == s.id) {
+                buttons.add(ui.button("Confirmer la suppression", "default") { leave { onDelete(s.id) } })
+                buttons.add(ui.button("Annuler", "flat") { confirmDelete = null; showSlots(box) })
+            } else {
+                buttons.add(ui.button("Supprimer", "flat") { confirmDelete = s.id; showSlots(box) })
+            }
+            card.add(buttons).left().row()
+            box.add(card).width(TEXT_WIDTH + 16f).padBottom(6f).row()
+        }
+        box.add(ui.button("Nouvelle partie…", "default") { leave(onNewGame) }).width(BUTTON_WIDTH).height(BUTTON_HEIGHT).padTop(8f).row()
     }
 
     private fun leave(next: () -> Unit) {

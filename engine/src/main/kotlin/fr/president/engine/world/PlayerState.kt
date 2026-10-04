@@ -19,4 +19,6 @@ class PlayerState(
     var warsThisTerm: Int = 0,
     /** Étape du tutoriel guidé (-1 : terminé ou ancienne partie). Une nouvelle partie commence à 0. */
     var tourStep: Int = -1,
+    /** Scénario de départ choisi. */
+    var scenario: String? = null,
 )

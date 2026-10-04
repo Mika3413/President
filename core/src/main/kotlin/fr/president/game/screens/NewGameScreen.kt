@@ -34,6 +34,7 @@ class NewGameScreen(
 ) : ScreenAdapter(), HasStage {
     override val stage = Stage(ScreenViewport().apply { unitsPerPixel = 1f / uiScale })
     private var pace = db.config.defaultPace
+    private var scenario: String? = db.scenarios.firstOrNull()?.id
     private var female = false
     private var leaning = 0.0
     private var social: Double? = null
@@ -48,6 +49,21 @@ class NewGameScreen(
         content.add(ui.label("PRÉSIDENT", "headline")).row()
         content.add(ui.label("Vous venez d'être élu(e) à la tête de la ${db.country(db.snapshot.playableCountries.first()).definition.name}. Le monde ne s'arrêtera pas pour vous attendre.", "default", wrap = true)).width(CONTENT_WIDTH).row()
         errorMessage?.let { content.add(ui.label(it, "small", Theme.bad, wrap = true)).width(CONTENT_WIDTH).row() }
+
+        if (db.scenarios.isNotEmpty()) {
+            content.add(ui.label("Situation de départ", "title")).padTop(12f).row()
+            content.add(ui.label("La France réelle, ou une crise qui éclate dès votre prise de fonctions.", "muted", wrap = true)).width(CONTENT_WIDTH).row()
+            val scenarioGroup = ButtonGroup<TextButton>()
+            db.scenarios.forEach { sc ->
+                val b = ui.button("${sc.icon} ${sc.label}", "toggle") { scenario = sc.id }
+                scenarioGroup.add(b)
+                if (sc.id == scenario) b.isChecked = true
+                val row = Table()
+                row.add(b).width(PACE_BUTTON_WIDTH * SCENARIO_WIDTH).left()
+                row.add(ui.label(sc.description, "small", wrap = true)).width(CONTENT_WIDTH - PACE_BUTTON_WIDTH * SCENARIO_WIDTH - 10f).padLeft(10f)
+                content.add(row).padBottom(2f).row()
+            }
+        }
 
         content.add(ui.label("Rythme de la partie", "title")).padTop(12f).row()
         content.add(ui.label("Le temps s'écoule même lorsque l'application est fermée. Ce choix est définitif.", "muted", wrap = true)).width(CONTENT_WIDTH).row()
@@ -123,7 +139,7 @@ class NewGameScreen(
             content.add(grid).row()
         }
         content.add(ui.button("Prendre ses fonctions", "accent") {
-            onStart(NewGameOptions(pace, seed, nowMillis(), first.text, last.text, female, leaning, socialLeaning = social, promises = promises.toList()))
+            onStart(NewGameOptions(pace, seed, nowMillis(), first.text, last.text, female, leaning, socialLeaning = social, promises = promises.toList(), scenarioId = scenario?.takeIf { it != STANDARD }))
         }).padTop(16f).row()
         content.add(ui.label("Pays, institutions et données de départ inspirés du monde réel (${db.snapshot.label}). Tous les personnages sont fictifs.", "muted", wrap = true)).width(CONTENT_WIDTH).row()
 
@@ -152,6 +168,8 @@ class NewGameScreen(
     override fun dispose() = stage.dispose()
 
     private companion object {
+        const val SCENARIO_WIDTH = 2.1f
+        const val STANDARD = "standard"
         const val CONTENT_WIDTH = 640f
         const val PACE_BUTTON_WIDTH = 120f
         const val NAME_WIDTH = 160f

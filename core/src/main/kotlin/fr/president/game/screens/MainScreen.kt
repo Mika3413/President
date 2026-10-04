@@ -194,6 +194,7 @@ class MainScreen(
     }
 
     override fun render(delta: Float) {
+        fr.president.game.ui.MusicPlayer.update(delta)
         controller.update(delta)
         if (session.isGameOver) {
             onGameOver()
@@ -350,6 +351,7 @@ class MainScreen(
         topBar.refresh()
         actionBar.refresh()
         advisor.refresh()
+        fr.president.game.ui.MusicPlayer.setMood(mood())
         currentPanel?.refresh()
     }
 
@@ -392,13 +394,24 @@ class MainScreen(
         refresh()
     }
 
+    /** Ambiance musicale : tendue en guerre, en crise grave ou quand le pays gronde. */
+    private fun mood(): fr.president.game.ui.MusicPlayer.Mood {
+        val s = session.state
+        val war = fr.president.engine.military.Geopolitics(session.context).enemiesOf(s.player.countryId).isNotEmpty()
+        val emergency = s.measures.active.any { m -> session.measures.definitions.firstOrNull { it.id == m.id }?.emergency == true }
+        val calm = !war && !emergency && s.opinion.nationalApproval >= TENSE_APPROVAL
+        return if (calm) fr.president.game.ui.MusicPlayer.Mood.CALM else fr.president.game.ui.MusicPlayer.Mood.TENSE
+    }
+
     override fun dispose() {
+        fr.president.game.ui.MusicPlayer.stop()
         stage.dispose()
         mapRenderer.dispose()
         overlay.dispose()
     }
 
     private companion object {
+        const val TENSE_APPROVAL = 0.3
         const val PANEL_FADE_SECONDS = 0.18f
         const val FRANCE_LON = 2.4
         const val FRANCE_LAT = 46.6

@@ -99,6 +99,11 @@ class SettingsPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit, pri
         into.add(ui.button(if (settings.sound) "✔ Sons activés" else "Sons désactivés", "toggle") {
             settings.sound = !settings.sound; nav.refresh()
         }.also { it.isChecked = settings.sound }).left().padTop(4f).row()
+        into.add(ui.button(if (settings.music) "✔ Musique activée" else "Musique désactivée", "toggle") {
+            settings.music = !settings.music
+            if (!settings.music) fr.president.game.ui.MusicPlayer.stop()
+            nav.refresh()
+        }.also { it.isChecked = settings.music }).left().padTop(4f).row()
         into.add(ui.label("Les flèches ▲ ▼ et les mots (« élevé », « favorable »...) doublent toujours les couleurs.", "muted", wrap = true)).growX().padBottom(GAP).row()
     }
 }

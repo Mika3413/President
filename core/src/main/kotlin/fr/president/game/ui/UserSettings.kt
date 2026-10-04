@@ -25,7 +25,12 @@ object UserSettings {
         get() = prefs?.getBoolean(SOUND, true) ?: true
         set(v) { prefs?.apply { putBoolean(SOUND, v); flush() } }
 
+    var music: Boolean
+        get() = prefs?.getBoolean(MUSIC, true) ?: true
+        set(v) { prefs?.apply { putBoolean(MUSIC, v); flush() } }
+
     private const val NAME = "president-reglages"
+    private const val MUSIC = "music"
     private const val TEXT = "textScale"
     private const val COLORBLIND = "colorblind"
     private const val SOUND = "sound"

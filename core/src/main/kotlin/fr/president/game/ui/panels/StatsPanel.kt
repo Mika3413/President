@@ -28,7 +28,7 @@ class StatsPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pane
     private var journalKind: String? = null
     private var openGroup: String? = null
 
-    private enum class Tab(val label: String) { CURVES("Courbes"), GROUPS("Groupes"), COUNTRIES("Pays"), JOURNAL("Journal") }
+    private enum class Tab(val label: String) { CURVES("Courbes"), GROUPS("Groupes"), COUNTRIES("Pays"), JOURNAL("Journal"), LEGACY("Héritage") }
     private enum class CountrySort(val label: String) { GDP("Économie"), RELATION("Relation"), ARMY("Armée") }
 
     /** Argument : une clé de courbe (« approval »...) ou un onglet (« groups », « countries », « journal »). */
@@ -37,19 +37,44 @@ class StatsPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pane
             "groups" -> tab = Tab.GROUPS
             "countries" -> tab = Tab.COUNTRIES
             "journal" -> tab = Tab.JOURNAL
+            "legacy" -> tab = Tab.LEGACY
             else -> { tab = Tab.CURVES; focus = argument; whyOpen = argument }
         }
     }
 
     override fun build(into: Table) {
-        val bar = Table().apply { defaults().padRight(4f) }
-        Tab.entries.forEach { t -> bar.add(ui.button(t.label, "toggle") { tab = t; nav.refresh() }.also { it.isChecked = t == tab }) }
-        into.add(bar).left().padBottom(GAP).row()
+        val bar = com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup().apply { wrap(); left(); rowLeft(); space(4f); wrapSpace(4f) }
+        Tab.entries.forEach { t -> bar.addActor(ui.button(t.label, "toggle") { tab = t; nav.refresh() }.also { it.isChecked = t == tab }) }
+        into.add(bar).growX().left().padBottom(GAP).row()
         when (tab) {
             Tab.CURVES -> curves(into)
             Tab.GROUPS -> groups(into)
             Tab.COUNTRIES -> countries(into)
             Tab.JOURNAL -> journal(into)
+            Tab.LEGACY -> legacy(into)
+        }
+    }
+
+    /** Bilan historique provisoire : la note que l'Histoire vous donnerait aujourd'hui. */
+    private fun legacy(into: Table) {
+        val v = fr.president.engine.readout.LegacyReadout(session.context).verdict()
+        val head = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(8f); defaults().left() }
+        val top = Table()
+        top.add(ui.label(v.title, "title", Theme.highlight)).left().expandX()
+        top.add(ui.label("${Math.round(v.grade * 10) / 10.0} / 20", "value", if (v.grade >= 10) Theme.good else Theme.bad)).right()
+        head.add(top).growX().row()
+        head.add(ui.label(v.summary, "small", wrap = true)).growX().padTop(2f).row()
+        head.add(ui.label("Note provisoire : elle évolue avec votre mandat et devient définitive à la fin de la partie.", "muted", wrap = true)).growX().padTop(4f).row()
+        into.add(head).growX().padBottom(GAP).row()
+        v.lines.forEach { l ->
+            val row = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(4f, 8f, 4f, 8f) }
+            val col = Table().apply { left() }
+            col.add(ui.label(l.label, "bold")).left().row()
+            col.add(ui.label(l.detail, "muted", wrap = true)).growX().left()
+            row.add(col).growX().minWidth(0f)
+            val pts = (if (l.points >= 0) "+" else "−") + String.format(java.util.Locale.FRENCH, "%.1f", kotlin.math.abs(l.points))
+            row.add(ui.label(pts, "bold", if (l.points >= 0) Theme.good else Theme.bad)).right().padLeft(6f)
+            into.add(row).growX().padBottom(2f).row()
         }
     }
 

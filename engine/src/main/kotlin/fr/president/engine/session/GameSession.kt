@@ -99,8 +99,11 @@ class GameSession(
     fun toSaveFile(gameVersion: String): SaveFile = SaveFile(SaveFile.CURRENT_FORMAT, realClock(), gameVersion, state)
 
     companion object {
-        fun newGame(db: GameDatabase, options: NewGameOptions, realClock: () -> Long = System::currentTimeMillis) =
-            GameSession(db, NewGameFactory(db).create(options), realClock)
+        fun newGame(db: GameDatabase, options: NewGameOptions, realClock: () -> Long = System::currentTimeMillis): GameSession {
+            val session = GameSession(db, NewGameFactory(db).create(options), realClock)
+            options.scenarioId?.let { id -> db.scenarios.firstOrNull { it.id == id } }?.let { fr.president.engine.setup.ScenarioService.apply(session.context, it) }
+            return session
+        }
 
         fun fromSave(db: GameDatabase, save: SaveFile, realClock: () -> Long = System::currentTimeMillis) =
             GameSession(db, save.state, realClock)

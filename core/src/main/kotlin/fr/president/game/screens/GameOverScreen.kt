@@ -30,6 +30,12 @@ class GameOverScreen(ui: Ui, session: GameSession, uiScale: Float, onNewGame: ()
         }
         val e = s.playerCountry.economy
         t.add(ui.label("Bilan : chômage ${Formatting.percent(e.unemployment)}, dette ${Formatting.percent(e.debtRatio)} du PIB, opinion ${Formatting.percent(s.opinion.nationalApproval)}.", "muted", wrap = true)).width(WIDTH).row()
+        val legacy = fr.president.engine.readout.LegacyReadout(session.context).verdict()
+        t.add(ui.label("Jugement de l'Histoire : ${legacy.title} — ${Math.round(legacy.grade * 10) / 10.0} / 20", "title", Theme.highlight)).padTop(10f).row()
+        t.add(ui.label(legacy.summary, "default", wrap = true)).width(WIDTH).row()
+        t.add(ui.label(legacy.lines.take(LEGACY_LINES).joinToString("\n") { l ->
+            "${if (l.points >= 0) "▲" else "▼"} ${l.label} : ${l.detail}"
+        }, "small", Theme.textMuted, wrap = true)).width(WIDTH).row()
         t.add(ui.button("Nouvelle partie", "accent") { onNewGame() }).padTop(20f)
         stage.addActor(t)
     }
@@ -47,6 +53,7 @@ class GameOverScreen(ui: Ui, session: GameSession, uiScale: Float, onNewGame: ()
     override fun dispose() = stage.dispose()
 
     private companion object {
+        const val LEGACY_LINES = 6
         const val WIDTH = 600f
     }
 }

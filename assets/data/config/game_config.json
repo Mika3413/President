@@ -108,6 +108,7 @@
     "eventIntensity": "events/intensity.json",
     "eventResponses": "events/responses.json",
     "eventFrequency": "config/event_frequency.json",
-    "eu": "diplomacy/eu.json"
+    "eu": "diplomacy/eu.json",
+    "scenarios": "config/scenarios.json"
   }
 }

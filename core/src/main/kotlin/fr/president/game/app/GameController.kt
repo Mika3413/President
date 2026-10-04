@@ -52,11 +52,23 @@ class GameController(
         try {
             val file = session.toSaveFile(GAME_VERSION)
             saves.write(file)
+            saves.writeMeta(saves.activeSlot, meta(file.savedAtRealUtcMillis))
             lastSaveMillis = file.savedAtRealUtcMillis
             if (foreground) platform.onHeartbeat()
         } catch (e: Exception) {
             Gdx.app?.error(TAG, "Échec de la sauvegarde", e)
         }
+    }
+
+    /** Résumé affiché dans la liste des parties : président, date du jeu, popularité. */
+    private fun meta(savedAt: Long): SaveRepository.SlotMeta {
+        val s = session.state
+        val president = s.characters[s.player.presidentId]?.fullName ?: "Président"
+        val scenario = s.player.scenario?.let { id -> session.db.scenarios.firstOrNull { it.id == id }?.label }
+        val detail = listOfNotNull(fr.president.engine.util.Formatting.date(s.time),
+            "popularité ${fr.president.engine.util.Formatting.wholePercent(s.opinion.nationalApproval)}", scenario,
+            s.player.gameOver?.let { "mandat terminé" }).joinToString(" · ")
+        return SaveRepository.SlotMeta(president, detail, savedAt)
     }
 
     fun onPause() {

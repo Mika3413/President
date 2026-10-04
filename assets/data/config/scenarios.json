@@ -1,0 +1,192 @@
+{
+ "_doc": "Scénarios de départ. Généré par tools/datagen/scenarios_fr.py.",
+ "scenarios": [
+  {
+   "id": "standard",
+   "label": "La France d'octobre 2026",
+   "icon": "★",
+   "description": "La situation réelle : croissance molle, dette élevée, Assemblée fragmentée. À vous de jouer."
+  },
+  {
+   "id": "financial_crisis",
+   "label": "Krach financier",
+   "icon": "€",
+   "description": "Une grande banque vacille, les marchés s'effondrent, le chômage va grimper. Sauver le système sans ruiner l'État.",
+   "effects": [
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.12
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.08
+    },
+    {
+     "target": "economy.output",
+     "amount": -0.01,
+     "days": 120
+    },
+    {
+     "target": "sector.banking",
+     "amount": -0.25
+    },
+    {
+     "target": "sector.construction",
+     "amount": -0.1
+    },
+    {
+     "target": "opinion.national",
+     "amount": -0.03
+    }
+   ],
+   "events": [
+    {
+     "event": "bank_fragility",
+     "day": 2
+    },
+    {
+     "event": "bankruptcy",
+     "day": 10
+    },
+    {
+     "event": "rating_downgrade",
+     "day": 25
+    }
+   ]
+  },
+  {
+   "id": "pandemic",
+   "label": "Pandémie",
+   "icon": "⚕",
+   "description": "Un nouveau virus se propage, les hôpitaux se remplissent. Confiner, vacciner, protéger l'économie : tout à la fois.",
+   "effects": [
+    {
+     "target": "quality.health",
+     "amount": -0.05,
+     "days": 90
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.05
+    },
+    {
+     "target": "sector.tourism",
+     "amount": -0.1
+    }
+   ],
+   "events": [
+    {
+     "event": "new_virus",
+     "day": 1
+    },
+    {
+     "event": "pandemic_wave",
+     "day": 12
+    },
+    {
+     "event": "drug_shortage",
+     "day": 30
+    }
+   ]
+  },
+  {
+   "id": "war_europe",
+   "label": "Guerre aux portes de l'Union",
+   "icon": "⚔",
+   "description": "La Russie attaque la Pologne. L'OTAN est sollicitée, l'énergie flambe, les réfugiés affluent. Jusqu'où engager la France ?",
+   "effects": [
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.06
+    },
+    {
+     "target": "economy.inflation",
+     "amount": 0.01,
+     "days": 180
+    },
+    {
+     "target": "sector.aerospace",
+     "amount": 0.08
+    },
+    {
+     "target": "sector.energy",
+     "amount": -0.05
+    }
+   ],
+   "wars": [
+    {
+     "attacker": "RUS",
+     "defender": "POL"
+    }
+   ],
+   "events": [
+    {
+     "event": "gas_price_spike",
+     "day": 5
+    },
+    {
+     "event": "refugee_crisis",
+     "day": 15
+    }
+   ]
+  },
+  {
+   "id": "hung_parliament",
+   "label": "Majorité introuvable",
+   "icon": "⌂",
+   "description": "Aucune majorité à l'Assemblée, des frondeurs dans votre camp, une motion de censure dans l'air. Gouverner sans majorité.",
+   "parliamentSupport": 0.32,
+   "effects": [
+    {
+     "target": "opinion.national",
+     "amount": -0.04
+    }
+   ],
+   "events": [
+    {
+     "event": "majority_rebels",
+     "day": 3
+    },
+    {
+     "event": "group_split",
+     "day": 40
+    }
+   ]
+  },
+  {
+   "id": "energy_winter",
+   "label": "Hiver de pénuries",
+   "icon": "⚡",
+   "description": "Le gaz manque, des réacteurs sont à l'arrêt, le froid arrive. Délestages, sobriété, prix : l'hiver sera long.",
+   "effects": [
+    {
+     "target": "economy.inflation",
+     "amount": 0.015,
+     "days": 180
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.05
+    },
+    {
+     "target": "sector.industry",
+     "amount": -0.08
+    }
+   ],
+   "events": [
+    {
+     "event": "gas_price_spike",
+     "day": 2
+    },
+    {
+     "event": "cold_wave",
+     "day": 20
+    },
+    {
+     "event": "blackout",
+     "day": 35
+    }
+   ]
+  }
+ ]
+}

@@ -168,6 +168,22 @@
   {
    "term": "Risque à 30 jours",
    "definition": "Probabilité qu'au moins un drame de ce type survienne dans le mois, calculée avec les mêmes règles que la simulation : saison, météo, état des infrastructures, colère sociale, et vos mesures de prévention."
+  },
+  {
+   "term": "Agenda",
+   "definition": "Le temps du président : un déplacement à Pékin, un sommet ou un tour de France occupent des jours. Cinq jours de déplacement par semaine au plus ; « Décider » montre l'agenda de la semaine."
+  },
+  {
+   "term": "Majorité qualifiée",
+   "definition": "Règle de vote du Conseil de l'UE : un texte est adopté s'il réunit 55 % des États représentant 65 % de la population. Certains textes (fiscalité, élargissement, sanctions) exigent l'unanimité : un seul veto suffit."
+  },
+  {
+   "term": "Indice de Paris",
+   "definition": "L'indice boursier des grandes entreprises françaises du jeu. Il suit l'activité de leurs secteurs ; un krach pèse sur le moral des entreprises et des ménages."
+  },
+  {
+   "term": "Bilan historique",
+   "definition": "La note sur 20 que l'Histoire donnerait à votre présidence : opinion, emploi, croissance, dette, déficit, réformes, crises, Europe, guerres, élections, affaires. Onglet « Héritage » du Bilan."
   }
  ]
 }
