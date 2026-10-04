@@ -46,7 +46,26 @@ class NationalReadouts(private val ctx: SimulationContext) {
                 "Taux moyen de la dette" to Formatting.percent(e.averageDebtRate),
                 "Taux de marché" to Formatting.percent(e.marketRate),
             ),
+            value = Formatting.wholePercent(e.debtRatio) + " PIB",
+            trend = if (rising) 1 else -1,
+            higherIsBetter = false,
         )
+    }
+
+    /** Solde budgétaire annuel, en part du PIB (négatif = déficit). */
+    fun deficit(): Indicator {
+        val balance = -e.deficitRatio
+        val tone = when {
+            balance >= -DEFICIT_TARGET -> Tone.GOOD
+            balance >= -DEFICIT_WARNING -> Tone.WARNING
+            else -> Tone.BAD
+        }
+        return Indicator("Budget", if (balance >= 0) "EXCÉDENT" else "DÉFICIT", tone,
+            "Objectif européen : déficit sous 3 % du PIB.",
+            listOf("Recettes annuelles" to Formatting.billions(e.revenueBillions), "Dépenses (hors intérêts)" to Formatting.billions(e.spendingBillions),
+                "Charge des intérêts" to Formatting.billions(e.interestBillions), "Solde" to Formatting.billions(-e.deficitBillions)),
+            value = Formatting.signedPercent(balance),
+            trend = trendOf(e.deficitRatioHistory.ago(1), e.deficitRatioHistory.ago(0), TREND_EPSILON))
     }
 
     fun growth(): Indicator {
@@ -58,7 +77,7 @@ class NationalReadouts(private val ctx: SimulationContext) {
             "PIB nominal" to Formatting.billions(e.gdpBillions),
             "Confiance des ménages" to scales.describe("confidence", e.consumerConfidence).label,
             "Confiance des entreprises" to scales.describe("confidence", e.businessConfidence).label,
-        ))
+        ), value = Formatting.signedPercent(e.realGrowth), trend = trendOf(e.growthHistory.ago(0), e.growthHistory.ago(1), TREND_EPSILON))
     }
 
     fun unemployment(): Indicator {
@@ -68,7 +87,8 @@ class NationalReadouts(private val ctx: SimulationContext) {
             "Taux de chômage" to Formatting.percent(e.unemployment),
             "Taux structurel estimé" to Formatting.percent(e.naturalUnemployment),
             "Salaire net moyen" to Formatting.integer(e.averageNetMonthlyWage) + " €/mois",
-        ))
+        ), value = Formatting.percent(e.unemployment), trend = trendOf(e.unemploymentHistory.ago(0), e.unemploymentHistory.ago(1), TREND_EPSILON),
+            higherIsBetter = false)
     }
 
     fun inflation(): Indicator {
@@ -79,7 +99,8 @@ class NationalReadouts(private val ctx: SimulationContext) {
             "Indice des prix de l'énergie" to Formatting.amount(e.energyPriceIndex * PERCENT),
             "Pouvoir d'achat (indice)" to Formatting.amount(e.wageIndex / e.priceLevel * PERCENT),
             "Pression fiscale ménages" to Formatting.percent(BudgetCalculator.taxBurden(e, TaxPayer.HOUSEHOLDS)) + " du PIB",
-        ))
+        ), value = Formatting.percent(e.inflation), trend = trendOf(e.inflationHistory.ago(0), e.inflationHistory.ago(1), TREND_EPSILON),
+            higherIsBetter = false)
     }
 
     fun approval(): Indicator {
@@ -94,7 +115,8 @@ class NationalReadouts(private val ctx: SimulationContext) {
         }.trim()
         return Indicator("Opinion", s.label, s.tone, explanation,
             def.groups.map { g -> g.label to scales.describe("approval", o.groups[g.id]?.effective ?: g.baseApproval).label } +
-                ("Approbation estimée" to Formatting.percent(o.nationalApproval)))
+                ("Approbation estimée" to Formatting.percent(o.nationalApproval)),
+            value = Formatting.wholePercent(o.nationalApproval), trend = trendOf(o.nationalApproval, o.history.ago(1), APPROVAL_EPSILON))
     }
 
     fun energy(): Indicator {
@@ -107,7 +129,7 @@ class NationalReadouts(private val ctx: SimulationContext) {
                 "Consommation annuelle" to Formatting.integer(en.demandTWh) + " TWh",
                 "Exportations contractuelles" to Formatting.integer(en.committedExportTWh) + " TWh",
                 "Indice des prix" to Formatting.amount(en.priceIndex * PERCENT),
-            ))
+            ), value = (if (en.netExportTWh >= 0) "+" else "") + Formatting.integer(en.netExportTWh) + " TWh")
     }
 
     fun parliament(): Indicator {
@@ -125,7 +147,7 @@ class NationalReadouts(private val ctx: SimulationContext) {
         }
         return Indicator("Parlement", s.label, s.tone,
             if (support >= threshold) "Vos textes ont de bonnes chances d'être adoptés." else "L'adoption de vos textes est incertaine.",
-            details)
+            details, value = Formatting.wholePercent(support))
     }
 
     fun military(): Indicator {
@@ -134,7 +156,8 @@ class NationalReadouts(private val ctx: SimulationContext) {
         val troubled = m.units.values.count { it.readiness < TROUBLED_READINESS }
         return Indicator("Préparation militaire", s.label, s.tone,
             if (troubled > 0) "$troubled unité(s) connaissent des problèmes de disponibilité." else "Les forces sont globalement disponibles.",
-            listOf("Disponibilité moyenne" to Formatting.percent(m.overallReadiness), "Unités" to m.units.size.toString()))
+            listOf("Disponibilité moyenne" to Formatting.percent(m.overallReadiness), "Unités" to m.units.size.toString()),
+            value = Formatting.wholePercent(m.overallReadiness))
     }
 
     fun services(): List<Indicator> = ctx.state.playerCountry.services.map { (domain, q) ->
@@ -157,6 +180,9 @@ class NationalReadouts(private val ctx: SimulationContext) {
     private companion object {
         const val PERCENT = 100.0
         const val TREND_EPSILON = 0.001
+        const val APPROVAL_EPSILON = 0.004
+        const val DEFICIT_TARGET = 0.03
+        const val DEFICIT_WARNING = 0.05
         const val TROUBLED_READINESS = 0.5
         const val FUNDING_ALERT = 0.02
     }

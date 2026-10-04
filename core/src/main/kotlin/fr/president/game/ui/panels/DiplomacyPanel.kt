@@ -47,26 +47,28 @@ class DiplomacyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
 
     override fun build(into: Table) {
         message?.let { into.add(ui.label(it, "small", Theme.accent, wrap = true)).padBottom(GAP).row() }
-        val list = Table().apply { defaults().padRight(4f).padBottom(4f) }
-        session.diplomacy.foreignCountries().forEachIndexed { i, id ->
-            val b = ui.button(session.db.country(id).definition.name, "toggle") {
-                if (country != id) { country = id; draft.clear(); counterOf = null; message = null }
-                nav.refresh()
+        val id = country
+        if (id == null) {
+            into.add(ui.label("Choisissez un pays pour consulter vos relations et négocier (ou touchez-le sur la carte).", "muted", wrap = true)).row()
+            val list = Table().apply { defaults().growX().uniformX().pad(2f) }
+            session.diplomacy.foreignCountries().forEachIndexed { i, c ->
+                list.add(ui.button(session.db.country(c).definition.name, "default") {
+                    country = c; draft.clear(); counterOf = null; message = null
+                    nav.refresh()
+                })
+                if (i % COUNTRIES_PER_ROW == COUNTRIES_PER_ROW - 1) list.row()
             }
-            b.isChecked = id == country
-            list.add(b)
-            if (i % COUNTRIES_PER_ROW == COUNTRIES_PER_ROW - 1) list.row()
-        }
-        into.add(list).left().row()
-        val id = country ?: run {
-            into.add(ui.label("Choisissez un pays pour consulter vos relations et négocier.", "muted", wrap = true)).row()
+            into.add(list).growX().row()
             return
         }
+        into.add(ui.button("◀ Tous les pays", "flat") { country = null; draft.clear(); counterOf = null; message = null; nav.refresh() }).left().row()
+        // Une proposition en préparation passe en premier : c'est ce que le joueur vient de demander.
+        if (draft.isNotEmpty()) editor(into, id)
         countrySummary(into, id)
-        crisisActions(into, id)
-        agreements(into, id)
-        editor(into, id)
         pendingProposals(into, id)
+        agreements(into, id)
+        crisisActions(into, id)
+        if (draft.isEmpty()) editor(into, id)
     }
 
     private fun countrySummary(into: Table, id: String) {
@@ -104,7 +106,7 @@ class DiplomacyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
         row.add(ui.button("Condamner publiquement", "default") { session.diplomacy.condemn(id); message = "Condamnation publique prononcée."; nav.refresh() })
         into.add(row).left().row()
         if (!geo.atWar(player, id)) {
-            into.add(ui.label("Ultimatum — exiger de ${session.db.country(id).definition.name} :", "muted")).row()
+            into.add(ui.label("Ultimatum — exiger " + fr.president.engine.data.CountryNames(session.db.country(id).definition).of + " :", "muted")).row()
             val demands = Table().apply { defaults().padRight(4f).padBottom(4f) }
             fr.president.engine.diplomacy.Demand.entries.forEachIndexed { i, d ->
                 demands.add(ui.button(d.label, "flat") { message = session.diplomacy.ultimatum(id, d).explanation; nav.refresh() })
@@ -137,32 +139,41 @@ class DiplomacyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
         }
     }
 
+    private var addingClause = false
+
     private fun editor(into: Table, id: String) {
-        into.add(ui.label(if (counterOf != null) "Contre-proposition" else "Nouvelle proposition", "bold")).padTop(GAP).row()
-        val types = Table().apply { defaults().padRight(4f).padBottom(4f) }
+        into.add(ui.label(if (counterOf != null) "Contre-proposition" else if (draft.isEmpty()) "Proposer un accord" else "Votre proposition", "title", Theme.catDiplomacy)).padTop(GAP).row()
+        draft.toList().forEach { c -> clauseEditor(into, c, id) }
+        if (draft.isNotEmpty()) {
+            val duration = Table().apply { defaults().padRight(4f) }
+            duration.add(ui.label("Durée", "muted"))
+            duration.add(ui.button("−") { years = (years - 1).coerceAtLeast(1); nav.refresh() })
+            duration.add(ui.label("$years an${if (years > 1) "s" else ""}"))
+            duration.add(ui.button("+") { years = (years + 1).coerceAtMost(MAX_YEARS); nav.refresh() })
+            into.add(duration).left().padTop(4f).row()
+            val send = Table().apply { defaults().padRight(4f) }
+            send.add(ui.colorButton("✉ Envoyer " + fr.president.engine.data.CountryNames(session.db.country(id).definition).to, Theme.catDiplomacy) {
+                val clauses = draft.map { Clause(it.type, it.giver, it.params.toMap()) }
+                session.diplomacy.propose(id, clauses, years, counterOf)
+                draft.clear(); counterOf = null; addingClause = false
+                message = "Proposition transmise. La réponse arrivera dans quelques jours (onglet Messages)."
+                nav.refresh()
+            })
+            send.add(ui.button("Annuler") { draft.clear(); counterOf = null; message = null; nav.refresh() })
+            into.add(send).left().padTop(4f).row()
+        }
+        into.add(ui.button(if (addingClause) "▲ Fermer la liste" else "+ Ajouter une clause", "flat") { addingClause = !addingClause; nav.refresh() }).left().padTop(4f).row()
+        if (!addingClause) return
+        val types = Table().apply { defaults().growX().uniformX().pad(2f) }
         session.db.diplomacy.clauseTypes.forEachIndexed { i, t ->
-            types.add(ui.button("+ ${t.label}", "flat") {
+            types.add(ui.button(t.label, "default") {
                 draft += MutableClause(t.id, player, t.params.associate { it.id to it.default }.toMutableMap())
+                addingClause = false
                 nav.refresh()
             })
             if (i % 2 == 1) types.row()
         }
-        into.add(types).left().row()
-        draft.toList().forEach { c -> clauseEditor(into, c, id) }
-        if (draft.isEmpty()) return
-        val duration = Table().apply { defaults().padRight(4f) }
-        duration.add(ui.label("Durée", "muted"))
-        duration.add(ui.button("−") { years = (years - 1).coerceAtLeast(1); nav.refresh() })
-        duration.add(ui.label("$years an(s)"))
-        duration.add(ui.button("+") { years = (years + 1).coerceAtMost(MAX_YEARS); nav.refresh() })
-        into.add(duration).left().padTop(4f).row()
-        into.add(ui.button("Envoyer la proposition", "accent") {
-            val clauses = draft.map { Clause(it.type, it.giver, it.params.toMap()) }
-            session.diplomacy.propose(id, clauses, years, counterOf)
-            draft.clear(); counterOf = null
-            message = "Proposition transmise. La réponse arrivera dans quelques jours."
-            nav.refresh()
-        }).left().padTop(4f).row()
+        into.add(types).growX().row()
     }
 
     private fun clauseEditor(into: Table, c: MutableClause, partner: String) {

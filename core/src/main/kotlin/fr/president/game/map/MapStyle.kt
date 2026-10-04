@@ -7,8 +7,8 @@ import fr.president.game.ui.Theme
 /** Couleurs de remplissage des départements selon la couche thématique. */
 class MapStyle(private val data: MapData) {
     private val regionPalette = listOf(
-        "5b7a8c", "6f8a6a", "8c7a5b", "7a6a8c", "5f8c84", "8c6a6f", "6a7f8c",
-        "7f8c5f", "8c805f", "5f6f8c", "806a8c", "6a8c74", "8c745f",
+        "4f8fd6", "5cb87a", "e0a447", "a77fd6", "3fb5a8", "e07a7a", "6fa8dc",
+        "a6c75a", "d9b84a", "7f8fe0", "c77fc2", "56c0a0", "e3925a",
     ).map { Color.valueOf(it) }
     private val regionColors = HashMap<String, Color>()
     private val tmp = Color()

@@ -17,7 +17,8 @@ import java.io.File
  */
 class AndroidPlatform(private val context: Context) : PlatformServices {
     override val saveDirectory: File = saveDirectory(context)
-    override val uiScale: Float = context.resources.displayMetrics.density
+    // Un peu plus compact que la densité brute : plus de place pour la carte sur téléphone.
+    override val uiScale: Float = context.resources.displayMetrics.density * COMPACT_SCALE
 
     override fun postSystemNotification(notification: GameNotification) =
         GameNotifier(context).post(notification)
@@ -64,5 +65,6 @@ class AndroidPlatform(private val context: Context) : PlatformServices {
         }
 
         private const val MAX_REPORT_CHARS = 20_000
+        private const val COMPACT_SCALE = 0.85f
     }
 }

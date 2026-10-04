@@ -19,6 +19,7 @@ object Formatting {
     fun integer(v: Long): String = integer.format(v)
     fun percent(ratio: Double): String = oneDecimal.format(ratio * PERCENT) + " %"
     fun signedPercent(ratio: Double): String = (if (ratio >= 0) "+" else "") + percent(ratio)
+    fun wholePercent(ratio: Double): String = Math.round(ratio * PERCENT).toString() + " %"
 
     /** Montant exprimé en milliards -> texte lisible (M€ ou Md€). */
     fun billions(v: Double): String = when {

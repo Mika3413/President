@@ -87,6 +87,7 @@
  },
  "reforms": "countries/FRA/reforms.json",
  "promises": "countries/FRA/promises.json",
+  "localActions": "countries/FRA/local_actions.json",
  "demography": {
   "birthRate": 0.0105,
   "deathRate": 0.0095,

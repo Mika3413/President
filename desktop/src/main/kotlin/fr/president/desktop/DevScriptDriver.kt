@@ -96,7 +96,7 @@ class DevScriptDriver(private val game: PresidentGame, script: String) : Applica
     }
 
     private fun findButton(actor: com.badlogic.gdx.scenes.scene2d.Actor, text: String): com.badlogic.gdx.scenes.scene2d.ui.TextButton? {
-        if (actor is com.badlogic.gdx.scenes.scene2d.ui.TextButton && actor.text.toString().startsWith(text)) return actor
+        if (actor is com.badlogic.gdx.scenes.scene2d.ui.TextButton && actor.text.toString().contains(text)) return actor
         if (actor is com.badlogic.gdx.scenes.scene2d.Group) actor.children.forEach { c -> findButton(c, text)?.let { return it } }
         return null
     }

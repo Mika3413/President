@@ -29,6 +29,8 @@ class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
         message?.let { into.add(ui.label(it, "small", Theme.accent, wrap = true)).padBottom(GAP).row() }
         when (val s = selection) {
             is MapSelection.Department -> {
+                localActions.build(into, s.code)
+                into.add(ui.label("Situation", "title")).padTop(GAP).row()
                 into.add(SheetView(ui, session.local.department(s.code), expanded)).row()
                 electedTalk(into, session.state.territory.departments[s.code]?.presidentId)
                 val region = session.state.territory.departments.getValue(s.code).region
@@ -41,6 +43,9 @@ class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
             is MapSelection.City -> {
                 into.add(SheetView(ui, session.local.city(s.id), expanded)).row()
                 electedTalk(into, session.state.territory.cities[s.id]?.mayorId)
+                session.state.territory.cities[s.id]?.department?.let { code ->
+                    into.add(ui.colorButton("Agir dans le département", Theme.catLocal) { nav.select(MapSelection.Department(code)) }).left().padTop(GAP).row()
+                }
             }
             is MapSelection.Infrastructure -> buildInfrastructure(into, s.id)
             is MapSelection.Base -> into.add(SheetView(ui, session.local.base(s.id), expanded)).row()
@@ -48,6 +53,11 @@ class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
             is MapSelection.Unit -> unitSheet.build(into, s.id)
             null -> Unit
         }
+    }
+
+    private val localActions = fr.president.game.ui.widgets.LocalActionList(ui, nav.session) { result ->
+        message = result
+        nav.refresh()
     }
 
     private val talks = fr.president.game.ui.widgets.ConversationControls(ui, nav)
@@ -101,24 +111,98 @@ class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
     private var pendingClose: String? = null
     val unitSheet = UnitSheet(ui, nav, expanded)
 
+    private var confirmWar: String? = null
+
     private fun buildCountry(into: Table, id: String) {
         val data = session.db.countries[id]
         if (data == null || id == session.state.player.countryId) {
             into.add(ui.label(if (data == null) "Ce pays n'est pas encore simulé dans cette version." else "Votre pays.", "muted", wrap = true)).row()
             return
         }
+        val player = session.state.player.countryId
         val relation = session.diplomacy.relation(id)
-        into.add(ui.label("Relations : ${relation.label}", "large")).row()
+        val score = fr.president.engine.diplomacy.RelationCalculator(session.context).score(id, player)
+        val leader = session.state.characters.getValue(session.state.countries.getValue(id).leaderId)
+        val head = Table()
+        head.add(ui.portraits.image(leader)).size(PORTRAIT).padRight(8f)
+        val who = Table().apply { defaults().left() }
+        who.add(ui.label(leader.fullName, "bold")).row()
+        who.add(ui.label(data.definition.institutions.headOfGovernment(leader.female), "muted")).row()
+        head.add(who).growX().left().top()
+        into.add(head).growX().left().row()
+        // Jauge de relation : rouge (hostile) → vert (allié).
+        val gauge = Table()
+        val color = Theme.relation(score.toFloat(), com.badlogic.gdx.graphics.Color())
+        gauge.add(ui.label("Relation : ${relation.label}", "value", color)).left().expandX()
+        gauge.add(ui.label(Math.round(score * PERCENT).toString() + " / 100", "small", color)).right()
+        into.add(gauge).growX().padTop(GAP).row()
+        val bar = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)) }
+        bar.add(Table().apply { setBackground(ui.skin.fill(color)) }).width(com.badlogic.gdx.scenes.scene2d.ui.Value.percentWidth(score.toFloat().coerceIn(0.02f, 1f), bar)).height(GAUGE).left().expandX()
+        into.add(bar).growX().height(GAUGE).padTop(2f).row()
         relation.factors.forEach { f ->
-            into.add(ui.label("• ${f.label}", "small", if (f.weight >= 0) Theme.good else Theme.bad, wrap = true)).row()
+            into.add(ui.label((if (f.weight >= 0) "▲ " else "▼ ") + f.label, "small", if (f.weight >= 0) Theme.good else Theme.bad, wrap = true)).row()
         }
         val economy = session.state.countries.getValue(id).economy
-        into.add(ui.label("Économie : croissance ${Formatting.signedPercent(economy.realGrowth)}, chômage ${Formatting.percent(economy.unemployment)}", "muted", wrap = true)).padTop(GAP).row()
-        into.add(ui.button("Ouvrir la diplomatie", "accent") { nav.open(PanelId.DIPLOMACY, id) }).left().padTop(GAP).row()
+        into.add(ui.label("Économie : croissance ${Formatting.signedPercent(economy.realGrowth)}, chômage ${Formatting.percent(economy.unemployment)}", "muted", wrap = true)).padTop(4f).row()
+        val geo = session.military.geo
+        if (geo.atWar(player, id)) into.add(ui.label("⚔ Nous sommes en guerre avec ce pays.", "bold", Theme.bad)).padTop(4f).row()
+
+        into.add(ui.label("Coopérer", "title", Theme.catDiplomacy)).padTop(GAP).row()
+        val friendly = Table().apply { defaults().growX().uniformX().pad(2f) }
+        listOf(
+            "€ Commerce" to ("TARIFF_REDUCTION" to mapOf("percent" to 3.0)),
+            "✚ Aide" to ("FINANCIAL_AID" to mapOf("amountBillions" to 2.0)),
+            "⚔ Défense" to ("DEFENSE_COOPERATION" to mapOf("intensity" to 1.0)),
+            "⚑ Alliance" to ("DEFENSIVE_ALLIANCE" to mapOf("scope" to 1.0)),
+            "⚒ Armes" to ("ARMS_SALE" to mapOf("amountBillions" to 3.0)),
+            "⚡ Électricité" to ("ELECTRICITY_SUPPLY" to mapOf("volumeTWh" to 8.0, "pricePercent" to 100.0)),
+        ).forEachIndexed { i, (label, clause) ->
+            friendly.add(ui.colorButton(label, Theme.catDiplomacy) { nav.prepareProposal(id, clause.first, clause.second) })
+            if (i % BUTTONS_PER_ROW == BUTTONS_PER_ROW - 1) friendly.row()
+        }
+        into.add(friendly).growX().row()
+        into.add(ui.label("Chaque bouton prépare une proposition : vous ajustez les termes, puis l'envoyez.", "muted", wrap = true)).row()
+        talks.build(into, leader.id, leader.fullName)
+
+        into.add(ui.label("Faire pression", "title", Theme.catArmy)).padTop(GAP).row()
+        val hostile = Table().apply { defaults().growX().uniformX().pad(2f) }
+        val sanctioning = session.diplomacy.isSanctioning(id)
+        hostile.add(ui.colorButton(if (sanctioning) "✔ Lever sanctions" else "✖ Sanctions", Theme.catAlerts) {
+            if (sanctioning) session.diplomacy.liftSanctions(id) else session.diplomacy.sanction(id)
+            message = if (sanctioning) "Sanctions levées." else "Sanctions imposées : leur économie et nos échanges en pâtiront."
+            nav.refresh()
+        })
+        hostile.add(ui.colorButton("☎ Condamner", Theme.catAlerts) {
+            session.diplomacy.condemn(id)
+            message = "Condamnation publique prononcée."
+            nav.refresh()
+        }).row()
+        if (!geo.atWar(player, id)) {
+            hostile.add(ui.colorButton("⚠ Ultimatum…", Theme.catAlerts) { nav.open(PanelId.DIPLOMACY, id) })
+            hostile.add(ui.colorButton("⚔ Guerre…", Theme.catArmy) { confirmWar = id; nav.refresh() }).row()
+        } else {
+            hostile.add(ui.colorButton("☮ Cessez-le-feu", Theme.catDiplomacy) { nav.prepareProposal(id, "CEASEFIRE", mapOf("days" to 90.0)) })
+            hostile.add(ui.colorButton("⚔ Armées", Theme.catArmy) { nav.open(PanelId.ARMY) }).row()
+        }
+        into.add(hostile).growX().row()
+        if (confirmWar == id && !geo.atWar(player, id)) {
+            into.add(ui.label("Une guerre aura un coût humain, économique et politique considérable. Vos alliés pourraient ne pas suivre.", "small", Theme.warning, wrap = true)).growX().row()
+            val confirm = Table().apply { defaults().padRight(4f) }
+            confirm.add(ui.colorButton("Confirmer la guerre", Theme.catArmy) {
+                session.diplomacy.declareWar(id); confirmWar = null; message = "La France est en guerre."; nav.refresh()
+            })
+            confirm.add(ui.button("Annuler") { confirmWar = null; nav.refresh() })
+            into.add(confirm).left().row()
+        }
+        into.add(ui.button("Tout voir dans la Diplomatie", "flat") { nav.open(PanelId.DIPLOMACY, id) }).left().padTop(GAP).row()
     }
 
     private companion object {
         val MAINTENANCE_LEVELS = listOf("Réduit" to 0.7, "Normal" to 1.0, "Renforcé" to 1.4)
         const val LEVEL_EPSILON = 0.05
+        const val PORTRAIT = 56f
+        const val PERCENT = 100.0
+        const val GAUGE = 8f
+        const val BUTTONS_PER_ROW = 3
     }
 }

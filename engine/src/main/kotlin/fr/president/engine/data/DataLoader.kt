@@ -52,6 +52,7 @@ class DataLoader(private val source: DataSource) {
             military = def.military?.let { read(it) },
             reforms = def.reforms?.let { read(it) },
             promises = def.promises?.let { read(it) },
+            localActions = def.localActions?.let { read(it) },
         )
     }
 

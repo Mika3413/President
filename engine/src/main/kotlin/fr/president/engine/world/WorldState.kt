@@ -64,6 +64,8 @@ class WorldState(
     val localElections: fr.president.engine.elections.LocalElectionState = fr.president.engine.elections.LocalElectionState(),
     var nextId: Long = 1,
     val demography: fr.president.engine.territory.DemographyState = fr.president.engine.territory.DemographyState(),
+    /** Dernière réalisation de chaque action locale (« 34|hospital », « *|visit »), pour les délais. */
+    val localActions: MutableMap<String, fr.president.engine.time.WorldTime> = mutableMapOf(),
 ) {
     val playerCountry: CountryState get() = countries.getValue(player.countryId)
 

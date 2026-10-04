@@ -1,0 +1,107 @@
+{
+  "_doc": "Actions directes du président sur un département (fiche du département). Cibles « local.<champ> » = département choisi. Voir LocalActionCommands.",
+  "actions": [
+    {
+      "id": "visit", "label": "Visite présidentielle", "icon": "☀",
+      "description": "Vous vous rendez sur place : poignées de main, annonces, couverture médiatique.",
+      "cooldownDays": 120, "globalCooldownDays": 7,
+      "immediate": [
+        { "target": "local.approval", "amount": 0.04 },
+        { "target": "opinion.national", "amount": 0.002 }
+      ]
+    },
+    {
+      "id": "health_center", "label": "Maison de santé", "icon": "⚕",
+      "description": "Regrouper médecins et infirmiers dans un centre de proximité. Rapide et peu coûteux.",
+      "costBillions": 0.02, "durationDays": 120, "cooldownDays": 365,
+      "onCompletion": [
+        { "target": "local.healthAccess", "amount": 0.05 },
+        { "target": "local.approval", "amount": 0.015 }
+      ]
+    },
+    {
+      "id": "hospital", "label": "Construire un hôpital", "icon": "✚",
+      "description": "Un grand hôpital moderne : chantier long et coûteux, mais un vrai changement pour les habitants.",
+      "costBillions": 0.3, "durationDays": 540, "cooldownDays": 1460,
+      "immediate": [ { "target": "local.approval", "amount": 0.01 } ],
+      "onCompletion": [
+        { "target": "local.healthAccess", "amount": 0.15 },
+        { "target": "local.approval", "amount": 0.04 },
+        { "target": "local.unemployment", "amount": -0.001 },
+        { "target": "opinion.national", "amount": 0.002 }
+      ]
+    },
+    {
+      "id": "school", "label": "Ouvrir un lycée", "icon": "★",
+      "description": "Un nouveau lycée : des classes moins chargées et des familles satisfaites.",
+      "costBillions": 0.06, "durationDays": 365, "cooldownDays": 1095,
+      "onCompletion": [
+        { "target": "local.approval", "amount": 0.025 },
+        { "target": "local.unemployment", "amount": -0.001 },
+        { "target": "opinion.national", "amount": 0.001 }
+      ]
+    },
+    {
+      "id": "police", "label": "Renforts de police", "icon": "⚑",
+      "description": "Plus de policiers et de gendarmes sur le terrain, un commissariat rénové.",
+      "costBillions": 0.05, "durationDays": 90, "cooldownDays": 365,
+      "onCompletion": [
+        { "target": "local.crime", "amount": -0.1 },
+        { "target": "local.approval", "amount": 0.015 }
+      ]
+    },
+    {
+      "id": "jobs_plan", "label": "Plan emploi local", "icon": "€",
+      "description": "Formations, aides à l'embauche et accompagnement des chômeurs du territoire.",
+      "costBillions": 0.08, "durationDays": 60, "cooldownDays": 365,
+      "immediate": [ { "target": "local.approval", "amount": 0.01 } ],
+      "onCompletion": [
+        { "target": "local.unemployment", "amount": -0.003, "days": 365 },
+        { "target": "local.approval", "amount": 0.01 }
+      ]
+    },
+    {
+      "id": "factory", "label": "Attirer une usine", "icon": "⚒",
+      "description": "Subventions et terrain offert pour qu'un industriel s'installe. Des emplois, mais plus de pollution.",
+      "costBillions": 0.25, "durationDays": 365, "cooldownDays": 1095,
+      "immediate": [ { "target": "local.approval", "amount": 0.01 } ],
+      "onCompletion": [
+        { "target": "local.unemployment", "amount": -0.006, "days": 180 },
+        { "target": "local.industry", "amount": 0.01 },
+        { "target": "local.pollution", "amount": 0.04 },
+        { "target": "local.approval", "amount": 0.03 },
+        { "target": "opinion.national", "amount": 0.001 }
+      ]
+    },
+    {
+      "id": "green_energy", "label": "Parc solaire et éolien", "icon": "⚡",
+      "description": "Produire une électricité propre sur le territoire. Air plus pur, quelques emplois.",
+      "costBillions": 0.2, "durationDays": 450, "cooldownDays": 1095,
+      "onCompletion": [
+        { "target": "local.pollution", "amount": -0.06 },
+        { "target": "local.unemployment", "amount": -0.001 },
+        { "target": "local.approval", "amount": 0.01 }
+      ]
+    },
+    {
+      "id": "transport", "label": "Ligne de tram ou de train", "icon": "▶",
+      "description": "Désenclaver le territoire : moins de voitures, plus d'accès à l'emploi.",
+      "costBillions": 0.4, "durationDays": 900, "cooldownDays": 1825,
+      "onCompletion": [
+        { "target": "local.approval", "amount": 0.04 },
+        { "target": "local.pollution", "amount": -0.04 },
+        { "target": "local.unemployment", "amount": -0.002 },
+        { "target": "opinion.national", "amount": 0.001 }
+      ]
+    },
+    {
+      "id": "housing", "label": "Logements sociaux", "icon": "⌂",
+      "description": "Construire des logements abordables pour les familles et les jeunes actifs.",
+      "costBillions": 0.15, "durationDays": 540, "cooldownDays": 1095,
+      "onCompletion": [
+        { "target": "local.approval", "amount": 0.03 },
+        { "target": "local.unemployment", "amount": -0.001 }
+      ]
+    }
+  ]
+}

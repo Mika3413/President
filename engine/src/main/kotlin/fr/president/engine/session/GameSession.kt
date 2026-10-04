@@ -27,6 +27,7 @@ class GameSession(
 
     val government = GovernmentCommands(context)
     val infrastructure = InfrastructureCommands(context)
+    val localActions = LocalActionCommands(context)
     val diplomacy = DiplomacyCommands(context)
     val policy = PolicyService(context)
     val national = NationalReadouts(context)

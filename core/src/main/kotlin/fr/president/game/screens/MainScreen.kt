@@ -50,12 +50,12 @@ class MainScreen(
     private val uiScale: Float,
     private val onGameOver: () -> Unit,
     private val onAbandon: () -> Unit = {},
-) : ScreenAdapter(), Navigator {
+) : ScreenAdapter(), Navigator, HasStage {
     override val session: GameSession get() = controller.session
     override val platform get() = controller.platform
     private val playerId = session.state.player.countryId
     private val camera = OrthographicCamera()
-    private val stage = Stage(ScreenViewport().apply { unitsPerPixel = 1f / uiScale })
+    override val stage = Stage(ScreenViewport().apply { unitsPerPixel = 1f / uiScale })
     private val mapRenderer = MapRenderer(mapData, playerId)
     private val overlay = OverlayRenderer(mapData, ui.skin.font("bodyBold"), ui.skin.font("small"), uiScale)
     private val picker = MapPicker(mapData, session.db, playerId)
@@ -252,6 +252,10 @@ class MainScreen(
 
     override fun refresh() {
         sinceRefresh = 0f
+        val player = session.state.player.countryId
+        val relations = fr.president.engine.diplomacy.RelationCalculator(session.context)
+        mapRenderer.relations = session.state.countries.keys.filter { it != player }.associateWith { relations.score(it, player) }
+        mapRenderer.enemies = fr.president.engine.military.Geopolitics(session.context).enemiesOf(player).toSet()
         topBar.refresh()
         actionBar.refresh()
         currentPanel?.refresh()

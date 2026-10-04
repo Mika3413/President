@@ -75,10 +75,19 @@ class MapRenderer(private val data: MapData, private val playerCountryId: String
         shapes.end()
     }
 
-    private fun countryColor(id: String, state: WorldState): Color = when {
-        id == playerCountryId -> Theme.france
-        state.countries.containsKey(id) -> Theme.landSimulated
-        else -> Theme.landForeign
+    /**
+     * Relation de chaque pays simulé avec le joueur (0 hostile → 1 allié) et pays en guerre contre
+     * lui, mis à jour par l'écran principal : la carte du monde se lit d'un coup d'œil.
+     */
+    var relations: Map<String, Double> = emptyMap()
+    var enemies: Set<String> = emptySet()
+    private val relationColor = Color()
+
+    private fun countryColor(id: String, state: WorldState): Color {
+        if (id == playerCountryId) return Theme.france
+        if (id in enemies) return Theme.relationWar
+        val r = relations[id] ?: return if (state.countries.containsKey(id)) Theme.landSimulated else Theme.landForeign
+        return Theme.relation(r.toFloat(), relationColor)
     }
 
     private fun drawNetworks(lod: Lod, layer: ThematicLayer, pixel: Float) {
@@ -87,7 +96,7 @@ class MapRenderer(private val data: MapData, private val playerCountryId: String
             val rail = n.kind == "RAIL_HIGH_SPEED"
             val visible = when {
                 emphasized -> lod >= Lod.FRANCE
-                rail -> lod >= Lod.FRANCE
+                rail -> lod >= Lod.REGION
                 else -> lod >= Lod.REGION
             }
             if (!visible) continue

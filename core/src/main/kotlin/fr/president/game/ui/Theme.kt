@@ -6,7 +6,7 @@ import fr.president.engine.readout.Tone
 /** Palette de l'interface et de la carte. */
 object Theme {
     val background = Color.valueOf("0f1720")
-    val sea = Color.valueOf("1b2a3a")
+    val sea = Color.valueOf("21496e")
     val panel = Color.valueOf("16202bee")
     val panelAlt = Color.valueOf("1f2c3a")
     val panelBorder = Color.valueOf("2f4255")
@@ -24,15 +24,37 @@ object Theme {
     val bad = Color.valueOf("e05a4f")
 
     val land = Color.valueOf("3a4a3f")
-    val landForeign = Color.valueOf("3e4a3c")
-    val landSimulated = Color.valueOf("4d5a4a")
-    val france = Color.valueOf("4a5f74")
+    val landForeign = Color.valueOf("9c9a86")
+    val landSimulated = Color.valueOf("b5ad8a")
+    val france = Color.valueOf("3f7fd0")
+    private val relationHostile = Color.valueOf("c9544a")
+    private val relationNeutral = Color.valueOf("d9c27a")
+    private val relationFriendly = Color.valueOf("5fb35f")
+    val relationWar = Color.valueOf("8e1f1f")
+
+    /** Rouge (hostile) → jaune (neutre) → vert (allié). */
+    fun relation(value: Float, out: Color): Color {
+        val v = value.coerceIn(0f, 1f)
+        return if (v < 0.5f) out.set(relationHostile).lerp(relationNeutral, v * 2f) else out.set(relationNeutral).lerp(relationFriendly, (v - 0.5f) * 2f)
+    }
     val border = Color.valueOf("0b1118")
     val regionBorder = Color.valueOf("d7e3ee")
     val departmentBorder = Color.valueOf("8fa3b6")
     val highlight = Color.valueOf("ffd166")
     val rail = Color.valueOf("c77dff")
     val motorway = Color.valueOf("f4a261")
+
+    /** Couleurs des grands domaines (barre d'actions, en-têtes de panneaux). */
+    val catGovernment = Color.valueOf("3f72c4")
+    val catEconomy = Color.valueOf("d49a1a")
+    val catDiplomacy = Color.valueOf("23a08f")
+    val catArmy = Color.valueOf("c4473a")
+    val catInbox = Color.valueOf("8e5bc4")
+    val catAlerts = Color.valueOf("e07b2a")
+    val catElections = Color.valueOf("3da35d")
+    val catSettings = Color.valueOf("5c7080")
+    val catHelp = Color.valueOf("1fa3c4")
+    val catLocal = Color.valueOf("2f9e6e")
 
     fun tone(t: Tone): Color = when (t) {
         Tone.GOOD -> good

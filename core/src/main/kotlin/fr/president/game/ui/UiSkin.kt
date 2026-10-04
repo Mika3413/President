@@ -78,6 +78,18 @@ class UiSkin(private val scale: Float) : Disposable {
         })
     }
 
+    /** Style de bouton plein d'une couleur vive (créé à la demande, puis réutilisé). */
+    fun colorButtonStyle(color: Color): TextButton.TextButtonStyle {
+        val name = "color-" + color.toString()
+        if (skin.has(name, TextButton.TextButtonStyle::class.java)) return skin.get(name, TextButton.TextButtonStyle::class.java)
+        val style = button(color.cpy().mul(DARKEN, DARKEN, DARKEN, 1f), color, color.cpy().lerp(Color.WHITE, LIGHTEN), color).apply {
+            font = font("bodyBold")
+            fontColor = Color.WHITE
+        }
+        skin.add(name, style)
+        return style
+    }
+
     private fun button(up: Color, over: Color, down: Color, checked: Color?) = TextButton.TextButtonStyle().apply {
         this.up = fill(up).padded()
         this.over = fill(over).padded()
@@ -97,22 +109,25 @@ class UiSkin(private val scale: Float) : Disposable {
     }
 
     private companion object {
+        const val DARKEN = 0.78f
+        const val LIGHTEN = 0.25f
         const val REGULAR = "fonts/DejaVuSans.ttf"
         const val BOLD = "fonts/DejaVuSans-Bold.ttf"
-        const val EXTRA_CHARS = "àâäæçéèêëîïôöœùûüÿÀÂÄÆÇÉÈÊËÎÏÔÖŒÙÛÜŸ€–—’‘“”«»…•→←↑↓★·°²✕−▲"
+        const val EXTRA_CHARS = "àâäæçéèêëîïôöœùûüÿÀÂÄÆÇÉÈÊËÎÏÔÖŒÙÛÜŸ€–—’‘“”«»…•→←↑↓★·°²✕−▲▼▶●◆♥⚔⚖⚙✉⚡☀✚⚑⌂☎✈⚓☢⚒⚕♻☰✔✖↻⚠☮◀"
         const val MIN_PIXEL_SIZE = 8
         const val BUTTON_PAD_X = 10f
         const val BUTTON_PAD_Y = 6f
         const val SCROLL_KNOB = 4f
         const val FIELD_PADDING = 8f
         val FONT_SIZES = listOf("small" to 12, "body" to 14, "large" to 17)
-        val BOLD_SIZES = listOf("bodyBold" to 14, "title" to 20, "headline" to 26)
+        val BOLD_SIZES = listOf("bodyBold" to 14, "valueBold" to 17, "title" to 20, "headline" to 26)
         val LABELS = listOf(
             Triple("default", "body", Theme.text),
             Triple("muted", "small", Theme.textMuted),
             Triple("small", "small", Theme.text),
             Triple("bold", "bodyBold", Theme.text),
             Triple("large", "large", Theme.text),
+            Triple("value", "valueBold", Theme.text),
             Triple("title", "title", Theme.text),
             Triple("headline", "headline", Theme.text),
         )

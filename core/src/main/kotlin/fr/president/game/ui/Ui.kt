@@ -24,6 +24,10 @@ class Ui(val skin: UiSkin) {
     fun button(text: String, style: String = "default", action: () -> Unit): TextButton =
         TextButton(text, s, style).apply { onClick(action) }
 
+    /** Bouton plein et coloré, pour les grandes catégories et les actions principales. */
+    fun colorButton(text: String, color: Color, action: () -> Unit): TextButton =
+        TextButton(text, skin.colorButtonStyle(color)).apply { onClick(action) }
+
     fun panelTable(): Table = Table().apply { setBackground(this@Ui.skin.fill(Theme.panel)); blockInput() }
 
     fun separator(): Actor = Table().apply { setBackground(this@Ui.skin.fill(Theme.panelBorder)) }

@@ -28,13 +28,15 @@ class LocalReadouts(private val ctx: SimulationContext) {
             subtitle = region.name + " · " + Formatting.population(d.population),
             indicators = listOf(
                 opinion(d.approval),
-                scaled("Chômage", "unemployment", d.unemployment, "Taux local : ${Formatting.percent(d.unemployment)}"),
+                scaled("Chômage", "unemployment", d.unemployment, "Moyenne nationale : ${Formatting.percent(ctx.state.playerCountry.economy.unemployment)}"),
                 Indicator("Revenus", incomeLabel(d.incomeIndex), Tone.NEUTRAL, "",
-                    listOf("Indice de revenu" to Formatting.amount(d.incomeIndex * PERCENT))),
+                    listOf("Indice de revenu" to Formatting.amount(d.incomeIndex * PERCENT)), value = index(d.incomeIndex)),
                 Indicator("Santé", if (d.healthAccess < LOW_ACCESS) "Désert médical" else if (d.healthAccess > HIGH_ACCESS) "Bien doté" else "Accès moyen",
-                    if (d.healthAccess < LOW_ACCESS) Tone.WARNING else Tone.NEUTRAL, "", listOf("Accès aux soins (indice)" to Formatting.amount(d.healthAccess * PERCENT))),
+                    if (d.healthAccess < LOW_ACCESS) Tone.WARNING else if (d.healthAccess > HIGH_ACCESS) Tone.GOOD else Tone.NEUTRAL, INDEX_HINT,
+                    listOf("Accès aux soins (indice)" to Formatting.amount(d.healthAccess * PERCENT)), value = index(d.healthAccess)),
                 Indicator("Sécurité", if (d.crime > HIGH_CRIME) "Délinquance élevée" else if (d.crime < LOW_CRIME) "Calme" else "Moyenne",
-                    if (d.crime > HIGH_CRIME) Tone.WARNING else Tone.NEUTRAL, "", listOf("Délinquance (indice)" to Formatting.amount(d.crime * PERCENT))),
+                    if (d.crime > HIGH_CRIME) Tone.WARNING else if (d.crime < LOW_CRIME) Tone.GOOD else Tone.NEUTRAL, "Délinquance ($INDEX_HINT)",
+                    listOf("Délinquance (indice)" to Formatting.amount(d.crime * PERCENT)), value = index(d.crime), higherIsBetter = false),
                 Indicator("Économie locale", economyProfile(d.industryShare, d.agricultureShare), Tone.NEUTRAL, "",
                     listOf("Industrie (part de l'emploi)" to Formatting.percent(d.industryShare),
                         "Agriculture (part de l'emploi)" to Formatting.percent(d.agricultureShare),
@@ -137,13 +139,17 @@ class LocalReadouts(private val ctx: SimulationContext) {
 
     private fun opinion(value: Double): Indicator {
         val s = scales.describe("approval", value)
-        return Indicator("Opinion", s.label, s.tone, "Soutien local au président", listOf("Approbation estimée" to Formatting.percent(value)))
+        return Indicator("Popularité", s.label, s.tone, "Soutien local au président", listOf("Approbation estimée" to Formatting.percent(value)),
+            value = Formatting.wholePercent(value))
     }
 
     private fun scaled(label: String, scale: String, value: Double, explanation: String): Indicator {
         val s = scales.describe(scale, value)
-        return Indicator(label, s.label, s.tone, explanation)
+        return Indicator(label, s.label, s.tone, explanation, value = Formatting.percent(value), higherIsBetter = false)
     }
+
+    /** Indice où 100 représente la moyenne nationale. */
+    private fun index(v: Double): String = Math.round(v * PERCENT).toString()
 
     private fun economyProfile(industry: Double, agriculture: Double): String = when {
         agriculture >= AGRICULTURAL_SHARE -> "Agricole"
@@ -186,6 +192,7 @@ class LocalReadouts(private val ctx: SimulationContext) {
     }
 
     private companion object {
+        const val INDEX_HINT = "indice, moyenne nationale = 100"
         const val PERCENT = 100.0
         const val THOUSAND = 1000.0
         const val URBAN = 0.7
