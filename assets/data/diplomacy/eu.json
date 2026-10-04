@@ -1,0 +1,670 @@
+{
+ "_doc": "Textes européens. Généré par tools/datagen/eu_fr.py.",
+ "totalStates": 27,
+ "totalPopulation": 449000000,
+ "proposalIntervalDays": 50,
+ "voteDelayDays": 30,
+ "texts": [
+  {
+   "id": "ai_rules",
+   "title": "Règlement européen sur l'intelligence artificielle",
+   "description": "Obligations de transparence et interdiction de certains usages de l'IA.",
+   "rule": "QMV",
+   "effects": [
+    {
+     "target": "sector.tech",
+     "amount": -0.02
+    },
+    {
+     "target": "quality.security",
+     "amount": 0.004
+    },
+    {
+     "target": "opinion.group.adults",
+     "amount": 0.004
+    }
+   ],
+   "stances": {
+    "DEU": 0.4,
+    "ITA": 0.2,
+    "ESP": 0.4,
+    "NLD": 0.5,
+    "BEL": 0.5,
+    "PRT": 0.3,
+    "AUT": 0.5,
+    "POL": 0.0,
+    "SWE": -0.1,
+    "GRC": 0.3,
+    "ROU": 0.2
+   },
+   "others": 0.3,
+   "interest": "Protège les citoyens ; freine nos jeunes pousses."
+  },
+  {
+   "id": "combustion_delay",
+   "title": "Report de la fin des moteurs thermiques",
+   "description": "Les voitures thermiques neuves autorisées cinq ans de plus.",
+   "rule": "QMV",
+   "effects": [
+    {
+     "target": "sector.industry",
+     "amount": 0.03
+    },
+    {
+     "target": "quality.environment",
+     "amount": -0.006
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.008
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": -0.006
+    }
+   ],
+   "stances": {
+    "DEU": 0.6,
+    "ITA": 0.6,
+    "ESP": -0.1,
+    "NLD": -0.6,
+    "BEL": -0.2,
+    "PRT": -0.2,
+    "AUT": 0.2,
+    "POL": 0.7,
+    "SWE": -0.6,
+    "GRC": 0.3,
+    "ROU": 0.6
+   },
+   "others": 0.2,
+   "interest": "Soulage l'automobile ; recul climatique."
+  },
+  {
+   "id": "defense_fund",
+   "title": "Fonds européen de défense de 100 Md€",
+   "description": "Achats communs d'armement fabriqué en Europe.",
+   "rule": "QMV",
+   "effects": [
+    {
+     "target": "sector.aerospace",
+     "amount": 0.05
+    },
+    {
+     "target": "military.readiness",
+     "amount": 0.01,
+     "delayDays": 120
+    },
+    {
+     "target": "budget.oneOff",
+     "amount": 1.0,
+     "days": 365
+    }
+   ],
+   "stances": {
+    "DEU": 0.2,
+    "ITA": 0.4,
+    "ESP": 0.2,
+    "NLD": -0.3,
+    "BEL": 0.2,
+    "PRT": 0.1,
+    "AUT": -0.6,
+    "POL": 0.8,
+    "SWE": 0.4,
+    "GRC": 0.6,
+    "ROU": 0.7
+   },
+   "others": 0.2,
+   "interest": "Bon pour notre industrie de défense ; contribution au budget."
+  },
+  {
+   "id": "digital_tax",
+   "title": "Taxe européenne sur les géants du numérique",
+   "description": "Une taxe sur le chiffre d'affaires des grandes plateformes.",
+   "rule": "UNANIMITY",
+   "effects": [
+    {
+     "target": "budget.oneOff",
+     "amount": -0.8,
+     "days": 365
+    },
+    {
+     "target": "sector.tech",
+     "amount": -0.01
+    },
+    {
+     "target": "memory.USA.DISAGREEMENT",
+     "amount": -0.03
+    }
+   ],
+   "stances": {
+    "DEU": 0.1,
+    "ITA": 0.6,
+    "ESP": 0.6,
+    "NLD": -0.5,
+    "BEL": 0.4,
+    "PRT": 0.5,
+    "AUT": 0.6,
+    "POL": 0.2,
+    "SWE": -0.3,
+    "GRC": 0.5,
+    "ROU": 0.3
+   },
+   "others": -0.2,
+   "interest": "Recettes nouvelles ; colère de Washington."
+  },
+  {
+   "id": "asylum_quotas",
+   "title": "Répartition obligatoire des demandeurs d'asile",
+   "description": "Chaque État accueille un quota ou paie une contribution.",
+   "rule": "QMV",
+   "effects": [
+    {
+     "target": "demography.immigration",
+     "amount": 0.03
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.01
+    },
+    {
+     "target": "opinion.group.urban",
+     "amount": 0.004
+    }
+   ],
+   "stances": {
+    "DEU": 0.5,
+    "ITA": 0.8,
+    "ESP": 0.7,
+    "NLD": -0.2,
+    "BEL": 0.3,
+    "PRT": 0.5,
+    "AUT": -0.6,
+    "POL": -0.9,
+    "SWE": 0.0,
+    "GRC": 0.9,
+    "ROU": -0.4
+   },
+   "others": -0.2,
+   "interest": "Solidarité avec l'Italie et la Grèce ; sujet explosif en France."
+  },
+  {
+   "id": "cap_reform",
+   "title": "Réforme de la politique agricole commune",
+   "description": "Moins d'aides à l'hectare, plus d'aides écologiques.",
+   "rule": "QMV",
+   "effects": [
+    {
+     "target": "sector.agrifood",
+     "amount": -0.02
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.015
+    },
+    {
+     "target": "quality.environment",
+     "amount": 0.006
+    }
+   ],
+   "stances": {
+    "DEU": 0.3,
+    "ITA": -0.3,
+    "ESP": -0.4,
+    "NLD": 0.6,
+    "BEL": 0.2,
+    "PRT": -0.3,
+    "AUT": 0.3,
+    "POL": -0.6,
+    "SWE": 0.7,
+    "GRC": -0.5,
+    "ROU": -0.6
+   },
+   "others": 0.0,
+   "interest": "Nos agriculteurs y perdent ; l'environnement y gagne."
+  },
+  {
+   "id": "fiscal_rules",
+   "title": "Assouplissement des règles budgétaires",
+   "description": "Plus de temps pour réduire les déficits, investissements exclus du calcul.",
+   "rule": "QMV",
+   "effects": [
+    {
+     "target": "economy.output",
+     "amount": 0.0006,
+     "days": 365
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.003
+    },
+    {
+     "target": "sector.banking",
+     "amount": -0.01
+    }
+   ],
+   "stances": {
+    "DEU": -0.4,
+    "ITA": 0.9,
+    "ESP": 0.7,
+    "NLD": -0.9,
+    "BEL": 0.3,
+    "PRT": 0.6,
+    "AUT": -0.6,
+    "POL": 0.4,
+    "SWE": -0.7,
+    "GRC": 0.8,
+    "ROU": 0.5
+   },
+   "others": 0.1,
+   "interest": "De l'air pour notre budget ; les « frugaux » s'y opposent."
+  },
+  {
+   "id": "power_market",
+   "title": "Réforme du marché de l'électricité",
+   "description": "Des prix fondés sur les coûts réels de production, nucléaire compris.",
+   "rule": "QMV",
+   "effects": [
+    {
+     "target": "sector.energy",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": 0.008
+    },
+    {
+     "target": "sector.industry",
+     "amount": 0.02
+    }
+   ],
+   "stances": {
+    "DEU": -0.3,
+    "ITA": 0.4,
+    "ESP": 0.6,
+    "NLD": -0.3,
+    "BEL": 0.3,
+    "PRT": 0.5,
+    "AUT": -0.4,
+    "POL": 0.3,
+    "SWE": 0.1,
+    "GRC": 0.5,
+    "ROU": 0.4
+   },
+   "others": 0.2,
+   "interest": "Valorise notre parc nucléaire ; Berlin hésite."
+  },
+  {
+   "id": "carbon_border",
+   "title": "Taxe carbone aux frontières élargie",
+   "description": "Les importations polluantes paient le prix du carbone.",
+   "rule": "QMV",
+   "effects": [
+    {
+     "target": "sector.industry",
+     "amount": 0.015
+    },
+    {
+     "target": "quality.environment",
+     "amount": 0.005
+    },
+    {
+     "target": "memory.CHN.DISAGREEMENT",
+     "amount": -0.03
+    },
+    {
+     "target": "memory.IND.DISAGREEMENT",
+     "amount": -0.02
+    }
+   ],
+   "stances": {
+    "DEU": 0.3,
+    "ITA": 0.2,
+    "ESP": 0.4,
+    "NLD": 0.5,
+    "BEL": 0.5,
+    "PRT": 0.3,
+    "AUT": 0.5,
+    "POL": -0.6,
+    "SWE": 0.7,
+    "GRC": 0.0,
+    "ROU": -0.3
+   },
+   "others": 0.0,
+   "interest": "Protège notre industrie et le climat ; Pékin menace de répliquer."
+  },
+  {
+   "id": "ukraine_accession",
+   "title": "Ouverture des négociations d'adhésion de l'Ukraine",
+   "description": "Un long processus qui commence.",
+   "rule": "UNANIMITY",
+   "effects": [
+    {
+     "target": "memory.UKR.NEGOTIATION_GOODWILL",
+     "amount": 0.06
+    },
+    {
+     "target": "memory.RUS.DISAGREEMENT",
+     "amount": -0.04
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.01
+    }
+   ],
+   "stances": {
+    "DEU": 0.5,
+    "ITA": 0.4,
+    "ESP": 0.5,
+    "NLD": 0.2,
+    "BEL": 0.4,
+    "PRT": 0.5,
+    "AUT": 0.0,
+    "POL": 0.9,
+    "SWE": 0.8,
+    "GRC": 0.2,
+    "ROU": 0.7
+   },
+   "others": 0.0,
+   "interest": "Geste historique ; inquiétude des agriculteurs."
+  },
+  {
+   "id": "russia_sanctions",
+   "title": "Nouveau paquet de sanctions contre la Russie",
+   "description": "Gel d'avoirs et interdictions d'exportation.",
+   "rule": "UNANIMITY",
+   "effects": [
+    {
+     "target": "memory.RUS.DISAGREEMENT",
+     "amount": -0.05
+    },
+    {
+     "target": "memory.UKR.CRISIS_SOLIDARITY",
+     "amount": 0.03
+    },
+    {
+     "target": "sector.energy",
+     "amount": -0.01
+    },
+    {
+     "target": "economy.inflation",
+     "amount": 0.0005,
+     "days": 180
+    }
+   ],
+   "stances": {
+    "DEU": 0.5,
+    "ITA": 0.3,
+    "ESP": 0.5,
+    "NLD": 0.7,
+    "BEL": 0.6,
+    "PRT": 0.6,
+    "AUT": 0.0,
+    "POL": 1.0,
+    "SWE": 0.9,
+    "GRC": 0.1,
+    "ROU": 0.8
+   },
+   "others": -0.1,
+   "interest": "Fermeté face à Moscou ; un coût pour nos entreprises."
+  },
+  {
+   "id": "mercosur_ratification",
+   "title": "Ratification de l'accord avec le Mercosur",
+   "description": "Libre-échange avec l'Amérique du Sud.",
+   "rule": "QMV",
+   "effects": [
+    {
+     "target": "sector.agrifood",
+     "amount": -0.04
+    },
+    {
+     "target": "sector.industry",
+     "amount": 0.02
+    },
+    {
+     "target": "sector.luxury",
+     "amount": 0.01
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.025
+    }
+   ],
+   "stances": {
+    "DEU": 0.8,
+    "ITA": 0.2,
+    "ESP": 0.8,
+    "NLD": 0.6,
+    "BEL": -0.2,
+    "PRT": 0.8,
+    "AUT": -0.6,
+    "POL": -0.4,
+    "SWE": 0.7,
+    "GRC": 0.0,
+    "ROU": 0.0
+   },
+   "others": 0.3,
+   "interest": "Bon pour l'industrie ; nos éleveurs vent debout."
+  },
+  {
+   "id": "common_debt",
+   "title": "Nouvel emprunt commun pour l'industrie verte",
+   "description": "L'Union emprunte pour financer batteries, hydrogène et puces.",
+   "rule": "UNANIMITY",
+   "effects": [
+    {
+     "target": "sector.industry",
+     "amount": 0.02
+    },
+    {
+     "target": "economy.output",
+     "amount": 0.0008,
+     "days": 365
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": 0.004
+    }
+   ],
+   "stances": {
+    "DEU": -0.4,
+    "ITA": 0.9,
+    "ESP": 0.8,
+    "NLD": -0.9,
+    "BEL": 0.4,
+    "PRT": 0.7,
+    "AUT": -0.7,
+    "POL": 0.5,
+    "SWE": -0.6,
+    "GRC": 0.9,
+    "ROU": 0.6
+   },
+   "others": 0.1,
+   "interest": "Investissements massifs ; les « frugaux » mettent leur veto en balance."
+  },
+  {
+   "id": "pesticide_renewal",
+   "title": "Renouvellement d'un pesticide controversé",
+   "description": "Autorisation prolongée de dix ans.",
+   "rule": "QMV",
+   "effects": [
+    {
+     "target": "sector.agrifood",
+     "amount": 0.02
+    },
+    {
+     "target": "quality.environment",
+     "amount": -0.006
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.008
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": -0.008
+    }
+   ],
+   "stances": {
+    "DEU": -0.2,
+    "ITA": 0.2,
+    "ESP": 0.5,
+    "NLD": 0.4,
+    "BEL": -0.3,
+    "PRT": 0.4,
+    "AUT": -0.8,
+    "POL": 0.6,
+    "SWE": 0.2,
+    "GRC": 0.4,
+    "ROU": 0.6
+   },
+   "others": 0.3,
+   "interest": "Les agriculteurs le demandent ; les écologistes manifestent."
+  },
+  {
+   "id": "schengen_controls",
+   "title": "Contrôles prolongés aux frontières intérieures",
+   "description": "Les États peuvent contrôler leurs frontières deux ans de plus.",
+   "rule": "QMV",
+   "effects": [
+    {
+     "target": "quality.security",
+     "amount": 0.004
+    },
+    {
+     "target": "sector.transport",
+     "amount": -0.01
+    },
+    {
+     "target": "sector.tourism",
+     "amount": -0.005
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.006
+    }
+   ],
+   "stances": {
+    "DEU": 0.5,
+    "ITA": 0.2,
+    "ESP": -0.2,
+    "NLD": 0.3,
+    "BEL": -0.1,
+    "PRT": -0.4,
+    "AUT": 0.7,
+    "POL": 0.3,
+    "SWE": 0.4,
+    "GRC": -0.3,
+    "ROU": -0.6
+   },
+   "others": -0.1,
+   "interest": "Sécurité ; frein au commerce et au tourisme."
+  },
+  {
+   "id": "minimum_wages",
+   "title": "Directive renforcée sur les salaires minimaux",
+   "description": "Des salaires minimaux décents dans toute l'Union.",
+   "rule": "QMV",
+   "effects": [
+    {
+     "target": "opinion.group.low_income",
+     "amount": 0.006
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.002
+    },
+    {
+     "target": "sector.industry",
+     "amount": 0.005
+    }
+   ],
+   "stances": {
+    "DEU": 0.4,
+    "ITA": 0.3,
+    "ESP": 0.7,
+    "NLD": -0.4,
+    "BEL": 0.5,
+    "PRT": 0.6,
+    "AUT": -0.2,
+    "POL": -0.2,
+    "SWE": -0.8,
+    "GRC": 0.5,
+    "ROU": 0.2
+   },
+   "others": 0.0,
+   "interest": "Moins de dumping social chez nos voisins."
+  },
+  {
+   "id": "nuclear_taxonomy",
+   "title": "Le nucléaire reconnu comme énergie durable",
+   "description": "Le nucléaire accède aux financements verts européens.",
+   "rule": "QMV",
+   "effects": [
+    {
+     "target": "sector.energy",
+     "amount": 0.03
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": 0.003
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": -0.003
+    }
+   ],
+   "stances": {
+    "DEU": -0.6,
+    "ITA": 0.2,
+    "ESP": -0.4,
+    "NLD": 0.4,
+    "BEL": 0.2,
+    "PRT": -0.5,
+    "AUT": -0.9,
+    "POL": 0.8,
+    "SWE": 0.5,
+    "GRC": 0.0,
+    "ROU": 0.7
+   },
+   "others": 0.2,
+   "interest": "Victoire pour notre filière nucléaire ; Berlin et Vienne contre."
+  },
+  {
+   "id": "space_program",
+   "title": "Programme spatial européen renforcé",
+   "description": "Lanceurs, satellites et constellation de communication souveraine.",
+   "rule": "QMV",
+   "effects": [
+    {
+     "target": "sector.aerospace",
+     "amount": 0.03
+    },
+    {
+     "target": "budget.oneOff",
+     "amount": 0.4,
+     "days": 365
+    },
+    {
+     "target": "sector.tech",
+     "amount": 0.01
+    }
+   ],
+   "stances": {
+    "DEU": 0.3,
+    "ITA": 0.6,
+    "ESP": 0.4,
+    "NLD": -0.2,
+    "BEL": 0.5,
+    "PRT": 0.1,
+    "AUT": -0.1,
+    "POL": 0.2,
+    "SWE": 0.3,
+    "GRC": 0.0,
+    "ROU": 0.1
+   },
+   "others": 0.1,
+   "interest": "Bon pour Ariane et notre industrie spatiale."
+  }
+ ]
+}

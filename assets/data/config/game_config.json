@@ -107,6 +107,7 @@
     "worldCities": "geo/world_cities.json",
     "eventIntensity": "events/intensity.json",
     "eventResponses": "events/responses.json",
-    "eventFrequency": "config/event_frequency.json"
+    "eventFrequency": "config/event_frequency.json",
+    "eu": "diplomacy/eu.json"
   }
 }

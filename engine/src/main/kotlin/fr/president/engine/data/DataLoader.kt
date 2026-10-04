@@ -40,6 +40,7 @@ class DataLoader(private val source: DataSource) {
             worldCities = files.worldCities?.let { read<WorldCitiesFile>(it).cities }.orEmpty(),
             intensity = files.eventIntensity?.let { read(it) },
             frequency = files.eventFrequency?.let { read(it) },
+            eu = files.eu?.let { read(it) },
         )
         DataValidator.validate(db)
         return db

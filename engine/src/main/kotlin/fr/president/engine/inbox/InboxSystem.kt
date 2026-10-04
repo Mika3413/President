@@ -36,6 +36,7 @@ class InboxSystem : SimulationSystem {
                     DiplomacyService(ctx).answerMessage(message, optionId, byDefault)
                 MessageOrigin.ALLIANCE_CALL -> fr.president.engine.military.WarService(ctx).answerAllianceCall(message, optionId)
                 MessageOrigin.ULTIMATUM -> fr.president.engine.diplomacy.UltimatumService(ctx).answerPlayer(message, optionId)
+                MessageOrigin.EU -> fr.president.engine.diplomacy.EuService(ctx).answer(message, optionId, byDefault)
                 MessageOrigin.CABINET -> fr.president.engine.government.CabinetService(ctx).answer(message, optionId, byDefault)
                 MessageOrigin.INFO, MessageOrigin.CONVERSATION -> {
                     message.chosenOptionId = optionId

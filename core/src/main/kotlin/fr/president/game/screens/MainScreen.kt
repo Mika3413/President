@@ -105,6 +105,7 @@ class MainScreen(
         PanelId.STATS to fr.president.game.ui.panels.StatsPanel(ui, this) { closePanel() },
         PanelId.PRESS to fr.president.game.ui.panels.PressPanel(ui, this) { closePanel() },
         PanelId.CRISIS to fr.president.game.ui.panels.CrisisPanel(ui, this) { closePanel() },
+        PanelId.EU to fr.president.game.ui.panels.EuPanel(ui, this) { closePanel() },
         PanelId.GOVERNMENT to GovernmentPanel(ui, this) { closePanel() },
         PanelId.ECONOMY to EconomyPanel(ui, this) { closePanel() },
         PanelId.DIPLOMACY to diplomacyPanel,

@@ -49,6 +49,9 @@ class DiplomacyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
         message?.let { into.add(ui.label(it, "small", Theme.accent, wrap = true)).padBottom(GAP).row() }
         val id = country
         if (id == null) {
+            val euText = session.eu.current()?.second?.title
+            into.add(ui.colorButton("★ Union européenne" + (euText?.let { " — au Conseil : $it" } ?: ""), Theme.catDiplomacy) { nav.open(PanelId.EU) }
+                .also { it.label.setWrap(true) }).growX().padBottom(GAP).row()
             into.add(ui.label("Choisissez un pays pour consulter vos relations et négocier (ou touchez-le sur la carte).", "muted", wrap = true)).row()
             val list = Table().apply { defaults().growX().uniformX().pad(2f) }
             session.diplomacy.foreignCountries().forEachIndexed { i, c ->
