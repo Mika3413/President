@@ -3,7 +3,7 @@
   {
    "delayHours": 0,
    "subject": "Comment jouer en 1 minute",
-   "body": "1. En haut, vos chiffres clés : popularité, chômage, croissance, budget, dette, jours avant l'élection. Vert = bien, orange = à surveiller, rouge = danger. La flèche montre la tendance.\n2. L'encart « À faire », à gauche, vous dit quoi faire maintenant. Touchez une ligne pour y aller directement. Un appui long (ou le survol à la souris) sur un chiffre, une pastille ou un bouton l'explique ; touchez un chiffre du haut pour voir sa courbe et ses causes.\n3. « ★ Décider », en bas à gauche : plus de 40 décisions nationales rangées en 8 rubriques (économie, social, sécurité, écologie, institutions, communication, international, défense). Chacune montre son coût, sa durée et ses effets : en vert ce qui s'améliore, en rouge ce qui se dégrade, groupe par groupe.\n4. Touchez un département sur la carte : l'onglet « Résumé » donne ses chiffres clés d'un coup d'œil, « ▶ Agir » propose 18 actions locales triées par thème (services publics, emploi, sécurité, cadre de vie).\n5. Touchez un pays : sa couleur dit votre relation (vert allié, jaune neutre, rouge hostile). Coopérez (commerce, aide, alliance) ou faites pression (sanctions, ultimatum, guerre).\n6. « ▲ Bilan » trace les courbes de votre mandat et leurs causes ; « ▤ Presse » montre les unes du jour et les sondages.\n7. « Messages » contient les décisions qui vous attendent : répondez-y, le monde n'attend pas.\n8. Tout coûte de l'argent : surveillez le budget. Dans cinq ans, les Français vous jugeront.\n9. Réglages (⚙) : taille du texte, couleurs pour daltoniens, sons, rythme de la partie, tutoriel guidé."
+   "body": "1. En haut, vos chiffres clés : popularité, chômage, croissance, budget, dette, jours avant l'élection. Vert = bien, orange = à surveiller, rouge = danger. La flèche montre la tendance.\n2. L'encart « À faire », à gauche, vous dit quoi faire maintenant. Touchez une ligne pour y aller directement. Un appui long (ou le survol à la souris) sur un chiffre, une pastille ou un bouton l'explique ; touchez un chiffre du haut pour voir sa courbe et ses causes.\n3. « ★ Décider », en bas à gauche : plus de 40 décisions nationales rangées en 8 rubriques (économie, social, sécurité, écologie, institutions, communication, international, défense). Chacune montre son coût, sa durée et ses effets : en vert ce qui s'améliore, en rouge ce qui se dégrade, groupe par groupe.\n4. Touchez un département sur la carte : l'onglet « Résumé » donne ses chiffres clés d'un coup d'œil, « ▶ Agir » propose 18 actions locales triées par thème (services publics, emploi, sécurité, cadre de vie).\n5. Guerre : sélectionnez une de vos unités puis touchez une destination sur la carte : une bulle propose les ordres possibles avec la durée du trajet et le rapport de forces. Les villes ennemies sont cerclées de rouge ; prendre une capitale fait capituler un pays.\n5 bis. Touchez un pays : sa couleur dit votre relation (vert allié, jaune neutre, rouge hostile). Coopérez (commerce, aide, alliance) ou faites pression (sanctions, ultimatum, guerre).\n6. « ▲ Bilan » trace les courbes de votre mandat et leurs causes ; « ▤ Presse » montre les unes du jour et les sondages.\n7. « Messages » contient les décisions qui vous attendent : répondez-y, le monde n'attend pas.\n8. Tout coûte de l'argent : surveillez le budget. Dans cinq ans, les Français vous jugeront.\n9. Réglages (⚙) : taille du texte, couleurs pour daltoniens, sons, rythme de la partie, tutoriel guidé."
   },
   {
    "delayHours": 1,
@@ -152,6 +152,14 @@
   {
    "term": "Décision de crise",
    "definition": "Décision qui n'est possible que dans une situation particulière (déficit élevé, inflation, guerre, impopularité...). Elle apparaît en tête du panneau « Décider »."
+  },
+  {
+   "term": "Attaque hybride",
+   "definition": "Action hostile sous le seuil de la guerre (cyberattaque, sabotage, désinformation) menée par un pays étranger. La dissuasion nucléaire empêche une attaque directe contre la France, pas ces actions-là."
+  },
+  {
+   "term": "Climat médiatique",
+   "definition": "Tendance des unes des journaux, de très hostile à très favorable. Il pèse chaque jour un peu sur votre popularité."
   }
  ]
 }
