@@ -14,7 +14,7 @@ import fr.president.game.ui.panels.PanelId
  * Barre supérieure, comme un tableau de bord : chaque pastille montre un chiffre clé, sa couleur
  * (vert = bien, orange = à surveiller, rouge = danger) et une flèche d'évolution.
  */
-class TopBar(private val ui: Ui, private val session: GameSession, private val open: (PanelId) -> Unit) {
+class TopBar(private val ui: Ui, private val session: GameSession, private val open: (PanelId, String?) -> Unit) {
     val root: Table = ui.panelTable()
     private val date = ui.label("", "bold")
     private val pace = ui.label("", "muted")
@@ -38,21 +38,22 @@ class TopBar(private val ui: Ui, private val session: GameSession, private val o
         pace.setText("Rythme ${paceDef?.label?.lowercase()}")
         chips.clearChildren()
         val national = session.national
-        chip("♥", "Popularité", national.approval(), PanelId.ECONOMY)
-        chip("⚒", "Chômage", national.unemployment(), PanelId.ECONOMY)
-        chip("▲", "Croissance", national.growth(), PanelId.ECONOMY)
-        chip("€", "Budget", national.deficit(), PanelId.ECONOMY)
-        chip("⚖", "Dette", national.debt(), PanelId.ECONOMY)
+        // Toucher un chiffre ouvre sa courbe et ses causes.
+        chip("♥", "Popularité", national.approval(), "approval")
+        chip("⚒", "Chômage", national.unemployment(), "unemployment")
+        chip("▲", "Croissance", national.growth(), "growth")
+        chip("€", "Budget", national.deficit(), "deficit")
+        chip("⚖", "Dette", national.debt(), "debt")
         val days = session.state.time.daysUntil(session.state.elections.nextElection).toInt()
         val tone = if (days < WARNING_DAYS) Theme.warning else Theme.accent
         val (wrapper, box) = pill(tone)
         box.add(ui.label("✔ J-$days", "value", tone)).row()
         box.add(ui.label("Élection", "muted"))
-        wrapper.onClick { open(PanelId.ELECTIONS) }
+        wrapper.onClick { open(PanelId.ELECTIONS, null) }
         chips.add(wrapper).padLeft(CHIP_GAP)
     }
 
-    private fun chip(icon: String, label: String, indicator: Indicator, panel: PanelId) {
+    private fun chip(icon: String, label: String, indicator: Indicator, series: String) {
         val color = Theme.tone(indicator.tone)
         val (wrapper, box) = pill(color)
         val line = Table()
@@ -61,7 +62,7 @@ class TopBar(private val ui: Ui, private val session: GameSession, private val o
         arrow(indicator)?.let { (glyph, c) -> line.add(ui.label(" $glyph", "small", c)) }
         box.add(line).row()
         box.add(ui.label(label, "muted"))
-        wrapper.onClick { open(panel) }
+        wrapper.onClick { open(PanelId.STATS, series) }
         val shown = indicator.value + indicator.status
         val previous = lastValue.put(label, shown)
         val now = System.currentTimeMillis()

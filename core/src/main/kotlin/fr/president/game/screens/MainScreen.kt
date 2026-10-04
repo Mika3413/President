@@ -67,7 +67,7 @@ class MainScreen(
     private var lod = Lod.FRANCE
     private var sinceRefresh = 0f
 
-    private val topBar = TopBar(ui, session) { open(it) }
+    private val topBar = TopBar(ui, session) { panel, arg -> open(panel, arg) }
     private val actionBar = ActionBar(ui, session) { open(it) }
     private val toasts = Toasts(ui) { focusOn(it) }
     private val legend = fr.president.game.ui.hud.Legend(ui)
@@ -86,6 +86,7 @@ class MainScreen(
     private val panels: Map<PanelId, Panel> = mapOf(
         PanelId.SELECTION to selectionPanel,
         PanelId.DECISIONS to fr.president.game.ui.panels.DecisionPanel(ui, this) { closePanel() },
+        PanelId.STATS to fr.president.game.ui.panels.StatsPanel(ui, this) { closePanel() },
         PanelId.GOVERNMENT to GovernmentPanel(ui, this) { closePanel() },
         PanelId.ECONOMY to EconomyPanel(ui, this) { closePanel() },
         PanelId.DIPLOMACY to diplomacyPanel,

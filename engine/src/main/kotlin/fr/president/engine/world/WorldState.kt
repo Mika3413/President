@@ -66,6 +66,8 @@ class WorldState(
     val demography: fr.president.engine.territory.DemographyState = fr.president.engine.territory.DemographyState(),
     /** Dernière réalisation de chaque action locale (« 34|hospital », « *|visit »), pour les délais. */
     val localActions: MutableMap<String, fr.president.engine.time.WorldTime> = mutableMapOf(),
+    /** Courbes et journal du mandat. */
+    val stats: fr.president.engine.stats.StatsState = fr.president.engine.stats.StatsState(),
 ) {
     val playerCountry: CountryState get() = countries.getValue(player.countryId)
 

@@ -31,6 +31,7 @@ class LocalActionCommands(private val ctx: SimulationContext) {
             ctx.effects.trigger(EffectSpec("budget.oneOff", def.costBillions, days = def.durationDays.coerceAtLeast(1).toDouble()), null, emptyMap(), "local:${def.id}")
         }
         ctx.state.localActions[key(departmentCode, def.id)] = ctx.now
+        fr.president.engine.stats.JournalService(ctx).add("Territoire", "${def.label} — $place", fr.president.engine.readout.Tone.GOOD)
         if (def.globalCooldownDays > 0) ctx.state.localActions[key(ANY, def.id)] = ctx.now
         if (def.durationDays > 0) {
             val project = ProjectState(

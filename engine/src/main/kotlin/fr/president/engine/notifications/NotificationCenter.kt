@@ -12,6 +12,8 @@ class NotificationCenter(private val ctx: SimulationContext) {
         title: String,
         body: String,
         focusId: String? = null,
+        /** Faux pour les simples avis (courrier reçu) : le journal garde les faits, pas les annonces. */
+        journal: Boolean = true,
     ): GameNotification {
         val state = ctx.state.notifications
         val n = GameNotification(ctx.state.nextId++, category, urgency, title, body, ctx.now, focusId)
@@ -20,6 +22,11 @@ class NotificationCenter(private val ctx: SimulationContext) {
         state.unreadCount++
         if (state.settings.shouldPush(n)) state.pendingPlatform.add(n)
         ctx.log("notification", "[${category.name}/${urgency.name}] $title")
+        // Tout ce qui est important ou urgent entre dans le journal du mandat.
+        if (journal && urgency != Urgency.INFO) {
+            fr.president.engine.stats.JournalService(ctx).add(category.label, title,
+                if (urgency == Urgency.URGENT) fr.president.engine.readout.Tone.WARNING else fr.president.engine.readout.Tone.NEUTRAL)
+        }
         return n
     }
 

@@ -23,6 +23,13 @@ class InboxSystem : SimulationSystem {
 
     companion object {
         fun answer(ctx: SimulationContext, message: InboxMessage, optionId: String, byDefault: Boolean) {
+            if (message.origin != MessageOrigin.INFO && message.origin != MessageOrigin.CONVERSATION) {
+                val option = message.options.firstOrNull { it.id == optionId }?.label
+                if (option != null) {
+                    fr.president.engine.stats.JournalService(ctx).add(if (byDefault) "Sans réponse" else "Arbitrage",
+                        "${message.subject} — ${option}", if (byDefault) fr.president.engine.readout.Tone.WARNING else fr.president.engine.readout.Tone.NEUTRAL)
+                }
+            }
             when (message.origin) {
                 MessageOrigin.EVENT -> EventResolver(ctx).choose(message, optionId, byDefault)
                 MessageOrigin.PROPOSAL, MessageOrigin.DIPLOMATIC_RESPONSE ->

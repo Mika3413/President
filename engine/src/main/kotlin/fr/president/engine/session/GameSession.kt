@@ -34,6 +34,7 @@ class GameSession(
     val national = NationalReadouts(context)
     val local = LocalReadouts(context)
     val advisor = fr.president.engine.readout.AdvisorReadout(context)
+    val stats = fr.president.engine.readout.StatsReadout(context)
     val characters = CharacterReadout(context)
     val military = MilitaryCommands(context)
     val militaryReadouts = fr.president.engine.readout.MilitaryReadouts(context)

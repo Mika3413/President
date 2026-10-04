@@ -29,7 +29,7 @@ class EventLauncher(private val ctx: SimulationContext) {
             val message = deliverMessage(def, instance, scope, vars, details = false)
             // Un courrier qui attend une réponse mérite une notification même s'il n'est pas urgent.
             if (def.urgency == Urgency.INFO && message != null) {
-                ctx.notifications.post(def.category, Urgency.IMPORTANT, "Courrier : ${message.senderLabel}", message.subject, focus)
+                ctx.notifications.post(def.category, Urgency.IMPORTANT, "Courrier : ${message.senderLabel}", message.subject, focus, journal = false)
             }
         } else {
             instance.resolved = true

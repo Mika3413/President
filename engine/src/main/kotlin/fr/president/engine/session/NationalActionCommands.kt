@@ -39,6 +39,7 @@ class NationalActionCommands(private val ctx: SimulationContext) {
             ctx.effects.trigger(EffectSpec("budget.oneOff", def.costBillions, days = def.durationDays.coerceAtLeast(1).toDouble()), null, emptyMap(), source)
         }
         ctx.state.localActions[key(def.id)] = ctx.now
+        fr.president.engine.stats.JournalService(ctx).add("Décision", def.label, fr.president.engine.readout.Tone.GOOD)
         if (def.durationDays > 0) {
             val project = ProjectState(
                 id = ctx.state.newId("prj"),
