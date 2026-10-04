@@ -71,6 +71,10 @@
    "name": "Brasilia",
    "lon": -47.88,
    "lat": -15.79
-  }
+  },
+  "hazards": [
+   "flood",
+   "wildfire"
+  ]
  }
 }

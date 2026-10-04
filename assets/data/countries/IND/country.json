@@ -71,6 +71,12 @@
    "name": "New Delhi",
    "lon": 77.21,
    "lat": 28.61
-  }
+  },
+  "hazards": [
+   "earthquake",
+   "flood",
+   "storm",
+   "drought"
+  ]
  }
 }

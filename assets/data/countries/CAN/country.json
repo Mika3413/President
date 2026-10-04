@@ -73,6 +73,9 @@
    "name": "Ottawa",
    "lon": -75.7,
    "lat": 45.42
-  }
+  },
+  "hazards": [
+   "wildfire"
+  ]
  }
 }

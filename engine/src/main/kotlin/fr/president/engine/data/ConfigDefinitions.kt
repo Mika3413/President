@@ -44,6 +44,8 @@ data class GlobalDataFiles(
     val media: String? = null,
     /** Villes des pays étrangers (facultatif). */
     val worldCities: String? = null,
+    /** Ampleur variable des événements (facultatif). */
+    val eventIntensity: String? = null,
 )
 
 @kotlinx.serialization.Serializable

@@ -73,6 +73,11 @@
    "name": "Washington",
    "lon": -77.04,
    "lat": 38.9
-  }
+  },
+  "hazards": [
+   "earthquake",
+   "wildfire",
+   "storm"
+  ]
  }
 }

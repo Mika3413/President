@@ -35,6 +35,7 @@ class DataLoader(private val source: DataSource) {
             help = read(files.help),
             media = files.media?.let { read(it) },
             worldCities = files.worldCities?.let { read<WorldCitiesFile>(it).cities }.orEmpty(),
+            intensity = files.eventIntensity?.let { read(it) },
         )
         DataValidator.validate(db)
         return db

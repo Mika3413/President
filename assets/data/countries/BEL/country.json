@@ -75,6 +75,10 @@
    "lon": 4.35,
    "lat": 50.85
   },
-  "fisheryNeighbor": true
+  "fisheryNeighbor": true,
+  "hazards": [
+   "flood",
+   "storm"
+  ]
  }
 }

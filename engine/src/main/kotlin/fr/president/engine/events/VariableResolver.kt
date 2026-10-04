@@ -118,7 +118,10 @@ class VariableResolver(private val ctx: SimulationContext) {
                 "relation" -> RelationCalculator(ctx).score(scope.id, ctx.state.player.countryId)
                 "electricityBalance" -> ctx.state.countries[scope.id]?.electricityBalanceTWh
                 "fisheryNeighbor" -> if (ctx.db.country(scope.id).definition.strategic.fisheryNeighbor) 1.0 else 0.0
-                else -> null
+                // « hazard_earthquake » : 1 si le pays est exposé à ce risque naturel.
+                else -> if (field.startsWith("hazard_")) {
+                    if (field.removePrefix("hazard_") in ctx.db.country(scope.id).definition.strategic.hazards) 1.0 else 0.0
+                } else null
             }
             EventScope.NATIONAL -> null
         }

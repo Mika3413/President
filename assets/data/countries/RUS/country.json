@@ -73,6 +73,9 @@
    "name": "Moscou",
    "lon": 37.62,
    "lat": 55.75
-  }
+  },
+  "hazards": [
+   "wildfire"
+  ]
  }
 }

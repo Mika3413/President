@@ -265,7 +265,7 @@ simple("arms_contract", "DIPLOMACY", "{foreignThe} veut acheter des avions de co
  ["Le contrat ferait travailler des milliers de personnes.", "Des ONG dénoncent l'usage possible de ces armes."],
  ["Je vous propose de signer avec un transfert de technologie, de signer sans transfert, ou de refuser."],
  "MINISTER", "sign", [
-  opt("transfer", "Signer avec transfert de technologie", "Contrat assuré ; savoir-faire partagé", [E("budget.oneOff", -2.0), E("country.NEGOTIATION_GOODWILL", 0.05), E("economy.output", 0.001, days=365)], "ACCEPTED"),
+  opt("transfer", "Signer avec transfert de technologie", "Contrat assuré ; savoir-faire partagé", [E("budget.oneOff", -2.0), E("country.NEGOTIATION_GOODWILL", 0.05), E("economy.output", 0.001, days=365), E("abroad.output", 0.001, days=365), E("abroad.partners.NEGOTIATION_GOODWILL", 0.01)], "ACCEPTED"),
   opt("sign", "Signer sans transfert", "Contrat probable", [E("budget.oneOff", -1.0), E("country.NEGOTIATION_GOODWILL", 0.02)], "PARTIAL"),
   opt("refuse", "Refuser pour raisons éthiques", "Principes ; relation refroidie", [E("country.DISAGREEMENT", -0.03), E(G + "young", 0.004)], "REFUSED")],
  ministry="armed_forces", scope="FOREIGN_COUNTRY", scope_cooldown=900, conditions=[{"variable": "scope.relation", "min": 0.45}])
@@ -371,7 +371,7 @@ simple("foreign_interference", "DIPLOMACY", "Ingérence : {foreignThe} accusé d
  ["Des élections approchent.", "Nos partenaires ont subi des opérations similaires."],
  ["Je vous propose d'expulser des diplomates, de dénoncer publiquement, ou de rester discret."],
  "MINISTER", "denounce", [
-  opt("expel", "Expulser des diplomates", "Fermeté ; représailles probables", [E("country.DISAGREEMENT", -0.06), E("opinion.national", 0.003)], "REFUSED"),
+  opt("expel", "Expulser des diplomates", "Fermeté ; représailles probables", [E("country.DISAGREEMENT", -0.06), E("opinion.national", 0.003), E("abroad.partners.DISAGREEMENT", -0.01), E("alliance.EU.NEGOTIATION_GOODWILL", 0.005)], "REFUSED"),
   opt("denounce", "Dénoncer publiquement", "Avertissement", [E("country.DISAGREEMENT", -0.02), E("alliance.EU.NEGOTIATION_GOODWILL", 0.01)], "PARTIAL"),
   opt("quiet", "Rester discret", "Pas d'escalade", [E("opinion.national", -0.002)], "NEUTRAL")],
  ministry="foreign", scope="FOREIGN_COUNTRY", scope_cooldown=900, conditions=[{"variable": "scope.relation", "max": 0.4}])
@@ -383,7 +383,7 @@ simple("embassy_attack", "DIPLOMACY", "L'ambassade de France attaquée {foreignI
  ["Les autorités locales ont tardé à intervenir.", "Nos ressortissants s'inquiètent."],
  ["Je vous propose de rappeler notre ambassadeur, d'exiger des excuses, ou d'évacuer nos ressortissants."],
  "MINISTER", "apology", [
-  opt("recall", "Rappeler notre ambassadeur", "Rupture ; fermeté saluée", [E("country.DISAGREEMENT", -0.08), E("opinion.national", 0.003)], "REFUSED"),
+  opt("recall", "Rappeler notre ambassadeur", "Rupture ; fermeté saluée", [E("country.DISAGREEMENT", -0.08), E("opinion.national", 0.003), E("abroad.trade", -0.001, days=120), E("abroad.partners.DISAGREEMENT", -0.01)], "REFUSED"),
   opt("apology", "Exiger des excuses et des réparations", "Fermeté mesurée", [E("country.DISAGREEMENT", -0.03)], "PARTIAL"),
   opt("evacuate", "Évacuer nos ressortissants", "Coût : 60 M€ ; prudence", [E("budget.oneOff", 0.06), E("opinion.national", 0.002)], "ACCEPTED")],
  ministry="foreign", scope="FOREIGN_COUNTRY", scope_cooldown=1500, conditions=[{"variable": "scope.relation", "max": 0.35}])
@@ -483,6 +483,55 @@ simple("ski_no_snow", "ECONOMY", "Stations de ski sans neige : la montagne en d�
   opt("cannons", "Financer des canons à neige", "Coût : 200 M€ ; écologistes furieux", [E("budget.oneOff", 0.2), E(G + "rural", 0.004), E("quality.environment", -0.005)], "PARTIAL"),
   opt("emergency", "Aide d'urgence aux saisonniers", "Coût : 100 M€", [E("budget.oneOff", 0.1), E(G + "rural", 0.002)], "NEUTRAL")],
  ministry="economy", modifiers=[mod("season.month", 1, 12, 2.5, 2.0)])
+
+# ============================ Catastrophes à l'étranger ============================
+# Chaque pays n'est exposé qu'à ses risques réels (strategic.hazards). Les conséquences se propagent :
+# économie du pays touché, popularité de son dirigeant, nos exportations, aide des pays proches,
+# mémoire du pays et de ses alliés selon notre attitude.
+def disaster(id, hazard, headline, text, subjects, context, problem, damage, major_cost, extra_major=(), extra_none=()):
+    event(id, "DIPLOMACY", headline, text, 0.0006, 200, "IMPORTANT",
+     subjects, context, problem,
+     ["Je vous propose d'envoyer une aide massive, une aide symbolique, ou de ne rien faire.",
+      "Nos partenaires annoncent déjà leur aide : votre décision sera remarquée."],
+     "MINISTER", "symbolic", [
+      opt("major", "Aide massive : secours, hôpitaux de campagne, reconstruction", f"Coût : {int(major_cost * 1000)} M€ ; relation nettement renforcée",
+          [E("budget.oneOff", major_cost), E("country.CRISIS_SOLIDARITY", 0.08), E("abroad.output", damage * 0.3, days=180),
+           E("abroad.partners.NEGOTIATION_GOODWILL", 0.01), E("opinion.national", 0.003)] + list(extra_major), "ACCEPTED"),
+      opt("symbolic", "Aide symbolique et message de soutien", "Coût : 10 M€",
+          [E("budget.oneOff", 0.01), E("country.CRISIS_SOLIDARITY", 0.02)], "PARTIAL"),
+      opt("none", "Ne rien faire : nos moyens sont comptés", "Aucun coût ; le pays et ses alliés s'en souviendront",
+          [E("country.CRISIS_SOLIDARITY", -0.05), E("abroad.partners.DISAGREEMENT", -0.01), E("opinion.national", -0.002)] + list(extra_none), "REFUSED")],
+     ministry="foreign", scope="FOREIGN_COUNTRY", scope_cooldown=900,
+     conditions=[{"variable": f"scope.hazard_{hazard}", "min": 1}],
+     immediate=[E("abroad.output", -damage, days=60), E("abroad.approval", -0.03), E("abroad.trade", -damage * 0.5, days=60), E("abroad.solidarity", 1)])
+
+
+disaster("disaster_abroad", "earthquake", "Séisme meurtrier {foreignIn}", "Des milliers de victimes ; le pays appelle à l'aide internationale.",
+ ["Séisme {foreignIn} : faut-il envoyer de l'aide ?", "Catastrophe {foreignIn}", "Aide humanitaire d'urgence"],
+ ["Un séisme de magnitude 7,4 a frappé {foreignThe} ; le bilan dépasse déjà plusieurs milliers de morts.",
+  "Des quartiers entiers sont détruits et les répliques se succèdent.", "Plusieurs ressortissants français sont portés disparus."],
+ ["L'économie du pays va souffrir durablement : routes, usines et ports sont touchés.", "Nos entreprises qui y exportent s'inquiètent."],
+ 0.012, 0.15, extra_major=[E("demography.immigration", 0.02, days=120)])
+disaster("flood_abroad", "flood", "Inondations dévastatrices {foreignIn}", "Des régions entières sous les eaux.",
+ ["Inondations {foreignIn}", "Crues meurtrières", "Faut-il aider {foreignThe} ?"],
+ ["Des pluies diluviennes ont provoqué des crues historiques {foreignIn}.", "Des centaines de milliers de personnes sont évacuées.", "Les récoltes de la saison sont perdues."],
+ ["Les prix alimentaires pourraient monter dans toute la région.", "Les infrastructures mettront des mois à être réparées."],
+ 0.006, 0.08, extra_none=[E("economy.inflation", 0.0005, days=90)])
+disaster("wildfire_abroad", "wildfire", "Mégafeux {foreignIn} : des villes évacuées", "Les incendies échappent à tout contrôle.",
+ ["Incendies géants {foreignIn}", "Feux de forêt hors de contrôle", "Demande d'avions bombardiers d'eau"],
+ ["Des incendies ravagent des centaines de milliers d'hectares {foreignIn}.", "Le gouvernement demande des avions bombardiers d'eau à ses partenaires.", "Plusieurs villages ont été rasés."],
+ ["Nos Canadair sont précieux : les prêter, c'est les retirer de nos propres forêts quelques semaines.", "La fumée atteint déjà les pays voisins."],
+ 0.004, 0.06, extra_major=[E("quality.environment", -0.002)])
+disaster("storm_abroad", "storm", "Ouragan dévastateur {foreignIn}", "Vents à plus de 250 km/h, littoral ravagé.",
+ ["Ouragan {foreignIn}", "Tempête historique", "Côtes dévastées"],
+ ["Un ouragan d'une rare violence a touché les côtes {foreignOf}.", "Les réseaux électriques et les ports sont hors service.", "Des milliers de familles ont tout perdu."],
+ ["Les ports touchés comptent dans nos chaînes d'approvisionnement.", "La reconstruction coûtera des dizaines de milliards."],
+ 0.008, 0.1)
+disaster("drought_abroad", "drought", "Sécheresse et famine menacent {foreignThe}", "Les réserves d'eau sont au plus bas.",
+ ["Sécheresse {foreignIn}", "Crise de l'eau et risque de famine", "Appel à l'aide alimentaire"],
+ ["Trois années de sécheresse ont épuisé les nappes et les barrages {foreignIn}.", "Les récoltes de céréales ont chuté de moitié.", "Des émeutes de la faim ont éclaté dans plusieurs villes."],
+ ["Sans aide, des milliers de personnes pourraient tenter de rejoindre l'Europe.", "Les prix mondiaux des céréales montent."],
+ 0.005, 0.1, extra_none=[E("demography.immigration", 0.08, days=180), E("economy.inflation", 0.0005, days=120)])
 
 # ============================ Menaces hybrides (lancées par l'IA étrangère) ============================
 event("hybrid_cyber", "SECURITY", "Cyberattaque massive : nos services soupçonnent {foreignThe}", "Hôpitaux, collectivités et réseau électrique visés.",

@@ -71,6 +71,9 @@
    "name": "Le Caire",
    "lon": 31.24,
    "lat": 30.04
-  }
+  },
+  "hazards": [
+   "drought"
+  ]
  }
 }

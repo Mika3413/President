@@ -33,7 +33,8 @@ class EventResolver(private val ctx: SimulationContext) {
                 return
             }
         }
-        option.effects.forEach { ctx.effects.trigger(it, scope, instance.params, def.id) }
+        val factor = instance.params[EventIntensity.FACTOR] ?: 1.0
+        option.effects.forEach { ctx.effects.trigger(EventIntensity.scale(it, factor), scope, instance.params, def.id) }
         option.project?.let { startProject(it, scope, instance, def) }
         message.senderId?.let { senderId ->
             ctx.memory.record(senderId, def.id, option.outcome, topicLabel(message.subject))

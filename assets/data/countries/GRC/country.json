@@ -74,6 +74,10 @@
    "name": "Athènes",
    "lon": 23.73,
    "lat": 37.98
-  }
+  },
+  "hazards": [
+   "earthquake",
+   "wildfire"
+  ]
  }
 }

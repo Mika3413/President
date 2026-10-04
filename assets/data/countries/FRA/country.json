@@ -83,12 +83,17 @@
    "name": "Paris",
    "lon": 2.35,
    "lat": 48.86
-  }
+  },
+  "hazards": [
+   "flood",
+   "wildfire",
+   "storm"
+  ]
  },
  "reforms": "countries/FRA/reforms.json",
  "promises": "countries/FRA/promises.json",
-  "localActions": "countries/FRA/local_actions.json",
-  "nationalActions": "countries/FRA/national_actions.json",
+ "localActions": "countries/FRA/local_actions.json",
+ "nationalActions": "countries/FRA/national_actions.json",
  "demography": {
   "birthRate": 0.0105,
   "deathRate": 0.0095,

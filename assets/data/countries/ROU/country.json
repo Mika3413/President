@@ -74,6 +74,10 @@
    "name": "Bucarest",
    "lon": 26.1,
    "lat": 44.43
-  }
+  },
+  "hazards": [
+   "earthquake",
+   "flood"
+  ]
  }
 }

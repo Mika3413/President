@@ -1,0 +1,654 @@
+{
+ "_doc": "Ampleur des événements. Généré par tools/datagen/event_intensity_fr.py.",
+ "levels": [
+  {
+   "id": "limited",
+   "label": "limitée",
+   "factor": 0.5,
+   "weight": 50
+  },
+  {
+   "id": "significant",
+   "label": "importante",
+   "factor": 1.0,
+   "weight": 32
+  },
+  {
+   "id": "serious",
+   "label": "grave",
+   "factor": 1.7,
+   "weight": 14
+  },
+  {
+   "id": "exceptional",
+   "label": "exceptionnelle",
+   "factor": 2.8,
+   "weight": 4
+  }
+ ],
+ "fixed": [
+  "ai_champion",
+  "airport_noise",
+  "arms_contract",
+  "bridge_repair",
+  "broadband",
+  "cop_climate",
+  "cost_of_living_overseas",
+  "cultural_center",
+  "data_sovereignty",
+  "ehpad_scandal",
+  "energy_bills_local",
+  "eu_budget",
+  "eu_common_debt",
+  "eu_defense",
+  "eu_deficit_procedure",
+  "eu_migration",
+  "eu_sanctions_war",
+  "farmers_local",
+  "forest_fire_prevention",
+  "g7_africa",
+  "g7_tax",
+  "group_split",
+  "heritage_restoration",
+  "hospital_maternity",
+  "housing_shortage",
+  "illegal_gold_mining",
+  "industrial_zone",
+  "investment_announcement",
+  "local_violence_school",
+  "majority_rebels",
+  "medical_desert",
+  "mercosur_deal",
+  "migrant_reception",
+  "minister_indicted",
+  "minister_investigation",
+  "minister_scandal",
+  "nato_spending",
+  "nato_war_support",
+  "neighborhood_renewal",
+  "nobel_prize",
+  "nuclear_waste_site",
+  "overseas_water",
+  "pension_deficit",
+  "police_reinforcement",
+  "post_office_closure",
+  "president_scandal",
+  "prison_overcrowding",
+  "public_transport_strike_local",
+  "rail_line",
+  "rating_downgrade",
+  "road_safety",
+  "school_renovation",
+  "space_success",
+  "sports_facility",
+  "sports_victory",
+  "tech_hq",
+  "teen_screens",
+  "tourism_fund",
+  "un_nuclear",
+  "un_resolution",
+  "university_campus",
+  "water_crisis",
+  "winter_olympics"
+ ],
+ "headlines": {
+  "disaster_abroad": [
+   "Séisme {foreignIn} : dégâts limités",
+   "Séisme meurtrier {foreignIn}",
+   "Séisme dévastateur {foreignIn} : des milliers de victimes",
+   "Catastrophe historique {foreignIn} : un séisme rase des villes entières"
+  ],
+  "flood_abroad": [
+   "Crues localisées {foreignIn}",
+   "Inondations dévastatrices {foreignIn}",
+   "Inondations meurtrières {foreignIn} : des régions sous les eaux",
+   "Déluge historique {foreignIn} : des millions de sinistrés"
+  ],
+  "wildfire_abroad": [
+   "Feux de forêt {foreignIn}",
+   "Mégafeux {foreignIn} : des villes évacuées",
+   "Incendies géants {foreignIn} : des centaines de milliers d'hectares brûlés",
+   "Brasier historique {foreignIn} : le pays en état de catastrophe"
+  ],
+  "storm_abroad": [
+   "Tempête {foreignIn} : dégâts matériels",
+   "Ouragan dévastateur {foreignIn}",
+   "Ouragan majeur {foreignIn} : le littoral ravagé",
+   "Ouragan de catégorie 5 {foreignIn} : un désastre humanitaire"
+  ],
+  "drought_abroad": [
+   "Sécheresse {foreignIn} : restrictions d'eau",
+   "Sécheresse et famine menacent {foreignThe}",
+   "Famine {foreignIn} : des millions de personnes menacées",
+   "Famine historique {foreignIn} : exode massif"
+  ],
+  "storm": [
+   "Coup de vent {departmentIn} : dégâts limités",
+   "Tempête violente : dégâts {departmentIn}",
+   "Tempête majeure {departmentIn} : des milliers de foyers sinistrés",
+   "Tempête historique {departmentIn} : état de catastrophe naturelle"
+  ],
+  "wildfire": [
+   "Feu de forêt maîtrisé {departmentIn}",
+   "Incendies de forêt {departmentIn}",
+   "Mégafeu {departmentIn} : des villages évacués",
+   "Incendie hors de contrôle {departmentIn} : des milliers d'hectares en cendres"
+  ],
+  "flood": [
+   "Crue {departmentIn} : quelques routes coupées",
+   "Inondations {departmentIn}",
+   "Inondations graves {departmentIn} : des quartiers sous les eaux",
+   "Crue historique {departmentIn} : des milliers de sinistrés"
+  ],
+  "cyclone": [
+   "Tempête tropicale {departmentIn}",
+   "Cyclone : {departmentThe} frappé de plein fouet",
+   "Cyclone majeur : {departmentThe} dévasté",
+   "Cyclone historique : {departmentThe} coupé du monde"
+  ],
+  "heatwave": [
+   "Fortes chaleurs dans le Sud",
+   "Canicule sur une grande partie du pays",
+   "Canicule extrême : alerte rouge dans vingt départements",
+   "Canicule historique : des records absolus battus"
+  ],
+  "cold_wave": [
+   "Coup de froid sur le pays",
+   "Vague de froid : le réseau électrique sous tension",
+   "Grand froid : risque de délestages",
+   "Froid historique : le réseau électrique au bord de la rupture"
+  ],
+  "drought": [
+   "Sécheresse : premières restrictions d'eau",
+   "Sécheresse historique : restrictions d'eau",
+   "Sécheresse sévère : des communes privées d'eau potable",
+   "Sécheresse exceptionnelle : l'agriculture sinistrée"
+  ],
+  "epidemic": [
+   "Épidémie saisonnière plus forte que prévu",
+   "Épidémie : les hôpitaux sous tension",
+   "Épidémie grave : les hôpitaux débordés",
+   "Épidémie massive : déprogrammations dans tout le pays"
+  ],
+  "pandemic_wave": [
+   "Épidémie : une petite vague",
+   "Épidémie : une vague frappe le pays",
+   "Épidémie : une vague violente submerge les hôpitaux",
+   "Pandémie : la vague la plus forte depuis des décennies"
+  ],
+  "blackout": [
+   "Coupure d'électricité locale",
+   "Coupures d'électricité dans plusieurs régions",
+   "Panne géante : des millions de foyers privés de courant",
+   "Black-out national : le pays dans le noir"
+  ],
+  "terror_attack": [
+   "Attaque déjouée de justesse à {city}",
+   "Attentat à {city}",
+   "Attentat meurtrier à {city}",
+   "Attentat de masse à {city} : le pays sous le choc"
+  ],
+  "urban_riots": [
+   "Tensions et incidents à {city}",
+   "Nuits d'émeutes à {city} et dans plusieurs villes",
+   "Émeutes graves : des dizaines de villes touchées",
+   "Émeutes généralisées : le pays s'embrase"
+  ],
+  "cyberattack": [
+   "Cyberattaque contre une administration",
+   "Cyberattaque contre des services publics",
+   "Cyberattaque grave : hôpitaux et préfectures paralysés",
+   "Cyberattaque massive : l'État numérique à l'arrêt"
+  ],
+  "hybrid_cyber": [
+   "Cyberattaque ciblée : nos services soupçonnent {foreignThe}",
+   "Cyberattaque massive : nos services soupçonnent {foreignThe}",
+   "Cyberattaque d'ampleur nationale attribuée à {foreignThe}",
+   "Cyberattaque sans précédent : {foreignThe} mis en cause"
+  ],
+  "hybrid_sabotage": [
+   "Sabotage d'un câble : {foreignThe} soupçonné",
+   "Sabotage : câbles et voies ferrées coupés, {foreignThe} soupçonné",
+   "Vague de sabotages coordonnés : {foreignThe} mis en cause",
+   "Sabotages massifs : le pays partiellement paralysé, {foreignThe} accusé"
+  ],
+  "nuclear_incident": [
+   "Arrêt préventif {infrastructureOf}",
+   "Arrêt {infrastructureOf} après un incident technique",
+   "Incident sérieux {infrastructureAt} : arrêt prolongé",
+   "Incident grave {infrastructureAt} : alerte de l'Autorité de sûreté"
+  ],
+  "refinery_accident": [
+   "Incident {infrastructureAt}",
+   "Accident industriel {infrastructureAt}",
+   "Explosion {infrastructureAt}",
+   "Catastrophe industrielle {infrastructureAt}"
+  ],
+  "food_scandal": [
+   "Rappel de produits par précaution",
+   "Scandale alimentaire : des produits contaminés retirés de la vente",
+   "Scandale alimentaire : des dizaines d'intoxications",
+   "Scandale sanitaire majeur : des victimes dans tout le pays"
+  ],
+  "bird_flu": [
+   "Grippe aviaire : un foyer détecté",
+   "Grippe aviaire : des millions de volailles abattues",
+   "Grippe aviaire : toute une filière à l'arrêt",
+   "Grippe aviaire : l'épizootie la plus grave de l'histoire"
+  ],
+  "drug_shortage": [
+   "Tensions sur quelques médicaments",
+   "Pénurie de médicaments : antibiotiques et anticancéreux introuvables",
+   "Pénurie grave : des traitements vitaux manquent",
+   "Pénurie massive : les pharmacies vides"
+  ],
+  "city_demonstration": [
+   "Rassemblement à {city}",
+   "Importante manifestation à {city}",
+   "Manifestation massive à {city}",
+   "Marée humaine à {city}"
+  ],
+  "fuel_shortage": [
+   "Tensions dans quelques stations-service",
+   "Pénurie de carburant dans les stations-service",
+   "Pénurie grave : une station sur deux à sec",
+   "Pénurie générale : le pays à court de carburant"
+  ],
+  "gas_price_spike": [
+   "Le prix du gaz grimpe",
+   "Le prix du gaz double en un mois",
+   "Le prix du gaz triple : les industriels arrêtent leurs usines",
+   "Choc gazier historique : le prix multiplié par cinq"
+  ],
+  "health_data_leak": [
+   "Fuite de données dans un hôpital",
+   "Fuite massive : les données de santé de 20 millions de Français en ligne",
+   "Fuite géante : les dossiers médicaux de 40 millions de Français exposés",
+   "Fuite totale : les données de santé de tous les Français en vente"
+  ],
+  "student_protest": [
+   "Rassemblements étudiants contre la précarité",
+   "Les étudiants dans la rue contre la précarité",
+   "Mobilisation étudiante massive",
+   "La jeunesse étudiante paralyse le pays"
+  ]
+ },
+ "consequences": {
+  "storm": [
+   {
+    "target": "economy.output",
+    "amount": -0.0004,
+    "days": 30
+   },
+   {
+    "target": "budget.oneOff",
+    "amount": 0.05
+   },
+   {
+    "target": "region.approval",
+    "amount": -0.005
+   },
+   {
+    "target": "economy.consumerConfidence",
+    "amount": -0.002
+   }
+  ],
+  "wildfire": [
+   {
+    "target": "scope.pollution",
+    "amount": 0.02
+   },
+   {
+    "target": "budget.oneOff",
+    "amount": 0.03
+   },
+   {
+    "target": "economy.output",
+    "amount": -0.0002,
+    "days": 60
+   },
+   {
+    "target": "opinion.group.rural",
+    "amount": -0.003
+   }
+  ],
+  "flood": [
+   {
+    "target": "budget.oneOff",
+    "amount": 0.08
+   },
+   {
+    "target": "scope.healthAccess",
+    "amount": -0.01
+   },
+   {
+    "target": "scope.unemployment",
+    "amount": 0.0005,
+    "days": 90
+   },
+   {
+    "target": "economy.output",
+    "amount": -0.0004,
+    "days": 60
+   },
+   {
+    "target": "quality.transport",
+    "amount": -0.003
+   }
+  ],
+  "cyclone": [
+   {
+    "target": "budget.oneOff",
+    "amount": 0.1
+   },
+   {
+    "target": "scope.healthAccess",
+    "amount": -0.03
+   },
+   {
+    "target": "scope.unemployment",
+    "amount": 0.002,
+    "days": 120
+   },
+   {
+    "target": "scope.approval",
+    "amount": -0.02
+   },
+   {
+    "target": "economy.output",
+    "amount": -0.0002,
+    "days": 60
+   }
+  ],
+  "heatwave": [
+   {
+    "target": "economy.output",
+    "amount": -0.0003,
+    "days": 30
+   },
+   {
+    "target": "opinion.group.seniors",
+    "amount": -0.004
+   },
+   {
+    "target": "quality.agriculture",
+    "amount": -0.005
+   },
+   {
+    "target": "quality.environment",
+    "amount": -0.003
+   }
+  ],
+  "cold_wave": [
+   {
+    "target": "economy.output",
+    "amount": -0.0004,
+    "days": 30
+   },
+   {
+    "target": "economy.inflation",
+    "amount": 0.0005,
+    "days": 60
+   },
+   {
+    "target": "opinion.group.low_income",
+    "amount": -0.005
+   },
+   {
+    "target": "quality.health",
+    "amount": -0.005
+   }
+  ],
+  "drought": [
+   {
+    "target": "economy.consumerConfidence",
+    "amount": -0.002
+   },
+   {
+    "target": "opinion.group.rural",
+    "amount": -0.003
+   }
+  ],
+  "epidemic": [
+   {
+    "target": "economy.consumerConfidence",
+    "amount": -0.005
+   },
+   {
+    "target": "opinion.group.seniors",
+    "amount": -0.004
+   },
+   {
+    "target": "budget.oneOff",
+    "amount": 0.2
+   }
+  ],
+  "pandemic_wave": [
+   {
+    "target": "budget.oneOff",
+    "amount": 1.0
+   },
+   {
+    "target": "economy.consumerConfidence",
+    "amount": -0.01
+   },
+   {
+    "target": "economy.unemployment",
+    "amount": 0.001,
+    "days": 120
+   }
+  ],
+  "blackout": [
+   {
+    "target": "economy.businessConfidence",
+    "amount": -0.005
+   },
+   {
+    "target": "quality.health",
+    "amount": -0.003
+   }
+  ],
+  "fuel_shortage": [
+   {
+    "target": "economy.consumerConfidence",
+    "amount": -0.005
+   },
+   {
+    "target": "quality.transport",
+    "amount": -0.005
+   }
+  ],
+  "terror_attack": [
+   {
+    "target": "quality.security",
+    "amount": -0.01
+   },
+   {
+    "target": "economy.output",
+    "amount": -0.0003,
+    "days": 60
+   },
+   {
+    "target": "alliance.EU.CRISIS_SOLIDARITY",
+    "amount": 0.01
+   }
+  ],
+  "urban_riots": [
+   {
+    "target": "quality.security",
+    "amount": -0.01
+   },
+   {
+    "target": "budget.oneOff",
+    "amount": 0.2
+   },
+   {
+    "target": "opinion.group.seniors",
+    "amount": -0.005
+   },
+   {
+    "target": "opinion.group.young",
+    "amount": -0.004
+   }
+  ],
+  "cyberattack": [
+   {
+    "target": "quality.security",
+    "amount": -0.005
+   },
+   {
+    "target": "economy.output",
+    "amount": -0.0003,
+    "days": 30
+   }
+  ],
+  "food_scandal": [
+   {
+    "target": "economy.consumerConfidence",
+    "amount": -0.005
+   },
+   {
+    "target": "quality.agriculture",
+    "amount": -0.01
+   },
+   {
+    "target": "opinion.national",
+    "amount": -0.003
+   }
+  ],
+  "bird_flu": [
+   {
+    "target": "quality.agriculture",
+    "amount": -0.01
+   },
+   {
+    "target": "opinion.group.rural",
+    "amount": -0.005
+   },
+   {
+    "target": "economy.inflation",
+    "amount": 0.0003,
+    "days": 90
+   }
+  ],
+  "drug_shortage": [
+   {
+    "target": "quality.health",
+    "amount": -0.008
+   },
+   {
+    "target": "opinion.group.seniors",
+    "amount": -0.005
+   }
+  ],
+  "gas_price_spike": [
+   {
+    "target": "economy.inflation",
+    "amount": 0.003,
+    "days": 90
+   },
+   {
+    "target": "economy.consumerConfidence",
+    "amount": -0.008
+   },
+   {
+    "target": "economy.businessConfidence",
+    "amount": -0.01
+   },
+   {
+    "target": "economy.output",
+    "amount": -0.0008,
+    "days": 120
+   }
+  ],
+  "health_data_leak": [
+   {
+    "target": "quality.health",
+    "amount": -0.005
+   },
+   {
+    "target": "opinion.national",
+    "amount": -0.003
+   },
+   {
+    "target": "economy.consumerConfidence",
+    "amount": -0.003
+   }
+  ],
+  "student_protest": [
+   {
+    "target": "opinion.group.young",
+    "amount": -0.005
+   },
+   {
+    "target": "quality.education",
+    "amount": -0.003
+   }
+  ],
+  "city_demonstration": [
+   {
+    "target": "economy.output",
+    "amount": -0.0001,
+    "days": 7
+   }
+  ],
+  "nuclear_incident": [
+   {
+    "target": "economy.businessConfidence",
+    "amount": -0.003
+   },
+   {
+    "target": "opinion.national",
+    "amount": -0.002
+   },
+   {
+    "target": "memory.DEU.DISAGREEMENT",
+    "amount": -0.005
+   },
+   {
+    "target": "memory.CHE.DISAGREEMENT",
+    "amount": -0.005
+   }
+  ],
+  "refinery_accident": [
+   {
+    "target": "scope.pollution",
+    "amount": 0.05
+   },
+   {
+    "target": "economy.inflation",
+    "amount": 0.0005,
+    "days": 60
+   }
+  ],
+  "diplomatic_incident": [
+   {
+    "target": "abroad.partners.DISAGREEMENT",
+    "amount": -0.005
+   }
+  ],
+  "cyber_espionage": [
+   {
+    "target": "economy.businessConfidence",
+    "amount": -0.003
+   }
+  ],
+  "trade_tariffs": [
+   {
+    "target": "abroad.trade",
+    "amount": -0.002,
+    "days": 120
+   },
+   {
+    "target": "economy.businessConfidence",
+    "amount": -0.005
+   }
+  ],
+  "fishing_dispute": [
+   {
+    "target": "opinion.group.rural",
+    "amount": -0.003
+   }
+  ]
+ }
+}

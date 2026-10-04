@@ -74,6 +74,9 @@
    "name": "Berlin",
    "lon": 13.4,
    "lat": 52.52
-  }
+  },
+  "hazards": [
+   "flood"
+  ]
  }
 }

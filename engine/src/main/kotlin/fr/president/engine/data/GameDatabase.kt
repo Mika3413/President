@@ -47,6 +47,7 @@ class GameDatabase(
     val help: HelpFile,
     val media: fr.president.engine.media.MediaFile? = null,
     val worldCities: List<WorldCityDef> = emptyList(),
+    val intensity: fr.president.engine.events.IntensityFile? = null,
 ) {
     val alliances: List<AllianceDef> get() = snapshot.alliances
     fun unitType(id: String): UnitTypeDef = unitTypes[id] ?: error("Type d'unité inconnu : $id")

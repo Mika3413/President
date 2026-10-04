@@ -71,6 +71,9 @@
    "name": "Berne",
    "lon": 7.45,
    "lat": 46.95
-  }
+  },
+  "hazards": [
+   "flood"
+  ]
  }
 }

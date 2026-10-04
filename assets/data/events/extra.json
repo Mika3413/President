@@ -1213,6 +1213,15 @@
         "target": "economy.output",
         "amount": 0.001,
         "days": 365
+       },
+       {
+        "target": "abroad.output",
+        "amount": 0.001,
+        "days": 365
+       },
+       {
+        "target": "abroad.partners.NEGOTIATION_GOODWILL",
+        "amount": 0.01
        }
       ],
       "outcome": "ACCEPTED"
@@ -1817,6 +1826,14 @@
        {
         "target": "opinion.national",
         "amount": 0.003
+       },
+       {
+        "target": "abroad.partners.DISAGREEMENT",
+        "amount": -0.01
+       },
+       {
+        "target": "alliance.EU.NEGOTIATION_GOODWILL",
+        "amount": 0.005
        }
       ],
       "outcome": "REFUSED"
@@ -1889,6 +1906,15 @@
        {
         "target": "opinion.national",
         "amount": 0.003
+       },
+       {
+        "target": "abroad.trade",
+        "amount": -0.001,
+        "days": 120
+       },
+       {
+        "target": "abroad.partners.DISAGREEMENT",
+        "amount": -0.01
        }
       ],
       "outcome": "REFUSED"
@@ -2531,6 +2557,590 @@
     ],
     "ministry": "economy"
    }
+  },
+  {
+   "id": "disaster_abroad",
+   "category": "DIPLOMACY",
+   "scope": "FOREIGN_COUNTRY",
+   "baseDailyProbability": 0.0006,
+   "cooldownDays": 200,
+   "urgency": "IMPORTANT",
+   "headline": "Séisme meurtrier {foreignIn}",
+   "notificationText": "Des milliers de victimes ; le pays appelle à l'aide internationale.",
+   "modifiers": [],
+   "immediateEffects": [
+    {
+     "target": "abroad.output",
+     "amount": -0.012,
+     "days": 60
+    },
+    {
+     "target": "abroad.approval",
+     "amount": -0.03
+    },
+    {
+     "target": "abroad.trade",
+     "amount": -0.006,
+     "days": 60
+    },
+    {
+     "target": "abroad.solidarity",
+     "amount": 1
+    }
+   ],
+   "message": {
+    "template": "disaster_abroad",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "symbolic",
+    "options": [
+     {
+      "id": "major",
+      "label": "Aide massive : secours, hôpitaux de campagne, reconstruction",
+      "hint": "Coût : 150 M€ ; relation nettement renforcée",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.15
+       },
+       {
+        "target": "country.CRISIS_SOLIDARITY",
+        "amount": 0.08
+       },
+       {
+        "target": "abroad.output",
+        "amount": 0.0036,
+        "days": 180
+       },
+       {
+        "target": "abroad.partners.NEGOTIATION_GOODWILL",
+        "amount": 0.01
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.003
+       },
+       {
+        "target": "demography.immigration",
+        "amount": 0.02,
+        "days": 120
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "symbolic",
+      "label": "Aide symbolique et message de soutien",
+      "hint": "Coût : 10 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.01
+       },
+       {
+        "target": "country.CRISIS_SOLIDARITY",
+        "amount": 0.02
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "none",
+      "label": "Ne rien faire : nos moyens sont comptés",
+      "hint": "Aucun coût ; le pays et ses alliés s'en souviendront",
+      "effects": [
+       {
+        "target": "country.CRISIS_SOLIDARITY",
+        "amount": -0.05
+       },
+       {
+        "target": "abroad.partners.DISAGREEMENT",
+        "amount": -0.01
+       },
+       {
+        "target": "opinion.national",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "foreign"
+   },
+   "conditions": [
+    {
+     "variable": "scope.hazard_earthquake",
+     "min": 1
+    }
+   ],
+   "scopeCooldownDays": 900
+  },
+  {
+   "id": "flood_abroad",
+   "category": "DIPLOMACY",
+   "scope": "FOREIGN_COUNTRY",
+   "baseDailyProbability": 0.0006,
+   "cooldownDays": 200,
+   "urgency": "IMPORTANT",
+   "headline": "Inondations dévastatrices {foreignIn}",
+   "notificationText": "Des régions entières sous les eaux.",
+   "modifiers": [],
+   "immediateEffects": [
+    {
+     "target": "abroad.output",
+     "amount": -0.006,
+     "days": 60
+    },
+    {
+     "target": "abroad.approval",
+     "amount": -0.03
+    },
+    {
+     "target": "abroad.trade",
+     "amount": -0.003,
+     "days": 60
+    },
+    {
+     "target": "abroad.solidarity",
+     "amount": 1
+    }
+   ],
+   "message": {
+    "template": "flood_abroad",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "symbolic",
+    "options": [
+     {
+      "id": "major",
+      "label": "Aide massive : secours, hôpitaux de campagne, reconstruction",
+      "hint": "Coût : 80 M€ ; relation nettement renforcée",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.08
+       },
+       {
+        "target": "country.CRISIS_SOLIDARITY",
+        "amount": 0.08
+       },
+       {
+        "target": "abroad.output",
+        "amount": 0.0018,
+        "days": 180
+       },
+       {
+        "target": "abroad.partners.NEGOTIATION_GOODWILL",
+        "amount": 0.01
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "symbolic",
+      "label": "Aide symbolique et message de soutien",
+      "hint": "Coût : 10 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.01
+       },
+       {
+        "target": "country.CRISIS_SOLIDARITY",
+        "amount": 0.02
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "none",
+      "label": "Ne rien faire : nos moyens sont comptés",
+      "hint": "Aucun coût ; le pays et ses alliés s'en souviendront",
+      "effects": [
+       {
+        "target": "country.CRISIS_SOLIDARITY",
+        "amount": -0.05
+       },
+       {
+        "target": "abroad.partners.DISAGREEMENT",
+        "amount": -0.01
+       },
+       {
+        "target": "opinion.national",
+        "amount": -0.002
+       },
+       {
+        "target": "economy.inflation",
+        "amount": 0.0005,
+        "days": 90
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "foreign"
+   },
+   "conditions": [
+    {
+     "variable": "scope.hazard_flood",
+     "min": 1
+    }
+   ],
+   "scopeCooldownDays": 900
+  },
+  {
+   "id": "wildfire_abroad",
+   "category": "DIPLOMACY",
+   "scope": "FOREIGN_COUNTRY",
+   "baseDailyProbability": 0.0006,
+   "cooldownDays": 200,
+   "urgency": "IMPORTANT",
+   "headline": "Mégafeux {foreignIn} : des villes évacuées",
+   "notificationText": "Les incendies échappent à tout contrôle.",
+   "modifiers": [],
+   "immediateEffects": [
+    {
+     "target": "abroad.output",
+     "amount": -0.004,
+     "days": 60
+    },
+    {
+     "target": "abroad.approval",
+     "amount": -0.03
+    },
+    {
+     "target": "abroad.trade",
+     "amount": -0.002,
+     "days": 60
+    },
+    {
+     "target": "abroad.solidarity",
+     "amount": 1
+    }
+   ],
+   "message": {
+    "template": "wildfire_abroad",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "symbolic",
+    "options": [
+     {
+      "id": "major",
+      "label": "Aide massive : secours, hôpitaux de campagne, reconstruction",
+      "hint": "Coût : 60 M€ ; relation nettement renforcée",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.06
+       },
+       {
+        "target": "country.CRISIS_SOLIDARITY",
+        "amount": 0.08
+       },
+       {
+        "target": "abroad.output",
+        "amount": 0.0012,
+        "days": 180
+       },
+       {
+        "target": "abroad.partners.NEGOTIATION_GOODWILL",
+        "amount": 0.01
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.003
+       },
+       {
+        "target": "quality.environment",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "symbolic",
+      "label": "Aide symbolique et message de soutien",
+      "hint": "Coût : 10 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.01
+       },
+       {
+        "target": "country.CRISIS_SOLIDARITY",
+        "amount": 0.02
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "none",
+      "label": "Ne rien faire : nos moyens sont comptés",
+      "hint": "Aucun coût ; le pays et ses alliés s'en souviendront",
+      "effects": [
+       {
+        "target": "country.CRISIS_SOLIDARITY",
+        "amount": -0.05
+       },
+       {
+        "target": "abroad.partners.DISAGREEMENT",
+        "amount": -0.01
+       },
+       {
+        "target": "opinion.national",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "foreign"
+   },
+   "conditions": [
+    {
+     "variable": "scope.hazard_wildfire",
+     "min": 1
+    }
+   ],
+   "scopeCooldownDays": 900
+  },
+  {
+   "id": "storm_abroad",
+   "category": "DIPLOMACY",
+   "scope": "FOREIGN_COUNTRY",
+   "baseDailyProbability": 0.0006,
+   "cooldownDays": 200,
+   "urgency": "IMPORTANT",
+   "headline": "Ouragan dévastateur {foreignIn}",
+   "notificationText": "Vents à plus de 250 km/h, littoral ravagé.",
+   "modifiers": [],
+   "immediateEffects": [
+    {
+     "target": "abroad.output",
+     "amount": -0.008,
+     "days": 60
+    },
+    {
+     "target": "abroad.approval",
+     "amount": -0.03
+    },
+    {
+     "target": "abroad.trade",
+     "amount": -0.004,
+     "days": 60
+    },
+    {
+     "target": "abroad.solidarity",
+     "amount": 1
+    }
+   ],
+   "message": {
+    "template": "storm_abroad",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "symbolic",
+    "options": [
+     {
+      "id": "major",
+      "label": "Aide massive : secours, hôpitaux de campagne, reconstruction",
+      "hint": "Coût : 100 M€ ; relation nettement renforcée",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.1
+       },
+       {
+        "target": "country.CRISIS_SOLIDARITY",
+        "amount": 0.08
+       },
+       {
+        "target": "abroad.output",
+        "amount": 0.0024,
+        "days": 180
+       },
+       {
+        "target": "abroad.partners.NEGOTIATION_GOODWILL",
+        "amount": 0.01
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "symbolic",
+      "label": "Aide symbolique et message de soutien",
+      "hint": "Coût : 10 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.01
+       },
+       {
+        "target": "country.CRISIS_SOLIDARITY",
+        "amount": 0.02
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "none",
+      "label": "Ne rien faire : nos moyens sont comptés",
+      "hint": "Aucun coût ; le pays et ses alliés s'en souviendront",
+      "effects": [
+       {
+        "target": "country.CRISIS_SOLIDARITY",
+        "amount": -0.05
+       },
+       {
+        "target": "abroad.partners.DISAGREEMENT",
+        "amount": -0.01
+       },
+       {
+        "target": "opinion.national",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "foreign"
+   },
+   "conditions": [
+    {
+     "variable": "scope.hazard_storm",
+     "min": 1
+    }
+   ],
+   "scopeCooldownDays": 900
+  },
+  {
+   "id": "drought_abroad",
+   "category": "DIPLOMACY",
+   "scope": "FOREIGN_COUNTRY",
+   "baseDailyProbability": 0.0006,
+   "cooldownDays": 200,
+   "urgency": "IMPORTANT",
+   "headline": "Sécheresse et famine menacent {foreignThe}",
+   "notificationText": "Les réserves d'eau sont au plus bas.",
+   "modifiers": [],
+   "immediateEffects": [
+    {
+     "target": "abroad.output",
+     "amount": -0.005,
+     "days": 60
+    },
+    {
+     "target": "abroad.approval",
+     "amount": -0.03
+    },
+    {
+     "target": "abroad.trade",
+     "amount": -0.0025,
+     "days": 60
+    },
+    {
+     "target": "abroad.solidarity",
+     "amount": 1
+    }
+   ],
+   "message": {
+    "template": "drought_abroad",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "symbolic",
+    "options": [
+     {
+      "id": "major",
+      "label": "Aide massive : secours, hôpitaux de campagne, reconstruction",
+      "hint": "Coût : 100 M€ ; relation nettement renforcée",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.1
+       },
+       {
+        "target": "country.CRISIS_SOLIDARITY",
+        "amount": 0.08
+       },
+       {
+        "target": "abroad.output",
+        "amount": 0.0015,
+        "days": 180
+       },
+       {
+        "target": "abroad.partners.NEGOTIATION_GOODWILL",
+        "amount": 0.01
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "symbolic",
+      "label": "Aide symbolique et message de soutien",
+      "hint": "Coût : 10 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.01
+       },
+       {
+        "target": "country.CRISIS_SOLIDARITY",
+        "amount": 0.02
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "none",
+      "label": "Ne rien faire : nos moyens sont comptés",
+      "hint": "Aucun coût ; le pays et ses alliés s'en souviendront",
+      "effects": [
+       {
+        "target": "country.CRISIS_SOLIDARITY",
+        "amount": -0.05
+       },
+       {
+        "target": "abroad.partners.DISAGREEMENT",
+        "amount": -0.01
+       },
+       {
+        "target": "opinion.national",
+        "amount": -0.002
+       },
+       {
+        "target": "demography.immigration",
+        "amount": 0.08,
+        "days": 180
+       },
+       {
+        "target": "economy.inflation",
+        "amount": 0.0005,
+        "days": 120
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "foreign"
+   },
+   "conditions": [
+    {
+     "variable": "scope.hazard_drought",
+     "min": 1
+    }
+   ],
+   "scopeCooldownDays": 900
   },
   {
    "id": "hybrid_cyber",

@@ -75,6 +75,10 @@
    "lon": -9.14,
    "lat": 38.72
   },
-  "fisheryNeighbor": true
+  "fisheryNeighbor": true,
+  "hazards": [
+   "earthquake",
+   "wildfire"
+  ]
  }
 }

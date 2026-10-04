@@ -71,6 +71,9 @@
    "name": "Riyad",
    "lon": 46.72,
    "lat": 24.71
-  }
+  },
+  "hazards": [
+   "drought"
+  ]
  }
 }

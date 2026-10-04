@@ -73,6 +73,7 @@
    "name": "Minsk",
    "lon": 27.56,
    "lat": 53.9
-  }
+  },
+  "hazards": []
  }
 }

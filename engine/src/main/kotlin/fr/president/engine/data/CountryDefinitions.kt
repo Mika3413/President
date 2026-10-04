@@ -62,6 +62,8 @@ data class StrategicProfile(
     val electricityBalanceTWh: Double,
     val tradeWithPartnersBillions: Map<String, Double> = emptyMap(),
     val alliances: List<String> = emptyList(),
+    /** Risques naturels du pays (earthquake, flood, wildfire, storm, drought) : quels drames peuvent l'y frapper. */
+    val hazards: List<String> = emptyList(),
     val priorities: List<String> = emptyList(),
     val intelligenceQuality: Double,
     val militaryBudgetBillions: Double,

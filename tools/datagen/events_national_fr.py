@@ -476,26 +476,13 @@ add(event("trade_tariffs", "ECONOMY", "{ForeignThe} impose des droits de douane 
   [V("Je vous propose une riposte proportionnée, une négociation, ou un soutien aux filières touchées."),
    V("L'Union européenne attend notre position.")]),
  "MINISTER", "negotiate", [
-  opt("retaliate", "Riposte proportionnée", "Fermeté ; escalade possible", [E("country.DISAGREEMENT", -0.05), E("economy.output", -0.0005, days=90)], "REFUSED"),
+  opt("retaliate", "Riposte proportionnée", "Fermeté ; escalade possible", [E("country.DISAGREEMENT", -0.05), E("economy.output", -0.0005, days=90), E("abroad.output", -0.001, days=90), E("abroad.trade", -0.002, days=90), E("abroad.partners.DISAGREEMENT", -0.01)], "REFUSED"),
   opt("negotiate", "Négocier, au besoin en assouplissant notre taxe", "Apaisement ; recettes en baisse", [E("country.NEGOTIATION_GOODWILL", 0.02), E("budget.oneOff", 0.3)], "ACCEPTED"),
   opt("support", "Soutenir les filières touchées", "Coût : 400 M€", [E("budget.oneOff", 0.4), E(G + "rural", 0.004), E("economy.output", -0.0003, days=90)], "PARTIAL")],
  ministry="economy", scope="FOREIGN_COUNTRY", scope_cooldown=700, conditions=[{"variable": "scope.relation", "max": 0.6}]))
 
-add(event("disaster_abroad", "DIPLOMACY", "Séisme meurtrier {foreignIn}", "Des milliers de victimes ; le pays appelle à l'aide internationale.",
- 0.0008, 200, "IMPORTANT",
- letter("disaster_abroad",
-  [V("Séisme {foreignIn} : faut-il envoyer de l'aide ?"), V("Catastrophe {foreignIn}"), V("Aide humanitaire d'urgence")],
-  [V("Un séisme de magnitude 7,5 a frappé {foreignThe} ; le bilan dépasse déjà plusieurs milliers de morts."),
-   V("Les autorités locales lancent un appel à l'aide internationale."),
-   V("Plusieurs ressortissants français sont portés disparus.")],
-  [V("Nos partenaires européens annoncent déjà l'envoi d'équipes de secours."),
-   V("Une aide rapide serait remarquée et appréciée.")],
-  [V("Je vous propose d'envoyer la sécurité civile et une aide financière, ou une aide symbolique."),
-   V("Votre décision est attendue rapidement.")]),
- "MINISTER", "symbolic", [
-  opt("major", "Envoi massif de secours et aide financière", "Coût : 150 M€ ; relation renforcée", [E("budget.oneOff", 0.15), E("country.CRISIS_SOLIDARITY", 0.08), E("opinion.national", 0.003)], "ACCEPTED"),
-  opt("symbolic", "Aide symbolique et message de soutien", "Coût minime", [E("budget.oneOff", 0.01), E("country.CRISIS_SOLIDARITY", 0.02)], "PARTIAL")],
- ministry="foreign", scope="FOREIGN_COUNTRY", scope_cooldown=1000))
+# Les catastrophes à l'étranger (séisme, inondation, incendie, tempête, sécheresse) sont dans
+# events_extra_fr.py, selon les risques naturels réels de chaque pays.
 
 json.dump({"events": EVENTS}, open(os.path.join(ROOT, "events", "national.json"), "w"), ensure_ascii=False, indent=1)
 json.dump({"templates": TEMPLATES}, open(os.path.join(ROOT, "dialogue", "fr", "national.json"), "w"), ensure_ascii=False, indent=1)

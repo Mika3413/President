@@ -71,6 +71,11 @@
    "name": "Tokyo",
    "lon": 139.69,
    "lat": 35.69
-  }
+  },
+  "hazards": [
+   "earthquake",
+   "flood",
+   "storm"
+  ]
  }
 }

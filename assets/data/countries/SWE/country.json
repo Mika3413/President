@@ -74,6 +74,9 @@
    "name": "Stockholm",
    "lon": 18.07,
    "lat": 59.33
-  }
+  },
+  "hazards": [
+   "wildfire"
+  ]
  }
 }

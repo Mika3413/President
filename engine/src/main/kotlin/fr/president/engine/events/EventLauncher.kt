@@ -14,15 +14,22 @@ class EventLauncher(private val ctx: SimulationContext) {
     private val senders = SenderResolver(ctx)
 
     fun launch(def: EventDefinition, scope: ScopeRef): EventInstance {
-        val params = drawParams(def, scope)
+        val level = drawIntensity(def)
+        val factor = level?.second?.factor ?: 1.0
+        // Les montants tirés (dégâts, sommes demandées) suivent l'ampleur.
+        val params = drawParams(def, scope).mapValues { (_, v) -> v * factor }.toMutableMap()
+        level?.let { (index, l) -> params[EventIntensity.FACTOR] = l.factor; params[EventIntensity.LEVEL] = index.toDouble() }
         val instance = EventInstance(ctx.state.newId("evt"), def.id, scope.id, params, ctx.now)
         ctx.state.events.active.add(instance)
         ctx.state.events.lastFired[def.id] = ctx.now
         scope.id?.let { ctx.state.events.lastFiredScope["${def.id}:$it"] = ctx.now }
-        def.immediateEffects.forEach { ctx.effects.trigger(it, scope, params, def.id) }
+        def.immediateEffects.forEach { ctx.effects.trigger(EventIntensity.scale(it, factor), scope, params, def.id) }
+        // Conséquences en chaîne propres au type d'événement (économie, services, voisins...).
+        ctx.db.intensity?.consequences?.get(def.id)?.forEach { ctx.effects.trigger(EventIntensity.scale(it, factor), scope, params, def.id) }
 
         val vars = variables(def, scope, params)
-        val headline = substitute(def.headline, vars)
+        val titled = level?.let { (index, _) -> ctx.db.intensity?.headlines?.get(def.id)?.getOrNull(index) } ?: def.headline
+        val headline = substitute(titled, vars)
         val focus = focusOf(scope)
         ctx.notifications.news(def.category, headline, focus)
         if (def.message != null) {
@@ -34,8 +41,16 @@ class EventLauncher(private val ctx: SimulationContext) {
         } else {
             instance.resolved = true
         }
-        if (def.urgency != Urgency.INFO || def.message == null) {
-            ctx.notifications.post(def.category, def.urgency, headline, substitute(def.notificationText, vars), focus)
+        // Un événement exceptionnel devient urgent ; un événement limité reste discret.
+        val urgency = when {
+            level == null -> def.urgency
+            level.second.factor >= EXCEPTIONAL -> Urgency.URGENT
+            level.second.factor <= MINOR && def.urgency == Urgency.URGENT -> Urgency.IMPORTANT
+            else -> def.urgency
+        }
+        if (urgency != Urgency.INFO || def.message == null) {
+            val text = substitute(def.notificationText, vars) + (level?.let { " Ampleur : ${it.second.label}." } ?: "")
+            ctx.notifications.post(def.category, urgency, headline, text.trim(), focus)
         }
         ctx.log("events", "Événement ${def.id} (${scope.type} ${scope.id ?: "national"}) params=$params")
         return instance
@@ -51,12 +66,14 @@ class EventLauncher(private val ctx: SimulationContext) {
         if ("city" in vars) builder.tag("has:city")
         if (def.urgency == Urgency.URGENT) builder.tag("urgency:high")
         val composed = ctx.messages.compose(m.template, builder.build())
+        val factor = instance.params[EventIntensity.FACTOR] ?: 1.0
         var body = composed.body
+        vars["intensity"]?.let { body = "Ampleur estimée : $it.\n\n$body" }
         if (details && m.detailsTemplate != null) {
             body = ctx.messages.compose(m.detailsTemplate, builder.tag("details").build()).body + "\n\n" + body
         }
         val options = m.options.filter { !(details && it.requestDetails) }
-            .map { MessageOption(it.id, substitute(it.label, vars), substitute(it.hint, vars)) }
+            .map { MessageOption(it.id, EventIntensity.scaleCosts(substitute(it.label, vars), factor), EventIntensity.scaleCosts(substitute(it.hint, vars), factor)) }
         val message = InboxMessage(
             id = ctx.state.newId("msg"),
             senderId = sender.character?.id,
@@ -110,8 +127,18 @@ class EventLauncher(private val ctx: SimulationContext) {
             vars += fr.president.engine.data.CountryNames(ctx.db.country(w.defenders.first()).definition).variables("victim")
         }
         params.forEach { (k, v) -> vars[k] = Formatting.amount(v) }
+        params[EventIntensity.LEVEL]?.let { i -> ctx.db.intensity?.levels?.getOrNull(i.toInt())?.let { vars["intensity"] = it.label } }
         params["amount"]?.let { vars["amountText"] = Formatting.billions(it) }
         return vars
+    }
+
+    /** Tire l'ampleur (niveau et facteur), ou null pour un événement fixe. */
+    private fun drawIntensity(def: EventDefinition): Pair<Int, IntensityLevel>? {
+        val file = ctx.db.intensity ?: return null
+        if (def.id in file.fixed || file.levels.isEmpty()) return null
+        var roll = ctx.rng.nextDouble() * file.levels.sumOf { it.weight }
+        file.levels.forEachIndexed { i, l -> roll -= l.weight; if (roll <= 0) return i to l }
+        return file.levels.lastIndex to file.levels.last()
     }
 
     private fun drawParams(def: EventDefinition, scope: ScopeRef): Map<String, Double> = def.params.associate { p ->
@@ -136,6 +163,8 @@ class EventLauncher(private val ctx: SimulationContext) {
     }
 
     companion object {
+        private const val EXCEPTIONAL = 2.5
+        private const val MINOR = 0.6
         private val VAR = Regex("""\{([a-zA-Z_]+)\}""")
         fun substitute(text: String, vars: Map<String, String>): String =
             VAR.replace(text) { vars[it.groupValues[1]] ?: it.value }

@@ -73,6 +73,10 @@
    "name": "Ankara",
    "lon": 32.86,
    "lat": 39.93
-  }
+  },
+  "hazards": [
+   "earthquake",
+   "wildfire"
+  ]
  }
 }

@@ -71,6 +71,11 @@
    "name": "Pékin",
    "lon": 116.4,
    "lat": 39.9
-  }
+  },
+  "hazards": [
+   "earthquake",
+   "flood",
+   "storm"
+  ]
  }
 }

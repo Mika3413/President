@@ -73,6 +73,9 @@
    "name": "Vienne",
    "lon": 16.37,
    "lat": 48.21
-  }
+  },
+  "hazards": [
+   "flood"
+  ]
  }
 }

@@ -59,6 +59,8 @@ class EffectApplier(private val ctx: SimulationContext) {
             "sender" -> scope?.senderId?.let { "character.$it.$rest" }
             "subject" -> scope?.id?.takeIf { scope.type == EventScope.MINISTER }?.let { "character.$it.$rest" }
             "country" -> scope?.id?.takeIf { scope.type == EventScope.FOREIGN_COUNTRY }?.let { "memory.$it.$rest" }
+            // Conséquences dans le pays de l'événement : « abroad.output », « abroad.trade »...
+            "abroad" -> scope?.id?.takeIf { scope.type == EventScope.FOREIGN_COUNTRY }?.let { "abroad.$it.$rest" }
             // Riposte contre le pays de l'événement : « operation.cyber », « operation.sanction ».
             "operation" -> scope?.id?.takeIf { scope.type == EventScope.FOREIGN_COUNTRY }?.let { "operation.$rest.$it" }
             "region" -> if (rest == "approval") departmentOf(scope)?.let { dept ->
@@ -84,6 +86,44 @@ class EffectApplier(private val ctx: SimulationContext) {
             EventScope.CITY -> ctx.state.territory.cities[id]?.department
             EventScope.INFRASTRUCTURE -> ctx.catalog.departmentOf(id)
             else -> null
+        }
+    }
+
+    /**
+     * Conséquences d'un événement dans un pays étranger, qui se propagent :
+     * - output / approval : son économie et la popularité de son dirigeant ;
+     * - trade : notre activité, à proportion de nos échanges avec lui ;
+     * - solidarity : les pays qui lui sont proches l'aident, et il s'en souviendra ;
+     * - partners.KIND : ses alliés retiennent notre attitude envers lui.
+     */
+    private fun abroad(country: String, field: String, kind: String?, delta: Double) {
+        val state = ctx.state
+        val player = state.player.countryId
+        val target = state.countries[country] ?: return
+        when (field) {
+            "output" -> target.economy.pendingOutputShock += delta
+            "approval" -> target.leaderApproval = (target.leaderApproval + delta).clamp01()
+            "trade" -> {
+                val trade = ctx.playerData.definition.strategic.tradeWithPartnersBillions
+                val share = (trade[country] ?: 0.0) / trade.values.sum().coerceAtLeast(1.0)
+                state.playerCountry.economy.pendingOutputShock += delta * share
+            }
+            "solidarity" -> {
+                val relations = fr.president.engine.diplomacy.RelationCalculator(ctx)
+                val helpers = state.countries.keys.filter { it != player && it != country && relations.score(it, country) > HELPER_RELATION }
+                helpers.forEach { state.diplomacy.relation(country, it).memories.add(DiplomaticMemory("CRISIS_SOLIDARITY", delta * HELPER_WEIGHT, ctx.now)) }
+                if (helpers.isNotEmpty()) {
+                    val name = ctx.db.countries[country]?.definition?.name ?: country
+                    ctx.notifications.news(fr.president.engine.notifications.NotificationCategory.DIPLOMACY,
+                        "${helpers.size} pays envoient de l'aide : ${name}", country)
+                }
+            }
+            "partners" -> {
+                val k = kind ?: return
+                val alliances = ctx.db.alliances.filter { country in it.members }
+                alliances.flatMap { it.members }.distinct().filter { it != player && it != country && it in state.countries }
+                    .forEach { apply("memory.$it.$k", delta) }
+            }
         }
     }
 
@@ -167,6 +207,7 @@ class EffectApplier(private val ctx: SimulationContext) {
                 val side = if (parts[1] == "attackers") w.attackers else w.defenders
                 side.filter { it != state.player.countryId }.forEach { apply("memory.$it.${parts[2]}", delta) }
             }
+            "abroad" -> parts.getOrNull(2)?.let { field -> abroad(parts[1], field, parts.getOrNull(3), delta) }
             "operation" -> if (delta > 0) parts.getOrNull(2)?.let { country ->
                 when (parts[1]) {
                     "cyber" -> fr.president.engine.military.OperationsService(ctx).riposteCyber(country)
@@ -179,6 +220,8 @@ class EffectApplier(private val ctx: SimulationContext) {
 
     private companion object {
         const val CHAIN_PREFIX = "chain."
+        const val HELPER_RELATION = 0.5
+        const val HELPER_WEIGHT = 0.6
         const val MIN_CHAIN_DELAY_DAYS = 1.0
         const val CHAIN_JITTER_MIN = 0.8
         const val CHAIN_JITTER_MAX = 1.3

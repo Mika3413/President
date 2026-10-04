@@ -74,6 +74,9 @@
    "name": "Varsovie",
    "lon": 21.01,
    "lat": 52.23
-  }
+  },
+  "hazards": [
+   "flood"
+  ]
  }
 }

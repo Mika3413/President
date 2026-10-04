@@ -71,6 +71,9 @@
    "name": "Kyiv",
    "lon": 30.52,
    "lat": 50.45
-  }
+  },
+  "hazards": [
+   "flood"
+  ]
  }
 }
