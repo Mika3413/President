@@ -1,7 +1,7 @@
 """Génère une partie des données du snapshot FRANCE 2026-10 (valeurs arrondies, sources publiques).
 Exécuter depuis n'importe où : écrit dans assets/data/."""
 # Article défini de chaque département (« le Finistère », « la Gironde », « l'Ain », « les Landes »).
-ARTICLES = {"Ain": "l'", "Aisne": "l'", "Allier": "l'", "Alpes-de-Haute-Provence": "les", "Hautes-Alpes": "les", "Alpes-Maritimes": "les", "Ardèche": "l'", "Ardennes": "les", "Ariège": "l'", "Aube": "l'", "Aude": "l'", "Aveyron": "l'", "Bouches-du-Rhône": "les", "Calvados": "le", "Cantal": "le", "Charente": "la", "Charente-Maritime": "la", "Cher": "le", "Corrèze": "la", "Corse-du-Sud": "la", "Haute-Corse": "la", "Côte-d'Or": "la", "Côtes-d'Armor": "les", "Creuse": "la", "Dordogne": "la", "Doubs": "le", "Drôme": "la", "Eure": "l'", "Eure-et-Loir": "l'", "Finistère": "le", "Gard": "le", "Haute-Garonne": "la", "Gers": "le", "Gironde": "la", "Hérault": "l'", "Ille-et-Vilaine": "l'", "Indre": "l'", "Indre-et-Loire": "l'", "Isère": "l'", "Jura": "le", "Landes": "les", "Loir-et-Cher": "le", "Loire": "la", "Haute-Loire": "la", "Loire-Atlantique": "la", "Loiret": "le", "Lot": "le", "Lot-et-Garonne": "le", "Lozère": "la", "Maine-et-Loire": "le", "Manche": "la", "Marne": "la", "Haute-Marne": "la", "Mayenne": "la", "Meurthe-et-Moselle": "la", "Meuse": "la", "Morbihan": "le", "Moselle": "la", "Nièvre": "la", "Nord": "le", "Oise": "l'", "Orne": "l'", "Pas-de-Calais": "le", "Puy-de-Dôme": "le", "Pyrénées-Atlantiques": "les", "Hautes-Pyrénées": "les", "Pyrénées-Orientales": "les", "Bas-Rhin": "le", "Haut-Rhin": "le", "Rhône": "le", "Haute-Saône": "la", "Saône-et-Loire": "la", "Sarthe": "la", "Savoie": "la", "Haute-Savoie": "la", "Paris": "", "Seine-Maritime": "la", "Seine-et-Marne": "la", "Yvelines": "les", "Deux-Sèvres": "les", "Somme": "la", "Tarn": "le", "Tarn-et-Garonne": "le", "Var": "le", "Vaucluse": "le", "Vendée": "la", "Vienne": "la", "Haute-Vienne": "la", "Vosges": "les", "Yonne": "l'", "Territoire de Belfort": "le", "Essonne": "l'", "Hauts-de-Seine": "les", "Seine-Saint-Denis": "la", "Val-de-Marne": "le", "Val-d'Oise": "le"}
+ARTICLES = {"Guadeloupe": "la", "Martinique": "la", "Guyane": "la", "La Réunion": "", "Mayotte": "", "Ain": "l'", "Aisne": "l'", "Allier": "l'", "Alpes-de-Haute-Provence": "les", "Hautes-Alpes": "les", "Alpes-Maritimes": "les", "Ardèche": "l'", "Ardennes": "les", "Ariège": "l'", "Aube": "l'", "Aude": "l'", "Aveyron": "l'", "Bouches-du-Rhône": "les", "Calvados": "le", "Cantal": "le", "Charente": "la", "Charente-Maritime": "la", "Cher": "le", "Corrèze": "la", "Corse-du-Sud": "la", "Haute-Corse": "la", "Côte-d'Or": "la", "Côtes-d'Armor": "les", "Creuse": "la", "Dordogne": "la", "Doubs": "le", "Drôme": "la", "Eure": "l'", "Eure-et-Loir": "l'", "Finistère": "le", "Gard": "le", "Haute-Garonne": "la", "Gers": "le", "Gironde": "la", "Hérault": "l'", "Ille-et-Vilaine": "l'", "Indre": "l'", "Indre-et-Loire": "l'", "Isère": "l'", "Jura": "le", "Landes": "les", "Loir-et-Cher": "le", "Loire": "la", "Haute-Loire": "la", "Loire-Atlantique": "la", "Loiret": "le", "Lot": "le", "Lot-et-Garonne": "le", "Lozère": "la", "Maine-et-Loire": "le", "Manche": "la", "Marne": "la", "Haute-Marne": "la", "Mayenne": "la", "Meurthe-et-Moselle": "la", "Meuse": "la", "Morbihan": "le", "Moselle": "la", "Nièvre": "la", "Nord": "le", "Oise": "l'", "Orne": "l'", "Pas-de-Calais": "le", "Puy-de-Dôme": "le", "Pyrénées-Atlantiques": "les", "Hautes-Pyrénées": "les", "Pyrénées-Orientales": "les", "Bas-Rhin": "le", "Haut-Rhin": "le", "Rhône": "le", "Haute-Saône": "la", "Saône-et-Loire": "la", "Sarthe": "la", "Savoie": "la", "Haute-Savoie": "la", "Paris": "", "Seine-Maritime": "la", "Seine-et-Marne": "la", "Yvelines": "les", "Deux-Sèvres": "les", "Somme": "la", "Tarn": "le", "Tarn-et-Garonne": "le", "Var": "le", "Vaucluse": "le", "Vendée": "la", "Vienne": "la", "Haute-Vienne": "la", "Vosges": "les", "Yonne": "l'", "Territoire de Belfort": "le", "Essonne": "l'", "Hauts-de-Seine": "les", "Seine-Saint-Denis": "la", "Val-de-Marne": "le", "Val-d'Oise": "le"}
 import os
 os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "assets", "data"))
 import json
@@ -19,8 +19,16 @@ regions = [
  ("84","Auvergne-Rhône-Alpes","lyon",dict(unemployment=0.065,incomeIndex=1.02,urbanShare=0.55,seniorShare=0.21,politicalLeaning=0.1)),
  ("93","Provence-Alpes-Côte d'Azur","marseille",dict(unemployment=0.080,incomeIndex=0.97,urbanShare=0.70,seniorShare=0.25,politicalLeaning=0.35)),
  ("94","Corse","ajaccio",dict(unemployment=0.063,incomeIndex=0.93,urbanShare=0.40,seniorShare=0.26,politicalLeaning=0.2)),
+ # Outre-mer : régions monodépartementales
+ ("01","Guadeloupe","pointe_a_pitre",dict(unemployment=0.18,incomeIndex=0.80,urbanShare=0.60,seniorShare=0.22,politicalLeaning=-0.4)),
+ ("02","Martinique","fort_de_france",dict(unemployment=0.12,incomeIndex=0.85,urbanShare=0.65,seniorShare=0.27,politicalLeaning=-0.4)),
+ ("03","Guyane","cayenne",dict(unemployment=0.16,incomeIndex=0.70,urbanShare=0.60,seniorShare=0.08,politicalLeaning=-0.3)),
+ ("04","La Réunion","saint_denis_reunion",dict(unemployment=0.17,incomeIndex=0.78,urbanShare=0.70,seniorShare=0.15,politicalLeaning=-0.3)),
+ ("06","Mayotte","mamoudzou",dict(unemployment=0.34,incomeIndex=0.40,urbanShare=0.50,seniorShare=0.04,politicalLeaning=0.2)),
 ]
+OVERSEAS = {"971": "01", "972": "02", "973": "03", "974": "04", "976": "06"}
 R={}
+for code, region in OVERSEAS.items(): R[code] = region
 for r,ds in {"11":"75 77 78 91 92 93 94 95","24":"18 28 36 37 41 45","27":"21 25 39 58 70 71 89 90","28":"14 27 50 61 76","32":"02 59 60 62 80","44":"08 10 51 52 54 55 57 67 68 88","52":"44 49 53 72 85","53":"22 29 35 56","75":"16 17 19 23 24 33 40 47 64 79 86 87","76":"09 11 12 30 31 32 34 46 48 65 66 81 82","84":"01 03 07 15 26 38 42 43 63 69 73 74","93":"04 05 06 13 83 84","94":"2A 2B"}.items():
   for d in ds.split(): R[d]=r
 pops = """01 Ain 657
@@ -118,7 +126,12 @@ pops = """01 Ain 657
 92 Hauts-de-Seine 1625
 93 Seine-Saint-Denis 1655
 94 Val-de-Marne 1407
-95 Val-d'Oise 1250"""
+95 Val-d'Oise 1250
+971 Guadeloupe 378
+972 Martinique 349
+973 Guyane 295
+974 La Réunion 885
+976 Mayotte 320"""
 unemp={"93":0.110,"66":0.115,"11":0.110,"30":0.105,"02":0.105,"59":0.095,"62":0.090,"34":0.096,"13":0.088,"75":0.062,"92":0.059,"78":0.060,"74":0.055,"15":0.045,"48":0.045,"53":0.050,"85":0.054,"08":0.093,"76":0.080,"2B":0.070,"95":0.082,"94":0.075,"91":0.066,"77":0.065,"01":0.055,"39":0.052,"35":0.055,"44":0.060,"12":0.050,"10":0.090,"80":0.088,"60":0.079}
 income={"75":1.35,"92":1.35,"78":1.30,"91":1.10,"94":1.05,"77":1.05,"95":1.00,"93":0.75,"74":1.25,"01":1.10,"69":1.10,"67":1.05,"31":1.05,"44":1.03,"35":1.02,"33":1.02,"06":1.00,"13":0.95,"59":0.88,"62":0.85,"02":0.87,"11":0.85,"66":0.85,"23":0.85,"08":0.87,"30":0.90,"34":0.92,"38":1.05,"68":1.03,"2B":0.88,"48":0.92}
 urban={"75":1.0,"92":1.0,"93":1.0,"94":1.0,"95":0.85,"91":0.8,"78":0.8,"77":0.65,"69":0.85,"13":0.9,"59":0.85,"06":0.85,"31":0.75,"33":0.7,"67":0.7,"44":0.65,"34":0.7,"38":0.6,"83":0.7,"62":0.6,"57":0.6,"76":0.6,"23":0.15,"48":0.15,"15":0.2,"32":0.2,"46":0.2,"12":0.25,"43":0.25,"04":0.3,"52":0.3,"55":0.3,"36":0.3,"58":0.3,"19":0.3,"09":0.3,"2B":0.4,"2A":0.45,"90":0.6,"68":0.6,"35":0.6}
@@ -129,6 +142,14 @@ CRIME={"93":2.2,"13":1.7,"75":1.9,"94":1.5,"95":1.4,"69":1.4,"59":1.3,"31":1.25,
 INDUSTRY={"59":0.17,"62":0.18,"57":0.17,"68":0.22,"67":0.17,"69":0.15,"38":0.18,"76":0.17,"13":0.1,"44":0.16,"25":0.25,"90":0.27,"39":0.24,"01":0.25,"74":0.22,"42":0.2,"08":0.22,"88":0.21,"70":0.23,"71":0.19,"85":0.2,"49":0.18,"53":0.21,"61":0.2,"27":0.2,"60":0.17,"02":0.18,"80":0.16,"75":0.04,"92":0.07,"93":0.08,"06":0.06,"83":0.07,"2A":0.04,"2B":0.04,"34":0.06,"66":0.06,"30":0.09,"31":0.12,"33":0.1}
 AGRI={"32":0.1,"47":0.09,"12":0.1,"15":0.11,"23":0.1,"51":0.09,"80":0.06,"02":0.06,"28":0.05,"45":0.04,"53":0.08,"85":0.07,"61":0.08,"14":0.05,"50":0.08,"22":0.08,"29":0.06,"56":0.07,"35":0.05,"10":0.07,"52":0.07,"55":0.07,"43":0.08,"48":0.11,"46":0.08,"24":0.07,"79":0.08,"86":0.06,"16":0.07,"17":0.06,"36":0.08,"18":0.06,"58":0.07,"89":0.06,"21":0.05,"71":0.06,"03":0.06,"63":0.04,"19":0.07,"87":0.05,"40":0.06,"64":0.05,"65":0.05,"09":0.07,"81":0.06,"82":0.08,"11":0.08,"84":0.06,"26":0.06,"07":0.06,"75":0.0,"92":0.0,"93":0.0,"94":0.0,"91":0.01,"95":0.01,"78":0.01,"77":0.02,"69":0.01,"13":0.01,"06":0.01,"59":0.01,"67":0.01,"31":0.02,"33":0.03}
 POLL={"75":1.8,"92":1.7,"93":1.7,"94":1.6,"95":1.4,"91":1.3,"78":1.2,"77":1.1,"13":1.6,"69":1.5,"59":1.4,"62":1.2,"76":1.3,"57":1.2,"67":1.3,"68":1.1,"06":1.3,"38":1.2,"31":1.1,"44":1.1,"33":1.1,"23":0.5,"48":0.45,"15":0.5,"12":0.6,"46":0.6,"32":0.6,"19":0.6,"29":0.6,"22":0.6,"05":0.6,"04":0.65,"2A":0.6,"2B":0.6}
+# Outre-mer : chômage et pauvreté élevés, accès aux soins plus difficile (ordres de grandeur publics arrondis).
+OVERSEAS_PROFILE = {
+ "971": dict(unemployment=0.18, incomeIndex=0.80, urbanShare=0.60, seniorShare=0.22, politicalLeaning=-0.4, healthAccess=0.8, crime=1.5, industryShare=0.06, agricultureShare=0.05, pollution=0.8),
+ "972": dict(unemployment=0.12, incomeIndex=0.85, urbanShare=0.65, seniorShare=0.27, politicalLeaning=-0.4, healthAccess=0.85, crime=1.3, industryShare=0.06, agricultureShare=0.04, pollution=0.8),
+ "973": dict(unemployment=0.16, incomeIndex=0.70, urbanShare=0.60, seniorShare=0.08, politicalLeaning=-0.3, healthAccess=0.55, crime=1.9, industryShare=0.05, agricultureShare=0.04, pollution=0.7),
+ "974": dict(unemployment=0.17, incomeIndex=0.78, urbanShare=0.70, seniorShare=0.15, politicalLeaning=-0.3, healthAccess=0.9, crime=1.1, industryShare=0.06, agricultureShare=0.04, pollution=0.8),
+ "976": dict(unemployment=0.34, incomeIndex=0.40, urbanShare=0.50, seniorShare=0.04, politicalLeaning=0.2, healthAccess=0.4, crime=1.8, industryShare=0.03, agricultureShare=0.05, pollution=0.8),
+}
 depts=[]
 for line in pops.splitlines():
   parts=line.split(" ")
@@ -141,7 +162,9 @@ for line in pops.splitlines():
   if code in leaning: prof["politicalLeaning"]=leaning[code]
   for key,table in (("healthAccess",HEALTH),("crime",CRIME),("industryShare",INDUSTRY),("agricultureShare",AGRI),("pollution",POLL)):
     if code in table: prof[key]=table[code]
+  if code in OVERSEAS_PROFILE: prof.update(OVERSEAS_PROFILE[code])
   d={"code":code,"name":name,"article":ARTICLES[name],"region":R[code],"population":pop}
+  if code in OVERSEAS_PROFILE: d["overseas"]=True
   if prof: d["profile"]=prof
   depts.append(d)
 cities_raw="""paris|Paris|75|2.352|48.857|2133000|13100000|1
@@ -198,6 +221,16 @@ bayonne|Bayonne|64|-1.475|43.493|52000|320000|3
 bastia|Bastia|2B|9.450|42.697|48000|100000|3
 brive|Brive-la-Gaillarde|19|1.533|45.159|46000|110000|3
 """
+# Villes d'outre-mer : coordonnées réelles, converties pour s'afficher dans leur médaillon.
+import sys as _sys
+_sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "mapgen"))
+import insets
+OVERSEAS_CITIES = [("pointe_a_pitre","Pointe-à-Pitre","971",-61.533,16.241,60000,250000,3), ("fort_de_france","Fort-de-France","972",-61.068,14.616,76000,160000,3),
+                   ("cayenne","Cayenne","973",-52.326,4.937,63000,150000,3), ("saint_denis_reunion","Saint-Denis","974",55.448,-20.882,153000,200000,2),
+                   ("mamoudzou","Mamoudzou","976",45.227,-12.781,71000,100000,3)]
+for i,n,d,lon,lat,p,a,r in OVERSEAS_CITIES:
+  x,y = insets.transform(d)(lon,lat)
+  cities_raw += f"{i}|{n}|{d}|{x:.3f}|{y:.3f}|{p}|{a}|{r}\n"
 cities=[]
 for l in cities_raw.strip().splitlines():
   i,n,d,lon,lat,p,a,r=l.split("|")

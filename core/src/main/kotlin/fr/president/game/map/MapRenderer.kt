@@ -56,6 +56,11 @@ class MapRenderer(private val data: MapData, private val playerCountryId: String
             shapes.color = Theme.departmentBorder
             data.visibleDepartments(view).forEach { d -> d.rings.forEach { shapes.polygon(it.vertices) } }
         }
+        if (showDepartments) {
+            // Cadres des médaillons d'outre-mer.
+            shapes.color = Theme.border
+            data.insets.filter { it.overlaps(view) }.forEach { shapes.rect(it.x, it.y, it.width, it.height) }
+        }
         shapes.end()
 
         val pixel = camera.zoom

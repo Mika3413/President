@@ -730,7 +730,13 @@
       "outcome": "REFUSED"
      }
     ]
-   }
+   },
+   "conditions": [
+    {
+     "variable": "scope.overseas",
+     "max": 0
+    }
+   ]
   },
   {
    "id": "broadband",
@@ -1127,7 +1133,13 @@
       "outcome": "REFUSED"
      }
     ]
-   }
+   },
+   "conditions": [
+    {
+     "variable": "scope.overseas",
+     "max": 0
+    }
+   ]
   },
   {
    "id": "sports_facility",
@@ -2178,7 +2190,13 @@
      }
     ]
    },
-   "maxCityRank": 3
+   "maxCityRank": 3,
+   "conditions": [
+    {
+     "variable": "scope.overseas",
+     "max": 0
+    }
+   ]
   },
   {
    "id": "university_campus",
@@ -3224,7 +3242,13 @@
       "outcome": "NEUTRAL"
      }
     ]
-   }
+   },
+   "conditions": [
+    {
+     "variable": "scope.overseas",
+     "max": 0
+    }
+   ]
   },
   {
    "id": "cultural_center",
@@ -3493,7 +3517,13 @@
       "outcome": "REFUSED"
      }
     ]
-   }
+   },
+   "conditions": [
+    {
+     "variable": "scope.overseas",
+     "max": 0
+    }
+   ]
   },
   {
    "id": "neighborhood_renewal",
@@ -3750,6 +3780,356 @@
     ]
    },
    "maxCityRank": 2
+  },
+  {
+   "id": "cyclone",
+   "category": "DISASTER",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.004,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 500,
+   "headline": "Cyclone : {departmentThe} frappé de plein fouet",
+   "modifiers": [],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.05,
+     "max": 0.2,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "cyclone",
+    "sender": "PREFECT",
+    "responseDays": 7,
+    "defaultOption": "standard",
+    "options": [
+     {
+      "id": "airlift",
+      "label": "Pont aérien et fonds d'urgence",
+      "hint": "Coût : {amountText}",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 1.0
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.05,
+        "days": 30
+       },
+       {
+        "target": "sender.relation",
+        "amount": 0.12
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "standard",
+      "label": "Procédure de catastrophe naturelle classique",
+      "hint": "Coût : un tiers ; délais plus longs",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 0.35
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.02,
+        "days": 20
+       }
+      ],
+      "outcome": "PARTIAL"
+     }
+    ]
+   },
+   "conditions": [
+    {
+     "variable": "scope.overseas",
+     "min": 1
+    },
+    {
+     "variable": "season.month",
+     "oneOf": [
+      1,
+      2,
+      3,
+      8,
+      9,
+      10
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cost_of_living_overseas",
+   "category": "POLITICS",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.004,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 400,
+   "headline": "Vie chère : la colère gronde {departmentIn}",
+   "modifiers": [
+    {
+     "variable": "economy.inflation",
+     "from": 0.01,
+     "to": 0.05,
+     "factorAtFrom": 0.6,
+     "factorAtTo": 2.0
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.02,
+     "max": 0.08,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "cost_of_living_overseas",
+    "sender": "DEPARTMENT_PRESIDENT",
+    "responseDays": 7,
+    "defaultOption": "negotiate",
+    "options": [
+     {
+      "id": "shield",
+      "label": "Bouclier qualité-prix renforcé",
+      "hint": "Coût : {amountText} ; apaisement",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 1.0
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.05,
+        "days": 30
+       },
+       {
+        "target": "sender.relation",
+        "amount": 0.12
+       },
+       {
+        "target": "opinion.group.low_income",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "negotiate",
+      "label": "Table ronde avec la grande distribution",
+      "hint": "Coût faible ; effet incertain",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 0.2
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.01,
+        "days": 20
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "order",
+      "label": "Lever les barrages par la force",
+      "hint": "Aucun coût ; colère durable",
+      "effects": [
+       {
+        "target": "scope.approval",
+        "amount": -0.06,
+        "days": 60
+       },
+       {
+        "target": "sender.relation",
+        "amount": -0.15
+       },
+       {
+        "target": "scope.crime",
+        "amount": 0.05
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "conditions": [
+    {
+     "variable": "scope.overseas",
+     "min": 1
+    }
+   ]
+  },
+  {
+   "id": "overseas_water",
+   "category": "DISASTER",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.0028,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 600,
+   "headline": "Crise de l'eau {departmentIn} : des coupures quotidiennes",
+   "modifiers": [
+    {
+     "variable": "scope.incomeIndex",
+     "from": 0.4,
+     "to": 0.9,
+     "factorAtFrom": 2.5,
+     "factorAtTo": 0.5
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.02,
+     "max": 0.1,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "overseas_water",
+    "sender": "PREFECT",
+    "responseDays": 7,
+    "defaultOption": "bottles",
+    "options": [
+     {
+      "id": "plan",
+      "label": "Plan d'urgence et usine de dessalement",
+      "hint": "Coût : {amountText}",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 1.0
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.04,
+        "days": 30
+       },
+       {
+        "target": "scope.healthAccess",
+        "amount": 0.03
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "bottles",
+      "label": "Distributions d'eau en bouteille",
+      "hint": "Coût : un cinquième ; solution temporaire",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 0.2
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.01,
+        "days": 20
+       }
+      ],
+      "outcome": "PARTIAL"
+     }
+    ]
+   },
+   "conditions": [
+    {
+     "variable": "scope.overseas",
+     "min": 1
+    }
+   ]
+  },
+  {
+   "id": "illegal_gold_mining",
+   "category": "SECURITY",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.002,
+   "cooldownDays": 10,
+   "scopeCooldownDays": 500,
+   "headline": "Orpaillage illégal : la forêt et les rivières empoisonnées {departmentIn}",
+   "modifiers": [
+    {
+     "variable": "scope.crime",
+     "from": 1.0,
+     "to": 2.0,
+     "factorAtFrom": 0.7,
+     "factorAtTo": 1.8
+    }
+   ],
+   "params": [
+    {
+     "name": "amount",
+     "min": 0.01,
+     "max": 0.05,
+     "round": 0.005
+    }
+   ],
+   "message": {
+    "template": "illegal_gold_mining",
+    "sender": "PREFECT",
+    "responseDays": 7,
+    "defaultOption": "status_quo",
+    "options": [
+     {
+      "id": "operation",
+      "label": "Renforcer l'opération de lutte",
+      "hint": "Coût : {amountText}",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "param": "amount",
+        "factor": 1.0
+       },
+       {
+        "target": "scope.crime",
+        "amount": -0.15
+       },
+       {
+        "target": "quality.environment",
+        "amount": 0.001
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.02,
+        "days": 20
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "status_quo",
+      "label": "Maintenir les moyens actuels",
+      "hint": "Aucun coût",
+      "effects": [
+       {
+        "target": "scope.crime",
+        "amount": 0.05
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ]
+   },
+   "conditions": [
+    {
+     "variable": "scope.overseas",
+     "min": 1
+    },
+    {
+     "variable": "scope.seniorShare",
+     "max": 0.1
+    }
+   ]
   }
  ]
 }

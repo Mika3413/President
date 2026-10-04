@@ -134,6 +134,7 @@ class VariableResolver(private val ctx: SimulationContext) {
             "seniorShare" -> d.seniorShare
             "populationMillions" -> d.population / MILLION
             "mediterranean" -> if (d.region in MEDITERRANEAN_REGIONS) 1.0 else 0.0
+            "overseas" -> if (ctx.playerData.territory?.departments?.firstOrNull { it.code == d.code }?.overseas == true) 1.0 else 0.0
             "healthAccess" -> d.healthAccess
             "crime" -> d.crime
             "industryShare" -> d.industryShare

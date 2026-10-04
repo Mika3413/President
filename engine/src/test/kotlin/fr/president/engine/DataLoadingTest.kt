@@ -11,8 +11,8 @@ class DataLoadingTest {
         val db = TestData.db
         val france = db.country("FRA")
         assertEquals(DetailLevel.FULL, france.definition.detail)
-        assertEquals(13, france.territory!!.regions.size)
-        assertEquals(96, france.territory!!.departments.size)
+        assertEquals(18, france.territory!!.regions.size)
+        assertEquals(101, france.territory!!.departments.size)
         assertTrue(france.territory!!.cities.size >= 40)
         assertTrue(db.countries.size >= 5)
         assertTrue(db.events.isNotEmpty())

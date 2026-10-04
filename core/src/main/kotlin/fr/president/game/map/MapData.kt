@@ -3,6 +3,10 @@ package fr.president.game.map
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.math.Rectangle
 import fr.president.engine.data.GameDatabase
+import kotlinx.serialization.json.double
+import kotlinx.serialization.json.jsonArray
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 
 enum class MarkerKind { CITY, NUCLEAR, POWER, INDUSTRY, PORT, AIRPORT, MILITARY }
 
@@ -34,6 +38,8 @@ class MapData(db: GameDatabase, white: TextureRegion, playerCountryId: String) {
     val networks: List<NetworkLine>
     /** Habitants par km² et par département. */
     val density: Map<String, Float>
+    /** Cadres des médaillons d'outre-mer, en coordonnées monde. */
+    val insets: List<Rectangle> = loadInsets()
 
     val departmentGrid = SpatialGrid<GeoFeature>(GRID_CELL).also { g -> departments.forEach { g.insert(it, it.bounds) } }
     val countryGrid = SpatialGrid<GeoFeature>(GRID_CELL * WORLD_GRID_FACTOR).also { g -> countries.forEach { g.insert(it, it.bounds) } }
@@ -71,6 +77,16 @@ class MapData(db: GameDatabase, white: TextureRegion, playerCountryId: String) {
         }
     }
 
+    private fun loadInsets(): List<Rectangle> = runCatching {
+        val root = kotlinx.serialization.json.Json.parseToJsonElement(com.badlogic.gdx.Gdx.files.internal(INSETS).readString("UTF-8"))
+        root.jsonObject.getValue("insets").jsonArray.map { e ->
+            val b = e.jsonObject.getValue("box").jsonArray.map { it.jsonPrimitive.double }
+            val x0 = GeoProjection.x(b[0]); val y0 = GeoProjection.y(b[1])
+            val x1 = GeoProjection.x(b[2]); val y1 = GeoProjection.y(b[3])
+            Rectangle(minOf(x0, x1), minOf(y0, y1), kotlin.math.abs(x1 - x0), kotlin.math.abs(y1 - y0))
+        }
+    }.getOrDefault(emptyList())
+
     fun visibleDepartments(view: Rectangle): Set<GeoFeature> = departmentGrid.query(view)
     fun visibleCountries(view: Rectangle): Set<GeoFeature> = countryGrid.query(view)
 
@@ -78,6 +94,7 @@ class MapData(db: GameDatabase, white: TextureRegion, playerCountryId: String) {
         const val WORLD = "data/geo/world_countries.json"
         const val REGIONS = "data/geo/france_regions.json"
         const val DEPARTMENTS = "data/geo/france_departments.json"
+        const val INSETS = "data/geo/france_insets.json"
         const val GRID_CELL = 50f
         const val WORLD_GRID_FACTOR = 10
     }

@@ -44,6 +44,8 @@ data class DepartmentDef(
     val name: String,
     /** Article défini (« le », « la », « l' », « les », vide pour Paris). */
     val article: String = "le",
+    /** Département d'outre-mer (affiché en médaillon). */
+    val overseas: Boolean = false,
     val region: String,
     val population: Long,
     val profile: LocalProfileDef = LocalProfileDef(),

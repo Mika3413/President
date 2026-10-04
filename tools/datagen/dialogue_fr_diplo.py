@@ -203,9 +203,10 @@ FOREIGN_THEM = (
 talk_foreign = {"id": "talk_foreign", "subject": [
   V("Entretien téléphonique avec {sender}"), V("Compte rendu : appel avec {sender}"), V("Échange avec le dirigeant {foreignOf}"),
   V("{foreignCountry} : compte rendu d'entretien"), V("Appel présidentiel — {foreignCountry}")], "sections": [
- sec("setting", [V("Entretien téléphonique, {{en fin de matinée|en début d'après-midi|en soirée|tard dans la soirée}}, {{avec interprètes|en présence des conseillers diplomatiques}}."),
-                 V("Visioconférence d'une {{vingtaine de minutes|demi-heure|petite heure}}."),
-                 V("Appel organisé à la demande de l'Élysée."), V("Échange en tête-à-tête, en marge d'une réunion internationale.")]),
+ sec("setting", combo(["Entretien téléphonique", "Visioconférence", "Appel organisé à la demande de l'Élysée", "Échange en tête-à-tête, en marge d'un sommet",
+                         "Appel sécurisé depuis le bureau présidentiel", "Échange en visioconférence"],
+                        ["en fin de matinée.", "en début d'après-midi.", "en soirée.", "tard dans la soirée.", "avec interprètes.",
+                         "en présence des conseillers diplomatiques.", "d'une vingtaine de minutes.", "d'une petite heure."], sep=", ")),
  sec("opening", openings({
    "formal": (["{honorific},", "{honorific}, bonjour.", "Je vous salue, {honorific}.", "{honorific}, c'est un honneur."],
               ["je vous remercie de cet appel.", "je suis à votre écoute.", "merci pour votre appel.", "votre appel m'honore.", "je vous écoute avec attention."]),
@@ -268,9 +269,10 @@ LOCAL_THEM = (
 talk_local = {"id": "talk_local", "subject": [
   V("Entretien avec {sender}"), V("Compte rendu : échange avec {sender}"), V("{place} : entretien avec l'élu", when=["sender:male"]),
   V("{place} : entretien avec l'élue", when=["sender:female"]), V("Rendez-vous à l'Élysée : {sender}")], "sections": [
- sec("setting", [V("Entretien {{à l'Élysée|par téléphone|en visioconférence}}, {{en début de matinée|à l'heure du déjeuner|en fin de journée}}."),
-                 V("Rencontre dans le salon {{vert|des Ambassadeurs|Murat}}, une {{vingtaine|trentaine}} de minutes."),
-                 V("Échange téléphonique {{rapide|cordial|direct}}.")]),
+ sec("setting", combo(["Entretien à l'Élysée", "Échange téléphonique", "Visioconférence", "Rencontre dans le salon vert", "Rencontre dans le salon des Ambassadeurs",
+                         "Rencontre dans le salon Murat", "Entretien en marge d'un déplacement"],
+                        ["en début de matinée.", "à l'heure du déjeuner.", "en fin de journée.", "une vingtaine de minutes.", "une trentaine de minutes.",
+                         "à sa demande.", "avant le Conseil des ministres."], sep=", ")),
  sec("opening", openings({
    "formal": (["{honorific},", "{honorific}, bonjour.", "Je vous salue, {honorific}."],
               ["je vous remercie de me recevoir.", "c'est un honneur de vous rencontrer ici.", "merci de cette invitation.", "je vous remercie sincèrement de ce moment.", "je mesure le privilège de cet entretien."]),

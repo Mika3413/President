@@ -15,7 +15,7 @@ class NewGameTest {
         assertEquals(CharacterRole.PRESIDENT, s.characters.getValue(s.player.presidentId).role)
         assertNotNull(s.government.primeMinisterId)
         assertEquals(11, s.government.ministers.size)
-        assertEquals(96, s.territory.departments.size)
+        assertEquals(101, s.territory.departments.size)
         assertTrue(s.territory.cities.values.all { it.mayorId != null })
         assertTrue(s.infrastructure.isNotEmpty())
         assertTrue(s.military.units.isNotEmpty())

@@ -20,6 +20,8 @@ import math
 import os
 import urllib.request
 
+import insets
+
 FRANCE_BASE = "https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/"
 NE_URL = ("https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/"
           "geojson/ne_50m_admin_0_countries.geojson")
@@ -31,6 +33,9 @@ WORLD_TOLERANCE = 0.04
 FRANCE_MIN_AREA = 0.0004
 WORLD_MIN_AREA = 0.02
 FRANCE_DECIMALS = 3
+# Outre-mer : îles plus petites, tracés plus fins avant la mise à l'échelle du médaillon.
+OVERSEAS_TOLERANCE = 0.002
+OVERSEAS_MIN_AREA = 0.0002
 WORLD_DECIMALS = 2
 
 # Département -> région (codes INSEE 2016)
@@ -50,6 +55,9 @@ REGION_DEPTS = {
     "93": "04 05 06 13 83 84",
     "94": "2A 2B",
 }
+# Outre-mer : chaque département est aussi une région.
+OVERSEAS_REGIONS = {"971": "01", "972": "02", "973": "03", "974": "04", "976": "06"}
+OVERSEAS_FILES = {"971": "971-guadeloupe", "972": "972-martinique", "973": "973-guyane", "974": "974-la-reunion", "976": "976-mayotte"}
 for region, depts in REGION_DEPTS.items():
     for d in depts.split():
         DEPT_TO_REGION[d] = region
@@ -135,19 +143,43 @@ def write(path, source, features):
     print("Écrit", path, os.path.getsize(path) // 1024, "Ko")
 
 
+def overseas_rings(code, cache):
+    """Tracés d'un département d'outre-mer, simplifiés puis placés dans leur médaillon."""
+    data = fetch(FRANCE_BASE + f"departements/{OVERSEAS_FILES[code]}/departement-{OVERSEAS_FILES[code]}.geojson", cache)
+    geometry = data["features"][0]["geometry"] if "features" in data else data["geometry"]
+    move = insets.transform(code)
+    rings = []
+    for ring in encode_rings(geometry, OVERSEAS_TOLERANCE, OVERSEAS_MIN_AREA, 4):
+        moved = []
+        for i in range(0, len(ring), 2):
+            x, y = move(ring[i], ring[i + 1])
+            moved.extend([round(x, FRANCE_DECIMALS), round(y, FRANCE_DECIMALS)])
+        rings.append(moved)
+    return rings
+
+
 def build_france(cache, out):
     regions = fetch(FRANCE_BASE + "regions-version-simplifiee.geojson", cache)
     depts = fetch(FRANCE_BASE + "departements-version-simplifiee.geojson", cache)
     src = "france-geojson (IGN Admin Express COG, Licence Ouverte Etalab)"
+    overseas = {code: overseas_rings(code, cache) for code in OVERSEAS_FILES}
     write(os.path.join(out, "france_regions.json"), src, [
         {"id": f["properties"]["code"], "name": f["properties"]["nom"], "parent": "FRA",
          "rings": encode_rings(f["geometry"], FRANCE_TOLERANCE, FRANCE_MIN_AREA, FRANCE_DECIMALS)}
-        for f in regions["features"]])
+        for f in regions["features"]] + [
+        {"id": OVERSEAS_REGIONS[code], "name": insets.INSETS[code][0], "parent": "FRA", "rings": rings}
+        for code, rings in overseas.items()])
     write(os.path.join(out, "france_departments.json"), src, [
         {"id": f["properties"]["code"], "name": f["properties"]["nom"],
          "parent": DEPT_TO_REGION[f["properties"]["code"]],
          "rings": encode_rings(f["geometry"], FRANCE_TOLERANCE, FRANCE_MIN_AREA, FRANCE_DECIMALS)}
-        for f in depts["features"]])
+        for f in depts["features"]] + [
+        {"id": code, "name": insets.INSETS[code][0], "parent": OVERSEAS_REGIONS[code], "rings": rings}
+        for code, rings in overseas.items()])
+    # Cadres des médaillons, dessinés par le jeu.
+    with open(os.path.join(out, "france_insets.json"), "w", encoding="utf-8") as f:
+        json.dump({"insets": [{"department": code, "name": insets.INSETS[code][0], "box": insets.box(code)} for code in OVERSEAS_FILES]},
+                  f, ensure_ascii=False, separators=(",", ":"))
 
 
 def build_world(cache, out):

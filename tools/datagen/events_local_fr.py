@@ -656,6 +656,96 @@ add(request("airport_noise", "CITY", "MAYOR", "Nuisances aériennes : {city} dem
   {"id": "refuse", "label": "Refuser", "hint": "Aucun coût",
    "effects": [E("sender.relation", -0.08), E("scope.satisfaction", -0.02)], "outcome": "REFUSED"}]))
 
+# ================================ Outre-mer ======================================================
+OVERSEAS = [{"variable": "scope.overseas", "min": 1}]
+ODEPT = 0.004  # cinq départements candidats seulement
+
+add(request("cyclone", "DEPARTMENT", "PREFECT", "Cyclone : {departmentThe} frappé de plein fouet",
+ ODEPT, (0.05, 0.2), [], 
+ letter("cyclone",
+  [V("Cyclone : état de catastrophe naturelle"), V("Après le passage du cyclone"), V("Ouragan : bilan et besoins"), V("Note du préfet : le cyclone")],
+  [V("Le cyclone a traversé l'île avec des rafales dépassant deux cents kilomètres heure."),
+   V("Des milliers de foyers sont privés d'électricité et d'eau potable."),
+   V("Les routes sont coupées par les glissements de terrain ; plusieurs communes sont isolées."),
+   V("Le port et l'aéroport sont fermés jusqu'à nouvel ordre.")],
+  [V("Les dégâts sur les habitations et les cultures sont considérables."),
+   V("L'insularité complique l'acheminement des secours et du matériel."),
+   V("La population attend un geste rapide et visible de la métropole.")],
+  [V("Je sollicite la reconnaissance de l'état de catastrophe naturelle et un fonds d'urgence de {amountText}."),
+   V("Un pont aérien et {amountText} permettraient de rétablir les services essentiels."),
+   V("Je vous demande l'envoi de renforts de la sécurité civile et {amountText}.")]),
+ [{"id": "airlift", "label": "Pont aérien et fonds d'urgence", "hint": "Coût : {amountText}",
+   "effects": [E("budget.oneOff", param="amount"), E("scope.approval", 0.05, days=30), E("sender.relation", 0.12)], "outcome": "ACCEPTED"},
+  {"id": "standard", "label": "Procédure de catastrophe naturelle classique", "hint": "Coût : un tiers ; délais plus longs",
+   "effects": [E("budget.oneOff", param="amount", factor=0.35), E("scope.approval", -0.02, days=20)], "outcome": "PARTIAL"}],
+ category="DISASTER", conditions=OVERSEAS + [{"variable": "season.month", "oneOf": [1, 2, 3, 8, 9, 10]}], default="standard", scope_cooldown=500))
+
+add(request("cost_of_living_overseas", "DEPARTMENT", "DEPARTMENT_PRESIDENT", "Vie chère : la colère gronde {departmentIn}",
+ ODEPT, (0.02, 0.08), [mod("economy.inflation", 0.01, 0.05, 0.6, 2.0)],
+ letter("cost_of_living_overseas",
+  [V("Vie chère outre-mer : la situation explose"), V("Prix alimentaires : nos habitants n'en peuvent plus"), V("Barrages contre la vie chère"), V("Appel à l'État : le coût de la vie")],
+  [V("Les prix alimentaires sont jusqu'à quarante pour cent plus élevés qu'en métropole."),
+   V("Des barrages paralysent les principaux axes depuis plusieurs jours."),
+   V("Le collectif contre la vie chère réunit syndicats, associations et élus."),
+   V("Les grandes surfaces sont accusées de marges abusives.")],
+  [V("Le chômage et la pauvreté rendent ces écarts de prix insupportables."),
+   V("Des violences ont éclaté la nuit dernière ; la situation peut dégénérer."),
+   V("Nos habitants ont le sentiment d'être des citoyens de seconde zone.")],
+  [V("Je vous demande un bouclier qualité-prix renforcé et {amountText} pour baisser les prix des produits de base."),
+   V("Une aide de {amountText} et une baisse de l'octroi de mer permettraient de calmer la situation."),
+   V("Je sollicite votre intervention personnelle et {amountText}.")]),
+ [{"id": "shield", "label": "Bouclier qualité-prix renforcé", "hint": "Coût : {amountText} ; apaisement",
+   "effects": [E("budget.oneOff", param="amount"), E("scope.approval", 0.05, days=30), E("sender.relation", 0.12), E(G + "low_income", 0.002)], "outcome": "ACCEPTED"},
+  {"id": "negotiate", "label": "Table ronde avec la grande distribution", "hint": "Coût faible ; effet incertain",
+   "effects": [E("budget.oneOff", param="amount", factor=0.2), E("scope.approval", 0.01, days=20)], "outcome": "PARTIAL"},
+  {"id": "order", "label": "Lever les barrages par la force", "hint": "Aucun coût ; colère durable",
+   "effects": [E("scope.approval", -0.06, days=60), E("sender.relation", -0.15), E("scope.crime", 0.05)], "outcome": "REFUSED"}],
+ category="POLITICS", conditions=OVERSEAS, default="negotiate", scope_cooldown=400))
+
+add(request("overseas_water", "DEPARTMENT", "PREFECT", "Crise de l'eau {departmentIn} : des coupures quotidiennes",
+ ODEPT * 0.7, (0.02, 0.1), [mod("scope.incomeIndex", 0.4, 0.9, 2.5, 0.5)],
+ letter("overseas_water",
+  [V("Crise de l'eau"), V("Coupures d'eau : la population à bout"), V("Eau potable : situation critique"), V("Note du préfet : l'eau")],
+  [V("Les habitants n'ont plus d'eau au robinet qu'un jour sur deux."),
+   V("Les réserves sont au plus bas après une saison sèche exceptionnelle."),
+   V("Les réseaux, mal entretenus, perdent plus de la moitié de l'eau distribuée."),
+   V("Des distributions de bouteilles sont organisées dans les écoles.")],
+  [V("Les risques sanitaires augmentent : gastro-entérites, épidémies."),
+   V("Les écoles ferment faute d'eau pour les sanitaires."),
+   V("La colère de la population monte chaque jour.")],
+  [V("Je recommande un plan d'urgence de {amountText} : usine de dessalement, réparation des réseaux, distribution d'eau."),
+   V("Un investissement de {amountText} sécuriserait l'approvisionnement à moyen terme."),
+   V("Je sollicite votre arbitrage sur {amountText}.")]),
+ [{"id": "plan", "label": "Plan d'urgence et usine de dessalement", "hint": "Coût : {amountText}",
+   "effects": [E("budget.oneOff", param="amount"), E("scope.approval", 0.04, days=30), E("scope.healthAccess", 0.03)], "outcome": "ACCEPTED"},
+  {"id": "bottles", "label": "Distributions d'eau en bouteille", "hint": "Coût : un cinquième ; solution temporaire",
+   "effects": [E("budget.oneOff", param="amount", factor=0.2), E("scope.approval", -0.01, days=20)], "outcome": "PARTIAL"}],
+ category="DISASTER", conditions=OVERSEAS, default="bottles", scope_cooldown=600))
+
+add(request("illegal_gold_mining", "DEPARTMENT", "PREFECT", "Orpaillage illégal : la forêt et les rivières empoisonnées {departmentIn}",
+ ODEPT * 0.5, (0.01, 0.05), [mod("scope.crime", 1.0, 2.0, 0.7, 1.8)],
+ letter("illegal_gold_mining",
+  [V("Orpaillage illégal"), V("Garimpeiros : la situation se dégrade"), V("Sécurité et environnement en forêt"), V("Note du préfet : les sites d'orpaillage")],
+  [V("Plusieurs centaines de sites d'orpaillage clandestins ont été recensés en forêt."),
+   V("Le mercure utilisé contamine les rivières et les populations amérindiennes."),
+   V("Des affrontements armés ont opposé gendarmes et orpailleurs la semaine dernière.")],
+  [V("Les moyens militaires et de gendarmerie sont insuffisants pour couvrir un territoire aussi vaste."),
+   V("Les populations du fleuve vivent dans la peur.")],
+  [V("Je recommande un renforcement de l'opération de lutte, pour {amountText}."),
+   V("Des moyens supplémentaires ({amountText}) permettraient de démanteler les principaux sites."),
+   V("Je sollicite votre arbitrage sur {amountText}.")]),
+ [{"id": "operation", "label": "Renforcer l'opération de lutte", "hint": "Coût : {amountText}",
+   "effects": [E("budget.oneOff", param="amount"), E("scope.crime", -0.15), E("quality.environment", 0.001), E("scope.approval", 0.02, days=20)], "outcome": "ACCEPTED"},
+  {"id": "status_quo", "label": "Maintenir les moyens actuels", "hint": "Aucun coût",
+   "effects": [E("scope.crime", 0.05)], "outcome": "NEUTRAL"}],
+ category="SECURITY", conditions=OVERSEAS + [{"variable": "scope.seniorShare", "max": 0.1}], default="status_quo", scope_cooldown=500))
+
+# Demandes sans objet outre-mer (pas de réseau ferré, pas de route nationale de ce type...).
+MAINLAND_ONLY = {"rail_line", "forest_fire_prevention", "flood_defense", "road_safety", "tourism_fund"}
+for ev in EVENTS:
+    if ev["id"] in MAINLAND_ONLY:
+        ev.setdefault("conditions", []).append({"variable": "scope.overseas", "max": 0})
+
 json.dump({"events": EVENTS}, open(os.path.join(ROOT, "events", "local.json"), "w"), ensure_ascii=False, indent=1)
 json.dump({"templates": TEMPLATES}, open(os.path.join(ROOT, "dialogue", "fr", "local.json"), "w"), ensure_ascii=False, indent=1)
 print(len(EVENTS), "demandes locales", len(TEMPLATES), "modèles")
