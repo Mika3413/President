@@ -7,7 +7,7 @@
       "cooldownDays": 120, "globalCooldownDays": 7,
       "immediate": [
         { "target": "local.approval", "amount": 0.04 },
-        { "target": "opinion.national", "amount": 0.002 }
+        { "target": "opinion.national", "amount": 0.001 }
       ]
     },
     {

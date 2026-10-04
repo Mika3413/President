@@ -1,0 +1,93 @@
+package fr.president.engine.readout
+
+import fr.president.engine.data.PlaceNames
+import fr.president.engine.diplomacy.RelationCalculator
+import fr.president.engine.simulation.SimulationContext
+import fr.president.engine.util.Formatting
+
+/**
+ * Conseils du moment : les trois choses les plus utiles à faire maintenant, pour que le joueur
+ * sache toujours quoi faire ensuite (décisions en attente, territoire en colère, budget...).
+ */
+class AdvisorReadout(private val ctx: SimulationContext) {
+
+    enum class Target { INBOX, DEPARTMENT, COUNTRY, ECONOMY, ELECTIONS, GOVERNMENT }
+
+    data class Advice(val icon: String, val text: String, val target: Target, val targetId: String? = null, val tone: Tone, val priority: Int)
+
+    fun advices(limit: Int = MAX_ADVICES): List<Advice> {
+        val list = mutableListOf<Advice>()
+        val pending = ctx.state.inbox.messages.count { it.awaitingAnswer }
+        if (pending > 0) list += Advice("✉", if (pending == 1) "Une décision vous attend" else "$pending décisions vous attendent", Target.INBOX, null, Tone.WARNING, PRIORITY_INBOX + pending)
+
+        val territory = ctx.playerData.territory
+        // Outre-mer exclu : ses écarts sont structurels et masqueraient les vrais signaux.
+        val depts = ctx.state.territory.departments.values.filter { it.code.length < OVERSEAS_CODE_LENGTH }
+        val national = ctx.state.playerCountry.economy.unemployment
+        if (territory != null && depts.isNotEmpty()) {
+            val angry = depts.filter { it.population > MIN_POPULATION }.minBy { it.approval }
+            if (angry.approval < ANGRY_APPROVAL) {
+                val def = territory.departments.first { it.code == angry.code }
+                val place = PlaceNames.department(def.name, def.article).getValue("departmentIn")
+                list += Advice("♥", "Popularité de ${Formatting.wholePercent(angry.approval)} $place : allez-y, lancez un chantier", Target.DEPARTMENT, angry.code, Tone.BAD,
+                    PRIORITY_LOCAL + ((ANGRY_APPROVAL - angry.approval) * SCALE).toInt())
+            }
+            val jobless = depts.filter { it.population > MIN_POPULATION }.maxBy { it.unemployment }
+            if (jobless.unemployment > national + HIGH_UNEMPLOYMENT_GAP) {
+                val def = territory.departments.first { it.code == jobless.code }
+                val place = PlaceNames.department(def.name, def.article).getValue("departmentIn")
+                list += Advice("⚒", "Chômage à ${Formatting.percent(jobless.unemployment)} $place : plan emploi ou usine", Target.DEPARTMENT, jobless.code, Tone.WARNING,
+                    PRIORITY_LOCAL + ((jobless.unemployment - national - HIGH_UNEMPLOYMENT_GAP) * SCALE * 2).toInt())
+            }
+        }
+
+        val e = ctx.state.playerCountry.economy
+        if (e.deficitRatio > HIGH_DEFICIT) {
+            list += Advice("€", "Déficit de ${Formatting.percent(e.deficitRatio)} du PIB : ajustez impôts et dépenses", Target.ECONOMY, null, Tone.BAD,
+                PRIORITY_BUDGET + ((e.deficitRatio - HIGH_DEFICIT) * SCALE * 2).toInt())
+        }
+
+        val days = ctx.state.time.daysUntil(ctx.state.elections.nextElection)
+        if (days < ELECTION_SOON_DAYS) {
+            list += Advice("✔", "Élection dans ${days.toInt()} jours : soignez votre popularité", Target.ELECTIONS, null, Tone.WARNING, PRIORITY_ELECTION)
+        }
+
+        val player = ctx.state.player.countryId
+        val relations = RelationCalculator(ctx)
+        ctx.state.countries.keys.filter { it != player }
+            .map { it to relations.score(it, player) }
+            .filter { it.second < TENSE_RELATION }
+            .minByOrNull { it.second }
+            ?.let { (id, _) ->
+                val names = fr.president.engine.data.CountryNames(ctx.db.country(id).definition)
+                list += Advice("☎", "Relations tendues avec ${names.the} : appelez son dirigeant ou faites pression", Target.COUNTRY, id, Tone.WARNING, PRIORITY_DIPLOMACY)
+            }
+
+        if (ctx.state.government.parliamentSupport < WEAK_PARLIAMENT) {
+            list += Advice("⌂", "Assemblée hésitante : vos lois risquent d'être rejetées", Target.GOVERNMENT, null, Tone.WARNING, PRIORITY_PARLIAMENT)
+        }
+        if (list.isEmpty()) {
+            list += Advice("★", "Tout va bien : touchez un département pour y agir, ou un pays pour négocier", Target.ECONOMY, null, Tone.GOOD, 0)
+        }
+        return list.sortedByDescending { it.priority }.take(limit)
+    }
+
+    private companion object {
+        const val MAX_ADVICES = 3
+        const val MIN_POPULATION = 150_000L
+        const val ANGRY_APPROVAL = 0.42
+        const val HIGH_UNEMPLOYMENT_GAP = 0.025
+        const val OVERSEAS_CODE_LENGTH = 3
+        const val HIGH_DEFICIT = 0.05
+        const val ELECTION_SOON_DAYS = 180.0
+        const val TENSE_RELATION = 0.3
+        const val WEAK_PARLIAMENT = 0.5
+        const val SCALE = 100.0
+        const val PRIORITY_INBOX = 100
+        const val PRIORITY_ELECTION = 90
+        const val PRIORITY_BUDGET = 40
+        const val PRIORITY_LOCAL = 30
+        const val PRIORITY_PARLIAMENT = 35
+        const val PRIORITY_DIPLOMACY = 20
+    }
+}

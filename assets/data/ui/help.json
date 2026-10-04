@@ -1,36 +1,137 @@
 {
   "tutorial": [
-    { "delayHours": 1, "subject": "Prendre en main la présidence : la carte", "body": "Monsieur le Président, quelques repères pour vos premiers jours.\n\nLa carte est votre principal outil. Faites-la glisser, pincez pour zoomer (molette sur ordinateur). Plus vous zoomez, plus elle se détaille : régions, départements, villes, centrales, ports, bases.\n\nTouchez un territoire, une ville ou un équipement pour ouvrir sa fiche : vous y verrez l'essentiel, et le bouton « Détails » donne tous les chiffres.\n\nÀ gauche, les couches changent ce que montre la carte : opinion, chômage, santé, sécurité, industrie..." },
-    { "delayHours": 4, "subject": "Le temps ne s'arrête jamais", "body": "Le monde continue d'avancer même lorsque vous fermez le jeu. À votre retour, tout ce qui s'est passé pendant votre absence a été simulé.\n\nLes courriers qui vous sont adressés ont un délai de réponse. Sans décision de votre part, vos services appliquent l'option par défaut : ce n'est pas toujours la meilleure.\n\nRéglez les notifications Android dans « Réglages » pour être prévenu de l'essentiel." },
-    { "delayHours": 10, "subject": "Budget, impôts et Parlement", "body": "Dans « Économie », vous pouvez proposer de modifier les impôts et les budgets des grands postes de dépense. Chaque mesure est votée par le Parlement après quelques jours.\n\nAttention aux effets indirects : une hausse d'impôt rapporte immédiatement, mais elle freine la consommation et l'emploi pendant des mois, et elle pèse sur l'opinion. Un budget qui n'augmente pas perd de sa valeur avec l'inflation : les services publics se dégradent lentement.\n\nLes grandes réformes se trouvent dans « Gouvernement », onglet « Réformes » : vous pouvez les déposer au Parlement ou les soumettre à référendum. L'onglet « Assemblée » montre vos appuis parmi les députés ; sans majorité, un passage en force peut provoquer une motion de censure." },
-    { "delayHours": 20, "subject": "Votre gouvernement", "body": "Vos ministres comptent vraiment : leur compétence, leur expérience et leur loyauté déterminent l'efficacité de leur ministère. Vous pouvez les remplacer et fixer jusqu'à trois priorités hautes.\n\nVotre Premier ministre influence votre majorité : une personnalité d'une autre sensibilité élargit le soutien parlementaire, mais trop d'écart fragilise la cohésion." },
-    { "delayHours": 36, "subject": "Diplomatie et défense", "body": "Dans « Diplomatie », chaque pays a sa mémoire : il se souvient de vos accords, de vos refus, de vos menaces. Les propositions se construisent clause par clause ; l'autre partie peut accepter, refuser en expliquant pourquoi, ou contre-proposer.\n\nDans « Armées », vous trouverez vos forces, vos stocks et les conflits du monde. Touchez une unité sur la carte pour lui donner un ordre, puis touchez la destination. Une armée sans ravitaillement s'épuise : surveillez vos lignes et vos stocks." },
-    { "delayHours": 60, "subject": "L'élection, seul juge", "body": "Votre mandat dure cinq ans. Les Français voteront selon votre bilan : emploi, prix, pouvoir d'achat, services publics, sécurité, guerres, scandales, et vos promesses de campagne.\n\nChaque catégorie de la population vous juge différemment : la couche « Opinion » de la carte et les sondages de l'onglet « Élections » vous montrent où vous en êtes. Perdre l'élection met fin à votre présidence." }
+    {
+      "delayHours": 0,
+      "subject": "Comment jouer en 1 minute",
+      "body": "1. En haut, vos chiffres clés : popularité, chômage, croissance, budget, dette, jours avant l'élection. Vert = bien, orange = à surveiller, rouge = danger. La flèche montre la tendance.\n2. L'encart « À faire », à gauche, vous dit quoi faire maintenant. Touchez une ligne pour y aller directement.\n3. Touchez un département sur la carte : « Agir ici » propose des actions (visite, hôpital, usine, police, tram...). Chacune a un coût, une durée et des effets en vert ou en rouge.\n4. Touchez un pays : sa couleur dit votre relation (vert allié, jaune neutre, rouge hostile). Coopérez (commerce, aide, alliance) ou faites pression (sanctions, ultimatum, guerre).\n5. « Messages » contient les décisions qui vous attendent : répondez-y, le monde n'attend pas.\n6. Tout coûte de l'argent : surveillez le budget. Dans cinq ans, les Français vous jugeront."
+    },
+    {
+      "delayHours": 1,
+      "subject": "Prendre en main la présidence : la carte",
+      "body": "Monsieur le Président, quelques repères pour vos premiers jours.\n\nLa carte est votre principal outil. Faites-la glisser, pincez pour zoomer (molette sur ordinateur). Plus vous zoomez, plus elle se détaille : régions, départements, villes, centrales, ports, bases.\n\nTouchez un territoire, une ville ou un équipement pour ouvrir sa fiche : vous y verrez l'essentiel, et le bouton « Détails » donne tous les chiffres.\n\nÀ gauche, les couches changent ce que montre la carte : opinion, chômage, santé, sécurité, industrie..."
+    },
+    {
+      "delayHours": 4,
+      "subject": "Le temps ne s'arrête jamais",
+      "body": "Le monde continue d'avancer même lorsque vous fermez le jeu. À votre retour, tout ce qui s'est passé pendant votre absence a été simulé.\n\nLes courriers qui vous sont adressés ont un délai de réponse. Sans décision de votre part, vos services appliquent l'option par défaut : ce n'est pas toujours la meilleure.\n\nRéglez les notifications Android dans « Réglages » pour être prévenu de l'essentiel."
+    },
+    {
+      "delayHours": 10,
+      "subject": "Budget, impôts et Parlement",
+      "body": "Dans « Économie », vous pouvez proposer de modifier les impôts et les budgets des grands postes de dépense. Chaque mesure est votée par le Parlement après quelques jours.\n\nAttention aux effets indirects : une hausse d'impôt rapporte immédiatement, mais elle freine la consommation et l'emploi pendant des mois, et elle pèse sur l'opinion. Un budget qui n'augmente pas perd de sa valeur avec l'inflation : les services publics se dégradent lentement.\n\nLes grandes réformes se trouvent dans « Gouvernement », onglet « Réformes » : vous pouvez les déposer au Parlement ou les soumettre à référendum. L'onglet « Assemblée » montre vos appuis parmi les députés ; sans majorité, un passage en force peut provoquer une motion de censure."
+    },
+    {
+      "delayHours": 20,
+      "subject": "Votre gouvernement",
+      "body": "Vos ministres comptent vraiment : leur compétence, leur expérience et leur loyauté déterminent l'efficacité de leur ministère. Vous pouvez les remplacer et fixer jusqu'à trois priorités hautes.\n\nVotre Premier ministre influence votre majorité : une personnalité d'une autre sensibilité élargit le soutien parlementaire, mais trop d'écart fragilise la cohésion."
+    },
+    {
+      "delayHours": 36,
+      "subject": "Diplomatie et défense",
+      "body": "Dans « Diplomatie », chaque pays a sa mémoire : il se souvient de vos accords, de vos refus, de vos menaces. Les propositions se construisent clause par clause ; l'autre partie peut accepter, refuser en expliquant pourquoi, ou contre-proposer.\n\nDans « Armées », vous trouverez vos forces, vos stocks et les conflits du monde. Touchez une unité sur la carte pour lui donner un ordre, puis touchez la destination. Une armée sans ravitaillement s'épuise : surveillez vos lignes et vos stocks."
+    },
+    {
+      "delayHours": 60,
+      "subject": "L'élection, seul juge",
+      "body": "Votre mandat dure cinq ans. Les Français voteront selon votre bilan : emploi, prix, pouvoir d'achat, services publics, sécurité, guerres, scandales, et vos promesses de campagne.\n\nChaque catégorie de la population vous juge différemment : la couche « Opinion » de la carte et les sondages de l'onglet « Élections » vous montrent où vous en êtes. Perdre l'élection met fin à votre présidence."
+    }
   ],
   "glossary": [
-    { "term": "PIB", "definition": "Produit intérieur brut : la valeur de tout ce que le pays produit en un an. Sa progression est la croissance." },
-    { "term": "Croissance potentielle", "definition": "Le rythme de croissance que l'économie peut tenir durablement, selon sa population active et sa productivité. Les réformes structurelles la modifient." },
-    { "term": "Inflation", "definition": "La hausse générale des prix. Elle grignote le pouvoir d'achat et la valeur réelle des budgets publics non indexés." },
-    { "term": "Chômage structurel", "definition": "Le niveau de chômage vers lequel l'économie revient à long terme. Il dépend des règles du marché du travail." },
-    { "term": "Déficit public", "definition": "L'écart entre les dépenses (intérêts compris) et les recettes de l'État et des administrations sur une année." },
-    { "term": "Dette publique", "definition": "La somme des déficits passés. Plus elle est élevée, plus les intérêts coûtent cher et plus les marchés exigent des taux élevés." },
-    { "term": "Taux de marché", "definition": "Le taux auquel l'État emprunte aujourd'hui. Il monte quand la dette ou le déficit inquiètent. La dette se refinance progressivement à ce taux." },
-    { "term": "Impulsion budgétaire", "definition": "L'effet d'une décision budgétaire sur la demande : dépenser plus ou taxer moins soutient l'activité, l'inverse la freine, avec un effet étalé sur plusieurs mois." },
-    { "term": "Cotisations sociales et CSG", "definition": "Prélèvements sur les revenus du travail et de remplacement qui financent la protection sociale (retraites, santé, famille)." },
-    { "term": "Soutien parlementaire", "definition": "La probabilité que vos textes soient adoptés. Il dépend de votre popularité et de votre Premier ministre. Passer en force est possible, à un coût politique." },
-    { "term": "Préfet", "definition": "Représentant de l'État dans les territoires. Il vous fait remonter les crises locales. Les maires et présidents de collectivités, eux, sont des élus indépendants." },
-    { "term": "Ravitaillement", "definition": "Une unité doit être reliée au territoire national par des zones amies pour recevoir munitions et carburant. Isolée, elle s'use et finit par se rendre." },
-    { "term": "Lassitude de guerre", "definition": "Usure de l'opinion et du pays face aux pertes et à la durée d'un conflit. Elle pousse à négocier." },
-    { "term": "Dissuasion nucléaire", "definition": "La France possède l'arme nucléaire : aucun État rationnel n'attaque son territoire. Elle ne protège pas nos alliés non dotés de la même façon." },
-    { "term": "Cessez-le-feu", "definition": "Arrêt temporaire des combats. Sans traité de paix à son terme, les hostilités reprennent." },
-    { "term": "Sanctions", "definition": "Restrictions commerciales imposées à un pays. Elles pèsent sur son économie, mais aussi un peu sur la nôtre." },
-    { "term": "Ultimatum", "definition": "Exigence assortie d'une menace. Le destinataire cède s'il se sent plus faible ; sinon, il faut mettre la menace à exécution ou perdre en crédibilité." },
-    { "term": "Promesse de campagne", "definition": "Engagement pris avant votre élection. Les électeurs vérifieront s'il a été tenu au scrutin suivant." },
-    { "term": "Assemblée nationale", "definition": "577 députés répartis en groupes politiques. Chaque groupe soutient plus ou moins le gouvernement selon sa proximité avec votre famille politique et celle de votre Premier ministre. Onglet « Assemblée » du gouvernement." },
-    { "term": "Majorité absolue / relative", "definition": "Absolue : votre camp détient plus de la moitié des sièges. Relative : il est le premier groupe mais doit chercher des appuis texte par texte." },
-    { "term": "Cohabitation", "definition": "L'Assemblée est dominée par vos adversaires. Pour gouverner, il faut nommer un Premier ministre issu de la nouvelle majorité ; l'exécutif perd alors en cohésion." },
-    { "term": "Dissolution", "definition": "Le président peut dissoudre l'Assemblée (pas dans l'année qui suit des législatives). Des élections ont lieu trois semaines plus tard : un pari sur votre popularité." },
-    { "term": "Motion de censure", "definition": "Faire passer un texte en force sans majorité solide expose le gouvernement à une motion de censure. Si elle est adoptée, le texte tombe et le Premier ministre doit démissionner. Une opposition dominante peut aussi en déposer d'elle-même." },
-    { "term": "Référendum", "definition": "Une réforme peut être soumise directement aux électeurs. Le vote dépend de votre popularité et de l'intérêt de chaque catégorie pour le texte. Un « non » affaiblit le président et bloque le texte pendant trois ans." }
+    {
+      "term": "PIB",
+      "definition": "Produit intérieur brut : la valeur de tout ce que le pays produit en un an. Sa progression est la croissance."
+    },
+    {
+      "term": "Croissance potentielle",
+      "definition": "Le rythme de croissance que l'économie peut tenir durablement, selon sa population active et sa productivité. Les réformes structurelles la modifient."
+    },
+    {
+      "term": "Inflation",
+      "definition": "La hausse générale des prix. Elle grignote le pouvoir d'achat et la valeur réelle des budgets publics non indexés."
+    },
+    {
+      "term": "Chômage structurel",
+      "definition": "Le niveau de chômage vers lequel l'économie revient à long terme. Il dépend des règles du marché du travail."
+    },
+    {
+      "term": "Déficit public",
+      "definition": "L'écart entre les dépenses (intérêts compris) et les recettes de l'État et des administrations sur une année."
+    },
+    {
+      "term": "Dette publique",
+      "definition": "La somme des déficits passés. Plus elle est élevée, plus les intérêts coûtent cher et plus les marchés exigent des taux élevés."
+    },
+    {
+      "term": "Taux de marché",
+      "definition": "Le taux auquel l'État emprunte aujourd'hui. Il monte quand la dette ou le déficit inquiètent. La dette se refinance progressivement à ce taux."
+    },
+    {
+      "term": "Impulsion budgétaire",
+      "definition": "L'effet d'une décision budgétaire sur la demande : dépenser plus ou taxer moins soutient l'activité, l'inverse la freine, avec un effet étalé sur plusieurs mois."
+    },
+    {
+      "term": "Cotisations sociales et CSG",
+      "definition": "Prélèvements sur les revenus du travail et de remplacement qui financent la protection sociale (retraites, santé, famille)."
+    },
+    {
+      "term": "Soutien parlementaire",
+      "definition": "La probabilité que vos textes soient adoptés. Il dépend de votre popularité et de votre Premier ministre. Passer en force est possible, à un coût politique."
+    },
+    {
+      "term": "Préfet",
+      "definition": "Représentant de l'État dans les territoires. Il vous fait remonter les crises locales. Les maires et présidents de collectivités, eux, sont des élus indépendants."
+    },
+    {
+      "term": "Ravitaillement",
+      "definition": "Une unité doit être reliée au territoire national par des zones amies pour recevoir munitions et carburant. Isolée, elle s'use et finit par se rendre."
+    },
+    {
+      "term": "Lassitude de guerre",
+      "definition": "Usure de l'opinion et du pays face aux pertes et à la durée d'un conflit. Elle pousse à négocier."
+    },
+    {
+      "term": "Dissuasion nucléaire",
+      "definition": "La France possède l'arme nucléaire : aucun État rationnel n'attaque son territoire. Elle ne protège pas nos alliés non dotés de la même façon."
+    },
+    {
+      "term": "Cessez-le-feu",
+      "definition": "Arrêt temporaire des combats. Sans traité de paix à son terme, les hostilités reprennent."
+    },
+    {
+      "term": "Sanctions",
+      "definition": "Restrictions commerciales imposées à un pays. Elles pèsent sur son économie, mais aussi un peu sur la nôtre."
+    },
+    {
+      "term": "Ultimatum",
+      "definition": "Exigence assortie d'une menace. Le destinataire cède s'il se sent plus faible ; sinon, il faut mettre la menace à exécution ou perdre en crédibilité."
+    },
+    {
+      "term": "Promesse de campagne",
+      "definition": "Engagement pris avant votre élection. Les électeurs vérifieront s'il a été tenu au scrutin suivant."
+    },
+    {
+      "term": "Assemblée nationale",
+      "definition": "577 députés répartis en groupes politiques. Chaque groupe soutient plus ou moins le gouvernement selon sa proximité avec votre famille politique et celle de votre Premier ministre. Onglet « Assemblée » du gouvernement."
+    },
+    {
+      "term": "Majorité absolue / relative",
+      "definition": "Absolue : votre camp détient plus de la moitié des sièges. Relative : il est le premier groupe mais doit chercher des appuis texte par texte."
+    },
+    {
+      "term": "Cohabitation",
+      "definition": "L'Assemblée est dominée par vos adversaires. Pour gouverner, il faut nommer un Premier ministre issu de la nouvelle majorité ; l'exécutif perd alors en cohésion."
+    },
+    {
+      "term": "Dissolution",
+      "definition": "Le président peut dissoudre l'Assemblée (pas dans l'année qui suit des législatives). Des élections ont lieu trois semaines plus tard : un pari sur votre popularité."
+    },
+    {
+      "term": "Motion de censure",
+      "definition": "Faire passer un texte en force sans majorité solide expose le gouvernement à une motion de censure. Si elle est adoptée, le texte tombe et le Premier ministre doit démissionner. Une opposition dominante peut aussi en déposer d'elle-même."
+    },
+    {
+      "term": "Référendum",
+      "definition": "Une réforme peut être soumise directement aux électeurs. Le vote dépend de votre popularité et de l'intérêt de chaque catégorie pour le texte. Un « non » affaiblit le président et bloque le texte pendant trois ans."
+    }
   ]
 }

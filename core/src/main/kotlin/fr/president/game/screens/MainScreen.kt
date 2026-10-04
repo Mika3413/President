@@ -57,6 +57,7 @@ class MainScreen(
     private val camera = OrthographicCamera()
     override val stage = Stage(ScreenViewport().apply { unitsPerPixel = 1f / uiScale })
     private val mapRenderer = MapRenderer(mapData, playerId)
+    private val advisor by lazy { fr.president.game.ui.hud.AdvisorCard(ui, session, this) }
     private val overlay = OverlayRenderer(mapData, ui.skin.font("bodyBold"), ui.skin.font("small"), uiScale)
     private val picker = MapPicker(mapData, session.db, playerId)
     private val cameraController = MapCameraController(camera) { x, y -> onMapTap(x, y) }
@@ -108,7 +109,9 @@ class MainScreen(
         root.add(topBar.root).growX().colspan(3).row()
         val layers = LayerBar(ui, layer) { layer = it }
         val left = Table()
-        left.add(ScrollPane(layers.root).apply { setScrollingDisabled(true, false) }).top().left().minHeight(0f).prefHeight(0f).growY().row()
+        left.add(layers.root).top().left().growX().row()
+        left.add(advisor.root).top().left().growX().padTop(6f).row()
+        left.add().growY().row()
         left.add(legend.root).left().bottom().padTop(6f)
         root.add(left).top().left().growY().pad(6f)
         root.add().expand()
@@ -258,6 +261,7 @@ class MainScreen(
         mapRenderer.enemies = fr.president.engine.military.Geopolitics(session.context).enemiesOf(player).toSet()
         topBar.refresh()
         actionBar.refresh()
+        advisor.refresh()
         currentPanel?.refresh()
     }
 
