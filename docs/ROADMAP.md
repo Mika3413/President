@@ -1,18 +1,15 @@
 # Feuille de route
 
-Le jeu couvre désormais l'ensemble du cahier des charges initial. Pistes d'enrichissement :
+Le jeu couvre le cahier des charges initial et ses enrichissements (Assemblée, Sénat, élections
+locales et européennes, référendums, sommets internationaux, outre-mer, entretiens, histoires à
+rebondissements, notifications application fermée). Pistes suivantes :
 
-1. **Test sur appareils** : performance de la carte sur les petits téléphones, ergonomie tactile,
-   durée réelle des mandats selon les rythmes, consommation de la simulation d'arrière-plan.
-2. **Contenu** : davantage d'événements et de variantes de dialogues, demandes territoriales plus
-   variées (écoles, logement, sécurité), Sénat, élections européennes.
-3. **Carte fine** : communes et routes détaillées chargées par tuiles, zones agricoles et
-   industrielles dessinées, outre-mer.
-4. **Guerre** : opérations amphibies et aéroportées dédiées, frappes stratégiques, guerre
-   électronique et cyber, opérations extérieures hors de la grille actuelle (Indo-Pacifique).
-5. **Diplomatie** : votes aux Nations unies et au Conseil européen, organisations internationales,
-   sommets, crises régionales scénarisées, accords multilatéraux.
-6. **Autres pays jouables** : un pays devient jouable en fournissant ses fichiers `FULL`
-   (territoire, gouvernement, groupes sociaux, élections, réformes) — le moteur ne contient aucune
-   valeur propre à la France.
-7. **Équilibrage** continu à partir des retours de parties réelles (journal de debug intégré).
+1. **Retours de test sur appareil** : fluidité de la carte sur petits téléphones, ergonomie tactile,
+   comportement de l'arrière-plan selon les marques (optimisations de batterie agressives).
+2. **Son et musique** : ambiance discrète, sons d'alerte (aucun son pour l'instant).
+3. **Autres pays jouables** : le moteur est générique, mais tout le contenu (institutions, réformes,
+   événements, dialogues) est écrit pour la France. Chaque nouveau pays demande son propre jeu de
+   données et de textes : c'est un projet à part entière.
+4. **Carte fine** : communes et routes détaillées chargées par tuiles.
+5. **Guerre** : opérations amphibies et aéroportées dédiées, frappes stratégiques, cyber.
+6. **Équilibrage continu** à partir des parties réelles (`BalanceProbeTest`, journal de debug intégré).
