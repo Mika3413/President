@@ -86,7 +86,7 @@ class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
         list.forEach { t ->
             val n = badges[t] ?: 0
             val label = if (n > 0) "${t.label} ($n)" else t.label
-            bar.add(ui.button(label, "toggle") { tab = t; nav.refresh() }.also { it.isChecked = t == tab })
+            bar.add(ui.button(label, "toggle") { tab = t; nav.refresh() }.also { it.isChecked = t == tab; if (t == Tab.ACT) it.name = "tab.act" })
         }
         into.add(bar).left().padBottom(GAP).row()
     }

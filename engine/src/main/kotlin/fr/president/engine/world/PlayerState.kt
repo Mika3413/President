@@ -17,4 +17,6 @@ class PlayerState(
     val promises: MutableList<String> = mutableListOf(),
     val promiseBaselines: MutableMap<String, Double> = mutableMapOf(),
     var warsThisTerm: Int = 0,
+    /** Étape du tutoriel guidé (-1 : terminé ou ancienne partie). Une nouvelle partie commence à 0. */
+    var tourStep: Int = -1,
 )

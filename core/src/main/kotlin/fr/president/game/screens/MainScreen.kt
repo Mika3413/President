@@ -50,7 +50,7 @@ class MainScreen(
     private val uiScale: Float,
     private val onGameOver: () -> Unit,
     private val onAbandon: () -> Unit = {},
-) : ScreenAdapter(), Navigator, HasStage {
+) : ScreenAdapter(), Navigator, HasStage, fr.president.game.ui.hud.TourHost {
     override val session: GameSession get() = controller.session
     override val platform get() = controller.platform
     private val playerId = session.state.player.countryId
@@ -62,8 +62,14 @@ class MainScreen(
     private val picker = MapPicker(mapData, session.db, playerId)
     private val cameraController = MapCameraController(camera) { x, y -> onMapTap(x, y) }
 
-    private var layer = ThematicLayer.ADMIN
-    private var selection: MapSelection? = null
+    override var layer = ThematicLayer.ADMIN
+        private set
+    override var selection: MapSelection? = null
+        private set
+    override var openPanel: PanelId? = null
+        private set
+    private val hints = fr.president.game.ui.Hints(ui).also { ui.hints = it }
+    private val tour by lazy { fr.president.game.ui.hud.GuidedTour(ui, session, this) }
     private var lod = Lod.FRANCE
     private var sinceRefresh = 0f
 
@@ -123,12 +129,15 @@ class MainScreen(
         root.add(actions).colspan(3).center().padBottom(6f)
         stage.addActor(root)
         val overlayTable = Table().apply { setFillParent(true); top().padTop(TOAST_TOP) }
+        overlayTable.add(tour.card).padBottom(6f).row()
         overlayTable.add(targetingBanner).padBottom(6f).row()
         targetingBanner.isVisible = false
         overlayTable.add(toasts.root)
         overlayTable.touchable = com.badlogic.gdx.scenes.scene2d.Touchable.childrenOnly
         stage.addActor(overlayTable)
         stage.addActor(briefing.root)
+        stage.addActor(tour.highlight)
+        stage.addActor(hints.bubble)
         refresh()
     }
 
@@ -150,6 +159,7 @@ class MainScreen(
         overlay.render(camera, session, layer, lod, delta, selectedMapId())
         sinceRefresh += delta
         if (sinceRefresh >= REFRESH_SECONDS && !Gdx.input.isTouched) refresh()
+        tour.update()
         stage.act(delta)
         stage.draw()
     }
@@ -212,6 +222,7 @@ class MainScreen(
         else if (argument != null) p.applyArgument(argument)
         val changed = currentPanel !== p
         currentPanel = p
+        openPanel = panel
         panelSlot.actor = p.root
         p.refresh()
         // Apparition en fondu quand on change de panneau (pas lors d'un simple rafraîchissement).
@@ -224,6 +235,7 @@ class MainScreen(
 
     private fun closePanel() {
         currentPanel = null
+        openPanel = null
         panelSlot.actor = null
         selection = null
     }

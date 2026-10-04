@@ -41,6 +41,8 @@ class SettingsPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit, pri
         into.add(ui.label("Rythme : ${pace?.label} (verrouillé) — ${pace?.description}", "small", wrap = true)).growX().row()
         into.add(ui.label("Début : ${Formats.date(meta.startTime)} · Snapshot : ${meta.snapshotId} · Graine : ${meta.seed}", "muted", wrap = true)).growX().row()
         into.add(ui.button(if (showDebug) "Masquer le journal de debug" else "Journal de debug (IA, économie)", "flat") { showDebug = !showDebug; nav.refresh() }).left().padTop(GAP).row()
+        into.add(ui.button("★ Relancer le tutoriel guidé", "flat") { nav.session.state.player.tourStep = 0; nav.refresh() }).left().padTop(GAP).row()
+        into.add(ui.label("Astuce : laissez le doigt appuyé (ou la souris) sur un chiffre, une pastille ou un bouton pour avoir son explication.", "muted", wrap = true)).growX().row()
         into.add(ui.label("Partie en cours", "bold")).padTop(GAP).row()
         if (!confirmAbandon) {
             into.add(ui.button("Abandonner et recommencer…", "flat") { confirmAbandon = true; nav.refresh() }).left().row()

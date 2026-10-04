@@ -8,6 +8,7 @@ import fr.president.game.ui.Formats
 import fr.president.game.ui.Theme
 import fr.president.game.ui.Ui
 import fr.president.game.ui.onClick
+import fr.president.game.ui.hint
 import fr.president.game.ui.panels.PanelId
 
 /**
@@ -39,21 +40,22 @@ class TopBar(private val ui: Ui, private val session: GameSession, private val o
         chips.clearChildren()
         val national = session.national
         // Toucher un chiffre ouvre sa courbe et ses causes.
-        chip("♥", "Popularité", national.approval(), "approval")
-        chip("⚒", "Chômage", national.unemployment(), "unemployment")
-        chip("▲", "Croissance", national.growth(), "growth")
-        chip("€", "Budget", national.deficit(), "deficit")
-        chip("⚖", "Dette", national.debt(), "debt")
+        chip("♥", "Popularité", national.approval(), "approval", "Part des Français qui vous approuvent. En dessous de 40 %, la réélection devient difficile. Touchez pour voir la courbe et ses causes.")
+        chip("⚒", "Chômage", national.unemployment(), "unemployment", "Part des actifs sans emploi. C'est la première préoccupation de nombreux groupes.")
+        chip("▲", "Croissance", national.growth(), "growth", "Progression de la production sur un an. Elle crée des emplois et des recettes fiscales.")
+        chip("€", "Budget", national.deficit(), "deficit", "Solde du budget de l'État en % du PIB. Bruxelles demande moins de 3 % de déficit.")
+        chip("⚖", "Dette", national.debt(), "debt", "Dette publique en % du PIB. Plus elle monte, plus les intérêts coûtent cher et plus les marchés s'inquiètent.")
         val days = session.state.time.daysUntil(session.state.elections.nextElection).toInt()
         val tone = if (days < WARNING_DAYS) Theme.warning else Theme.accent
         val (wrapper, box) = pill(tone)
         box.add(ui.label("✔ J-$days", "value", tone)).row()
         box.add(ui.label("Élection", "muted"))
         wrapper.onClick { open(PanelId.ELECTIONS, null) }
+        wrapper.hint(ui, "Jours avant la prochaine élection présidentielle. Perdue, elle met fin à la partie.")
         chips.add(wrapper).padLeft(CHIP_GAP)
     }
 
-    private fun chip(icon: String, label: String, indicator: Indicator, series: String) {
+    private fun chip(icon: String, label: String, indicator: Indicator, series: String, help: String) {
         val color = Theme.tone(indicator.tone)
         val (wrapper, box) = pill(color)
         val line = Table()
@@ -63,6 +65,8 @@ class TopBar(private val ui: Ui, private val session: GameSession, private val o
         box.add(line).row()
         box.add(ui.label(label, "muted"))
         wrapper.onClick { open(PanelId.STATS, series) }
+        wrapper.name = "chip.$series"
+        wrapper.hint(ui, help)
         val shown = indicator.value + indicator.status
         val previous = lastValue.put(label, shown)
         val now = System.currentTimeMillis()

@@ -18,6 +18,7 @@ class LayerBar(ui: Ui, initial: ThematicLayer, onChange: (ThematicLayer) -> Unit
     private val toggle: TextButton = ui.colorButton(title(initial), Theme.catLocal) { setOpen(!open) }
 
     init {
+        toggle.name = "layers"
         list.pad(4f)
         val group = ButtonGroup<TextButton>().apply { setMaxCheckCount(1); setMinCheckCount(1) }
         ThematicLayer.entries.forEach { layer ->

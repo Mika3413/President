@@ -5,6 +5,7 @@ import fr.president.engine.readout.Indicator
 import fr.president.engine.readout.LocalReadouts
 import fr.president.game.ui.Theme
 import fr.president.game.ui.Ui
+import fr.president.game.ui.hint
 
 /** Fiche d'un territoire ou équipement : indicateurs, élus, problèmes, projets. */
 class SheetView(ui: Ui, sheet: LocalReadouts.Sheet, expanded: MutableSet<String>, compact: Boolean = false) : Table() {
@@ -53,6 +54,7 @@ class KpiGrid(ui: Ui, indicators: List<Indicator>) : Table() {
             text.add(line).left().row()
             if (ind.value.isNotEmpty()) text.add(ui.label(ind.status.lowercase().replaceFirstChar { it.uppercase() }, "muted", wrap = true)).growX().row()
             tile.add(text).growX().minWidth(0f)
+            tile.hint(ui, listOf(ind.explanation, ind.details.joinToString(" · ") { "${it.first} : ${it.second}" }).filter { it.isNotBlank() }.joinToString("\n"))
             add(tile).fill()
             if (i % 2 == 1) row()
         }

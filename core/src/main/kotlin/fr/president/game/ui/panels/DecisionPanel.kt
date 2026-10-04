@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Value
 import fr.president.game.ui.Theme
 import fr.president.game.ui.Ui
 import fr.president.game.ui.onClick
+import fr.president.game.ui.hint
 import fr.president.game.ui.widgets.ActionCards
 
 /**
@@ -40,6 +41,8 @@ class DecisionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : P
             val n = session.nationalActions.availableCount(c.id)
             if (n > 0) tile.add(ui.label(n.toString(), "small", if (selected) Color.WHITE else Theme.good)).right()
             tile.onClick { category = c.id; message = null; nav.refresh() }
+            tile.hint(ui, c.description)
+            tile.name = "cat.${c.id}"
             grid.add(tile)
             if (i % COLUMNS == COLUMNS - 1) grid.row()
         }

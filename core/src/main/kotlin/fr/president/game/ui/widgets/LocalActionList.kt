@@ -6,6 +6,7 @@ import fr.president.engine.session.ActionPresenter
 import fr.president.engine.session.GameSession
 import fr.president.game.ui.Theme
 import fr.president.game.ui.Ui
+import fr.president.game.ui.hint
 
 /**
  * Carte d'action, commune aux actions locales et aux décisions nationales : une ligne de titre
@@ -68,6 +69,7 @@ object ActionCards {
             }
             val chip = Table().apply { setBackground(ui.skin.fill(bg)); pad(1f, 5f, 1f, 5f) }
             chip.add(ui.label(e.text, "small", fg))
+            chip.hint(ui, e.hint)
             chips.addActor(chip)
         }
         return chips

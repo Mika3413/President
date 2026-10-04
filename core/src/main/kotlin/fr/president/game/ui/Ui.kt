@@ -13,6 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener
 /** Petites fabriques pour construire l'interface de façon concise et homogène. */
 class Ui(val skin: UiSkin) {
     val portraits = fr.president.game.ui.widgets.Portraits()
+    /** Info-bulles de l'écran principal (null ailleurs). */
+    var hints: Hints? = null
     val s: Skin get() = skin.skin
 
     fun label(text: String, style: String = "default", color: Color? = null, wrap: Boolean = false): Label =

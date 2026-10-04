@@ -110,6 +110,10 @@ class NewGameFactory(private val db: GameDatabase) {
         fr.president.engine.government.SenateService(ctx).ensure()
         WelcomeMessage(ctx).send()
         WelcomeMessage(ctx).scheduleTutorial()
+        state.player.tourStep = 0
+        // Premier point des courbes du mandat.
+        fr.president.engine.stats.StatsSystem.record(ctx)
+        state.stats.lastRecordDay = state.time.dayIndex
         return state
     }
 
