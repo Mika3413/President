@@ -50,7 +50,8 @@
       "events/crises.json",
       "events/local.json",
       "events/national.json",
-      "events/summits.json"
+      "events/summits.json",
+      "events/extra.json"
     ],
     "dialogue": [
       "dialogue/fr/territory.json",
@@ -62,7 +63,8 @@
       "dialogue/fr/conversations.json",
       "dialogue/fr/local.json",
       "dialogue/fr/national.json",
-      "dialogue/fr/summits.json"
+      "dialogue/fr/summits.json",
+      "dialogue/fr/extra.json"
     ],
     "names": {
       "fr": "names/fr.json",

@@ -1,0 +1,2536 @@
+{
+ "events": [
+  {
+   "id": "ai_layoffs",
+   "category": "ECONOMY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0009,
+   "cooldownDays": 700,
+   "urgency": "IMPORTANT",
+   "headline": "Intelligence artificielle : un grand groupe supprime 5 000 postes",
+   "notificationText": "Les syndicats parlent d'un « plan social numérique ».",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "ai_layoffs",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "train",
+    "options": [
+     {
+      "id": "train",
+      "label": "Grand plan de reconversion",
+      "hint": "Coût : 1,5 Md€ ; salariés rassurés",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 1.5
+       },
+       {
+        "target": "opinion.group.private_employees",
+        "amount": 0.01
+       },
+       {
+        "target": "economy.naturalUnemployment",
+        "amount": -0.0005,
+        "days": 365
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "tax",
+      "label": "Taxer l'automatisation",
+      "hint": "Recettes ; entreprises furieuses",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": -1.0
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": -0.02
+       },
+       {
+        "target": "opinion.group.private_employees",
+        "amount": 0.006
+       },
+       {
+        "target": "chain.ai_exodus",
+        "amount": 0.6,
+        "delayDays": 25
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "market",
+      "label": "Laisser faire le marché",
+      "hint": "Croissance ; colère sociale",
+      "effects": [
+       {
+        "target": "economy.potentialGrowth",
+        "amount": 0.0003,
+        "days": 365
+       },
+       {
+        "target": "opinion.group.private_employees",
+        "amount": -0.012
+       },
+       {
+        "target": "chain.ai_exodus",
+        "amount": 0.15,
+        "delayDays": 30
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "labour"
+   }
+  },
+  {
+   "id": "ai_exodus",
+   "category": "ECONOMY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0,
+   "cooldownDays": 120,
+   "urgency": "URGENT",
+   "headline": "Les géants du numérique menacent de quitter la France",
+   "notificationText": "Plusieurs entreprises gèlent leurs investissements.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "ai_exodus",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "hold",
+    "options": [
+     {
+      "id": "fund",
+      "label": "Créer un fonds souverain pour l'IA",
+      "hint": "Coût : 3 Md€ ; champion national possible",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 3.0
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": 0.02
+       },
+       {
+        "target": "chain.ai_champion",
+        "amount": 0.6,
+        "delayDays": 120
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "soften",
+      "label": "Assouplir la taxe",
+      "hint": "Apaisement ; recettes perdues",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.6
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": 0.015
+       },
+       {
+        "target": "opinion.group.private_employees",
+        "amount": -0.004
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "hold",
+      "label": "Tenir bon",
+      "hint": "Principe ; investissements perdus",
+      "effects": [
+       {
+        "target": "economy.output",
+        "amount": -0.002,
+        "days": 180
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": -0.02
+       },
+       {
+        "target": "opinion.group.low_income",
+        "amount": 0.004
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "economy"
+   }
+  },
+  {
+   "id": "ai_champion",
+   "category": "ECONOMY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0,
+   "cooldownDays": 300,
+   "urgency": "IMPORTANT",
+   "headline": "Un champion français de l'IA devient numéro un européen",
+   "notificationText": "La jeune pousse lève des milliards et recrute massivement.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "ai_champion",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "visit",
+    "options": [
+     {
+      "id": "visit",
+      "label": "Visite et plan de formation aux métiers de l'IA",
+      "hint": "Coût : 500 M€ ; prestige",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.5
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.005
+       },
+       {
+        "target": "economy.potentialGrowth",
+        "amount": 0.0005,
+        "days": 365
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": 0.01
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "discreet",
+      "label": "Rester discret",
+      "hint": "Aucun coût",
+      "effects": [
+       {
+        "target": "economy.businessConfidence",
+        "amount": 0.01
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ],
+    "ministry": "economy"
+   }
+  },
+  {
+   "id": "health_data_leak",
+   "category": "SECURITY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0008,
+   "cooldownDays": 800,
+   "urgency": "URGENT",
+   "headline": "Fuite massive : les données de santé de 20 millions de Français en ligne",
+   "notificationText": "Des pirates revendiquent le vol et réclament une rançon.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "health_data_leak",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "refuse",
+    "options": [
+     {
+      "id": "refuse",
+      "label": "Refuser et riposter avec nos services",
+      "hint": "Fermeté ; les données seront publiées",
+      "effects": [
+       {
+        "target": "opinion.group.seniors",
+        "amount": -0.01
+       },
+       {
+        "target": "opinion.national",
+        "amount": -0.004
+       },
+       {
+        "target": "chain.data_lawsuit",
+        "amount": 0.7,
+        "delayDays": 20
+       }
+      ],
+      "outcome": "REFUSED"
+     },
+     {
+      "id": "inform",
+      "label": "Informer chaque assuré et investir dans la cybersécurité",
+      "hint": "Coût : 800 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.8
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.002
+       },
+       {
+        "target": "chain.data_lawsuit",
+        "amount": 0.3,
+        "delayDays": 25
+       },
+       {
+        "target": "chain.data_sovereignty",
+        "amount": 0.6,
+        "delayDays": 60
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "pay",
+      "label": "Négocier discrètement",
+      "hint": "Risque de scandale",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.05
+       },
+       {
+        "target": "chain.data_lawsuit",
+        "amount": 0.5,
+        "delayDays": 15
+       }
+      ],
+      "outcome": "PARTIAL"
+     }
+    ],
+    "ministry": "health"
+   }
+  },
+  {
+   "id": "data_lawsuit",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0,
+   "cooldownDays": 200,
+   "urgency": "IMPORTANT",
+   "headline": "Fuite de données : 300 000 Français portent plainte contre l'État",
+   "notificationText": "Une action collective sans précédent.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "data_lawsuit",
+    "sender": "PRIME_MINISTER",
+    "responseDays": 4,
+    "defaultOption": "contest",
+    "options": [
+     {
+      "id": "settle",
+      "label": "Indemniser à l'amiable",
+      "hint": "Coût : 1,2 Md€ ; affaire close",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 1.2
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.004
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "inquiry",
+      "label": "Accepter une commission d'enquête",
+      "hint": "Transparence ; débat prolongé",
+      "effects": [
+       {
+        "target": "government.parliamentSupport",
+        "amount": 0.01
+       },
+       {
+        "target": "opinion.national",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "contest",
+      "label": "Contester devant les tribunaux",
+      "hint": "Aucun coût immédiat ; image dégradée",
+      "effects": [
+       {
+        "target": "opinion.national",
+        "amount": -0.006
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": -0.006
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "data_sovereignty",
+   "category": "SECURITY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0,
+   "cooldownDays": 300,
+   "urgency": "INFO",
+   "headline": "Cloud souverain : les industriels proposent une alliance",
+   "notificationText": "Une alternative européenne aux géants américains.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "data_sovereignty",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "existing",
+    "options": [
+     {
+      "id": "launch",
+      "label": "Lancer le cloud souverain avec l'Allemagne",
+      "hint": "Coût : 2 Md€ ; Europe renforcée",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 2.0
+       },
+       {
+        "target": "memory.DEU.NEGOTIATION_GOODWILL",
+        "amount": 0.03
+       },
+       {
+        "target": "memory.USA.DISAGREEMENT",
+        "amount": -0.01
+       },
+       {
+        "target": "economy.potentialGrowth",
+        "amount": 0.0003,
+        "days": 730
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "existing",
+      "label": "Garder les solutions existantes",
+      "hint": "Aucun coût",
+      "effects": [
+       {
+        "target": "memory.USA.NEGOTIATION_GOODWILL",
+        "amount": 0.01
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "economy"
+   }
+  },
+  {
+   "id": "student_protest",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.001,
+   "cooldownDays": 400,
+   "urgency": "IMPORTANT",
+   "headline": "Les étudiants dans la rue contre la précarité",
+   "notificationText": "Des dizaines de milliers de manifestants dans les grandes villes.",
+   "modifiers": [
+    {
+     "variable": "economy.inflation",
+     "from": 0.01,
+     "to": 0.05,
+     "factorAtFrom": 0.7,
+     "factorAtTo": 2.5
+    }
+   ],
+   "immediateEffects": [],
+   "message": {
+    "template": "student_protest",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "dialogue",
+    "options": [
+     {
+      "id": "grants",
+      "label": "Repas à un euro et bourses revalorisées",
+      "hint": "Coût : 900 M€ ; apaisement",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.9
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": 0.02
+       },
+       {
+        "target": "opinion.group.inactive",
+        "amount": 0.015
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "dialogue",
+      "label": "Dialogue sans engagement",
+      "hint": "Aucun coût ; le mouvement peut durer",
+      "effects": [
+       {
+        "target": "opinion.group.young",
+        "amount": -0.004
+       },
+       {
+        "target": "chain.campus_occupation",
+        "amount": 0.4,
+        "delayDays": 12
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "firm",
+      "label": "Fermeté et évacuation des blocages",
+      "hint": "Ordre ; colère accrue",
+      "effects": [
+       {
+        "target": "opinion.group.young",
+        "amount": -0.02
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": 0.006
+       },
+       {
+        "target": "chain.campus_occupation",
+        "amount": 0.7,
+        "delayDays": 8
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "education"
+   }
+  },
+  {
+   "id": "campus_occupation",
+   "category": "SECURITY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0,
+   "cooldownDays": 60,
+   "urgency": "URGENT",
+   "headline": "Universités occupées : les examens menacés",
+   "notificationText": "Une vingtaine de campus bloqués.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "campus_occupation",
+    "sender": "PRIME_MINISTER",
+    "responseDays": 4,
+    "defaultOption": "evacuate",
+    "options": [
+     {
+      "id": "talks",
+      "label": "Grande concertation sur la vie étudiante",
+      "hint": "Coût : 500 M€ ; sortie de crise",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.5
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": 0.012
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "evacuate",
+      "label": "Évacuer les campus",
+      "hint": "Ordre rétabli ; mouvement national possible",
+      "effects": [
+       {
+        "target": "opinion.group.young",
+        "amount": -0.015
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": 0.008
+       },
+       {
+        "target": "chain.youth_movement",
+        "amount": 0.5,
+        "delayDays": 10
+       }
+      ],
+      "outcome": "REFUSED"
+     },
+     {
+      "id": "postpone",
+      "label": "Reporter les examens",
+      "hint": "Apaisement ; désordre administratif",
+      "effects": [
+       {
+        "target": "quality.education",
+        "amount": -0.01
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": 0.004
+       }
+      ],
+      "outcome": "PARTIAL"
+     }
+    ],
+    "ministry": "interior"
+   }
+  },
+  {
+   "id": "youth_movement",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0,
+   "cooldownDays": 200,
+   "urgency": "URGENT",
+   "headline": "Un mouvement de jeunesse national s'organise",
+   "notificationText": "La mobilisation gagne tout le pays.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "youth_movement",
+    "sender": "PRIME_MINISTER",
+    "responseDays": 4,
+    "defaultOption": "wait",
+    "options": [
+     {
+      "id": "plan",
+      "label": "Recevoir les porte-parole et lancer un plan jeunesse",
+      "hint": "Coût : 2 Md€ ; mouvement apaisé",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 2.0
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": 0.03
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.004
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "wait",
+      "label": "Attendre la fin de l'année scolaire",
+      "hint": "Usure ; une génération perdue",
+      "effects": [
+       {
+        "target": "opinion.group.young",
+        "amount": -0.025
+       },
+       {
+        "target": "opinion.national",
+        "amount": -0.005
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "majority_rebels",
+   "category": "GOVERNMENT",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.001,
+   "cooldownDays": 500,
+   "urgency": "IMPORTANT",
+   "headline": "Des députés de la majorité entrent en fronde",
+   "notificationText": "Une trentaine d'élus menacent de ne plus voter les textes.",
+   "modifiers": [
+    {
+     "variable": "opinion.national",
+     "from": 0.3,
+     "to": 0.55,
+     "factorAtFrom": 2.5,
+     "factorAtTo": 0.6
+    }
+   ],
+   "immediateEffects": [],
+   "message": {
+    "template": "majority_rebels",
+    "sender": "PRIME_MINISTER",
+    "responseDays": 4,
+    "defaultOption": "ignore",
+    "options": [
+     {
+      "id": "concede",
+      "label": "Les recevoir et faire des concessions",
+      "hint": "Majorité ressoudée ; ligne infléchie",
+      "effects": [
+       {
+        "target": "government.parliamentSupport",
+        "amount": 0.03
+       },
+       {
+        "target": "spending.solidarity",
+        "amount": 0.01
+       },
+       {
+        "target": "opinion.group.self_employed",
+        "amount": -0.004
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "threaten",
+      "label": "Menacer d'exclusion",
+      "hint": "Autorité ; risque de scission",
+      "effects": [
+       {
+        "target": "government.parliamentSupport",
+        "amount": -0.01
+       },
+       {
+        "target": "chain.group_split",
+        "amount": 0.5,
+        "delayDays": 20
+       }
+      ],
+      "outcome": "REFUSED"
+     },
+     {
+      "id": "ignore",
+      "label": "Les ignorer",
+      "hint": "Aucun coût immédiat",
+      "effects": [
+       {
+        "target": "government.parliamentSupport",
+        "amount": -0.02
+       },
+       {
+        "target": "chain.group_split",
+        "amount": 0.3,
+        "delayDays": 30
+       }
+      ],
+      "outcome": "PARTIAL"
+     }
+    ]
+   }
+  },
+  {
+   "id": "group_split",
+   "category": "GOVERNMENT",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0,
+   "cooldownDays": 300,
+   "urgency": "URGENT",
+   "headline": "Scission : les frondeurs créent leur propre groupe",
+   "notificationText": "La majorité perd des sièges.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "group_split",
+    "sender": "PRIME_MINISTER",
+    "responseDays": 4,
+    "defaultOption": "deal",
+    "options": [
+     {
+      "id": "reshuffle",
+      "label": "Remaniement d'ouverture",
+      "hint": "Majorité élargie ; base agacée",
+      "effects": [
+       {
+        "target": "government.parliamentSupport",
+        "amount": 0.04
+       },
+       {
+        "target": "opinion.national",
+        "amount": -0.003
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "deal",
+      "label": "Accord texte par texte",
+      "hint": "Fragile mais sans coût",
+      "effects": [
+       {
+        "target": "government.parliamentSupport",
+        "amount": -0.01
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "hardline",
+      "label": "Ignorer et gouverner par ordonnances",
+      "hint": "Autorité ; risque de censure",
+      "effects": [
+       {
+        "target": "government.parliamentSupport",
+        "amount": -0.04
+       },
+       {
+        "target": "opinion.national",
+        "amount": -0.004
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drug_shortage",
+   "category": "DISASTER",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.001,
+   "cooldownDays": 400,
+   "urgency": "IMPORTANT",
+   "headline": "Pénurie de médicaments : antibiotiques et anticancéreux introuvables",
+   "notificationText": "Les pharmacies sont en rupture.",
+   "modifiers": [
+    {
+     "variable": "season.month",
+     "from": 9,
+     "to": 12,
+     "factorAtFrom": 1.0,
+     "factorAtTo": 2.5
+    }
+   ],
+   "immediateEffects": [],
+   "message": {
+    "template": "drug_shortage",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "import",
+    "options": [
+     {
+      "id": "relocate",
+      "label": "Relocaliser la production",
+      "hint": "Coût : 1 Md€ ; effet durable",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 1.0
+       },
+       {
+        "target": "quality.health",
+        "amount": 0.01,
+        "days": 365
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": 0.008
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "import",
+      "label": "Importer en urgence",
+      "hint": "Coût : 200 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.2
+       },
+       {
+        "target": "quality.health",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "wait",
+      "label": "Laisser le marché se rétablir",
+      "hint": "Aucun coût ; colère des familles",
+      "effects": [
+       {
+        "target": "quality.health",
+        "amount": -0.01
+       },
+       {
+        "target": "opinion.group.adults",
+        "amount": -0.008
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "health"
+   }
+  },
+  {
+   "id": "doctor_strike",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0008,
+   "cooldownDays": 500,
+   "urgency": "IMPORTANT",
+   "headline": "Les médecins généralistes ferment leurs cabinets",
+   "notificationText": "Grève illimitée des médecins libéraux.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "doctor_strike",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "compromise",
+    "options": [
+     {
+      "id": "accept",
+      "label": "Accepter la revalorisation",
+      "hint": "Coût : 1,1 Md€ par an",
+      "effects": [
+       {
+        "target": "spending.health",
+        "amount": 0.005
+       },
+       {
+        "target": "quality.health",
+        "amount": 0.01
+       },
+       {
+        "target": "opinion.group.self_employed",
+        "amount": 0.006
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "compromise",
+      "label": "Compromis contre des gardes partagées",
+      "hint": "Coût : 500 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.5
+       },
+       {
+        "target": "quality.health",
+        "amount": 0.004
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "refuse",
+      "label": "Refuser",
+      "hint": "Économie ; soins perturbés",
+      "effects": [
+       {
+        "target": "quality.health",
+        "amount": -0.015
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": -0.008
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "health"
+   }
+  },
+  {
+   "id": "bird_flu",
+   "category": "DISASTER",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0009,
+   "cooldownDays": 365,
+   "urgency": "IMPORTANT",
+   "headline": "Grippe aviaire : des millions de volailles abattues",
+   "notificationText": "L'épizootie frappe le Sud-Ouest.",
+   "modifiers": [
+    {
+     "variable": "season.month",
+     "from": 1,
+     "to": 12,
+     "factorAtFrom": 2.0,
+     "factorAtTo": 1.5
+    }
+   ],
+   "immediateEffects": [],
+   "message": {
+    "template": "bird_flu",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "compensate",
+    "options": [
+     {
+      "id": "vaccinate",
+      "label": "Indemniser et vacciner",
+      "hint": "Coût : 600 M€ ; épidémie stoppée",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.6
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.01
+       },
+       {
+        "target": "quality.agriculture",
+        "amount": 0.005
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "compensate",
+      "label": "Indemniser seulement",
+      "hint": "Coût : 400 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.4
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.004
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "none",
+      "label": "Laisser les filières s'organiser",
+      "hint": "Aucun coût ; faillites",
+      "effects": [
+       {
+        "target": "opinion.group.rural",
+        "amount": -0.015
+       },
+       {
+        "target": "quality.agriculture",
+        "amount": -0.01
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "agriculture"
+   }
+  },
+  {
+   "id": "wine_crisis",
+   "category": "ECONOMY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0007,
+   "cooldownDays": 600,
+   "urgency": "INFO",
+   "headline": "Viticulture : des vignes arrachées par milliers d'hectares",
+   "notificationText": "La surproduction et la baisse de la consommation frappent la filière.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "wine_crisis",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "distill",
+    "options": [
+     {
+      "id": "uproot",
+      "label": "Plan d'arrachage aidé et reconversion",
+      "hint": "Coût : 300 M€ ; filière assainie",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.3
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.008
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "distill",
+      "label": "Distillation de crise",
+      "hint": "Coût : 150 M€ ; répit",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.15
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.004
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "none",
+      "label": "Ne rien faire",
+      "hint": "Aucun coût ; colère rurale",
+      "effects": [
+       {
+        "target": "opinion.group.rural",
+        "amount": -0.012
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "agriculture"
+   }
+  },
+  {
+   "id": "winter_olympics",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0004,
+   "cooldownDays": 3000,
+   "urgency": "INFO",
+   "headline": "Jeux olympiques d'hiver : la France peut se porter candidate",
+   "notificationText": "Le mouvement sportif attend votre feu vert.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "winter_olympics",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "sober",
+    "options": [
+     {
+      "id": "full",
+      "label": "Candidature ambitieuse",
+      "hint": "Coût : 3 Md€ ; prestige et travaux",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 3.0
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.006
+       },
+       {
+        "target": "economy.output",
+        "amount": 0.001,
+        "days": 730
+       },
+       {
+        "target": "quality.environment",
+        "amount": -0.005
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "sober",
+      "label": "Candidature sobre, sites existants",
+      "hint": "Coût : 1 Md€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 1.0
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "no",
+      "label": "Renoncer",
+      "hint": "Économie ; déception",
+      "effects": [
+       {
+        "target": "opinion.group.young",
+        "amount": -0.004
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "education"
+   }
+  },
+  {
+   "id": "arms_contract",
+   "category": "DIPLOMACY",
+   "scope": "FOREIGN_COUNTRY",
+   "baseDailyProbability": 0.0007,
+   "cooldownDays": 300,
+   "urgency": "IMPORTANT",
+   "headline": "{foreignThe} veut acheter des avions de combat français",
+   "notificationText": "Un contrat de plusieurs milliards est en jeu.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "arms_contract",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "sign",
+    "options": [
+     {
+      "id": "transfer",
+      "label": "Signer avec transfert de technologie",
+      "hint": "Contrat assuré ; savoir-faire partagé",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": -2.0
+       },
+       {
+        "target": "country.NEGOTIATION_GOODWILL",
+        "amount": 0.05
+       },
+       {
+        "target": "economy.output",
+        "amount": 0.001,
+        "days": 365
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "sign",
+      "label": "Signer sans transfert",
+      "hint": "Contrat probable",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": -1.0
+       },
+       {
+        "target": "country.NEGOTIATION_GOODWILL",
+        "amount": 0.02
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "refuse",
+      "label": "Refuser pour raisons éthiques",
+      "hint": "Principes ; relation refroidie",
+      "effects": [
+       {
+        "target": "country.DISAGREEMENT",
+        "amount": -0.03
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": 0.004
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "armed_forces"
+   },
+   "conditions": [
+    {
+     "variable": "scope.relation",
+     "min": 0.45
+    }
+   ],
+   "scopeCooldownDays": 900
+  },
+  {
+   "id": "space_success",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0005,
+   "cooldownDays": 600,
+   "urgency": "INFO",
+   "headline": "Ariane réussit un lancement historique",
+   "notificationText": "L'Europe spatiale célèbre une première mondiale.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "space_success",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "salute",
+    "options": [
+     {
+      "id": "invest",
+      "label": "Augmenter le budget spatial",
+      "hint": "Coût : 800 M€ ; avance technologique",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.8
+       },
+       {
+        "target": "economy.potentialGrowth",
+        "amount": 0.0002,
+        "days": 730
+       },
+       {
+        "target": "alliance.EU.NEGOTIATION_GOODWILL",
+        "amount": 0.01
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "salute",
+      "label": "Saluer ce succès",
+      "hint": "Aucun coût",
+      "effects": [
+       {
+        "target": "opinion.national",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ],
+    "ministry": "economy"
+   }
+  },
+  {
+   "id": "tax_leak",
+   "category": "ECONOMY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0006,
+   "cooldownDays": 700,
+   "urgency": "IMPORTANT",
+   "headline": "« Évasion files » : des milliers de fortunes françaises dans les paradis fiscaux",
+   "notificationText": "Une fuite de documents bancaires fait scandale.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "tax_leak",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "justice",
+    "options": [
+     {
+      "id": "crackdown",
+      "label": "Cellule de redressement et sanctions",
+      "hint": "Recettes ; riches mécontents",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": -2.5
+       },
+       {
+        "target": "opinion.group.low_income",
+        "amount": 0.01
+       },
+       {
+        "target": "opinion.group.high_income",
+        "amount": -0.015
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "amnesty",
+      "label": "Amnistie contre rapatriement des fonds",
+      "hint": "Recettes rapides ; scandale moral",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": -4.0
+       },
+       {
+        "target": "opinion.national",
+        "amount": -0.008
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "justice",
+      "label": "Laisser la justice faire",
+      "hint": "Aucun coût",
+      "effects": [
+       {
+        "target": "opinion.group.low_income",
+        "amount": -0.006
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "economy"
+   }
+  },
+  {
+   "id": "delivery_strike",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0008,
+   "cooldownDays": 400,
+   "urgency": "INFO",
+   "headline": "Les livreurs des plateformes en grève",
+   "notificationText": "Ils réclament le statut de salarié.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "delivery_strike",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "minimum",
+    "options": [
+     {
+      "id": "employees",
+      "label": "Présomption de salariat",
+      "hint": "Protection ; plateformes furieuses",
+      "effects": [
+       {
+        "target": "opinion.group.young",
+        "amount": 0.012
+       },
+       {
+        "target": "opinion.group.low_income",
+        "amount": 0.006
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": -0.01
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "minimum",
+      "label": "Revenu minimum garanti",
+      "hint": "Compromis",
+      "effects": [
+       {
+        "target": "opinion.group.young",
+        "amount": 0.006
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "status_quo",
+      "label": "Statu quo",
+      "hint": "Aucun coût ; précarité",
+      "effects": [
+       {
+        "target": "opinion.group.young",
+        "amount": -0.008
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "labour"
+   }
+  },
+  {
+   "id": "child_protection",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0007,
+   "cooldownDays": 600,
+   "urgency": "IMPORTANT",
+   "headline": "Scandale à l'aide sociale à l'enfance",
+   "notificationText": "Un rapport accablant sur les foyers d'accueil.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "child_protection",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "plan",
+    "options": [
+     {
+      "id": "state",
+      "label": "Reprise par l'État et moyens nouveaux",
+      "hint": "Coût : 1,5 Md€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 1.5
+       },
+       {
+        "target": "quality.social",
+        "amount": 0.015
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.004
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "plan",
+      "label": "Plan d'urgence",
+      "hint": "Coût : 400 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.4
+       },
+       {
+        "target": "quality.social",
+        "amount": 0.005
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "departments",
+      "label": "Laisser les départements agir",
+      "hint": "Aucun coût ; indignation",
+      "effects": [
+       {
+        "target": "opinion.national",
+        "amount": -0.006
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "justice"
+   }
+  },
+  {
+   "id": "prison_escape",
+   "category": "SECURITY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0005,
+   "cooldownDays": 500,
+   "urgency": "IMPORTANT",
+   "headline": "Évasion spectaculaire : un chef de gang s'échappe en hélicoptère",
+   "notificationText": "La traque est lancée.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "prison_escape",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "inquiry",
+    "options": [
+     {
+      "id": "plan",
+      "label": "Plan de sécurisation des prisons",
+      "hint": "Coût : 500 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.5
+       },
+       {
+        "target": "quality.justice",
+        "amount": 0.01
+       },
+       {
+        "target": "quality.security",
+        "amount": 0.005
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "inquiry",
+      "label": "Enquête interne",
+      "hint": "Aucun coût",
+      "effects": [
+       {
+        "target": "opinion.national",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "fire",
+      "label": "Limoger le directeur",
+      "hint": "Responsable désigné ; surveillants furieux",
+      "effects": [
+       {
+        "target": "opinion.group.civil_servants",
+        "amount": -0.006
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": 0.004
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "justice"
+   }
+  },
+  {
+   "id": "court_backlog",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0006,
+   "cooldownDays": 600,
+   "urgency": "INFO",
+   "headline": "Les magistrats en colère : la justice au bord de l'asphyxie",
+   "notificationText": "Une tribune signée par 3 000 magistrats.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "court_backlog",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "simplify",
+    "options": [
+     {
+      "id": "hire",
+      "label": "Recruter magistrats et greffiers",
+      "hint": "Coût : 600 M€ par an",
+      "effects": [
+       {
+        "target": "spending.justice",
+        "amount": 0.06
+       },
+       {
+        "target": "quality.justice",
+        "amount": 0.015
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "simplify",
+      "label": "Simplifier les procédures",
+      "hint": "Gratuit ; avocats réservés",
+      "effects": [
+       {
+        "target": "quality.justice",
+        "amount": 0.005
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "enough",
+      "label": "L'effort est déjà fait",
+      "hint": "Aucun coût",
+      "effects": [
+       {
+        "target": "quality.justice",
+        "amount": -0.005
+       },
+       {
+        "target": "opinion.group.civil_servants",
+        "amount": -0.004
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "justice"
+   }
+  },
+  {
+   "id": "corsica_tensions",
+   "category": "SECURITY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0005,
+   "cooldownDays": 600,
+   "urgency": "IMPORTANT",
+   "headline": "Corse : attentats contre des résidences secondaires",
+   "notificationText": "Le FLNC revendique.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "corsica_tensions",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "security",
+    "options": [
+     {
+      "id": "autonomy",
+      "label": "Ouvrir des négociations sur l'autonomie",
+      "hint": "Apaisement ; débat national",
+      "effects": [
+       {
+        "target": "government.parliamentSupport",
+        "amount": -0.01
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.001
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "security",
+      "label": "Renforcer la sécurité",
+      "hint": "Coût : 100 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.1
+       },
+       {
+        "target": "quality.security",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "REFUSED"
+     },
+     {
+      "id": "both",
+      "label": "Fermeté et dialogue",
+      "hint": "Coût : 100 M€ ; équilibre",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.1
+       }
+      ],
+      "outcome": "PARTIAL"
+     }
+    ],
+    "ministry": "interior"
+   }
+  },
+  {
+   "id": "deepfake_president",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0007,
+   "cooldownDays": 400,
+   "urgency": "URGENT",
+   "headline": "Une fausse vidéo du président devient virale",
+   "notificationText": "Une vidéo truquée par IA vous prête des propos choquants.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "deepfake_president",
+    "sender": "PRIME_MINISTER",
+    "responseDays": 4,
+    "defaultOption": "deny",
+    "options": [
+     {
+      "id": "deny",
+      "label": "Démenti solennel à la télévision",
+      "hint": "Limite les dégâts",
+      "effects": [
+       {
+        "target": "president.popularity",
+        "amount": -0.01
+       },
+       {
+        "target": "opinion.group.retirees",
+        "amount": -0.004
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "platforms",
+      "label": "Plainte et loi contre les plateformes",
+      "hint": "Fermeté ; débat sur la liberté d'expression",
+      "effects": [
+       {
+        "target": "president.popularity",
+        "amount": 0.005
+       },
+       {
+        "target": "government.parliamentSupport",
+        "amount": -0.005
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "ignore",
+      "label": "Ignorer",
+      "hint": "Le mal est fait",
+      "effects": [
+       {
+        "target": "opinion.group.retirees",
+        "amount": -0.012
+       },
+       {
+        "target": "president.popularity",
+        "amount": -0.02
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   }
+  },
+  {
+   "id": "foreign_interference",
+   "category": "DIPLOMACY",
+   "scope": "FOREIGN_COUNTRY",
+   "baseDailyProbability": 0.0006,
+   "cooldownDays": 300,
+   "urgency": "IMPORTANT",
+   "headline": "Ingérence : {foreignThe} accusé de manipuler l'opinion française",
+   "notificationText": "Des réseaux de faux comptes démantelés.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "foreign_interference",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "denounce",
+    "options": [
+     {
+      "id": "expel",
+      "label": "Expulser des diplomates",
+      "hint": "Fermeté ; représailles probables",
+      "effects": [
+       {
+        "target": "country.DISAGREEMENT",
+        "amount": -0.06
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "REFUSED"
+     },
+     {
+      "id": "denounce",
+      "label": "Dénoncer publiquement",
+      "hint": "Avertissement",
+      "effects": [
+       {
+        "target": "country.DISAGREEMENT",
+        "amount": -0.02
+       },
+       {
+        "target": "alliance.EU.NEGOTIATION_GOODWILL",
+        "amount": 0.01
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "quiet",
+      "label": "Rester discret",
+      "hint": "Pas d'escalade",
+      "effects": [
+       {
+        "target": "opinion.national",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ],
+    "ministry": "foreign"
+   },
+   "conditions": [
+    {
+     "variable": "scope.relation",
+     "max": 0.4
+    }
+   ],
+   "scopeCooldownDays": 900
+  },
+  {
+   "id": "embassy_attack",
+   "category": "DIPLOMACY",
+   "scope": "FOREIGN_COUNTRY",
+   "baseDailyProbability": 0.0005,
+   "cooldownDays": 500,
+   "urgency": "URGENT",
+   "headline": "L'ambassade de France attaquée {foreignIn}",
+   "notificationText": "Des manifestants ont incendié une partie du bâtiment.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "embassy_attack",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "apology",
+    "options": [
+     {
+      "id": "recall",
+      "label": "Rappeler notre ambassadeur",
+      "hint": "Rupture ; fermeté saluée",
+      "effects": [
+       {
+        "target": "country.DISAGREEMENT",
+        "amount": -0.08
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "REFUSED"
+     },
+     {
+      "id": "apology",
+      "label": "Exiger des excuses et des réparations",
+      "hint": "Fermeté mesurée",
+      "effects": [
+       {
+        "target": "country.DISAGREEMENT",
+        "amount": -0.03
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "evacuate",
+      "label": "Évacuer nos ressortissants",
+      "hint": "Coût : 60 M€ ; prudence",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.06
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "ACCEPTED"
+     }
+    ],
+    "ministry": "foreign"
+   },
+   "conditions": [
+    {
+     "variable": "scope.relation",
+     "max": 0.35
+    }
+   ],
+   "scopeCooldownDays": 1500
+  },
+  {
+   "id": "mercosur_deal",
+   "category": "ECONOMY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0005,
+   "cooldownDays": 1000,
+   "urgency": "IMPORTANT",
+   "headline": "Accord UE–Mercosur : les agriculteurs bloquent les routes",
+   "notificationText": "Bruxelles veut signer un grand accord commercial.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "mercosur_deal",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "mirror",
+    "options": [
+     {
+      "id": "block",
+      "label": "Bloquer l'accord",
+      "hint": "Agriculteurs ravis ; Berlin agacé",
+      "effects": [
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.015
+       },
+       {
+        "target": "memory.DEU.DISAGREEMENT",
+        "amount": -0.03
+       },
+       {
+        "target": "alliance.EU.DISAGREEMENT",
+        "amount": -0.01
+       }
+      ],
+      "outcome": "REFUSED"
+     },
+     {
+      "id": "mirror",
+      "label": "Exiger des clauses miroirs",
+      "hint": "Compromis",
+      "effects": [
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.005
+       },
+       {
+        "target": "alliance.EU.NEGOTIATION_GOODWILL",
+        "amount": 0.005
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "support",
+      "label": "Soutenir l'accord",
+      "hint": "Industrie gagnante ; colère rurale",
+      "effects": [
+       {
+        "target": "opinion.group.rural",
+        "amount": -0.02
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": 0.01
+       },
+       {
+        "target": "memory.DEU.NEGOTIATION_GOODWILL",
+        "amount": 0.03
+       }
+      ],
+      "outcome": "ACCEPTED"
+     }
+    ],
+    "ministry": "agriculture"
+   }
+  },
+  {
+   "id": "eu_deficit_procedure",
+   "category": "ECONOMY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0012,
+   "cooldownDays": 365,
+   "urgency": "IMPORTANT",
+   "headline": "Bruxelles ouvre une procédure pour déficit excessif",
+   "notificationText": "La Commission exige un plan de redressement.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "eu_deficit_procedure",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "negotiate",
+    "options": [
+     {
+      "id": "savings",
+      "label": "Plan d'économies crédible",
+      "hint": "Marchés rassurés ; services réduits",
+      "effects": [
+       {
+        "target": "spending.state_operations",
+        "amount": -0.03
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": 0.02
+       },
+       {
+        "target": "alliance.EU.NEGOTIATION_GOODWILL",
+        "amount": 0.02
+       },
+       {
+        "target": "opinion.group.civil_servants",
+        "amount": -0.01
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "negotiate",
+      "label": "Négocier le calendrier",
+      "hint": "Délai obtenu",
+      "effects": [
+       {
+        "target": "alliance.EU.NEGOTIATION_GOODWILL",
+        "amount": 0.005
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "contest",
+      "label": "Contester les règles européennes",
+      "hint": "Souveraineté ; tensions",
+      "effects": [
+       {
+        "target": "alliance.EU.DISAGREEMENT",
+        "amount": -0.03
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": -0.02
+       },
+       {
+        "target": "opinion.group.low_income",
+        "amount": 0.004
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "economy"
+   },
+   "conditions": [
+    {
+     "variable": "economy.deficitRatio",
+     "min": 0.045
+    }
+   ]
+  },
+  {
+   "id": "gas_price_spike",
+   "category": "ENERGY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0007,
+   "cooldownDays": 400,
+   "urgency": "IMPORTANT",
+   "headline": "Le prix du gaz double en un mois",
+   "notificationText": "Tensions sur les marchés mondiaux de l'énergie.",
+   "modifiers": [
+    {
+     "variable": "season.month",
+     "from": 6,
+     "to": 11,
+     "factorAtFrom": 0.6,
+     "factorAtTo": 2.0
+    }
+   ],
+   "immediateEffects": [],
+   "message": {
+    "template": "gas_price_spike",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "wait",
+    "options": [
+     {
+      "id": "shield",
+      "label": "Bouclier pour les artisans et PME",
+      "hint": "Coût : 2 Md€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 2.0
+       },
+       {
+        "target": "opinion.group.self_employed",
+        "amount": 0.012
+       },
+       {
+        "target": "economy.inflation",
+        "amount": -0.001
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "contracts",
+      "label": "Contrats d'approvisionnement à long terme",
+      "hint": "Stabilité ; dépendance",
+      "effects": [
+       {
+        "target": "economy.inflation",
+        "amount": -0.0005
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": 0.005
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "wait",
+      "label": "Attendre la détente des prix",
+      "hint": "Aucun coût ; inflation",
+      "effects": [
+       {
+        "target": "economy.inflation",
+        "amount": 0.003
+       },
+       {
+        "target": "economy.output",
+        "amount": -0.001,
+        "days": 120
+       },
+       {
+        "target": "opinion.group.self_employed",
+        "amount": -0.01
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "ecology"
+   }
+  },
+  {
+   "id": "nuclear_waste_site",
+   "category": "ENERGY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0005,
+   "cooldownDays": 900,
+   "urgency": "INFO",
+   "headline": "Déchets nucléaires : le site d'enfouissement contesté",
+   "notificationText": "Des milliers d'opposants sur place.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "nuclear_waste_site",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "debate",
+    "options": [
+     {
+      "id": "build",
+      "label": "Lancer le chantier avec des compensations",
+      "hint": "Coût : 300 M€ ; filière sécurisée",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.3
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": -0.006
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": 0.005
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "debate",
+      "label": "Débat public",
+      "hint": "Six mois de répit",
+      "effects": [
+       {
+        "target": "opinion.group.young",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "delay",
+      "label": "Repousser la décision",
+      "hint": "Aucun coût ; problème reporté",
+      "effects": [
+       {
+        "target": "economy.businessConfidence",
+        "amount": -0.005
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "ecology"
+   }
+  },
+  {
+   "id": "teen_screens",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0006,
+   "cooldownDays": 900,
+   "urgency": "INFO",
+   "headline": "Écrans et adolescents : l'appel des pédiatres",
+   "notificationText": "Mille médecins demandent d'interdire les réseaux sociaux avant 15 ans.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "teen_screens",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "prevention",
+    "options": [
+     {
+      "id": "ban",
+      "label": "Interdire les réseaux sociaux avant 15 ans",
+      "hint": "Parents ravis ; jeunes furieux",
+      "effects": [
+       {
+        "target": "opinion.group.adults",
+        "amount": 0.01
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": -0.008
+       },
+       {
+        "target": "quality.education",
+        "amount": 0.005
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "prevention",
+      "label": "Campagne de prévention",
+      "hint": "Coût : 50 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.05
+       },
+       {
+        "target": "opinion.group.adults",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "families",
+      "label": "Laisser faire les familles",
+      "hint": "Aucun coût",
+      "effects": [
+       {
+        "target": "opinion.group.adults",
+        "amount": -0.004
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "education"
+   }
+  },
+  {
+   "id": "stadium_violence",
+   "category": "SECURITY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0007,
+   "cooldownDays": 300,
+   "urgency": "IMPORTANT",
+   "headline": "Violences au stade : un match tourne à l'émeute",
+   "notificationText": "Des dizaines de blessés.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "stadium_violence",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "federation",
+    "options": [
+     {
+      "id": "bans",
+      "label": "Interdictions de stade massives",
+      "hint": "Fermeté",
+      "effects": [
+       {
+        "target": "quality.security",
+        "amount": 0.004
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": 0.004
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "cameras",
+      "label": "Reconnaissance faciale dans les stades",
+      "hint": "Efficace ; libertés en débat",
+      "effects": [
+       {
+        "target": "quality.security",
+        "amount": 0.008
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": -0.006
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "federation",
+      "label": "Laisser la fédération sanctionner",
+      "hint": "Aucun coût",
+      "effects": [
+       {
+        "target": "opinion.national",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "interior"
+   }
+  },
+  {
+   "id": "tech_hq",
+   "category": "ECONOMY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0005,
+   "cooldownDays": 700,
+   "urgency": "INFO",
+   "headline": "Un géant du numérique choisit Paris pour son siège européen",
+   "notificationText": "Des milliers d'emplois qualifiés à la clé.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "tech_hq",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "standard",
+    "options": [
+     {
+      "id": "vip",
+      "label": "Accompagnement exceptionnel",
+      "hint": "Coût : 200 M€ ; siège quasi assuré",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.2
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": 0.02
+       },
+       {
+        "target": "economy.output",
+        "amount": 0.001,
+        "days": 365
+       },
+       {
+        "target": "opinion.group.low_income",
+        "amount": -0.003
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "standard",
+      "label": "Offre standard",
+      "hint": "Chances moyennes",
+      "effects": [
+       {
+        "target": "economy.businessConfidence",
+        "amount": 0.005
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "refuse",
+      "label": "Aucune faveur fiscale",
+      "hint": "Principe",
+      "effects": [
+       {
+        "target": "opinion.group.low_income",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "economy"
+   }
+  },
+  {
+   "id": "ski_no_snow",
+   "category": "ECONOMY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0008,
+   "cooldownDays": 365,
+   "urgency": "INFO",
+   "headline": "Stations de ski sans neige : la montagne en détresse",
+   "notificationText": "Saison catastrophique dans les Alpes et les Pyrénées.",
+   "modifiers": [
+    {
+     "variable": "season.month",
+     "from": 1,
+     "to": 12,
+     "factorAtFrom": 2.5,
+     "factorAtTo": 2.0
+    }
+   ],
+   "immediateEffects": [],
+   "message": {
+    "template": "ski_no_snow",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "emergency",
+    "options": [
+     {
+      "id": "diversify",
+      "label": "Plan de diversification quatre saisons",
+      "hint": "Coût : 500 M€ ; effet durable",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.5
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.006
+       },
+       {
+        "target": "quality.environment",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "cannons",
+      "label": "Financer des canons à neige",
+      "hint": "Coût : 200 M€ ; écologistes furieux",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.2
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.004
+       },
+       {
+        "target": "quality.environment",
+        "amount": -0.005
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "emergency",
+      "label": "Aide d'urgence aux saisonniers",
+      "hint": "Coût : 100 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.1
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "NEUTRAL"
+     }
+    ],
+    "ministry": "economy"
+   }
+  }
+ ]
+}
