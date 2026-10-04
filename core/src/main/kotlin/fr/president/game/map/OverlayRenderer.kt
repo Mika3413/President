@@ -72,7 +72,7 @@ class OverlayRenderer(
         for ((m, p) in visibleMarkers.sortedBy { it.first.rank }) {
             if (m.kind == MarkerKind.CITY || lod == Lod.LOCAL) label(m.label, p.x + LABEL_OFFSET, p.y + LABEL_OFFSET, if (m.rank == 1) labelFont else smallFont, Theme.text)
         }
-        drawAreaLabels(camera, lod)
+        drawAreaLabels(camera, lod, layer, state)
         units.labels(batch, session)
         batch.end()
     }
@@ -149,7 +149,18 @@ class OverlayRenderer(
         return null
     }
 
-    private fun drawAreaLabels(camera: OrthographicCamera, lod: Lod) {
+    private fun drawAreaLabels(camera: OrthographicCamera, lod: Lod, layer: ThematicLayer, state: fr.president.engine.world.WorldState) {
+        // Couche thématique : le chiffre de chaque département, lisible sans rien toucher.
+        if (layer.heatmap && lod != Lod.WORLD && lod != Lod.EUROPE) {
+            val named = lod != Lod.FRANCE
+            data.departments.forEach { f ->
+                val value = state.territory.departments[f.id]?.let { layer.figure(it) } ?: return@forEach
+                toScreen(camera, f.labelX, f.labelY)?.let {
+                    label(if (named) "${f.name} · $value" else value, it.x, it.y - REGION_LABEL_DROP, if (named) smallFont else labelFont, Theme.text, centered = true)
+                }
+            }
+            return
+        }
         when (lod) {
             Lod.WORLD, Lod.EUROPE -> data.countries.filter { it.area > MIN_LABEL_AREA * (if (lod == Lod.WORLD) WORLD_LABEL_FACTOR else 1f) }
                 .sortedByDescending { it.area }.forEach { f -> toScreen(camera, f.labelX, f.labelY)?.let { label(f.name.uppercase(), it.x, it.y, smallFont, Theme.textMuted, centered = true) } }

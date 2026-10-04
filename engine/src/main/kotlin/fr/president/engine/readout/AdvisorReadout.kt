@@ -11,7 +11,7 @@ import fr.president.engine.util.Formatting
  */
 class AdvisorReadout(private val ctx: SimulationContext) {
 
-    enum class Target { INBOX, DEPARTMENT, COUNTRY, ECONOMY, ELECTIONS, GOVERNMENT }
+    enum class Target { INBOX, DEPARTMENT, COUNTRY, ECONOMY, ELECTIONS, GOVERNMENT, DECISIONS }
 
     data class Advice(val icon: String, val text: String, val target: Target, val targetId: String? = null, val tone: Tone, val priority: Int)
 
@@ -63,13 +63,34 @@ class AdvisorReadout(private val ctx: SimulationContext) {
                 list += Advice("☎", "Relations tendues avec ${names.the} : appelez son dirigeant ou faites pression", Target.COUNTRY, id, Tone.WARNING, PRIORITY_DIPLOMACY)
             }
 
+        unhappyGroup()?.let { list += it }
+
         if (ctx.state.government.parliamentSupport < WEAK_PARLIAMENT) {
             list += Advice("⌂", "Assemblée hésitante : vos lois risquent d'être rejetées", Target.GOVERNMENT, null, Tone.WARNING, PRIORITY_PARLIAMENT)
         }
         if (list.isEmpty()) {
-            list += Advice("★", "Tout va bien : touchez un département pour y agir, ou un pays pour négocier", Target.ECONOMY, null, Tone.GOOD, 0)
+            list += Advice("★", "Tout va bien : prenez une décision, touchez un département pour y agir ou un pays pour négocier", Target.DECISIONS, null, Tone.GOOD, 0)
         }
         return list.sortedByDescending { it.priority }.take(limit)
+    }
+
+    /**
+     * Le groupe social qui vous soutient le moins, et la décision disponible qui lui plairait le plus :
+     * le conseil mène directement à la bonne rubrique du panneau « Décider ».
+     */
+    private fun unhappyGroup(): Advice? {
+        val defs = ctx.playerData.socialGroups?.groups ?: return null
+        val (group, opinion) = defs.mapNotNull { d -> ctx.state.opinion.groups[d.id]?.let { d to it.effective } }
+            .minByOrNull { it.second } ?: return null
+        if (opinion > UNHAPPY_GROUP) return null
+        val target = "opinion.group.${group.id}"
+        val decisions = fr.president.engine.session.NationalActionCommands(ctx)
+        val best = decisions.actions().filter { it.blocker == null }
+            .map { v -> v to (v.def.immediate + v.def.onCompletion).filter { it.target == target }.sumOf { it.amount } }
+            .filter { it.second > 0 }
+            .maxByOrNull { it.second }?.first ?: return null
+        return Advice("♥", "${group.label} : ${Formatting.wholePercent(opinion)} d'opinions favorables. Piste : « ${best.def.label} »",
+            Target.DECISIONS, best.def.category, Tone.WARNING, PRIORITY_GROUP + ((UNHAPPY_GROUP - opinion) * SCALE).toInt())
     }
 
     private companion object {
@@ -89,5 +110,7 @@ class AdvisorReadout(private val ctx: SimulationContext) {
         const val PRIORITY_LOCAL = 30
         const val PRIORITY_PARLIAMENT = 35
         const val PRIORITY_DIPLOMACY = 20
+        const val PRIORITY_GROUP = 25
+        const val UNHAPPY_GROUP = 0.38
     }
 }

@@ -1,8 +1,15 @@
 {
   "_doc": "Actions directes du président sur un département (fiche du département). Cibles « local.<champ> » = département choisi. Voir LocalActionCommands.",
+  "categories": [
+    { "id": "services", "label": "Services publics", "icon": "✚" },
+    { "id": "jobs", "label": "Emploi", "icon": "⚒" },
+    { "id": "security", "label": "Sécurité", "icon": "⚑" },
+    { "id": "living", "label": "Cadre de vie", "icon": "♻" },
+    { "id": "presence", "label": "Présence", "icon": "☀" }
+  ],
   "actions": [
     {
-      "id": "visit", "label": "Visite présidentielle", "icon": "☀",
+      "id": "visit", "label": "Visite présidentielle", "icon": "☀", "category": "presence",
       "description": "Vous vous rendez sur place : poignées de main, annonces, couverture médiatique.",
       "cooldownDays": 120, "globalCooldownDays": 7,
       "immediate": [
@@ -11,7 +18,7 @@
       ]
     },
     {
-      "id": "health_center", "label": "Maison de santé", "icon": "⚕",
+      "id": "health_center", "label": "Maison de santé", "icon": "⚕", "category": "services",
       "description": "Regrouper médecins et infirmiers dans un centre de proximité. Rapide et peu coûteux.",
       "costBillions": 0.02, "durationDays": 120, "cooldownDays": 365,
       "onCompletion": [
@@ -20,7 +27,7 @@
       ]
     },
     {
-      "id": "hospital", "label": "Construire un hôpital", "icon": "✚",
+      "id": "hospital", "label": "Construire un hôpital", "icon": "✚", "category": "services",
       "description": "Un grand hôpital moderne : chantier long et coûteux, mais un vrai changement pour les habitants.",
       "costBillions": 0.3, "durationDays": 540, "cooldownDays": 1460,
       "immediate": [ { "target": "local.approval", "amount": 0.01 } ],
@@ -32,7 +39,7 @@
       ]
     },
     {
-      "id": "school", "label": "Ouvrir un lycée", "icon": "★",
+      "id": "school", "label": "Ouvrir un lycée", "icon": "★", "category": "services",
       "description": "Un nouveau lycée : des classes moins chargées et des familles satisfaites.",
       "costBillions": 0.06, "durationDays": 365, "cooldownDays": 1095,
       "onCompletion": [
@@ -42,7 +49,7 @@
       ]
     },
     {
-      "id": "police", "label": "Renforts de police", "icon": "⚑",
+      "id": "police", "label": "Renforts de police", "icon": "⚑", "category": "security",
       "description": "Plus de policiers et de gendarmes sur le terrain, un commissariat rénové.",
       "costBillions": 0.05, "durationDays": 90, "cooldownDays": 365,
       "onCompletion": [
@@ -51,7 +58,7 @@
       ]
     },
     {
-      "id": "jobs_plan", "label": "Plan emploi local", "icon": "€",
+      "id": "jobs_plan", "label": "Plan emploi local", "icon": "€", "category": "jobs",
       "description": "Formations, aides à l'embauche et accompagnement des chômeurs du territoire.",
       "costBillions": 0.08, "durationDays": 60, "cooldownDays": 365,
       "immediate": [ { "target": "local.approval", "amount": 0.01 } ],
@@ -61,7 +68,7 @@
       ]
     },
     {
-      "id": "factory", "label": "Attirer une usine", "icon": "⚒",
+      "id": "factory", "label": "Attirer une usine", "icon": "⚒", "category": "jobs",
       "description": "Subventions et terrain offert pour qu'un industriel s'installe. Des emplois, mais plus de pollution.",
       "costBillions": 0.25, "durationDays": 365, "cooldownDays": 1095,
       "immediate": [ { "target": "local.approval", "amount": 0.01 } ],
@@ -74,7 +81,7 @@
       ]
     },
     {
-      "id": "green_energy", "label": "Parc solaire et éolien", "icon": "⚡",
+      "id": "green_energy", "label": "Parc solaire et éolien", "icon": "⚡", "category": "living",
       "description": "Produire une électricité propre sur le territoire. Air plus pur, quelques emplois.",
       "costBillions": 0.2, "durationDays": 450, "cooldownDays": 1095,
       "onCompletion": [
@@ -84,7 +91,7 @@
       ]
     },
     {
-      "id": "transport", "label": "Ligne de tram ou de train", "icon": "▶",
+      "id": "transport", "label": "Ligne de tram ou de train", "icon": "▶", "category": "living",
       "description": "Désenclaver le territoire : moins de voitures, plus d'accès à l'emploi.",
       "costBillions": 0.4, "durationDays": 900, "cooldownDays": 1825,
       "onCompletion": [
@@ -95,12 +102,87 @@
       ]
     },
     {
-      "id": "housing", "label": "Logements sociaux", "icon": "⌂",
+      "id": "housing", "label": "Logements sociaux", "icon": "⌂", "category": "living",
       "description": "Construire des logements abordables pour les familles et les jeunes actifs.",
       "costBillions": 0.15, "durationDays": 540, "cooldownDays": 1095,
       "onCompletion": [
         { "target": "local.approval", "amount": 0.03 },
         { "target": "local.unemployment", "amount": -0.001 }
+      ]
+    },
+    {
+      "id": "doctors", "label": "Attirer des médecins", "icon": "⚕", "category": "services",
+      "description": "Bourses d'installation et logement offert aux jeunes médecins : contre les déserts médicaux.",
+      "costBillions": 0.01, "durationDays": 180, "cooldownDays": 730,
+      "onCompletion": [
+        { "target": "local.healthAccess", "amount": 0.04 },
+        { "target": "local.approval", "amount": 0.015 }
+      ]
+    },
+    {
+      "id": "gendarmerie", "label": "Brigade de gendarmerie", "icon": "✪", "category": "security",
+      "description": "Rouvrir une brigade dans les communes rurales : présence et réactivité.",
+      "costBillions": 0.015, "durationDays": 120, "cooldownDays": 730,
+      "onCompletion": [
+        { "target": "local.crime", "amount": -0.05 },
+        { "target": "local.approval", "amount": 0.01 }
+      ]
+    },
+    {
+      "id": "training", "label": "Centre de formation", "icon": "✎", "category": "jobs",
+      "description": "Former les chômeurs aux métiers qui recrutent dans le bassin d'emploi.",
+      "costBillions": 0.03, "durationDays": 240, "cooldownDays": 730,
+      "onCompletion": [
+        { "target": "local.unemployment", "amount": -0.003 },
+        { "target": "local.approval", "amount": 0.01 }
+      ]
+    },
+    {
+      "id": "free_zone", "label": "Zone franche", "icon": "◆", "category": "jobs",
+      "description": "Exonérations fiscales pour les entreprises qui s'installent : des emplois, mais un manque à gagner.",
+      "costBillions": 0.12, "durationDays": 365, "cooldownDays": 1825,
+      "onCompletion": [
+        { "target": "local.unemployment", "amount": -0.004 },
+        { "target": "local.industry", "amount": 0.008 },
+        { "target": "local.approval", "amount": 0.015 }
+      ]
+    },
+    {
+      "id": "fiber", "label": "Fibre et réseau mobile", "icon": "◎", "category": "jobs",
+      "description": "Raccorder les dernières zones blanches : télétravail, commerces et services en ligne.",
+      "costBillions": 0.05, "durationDays": 365, "cooldownDays": 1825,
+      "onCompletion": [
+        { "target": "local.approval", "amount": 0.02 },
+        { "target": "local.unemployment", "amount": -0.001 }
+      ]
+    },
+    {
+      "id": "cleanup", "label": "Dépolluer un site industriel", "icon": "♻", "category": "living",
+      "description": "Assainir les sols et les rivières d'une friche : plus sain, et des terrains réutilisables.",
+      "costBillions": 0.08, "durationDays": 540, "cooldownDays": 1460,
+      "onCompletion": [
+        { "target": "local.pollution", "amount": -0.08 },
+        { "target": "local.approval", "amount": 0.015 }
+      ]
+    },
+    {
+      "id": "university", "label": "Antenne universitaire", "icon": "★", "category": "services",
+      "description": "Des étudiants qui restent au pays, des laboratoires qui attirent des entreprises.",
+      "costBillions": 0.2, "durationDays": 730, "cooldownDays": 3650,
+      "onCompletion": [
+        { "target": "local.approval", "amount": 0.025 },
+        { "target": "local.unemployment", "amount": -0.002 },
+        { "target": "local.industry", "amount": 0.003 }
+      ]
+    },
+    {
+      "id": "factory_rescue", "label": "Sauver une usine menacée", "icon": "⚒", "category": "jobs",
+      "description": "L'État entre au capital pour éviter une fermeture. Cher, mais les emplois sont préservés.",
+      "costBillions": 0.15, "cooldownDays": 1095,
+      "immediate": [
+        { "target": "local.approval", "amount": 0.03 },
+        { "target": "local.unemployment", "amount": -0.002 },
+        { "target": "local.industry", "amount": 0.004 }
       ]
     }
   ]

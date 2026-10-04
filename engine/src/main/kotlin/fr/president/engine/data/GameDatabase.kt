@@ -20,6 +20,7 @@ class CountryData(
     val reforms: fr.president.engine.government.ReformsFile? = null,
     val promises: fr.president.engine.government.PromisesFile? = null,
     val localActions: fr.president.engine.territory.LocalActionsFile? = null,
+    val nationalActions: fr.president.engine.territory.NationalActionsFile? = null,
 ) {
     val id: String get() = definition.id
 }

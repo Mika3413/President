@@ -113,7 +113,7 @@ class UiSkin(private val scale: Float) : Disposable {
         const val LIGHTEN = 0.25f
         const val REGULAR = "fonts/DejaVuSans.ttf"
         const val BOLD = "fonts/DejaVuSans-Bold.ttf"
-        const val EXTRA_CHARS = "àâäæçéèêëîïôöœùûüÿÀÂÄÆÇÉÈÊËÎÏÔÖŒÙÛÜŸ€–—’‘“”«»…•→←↑↓★·°²✕−▲▼▶●◆♥⚔⚖⚙✉⚡☀✚⚑⌂☎✈⚓☢⚒⚕♻☰✔✖↻⚠☮◀"
+        const val EXTRA_CHARS = "àâäæçéèêëîïôöœùûüÿÀÂÄÆÇÉÈÊËÎÏÔÖŒÙÛÜŸ€–—’‘“”«»…•→←↑↓★·°²✕−▲▼▶●◆♥⚔⚖⚙✉⚡☀✚⚑⌂☎✈⚓☢⚒⚕♻☰✔✖↻⚠☮◀‖⊘⌘▣◎☼⚇⚐⚲✂✎✪✹✿❄"
         const val MIN_PIXEL_SIZE = 8
         const val BUTTON_PAD_X = 10f
         const val BUTTON_PAD_Y = 6f

@@ -55,6 +55,8 @@ object Theme {
     val catSettings = Color.valueOf("5c7080")
     val catHelp = Color.valueOf("1fa3c4")
     val catLocal = Color.valueOf("2f9e6e")
+    /** Bouton « Décider », mis en avant : le cœur du jeu. */
+    val highlightDark = Color.valueOf("c98a12")
 
     fun tone(t: Tone): Color = when (t) {
         Tone.GOOD -> good

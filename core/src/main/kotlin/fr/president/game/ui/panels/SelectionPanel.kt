@@ -10,7 +10,15 @@ import fr.president.game.ui.widgets.SheetView
 /** Panneau contextuel ouvert depuis la carte : territoire, ville, équipement, base, pays. */
 class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel(ui, onClose) {
     var selection: MapSelection? = null
+        set(value) {
+            if (value != field) { tab = Tab.SUMMARY; message = null }
+            field = value
+        }
     private var message: String? = null
+    private var tab = Tab.SUMMARY
+
+    /** Onglets des fiches de territoire : l'essentiel d'abord, l'action ensuite, le détail sur demande. */
+    private enum class Tab(val label: String) { SUMMARY("Résumé"), ACT("▶ Agir"), DETAILS("Détails") }
     private val session get() = nav.session
 
     override val title: String
@@ -28,23 +36,18 @@ class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
     override fun build(into: Table) {
         message?.let { into.add(ui.label(it, "small", Theme.accent, wrap = true)).padBottom(GAP).row() }
         when (val s = selection) {
-            is MapSelection.Department -> {
-                localActions.build(into, s.code)
-                into.add(ui.label("Situation", "title")).padTop(GAP).row()
-                into.add(SheetView(ui, session.local.department(s.code), expanded)).row()
-                electedTalk(into, session.state.territory.departments[s.code]?.presidentId)
-                val region = session.state.territory.departments.getValue(s.code).region
-                into.add(ui.button("Voir la région", "default") { nav.select(MapSelection.Region(region)) }).left().row()
-            }
+            is MapSelection.Department -> buildDepartment(into, s.code)
             is MapSelection.Region -> {
-                into.add(SheetView(ui, session.local.region(s.code), expanded)).row()
+                tabs(into, listOf(Tab.SUMMARY, Tab.DETAILS))
+                into.add(SheetView(ui, session.local.region(s.code), expanded, compact = tab == Tab.SUMMARY)).row()
                 electedTalk(into, session.state.territory.regions[s.code]?.presidentId)
             }
             is MapSelection.City -> {
-                into.add(SheetView(ui, session.local.city(s.id), expanded)).row()
+                tabs(into, listOf(Tab.SUMMARY, Tab.DETAILS))
+                into.add(SheetView(ui, session.local.city(s.id), expanded, compact = tab == Tab.SUMMARY)).row()
                 electedTalk(into, session.state.territory.cities[s.id]?.mayorId)
                 session.state.territory.cities[s.id]?.department?.let { code ->
-                    into.add(ui.colorButton("Agir dans le département", Theme.catLocal) { nav.select(MapSelection.Department(code)) }).left().padTop(GAP).row()
+                    into.add(ui.colorButton("▶ Agir dans le département", Theme.catLocal) { nav.select(MapSelection.Department(code)); tab = Tab.ACT; nav.refresh() }).left().padTop(GAP).row()
                 }
             }
             is MapSelection.Infrastructure -> buildInfrastructure(into, s.id)
@@ -55,7 +58,40 @@ class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
         }
     }
 
-    private val localActions = fr.president.game.ui.widgets.LocalActionList(ui, nav.session) { result ->
+    private fun buildDepartment(into: Table, code: String) {
+        val available = localActions.availableCount(code)
+        tabs(into, listOf(Tab.SUMMARY, Tab.ACT, Tab.DETAILS), mapOf(Tab.ACT to available))
+        when (tab) {
+            Tab.SUMMARY -> {
+                into.add(SheetView(ui, session.local.department(code), expanded, compact = true)).row()
+                if (available > 0) {
+                    into.add(ui.colorButton("▶ Agir ici : $available action(s) possible(s)", Theme.catLocal) { tab = Tab.ACT; nav.refresh() }).growX().padTop(4f).row()
+                }
+                electedTalk(into, session.state.territory.departments[code]?.presidentId)
+                val region = session.state.territory.departments.getValue(code).region
+                into.add(ui.button("Voir la région", "flat") { nav.select(MapSelection.Region(region)) }).left().row()
+            }
+            Tab.ACT -> {
+                into.add(ui.label("Lancez des chantiers et des plans locaux. Vert : ce qui s'améliore ; rouge : ce qui se dégrade.", "muted", wrap = true)).padBottom(4f).row()
+                localActions.build(into, code)
+            }
+            Tab.DETAILS -> into.add(SheetView(ui, session.local.department(code), expanded)).row()
+        }
+    }
+
+    /** Barre d'onglets ; un nombre en pastille signale ce qui est possible dans l'onglet. */
+    private fun tabs(into: Table, list: List<Tab>, badges: Map<Tab, Int> = emptyMap()) {
+        if (tab !in list) tab = list.first()
+        val bar = Table().apply { defaults().padRight(4f) }
+        list.forEach { t ->
+            val n = badges[t] ?: 0
+            val label = if (n > 0) "${t.label} ($n)" else t.label
+            bar.add(ui.button(label, "toggle") { tab = t; nav.refresh() }.also { it.isChecked = t == tab })
+        }
+        into.add(bar).left().padBottom(GAP).row()
+    }
+
+    private val localActions = fr.president.game.ui.widgets.LocalActionList(ui, nav.session, { nav.refresh() }) { result ->
         message = result
         nav.refresh()
     }

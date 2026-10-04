@@ -1,0 +1,1189 @@
+{
+ "_doc": "Décisions nationales du président (panneau « Décider »). Généré par tools/datagen/national_actions_fr.py.",
+ "categories": [
+  {
+   "id": "economy",
+   "label": "Économie",
+   "icon": "€",
+   "description": "Relance, pouvoir d'achat, industrie, finances publiques."
+  },
+  {
+   "id": "social",
+   "label": "Social",
+   "icon": "♥",
+   "description": "Emploi, santé, logement, solidarité."
+  },
+  {
+   "id": "security",
+   "label": "Sécurité",
+   "icon": "⚑",
+   "description": "Police, justice, frontières, ordre public."
+  },
+  {
+   "id": "ecology",
+   "label": "Écologie",
+   "icon": "♻",
+   "description": "Climat, énergie, transports du quotidien."
+  },
+  {
+   "id": "institutions",
+   "label": "Institutions",
+   "icon": "⚖",
+   "description": "Démocratie, territoires, vie publique."
+  },
+  {
+   "id": "communication",
+   "label": "Communication",
+   "icon": "☀",
+   "description": "Prises de parole et déplacements du président."
+  },
+  {
+   "id": "international",
+   "label": "International",
+   "icon": "☎",
+   "description": "Déplacements et initiatives diplomatiques."
+  },
+  {
+   "id": "defense",
+   "label": "Défense",
+   "icon": "⚔",
+   "description": "Armées, stocks, alliances militaires."
+  }
+ ],
+ "actions": [
+  {
+   "id": "stimulus_plan",
+   "label": "Plan de relance",
+   "icon": "▲",
+   "category": "economy",
+   "description": "Commande publique, aides à l'investissement, chantiers : l'activité repart, la dette aussi.",
+   "costBillions": 20,
+   "durationDays": 365,
+   "cooldownDays": 1095,
+   "immediate": [
+    {
+     "target": "economy.output",
+     "amount": 0.004,
+     "days": 365
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": 0.02
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "economy.unemployment",
+     "amount": -0.002,
+     "days": 180
+    }
+   ]
+  },
+  {
+   "id": "energy_cheque",
+   "label": "Chèque énergie",
+   "icon": "⚡",
+   "category": "economy",
+   "description": "Une aide directe aux ménages modestes pour payer le chauffage et l'électricité.",
+   "costBillions": 4,
+   "cooldownDays": 365,
+   "immediate": [
+    {
+     "target": "opinion.group.low_income",
+     "amount": 0.03
+    },
+    {
+     "target": "opinion.group.middle_income",
+     "amount": 0.01
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": 0.01
+    }
+   ]
+  },
+  {
+   "id": "price_shield",
+   "label": "Bouclier tarifaire",
+   "icon": "◆",
+   "category": "economy",
+   "description": "L'État plafonne la hausse des prix de l'énergie pendant six mois. Efficace, mais très cher.",
+   "costBillions": 10,
+   "durationDays": 180,
+   "cooldownDays": 730,
+   "immediate": [
+    {
+     "target": "economy.inflation",
+     "amount": -0.003,
+     "days": 60
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": 0.015
+    },
+    {
+     "target": "opinion.national",
+     "amount": 0.005
+    }
+   ]
+  },
+  {
+   "id": "red_tape",
+   "label": "Choc de simplification",
+   "icon": "✂",
+   "category": "economy",
+   "description": "Suppression de formulaires et de normes : les entreprises respirent, l'administration grince.",
+   "durationDays": 365,
+   "cooldownDays": 1460,
+   "immediate": [
+    {
+     "target": "opinion.group.self_employed",
+     "amount": 0.03
+    },
+    {
+     "target": "opinion.group.civil_servants",
+     "amount": -0.02
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "economy.businessConfidence",
+     "amount": 0.02
+    },
+    {
+     "target": "economy.potentialGrowth",
+     "amount": 0.0005,
+     "days": 365
+    }
+   ]
+  },
+  {
+   "id": "industry_plan",
+   "label": "Plan France Industrie",
+   "icon": "⚒",
+   "category": "economy",
+   "description": "Batteries, semi-conducteurs, médicaments : relocaliser les productions stratégiques.",
+   "costBillions": 8,
+   "durationDays": 730,
+   "cooldownDays": 1460,
+   "immediate": [
+    {
+     "target": "economy.businessConfidence",
+     "amount": 0.01
+    },
+    {
+     "target": "opinion.group.private_employees",
+     "amount": 0.01
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "economy.potentialGrowth",
+     "amount": 0.001,
+     "days": 730
+    },
+    {
+     "target": "economy.unemployment",
+     "amount": -0.001,
+     "days": 365
+    }
+   ]
+  },
+  {
+   "id": "spending_freeze",
+   "label": "Gel des dépenses de l'État",
+   "icon": "❄",
+   "category": "economy",
+   "description": "Pas de nouvelles embauches ni de crédits supplémentaires : un signal aux marchés et à Bruxelles.",
+   "cooldownDays": 730,
+   "immediate": [
+    {
+     "target": "spending.state_operations",
+     "amount": -0.03
+    },
+    {
+     "target": "opinion.group.civil_servants",
+     "amount": -0.04
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": 0.01
+    },
+    {
+     "target": "alliance.EU.NEGOTIATION_GOODWILL",
+     "amount": 0.01
+    }
+   ]
+  },
+  {
+   "id": "tax_fraud",
+   "label": "Offensive contre la fraude fiscale",
+   "icon": "⚖",
+   "category": "economy",
+   "description": "Contrôleurs supplémentaires et croisement des fichiers : plusieurs milliards récupérés au bout d'un an.",
+   "costBillions": 0.3,
+   "durationDays": 365,
+   "cooldownDays": 730,
+   "immediate": [
+    {
+     "target": "opinion.group.high_income",
+     "amount": -0.02
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": 0.01
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "budget.oneOff",
+     "amount": -4
+    }
+   ]
+  },
+  {
+   "id": "purchasing_bonus",
+   "label": "Prime de pouvoir d'achat",
+   "icon": "€",
+   "category": "economy",
+   "description": "Les entreprises peuvent verser une prime défiscalisée à leurs salariés.",
+   "cooldownDays": 730,
+   "immediate": [
+    {
+     "target": "opinion.group.private_employees",
+     "amount": 0.03
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": -0.02
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": 0.01
+    }
+   ]
+  },
+  {
+   "id": "minimum_income",
+   "label": "Revaloriser les minima sociaux",
+   "icon": "✚",
+   "category": "social",
+   "description": "RSA, minimum vieillesse et allocations relevés plus vite que les prix.",
+   "costBillions": 3,
+   "cooldownDays": 730,
+   "immediate": [
+    {
+     "target": "opinion.group.low_income",
+     "amount": 0.04
+    },
+    {
+     "target": "opinion.group.inactive",
+     "amount": 0.03
+    },
+    {
+     "target": "opinion.group.high_income",
+     "amount": -0.01
+    },
+    {
+     "target": "spending.solidarity",
+     "amount": 0.02
+    }
+   ]
+  },
+  {
+   "id": "youth_jobs",
+   "label": "Un jeune, une solution",
+   "icon": "★",
+   "category": "social",
+   "description": "Apprentissage, contrats aidés et formations pour les moins de 26 ans.",
+   "costBillions": 6,
+   "durationDays": 365,
+   "cooldownDays": 1095,
+   "immediate": [
+    {
+     "target": "opinion.group.young",
+     "amount": 0.04
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "economy.unemployment",
+     "amount": -0.0015,
+     "days": 180
+    }
+   ]
+  },
+  {
+   "id": "hospital_plan",
+   "label": "Plan d'urgence pour l'hôpital",
+   "icon": "⚕",
+   "category": "social",
+   "description": "Primes, recrutements et lits rouverts dans les services les plus en difficulté.",
+   "costBillions": 5,
+   "durationDays": 180,
+   "cooldownDays": 1095,
+   "immediate": [
+    {
+     "target": "opinion.group.civil_servants",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.national",
+     "amount": 0.004
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "quality.health",
+     "amount": 0.02,
+     "days": 180
+    }
+   ]
+  },
+  {
+   "id": "housing_plan",
+   "label": "Plan logement",
+   "icon": "⌂",
+   "category": "social",
+   "description": "Construire, rénover, encadrer les loyers dans les villes les plus chères.",
+   "costBillions": 7,
+   "durationDays": 730,
+   "cooldownDays": 1460,
+   "immediate": [
+    {
+     "target": "opinion.group.young",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.high_income",
+     "amount": -0.01
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "economy.output",
+     "amount": 0.002,
+     "days": 365
+    }
+   ]
+  },
+  {
+   "id": "carers_plan",
+   "label": "Plan grand âge",
+   "icon": "♥",
+   "category": "social",
+   "description": "Aides à domicile, EHPAD contrôlés et mieux dotés.",
+   "costBillions": 3,
+   "durationDays": 365,
+   "cooldownDays": 1460,
+   "immediate": [
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.03
+    },
+    {
+     "target": "opinion.group.retirees",
+     "amount": 0.02
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "quality.social",
+     "amount": 0.01,
+     "days": 180
+    }
+   ]
+  },
+  {
+   "id": "school_plan",
+   "label": "Plan pour l'école",
+   "icon": "✎",
+   "category": "social",
+   "description": "Classes dédoublées, enseignants mieux payés, soutien scolaire gratuit.",
+   "costBillions": 4,
+   "durationDays": 365,
+   "cooldownDays": 1460,
+   "immediate": [
+    {
+     "target": "opinion.group.civil_servants",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.adults",
+     "amount": 0.01
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "quality.education",
+     "amount": 0.02,
+     "days": 365
+    }
+   ]
+  },
+  {
+   "id": "state_of_emergency",
+   "label": "Déclarer l'état d'urgence",
+   "icon": "⚠",
+   "category": "security",
+   "description": "Pouvoirs exceptionnels pendant trois mois : perquisitions, assignations, interdictions de rassemblement.",
+   "durationDays": 90,
+   "cooldownDays": 365,
+   "immediate": [
+    {
+     "target": "quality.security",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": -0.03
+    },
+    {
+     "target": "government.parliamentSupport",
+     "amount": -0.02
+    }
+   ]
+  },
+  {
+   "id": "police_hiring",
+   "label": "Recruter 10 000 policiers et gendarmes",
+   "icon": "⚑",
+   "category": "security",
+   "description": "Plus de forces sur le terrain d'ici deux ans.",
+   "costBillions": 1.5,
+   "durationDays": 730,
+   "cooldownDays": 1460,
+   "immediate": [
+    {
+     "target": "spending.police",
+     "amount": 0.03
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.01
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "quality.security",
+     "amount": 0.03,
+     "days": 180
+    }
+   ]
+  },
+  {
+   "id": "fast_justice",
+   "label": "Justice de proximité",
+   "icon": "⚖",
+   "category": "security",
+   "description": "Magistrats et greffiers recrutés, procédures accélérées pour les petits délits.",
+   "costBillions": 0.8,
+   "durationDays": 365,
+   "cooldownDays": 1095,
+   "immediate": [
+    {
+     "target": "opinion.group.adults",
+     "amount": 0.01
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "quality.justice",
+     "amount": 0.03,
+     "days": 180
+    }
+   ]
+  },
+  {
+   "id": "border_controls",
+   "label": "Renforcer les contrôles aux frontières",
+   "icon": "⊘",
+   "category": "security",
+   "description": "Contrôles rétablis aux frontières intérieures et reconduites accélérées.",
+   "costBillions": 0.5,
+   "cooldownDays": 730,
+   "immediate": [
+    {
+     "target": "demography.immigration",
+     "amount": -0.15,
+     "days": 180
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.01
+    },
+    {
+     "target": "opinion.group.urban",
+     "amount": -0.01
+    },
+    {
+     "target": "alliance.EU.DISAGREEMENT",
+     "amount": -0.01
+    }
+   ]
+  },
+  {
+   "id": "drug_plan",
+   "label": "Plan contre le narcotrafic",
+   "icon": "✖",
+   "category": "security",
+   "description": "Brigades spécialisées, saisies d'avoirs, coopération avec les ports.",
+   "costBillions": 0.6,
+   "durationDays": 365,
+   "cooldownDays": 1095,
+   "immediate": [
+    {
+     "target": "opinion.group.urban",
+     "amount": 0.01
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.01
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "quality.security",
+     "amount": 0.02,
+     "days": 180
+    }
+   ]
+  },
+  {
+   "id": "home_renovation",
+   "label": "Rénovation thermique des logements",
+   "icon": "♻",
+   "category": "ecology",
+   "description": "Aides pour isoler les maisons et remplacer les chaudières au fioul.",
+   "costBillions": 5,
+   "durationDays": 730,
+   "cooldownDays": 1460,
+   "immediate": [
+    {
+     "target": "opinion.group.middle_income",
+     "amount": 0.02
+    },
+    {
+     "target": "economy.output",
+     "amount": 0.0015,
+     "days": 730
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "quality.environment",
+     "amount": 0.02,
+     "days": 365
+    }
+   ]
+  },
+  {
+   "id": "bike_plan",
+   "label": "Transports du quotidien",
+   "icon": "⚲",
+   "category": "ecology",
+   "description": "Pistes cyclables, trains régionaux et bus express.",
+   "costBillions": 2,
+   "durationDays": 365,
+   "cooldownDays": 1095,
+   "immediate": [
+    {
+     "target": "opinion.group.urban",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.01
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "quality.transport",
+     "amount": 0.01,
+     "days": 180
+    },
+    {
+     "target": "quality.environment",
+     "amount": 0.01,
+     "days": 180
+    }
+   ]
+  },
+  {
+   "id": "new_reactors",
+   "label": "Relance du nucléaire",
+   "icon": "☢",
+   "category": "ecology",
+   "description": "Commande de nouveaux réacteurs et prolongation du parc existant. Long, cher, durable.",
+   "costBillions": 12,
+   "durationDays": 1460,
+   "cooldownDays": 3650,
+   "immediate": [
+    {
+     "target": "economy.businessConfidence",
+     "amount": 0.01
+    },
+    {
+     "target": "opinion.group.urban",
+     "amount": -0.01
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "energy.capacity.new_nuclear",
+     "amount": 6600
+    }
+   ]
+  },
+  {
+   "id": "renewables_push",
+   "label": "Accélérer les renouvelables",
+   "icon": "☀",
+   "category": "ecology",
+   "description": "Procédures raccourcies pour l'éolien en mer et le solaire.",
+   "costBillions": 3,
+   "durationDays": 730,
+   "cooldownDays": 1460,
+   "immediate": [
+    {
+     "target": "opinion.group.young",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.01
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "energy.capacity.new_renewables",
+     "amount": 5000
+    },
+    {
+     "target": "quality.environment",
+     "amount": 0.01,
+     "days": 180
+    }
+   ]
+  },
+  {
+   "id": "lez_pause",
+   "label": "Suspendre les zones à faibles émissions",
+   "icon": "‖",
+   "category": "ecology",
+   "description": "Plus d'interdiction de circuler pour les vieilles voitures en ville.",
+   "cooldownDays": 1095,
+   "immediate": [
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.03
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": 0.01
+    },
+    {
+     "target": "opinion.group.urban",
+     "amount": -0.01
+    },
+    {
+     "target": "quality.environment",
+     "amount": -0.01
+    }
+   ]
+  },
+  {
+   "id": "farm_support",
+   "label": "Plan de soutien aux agriculteurs",
+   "icon": "✿",
+   "category": "ecology",
+   "description": "Prix planchers, simplification des normes et aides à la transition.",
+   "costBillions": 2,
+   "durationDays": 180,
+   "cooldownDays": 730,
+   "immediate": [
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.03
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": 0.01
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "quality.agriculture",
+     "amount": 0.02,
+     "days": 180
+    }
+   ]
+  },
+  {
+   "id": "great_debate",
+   "label": "Grand débat national",
+   "icon": "☰",
+   "category": "institutions",
+   "description": "Deux mois de réunions publiques partout en France pour écouter les colères.",
+   "costBillions": 0.1,
+   "durationDays": 60,
+   "cooldownDays": 1095,
+   "onCompletion": [
+    {
+     "target": "opinion.national",
+     "amount": 0.008,
+     "days": 60
+    },
+    {
+     "target": "government.parliamentSupport",
+     "amount": -0.005
+    }
+   ]
+  },
+  {
+   "id": "citizens_convention",
+   "label": "Convention citoyenne",
+   "icon": "◎",
+   "category": "institutions",
+   "description": "150 citoyens tirés au sort proposent des mesures sur un grand sujet.",
+   "costBillions": 0.02,
+   "durationDays": 180,
+   "cooldownDays": 1460,
+   "immediate": [
+    {
+     "target": "opinion.group.young",
+     "amount": 0.02
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "quality.environment",
+     "amount": 0.005
+    },
+    {
+     "target": "opinion.national",
+     "amount": 0.003
+    }
+   ]
+  },
+  {
+   "id": "ethics_law",
+   "label": "Loi de moralisation de la vie publique",
+   "icon": "✔",
+   "category": "institutions",
+   "description": "Interdiction des emplois familiaux, contrôle des frais, casier judiciaire vierge exigé.",
+   "cooldownDays": 1460,
+   "immediate": [
+    {
+     "target": "opinion.national",
+     "amount": 0.005
+    },
+    {
+     "target": "government.parliamentSupport",
+     "amount": -0.02
+    }
+   ]
+  },
+  {
+   "id": "decentralisation",
+   "label": "Nouvel acte de décentralisation",
+   "icon": "⌘",
+   "category": "institutions",
+   "description": "Plus de compétences et de moyens pour les régions et les départements.",
+   "costBillions": 1,
+   "durationDays": 365,
+   "cooldownDays": 1460,
+   "immediate": [
+    {
+     "target": "spending.local_authorities",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.civil_servants",
+     "amount": -0.01
+    }
+   ]
+  },
+  {
+   "id": "reshuffle_majority",
+   "label": "Ouvrir la majorité",
+   "icon": "⚇",
+   "category": "institutions",
+   "description": "Des postes et des concessions pour rallier des députés hésitants.",
+   "cooldownDays": 365,
+   "immediate": [
+    {
+     "target": "government.parliamentSupport",
+     "amount": 0.03
+    },
+    {
+     "target": "opinion.national",
+     "amount": -0.003
+    }
+   ]
+  },
+  {
+   "id": "tv_address",
+   "label": "Allocution télévisée",
+   "icon": "▣",
+   "category": "communication",
+   "description": "Vingt minutes à 20 h pour fixer le cap. L'effet s'use si l'on en abuse.",
+   "cooldownDays": 60,
+   "immediate": [
+    {
+     "target": "opinion.national",
+     "amount": 0.003
+    }
+   ]
+  },
+  {
+   "id": "press_conference",
+   "label": "Grande conférence de presse",
+   "icon": "✉",
+   "category": "communication",
+   "description": "Deux heures de questions des journalistes : risqué, mais mémorable.",
+   "cooldownDays": 120,
+   "immediate": [
+    {
+     "target": "opinion.national",
+     "amount": 0.002
+    },
+    {
+     "target": "president.popularity",
+     "amount": 0.02
+    }
+   ]
+  },
+  {
+   "id": "tour_of_france",
+   "label": "Tour de France des territoires",
+   "icon": "⚐",
+   "category": "communication",
+   "description": "Un mois de déplacements dans les villes moyennes et les campagnes.",
+   "costBillions": 0.01,
+   "durationDays": 30,
+   "cooldownDays": 180,
+   "immediate": [
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.02
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "opinion.group.adults",
+     "amount": 0.01
+    }
+   ]
+  },
+  {
+   "id": "youth_media",
+   "label": "Entretien avec des influenceurs",
+   "icon": "▶",
+   "category": "communication",
+   "description": "Parler aux jeunes là où ils sont : réseaux sociaux et plateformes vidéo.",
+   "cooldownDays": 120,
+   "immediate": [
+    {
+     "target": "opinion.group.young",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.005
+    }
+   ]
+  },
+  {
+   "id": "business_summit",
+   "label": "Sommet des investisseurs",
+   "icon": "◆",
+   "category": "communication",
+   "description": "Les grands patrons du monde reçus à Versailles : annonces d'usines et d'emplois.",
+   "costBillions": 0.02,
+   "cooldownDays": 365,
+   "immediate": [
+    {
+     "target": "economy.businessConfidence",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": 0.01
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": -0.01
+    }
+   ]
+  },
+  {
+   "id": "eu_tour",
+   "label": "Tournée des capitales européennes",
+   "icon": "✈",
+   "category": "international",
+   "description": "Berlin, Rome, Madrid, Varsovie : préparer les prochains Conseils européens.",
+   "cooldownDays": 180,
+   "immediate": [
+    {
+     "target": "alliance.EU.NEGOTIATION_GOODWILL",
+     "amount": 0.02
+    }
+   ]
+  },
+  {
+   "id": "washington_visit",
+   "label": "Visite d'État à Washington",
+   "icon": "✈",
+   "category": "international",
+   "description": "Dîner à la Maison-Blanche et discours au Congrès.",
+   "cooldownDays": 365,
+   "immediate": [
+    {
+     "target": "memory.USA.NEGOTIATION_GOODWILL",
+     "amount": 0.03
+    },
+    {
+     "target": "alliance.NATO.NEGOTIATION_GOODWILL",
+     "amount": 0.01
+    }
+   ]
+  },
+  {
+   "id": "beijing_visit",
+   "label": "Visite d'État à Pékin",
+   "icon": "✈",
+   "category": "international",
+   "description": "Contrats commerciaux et dialogue exigeant : Washington regarde.",
+   "cooldownDays": 365,
+   "immediate": [
+    {
+     "target": "memory.CHN.NEGOTIATION_GOODWILL",
+     "amount": 0.03
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": 0.005
+    },
+    {
+     "target": "memory.USA.DISAGREEMENT",
+     "amount": -0.01
+    }
+   ]
+  },
+  {
+   "id": "africa_summit",
+   "label": "Sommet Afrique–France",
+   "icon": "☼",
+   "category": "international",
+   "description": "Nouveau partenariat avec les pays du Maghreb et d'Afrique.",
+   "costBillions": 0.1,
+   "cooldownDays": 365,
+   "immediate": [
+    {
+     "target": "memory.MAR.NEGOTIATION_GOODWILL",
+     "amount": 0.02
+    },
+    {
+     "target": "memory.DZA.NEGOTIATION_GOODWILL",
+     "amount": 0.02
+    },
+    {
+     "target": "memory.TUN.NEGOTIATION_GOODWILL",
+     "amount": 0.02
+    },
+    {
+     "target": "memory.EGY.NEGOTIATION_GOODWILL",
+     "amount": 0.02
+    }
+   ]
+  },
+  {
+   "id": "development_aid",
+   "label": "Hausse de l'aide au développement",
+   "icon": "✚",
+   "category": "international",
+   "description": "Deux milliards de plus pour la santé, l'eau et l'éducation dans les pays pauvres.",
+   "costBillions": 2,
+   "cooldownDays": 730,
+   "immediate": [
+    {
+     "target": "alliance.EU.NEGOTIATION_GOODWILL",
+     "amount": 0.01
+    },
+    {
+     "target": "memory.MAR.NEGOTIATION_GOODWILL",
+     "amount": 0.02
+    },
+    {
+     "target": "memory.TUN.NEGOTIATION_GOODWILL",
+     "amount": 0.02
+    },
+    {
+     "target": "memory.EGY.NEGOTIATION_GOODWILL",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.high_income",
+     "amount": -0.005
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": -0.01
+    }
+   ]
+  },
+  {
+   "id": "peace_conference",
+   "label": "Conférence de paix à Paris",
+   "icon": "☮",
+   "category": "international",
+   "description": "Réunir belligérants et médiateurs : prestige si cela avance.",
+   "costBillions": 0.05,
+   "cooldownDays": 365,
+   "immediate": [
+    {
+     "target": "war.attackers.NEGOTIATION_GOODWILL",
+     "amount": 0.02
+    },
+    {
+     "target": "war.defenders.NEGOTIATION_GOODWILL",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.national",
+     "amount": 0.002
+    }
+   ]
+  },
+  {
+   "id": "military_budget",
+   "label": "Rallonge de la programmation militaire",
+   "icon": "⚔",
+   "category": "defense",
+   "description": "Trois milliards de plus par an pour les armées.",
+   "costBillions": 3,
+   "durationDays": 365,
+   "cooldownDays": 1095,
+   "immediate": [
+    {
+     "target": "spending.defense",
+     "amount": 0.05
+    },
+    {
+     "target": "alliance.NATO.NEGOTIATION_GOODWILL",
+     "amount": 0.02
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "military.readiness",
+     "amount": 0.02
+    }
+   ]
+  },
+  {
+   "id": "war_economy",
+   "label": "Économie de guerre : munitions",
+   "icon": "✹",
+   "category": "defense",
+   "description": "Les industriels produisent jour et nuit obus et missiles.",
+   "costBillions": 2,
+   "durationDays": 270,
+   "cooldownDays": 730,
+   "immediate": [
+    {
+     "target": "economy.output",
+     "amount": 0.0005,
+     "days": 270
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "military.ammoStock",
+     "amount": 0.1
+    },
+    {
+     "target": "military.fuelStock",
+     "amount": 0.05
+    }
+   ]
+  },
+  {
+   "id": "national_service",
+   "label": "Service national universel",
+   "icon": "⚑",
+   "category": "defense",
+   "description": "Un mois obligatoire pour tous les jeunes de 16 ans.",
+   "costBillions": 1.5,
+   "durationDays": 365,
+   "cooldownDays": 1460,
+   "immediate": [
+    {
+     "target": "opinion.group.young",
+     "amount": -0.02
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.02
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "military.readiness",
+     "amount": 0.01
+    }
+   ]
+  },
+  {
+   "id": "joint_exercise",
+   "label": "Grand exercice interarmées",
+   "icon": "✪",
+   "category": "defense",
+   "description": "Manœuvres avec les alliés : les forces s'entraînent, le carburant brûle.",
+   "costBillions": 0.2,
+   "durationDays": 30,
+   "cooldownDays": 180,
+   "immediate": [
+    {
+     "target": "military.fuelStock",
+     "amount": -0.02
+    },
+    {
+     "target": "alliance.NATO.NEGOTIATION_GOODWILL",
+     "amount": 0.01
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "military.readiness",
+     "amount": 0.03
+    }
+   ]
+  }
+ ]
+}

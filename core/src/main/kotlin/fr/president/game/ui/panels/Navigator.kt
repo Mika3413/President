@@ -16,4 +16,4 @@ interface Navigator {
     fun prepareProposal(country: String, clauseType: String, params: Map<String, Double>)
 }
 
-enum class PanelId { SELECTION, GOVERNMENT, ECONOMY, DIPLOMACY, ARMY, INBOX, NOTIFICATIONS, ELECTIONS, SETTINGS, HELP }
+enum class PanelId { SELECTION, DECISIONS, GOVERNMENT, ECONOMY, DIPLOMACY, ARMY, INBOX, NOTIFICATIONS, ELECTIONS, SETTINGS, HELP }

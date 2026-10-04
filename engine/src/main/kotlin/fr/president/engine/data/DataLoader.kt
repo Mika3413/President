@@ -53,6 +53,7 @@ class DataLoader(private val source: DataSource) {
             reforms = def.reforms?.let { read(it) },
             promises = def.promises?.let { read(it) },
             localActions = def.localActions?.let { read(it) },
+            nationalActions = def.nationalActions?.let { read(it) },
         )
     }
 

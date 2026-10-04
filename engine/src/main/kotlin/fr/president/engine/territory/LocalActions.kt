@@ -13,6 +13,8 @@ data class LocalActionDef(
     val id: String,
     val label: String,
     val icon: String = "",
+    /** Rubrique d'affichage (décisions nationales : « Économie », « Social »...). */
+    val category: String = "",
     val description: String,
     val costBillions: Double = 0.0,
     /** 0 : effet immédiat ; sinon durée du chantier en jours. */
@@ -26,4 +28,14 @@ data class LocalActionDef(
 )
 
 @Serializable
-data class LocalActionsFile(val actions: List<LocalActionDef>)
+data class LocalActionsFile(val actions: List<LocalActionDef>, val categories: List<ActionCategory> = emptyList())
+
+/**
+ * Décisions nationales du président (décrets, plans, déplacements, annonces) : même format que
+ * les actions locales, sans cible « local.* ». Les rubriques donnent l'ordre d'affichage.
+ */
+@Serializable
+data class NationalActionsFile(val categories: List<ActionCategory>, val actions: List<LocalActionDef>)
+
+@Serializable
+data class ActionCategory(val id: String, val label: String, val icon: String = "", val description: String = "")

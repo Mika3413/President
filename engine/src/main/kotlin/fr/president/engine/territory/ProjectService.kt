@@ -13,7 +13,9 @@ class ProjectService(private val ctx: SimulationContext) {
         project.status = ProjectStatus.COMPLETED
         project.onCompletion.forEach { ctx.effects.trigger(it, null, emptyMap(), project.id) }
         ctx.state.infrastructure.values.filter { it.renovationProjectId == project.id }.forEach { it.renovationProjectId = null }
-        ctx.notifications.post(NotificationCategory.PROJECTS, Urgency.IMPORTANT, "Projet terminé : ${project.name}",
-            "Les travaux sont achevés.", project.locationId)
+        val national = project.kind.startsWith("national:")
+        ctx.notifications.post(NotificationCategory.PROJECTS, Urgency.IMPORTANT,
+            if (national) "Mesure aboutie : ${project.name}" else "Projet terminé : ${project.name}",
+            if (national) "La mesure produit désormais tous ses effets." else "Les travaux sont achevés.", project.locationId)
     }
 }

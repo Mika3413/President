@@ -16,6 +16,7 @@ class ActionBar(ui: Ui, private val session: GameSession, open: (PanelId) -> Uni
     init {
         root.pad(4f)
         root.defaults().padRight(4f)
+        root.add(ui.colorButton("★ Décider", Theme.highlightDark) { open(PanelId.DECISIONS) })
         root.add(ui.colorButton("⌂ Gouvernement", Theme.catGovernment) { open(PanelId.GOVERNMENT) })
         root.add(ui.colorButton("€ Économie", Theme.catEconomy) { open(PanelId.ECONOMY) })
         root.add(ui.colorButton("☎ Diplomatie", Theme.catDiplomacy) { open(PanelId.DIPLOMACY) })

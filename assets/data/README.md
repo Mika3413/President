@@ -106,3 +106,14 @@ depuis `strategic.forces` de chaque pays. La grille des zones (`geo/zones.json`)
 ## Réformes et promesses
 
 `countries/FRA/reforms.json` et `promises.json`, générés par `tools/datagen/reforms_fr.py`.
+
+## Décisions du président
+
+`countries/FRA/national_actions.json` (panneau « ★ Décider »), généré par
+`tools/datagen/national_actions_fr.py` : rubriques (`categories`) puis décisions. Chaque décision a
+un coût (`costBillions`), une durée (`durationDays`, 0 = immédiat), un délai avant de recommencer
+(`cooldownDays`), des effets immédiats (`immediate`, éventuellement étalés avec `days`) et des effets
+à l'aboutissement (`onCompletion`). Toutes les cibles d'effets des événements sont permises.
+
+`countries/FRA/local_actions.json` : actions sur un département (onglet « Agir » de sa fiche),
+même format, classées par thème (`categories`) ; la cible `local.<champ>` désigne le département choisi.

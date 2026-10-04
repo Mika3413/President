@@ -85,6 +85,7 @@ class MainScreen(
     }
     private val panels: Map<PanelId, Panel> = mapOf(
         PanelId.SELECTION to selectionPanel,
+        PanelId.DECISIONS to fr.president.game.ui.panels.DecisionPanel(ui, this) { closePanel() },
         PanelId.GOVERNMENT to GovernmentPanel(ui, this) { closePanel() },
         PanelId.ECONOMY to EconomyPanel(ui, this) { closePanel() },
         PanelId.DIPLOMACY to diplomacyPanel,

@@ -22,7 +22,8 @@ class Legend(private val ui: Ui) {
             root.add(ui.label(layer.label, "bold")).colspan(3).left().row()
             root.add(ui.label(layer.legendLow, "muted")).padRight(4f)
             root.add(Gradient(layer)).width(GRADIENT_WIDTH).height(GRADIENT_HEIGHT)
-            root.add(ui.label(layer.legendHigh, "muted")).padLeft(4f)
+            root.add(ui.label(layer.legendHigh, "muted")).padLeft(4f).row()
+            if (layer.figures.isNotEmpty()) root.add(ui.label(layer.figures, "muted")).colspan(3).left().padTop(2f)
         } else {
             root.add(ui.label(layer.label, "bold")).left().row()
             SYMBOLS[layer]?.forEach { root.add(ui.label(it, "small")).left().row() }
