@@ -24,6 +24,10 @@ class MeasureCommands(private val ctx: SimulationContext) {
         val durationText: String,
         /** Ce que la mesure change sur les risques (« Incendies : probabilité −60 % »). */
         val impacts: List<String>,
+        /** Règles : lassitude, vote du Parlement, recours possible. */
+        val rules: List<String>,
+        /** État d'une mesure en vigueur : respect, vote à venir, risque de recours. */
+        val status: List<Pair<String, Tone>>,
     )
 
     val families get() = ctx.playerData.measures?.families.orEmpty()
@@ -45,7 +49,7 @@ class MeasureCommands(private val ctx: SimulationContext) {
         }.ifEmpty { listOf("Gratuit") }.joinToString(" + ")
         val duration = if (def.defaultDays <= 0) "jusqu'à levée" else presenter.days(def.defaultDays)
         return View(def, blocker(def, department), !presenter.unlocked(asAction(def, emptyList()).copy(requires = def.requires)), active,
-            start, monthly, cost, duration, impacts(def))
+            start, monthly, cost, duration, impacts(def), rules(def), active?.let { status(def, it) }.orEmpty())
     }
 
     private fun impacts(def: MeasureDef): List<String> = def.affects.mapNotNull { i ->
@@ -56,6 +60,35 @@ class MeasureCommands(private val ctx: SimulationContext) {
         }
         if (parts.isEmpty()) null else "$name : ${parts.joinToString(", ")}"
     }.distinctBy { it.substringBefore(" :") }
+
+    private fun rules(def: MeasureDef): List<String> = buildList {
+        if (def.fatigue > 0) add("Lassitude : le respect baisse d'environ ${Math.round(def.fatigue * PERCENT)} points par mois")
+        if (def.emergency) add("Régime d'exception : au-delà de 12 jours, le Parlement doit voter la prorogation")
+        if (def.contestable) add("Recours possible devant le Conseil d'État si la mesure paraît disproportionnée")
+    }
+
+    private fun status(def: MeasureDef, m: ActiveMeasure): List<Pair<String, Tone>> = buildList {
+        if (def.fatigue > 0) {
+            val tone = when {
+                m.compliance < MeasureSystem.EXHAUSTED -> Tone.BAD
+                m.compliance < MeasureSystem.WEARY -> Tone.WARNING
+                else -> Tone.GOOD
+            }
+            add("Respectée par ${Math.round(m.compliance * PERCENT)} % de la population" to tone)
+        }
+        if (def.emergency) {
+            if (m.extended) add("Prorogation votée par le Parlement" to Tone.GOOD)
+            else {
+                val left = kotlin.math.ceil(MeasureSystem.EMERGENCY_DAYS - m.startedAt.daysUntil(ctx.now)).toInt().coerceAtLeast(0)
+                val chance = Math.round(MeasureSystem.extensionChance(ctx, m) * PERCENT)
+                add("Vote de prorogation dans ${presenter.days(left)} : $chance % de chances" to if (chance >= LIKELY) Tone.NEUTRAL else Tone.WARNING)
+            }
+        }
+        if (def.contestable) {
+            val monthly = 1 - Math.pow(1 - MeasureSystem.suspensionRisk(ctx, def, m), MeasureSystem.DAYS_PER_MONTH)
+            add("Risque de suspension par le Conseil d'État : ${Math.round(monthly * PERCENT)} % par mois" to if (monthly >= RISKY) Tone.WARNING else Tone.NEUTRAL)
+        }
+    }
 
     private fun pct(f: Double) = (if (f < 1) "−" else "+") + Math.round(kotlin.math.abs(1 - f) * PERCENT) + " %"
 
@@ -98,13 +131,13 @@ class MeasureCommands(private val ctx: SimulationContext) {
         "${definitions.first { it.id == id }.label} : levée."
     }
 
-    fun end(m: ActiveMeasure, expired: Boolean) {
+    fun end(m: ActiveMeasure, expired: Boolean, reason: String? = null) {
         val def = definitions.firstOrNull { it.id == m.id } ?: return
         state.active.remove(m)
         state.lastEnded[key(def, m.department)] = ctx.now
         def.end.forEach { ctx.effects.trigger(MeasureSystem.resolve(it, m.department), null, emptyMap(), "measure:${def.id}") }
         val where = m.department?.let { place(it) }?.let { " ($it)" } ?: ""
-        JournalService(ctx).add("Mesure", "${def.label}$where : ${if (expired) "fin" else "levée"}", Tone.NEUTRAL)
+        JournalService(ctx).add("Mesure", "${def.label}$where : ${reason ?: if (expired) "fin" else "levée"}", if (reason != null) Tone.BAD else Tone.NEUTRAL)
         if (expired) MeasureSystem.notify(ctx, "${def.label} : fin de la mesure$where", "La mesure arrive à son terme. Vous pouvez la relancer si besoin.", m.department)
     }
 
@@ -117,5 +150,7 @@ class MeasureCommands(private val ctx: SimulationContext) {
 
     private companion object {
         const val PERCENT = 100
+        const val LIKELY = 60
+        const val RISKY = 0.15
     }
 }

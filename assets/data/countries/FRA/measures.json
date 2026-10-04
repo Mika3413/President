@@ -99,7 +99,9 @@
      "probability": 0.4,
      "intensity": 1.0
     }
-   ]
+   ],
+   "fatigue": 0.12,
+   "contestable": true
   },
   {
    "id": "flood_watch",
@@ -205,7 +207,8 @@
      "probability": 0.7,
      "intensity": 1.0
     }
-   ]
+   ],
+   "fatigue": 0.08
   },
   {
    "id": "vaccination",
@@ -443,7 +446,10 @@
     }
    ],
    "confirm": true,
-   "cooldownDays": 30
+   "cooldownDays": 30,
+   "fatigue": 0.25,
+   "emergency": true,
+   "contestable": true
   },
   {
    "id": "local_lockdown",
@@ -480,7 +486,9 @@
      "intensity": 0.85
     }
    ],
-   "cooldownDays": 15
+   "cooldownDays": 15,
+   "fatigue": 0.2,
+   "contestable": true
   },
   {
    "id": "curfew",
@@ -520,7 +528,10 @@
      "intensity": 1.0
     }
    ],
-   "cooldownDays": 15
+   "cooldownDays": 15,
+   "fatigue": 0.18,
+   "emergency": true,
+   "contestable": true
   },
   {
    "id": "masks",
@@ -546,7 +557,8 @@
      "probability": 0.8,
      "intensity": 0.8
     }
-   ]
+   ],
+   "fatigue": 0.08
   },
   {
    "id": "white_plan",
@@ -619,7 +631,10 @@
      "intensity": 0.9
     }
    ],
-   "confirm": true
+   "confirm": true,
+   "fatigue": 0.05,
+   "emergency": true,
+   "contestable": true
   },
   {
    "id": "health_emergency",
@@ -646,7 +661,10 @@
      "intensity": 0.85
     }
    ],
-   "confirm": true
+   "confirm": true,
+   "fatigue": 0.06,
+   "emergency": true,
+   "contestable": true
   },
   {
    "id": "orsec",
@@ -728,7 +746,8 @@
      "probability": 1.0,
      "intensity": 0.5
     }
-   ]
+   ],
+   "fatigue": 0.3
   },
   {
    "id": "army_relief",
@@ -850,7 +869,8 @@
      "probability": 0.7,
      "intensity": 0.8
     }
-   ]
+   ],
+   "fatigue": 0.04
   },
   {
    "id": "gathering_ban",
@@ -886,7 +906,10 @@
      "intensity": 1.0
     }
    ],
-   "confirm": true
+   "confirm": true,
+   "fatigue": 0.15,
+   "emergency": true,
+   "contestable": true
   },
   {
    "id": "local_curfew",
@@ -912,7 +935,9 @@
      "probability": 0.3,
      "intensity": 0.6
     }
-   ]
+   ],
+   "fatigue": 0.15,
+   "contestable": true
   },
   {
    "id": "security_borders",
@@ -944,7 +969,9 @@
      "probability": 1.0,
      "intensity": 0.7
     }
-   ]
+   ],
+   "fatigue": 0.04,
+   "contestable": true
   },
   {
    "id": "load_shedding",
@@ -976,7 +1003,8 @@
      "max": 0.08
     }
    ],
-   "requiresText": "quand la marge électrique est faible"
+   "requiresText": "quand la marge électrique est faible",
+   "fatigue": 0.2
   },
   {
    "id": "sobriety",
@@ -1007,7 +1035,8 @@
      "probability": 1.0,
      "intensity": 0.8
     }
-   ]
+   ],
+   "fatigue": 0.1
   },
   {
    "id": "fuel_rationing",
@@ -1033,7 +1062,9 @@
      "probability": 0.6,
      "intensity": 0.6
     }
-   ]
+   ],
+   "fatigue": 0.2,
+   "contestable": true
   },
   {
    "id": "mediator",
@@ -1100,7 +1131,9 @@
      "intensity": 0.6
     }
    ],
-   "confirm": true
+   "confirm": true,
+   "fatigue": 0.25,
+   "contestable": true
   },
   {
    "id": "short_time_work",

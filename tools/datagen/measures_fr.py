@@ -189,6 +189,25 @@ measure("economy", "business_support", "Prêts garantis et reports de charges", 
         "Trésorerie pour les entreprises en difficulté, reports de cotisations.",
         days=90, monthly=0.5, daily=[e("economy.businessConfidence", 0.0002), e(G + "self_employed", 0.0002)])
 
+# --- Lassitude et contrôle juridique ---------------------------------------------------------
+# fatigue : perte de respect par mois ; emergency : prorogation votée par le Parlement après 12 jours ;
+# contestable : recours possible devant le Conseil d'État.
+LEGAL = {
+    "lockdown": (0.25, True, True), "local_lockdown": (0.2, False, True), "curfew": (0.18, True, True),
+    "local_curfew": (0.15, False, True), "masks": (0.08, False, False), "health_borders": (0.05, True, True),
+    "health_emergency": (0.06, True, True), "gathering_ban": (0.15, True, True), "forest_ban": (0.12, False, True),
+    "water_restrictions": (0.08, False, False), "fuel_rationing": (0.2, False, True), "load_shedding": (0.2, False, False),
+    "sobriety": (0.1, False, False), "requisition": (0.25, False, True), "sentinelle": (0.04, False, False),
+    "security_borders": (0.04, False, True), "evacuation": (0.3, False, False),
+}
+for m in M:
+    if m["id"] in LEGAL:
+        fatigue, emergency, contestable = LEGAL.pop(m["id"])
+        if fatigue: m["fatigue"] = fatigue
+        if emergency: m["emergency"] = True
+        if contestable: m["contestable"] = True
+assert not LEGAL, LEGAL
+
 RISKS = [
     ("fire", "Incendies de forêt", "♣", "Chaleur, sécheresse et vent font monter le risque l'été.", ["wildfire"]),
     ("flood", "Crues et tempêtes", "≈", "Pluies d'automne et d'hiver, cyclones outre-mer.", ["flood", "storm", "cyclone"]),

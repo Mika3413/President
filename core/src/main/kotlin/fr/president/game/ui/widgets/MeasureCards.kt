@@ -32,6 +32,8 @@ class MeasureCards(private val ui: Ui, private val session: GameSession, private
         if (!compact) card.add(ui.label(def.description, "muted", wrap = true)).growX().padTop(2f).row()
         // Ce que la mesure change sur les risques : la raison d'être de la prévention.
         v.impacts.forEach { card.add(ui.label("⇢ $it", "small", Theme.good, wrap = true)).growX().row() }
+        if (active == null && !compact) v.rules.forEach { card.add(ui.label("⚖ $it", "small", Theme.textMuted, wrap = true)).growX().row() }
+        v.status.forEach { (text, tone) -> card.add(ui.label("● $text", "small", Theme.tone(tone), wrap = true)).growX().row() }
         val effects = v.startEffects + v.monthlyEffects
         if (effects.isNotEmpty()) card.add(ActionCards.chips(ui, effects)).growX().row()
 

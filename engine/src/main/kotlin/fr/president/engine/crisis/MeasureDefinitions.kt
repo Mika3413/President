@@ -37,6 +37,12 @@ data class MeasureDef(
     val cooldownDays: Int = 0,
     /** Mesures incompatibles (une seule à la fois). */
     val exclusive: List<String> = emptyList(),
+    /** Lassitude : perte de respect de la mesure par mois (0 = aucune). */
+    val fatigue: Double = 0.0,
+    /** Régime d'exception : au-delà de 12 jours, le Parlement doit voter la prorogation. */
+    val emergency: Boolean = false,
+    /** Mesure attentatoire aux libertés : un recours devant le Conseil d'État peut la suspendre. */
+    val contestable: Boolean = false,
 )
 
 /** Multiplicateurs appliqués à un événement : probabilité de survenue et ampleur. */
@@ -57,6 +63,10 @@ data class ActiveMeasure(
     /** Fin prévue, ou null si la mesure dure jusqu'à sa levée. */
     val endsAt: WorldTime?,
     val department: String? = null,
+    /** Part de la population qui respecte la mesure (s'use avec la lassitude). */
+    var compliance: Double = 1.0,
+    /** Prorogation votée par le Parlement (régime d'exception). */
+    var extended: Boolean = false,
 )
 
 @Serializable

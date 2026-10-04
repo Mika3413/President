@@ -92,4 +92,36 @@ class CrisisTest {
         s.answer(message.id, "x_army")
         assertTrue(s.state.military.units.values.filter { it.countryId == "FRA" }.sumOf { it.readiness } < readiness)
     }
+
+    @Test
+    fun restrictionsWearOutAndFaceParliamentAndJudges() {
+        var votes = 0
+        for (seed in 1L..6L) {
+            val clock = TestData.FakeClock()
+            val s = TestData.newSession(seed = seed, clock = clock)
+            s.measures.activate("curfew", days = 60).getOrThrow()
+            val curfew = s.state.measures.active.single()
+            clock.advanceWorldDays(11.0); s.advanceToNow()
+            assertTrue(curfew.compliance < 1.0, "la lassitude s'installe")
+            val view = s.measures.view(s.measures.definitions.first { it.id == "curfew" })
+            assertTrue(view.status.any { it.first.startsWith("Vote de prorogation") })
+            clock.advanceWorldDays(3.0); s.advanceToNow()
+            // Au 12e jour : prorogée par le Parlement, ou levée (rejet, recours).
+            val still = s.state.measures.active.firstOrNull { it.id == "curfew" }
+            if (still != null) { assertTrue(still.extended); votes++ }
+            else assertTrue(s.state.stats.journal.any { it.kind == "Mesure" && ("Parlement" in it.text || "Conseil" in it.text) })
+        }
+        assertTrue(votes > 0, "le Parlement proroge parfois")
+    }
+
+    @Test
+    fun aWornOutMeasureProtectsLess() {
+        val s = TestData.newSession()
+        val epidemic = s.db.event("epidemic")
+        val scope = ScopeRef(EventScope.NATIONAL, null)
+        s.measures.activate("lockdown").getOrThrow()
+        val fresh = EventSystem().probability(s.context, epidemic, scope)
+        s.state.measures.active.single().compliance = 0.3
+        assertTrue(EventSystem().probability(s.context, epidemic, scope) > fresh)
+    }
 }
