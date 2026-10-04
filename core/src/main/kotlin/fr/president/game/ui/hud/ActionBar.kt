@@ -8,41 +8,61 @@ import fr.president.game.ui.Ui
 import fr.president.game.ui.hint
 import fr.president.game.ui.panels.PanelId
 
-/** Barre d'actions principale : accès aux grands domaines de la présidence. */
+/**
+ * Barre d'actions, comme dans Supremacy : peu de boutons, les plus utiles. Le reste est dans
+ * « ☰ Plus », en grandes tuiles. Les pastilles signalent ce qui attend une réponse.
+ */
 class ActionBar(ui: Ui, private val session: GameSession, open: (PanelId) -> Unit) {
     val root: Table = ui.panelTable()
     private val inbox: TextButton
-    private val alerts: TextButton
+    private val more: TextButton
+    private val buttons = mutableListOf<Pair<TextButton, String>>()
+    private var compact = false
 
     init {
         root.pad(4f)
-        root.defaults().padRight(4f)
-        root.add(ui.colorButton("★ Décider", Theme.highlightDark) { open(PanelId.DECISIONS) }.also { it.name = "bar.decide" }.hint(ui, "Vos décisions nationales : plans, décrets, déplacements, annonces."))
-        root.add(ui.colorButton("▲ Bilan", Theme.catStats) { open(PanelId.STATS) }.also { it.name = "bar.stats" }.hint(ui, "Courbes du mandat, causes de vos chiffres, groupes sociaux, classement des pays, journal."))
-        root.add(ui.colorButton("▤ Presse", Theme.catPress) { open(PanelId.PRESS) }.hint(ui, "Les unes du jour, les sondages et les préoccupations des Français."))
-        root.add(ui.colorButton("⌂ Gouvernement", Theme.catGovernment) { open(PanelId.GOVERNMENT) }.hint(ui, "Premier ministre, ministres, Assemblée, Sénat et réformes."))
-        root.add(ui.colorButton("€ Économie", Theme.catEconomy) { open(PanelId.ECONOMY) }.hint(ui, "Situation, impôts, dépenses et services publics. Les changements passent au Parlement."))
-        root.add(ui.colorButton("☎ Diplomatie", Theme.catDiplomacy) { open(PanelId.DIPLOMACY) }.hint(ui, "Négocier avec les 29 pays simulés : accords, sanctions, ultimatums."))
-        root.add(ui.colorButton("⚔ Armées", Theme.catArmy) { open(PanelId.ARMY) }.hint(ui, "Unités, ordres, production, stocks et guerres en cours."))
+        root.defaults().padRight(4f).minHeight(BUTTON_HEIGHT)
+        root.add(ui.colorButton("★ Décider", Theme.highlightDark) { open(PanelId.DECISIONS) }.also { it.name = "bar.decide" }
+            .hint(ui, "Vos décisions nationales : plans, décrets, déplacements, annonces."))
+        root.add(ui.colorButton("▲ Bilan", Theme.catStats) { open(PanelId.STATS) }.also { it.name = "bar.stats" }
+            .hint(ui, "Courbes du mandat, causes de vos chiffres, groupes sociaux, classement des pays, journal."))
         inbox = ui.colorButton(INBOX, Theme.catInbox) { open(PanelId.INBOX) }
         inbox.name = "bar.inbox"
-        root.add(inbox)
-        alerts = ui.colorButton(ALERTS, Theme.catAlerts) { open(PanelId.NOTIFICATIONS) }
-        root.add(alerts)
-        root.add(ui.colorButton("✔ Élections", Theme.catElections) { open(PanelId.ELECTIONS) }.hint(ui, "Sondages, candidats, promesses de campagne et échéances électorales."))
-        root.add(ui.colorButton("⚙", Theme.catSettings) { open(PanelId.SETTINGS) })
-        root.add(ui.colorButton("?", Theme.catHelp) { open(PanelId.HELP) })
+        root.add(inbox.hint(ui, "Les décisions qui attendent votre réponse."))
+        root.add(ui.colorButton("☎ Diplomatie", Theme.catDiplomacy) { open(PanelId.DIPLOMACY) }.hint(ui, "Négocier avec les 29 pays simulés : accords, sanctions, ultimatums."))
+        root.add(ui.colorButton("⚔ Armées", Theme.catArmy) { open(PanelId.ARMY) }.hint(ui, "Unités, ordres, opérations et guerres en cours."))
+        more = ui.colorButton(MORE, Theme.catSettings) { open(PanelId.MENU) }
+        more.name = "bar.more"
+        root.add(more.hint(ui, "Gouvernement, économie, presse, élections, alertes, réglages, aide."))
+        root.cells.forEach { c -> (c.actor as? TextButton)?.let { buttons += it to it.text.toString() } }
+    }
+
+    /** Écran étroit : l'icône au-dessus d'un mot court, pour que les six boutons tiennent. */
+    fun setCompact(value: Boolean) {
+        if (value == compact) return
+        compact = value
+        buttons.forEach { (b, full) -> b.setText(label(full)) }
+        refresh()
+    }
+
+    private fun label(full: String): String {
+        if (!compact) return full
+        val icon = full.substringBefore(' ')
+        val word = SHORT[full.substringAfter(' ')] ?: full.substringAfter(' ')
+        return "$icon\n$word"
     }
 
     fun refresh() {
         val pending = session.state.inbox.messages.count { it.awaitingAnswer }
-        inbox.setText(if (pending > 0) "$INBOX ● $pending" else INBOX)
+        inbox.setText(label(INBOX) + if (pending > 0) " ● $pending" else "")
         val unread = session.state.notifications.unreadCount
-        alerts.setText(if (unread > 0) "$ALERTS ● $unread" else ALERTS)
+        more.setText(label(MORE) + if (unread > 0) " ● $unread" else "")
     }
 
     private companion object {
         const val INBOX = "✉ Messages"
-        const val ALERTS = "⚑ Alertes"
+        const val MORE = "☰ Plus"
+        const val BUTTON_HEIGHT = 38f
+        val SHORT = mapOf("Diplomatie" to "Diplo", "Messages" to "Messages")
     }
 }

@@ -13,6 +13,9 @@ import fr.president.game.ui.panels.PanelId
 class AdvisorCard(private val ui: Ui, private val session: GameSession, private val nav: Navigator) {
     val root: Table = ui.panelTable()
     private var open = true
+    /** Écran étroit : l'encart est replié par défaut pour laisser la carte visible. */
+    var compact = false
+        set(v) { if (field != v) { field = v; open = !v; lastKey = "" } }
     private var lastKey = ""
 
     fun refresh() {
@@ -31,7 +34,7 @@ class AdvisorCard(private val ui: Ui, private val session: GameSession, private 
         advices.forEach { a ->
             val row = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(4f, 6f, 4f, 6f) }
             row.add(ui.label(a.icon, "bold", Theme.tone(a.tone))).top().padRight(6f)
-            row.add(ui.label(a.text, "small", wrap = true)).width(TEXT_WIDTH).left()
+            row.add(ui.label(a.text, "small", wrap = true)).width(if (compact) COMPACT_WIDTH else TEXT_WIDTH).left()
             row.onClick { go(a) }
             root.add(row).growX().padTop(3f).row()
         }
@@ -49,5 +52,6 @@ class AdvisorCard(private val ui: Ui, private val session: GameSession, private 
 
     private companion object {
         const val TEXT_WIDTH = 230f
+        const val COMPACT_WIDTH = 170f
     }
 }

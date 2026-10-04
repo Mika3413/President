@@ -23,10 +23,19 @@ class TopBar(private val ui: Ui, private val session: GameSession, private val o
     /** Dernière valeur affichée par indicateur : un changement fait clignoter la pastille. */
     private val lastValue = HashMap<String, String>()
     private val flashStart = HashMap<String, Long>()
+    private val left = Table()
+    /** Écran étroit : sans la date ni les libellés, pour que tout tienne. */
+    var compact = false
+        set(v) {
+            if (field == v) return
+            field = v
+            root.clearChildren()
+            if (!v) root.add(left).left()
+            root.add(chips).expandX().apply { if (v) center() else right() }
+        }
 
     init {
         root.pad(4f, 8f, 4f, 8f)
-        val left = Table()
         left.add(date).left().row()
         left.add(pace).left()
         root.add(left).left()
@@ -49,7 +58,7 @@ class TopBar(private val ui: Ui, private val session: GameSession, private val o
         val tone = if (days < WARNING_DAYS) Theme.warning else Theme.accent
         val (wrapper, box) = pill(tone)
         box.add(ui.label("✔ J-$days", "value", tone)).row()
-        box.add(ui.label("Élection", "muted"))
+        if (!compact) box.add(ui.label("Élection", "muted"))
         wrapper.onClick { open(PanelId.ELECTIONS, null) }
         wrapper.hint(ui, "Jours avant la prochaine élection présidentielle. Perdue, elle met fin à la partie.")
         chips.add(wrapper).padLeft(CHIP_GAP)
@@ -59,11 +68,12 @@ class TopBar(private val ui: Ui, private val session: GameSession, private val o
         val color = Theme.tone(indicator.tone)
         val (wrapper, box) = pill(color)
         val line = Table()
-        line.add(ui.label("$icon ", "small", color))
-        line.add(ui.label(indicator.value.ifEmpty { indicator.status }, "value", color))
+        if (!compact) line.add(ui.label("$icon ", "small", color))
+        val value = indicator.value.ifEmpty { indicator.status }
+        line.add(ui.label(if (compact) value.replace(" PIB", "") else value, "value", color))
         arrow(indicator)?.let { (glyph, c) -> line.add(ui.label(" $glyph", "small", c)) }
         box.add(line).row()
-        box.add(ui.label(label, "muted"))
+        if (!compact) box.add(ui.label(label, "muted"))
         wrapper.onClick { open(PanelId.STATS, series) }
         wrapper.name = "chip.$series"
         wrapper.hint(ui, help)
@@ -76,12 +86,13 @@ class TopBar(private val ui: Ui, private val session: GameSession, private val o
             val progress = (now - start) / FLASH_MILLIS
             if (progress < 1f) wrapper.color.set(Theme.highlight).lerp(Color.WHITE, progress) else flashStart.remove(label)
         }
-        chips.add(wrapper).padLeft(CHIP_GAP)
+        chips.add(wrapper).padLeft(if (compact) 2f else CHIP_GAP)
     }
 
     /** Pastille sombre soulignée de la couleur de l'état. */
     private fun pill(color: Color): Pair<Table, Table> {
-        val box = Table().apply { pad(3f, 8f, 3f, 8f); setBackground(ui.skin.fill(Theme.panelAlt)) }
+        val side = if (compact) 4f else 8f
+        val box = Table().apply { pad(3f, side, 3f, side); setBackground(ui.skin.fill(Theme.panelAlt)) }
         val wrapper = Table()
         wrapper.add(box).growX().row()
         wrapper.add(Table().apply { setBackground(ui.skin.fill(color)) }).height(UNDERLINE).growX()

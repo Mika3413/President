@@ -93,6 +93,7 @@ class MainScreen(
     }
     private val panels: Map<PanelId, Panel> = mapOf(
         PanelId.SELECTION to selectionPanel,
+        PanelId.MENU to fr.president.game.ui.panels.MenuPanel(ui, this) { closePanel() },
         PanelId.DECISIONS to fr.president.game.ui.panels.DecisionPanel(ui, this) { closePanel() },
         PanelId.STATS to fr.president.game.ui.panels.StatsPanel(ui, this) { closePanel() },
         PanelId.PRESS to fr.president.game.ui.panels.PressPanel(ui, this) { closePanel() },
@@ -117,7 +118,7 @@ class MainScreen(
 
     private fun buildLayout() {
         val root = Table().apply { setFillParent(true) }
-        root.add(topBar.root).growX().colspan(3).row()
+        root.add(topBar.root).growX().colspan(2).row()
         val layers = LayerBar(ui, layer) { layer = it }
         val left = Table()
         left.add(layers.root).top().left().growX().row()
@@ -125,11 +126,19 @@ class MainScreen(
         left.add().growY().row()
         left.add(legend.root).left().bottom().padTop(6f)
         root.add(left).top().left().growY().pad(6f)
-        root.add().expand()
-        root.add(panelSlot).width(com.badlogic.gdx.scenes.scene2d.ui.Value.percentWidth(PANEL_SHARE, root)).maxWidth(PANEL_WIDTH).minHeight(0f).prefHeight(0f).growY().pad(6f).row()
+        root.add().expand().row()
         val actions = ScrollPane(actionBar.root).apply { setScrollingDisabled(false, true) }
-        root.add(actions).colspan(3).center().padBottom(6f)
+        root.add(actions).colspan(2).center().padBottom(6f)
         stage.addActor(root)
+        // Les panneaux ont leur propre calque : à droite sur grand écran, plein écran sur téléphone
+        // en portrait (la carte reste visible dès qu'on les ferme).
+        val panelLayer = Table().apply { setFillParent(true); top().right() }
+        panelLayer.touchable = com.badlogic.gdx.scenes.scene2d.Touchable.childrenOnly
+        panelLayer.add(panelSlot)
+            .width(dyn { panelWidth() })
+            .height(dyn { (stage.height - topBar.root.height - actions.height - PANEL_MARGINS).coerceAtLeast(MIN_PANEL_HEIGHT) })
+            .padTop(dyn { topBar.root.height + 6f }).padRight(6f)
+        stage.addActor(panelLayer)
         val overlayTable = Table().apply { setFillParent(true); top().padTop(TOAST_TOP) }
         overlayTable.add(tour.card).padBottom(6f).row()
         overlayTable.add(targetingBanner).padBottom(6f).row()
@@ -140,11 +149,37 @@ class MainScreen(
         stage.addActor(briefing.root)
         stage.addActor(tour.highlight)
         stage.addActor(hints.bubble)
+        stage.addListener(object : com.badlogic.gdx.scenes.scene2d.InputListener() {
+            override fun keyDown(event: com.badlogic.gdx.scenes.scene2d.InputEvent?, keycode: Int): Boolean = onBack(keycode)
+        })
         refresh()
+    }
+
+    private fun dyn(f: () -> Float) = object : com.badlogic.gdx.scenes.scene2d.ui.Value() {
+        override fun get(context: com.badlogic.gdx.scenes.scene2d.Actor?) = f()
+    }
+
+    /** Écran étroit (téléphone en portrait) : le panneau prend toute la largeur. */
+    private fun panelWidth(): Float {
+        val w = stage.width
+        return if (w < NARROW) w - 12f else minOf(w * PANEL_SHARE, PANEL_WIDTH)
+    }
+
+    /** Retour (Android) ou Échap : ferme ce qui est ouvert, du plus récent au plus ancien. */
+    private fun onBack(keycode: Int): Boolean {
+        if (keycode != com.badlogic.gdx.Input.Keys.BACK && keycode != com.badlogic.gdx.Input.Keys.ESCAPE) return false
+        when {
+            briefing.root.isVisible -> briefing.hide()
+            targeting != null -> stopTargeting()
+            currentPanel != null -> closePanel()
+            else -> return false
+        }
+        return true
     }
 
     override fun show() {
         Gdx.input.inputProcessor = InputMultiplexer(stage, cameraController.gestureDetector, cameraController.scrollProcessor)
+        Gdx.input.setCatchKey(com.badlogic.gdx.Input.Keys.BACK, true)
     }
 
     override fun render(delta: Float) {
@@ -311,6 +346,11 @@ class MainScreen(
             cameraReady = true
         }
         stage.viewport.update(width, height, true)
+        val narrow = stage.width < NARROW
+        topBar.compact = narrow
+        actionBar.setCompact(narrow)
+        advisor.compact = narrow
+        refresh()
     }
 
     override fun dispose() {
@@ -330,6 +370,9 @@ class MainScreen(
         const val UNIT_VIEW_WIDTH = 600f
         const val PANEL_WIDTH = 420f
         const val PANEL_SHARE = 0.48f
+        const val NARROW = 700f
+        const val PANEL_MARGINS = 24f
+        const val MIN_PANEL_HEIGHT = 200f
         const val REFRESH_SECONDS = 3f
         const val TOAST_TOP = 70f
         const val MIN_ABSENCE_DAYS = 0.5
