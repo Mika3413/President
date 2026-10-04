@@ -16,11 +16,17 @@ class PolicyProposal(
     val kind: PolicyKind,
     val itemId: String,
     val oldValue: Double,
-    val newValue: Double,
+    var newValue: Double,
     val submittedAt: WorldTime,
     val voteAt: WorldTime,
     var status: PolicyStatus = PolicyStatus.PENDING_VOTE,
     var supportAtVote: Double? = null,
+    /** Soutien supplémentaire obtenu par les amendements et tractations. */
+    var supportBonus: Double = 0.0,
+    /** Portée du texte après amendements (1 = texte initial). */
+    var effectScale: Double = 1.0,
+    /** Amendements déjà négociés (identifiants). */
+    val amendments: MutableList<String> = mutableListOf(),
 )
 
 @Serializable

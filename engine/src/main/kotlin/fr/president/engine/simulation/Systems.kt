@@ -45,5 +45,6 @@ object Systems {
         GovernmentSystem(),
         MilitarySystem(),
         fr.president.engine.stats.StatsSystem(),
+        fr.president.engine.media.MediaSystem(),
     )
 }

@@ -19,6 +19,7 @@ class ActionBar(ui: Ui, private val session: GameSession, open: (PanelId) -> Uni
         root.defaults().padRight(4f)
         root.add(ui.colorButton("★ Décider", Theme.highlightDark) { open(PanelId.DECISIONS) }.also { it.name = "bar.decide" }.hint(ui, "Vos décisions nationales : plans, décrets, déplacements, annonces."))
         root.add(ui.colorButton("▲ Bilan", Theme.catStats) { open(PanelId.STATS) }.also { it.name = "bar.stats" }.hint(ui, "Courbes du mandat, causes de vos chiffres, groupes sociaux, classement des pays, journal."))
+        root.add(ui.colorButton("▤ Presse", Theme.catPress) { open(PanelId.PRESS) }.hint(ui, "Les unes du jour, les sondages et les préoccupations des Français."))
         root.add(ui.colorButton("⌂ Gouvernement", Theme.catGovernment) { open(PanelId.GOVERNMENT) }.hint(ui, "Premier ministre, ministres, Assemblée, Sénat et réformes."))
         root.add(ui.colorButton("€ Économie", Theme.catEconomy) { open(PanelId.ECONOMY) }.hint(ui, "Situation, impôts, dépenses et services publics. Les changements passent au Parlement."))
         root.add(ui.colorButton("☎ Diplomatie", Theme.catDiplomacy) { open(PanelId.DIPLOMACY) }.hint(ui, "Négocier avec les 29 pays simulés : accords, sanctions, ultimatums."))

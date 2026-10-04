@@ -97,6 +97,10 @@ class EconomyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pa
         if (proposals.isEmpty()) return
         into.add(ui.label("Mesures récentes", "bold")).padTop(GAP).row()
         for (p in proposals) {
+            if (p.status == PolicyStatus.PENDING_VOTE) {
+                into.add(fr.president.game.ui.widgets.ProposalCard.build(ui, session, p) { message = it; nav.refresh() }).growX().padBottom(4f).row()
+                continue
+            }
             val status = when (p.status) {
                 PolicyStatus.PENDING_VOTE -> "Vote le ${p.voteAt.toDateTime().toLocalDate()}"
                 PolicyStatus.ADOPTED -> "Adoptée"

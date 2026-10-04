@@ -72,17 +72,19 @@ class PolicyService(private val ctx: SimulationContext) {
         val proposal = ctx.state.policy.proposals.firstOrNull { it.id == proposalId } ?: return
         if (proposal.status != PolicyStatus.PENDING_VOTE) return
         val p = gov.parliament
-        val support = ctx.state.government.parliamentSupport + ctx.rng.nextGaussian() * p.voteNoise
+        val support = ctx.state.government.parliamentSupport + proposal.supportBonus + ctx.rng.nextGaussian() * p.voteNoise
         proposal.supportAtVote = support
         val difficulty = if (proposal.kind == PolicyKind.REFORM) reforms().firstOrNull { it.id == proposal.itemId }?.difficulty ?: 0.0 else 0.0
         if (support >= p.passThreshold + difficulty) {
             proposal.status = PolicyStatus.ADOPTED
             apply(proposal)
-            ctx.notifications.post(NotificationCategory.POLITICS, Urgency.IMPORTANT, "Mesure adoptée", label(proposal))
+            ctx.notifications.post(NotificationCategory.POLITICS, Urgency.IMPORTANT, "Mesure adoptée", label(proposal), journal = false)
+            fr.president.engine.stats.JournalService(ctx).add("Loi", "Adoptée : ${label(proposal)}", fr.president.engine.readout.Tone.GOOD)
         } else {
             proposal.status = PolicyStatus.REJECTED
+            fr.president.engine.stats.JournalService(ctx).add("Loi", "Rejetée : ${label(proposal)}", fr.president.engine.readout.Tone.BAD)
             ctx.notifications.post(NotificationCategory.POLITICS, Urgency.IMPORTANT, "Mesure rejetée par le Parlement",
-                "${label(proposal)}. Vous pouvez la redéposer ou la faire passer en force, au prix d'un coût politique.")
+                "${label(proposal)}. Vous pouvez la redéposer ou la faire passer en force, au prix d'un coût politique.", journal = false)
         }
     }
 
@@ -122,7 +124,7 @@ class PolicyService(private val ctx: SimulationContext) {
 
     private fun apply(proposal: PolicyProposal) {
         if (proposal.kind == PolicyKind.REFORM) {
-            applyReform(proposal.itemId)
+            applyReform(proposal.itemId, scale = proposal.effectScale)
             return
         }
         val economy = ctx.state.playerCountry.economy
@@ -148,13 +150,14 @@ class PolicyService(private val ctx: SimulationContext) {
             .format(impulse, householdDelta, businessDelta))
     }
 
-    private fun applyReform(id: String, viaParliament: Boolean = true) {
+    private fun applyReform(id: String, viaParliament: Boolean = true, scale: Double = 1.0) {
         val def = reforms().first { it.id == id }
         ctx.state.policy.adoptedReforms[id] = ctx.now
         // Navette : un Sénat hostile retarde la mise en œuvre (pas pour un référendum).
         val delay = if (viaParliament) SenateService(ctx).reviewReform(def.title).toDouble() else 0.0
-        def.immediateEffects.forEach { ctx.effects.trigger(it, null, emptyMap(), id) }
-        def.longTermEffects.forEach { ctx.effects.trigger(it.copy(delayDays = it.delayDays + delay), null, emptyMap(), id) }
+        // Un texte amendé garde sa logique mais avec une portée réduite.
+        def.immediateEffects.forEach { ctx.effects.trigger(it.copy(amount = it.amount * scale), null, emptyMap(), id) }
+        def.longTermEffects.forEach { ctx.effects.trigger(it.copy(amount = it.amount * scale, delayDays = it.delayDays + delay), null, emptyMap(), id) }
         ctx.notifications.news(NotificationCategory.POLITICS, "Réforme adoptée : ${def.title}")
     }
 

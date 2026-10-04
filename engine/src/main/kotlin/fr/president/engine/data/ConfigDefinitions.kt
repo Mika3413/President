@@ -40,6 +40,8 @@ data class GlobalDataFiles(
     val zones: String,
     val unitTypes: String,
     val help: String,
+    /** Presse et sondages (facultatif). */
+    val media: String? = null,
 )
 
 @Serializable

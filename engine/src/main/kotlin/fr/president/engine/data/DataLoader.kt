@@ -33,6 +33,7 @@ class DataLoader(private val source: DataSource) {
             unitTypes = unitTypes.types.associateBy { it.id },
             militaryParameters = unitTypes.parameters,
             help = read(files.help),
+            media = files.media?.let { read(it) },
         )
         DataValidator.validate(db)
         return db

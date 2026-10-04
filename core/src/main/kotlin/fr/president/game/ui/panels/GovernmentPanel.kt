@@ -72,6 +72,9 @@ class GovernmentPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) :
         into.add(ui.label("Une réforme est votée par le Parlement après un mois ; les plus difficiles exigent une majorité plus large. " +
             "Vous pouvez aussi la soumettre directement aux Français par référendum : le vote portera autant sur vous que sur le texte.", "muted", wrap = true)).growX().padBottom(GAP).row()
         into.add(fr.president.game.ui.widgets.IndicatorView(ui, session.national.parliament(), expanded)).growX().padBottom(GAP).row()
+        session.state.policy.proposals.filter { it.status == fr.president.engine.government.PolicyStatus.PENDING_VOTE && it.kind == fr.president.engine.government.PolicyKind.REFORM }.forEach { p ->
+            into.add(fr.president.game.ui.widgets.ProposalCard.build(ui, session, p) { message = it; nav.refresh() }).growX().padBottom(GAP).row()
+        }
         val parliament = session.state.parliament
         parliament.referendumReform?.let { id ->
             val title = session.policy.reforms().firstOrNull { it.id == id }?.title ?: id

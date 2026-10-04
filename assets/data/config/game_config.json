@@ -87,6 +87,7 @@
     },
     "zones": "geo/zones.json",
     "unitTypes": "military/unit_types.json",
-    "help": "ui/help.json"
+    "help": "ui/help.json",
+    "media": "media/fr.json"
   }
 }

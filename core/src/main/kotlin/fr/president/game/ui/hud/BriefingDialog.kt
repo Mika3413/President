@@ -22,12 +22,13 @@ class BriefingDialog(private val ui: Ui, private val onMessages: () -> Unit) {
         blockInput()
     }
 
-    fun show(b: BriefingReadout.Briefing) {
+    fun show(b: BriefingReadout.Briefing, headline: String? = null) {
         root.clearChildren()
         val card = ui.panelTable().apply { pad(PAD); defaults().left().growX() }
         val days = if (b.days >= 1.5) "${Math.round(b.days)} jours" else "un jour"
         card.add(ui.label("Pendant votre absence : $days", "title", wrap = true)).row()
         card.add(ui.separator()).height(1f).padTop(4f).padBottom(6f).row()
+        headline?.let { card.add(ui.label("▤ À la une : « $it »", "small", Theme.highlight, wrap = true)).padBottom(6f).row() }
         if (b.changes.isNotEmpty()) {
             val grid = Table().apply { defaults().left().padRight(10f).padBottom(2f); left() }
             b.changes.forEach { c ->

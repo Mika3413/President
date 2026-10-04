@@ -68,6 +68,8 @@ class WorldState(
     val localActions: MutableMap<String, fr.president.engine.time.WorldTime> = mutableMapOf(),
     /** Courbes et journal du mandat. */
     val stats: fr.president.engine.stats.StatsState = fr.president.engine.stats.StatsState(),
+    /** Unes des journaux et sondages publiés. */
+    val media: fr.president.engine.media.MediaState = fr.president.engine.media.MediaState(),
 ) {
     val playerCountry: CountryState get() = countries.getValue(player.countryId)
 

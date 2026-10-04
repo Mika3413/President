@@ -94,6 +94,7 @@ class MainScreen(
         PanelId.SELECTION to selectionPanel,
         PanelId.DECISIONS to fr.president.game.ui.panels.DecisionPanel(ui, this) { closePanel() },
         PanelId.STATS to fr.president.game.ui.panels.StatsPanel(ui, this) { closePanel() },
+        PanelId.PRESS to fr.president.game.ui.panels.PressPanel(ui, this) { closePanel() },
         PanelId.GOVERNMENT to GovernmentPanel(ui, this) { closePanel() },
         PanelId.ECONOMY to EconomyPanel(ui, this) { closePanel() },
         PanelId.DIPLOMACY to diplomacyPanel,
@@ -284,7 +285,7 @@ class MainScreen(
     /** Bilan affiché au retour du joueur après une absence. */
     fun showAbsence(report: Simulator.Report) {
         if (report.days < MIN_ABSENCE_DAYS) return
-        briefing.show(session.briefing.since(report.from))
+        briefing.show(session.briefing.since(report.from), session.media.headline()?.headline)
     }
 
     /** Accès pour l'automatisation de développement (captures d'écran). */
