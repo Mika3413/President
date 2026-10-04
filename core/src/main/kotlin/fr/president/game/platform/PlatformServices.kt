@@ -32,4 +32,7 @@ interface PlatformServices {
     fun requestBackgroundExemption() {}
 
     fun nowUtcMillis(): Long = System.currentTimeMillis()
+
+    /** Rapport d'une erreur fatale enregistrée lors de la session précédente (puis effacé), ou null. */
+    fun takeCrashReport(): String? = null
 }

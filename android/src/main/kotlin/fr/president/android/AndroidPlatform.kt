@@ -48,7 +48,21 @@ class AndroidPlatform(private val context: Context) : PlatformServices {
         }
     }
 
+    override fun takeCrashReport(): String? {
+        val f = crashFile(context)
+        if (!f.exists()) return null
+        return runCatching { f.readText() }.getOrNull().also { f.delete() }
+    }
+
     companion object {
         fun saveDirectory(context: Context) = File(context.filesDir, "saves")
+        private fun crashFile(context: Context) = File(context.filesDir, "crash.txt")
+
+        /** Conserve le rapport d'erreur pour l'afficher au lancement suivant. */
+        fun writeCrash(context: Context, report: String) {
+            runCatching { crashFile(context).writeText(report.take(MAX_REPORT_CHARS)) }
+        }
+
+        private const val MAX_REPORT_CHARS = 20_000
     }
 }

@@ -32,4 +32,6 @@ tasks.named<JavaExec>("run") {
     // Transmet les options de développement (-Dpresident.script=..., -Dpresident.uiScale=...).
     System.getProperties().stringPropertyNames().filter { it.startsWith("president.") && it != "president.saveDir" }
         .forEach { systemProperty(it, System.getProperty(it)) }
+    // Simulation d'un téléphone : ./gradlew :desktop:run -Dheap=192m
+    System.getProperty("heap")?.let { maxHeapSize = it }
 }

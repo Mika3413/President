@@ -31,6 +31,7 @@ class DevScriptDriver(private val game: PresidentGame, script: String) : Applica
             "shot" -> screenshot(arg)
             "zoom" -> arg.split(',').let { (lon, lat, w) -> game.mainScreen?.devZoom(lon.toDouble(), lat.toDouble(), w.toFloat()) }
             "layer" -> game.mainScreen?.devLayer(ThematicLayer.valueOf(arg))
+            "click" -> click(arg)
             "open" -> arg.split('/').let { parts -> game.mainScreen?.open(PanelId.valueOf(parts[0]), parts.getOrNull(1)) }
             "select" -> select(arg)
             // Débogage uniquement : avance le monde sans attendre le temps réel.
@@ -70,5 +71,33 @@ class DevScriptDriver(private val game: PresidentGame, script: String) : Applica
         const val INITIAL_WAIT = 20
         const val STEP_FRAMES = 3
         const val SEED = 2026L
+    }
+
+    /** Simule un vrai toucher (appui puis relâchement) sur le bouton portant ce texte. */
+    private fun click(text: String) {
+        val stage = (game.screen as? fr.president.game.screens.HasStage)?.stage ?: run { println("click : écran sans scène"); return }
+        val button = findButton(stage.root, text) ?: run { println("click : bouton « $text » introuvable"); return }
+        // Comme un joueur : fait défiler jusqu'au bouton s'il est hors de l'écran.
+        var parent = button.parent
+        while (parent != null) {
+            if (parent is com.badlogic.gdx.scenes.scene2d.ui.ScrollPane) {
+                val pos = button.localToActorCoordinates(parent.actor, com.badlogic.gdx.math.Vector2())
+                parent.scrollTo(pos.x, pos.y, button.width, button.height, true, true)
+                parent.updateVisualScroll()
+                parent.validate()
+            }
+            parent = parent.parent
+        }
+        val center = button.localToStageCoordinates(com.badlogic.gdx.math.Vector2(button.width / 2, button.height / 2))
+        val screen = stage.stageToScreenCoordinates(center)
+        stage.touchDown(screen.x.toInt(), screen.y.toInt(), 0, 0)
+        stage.touchUp(screen.x.toInt(), screen.y.toInt(), 0, 0)
+        println("click : « $text »")
+    }
+
+    private fun findButton(actor: com.badlogic.gdx.scenes.scene2d.Actor, text: String): com.badlogic.gdx.scenes.scene2d.ui.TextButton? {
+        if (actor is com.badlogic.gdx.scenes.scene2d.ui.TextButton && actor.text.toString().startsWith(text)) return actor
+        if (actor is com.badlogic.gdx.scenes.scene2d.Group) actor.children.forEach { c -> findButton(c, text)?.let { return it } }
+        return null
     }
 }

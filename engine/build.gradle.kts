@@ -27,6 +27,6 @@ tasks.test {
     // Les tests chargent les vraies données du jeu.
     systemProperty("president.assets", rootProject.file("assets").absolutePath)
     // Sonde d'équilibrage (longue) : ./gradlew :engine:test --tests '*BalanceProbe*' -Dbalance=true
-    listOf("balance", "balance.seeds", "balance.leaning", "balance.strategies").forEach { key -> System.getProperty(key)?.let { systemProperty(key, it) } }
+    listOf("balance", "balance.seeds", "balance.leaning", "balance.social", "balance.strategies").forEach { key -> System.getProperty(key)?.let { systemProperty(key, it) } }
     maxHeapSize = "2g"
 }

@@ -8,11 +8,14 @@ import fr.president.engine.data.GameDatabase
 import fr.president.engine.save.SaveRepository
 import fr.president.engine.session.GameSession
 import fr.president.engine.setup.NewGameOptions
+import fr.president.engine.simulation.Simulator
 import fr.president.game.app.GameController
 import fr.president.game.app.GdxDataSource
 import fr.president.game.map.MapData
 import fr.president.game.platform.PlatformServices
+import fr.president.game.screens.ErrorScreen
 import fr.president.game.screens.GameOverScreen
+import fr.president.game.screens.LoadingScreen
 import fr.president.game.screens.MainScreen
 import fr.president.game.screens.NewGameScreen
 import fr.president.game.screens.TitleScreen
@@ -38,49 +41,109 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
         db = DataLoader(GdxDataSource()).load()
         saves = SaveRepository(platform.saveDirectory)
         platform.onForegrounded()
-        showTitle()
+        safely("accueil") { showTitle() }
+    }
+
+    /**
+     * Toute erreur est rattrapée : au lieu de fermer l'application, on affiche ce qui s'est passé
+     * (et on l'enregistre pour le prochain lancement).
+     */
+    private fun safely(where: String, block: () -> Unit) {
+        try {
+            block()
+        } catch (t: Throwable) {
+            reportError(where, t)
+        }
+    }
+
+    private fun reportError(where: String, t: Throwable) {
+        Gdx.app.error(TAG, "Erreur ($where)", t)
+        val report = t.stackTraceToString()
+        runCatching { controller?.save() }
+        controller = null
+        runCatching {
+            switchTo(ErrorScreen(ui, platform.uiScale, where, report) { safely("accueil") { showTitle() } })
+        }
+    }
+
+    override fun render() {
+        try {
+            super.render()
+        } catch (t: Throwable) {
+            reportError(if (screen is MainScreen) "partie en cours" else "affichage", t)
+        }
     }
 
     /** Écran d'accueil : continuer la partie en cours ou en commencer une nouvelle. */
     private fun showTitle() {
+        // Erreur fatale lors de la session précédente : on montre d'abord son détail.
+        platform.takeCrashReport()?.let { report ->
+            val where = report.lineSequence().firstOrNull().orEmpty()
+            switchTo(ErrorScreen(ui, platform.uiScale, "session précédente — $where", report.substringAfter('\n')) { safely("accueil") { showTitle() } })
+            return
+        }
         val map = mapData ?: MapData(db, skin.white, db.snapshot.playableCountries.first()).also { mapData = it }
-        switchTo(TitleScreen(ui, map, platform.uiScale, saves.exists(), null, onContinue = { Gdx.app.postRunnable { resumeSave() } },
-            onNewGame = { Gdx.app.postRunnable { showNewGame(null) } }))
+        switchTo(TitleScreen(ui, map, platform.uiScale, saves.exists(), null, onContinue = { Gdx.app.postRunnable { safely("reprise de la partie") { resumeSave() } } },
+            onNewGame = { Gdx.app.postRunnable { safely("nouvelle partie") { showNewGame(null) } } }))
     }
 
     private fun resumeSave() {
-        try {
-            val session = GameSession.fromSave(db, saves.read(), platform::nowUtcMillis)
-            startSession(session, resumed = true)
+        val file = try {
+            saves.read()
         } catch (e: Exception) {
             Gdx.app.error(TAG, "Sauvegarde illisible", e)
             showNewGame("Votre sauvegarde n'a pas pu être lue (${e.message}). Une copie a été conservée.")
+            return
         }
+        prepareSession("reprise de la partie", "Retour à l'Élysée", resumed = true) { GameSession.fromSave(db, file, platform::nowUtcMillis) }
     }
 
     private fun showNewGame(error: String?) {
-        switchTo(NewGameScreen(ui, db, platform.uiScale, platform::nowUtcMillis, error) { options -> newGame(options) })
+        switchTo(NewGameScreen(ui, db, platform.uiScale, platform::nowUtcMillis, error) { options ->
+            // Après le traitement du toucher, pour ne pas détruire l'écran pendant qu'il gère l'événement.
+            Gdx.app.postRunnable { safely("prise de fonctions") { newGame(options) } }
+        })
     }
 
     fun newGame(options: NewGameOptions) {
-        startSession(GameSession.newGame(db, options, platform::nowUtcMillis), resumed = false)
+        prepareSession("prise de fonctions", "Passation de pouvoirs", resumed = false) { GameSession.newGame(db, options, platform::nowUtcMillis) }
     }
 
-    private fun startSession(session: GameSession, resumed: Boolean) {
-        val c = GameController(session, saves, platform)
+    /**
+     * Prépare la partie hors du fil d'affichage (création du monde ou rattrapage du temps écoulé,
+     * qui peut prendre plusieurs secondes sur téléphone) derrière un écran d'attente, puis l'affiche.
+     */
+    private fun prepareSession(where: String, title: String, resumed: Boolean, build: () -> GameSession) {
+        controller = null
+        switchTo(LoadingScreen(ui, platform.uiScale, title))
+        val work = Runnable {
+            try {
+                val c = GameController(build(), saves, platform)
+                val report = c.advance()
+                c.save()
+                Gdx.app.postRunnable { safely(where) { showSession(c, report, resumed) } }
+            } catch (t: Throwable) {
+                Gdx.app.postRunnable { reportError(where, t) }
+            }
+        }
+        Thread(null, work, "president-preparation", WORKER_STACK_BYTES).apply { isDaemon = true }.start()
+    }
+
+    private fun showSession(c: GameController, report: Simulator.Report, resumed: Boolean) {
+        val session = c.session
         controller = c
-        val report = c.advance()
-        c.save()
         if (session.isGameOver) {
             showGameOver(session)
             return
         }
         val map = mapData ?: MapData(db, skin.white, session.state.player.countryId).also { mapData = it }
-        val screen = MainScreen(c, ui, map, platform.uiScale, { Gdx.app.postRunnable { showGameOver(session) } }) {
+        val screen = MainScreen(c, ui, map, platform.uiScale, { Gdx.app.postRunnable { safely("fin de partie") { showGameOver(session) } } }) {
             Gdx.app.postRunnable {
-                controller = null
-                saves.delete()
-                showNewGame(null)
+                safely("abandon") {
+                    controller = null
+                    saves.delete()
+                    showNewGame(null)
+                }
             }
         }
         switchTo(screen)
@@ -91,15 +154,20 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
         controller?.save()
         controller = null
         switchTo(GameOverScreen(ui, session, platform.uiScale) {
-            saves.delete()
-            showNewGame(null)
+            Gdx.app.postRunnable {
+                safely("nouvelle partie") {
+                    saves.delete()
+                    showNewGame(null)
+                }
+            }
         })
     }
 
     private fun switchTo(next: Screen) {
         val previous = screen
         setScreen(next)
-        previous?.dispose()
+        // L'ancien écran est libéré après la frame en cours (il peut encore être en train de traiter un événement).
+        previous?.let { old -> Gdx.app.postRunnable { runCatching { old.dispose() } } }
     }
 
     override fun pause() {
@@ -114,7 +182,7 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
         val newer = runCatching { saves.read() }.getOrNull()?.takeIf { it.savedAtRealUtcMillis > c.lastSaveMillis }
         if (newer != null) {
             platform.onForegrounded()
-            startSession(GameSession.fromSave(db, newer, platform::nowUtcMillis), resumed = true)
+            prepareSession("reprise de la partie", "Retour à l'Élysée", resumed = true) { GameSession.fromSave(db, newer, platform::nowUtcMillis) }
             return
         }
         val report = c.onResume()
@@ -133,5 +201,7 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
 
     private companion object {
         const val TAG = "President"
+        /** Pile large : le fil de préparation ne doit jamais manquer de place, même sur Android. */
+        const val WORKER_STACK_BYTES = 16L * 1024 * 1024
     }
 }

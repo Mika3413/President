@@ -45,7 +45,8 @@ class NewGameFactory(private val db: GameDatabase) {
         val president = CharacterGenerator(db).generate(
             PRESIDENT_ID,
             CharacterSpec(countryId, CharacterRole.PRESIDENT, null, start.toDateTime().year,
-                ageRange = PRESIDENT_AGES, economicLeaning = options.economicLeaning, leaningSpread = 0.0, female = options.presidentFemale),
+                ageRange = PRESIDENT_AGES, economicLeaning = options.economicLeaning, leaningSpread = 0.0, female = options.presidentFemale,
+                socialLeaning = options.socialLeaning),
             rng,
         ).let { generated ->
             if (options.presidentFirstName.isNullOrBlank() && options.presidentLastName.isNullOrBlank()) generated

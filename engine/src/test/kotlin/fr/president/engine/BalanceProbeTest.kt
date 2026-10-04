@@ -21,13 +21,14 @@ class BalanceProbeTest {
         if (System.getProperty("balance") != "true") return
         val seeds = (System.getProperty("balance.seeds") ?: "1,2,3,4,5,6").split(',').map { it.trim().toLong() }
         val leaning = (System.getProperty("balance.leaning") ?: "0.0").toDouble()
+        val social = System.getProperty("balance.social")?.toDouble()
         val only = System.getProperty("balance.strategies")?.split(',')?.map { Strategy.valueOf(it.trim()) }
         for (strategy in Strategy.entries.filter { only == null || it in only }) {
             var reelected = 0
             val lines = mutableListOf<String>()
             for (seed in seeds) {
                 val clock = TestData.FakeClock()
-                val s = GameSession.newGame(TestData.db, fr.president.engine.setup.NewGameOptions("normal", seed, clock.now, economicLeaning = leaning), clock)
+                val s = GameSession.newGame(TestData.db, fr.president.engine.setup.NewGameOptions("normal", seed, clock.now, economicLeaning = leaning, socialLeaning = social), clock)
                 play(s, clock, strategy)
                 val e = s.state.playerCountry.economy
                 val won = s.state.elections.results.firstOrNull()?.incumbentWon == true

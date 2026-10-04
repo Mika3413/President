@@ -30,8 +30,8 @@ class TitleScreen(
     subtitle: String?,
     private val onContinue: () -> Unit,
     private val onNewGame: () -> Unit,
-) : ScreenAdapter() {
-    private val stage = Stage(ScreenViewport().apply { unitsPerPixel = 1f / uiScale })
+) : ScreenAdapter(), HasStage {
+    override val stage = Stage(ScreenViewport().apply { unitsPerPixel = 1f / uiScale })
     private val camera = OrthographicCamera()
     private val polygons = PolygonSpriteBatch()
     private val shapes = ShapeRenderer()

@@ -38,3 +38,5 @@ Décisions secondaires prises pendant le développement, documentées comme dema
 | 32 | Électorat | Dispersion idéologique au sein de chaque groupe et loyauté partisane | Équilibre identique pour un président de gauche, du centre ou de droite |
 | 33 | Usure des équipements | 1,2 %/an pour une centrale avec l'entretien normal | L'économie ne se dégrade pas d'elle-même ; l'entretien renforcé reste un levier |
 | 34 | Écran d'accueil | France animée en bleu-blanc-rouge, menu Continuer / Nouvelle partie | Première impression soignée, sans image tierce |
+| 35 | Famille du président | Choix parmi les six familles du pays (gauche radicale à droite nationaliste), positions économique et sociétale reprises telles quelles | Les extrêmes sont jouables mais plus difficiles : noyau fidèle, majorité relative, second tour serré |
+| 36 | Préparation de partie | Création du monde et rattrapage du temps sur un fil dédié, derrière un écran d'attente ; toute erreur affiche un écran de diagnostic au lieu de fermer le jeu | Pas de blocage de l'interface sur téléphone lent ; erreurs photographiables pour correction |

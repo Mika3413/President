@@ -12,7 +12,10 @@ fun main() {
     val listener = if (script != null) DevScriptDriver(game, script) else game
     val config = Lwjgl3ApplicationConfiguration().apply {
         setTitle("Président")
-        setWindowedMode(WIDTH, HEIGHT)
+        setWindowedMode(
+            System.getProperty("president.width")?.toIntOrNull() ?: WIDTH,
+            System.getProperty("president.height")?.toIntOrNull() ?: HEIGHT,
+        )
         useVsync(true)
         setForegroundFPS(FPS)
         setBackBufferConfig(8, 8, 8, 8, 16, 0, SAMPLES)
