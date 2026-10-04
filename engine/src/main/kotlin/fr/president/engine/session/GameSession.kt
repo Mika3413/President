@@ -35,6 +35,7 @@ class GameSession(
     val local = LocalReadouts(context)
     val advisor = fr.president.engine.readout.AdvisorReadout(context)
     val stats = fr.president.engine.readout.StatsReadout(context)
+    val briefing = fr.president.engine.readout.BriefingReadout(context)
     val characters = CharacterReadout(context)
     val military = MilitaryCommands(context)
     val militaryReadouts = fr.president.engine.readout.MilitaryReadouts(context)

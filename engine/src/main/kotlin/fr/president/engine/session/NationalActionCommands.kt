@@ -22,10 +22,14 @@ class NationalActionCommands(private val ctx: SimulationContext) {
     val definitions: List<LocalActionDef> get() = ctx.playerData.nationalActions?.actions.orEmpty()
 
     fun actions(category: String? = null): List<ActionPresenter.ActionView> =
-        definitions.filter { category == null || it.category == category }.map { presenter.view(it, blocker(it)) }
+        definitions.filter { category == null || it.category == category }.map { presenter.view(it, blocker(it), !presenter.unlocked(it)) }
 
     /** Nombre de décisions possibles tout de suite, par rubrique (pastilles de l'interface). */
     fun availableCount(category: String): Int = definitions.count { it.category == category && blocker(it) == null }
+
+    /** Décisions que la situation actuelle vient de rendre possibles (crise, guerre, déficit...). */
+    fun situational(): List<ActionPresenter.ActionView> =
+        definitions.filter { it.requires.isNotEmpty() && blocker(it) == null }.map { presenter.view(it, null) }
 
     /** Décisions en cours d'application (plans, chantiers nationaux). */
     fun running(): List<ProjectState> = ctx.state.projects.filter { it.kind.startsWith(KIND) && it.status == ProjectStatus.IN_PROGRESS }
@@ -64,6 +68,7 @@ class NationalActionCommands(private val ctx: SimulationContext) {
 
     private fun blocker(def: LocalActionDef): String? {
         if (ctx.state.player.gameOver != null) return "La partie est terminée."
+        if (!presenter.unlocked(def)) return "Disponible seulement : ${def.requiresText.ifBlank { "dans certaines situations" }}."
         if (ctx.state.projects.any { it.kind == KIND + def.id && it.status == ProjectStatus.IN_PROGRESS }) return "Déjà en cours."
         presenter.wait(key(def.id), def.cooldownDays)?.let { return "Possible à nouveau dans $it." }
         return null

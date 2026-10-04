@@ -435,6 +435,7 @@
    "icon": "⚠",
    "category": "security",
    "description": "Pouvoirs exceptionnels pendant trois mois : perquisitions, assignations, interdictions de rassemblement.",
+   "confirm": true,
    "durationDays": 90,
    "cooldownDays": 365,
    "immediate": [
@@ -1182,6 +1183,364 @@
     {
      "target": "military.readiness",
      "amount": 0.03
+    }
+   ]
+  },
+  {
+   "id": "austerity_plan",
+   "label": "Plan de rigueur",
+   "icon": "✂",
+   "category": "economy",
+   "description": "Coupes franches dans les dépenses de l'État et des collectivités pour rassurer Bruxelles et les marchés.",
+   "requires": [
+    {
+     "variable": "economy.deficitRatio",
+     "min": 0.05
+    }
+   ],
+   "requiresText": "si le déficit dépasse 5 % du PIB",
+   "confirm": true,
+   "cooldownDays": 1095,
+   "immediate": [
+    {
+     "target": "spending.state_operations",
+     "amount": -0.05
+    },
+    {
+     "target": "spending.local_authorities",
+     "amount": -0.03
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": 0.02
+    },
+    {
+     "target": "alliance.EU.NEGOTIATION_GOODWILL",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.civil_servants",
+     "amount": -0.05
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": -0.02
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.01
+    }
+   ]
+  },
+  {
+   "id": "market_reassurance",
+   "label": "Rassurer les marchés",
+   "icon": "◆",
+   "category": "economy",
+   "description": "Trajectoire de dette crédible présentée aux agences de notation et aux investisseurs.",
+   "requires": [
+    {
+     "variable": "economy.debtRatio",
+     "min": 1.2
+    }
+   ],
+   "requiresText": "si la dette dépasse 120 % du PIB",
+   "cooldownDays": 365,
+   "immediate": [
+    {
+     "target": "economy.businessConfidence",
+     "amount": 0.03
+    },
+    {
+     "target": "alliance.EU.NEGOTIATION_GOODWILL",
+     "amount": 0.01
+    }
+   ]
+  },
+  {
+   "id": "price_freeze",
+   "label": "Blocage des prix alimentaires",
+   "icon": "‖",
+   "category": "economy",
+   "description": "Les prix de cent produits de base sont gelés trois mois. Les commerçants protestent.",
+   "requires": [
+    {
+     "variable": "economy.inflation",
+     "min": 0.04
+    }
+   ],
+   "requiresText": "si l'inflation dépasse 4 %",
+   "durationDays": 90,
+   "cooldownDays": 730,
+   "immediate": [
+    {
+     "target": "economy.inflation",
+     "amount": -0.005,
+     "days": 90
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": 0.03
+    },
+    {
+     "target": "opinion.group.middle_income",
+     "amount": 0.01
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": -0.03
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.01
+    }
+   ]
+  },
+  {
+   "id": "big_loan",
+   "label": "Grand emprunt national",
+   "icon": "▲",
+   "category": "economy",
+   "description": "Trente milliards empruntés pour investir dans l'avenir quand l'économie cale.",
+   "requires": [
+    {
+     "variable": "economy.growth",
+     "max": 0.0
+    }
+   ],
+   "requiresText": "en récession (croissance négative)",
+   "costBillions": 30,
+   "durationDays": 730,
+   "cooldownDays": 1825,
+   "immediate": [
+    {
+     "target": "economy.output",
+     "amount": 0.006,
+     "days": 365
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": 0.02
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "economy.potentialGrowth",
+     "amount": 0.001,
+     "days": 730
+    }
+   ]
+  },
+  {
+   "id": "jobs_emergency",
+   "label": "Plan d'urgence pour l'emploi",
+   "icon": "⚒",
+   "category": "social",
+   "description": "Contrats aidés, chômage partiel prolongé, primes à l'embauche.",
+   "requires": [
+    {
+     "variable": "economy.unemployment",
+     "min": 0.09
+    }
+   ],
+   "requiresText": "si le chômage dépasse 9 %",
+   "costBillions": 8,
+   "durationDays": 365,
+   "cooldownDays": 1095,
+   "immediate": [
+    {
+     "target": "economy.unemployment",
+     "amount": -0.004,
+     "days": 365
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.inactive",
+     "amount": 0.02
+    }
+   ]
+  },
+  {
+   "id": "energy_sobriety",
+   "label": "Plan de sobriété énergétique",
+   "icon": "❄",
+   "category": "ecology",
+   "description": "Chauffage à 19 °C, éclairage public réduit, industrie incitée à décaler sa consommation.",
+   "requires": [
+    {
+     "variable": "energy.priceIndex",
+     "min": 1.3
+    }
+   ],
+   "requiresText": "si les prix de l'énergie ont bondi de plus de 30 %",
+   "cooldownDays": 365,
+   "immediate": [
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.005
+    },
+    {
+     "target": "quality.environment",
+     "amount": 0.01
+    },
+    {
+     "target": "economy.inflation",
+     "amount": -0.002,
+     "days": 120
+    },
+    {
+     "target": "opinion.national",
+     "amount": 0.002
+    }
+   ]
+  },
+  {
+   "id": "unity_address",
+   "label": "Appel à l'unité nationale",
+   "icon": "☰",
+   "category": "institutions",
+   "description": "Un discours solennel pour retrouver la confiance quand tout semble perdu.",
+   "requires": [
+    {
+     "variable": "opinion.national",
+     "max": 0.35
+    }
+   ],
+   "requiresText": "si votre popularité tombe sous 35 %",
+   "cooldownDays": 365,
+   "immediate": [
+    {
+     "target": "opinion.national",
+     "amount": 0.01
+    }
+   ]
+  },
+  {
+   "id": "confidence_vote",
+   "label": "Engager la responsabilité du gouvernement",
+   "icon": "⚖",
+   "category": "institutions",
+   "description": "Le Premier ministre met sa majorité au pied du mur : soutien ou dissolution.",
+   "requires": [
+    {
+     "variable": "government.parliamentSupport",
+     "max": 0.5
+    }
+   ],
+   "requiresText": "si l'Assemblée vous soutient à moins de 50 %",
+   "confirm": true,
+   "cooldownDays": 365,
+   "immediate": [
+    {
+     "target": "government.parliamentSupport",
+     "amount": 0.05
+    },
+    {
+     "target": "opinion.national",
+     "amount": -0.004
+    }
+   ]
+  },
+  {
+   "id": "general_mobilization",
+   "label": "Mobilisation générale",
+   "icon": "⚑",
+   "category": "defense",
+   "description": "Rappel des réservistes et réquisition de l'industrie pour l'effort de guerre.",
+   "requires": [
+    {
+     "variable": "military.atWar",
+     "min": 1
+    }
+   ],
+   "requiresText": "en guerre",
+   "confirm": true,
+   "costBillions": 5,
+   "cooldownDays": 1095,
+   "immediate": [
+    {
+     "target": "military.readiness",
+     "amount": 0.08
+    },
+    {
+     "target": "economy.output",
+     "amount": -0.004,
+     "days": 180
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": -0.05
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.02
+    }
+   ]
+  },
+  {
+   "id": "war_tax",
+   "label": "Contribution de solidarité nationale",
+   "icon": "€",
+   "category": "defense",
+   "description": "Un impôt exceptionnel sur les plus hauts revenus pour financer la guerre.",
+   "requires": [
+    {
+     "variable": "military.atWar",
+     "min": 1
+    }
+   ],
+   "requiresText": "en guerre",
+   "cooldownDays": 730,
+   "immediate": [
+    {
+     "target": "budget.oneOff",
+     "amount": -10
+    },
+    {
+     "target": "opinion.group.high_income",
+     "amount": -0.04
+    },
+    {
+     "target": "opinion.national",
+     "amount": 0.005
+    }
+   ]
+  },
+  {
+   "id": "refugee_reception",
+   "label": "Plan d'accueil des réfugiés",
+   "icon": "♥",
+   "category": "international",
+   "description": "Hébergement, scolarisation et accompagnement des familles qui fuient la guerre.",
+   "requires": [
+    {
+     "variable": "military.nearbyWar",
+     "min": 1
+    }
+   ],
+   "requiresText": "si une guerre éclate en Europe",
+   "costBillions": 1.5,
+   "cooldownDays": 730,
+   "immediate": [
+    {
+     "target": "alliance.EU.NEGOTIATION_GOODWILL",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.urban",
+     "amount": 0.01
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.02
+    },
+    {
+     "target": "demography.immigration",
+     "amount": 0.1,
+     "days": 180
     }
    ]
   }

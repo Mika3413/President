@@ -13,10 +13,14 @@ import fr.president.game.ui.Ui
  * rouge = perte, gris = neutre) et le bouton pour agir, ou la raison pour laquelle on ne peut pas.
  */
 object ActionCards {
-    fun card(ui: Ui, a: ActionPresenter.ActionView, color: com.badlogic.gdx.graphics.Color, onLaunch: () -> Unit): Table {
+    /** Décision en attente de confirmation (une seule à la fois). */
+    private var confirming: String? = null
+
+    fun card(ui: Ui, a: ActionPresenter.ActionView, color: com.badlogic.gdx.graphics.Color, refresh: () -> Unit, onLaunch: () -> Unit): Table {
         val card = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(6f, 8f, 6f, 8f); defaults().left() }
         val head = Table()
-        head.add(ui.label(a.def.icon, "value", if (a.blocker == null) color else Theme.textMuted)).width(ICON_WIDTH).left()
+        val icon = if (a.locked) "⊘" else a.def.icon
+        head.add(ui.label(icon, "value", if (a.blocker == null) color else Theme.textMuted)).width(ICON_WIDTH).left()
         head.add(ui.label(a.def.label, "bold", if (a.blocker == null) Theme.text else Theme.textMuted, wrap = true)).left().growX().minWidth(0f)
         val cost = Table()
         cost.add(ui.label(a.costText, "small", if (a.def.costBillions > 0) Theme.warning else Theme.good)).right().row()
@@ -28,9 +32,28 @@ object ActionCards {
         val foot = Table()
         foot.add(chips(ui, a.effects)).growX().left().bottom().minWidth(0f)
         val blocker = a.blocker
-        if (blocker == null) foot.add(ui.colorButton("▶ Lancer", color, onLaunch)).right().bottom().padLeft(6f)
+        val asking = confirming == a.def.id && blocker == null
+        if (blocker == null && !asking) {
+            foot.add(ui.colorButton("▶ Lancer", color) {
+                if (a.needsConfirmation) { confirming = a.def.id; refresh() } else onLaunch()
+            }).right().bottom().padLeft(6f)
+        }
         card.add(foot).growX().row()
-        if (blocker != null) card.add(ui.label("↻ $blocker", "small", Theme.warning, wrap = true)).growX().padTop(3f).row()
+        // Avant / après : ce que la décision change sur vos chiffres.
+        if (a.forecast.isNotEmpty() && blocker == null) {
+            val line = Table()
+            line.add(ui.label("Prévision ", "muted")).left().top()
+            line.add(chips(ui, a.forecast)).growX().left().minWidth(0f)
+            card.add(line).growX().padTop(2f).row()
+        }
+        if (asking) {
+            card.add(ui.label("Décision lourde (${a.costText}, ${a.durationText}). Vous confirmez ?", "small", Theme.warning, wrap = true)).growX().padTop(4f).row()
+            val buttons = Table().apply { defaults().padRight(4f) }
+            buttons.add(ui.colorButton("✔ Confirmer", color) { confirming = null; onLaunch() })
+            buttons.add(ui.button("Annuler") { confirming = null; refresh() })
+            card.add(buttons).left().padTop(2f).row()
+        }
+        if (blocker != null) card.add(ui.label((if (a.locked) "⊘ " else "↻ ") + blocker, "small", if (a.locked) Theme.textMuted else Theme.warning, wrap = true)).growX().padTop(3f).row()
         return card
     }
 
@@ -81,7 +104,7 @@ class LocalActionList(
         }
         // Les actions possibles d'abord, celles en attente ensuite.
         actions.filter { filter == null || it.def.category == filter }.sortedBy { it.blocker != null }.forEach { a ->
-            into.add(ActionCards.card(ui, a, Theme.catLocal) {
+            into.add(ActionCards.card(ui, a, Theme.catLocal, refresh) {
                 onResult(session.localActions.perform(departmentCode, a.def.id).fold({ it }, { it.message ?: "Impossible." }))
             }).growX().padBottom(4f).row()
         }

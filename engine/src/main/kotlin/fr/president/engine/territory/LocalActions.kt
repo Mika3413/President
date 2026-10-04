@@ -25,6 +25,12 @@ data class LocalActionDef(
     val globalCooldownDays: Int = 0,
     val immediate: List<EffectSpec> = emptyList(),
     val onCompletion: List<EffectSpec> = emptyList(),
+    /** Conditions de disponibilité (mêmes règles que les événements) : décision liée à une situation. */
+    val requires: List<fr.president.engine.events.Condition> = emptyList(),
+    /** Explication affichée tant que la décision est verrouillée (« Si l'inflation dépasse 4 % »). */
+    val requiresText: String = "",
+    /** Demande une confirmation avant d'agir (décisions lourdes ou irréversibles). */
+    val confirm: Boolean = false,
 )
 
 @Serializable

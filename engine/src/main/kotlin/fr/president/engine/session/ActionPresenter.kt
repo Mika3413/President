@@ -23,9 +23,61 @@ class ActionPresenter(private val ctx: SimulationContext) {
         val effects: List<EffectLine>,
         val costText: String,
         val durationText: String,
-    )
+        /** Prévision chiffrée sur vos indicateurs (« Popularité 53,0 % → 53,4 % »). */
+        val forecast: List<EffectLine> = emptyList(),
+        /** Décision verrouillée tant que la situation ne s'y prête pas. */
+        val locked: Boolean = false,
+    ) {
+        /** Faut-il confirmer avant d'agir ? */
+        val needsConfirmation: Boolean get() = def.confirm || def.costBillions >= HEAVY_COST
+    }
 
-    fun view(def: LocalActionDef, blocker: String?) = ActionView(def, blocker, summarize(def), costText(def), durationText(def))
+    fun view(def: LocalActionDef, blocker: String?, locked: Boolean = false) =
+        ActionView(def, blocker, summarize(def), costText(def), durationText(def), forecast(def), locked)
+
+    /** Vrai si toutes les conditions de la décision sont remplies. */
+    fun unlocked(def: LocalActionDef): Boolean = def.requires.all { c ->
+        val v = ctx.variables.resolve(c.variable) ?: return@all false
+        (c.min == null || v >= c.min) && (c.max == null || v <= c.max) && (c.oneOf.isEmpty() || v in c.oneOf)
+    }
+
+    /**
+     * Avant / après : l'effet direct attendu sur la popularité nationale et sur le déficit.
+     * C'est une estimation (l'opinion évolue ensuite avec le reste de la simulation).
+     */
+    fun forecast(def: LocalActionDef): List<EffectLine> {
+        val effects = def.immediate + def.onCompletion
+        val lines = mutableListOf<EffectLine>()
+        val groups = ctx.playerData.socialGroups
+        var popularity = effects.filter { it.target == "opinion.national" }.sumOf { it.amount }
+        if (groups != null) {
+            val partitions = groups.partitions.size.coerceAtLeast(1)
+            popularity += effects.filter { it.target.startsWith(GROUP) }.sumOf { spec ->
+                val share = groups.groups.firstOrNull { it.id == spec.target.removePrefix(GROUP) }?.populationShare ?: 0.0
+                spec.amount * share / partitions
+            }
+        }
+        val now = ctx.state.opinion.nationalApproval
+        if (abs(popularity) >= MIN_POPULARITY) {
+            lines += EffectLine("Popularité ${pct(now)} → ${pct((now + popularity).coerceIn(0.0, 1.0))}", popularity > 0)
+        }
+        val e = ctx.state.playerCountry.economy
+        val gdp = e.gdpBillions.coerceAtLeast(1.0)
+        val oneOff = def.costBillions + effects.filter { it.target == "budget.oneOff" }.sumOf { it.amount }
+        if (abs(oneOff) / gdp >= MIN_DEFICIT) {
+            lines += EffectLine("Déficit ${signedPts(oneOff / gdp)} de PIB (une fois)", oneOff < 0)
+        }
+        val yearly = effects.filter { it.target.startsWith(SPENDING) }.sumOf { spec ->
+            (e.budget?.spending?.get(spec.target.removePrefix(SPENDING))?.amount ?: 0.0) * spec.amount
+        }
+        if (abs(yearly) / gdp >= MIN_DEFICIT) {
+            lines += EffectLine("Dépenses ${if (yearly >= 0) "+" else "−"}${Formatting.billions(abs(yearly))} par an", yearly < 0)
+        }
+        return lines
+    }
+
+    private fun pct(v: Double) = String.format(java.util.Locale.FRENCH, "%.1f %%", v * PERCENT)
+    private fun signedPts(v: Double) = (if (v >= 0) "+" else "−") + String.format(java.util.Locale.FRENCH, "%.2f pt", abs(v) * PERCENT)
 
     /** Effets groupés par libellé : plusieurs souvenirs diplomatiques d'un même pays font une seule ligne. */
     fun summarize(def: LocalActionDef): List<EffectLine> =
@@ -93,6 +145,11 @@ class ActionPresenter(private val ctx: SimulationContext) {
     }
 
     private companion object {
+        const val HEAVY_COST = 5.0
+        const val GROUP = "opinion.group."
+        const val SPENDING = "spending."
+        const val MIN_POPULARITY = 0.0005
+        const val MIN_DEFICIT = 0.00005
         const val TENTHS = 10.0
         const val PERCENT = 100.0
         const val MW_PER_GW = 1000.0

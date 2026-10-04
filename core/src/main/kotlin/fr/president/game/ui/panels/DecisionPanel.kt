@@ -46,17 +46,34 @@ class DecisionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : P
         into.add(grid).growX().padBottom(GAP).row()
 
         message?.let { into.add(ui.label(it, "small", Theme.accent, wrap = true)).padBottom(GAP).row() }
+        situational(into)
         running(into)
 
         val def = categories.first { it.id == current }
         into.add(ui.label("${def.icon} ${def.label}", "title", colorOf(current))).padTop(2f).row()
         if (def.description.isNotBlank()) into.add(ui.label(def.description, "muted", wrap = true)).padBottom(4f).row()
-        session.nationalActions.actions(current).sortedBy { it.blocker != null }.forEach { a ->
-            into.add(ActionCards.card(ui, a, colorOf(current)) {
+        // Possibles d'abord, puis en attente, puis verrouillées (la situation ne s'y prête pas).
+        session.nationalActions.actions(current).sortedBy { if (it.locked) 2 else if (it.blocker != null) 1 else 0 }.forEach { a ->
+            into.add(ActionCards.card(ui, a, colorOf(current), { nav.refresh() }) {
                 message = session.nationalActions.perform(a.def.id).fold({ it }, { it.message ?: "Impossible." })
                 nav.refresh()
             }).growX().padBottom(4f).row()
         }
+    }
+
+    /** Décisions de crise que la situation vient de débloquer : signalées en tête. */
+    private fun situational(into: Table) {
+        val list = session.nationalActions.situational()
+        if (list.isEmpty()) return
+        val box = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(6f, 8f, 6f, 8f); defaults().left() }
+        box.add(ui.label("⚠ La situation ouvre de nouvelles options", "bold", Theme.warning)).row()
+        list.forEach { a ->
+            val row = Table()
+            row.add(ui.label("${a.def.icon} ${a.def.label}", "small", wrap = true)).left().growX().minWidth(0f)
+            row.add(ui.button("Voir", "flat") { category = a.def.category; nav.refresh() }).right()
+            box.add(row).growX().row()
+        }
+        into.add(box).growX().padBottom(GAP).row()
     }
 
     /** Mesures en cours, avec une barre d'avancement. */

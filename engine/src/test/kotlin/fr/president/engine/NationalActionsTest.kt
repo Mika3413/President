@@ -40,6 +40,10 @@ class NationalActionsTest {
     fun everyDecisionCanBeTakenOnceThenWaits() {
         val s = TestData.newSession()
         for (def in s.nationalActions.definitions) {
+            if (s.nationalActions.actions(def.category).first { it.def.id == def.id }.locked) {
+                assertTrue(s.nationalActions.perform(def.id).isFailure, "${def.id} verrouillée")
+                continue
+            }
             val r = s.nationalActions.perform(def.id)
             assertTrue(r.isSuccess, "${def.id} : ${r.exceptionOrNull()?.message}")
             assertNotNull(s.nationalActions.actions(def.category).first { it.def.id == def.id }.blocker, def.id)
@@ -59,5 +63,31 @@ class NationalActionsTest {
         clock.advanceWorldDays(370.0)
         s.advanceToNow()
         assertEquals(0, s.nationalActions.running().size)
+    }
+
+    @Test
+    fun crisisDecisionUnlocksWithTheSituation() {
+        val s = TestData.newSession()
+        val view = { s.nationalActions.actions("social").first { it.def.id == "jobs_emergency" } }
+        s.state.playerCountry.economy.unemployment = 0.07
+        assertTrue(view().locked)
+        assertTrue(s.nationalActions.perform("jobs_emergency").isFailure)
+        s.state.playerCountry.economy.unemployment = 0.10
+        assertTrue(!view().locked && view().blocker == null)
+        assertTrue(s.nationalActions.situational().any { it.def.id == "jobs_emergency" })
+        assertTrue(view().needsConfirmation)
+        assertTrue(view().forecast.any { it.text.startsWith("Déficit") })
+        assertTrue(s.nationalActions.perform("jobs_emergency").isSuccess)
+    }
+
+    @Test
+    fun briefingSummarisesAnAbsence() {
+        val clock = TestData.FakeClock()
+        val s = TestData.newSession(clock = clock)
+        val from = s.state.time
+        clock.advanceWorldDays(30.0)
+        s.advanceToNow()
+        val b = s.briefing.since(from)
+        assertTrue(b.days > 29 && b.changes.isNotEmpty() && b.upcoming.isNotEmpty())
     }
 }

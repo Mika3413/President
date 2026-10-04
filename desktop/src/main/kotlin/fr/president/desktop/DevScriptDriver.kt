@@ -36,6 +36,11 @@ class DevScriptDriver(private val game: PresidentGame, script: String) : Applica
             "select" -> select(arg)
             // Débogage uniquement : avance le monde sans attendre le temps réel.
             "skip" -> game.controller?.session?.context?.let { ctx -> Simulator(ctx).advanceTo(ctx.now.plusDays(arg.toLong())) }
+            // Simule une absence : avance le monde puis affiche le bilan de retour.
+            "away" -> game.controller?.session?.context?.let { ctx ->
+                val report = Simulator(ctx).advanceTo(ctx.now.plusDays(arg.toLong()))
+                game.mainScreen?.showAbsence(report)
+            }
             "inbox" -> game.mainScreen?.let { screen -> screen.open(PanelId.INBOX); screen.devOpenFirstPendingMessage() }
             "war" -> game.controller?.session?.context?.let { ctx -> arg.split(',').let { (a, b) -> fr.president.engine.military.WarService(ctx).declare(a, b, "Script de test") } }
             "order" -> game.controller?.session?.let { s -> arg.split(',').let { (u, o, lon, lat) -> s.military.order(u, fr.president.engine.military.UnitOrder.valueOf(o), s.military.zoneAt(lon.toDouble(), lat.toDouble())) } }

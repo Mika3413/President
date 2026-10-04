@@ -75,6 +75,7 @@ class MainScreen(
     private var currentPanel: Panel? = null
     private var targeting: Pair<String, fr.president.engine.military.UnitOrder>? = null
     private val targetingBanner = Table()
+    private val briefing = fr.president.game.ui.hud.BriefingDialog(ui) { open(PanelId.INBOX) }
 
 
     private val selectionPanel = SelectionPanel(ui, this) { closePanel() }
@@ -127,6 +128,7 @@ class MainScreen(
         overlayTable.add(toasts.root)
         overlayTable.touchable = com.badlogic.gdx.scenes.scene2d.Touchable.childrenOnly
         stage.addActor(overlayTable)
+        stage.addActor(briefing.root)
         refresh()
     }
 
@@ -267,15 +269,10 @@ class MainScreen(
         currentPanel?.refresh()
     }
 
-    /** Message affiché au retour du joueur après une absence. */
+    /** Bilan affiché au retour du joueur après une absence. */
     fun showAbsence(report: Simulator.Report) {
         if (report.days < MIN_ABSENCE_DAYS) return
-        val pending = session.state.inbox.messages.count { it.awaitingAnswer }
-        toasts.show(fr.president.engine.notifications.GameNotification(
-            -1, fr.president.engine.notifications.NotificationCategory.POLITICS, fr.president.engine.notifications.Urgency.IMPORTANT,
-            "Pendant votre absence : %.1f jours se sont écoulés".format(report.days),
-            "${report.notifications} alerte(s), $pending décision(s) en attente.", session.state.time,
-        ))
+        briefing.show(session.briefing.since(report.from))
     }
 
     /** Accès pour l'automatisation de développement (captures d'écran). */

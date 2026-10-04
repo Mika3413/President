@@ -36,8 +36,23 @@ def g(group, amount, days=0):
 A = []
 
 
-def action(cat, id, label, icon, description, cost=0.0, duration=0, cooldown=365, immediate=(), completion=()):
+def cond(variable, min=None, max=None):
+    c = {"variable": variable}
+    if min is not None:
+        c["min"] = min
+    if max is not None:
+        c["max"] = max
+    return c
+
+
+def action(cat, id, label, icon, description, cost=0.0, duration=0, cooldown=365, immediate=(), completion=(),
+           requires=(), requires_text="", confirm=False):
     a = {"id": id, "label": label, "icon": icon, "category": cat, "description": description}
+    if requires:
+        a["requires"] = list(requires)
+        a["requiresText"] = requires_text
+    if confirm:
+        a["confirm"] = True
     if cost:
         a["costBillions"] = cost
     if duration:
@@ -123,7 +138,7 @@ action("social", "school_plan", "Plan pour l'école", "✎",
 # --- Sécurité ---------------------------------------------------------------------------------
 action("security", "state_of_emergency", "Déclarer l'état d'urgence", "⚠",
        "Pouvoirs exceptionnels pendant trois mois : perquisitions, assignations, interdictions de rassemblement.",
-       duration=90, cooldown=365,
+       duration=90, cooldown=365, confirm=True,
        immediate=[e("quality.security", 0.02), g("seniors", 0.02), g("young", -0.03),
                   e("government.parliamentSupport", -0.02)])
 action("security", "police_hiring", "Recruter 10 000 policiers et gendarmes", "⚑",
@@ -276,6 +291,69 @@ action("defense", "joint_exercise", "Grand exercice interarmées", "✪",
        cost=0.2, duration=30, cooldown=180,
        immediate=[e("military.fuelStock", -0.02), e("alliance.NATO.NEGOTIATION_GOODWILL", 0.01)],
        completion=[e("military.readiness", 0.03)])
+
+# --- Décisions de crise : débloquées par la situation --------------------------------------------
+action("economy", "austerity_plan", "Plan de rigueur", "✂",
+       "Coupes franches dans les dépenses de l'État et des collectivités pour rassurer Bruxelles et les marchés.",
+       cooldown=1095, confirm=True,
+       requires=[cond("economy.deficitRatio", min=0.05)], requires_text="si le déficit dépasse 5 % du PIB",
+       immediate=[e("spending.state_operations", -0.05), e("spending.local_authorities", -0.03),
+                  e("economy.businessConfidence", 0.02), e("alliance.EU.NEGOTIATION_GOODWILL", 0.02),
+                  g("civil_servants", -0.05), g("low_income", -0.02), g("rural", -0.01)])
+action("economy", "market_reassurance", "Rassurer les marchés", "◆",
+       "Trajectoire de dette crédible présentée aux agences de notation et aux investisseurs.",
+       cooldown=365,
+       requires=[cond("economy.debtRatio", min=1.2)], requires_text="si la dette dépasse 120 % du PIB",
+       immediate=[e("economy.businessConfidence", 0.03), e("alliance.EU.NEGOTIATION_GOODWILL", 0.01)])
+action("economy", "price_freeze", "Blocage des prix alimentaires", "‖",
+       "Les prix de cent produits de base sont gelés trois mois. Les commerçants protestent.",
+       duration=90, cooldown=730,
+       requires=[cond("economy.inflation", min=0.04)], requires_text="si l'inflation dépasse 4 %",
+       immediate=[e("economy.inflation", -0.005, 90), g("low_income", 0.03), g("middle_income", 0.01),
+                  g("self_employed", -0.03), e("economy.businessConfidence", -0.01)])
+action("economy", "big_loan", "Grand emprunt national", "▲",
+       "Trente milliards empruntés pour investir dans l'avenir quand l'économie cale.",
+       cost=30, duration=730, cooldown=1825,
+       requires=[cond("economy.growth", max=0.0)], requires_text="en récession (croissance négative)",
+       immediate=[e("economy.output", 0.006, 365), e("economy.businessConfidence", 0.02)],
+       completion=[e("economy.potentialGrowth", 0.001, 730)])
+action("social", "jobs_emergency", "Plan d'urgence pour l'emploi", "⚒",
+       "Contrats aidés, chômage partiel prolongé, primes à l'embauche.",
+       cost=8, duration=365, cooldown=1095,
+       requires=[cond("economy.unemployment", min=0.09)], requires_text="si le chômage dépasse 9 %",
+       immediate=[e("economy.unemployment", -0.004, 365), g("low_income", 0.02), g("inactive", 0.02)])
+action("ecology", "energy_sobriety", "Plan de sobriété énergétique", "❄",
+       "Chauffage à 19 °C, éclairage public réduit, industrie incitée à décaler sa consommation.",
+       cooldown=365,
+       requires=[cond("energy.priceIndex", min=1.3)], requires_text="si les prix de l'énergie ont bondi de plus de 30 %",
+       immediate=[e("economy.consumerConfidence", -0.005), e("quality.environment", 0.01),
+                  e("economy.inflation", -0.002, 120), e("opinion.national", 0.002)])
+action("institutions", "unity_address", "Appel à l'unité nationale", "☰",
+       "Un discours solennel pour retrouver la confiance quand tout semble perdu.",
+       cooldown=365,
+       requires=[cond("opinion.national", max=0.35)], requires_text="si votre popularité tombe sous 35 %",
+       immediate=[e("opinion.national", 0.01)])
+action("institutions", "confidence_vote", "Engager la responsabilité du gouvernement", "⚖",
+       "Le Premier ministre met sa majorité au pied du mur : soutien ou dissolution.",
+       cooldown=365, confirm=True,
+       requires=[cond("government.parliamentSupport", max=0.5)], requires_text="si l'Assemblée vous soutient à moins de 50 %",
+       immediate=[e("government.parliamentSupport", 0.05), e("opinion.national", -0.004)])
+action("defense", "general_mobilization", "Mobilisation générale", "⚑",
+       "Rappel des réservistes et réquisition de l'industrie pour l'effort de guerre.",
+       cost=5, cooldown=1095, confirm=True,
+       requires=[cond("military.atWar", min=1)], requires_text="en guerre",
+       immediate=[e("military.readiness", 0.08), e("economy.output", -0.004, 180), g("young", -0.05), g("seniors", 0.02)])
+action("defense", "war_tax", "Contribution de solidarité nationale", "€",
+       "Un impôt exceptionnel sur les plus hauts revenus pour financer la guerre.",
+       cooldown=730,
+       requires=[cond("military.atWar", min=1)], requires_text="en guerre",
+       immediate=[e("budget.oneOff", -10), g("high_income", -0.04), e("opinion.national", 0.005)])
+action("international", "refugee_reception", "Plan d'accueil des réfugiés", "♥",
+       "Hébergement, scolarisation et accompagnement des familles qui fuient la guerre.",
+       cost=1.5, cooldown=730,
+       requires=[cond("military.nearbyWar", min=1)], requires_text="si une guerre éclate en Europe",
+       immediate=[e("alliance.EU.NEGOTIATION_GOODWILL", 0.02), g("urban", 0.01), g("rural", -0.02),
+                  e("demography.immigration", 0.1, 180)])
 
 out = {
     "_doc": "Décisions nationales du président (panneau « Décider »). Généré par tools/datagen/national_actions_fr.py.",
