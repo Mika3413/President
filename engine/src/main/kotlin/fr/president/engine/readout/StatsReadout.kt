@@ -110,7 +110,7 @@ class StatsReadout(private val ctx: SimulationContext) {
         causes += Cause("Décisions et événements récents", shock * PERCENT)
         if (o.honeymoon > EPSILON) causes += Cause("État de grâce", o.honeymoon * PERCENT)
         return Why("Ce qui fait votre popularité",
-            "Chaque ligne pousse votre popularité vers le haut (vert) ou vers le bas (rouge). L'opinion suit ces forces avec un peu de retard.",
+            "Chaque ligne pousse votre popularité vers le haut (+) ou vers le bas (−). L'opinion suit ces forces avec un peu de retard.",
             causes.filter { abs(it.points) >= MIN_POINTS }.sortedByDescending { abs(it.points) })
     }
 

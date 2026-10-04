@@ -35,8 +35,12 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
     var controller: GameController? = null
         private set
 
+    /** Échelle de l'interface : densité de l'écran × taille de texte choisie par le joueur. */
+    private val scale: Float get() = platform.uiScale * fr.president.game.ui.UserSettings.textScale
+
     override fun create() {
-        skin = UiSkin(platform.uiScale)
+        fr.president.game.ui.Theme.applyPalette(fr.president.game.ui.UserSettings.colorblind)
+        skin = UiSkin(scale)
         ui = Ui(skin)
         db = DataLoader(GdxDataSource()).load()
         saves = SaveRepository(platform.saveDirectory)
@@ -62,7 +66,7 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
         runCatching { controller?.save() }
         controller = null
         runCatching {
-            switchTo(ErrorScreen(ui, platform.uiScale, where, report) { safely("accueil") { showTitle() } })
+            switchTo(ErrorScreen(ui, scale, where, report) { safely("accueil") { showTitle() } })
         }
     }
 
@@ -79,11 +83,11 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
         // Erreur fatale lors de la session précédente : on montre d'abord son détail.
         platform.takeCrashReport()?.let { report ->
             val where = report.lineSequence().firstOrNull().orEmpty()
-            switchTo(ErrorScreen(ui, platform.uiScale, "session précédente — $where", report.substringAfter('\n')) { safely("accueil") { showTitle() } })
+            switchTo(ErrorScreen(ui, scale, "session précédente — $where", report.substringAfter('\n')) { safely("accueil") { showTitle() } })
             return
         }
         val map = mapData ?: MapData(db, skin.white, db.snapshot.playableCountries.first()).also { mapData = it }
-        switchTo(TitleScreen(ui, map, platform.uiScale, saves.exists(), null, onContinue = { Gdx.app.postRunnable { safely("reprise de la partie") { resumeSave() } } },
+        switchTo(TitleScreen(ui, map, scale, saves.exists(), null, onContinue = { Gdx.app.postRunnable { safely("reprise de la partie") { resumeSave() } } },
             onNewGame = { Gdx.app.postRunnable { safely("nouvelle partie") { showNewGame(null) } } }))
     }
 
@@ -99,7 +103,7 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
     }
 
     private fun showNewGame(error: String?) {
-        switchTo(NewGameScreen(ui, db, platform.uiScale, platform::nowUtcMillis, error) { options ->
+        switchTo(NewGameScreen(ui, db, scale, platform::nowUtcMillis, error) { options ->
             // Après le traitement du toucher, pour ne pas détruire l'écran pendant qu'il gère l'événement.
             Gdx.app.postRunnable { safely("prise de fonctions") { newGame(options) } }
         })
@@ -115,7 +119,7 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
      */
     private fun prepareSession(where: String, title: String, resumed: Boolean, build: () -> GameSession) {
         controller = null
-        switchTo(LoadingScreen(ui, platform.uiScale, title))
+        switchTo(LoadingScreen(ui, scale, title))
         val work = Runnable {
             try {
                 val c = GameController(build(), saves, platform)
@@ -137,7 +141,8 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
             return
         }
         val map = mapData ?: MapData(db, skin.white, session.state.player.countryId).also { mapData = it }
-        val screen = MainScreen(c, ui, map, platform.uiScale, { Gdx.app.postRunnable { safely("fin de partie") { showGameOver(session) } } }) {
+        val screen = MainScreen(c, ui, map, scale, { Gdx.app.postRunnable { safely("fin de partie") { showGameOver(session) } } },
+            onDisplayChange = { Gdx.app.postRunnable { safely("réglages d'affichage") { applyDisplaySettings() } } }) {
             Gdx.app.postRunnable {
                 safely("abandon") {
                     controller = null
@@ -150,10 +155,32 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
         if (resumed) screen.showAbsence(report)
     }
 
+    /**
+     * Taille du texte ou palette modifiées : on régénère polices et styles, puis on rouvre
+     * l'écran de jeu sur la même partie.
+     */
+    fun applyDisplaySettings() {
+        fr.president.game.ui.Theme.applyPalette(fr.president.game.ui.UserSettings.colorblind)
+        val old = skin
+        skin = UiSkin(scale)
+        val portraits = ui.portraits
+        ui = Ui(skin, portraits)
+        // La carte dessine avec la texture blanche de l'habillage : elle est reconstruite avec lui.
+        mapData = null
+        val c = controller
+        if (c != null) {
+            val now = c.session.state.time
+            showSession(c, Simulator.Report(now, now, 0, 0), resumed = false)
+            // On revient là où le joueur était : dans les réglages.
+            mainScreen?.open(fr.president.game.ui.panels.PanelId.SETTINGS)
+        } else showTitle()
+        Gdx.app.postRunnable { runCatching { old.dispose() } }
+    }
+
     private fun showGameOver(session: GameSession) {
         controller?.save()
         controller = null
-        switchTo(GameOverScreen(ui, session, platform.uiScale) {
+        switchTo(GameOverScreen(ui, session, scale) {
             Gdx.app.postRunnable {
                 safely("nouvelle partie") {
                     saves.delete()

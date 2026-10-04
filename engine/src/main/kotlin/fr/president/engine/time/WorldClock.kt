@@ -4,7 +4,8 @@ import kotlinx.serialization.Serializable
 
 /**
  * Horloge persistante : relie le temps réel UTC au temps du monde.
- * Le rythme est verrouillé à la création de la partie et ne change jamais ensuite.
+ * Le rythme est choisi à la création de la partie ; s'il change ensuite, l'horloge est ré-ancrée
+ * sur l'instant présent (le passé du monde n'est jamais modifié).
  * Si l'horloge système recule, le monde ne recule pas : il attend simplement.
  */
 @Serializable

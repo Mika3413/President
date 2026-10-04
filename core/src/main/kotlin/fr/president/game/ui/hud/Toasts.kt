@@ -15,6 +15,7 @@ class Toasts(private val ui: Ui, private val onFocus: (String) -> Unit) {
 
     fun show(n: GameNotification) {
         if (n.urgency == Urgency.INFO) return
+        fr.president.game.ui.Sfx.play(if (n.urgency == Urgency.URGENT) fr.president.game.ui.Sfx.Kind.ALERT else fr.president.game.ui.Sfx.Kind.MESSAGE)
         val toast = ui.panelTable().apply { pad(6f, 10f, 6f, 10f) }
         val color = if (n.urgency == Urgency.URGENT) Theme.bad else Theme.warning
         toast.add(ui.label(n.title, "bold", color, wrap = true)).width(TOAST_WIDTH).row()

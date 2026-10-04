@@ -30,6 +30,27 @@ object Theme {
     private val relationHostile = Color.valueOf("c9544a")
     private val relationNeutral = Color.valueOf("d9c27a")
     private val relationFriendly = Color.valueOf("5fb35f")
+
+    /**
+     * Palette pour daltoniens (Okabe-Ito) : bleu au lieu de vert, orange vif et vermillon.
+     * Les couleurs sont modifiées sur place, donc partout à la fois.
+     */
+    /** Noms des couleurs « bien » et « danger » pour les textes d'aide, selon la palette. */
+    var goodName = "vert"
+        private set
+    var badName = "rouge"
+        private set
+
+    fun applyPalette(colorblind: Boolean) {
+        goodName = if (colorblind) "bleu" else "vert"
+        badName = if (colorblind) "vermillon" else "rouge"
+        val p = if (colorblind) COLORBLIND else STANDARD
+        good.set(p[0]); warning.set(p[1]); bad.set(p[2])
+        relationFriendly.set(p[3]); relationNeutral.set(p[4]); relationHostile.set(p[5])
+    }
+
+    private val STANDARD = listOf("4caf7d", "e0a83a", "e05a4f", "5fb35f", "d9c27a", "c9544a").map { Color.valueOf(it) }
+    private val COLORBLIND = listOf("3d9ad1", "e69f00", "d55e00", "3d9ad1", "f0e442", "d55e00").map { Color.valueOf(it) }
     val relationWar = Color.valueOf("8e1f1f")
 
     /** Rouge (hostile) → jaune (neutre) → vert (allié). */

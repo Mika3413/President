@@ -49,6 +49,7 @@ class MainScreen(
     private val mapData: MapData,
     private val uiScale: Float,
     private val onGameOver: () -> Unit,
+    private val onDisplayChange: () -> Unit = {},
     private val onAbandon: () -> Unit = {},
 ) : ScreenAdapter(), Navigator, HasStage, fr.president.game.ui.hud.TourHost {
     override val session: GameSession get() = controller.session
@@ -172,6 +173,8 @@ class MainScreen(
         is MapSelection.Unit -> s.id
         else -> null
     }
+
+    override fun applyDisplaySettings() = onDisplayChange()
 
     override fun startTargeting(unitId: String, order: fr.president.engine.military.UnitOrder) {
         targeting = unitId to order

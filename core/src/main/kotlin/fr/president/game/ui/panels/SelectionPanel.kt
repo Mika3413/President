@@ -73,7 +73,7 @@ class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
                 into.add(ui.button("Voir la région", "flat") { nav.select(MapSelection.Region(region)) }).left().row()
             }
             Tab.ACT -> {
-                into.add(ui.label("Lancez des chantiers et des plans locaux. Vert : ce qui s'améliore ; rouge : ce qui se dégrade.", "muted", wrap = true)).padBottom(4f).row()
+                into.add(ui.label("Lancez des chantiers et des plans locaux. ${Theme.goodName.replaceFirstChar { it.uppercase() }} : ce qui s'améliore ; ${Theme.badName} : ce qui se dégrade.", "muted", wrap = true)).padBottom(4f).row()
                 localActions.build(into, code)
             }
             Tab.DETAILS -> into.add(SheetView(ui, session.local.department(code), expanded)).row()

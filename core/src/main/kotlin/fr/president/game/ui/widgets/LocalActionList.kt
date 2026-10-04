@@ -36,7 +36,7 @@ object ActionCards {
         val asking = confirming == a.def.id && blocker == null
         if (blocker == null && !asking) {
             foot.add(ui.colorButton("▶ Lancer", color) {
-                if (a.needsConfirmation) { confirming = a.def.id; refresh() } else onLaunch()
+                if (a.needsConfirmation) { confirming = a.def.id; refresh() } else { fr.president.game.ui.Sfx.play(fr.president.game.ui.Sfx.Kind.DECISION); onLaunch() }
             }).right().bottom().padLeft(6f)
         }
         card.add(foot).growX().row()
@@ -50,7 +50,7 @@ object ActionCards {
         if (asking) {
             card.add(ui.label("Décision lourde (${a.costText}, ${a.durationText}). Vous confirmez ?", "small", Theme.warning, wrap = true)).growX().padTop(4f).row()
             val buttons = Table().apply { defaults().padRight(4f) }
-            buttons.add(ui.colorButton("✔ Confirmer", color) { confirming = null; onLaunch() })
+            buttons.add(ui.colorButton("✔ Confirmer", color) { confirming = null; fr.president.game.ui.Sfx.play(fr.president.game.ui.Sfx.Kind.DECISION); onLaunch() })
             buttons.add(ui.button("Annuler") { confirming = null; refresh() })
             card.add(buttons).left().padTop(2f).row()
         }
@@ -76,9 +76,10 @@ object ActionCards {
     }
 
     private const val ICON_WIDTH = 26f
-    private val GOOD_BG = Theme.good.cpy().mul(1f, 1f, 1f, 0.18f)
-    private val BAD_BG = Theme.bad.cpy().mul(1f, 1f, 1f, 0.18f)
-    private val NEUTRAL_BG = Theme.neutral.cpy().mul(1f, 1f, 1f, 0.12f)
+    // Recalculés à chaque usage : la palette peut changer (mode daltonien).
+    private val GOOD_BG get() = Theme.good.cpy().mul(1f, 1f, 1f, 0.18f)
+    private val BAD_BG get() = Theme.bad.cpy().mul(1f, 1f, 1f, 0.18f)
+    private val NEUTRAL_BG get() = Theme.neutral.cpy().mul(1f, 1f, 1f, 0.12f)
 }
 
 /** Actions possibles dans un département : ce que ça coûte, combien de temps, ce que ça change. */

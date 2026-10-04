@@ -38,7 +38,8 @@ data class WorldMeta(
  */
 @Serializable
 class WorldState(
-    val meta: WorldMeta,
+    /** Variable pour permettre un changement de rythme en cours de partie. */
+    var meta: WorldMeta,
     var time: WorldTime,
     val rng: GameRandom,
     val player: PlayerState,

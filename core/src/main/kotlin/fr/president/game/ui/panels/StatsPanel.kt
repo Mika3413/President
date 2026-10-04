@@ -54,7 +54,7 @@ class StatsPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pane
     }
 
     private fun curves(into: Table) {
-        into.add(ui.label("Un point par semaine. Vert : l'évolution du dernier mois est bonne ; rouge : elle est mauvaise. Touchez « Pourquoi ? » pour voir les causes.", "muted", wrap = true)).padBottom(GAP).row()
+        into.add(ui.label("Un point par semaine. ${Theme.goodName.replaceFirstChar { it.uppercase() }} : l'évolution du dernier mois est bonne ; ${Theme.badName} : elle est mauvaise. Touchez « Pourquoi ? » pour voir les causes.", "muted", wrap = true)).padBottom(GAP).row()
         val keys = listOfNotNull(focus).plus(stats.mainKeys.filter { it != focus })
         keys.forEach { key -> stats.series(key)?.let { curveCard(into, it) } }
     }

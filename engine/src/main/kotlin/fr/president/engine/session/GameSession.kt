@@ -68,6 +68,18 @@ class GameSession(
     /** Rattrape le temps réel écoulé : à appeler au retour du joueur puis régulièrement. */
     fun advanceToNow(): Simulator.Report = simulator.advanceTo(state.meta.clock.worldTimeAt(realClock()))
 
+    /**
+     * Change le rythme de la partie : le monde est d'abord mis à jour, puis l'horloge repart de
+     * maintenant avec le nouveau rythme.
+     */
+    fun changePace(paceId: String) {
+        val pace = db.config.paces.firstOrNull { it.id == paceId } ?: return
+        if (pace.id == state.meta.clock.paceId) return
+        advanceToNow()
+        state.meta = state.meta.copy(clock = fr.president.engine.time.WorldClock(pace.id, pace.worldHoursPerRealHour, realClock(), state.time))
+        fr.president.engine.stats.JournalService(context).add("Partie", "Rythme de jeu : ${pace.label.lowercase()}")
+    }
+
     fun answer(messageId: String, optionId: String) {
         val message = state.inbox.messages.first { it.id == messageId }
         if (!message.awaitingAnswer) return

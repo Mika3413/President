@@ -14,6 +14,8 @@ interface Navigator {
     /** Attend que le joueur touche la carte pour désigner la zone cible d'un ordre. */
     fun startTargeting(unitId: String, order: fr.president.engine.military.UnitOrder)
     fun prepareProposal(country: String, clauseType: String, params: Map<String, Double>)
+    /** Taille du texte ou palette changée : reconstruire l'interface. */
+    fun applyDisplaySettings() {}
 }
 
 enum class PanelId { SELECTION, DECISIONS, STATS, PRESS, GOVERNMENT, ECONOMY, DIPLOMACY, ARMY, INBOX, NOTIFICATIONS, ELECTIONS, SETTINGS, HELP }

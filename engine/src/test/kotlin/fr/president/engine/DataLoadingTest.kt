@@ -16,7 +16,7 @@ class DataLoadingTest {
         assertTrue(france.territory!!.cities.size >= 40)
         assertTrue(db.countries.size >= 5)
         assertTrue(db.events.isNotEmpty())
-        assertEquals(4, db.config.paces.size)
+        assertEquals(6, db.config.paces.size)
     }
 
     @Test

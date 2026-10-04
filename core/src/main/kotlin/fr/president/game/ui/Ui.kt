@@ -11,8 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener
 
 /** Petites fabriques pour construire l'interface de façon concise et homogène. */
-class Ui(val skin: UiSkin) {
-    val portraits = fr.president.game.ui.widgets.Portraits()
+class Ui(val skin: UiSkin, val portraits: fr.president.game.ui.widgets.Portraits = fr.president.game.ui.widgets.Portraits()) {
     /** Info-bulles de l'écran principal (null ailleurs). */
     var hints: Hints? = null
     val s: Skin get() = skin.skin
@@ -24,11 +23,11 @@ class Ui(val skin: UiSkin) {
         }
 
     fun button(text: String, style: String = "default", action: () -> Unit): TextButton =
-        TextButton(text, s, style).apply { onClick(action) }
+        TextButton(text, s, style).apply { onClick { Sfx.play(Sfx.Kind.CLICK); action() } }
 
     /** Bouton plein et coloré, pour les grandes catégories et les actions principales. */
     fun colorButton(text: String, color: Color, action: () -> Unit): TextButton =
-        TextButton(text, skin.colorButtonStyle(color)).apply { onClick(action) }
+        TextButton(text, skin.colorButtonStyle(color)).apply { onClick { Sfx.play(Sfx.Kind.CLICK); action() } }
 
     fun panelTable(): Table = Table().apply { setBackground(this@Ui.skin.fill(Theme.panel)); blockInput() }
 

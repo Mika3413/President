@@ -1,6 +1,18 @@
 {
   "paces": [
     {
+      "id": "eclair",
+      "label": "Éclair",
+      "worldHoursPerRealHour": 720.0,
+      "description": "1 heure réelle = 1 mois de jeu. Un mandat dure environ 2 jours et demi réels : idéal pour découvrir."
+    },
+    {
+      "id": "express",
+      "label": "Express",
+      "worldHoursPerRealHour": 168.0,
+      "description": "1 heure réelle = 1 semaine de jeu. Un mandat dure environ 11 jours réels."
+    },
+    {
       "id": "rapide",
       "label": "Rapide",
       "worldHoursPerRealHour": 48.0,
