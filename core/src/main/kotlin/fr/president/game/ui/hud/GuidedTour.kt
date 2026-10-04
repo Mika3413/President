@@ -37,22 +37,24 @@ class GuidedTour(private val ui: Ui, private val session: GameSession, private v
     private var journalAtStart = 0
 
     private val steps = listOf(
-        Step("1/8 · Vos chiffres", "En haut, vos chiffres clés. ${Theme.goodName.replaceFirstChar { it.uppercase() }} = bien, orange = à surveiller, ${Theme.badName} = danger. Touchez votre popularité pour voir sa courbe et ses causes.",
+        Step("1/9 · Vos chiffres", "En haut, vos chiffres clés. ${Theme.goodName.replaceFirstChar { it.uppercase() }} = bien, orange = à surveiller, ${Theme.badName} = danger. Touchez votre popularité pour voir sa courbe et ses causes.",
             "chip.approval") { host.openPanel == PanelId.STATS },
-        Step("2/8 · Décider", "Le cœur du jeu : touchez « ★ Décider » en bas pour voir les 56 décisions nationales.",
+        Step("2/9 · Décider", "Le cœur du jeu : touchez « ★ Décider » en bas pour voir les 56 décisions nationales.",
             "bar.decide") { host.openPanel == PanelId.DECISIONS },
-        Step("3/8 · Prendre une décision", "Choisissez une rubrique, lisez les effets (${Theme.goodName} = gain, ${Theme.badName} = perte) et la prévision, puis touchez « ▶ Lancer ».",
+        Step("3/9 · Prendre une décision", "Choisissez une rubrique, lisez les effets (${Theme.goodName} = gain, ${Theme.badName} = perte) et la prévision, puis touchez « ▶ Lancer ».",
             null, "Décision") { it.newJournal("Décision") },
-        Step("4/8 · La carte", "Touchez un département de la France métropolitaine pour ouvrir sa fiche.",
+        Step("4/9 · La carte", "Touchez un département de la France métropolitaine pour ouvrir sa fiche.",
             null) { host.selection is MapSelection.Department },
-        Step("5/8 · Agir sur le terrain", "Ouvrez l'onglet « ▶ Agir » et lancez une action locale : hôpital, usine, police...",
+        Step("5/9 · Agir sur le terrain", "Ouvrez l'onglet « ▶ Agir » et lancez une action locale : hôpital, usine, police...",
             "tab.act", "Territoire") { it.newJournal("Territoire") },
-        Step("6/8 · Lire la carte", "Touchez « ☰ Carte » en haut à gauche et choisissez « Chômage » : chaque département affiche son chiffre.",
+        Step("6/9 · Lire la carte", "Touchez « ☰ Carte » en haut à gauche et choisissez « Chômage » : chaque département affiche son chiffre.",
             "layers") { host.layer != ThematicLayer.ADMIN },
-        Step("7/8 · Le monde", "Dézoomez et touchez un pays étranger : sa couleur dit votre relation. Coopérez ou faites pression.",
+        Step("7/9 · Le monde", "Dézoomez et touchez un pays étranger : sa couleur dit votre relation. Coopérez ou faites pression.",
             null) { host.selection is MapSelection.Country },
-        Step("8/8 · Les messages", "Ministres, élus et dirigeants étrangers vous écrivent. Touchez « ✉ Messages » : le monde n'attend pas.",
+        Step("8/9 · Les messages", "Ministres, élus et dirigeants étrangers vous écrivent. Touchez « ✉ Messages » : chaque dossier propose plusieurs réponses, et souvent des mesures d'urgence cumulables.",
             "bar.inbox") { host.openPanel == PanelId.INBOX },
+        Step("9/9 · Crises et risques", "Anticipez : dans « ★ Décider », touchez « ⚠ Crises et risques ». Vous y voyez les risques du mois (feux, crues, épidémie...) et décrétez prévention, confinement, couvre-feu ou plan ORSEC.",
+            "decide.crisis") { host.openPanel == PanelId.CRISIS },
     )
 
     private fun newJournal(kind: String) = session.state.stats.journal.count { it.kind == kind } > journalAtStart

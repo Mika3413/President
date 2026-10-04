@@ -6,7 +6,9 @@ réquisitionner, demander l'aide européenne, évacuer... Chaque paquet ajoute d
 (confinement, plan ORSEC, couvre-feu...) définies dans countries/FRA/measures.json.
 Les effets des options suivent l'ampleur de l'événement (limitée, grave, exceptionnelle...).
 """
-import glob, json, os, re
+import glob, json, os, re, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from dialogue_fr_lib import V, letter
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "assets", "data")
 G = "opinion.group."
@@ -319,6 +321,114 @@ pack("majority", "Majorité", ["majority_rebels", "group_split"], [
       [e("government.parliamentSupport", 0.006), e("opinion.national", -0.002)]),
 ])
 
+# --- Courriers pour les événements qui n'en avaient pas --------------------------------------------
+MESSAGES, TEMPLATES = {}, []
+
+
+def message(event, sender, ministry, days, default, options, subjects, context, problem, request):
+    m = {"template": "resp_" + event, "sender": sender, "responseDays": days, "defaultOption": default, "options": options}
+    if ministry: m["ministry"] = ministry
+    MESSAGES[event] = m
+    TEMPLATES.append(letter("resp_" + event, [V(t) for t in subjects], [V(t) for t in context], [V(t) for t in problem], [V(t) for t in request]))
+
+
+def op(id, label, hint, effects, outcome="NEUTRAL"):
+    return {"id": id, "label": label, "hint": hint, "effects": effects, "outcome": outcome}
+
+
+message("drought", "MINISTER", "agriculture", 5, "prefects", [
+    op("restrictions", "Restrictions d'eau renforcées dans tout le pays", "Nappes préservées ; agriculteurs et golfs furieux",
+       [e("quality.environment", 0.006), e("quality.agriculture", -0.004), e(G + "rural", -0.008)], "PARTIAL"),
+    op("farm_aid", "Aide d'urgence aux éleveurs et agriculteurs", "Coût : 400 M€",
+       [e("budget.oneOff", 0.4), e("quality.agriculture", 0.01, 90), e(G + "rural", 0.015)], "ACCEPTED"),
+    op("reservoirs", "Programme de retenues d'eau agricoles", "Coût : 800 M€ sur deux ans ; écologistes opposés",
+       [e("budget.oneOff", 0.8, 730), e("quality.agriculture", 0.008, 0, 365), e("quality.environment", -0.006), e(G + "young", -0.006)], "ACCEPTED"),
+    op("prefects", "Laisser les préfets gérer au cas par cas", "Aucun coût ; réponse inégale selon les territoires",
+       [e(G + "rural", -0.006)], "REFUSED"),
+], ["Sécheresse : vos arbitrages", "Sécheresse historique : les nappes au plus bas", "Manque d'eau : décisions urgentes"],
+   ["Les nappes phréatiques sont au plus bas dans les deux tiers du pays.", "Plus de soixante départements sont déjà soumis à des restrictions d'eau.",
+    "Les rivières sont à sec dans plusieurs régions et les récoltes souffrent."],
+   ["Les éleveurs manquent de fourrage et certaines communes sont ravitaillées par camions-citernes.",
+    "Si rien n'est fait, les prix alimentaires vont grimper cet automne."],
+   ["Je vous propose de renforcer les restrictions, d'aider l'agriculture, de lancer des retenues d'eau, ou de laisser agir les préfets."])
+
+message("dam_drought", "MINISTER", "ecology", 4, "standard", [
+    op("drinking_water", "Priorité absolue à l'eau potable et à l'irrigation", "Barrage moins productif plus longtemps",
+       [e("scope.offlineDays", 5), e(G + "rural", 0.01), e("quality.agriculture", 0.004)], "PARTIAL"),
+    op("imports", "Compenser par des importations d'électricité", "Coût : 150 M€",
+       [e("budget.oneOff", 0.15), e("economy.output", 0.0001, 30)], "ACCEPTED"),
+    op("derogation", "Dérogation pour turbiner davantage", "Production rétablie plus vite ; rivières asséchées",
+       [e("scope.offlineDays", -6), e("quality.environment", -0.006), e(G + "rural", -0.006)]),
+    op("standard", "Laisser l'exploitant gérer", "Aucun coût", [], "REFUSED"),
+], ["Barrage à l'arrêt faute d'eau", "Sécheresse : production hydraulique réduite", "Retenues au plus bas"],
+   ["Le niveau du lac de retenue est tombé sous le seuil d'exploitation.", "La production hydroélectrique est fortement réduite.",
+    "Les agriculteurs de la vallée réclament que l'eau soit gardée pour l'irrigation."],
+   ["Électricité, eau potable, irrigation et vie des rivières se disputent la même eau.",
+    "Les réserves ne se reconstitueront pas avant les pluies d'automne."],
+   ["Je vous propose de prioriser l'eau potable, de compenser par des importations, d'accorder une dérogation, ou de laisser l'exploitant gérer."])
+
+message("port_strike", "MINISTER", "transport", 3, "wait", [
+    op("negotiate", "Ouvrir une négociation avec les dockers", "Coût : 100 M€ ; reprise rapide",
+       [e("budget.oneOff", 0.1), e("scope.offlineDays", -4), e(G + "private_employees", 0.006)], "ACCEPTED"),
+    op("requisition", "Réquisitionner les grutiers", "Port rouvert ; syndicats en colère",
+       [e("scope.offlineDays", -6), e(G + "low_income", -0.008), e("economy.businessConfidence", 0.004), e("chain.national_strike", 0.15, 0, 10)]),
+    op("mediator", "Nommer un médiateur", "Temps gagné",
+       [e("scope.offlineDays", -2), e("opinion.national", 0.001)], "PARTIAL"),
+    op("wait", "Laisser le conflit suivre son cours", "Exportations bloquées plus longtemps",
+       [e("economy.businessConfidence", -0.004), e("economy.output", -0.0002, 14)], "REFUSED"),
+], ["Port bloqué par la grève", "Grève des dockers : vos instructions", "Les exportations à l'arrêt"],
+   ["Les dockers ont cessé le travail et plus aucun navire n'est déchargé.", "Des dizaines de porte-conteneurs attendent au large.",
+    "Les entreprises exportatrices s'inquiètent de leurs livraisons."],
+   ["Chaque jour de blocage coûte cher aux industriels et risque de détourner le trafic vers Anvers ou Rotterdam.",
+    "Le conflit porte sur les retraites et la pénibilité."],
+   ["Je vous propose de négocier, de réquisitionner, de nommer un médiateur, ou d'attendre."])
+
+message("rating_downgrade", "MINISTER", "economy", 4, "ignore", [
+    op("savings", "Annoncer un plan d'économies immédiat", "Marchés rassurés ; impopulaire",
+       [e("budget.oneOff", -3.0, 365), e("economy.businessConfidence", 0.015), e("opinion.national", -0.006), e(G + "civil_servants", -0.01)], "ACCEPTED"),
+    op("roadshow", "Tournée des investisseurs par le ministre", "Confiance partiellement restaurée",
+       [e("economy.businessConfidence", 0.008)], "PARTIAL"),
+    op("contest", "Contester publiquement l'agence", "Populaire ; les marchés n'aiment pas",
+       [e("opinion.national", 0.003), e("economy.businessConfidence", -0.006)]),
+    op("ignore", "Ne pas commenter", "Aucun effet immédiat", [], "REFUSED"),
+], ["Note souveraine dégradée", "Les agences de notation sanctionnent la France", "Dette : la note de la France abaissée"],
+   ["Une grande agence de notation vient d'abaisser la note de la dette française.", "L'agence pointe un déficit qui ne se réduit pas et une dette élevée.",
+    "Les taux d'emprunt de l'État ont aussitôt monté sur les marchés."],
+   ["Chaque hausse de taux alourdit la charge de la dette pour des années.", "Les autres agences pourraient suivre dans les prochains mois."],
+   ["Je vous propose un plan d'économies, une tournée des investisseurs, une contestation publique, ou le silence."])
+
+message("sports_victory", "MINISTER", "education", 3, "message", [
+    op("reception", "Recevoir les champions à l'Élysée", "Coût : 1 M€ ; moment de communion",
+       [e("budget.oneOff", 0.001), e("opinion.national", 0.006), e(G + "young", 0.008)], "ACCEPTED"),
+    op("sport_plan", "Lancer un plan « sport pour tous »", "Coût : 300 M€ ; équipements dans les quartiers",
+       [e("budget.oneOff", 0.3, 365), e("quality.health", 0.004, 0, 180), e("quality.education", 0.003), e(G + "young", 0.01)], "ACCEPTED"),
+    op("legion", "Les décorer de la Légion d'honneur", "Gratuit ; critiqué par certains",
+       [e("opinion.national", 0.003)]),
+    op("message", "Un simple message de félicitations", "Sobre", [e("opinion.national", 0.001)], "NEUTRAL"),
+], ["Victoire historique des Bleus", "Le pays fête ses champions", "Une victoire qui rassemble"],
+   ["L'équipe de France vient de remporter un titre historique.", "Des centaines de milliers de personnes ont fêté la victoire dans les rues.",
+    "Les audiences télévisées ont battu tous les records."],
+   ["Le pays traverse un rare moment d'unité ; l'opinion attend un geste.", "Les clubs amateurs espèrent un afflux de licenciés."],
+   ["Je vous propose de recevoir l'équipe, de lancer un plan pour le sport, de les décorer, ou d'envoyer un message."])
+
+message("investment_announcement", "MINISTER", "economy", 4, "nothing", [
+    op("visit", "Annoncer moi-même l'investissement sur le site", "Coût : 1 M€ ; image de président bâtisseur",
+       [e("budget.oneOff", 0.001), e("opinion.national", 0.004), e(G + "private_employees", 0.006)], "ACCEPTED"),
+    op("subsidy", "Aides publiques pour accélérer le projet", "Coût : 500 M€ ; usine ouverte un an plus tôt",
+       [e("budget.oneOff", 0.5), e("economy.output", 0.0006, 365), e("economy.unemployment", -0.0004, 0, 180)], "ACCEPTED"),
+    op("conditions", "Conditionner les aides à l'emploi local et au climat", "Exigeant ; l'investisseur hésite",
+       [e("quality.environment", 0.003), e("economy.businessConfidence", -0.003), e(G + "low_income", 0.004)], "PARTIAL"),
+    op("nothing", "Laisser l'entreprise communiquer", "Aucun coût", [], "NEUTRAL"),
+], ["Un investissement industriel majeur", "Une usine géante pour la France", "Bonne nouvelle pour l'emploi"],
+   ["Un grand groupe industriel annonce la construction d'une usine géante en France.", "Plusieurs milliers d'emplois directs sont prévus.",
+    "Le site a été choisi face à des concurrents allemands et espagnols."],
+   ["L'annonce peut être un symbole de la réindustrialisation.", "La région d'accueil attend des infrastructures et des formations."],
+   ["Je vous propose de l'annoncer vous-même, d'aider le projet, de poser des conditions, ou de laisser l'entreprise communiquer."])
+
+for p in PACKS:
+    if p["id"] == "heat": p["events"] += ["drought", "dam_drought"]
+    if p["id"] == "social": p["events"] += ["port_strike"]
+
 # --- Vérifications --------------------------------------------------------------------------------
 events = {}
 for f in glob.glob(os.path.join(ROOT, "events", "*.json")):
@@ -335,6 +445,11 @@ TARGETS = re.compile(r"^(budget\.oneOff|economy\.(output|consumerConfidence|busi
                      r"|country\.(CRISIS_SOLIDARITY|DISAGREEMENT|NEGOTIATION_GOODWILL|TALK_CORDIAL|TALK_TENSE)"
                      r"|abroad\.(output|approval|trade)|operation\.(sanction|cyber))$")
 FOREIGN_ONLY = ("country.", "abroad.", "operation.")
+for ev, m in MESSAGES.items():
+    assert ev in events and not events[ev].get("message"), ev
+    for opt in m["options"]:
+        for fx in opt["effects"]:
+            assert TARGETS.match(fx["target"]) or fx["target"].startswith(("chain.", "scope.offlineDays")), fx
 for p in PACKS:
     for ev in p["events"]:
         assert ev in events, (p["id"], ev)
@@ -351,11 +466,12 @@ for p in PACKS:
         assert m in measures, (p["id"], m)
 
 out = {"_doc": "Options et mesures supplémentaires par famille d'événements. Généré par tools/datagen/event_responses_fr.py.",
-       "packs": PACKS}
+       "packs": PACKS, "messages": MESSAGES}
 path = os.path.join(ROOT, "events", "responses.json")
 json.dump(out, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
+json.dump({"templates": TEMPLATES}, open(os.path.join(ROOT, "dialogue", "fr", "responses.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 covered = {ev for p in PACKS for ev in p["events"]}
-with_message = [i for i, x in events.items() if x.get("message")]
+with_message = [i for i, x in events.items() if x.get("message") or i in MESSAGES]
 print(f"{len(PACKS)} paquets, {sum(len(p['options']) for p in PACKS)} options, "
       f"{len(covered & set(with_message))}/{len(with_message)} événements enrichis")

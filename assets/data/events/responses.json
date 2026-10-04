@@ -290,7 +290,9 @@
     "heatwave",
     "overseas_water",
     "water_crisis",
-    "ski_no_snow"
+    "ski_no_snow",
+    "drought",
+    "dam_drought"
    ],
    "options": [
     {
@@ -897,7 +899,8 @@
     "student_protest",
     "youth_movement",
     "cost_of_living_overseas",
-    "court_backlog"
+    "court_backlog",
+    "port_strike"
    ],
    "options": [
     {
@@ -2223,5 +2226,481 @@
    ],
    "measures": []
   }
- ]
+ ],
+ "messages": {
+  "drought": {
+   "template": "resp_drought",
+   "sender": "MINISTER",
+   "responseDays": 5,
+   "defaultOption": "prefects",
+   "options": [
+    {
+     "id": "restrictions",
+     "label": "Restrictions d'eau renforcées dans tout le pays",
+     "hint": "Nappes préservées ; agriculteurs et golfs furieux",
+     "effects": [
+      {
+       "target": "quality.environment",
+       "amount": 0.006
+      },
+      {
+       "target": "quality.agriculture",
+       "amount": -0.004
+      },
+      {
+       "target": "opinion.group.rural",
+       "amount": -0.008
+      }
+     ],
+     "outcome": "PARTIAL"
+    },
+    {
+     "id": "farm_aid",
+     "label": "Aide d'urgence aux éleveurs et agriculteurs",
+     "hint": "Coût : 400 M€",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.4
+      },
+      {
+       "target": "quality.agriculture",
+       "amount": 0.01,
+       "days": 90
+      },
+      {
+       "target": "opinion.group.rural",
+       "amount": 0.015
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "reservoirs",
+     "label": "Programme de retenues d'eau agricoles",
+     "hint": "Coût : 800 M€ sur deux ans ; écologistes opposés",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.8,
+       "days": 730
+      },
+      {
+       "target": "quality.agriculture",
+       "amount": 0.008,
+       "delayDays": 365
+      },
+      {
+       "target": "quality.environment",
+       "amount": -0.006
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": -0.006
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "prefects",
+     "label": "Laisser les préfets gérer au cas par cas",
+     "hint": "Aucun coût ; réponse inégale selon les territoires",
+     "effects": [
+      {
+       "target": "opinion.group.rural",
+       "amount": -0.006
+      }
+     ],
+     "outcome": "REFUSED"
+    }
+   ],
+   "ministry": "agriculture"
+  },
+  "dam_drought": {
+   "template": "resp_dam_drought",
+   "sender": "MINISTER",
+   "responseDays": 4,
+   "defaultOption": "standard",
+   "options": [
+    {
+     "id": "drinking_water",
+     "label": "Priorité absolue à l'eau potable et à l'irrigation",
+     "hint": "Barrage moins productif plus longtemps",
+     "effects": [
+      {
+       "target": "scope.offlineDays",
+       "amount": 5
+      },
+      {
+       "target": "opinion.group.rural",
+       "amount": 0.01
+      },
+      {
+       "target": "quality.agriculture",
+       "amount": 0.004
+      }
+     ],
+     "outcome": "PARTIAL"
+    },
+    {
+     "id": "imports",
+     "label": "Compenser par des importations d'électricité",
+     "hint": "Coût : 150 M€",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.15
+      },
+      {
+       "target": "economy.output",
+       "amount": 0.0001,
+       "days": 30
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "derogation",
+     "label": "Dérogation pour turbiner davantage",
+     "hint": "Production rétablie plus vite ; rivières asséchées",
+     "effects": [
+      {
+       "target": "scope.offlineDays",
+       "amount": -6
+      },
+      {
+       "target": "quality.environment",
+       "amount": -0.006
+      },
+      {
+       "target": "opinion.group.rural",
+       "amount": -0.006
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "standard",
+     "label": "Laisser l'exploitant gérer",
+     "hint": "Aucun coût",
+     "effects": [],
+     "outcome": "REFUSED"
+    }
+   ],
+   "ministry": "ecology"
+  },
+  "port_strike": {
+   "template": "resp_port_strike",
+   "sender": "MINISTER",
+   "responseDays": 3,
+   "defaultOption": "wait",
+   "options": [
+    {
+     "id": "negotiate",
+     "label": "Ouvrir une négociation avec les dockers",
+     "hint": "Coût : 100 M€ ; reprise rapide",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.1
+      },
+      {
+       "target": "scope.offlineDays",
+       "amount": -4
+      },
+      {
+       "target": "opinion.group.private_employees",
+       "amount": 0.006
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "requisition",
+     "label": "Réquisitionner les grutiers",
+     "hint": "Port rouvert ; syndicats en colère",
+     "effects": [
+      {
+       "target": "scope.offlineDays",
+       "amount": -6
+      },
+      {
+       "target": "opinion.group.low_income",
+       "amount": -0.008
+      },
+      {
+       "target": "economy.businessConfidence",
+       "amount": 0.004
+      },
+      {
+       "target": "chain.national_strike",
+       "amount": 0.15,
+       "delayDays": 10
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "mediator",
+     "label": "Nommer un médiateur",
+     "hint": "Temps gagné",
+     "effects": [
+      {
+       "target": "scope.offlineDays",
+       "amount": -2
+      },
+      {
+       "target": "opinion.national",
+       "amount": 0.001
+      }
+     ],
+     "outcome": "PARTIAL"
+    },
+    {
+     "id": "wait",
+     "label": "Laisser le conflit suivre son cours",
+     "hint": "Exportations bloquées plus longtemps",
+     "effects": [
+      {
+       "target": "economy.businessConfidence",
+       "amount": -0.004
+      },
+      {
+       "target": "economy.output",
+       "amount": -0.0002,
+       "days": 14
+      }
+     ],
+     "outcome": "REFUSED"
+    }
+   ],
+   "ministry": "transport"
+  },
+  "rating_downgrade": {
+   "template": "resp_rating_downgrade",
+   "sender": "MINISTER",
+   "responseDays": 4,
+   "defaultOption": "ignore",
+   "options": [
+    {
+     "id": "savings",
+     "label": "Annoncer un plan d'économies immédiat",
+     "hint": "Marchés rassurés ; impopulaire",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": -3.0,
+       "days": 365
+      },
+      {
+       "target": "economy.businessConfidence",
+       "amount": 0.015
+      },
+      {
+       "target": "opinion.national",
+       "amount": -0.006
+      },
+      {
+       "target": "opinion.group.civil_servants",
+       "amount": -0.01
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "roadshow",
+     "label": "Tournée des investisseurs par le ministre",
+     "hint": "Confiance partiellement restaurée",
+     "effects": [
+      {
+       "target": "economy.businessConfidence",
+       "amount": 0.008
+      }
+     ],
+     "outcome": "PARTIAL"
+    },
+    {
+     "id": "contest",
+     "label": "Contester publiquement l'agence",
+     "hint": "Populaire ; les marchés n'aiment pas",
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": 0.003
+      },
+      {
+       "target": "economy.businessConfidence",
+       "amount": -0.006
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "ignore",
+     "label": "Ne pas commenter",
+     "hint": "Aucun effet immédiat",
+     "effects": [],
+     "outcome": "REFUSED"
+    }
+   ],
+   "ministry": "economy"
+  },
+  "sports_victory": {
+   "template": "resp_sports_victory",
+   "sender": "MINISTER",
+   "responseDays": 3,
+   "defaultOption": "message",
+   "options": [
+    {
+     "id": "reception",
+     "label": "Recevoir les champions à l'Élysée",
+     "hint": "Coût : 1 M€ ; moment de communion",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.001
+      },
+      {
+       "target": "opinion.national",
+       "amount": 0.006
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": 0.008
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "sport_plan",
+     "label": "Lancer un plan « sport pour tous »",
+     "hint": "Coût : 300 M€ ; équipements dans les quartiers",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.3,
+       "days": 365
+      },
+      {
+       "target": "quality.health",
+       "amount": 0.004,
+       "delayDays": 180
+      },
+      {
+       "target": "quality.education",
+       "amount": 0.003
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": 0.01
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "legion",
+     "label": "Les décorer de la Légion d'honneur",
+     "hint": "Gratuit ; critiqué par certains",
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": 0.003
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "message",
+     "label": "Un simple message de félicitations",
+     "hint": "Sobre",
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": 0.001
+      }
+     ],
+     "outcome": "NEUTRAL"
+    }
+   ],
+   "ministry": "education"
+  },
+  "investment_announcement": {
+   "template": "resp_investment_announcement",
+   "sender": "MINISTER",
+   "responseDays": 4,
+   "defaultOption": "nothing",
+   "options": [
+    {
+     "id": "visit",
+     "label": "Annoncer moi-même l'investissement sur le site",
+     "hint": "Coût : 1 M€ ; image de président bâtisseur",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.001
+      },
+      {
+       "target": "opinion.national",
+       "amount": 0.004
+      },
+      {
+       "target": "opinion.group.private_employees",
+       "amount": 0.006
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "subsidy",
+     "label": "Aides publiques pour accélérer le projet",
+     "hint": "Coût : 500 M€ ; usine ouverte un an plus tôt",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.5
+      },
+      {
+       "target": "economy.output",
+       "amount": 0.0006,
+       "days": 365
+      },
+      {
+       "target": "economy.unemployment",
+       "amount": -0.0004,
+       "delayDays": 180
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "conditions",
+     "label": "Conditionner les aides à l'emploi local et au climat",
+     "hint": "Exigeant ; l'investisseur hésite",
+     "effects": [
+      {
+       "target": "quality.environment",
+       "amount": 0.003
+      },
+      {
+       "target": "economy.businessConfidence",
+       "amount": -0.003
+      },
+      {
+       "target": "opinion.group.low_income",
+       "amount": 0.004
+      }
+     ],
+     "outcome": "PARTIAL"
+    },
+    {
+     "id": "nothing",
+     "label": "Laisser l'entreprise communiquer",
+     "hint": "Aucun coût",
+     "effects": [],
+     "outcome": "NEUTRAL"
+    }
+   ],
+   "ministry": "economy"
+  }
+ }
 }

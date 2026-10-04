@@ -75,7 +75,8 @@ class CrisisTest {
     @Test
     fun everyEventOffersManyChoicesAndCrisisMeasures() {
         val s = TestData.newSession()
-        s.db.events.filter { it.message != null }.forEach { e ->
+        s.db.events.forEach { e ->
+            assertNotNull(e.message, "${e.id} : aucun choix proposé")
             assertTrue(e.message!!.options.size >= 4, "${e.id} : ${e.message!!.options.size} options")
             assertTrue(e.message!!.options.map { it.id }.toSet().size == e.message!!.options.size, "${e.id} : options en double")
         }

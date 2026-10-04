@@ -76,7 +76,8 @@
       "dialogue/fr/local.json",
       "dialogue/fr/national.json",
       "dialogue/fr/summits.json",
-      "dialogue/fr/extra.json"
+      "dialogue/fr/extra.json",
+      "dialogue/fr/responses.json"
     ],
     "names": {
       "fr": "names/fr.json",

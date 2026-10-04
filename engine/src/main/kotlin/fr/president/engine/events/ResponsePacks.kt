@@ -18,7 +18,11 @@ data class ResponsePack(
 )
 
 @Serializable
-data class ResponsesFile(val packs: List<ResponsePack>)
+data class ResponsesFile(
+    val packs: List<ResponsePack>,
+    /** Courriers ajoutés aux événements qui n'en avaient pas (sécheresse, note dégradée...). */
+    val messages: Map<String, EventMessageDef> = emptyMap(),
+)
 
 object ResponsePacks {
     /** Ajoute à chaque événement les options et mesures des paquets qui le citent. */
@@ -26,9 +30,10 @@ object ResponsePacks {
         if (file == null) return events
         return events.map { e ->
             val packs = file.packs.filter { e.id in it.events }
-            if (packs.isEmpty()) return@map e
+            val base = e.message ?: file.messages[e.id]
+            if (packs.isEmpty()) return@map if (base === e.message) e else e.copy(message = base)
             val measures = packs.flatMap { it.measures }.distinct()
-            val message = e.message?.let { m ->
+            val message = base?.let { m ->
                 val known = m.options.map { it.id }.toMutableSet()
                 val extra = packs.flatMap { it.options }.filter { known.add(it.id) }
                 // Les options « reporter » et « plus d'infos » restent en dernier.
