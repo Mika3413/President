@@ -13,8 +13,8 @@ android {
         applicationId = "fr.president.game"
         minSdk = 26
         targetSdk = 35
-        versionCode = 2
-        versionName = "0.2.0"
+        versionCode = 3
+        versionName = "0.3.0"
     }
 
     sourceSets["main"].apply {
@@ -28,7 +28,21 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
+    // Clé de débogage fixe (versionnée) : chaque nouvel APK s'installe par-dessus le précédent
+    // sans désinstaller, donc sans perdre la partie en cours.
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
+    }
+
     buildTypes {
+        debug {
+            signingConfig = signingConfigs.getByName("debug")
+        }
         release {
             isMinifyEnabled = false
         }
