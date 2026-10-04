@@ -30,6 +30,10 @@ class InboxMessage(
     var read: Boolean = false,
     /** Vrai si la réponse a été donnée automatiquement faute de décision du joueur. */
     var answeredByDefault: Boolean = false,
+    /** Mesures de crise qu'on peut lancer en plus de la réponse (confinement, évacuation...). */
+    val measures: List<String> = emptyList(),
+    /** Département visé par les mesures locales proposées. */
+    val measureDepartment: String? = null,
 ) {
     val awaitingAnswer: Boolean get() = options.isNotEmpty() && chosenOptionId == null
 }

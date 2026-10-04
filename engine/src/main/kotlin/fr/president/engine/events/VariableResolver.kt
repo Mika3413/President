@@ -25,6 +25,8 @@ class VariableResolver(private val ctx: SimulationContext) {
                 else -> null
             }
             "military" -> military(parts.getOrNull(1))
+            // « measure.lockdown » : 1 si la mesure est en vigueur (n'importe où).
+            "measure" -> if (ctx.state.measures.active.any { it.id == parts.getOrNull(1) }) 1.0 else 0.0
             "season" -> if (parts.getOrNull(1) == "month") ctx.now.month.toDouble() else null
             "scope" -> scoped(parts.getOrNull(1), scope)
             "president" -> ctx.state.characters[ctx.state.player.presidentId]?.let { p ->

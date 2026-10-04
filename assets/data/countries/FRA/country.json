@@ -16,6 +16,7 @@
  "energy": "infrastructure/FRA_energy.json",
  "transport": "infrastructure/FRA_transport.json",
  "military": "military/FRA_2026_10.json",
+ "measures": "countries/FRA/measures.json",
  "institutions": {
   "headOfStateTitle": "Président de la République",
   "headOfGovernmentTitle": "Premier ministre",

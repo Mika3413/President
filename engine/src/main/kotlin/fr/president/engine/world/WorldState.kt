@@ -71,6 +71,8 @@ class WorldState(
     val stats: fr.president.engine.stats.StatsState = fr.president.engine.stats.StatsState(),
     /** Unes des journaux et sondages publiés. */
     val media: fr.president.engine.media.MediaState = fr.president.engine.media.MediaState(),
+    /** Mesures de crise et de prévention en vigueur. */
+    val measures: fr.president.engine.crisis.MeasureState = fr.president.engine.crisis.MeasureState(),
 ) {
     val playerCountry: CountryState get() = countries.getValue(player.countryId)
 

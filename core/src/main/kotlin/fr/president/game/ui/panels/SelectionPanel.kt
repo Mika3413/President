@@ -19,7 +19,7 @@ class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
     private var tab = Tab.SUMMARY
 
     /** Onglets des fiches de territoire : l'essentiel d'abord, l'action ensuite, le détail sur demande. */
-    private enum class Tab(val label: String) { SUMMARY("Résumé"), ACT("▶ Agir"), DETAILS("Détails") }
+    private enum class Tab(val label: String) { SUMMARY("Résumé"), ACT("▶ Agir"), CRISIS("⚠ Crise"), DETAILS("Détails") }
     private val session get() = nav.session
 
     override val title: String
@@ -63,7 +63,8 @@ class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
 
     private fun buildDepartment(into: Table, code: String) {
         val available = localActions.availableCount(code)
-        tabs(into, listOf(Tab.SUMMARY, Tab.ACT, Tab.DETAILS), mapOf(Tab.ACT to available))
+        val local = session.state.measures.active.count { it.department == code }
+        tabs(into, listOf(Tab.SUMMARY, Tab.ACT, Tab.CRISIS, Tab.DETAILS), mapOf(Tab.ACT to available, Tab.CRISIS to local))
         when (tab) {
             Tab.SUMMARY -> {
                 into.add(SheetView(ui, session.local.department(code), expanded, compact = true)).row()
@@ -78,8 +79,20 @@ class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
                 into.add(ui.label("Lancez des chantiers et des plans locaux. ${Theme.goodName.replaceFirstChar { it.uppercase() }} : ce qui s'améliore ; ${Theme.badName} : ce qui se dégrade.", "muted", wrap = true)).padBottom(4f).row()
                 localActions.build(into, code)
             }
+            Tab.CRISIS -> {
+                into.add(ui.label("Mesures d'urgence pour ce seul département : évacuation, confinement local, couvre-feu, Canadair, vigilance crues...", "muted", wrap = true)).padBottom(4f).row()
+                session.measures.views(null, code).filter { it.def.local }
+                    .sortedBy { if (it.active != null) 0 else if (it.blocker == null) 1 else 2 }
+                    .forEach { into.add(measureCards.card(it, code)).growX().padBottom(4f).row() }
+                into.add(ui.button("Mesures nationales et risques ▶", "flat") { nav.open(PanelId.CRISIS, "dept:$code") }).left().padTop(4f).row()
+            }
             Tab.DETAILS -> into.add(SheetView(ui, session.local.department(code), expanded)).row()
         }
+    }
+
+    private val measureCards = fr.president.game.ui.widgets.MeasureCards(ui, nav.session, { nav.refresh() }) { result ->
+        message = result
+        nav.refresh()
     }
 
     /** Barre d'onglets ; un nombre en pastille signale ce qui est possible dans l'onglet. */

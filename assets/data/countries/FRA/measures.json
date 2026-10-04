@@ -1,0 +1,1258 @@
+{
+ "_doc": "Mesures de crise et de prévention. Généré par tools/datagen/measures_fr.py.",
+ "families": [
+  {
+   "id": "prevention",
+   "label": "Prévention",
+   "icon": "⊘",
+   "description": "Agir avant le drame : feux, crues, canicule, froid, épidémies, attentats, cyber."
+  },
+  {
+   "id": "health",
+   "label": "Santé publique",
+   "icon": "⚕",
+   "description": "Confinement, couvre-feu, masques, plan blanc, frontières sanitaires."
+  },
+  {
+   "id": "disaster",
+   "label": "Secours",
+   "icon": "✚",
+   "description": "Plan ORSEC, évacuations, armée en renfort, fonds d'urgence."
+  },
+  {
+   "id": "security",
+   "label": "Ordre public",
+   "icon": "⚑",
+   "description": "Vigipirate, Sentinelle, interdictions, contrôles aux frontières."
+  },
+  {
+   "id": "energy",
+   "label": "Énergie",
+   "icon": "⚡",
+   "description": "Délestages, sobriété, rationnement."
+  },
+  {
+   "id": "social",
+   "label": "Dialogue social",
+   "icon": "☎",
+   "description": "Médiation, conférence sociale, réquisitions."
+  },
+  {
+   "id": "economy",
+   "label": "Économie de crise",
+   "icon": "€",
+   "description": "Chômage partiel, soutien de trésorerie."
+  }
+ ],
+ "measures": [
+  {
+   "id": "fire_prevention",
+   "label": "Plan national de prévention des feux",
+   "icon": "♣",
+   "family": "prevention",
+   "description": "Débroussaillage obligatoire, patrouilles, surveillance par drones et guet aérien pendant l'été.",
+   "defaultDays": 90,
+   "costBillions": 0.05,
+   "costPerMonthBillions": 0.02,
+   "affects": [
+    {
+     "event": "wildfire",
+     "probability": 0.6,
+     "intensity": 0.6
+    }
+   ]
+  },
+  {
+   "id": "canadair",
+   "label": "Prépositionner Canadair et colonnes de pompiers",
+   "icon": "✈",
+   "family": "prevention",
+   "description": "Les moyens aériens et des renforts de pompiers sont postés au plus près du risque.",
+   "defaultDays": 60,
+   "local": true,
+   "costPerMonthBillions": 0.01,
+   "affects": [
+    {
+     "event": "wildfire",
+     "probability": 1.0,
+     "intensity": 0.45
+    }
+   ]
+  },
+  {
+   "id": "forest_ban",
+   "label": "Interdire l'accès aux massifs forestiers",
+   "icon": "⊘",
+   "family": "prevention",
+   "description": "Randonnée, travaux et barbecues interdits en forêt : moins de départs de feu, touristes mécontents.",
+   "defaultDays": 30,
+   "local": true,
+   "daily": [
+    {
+     "target": "local.approval",
+     "amount": -0.0004
+    }
+   ],
+   "affects": [
+    {
+     "event": "wildfire",
+     "probability": 0.4,
+     "intensity": 1.0
+    }
+   ]
+  },
+  {
+   "id": "flood_watch",
+   "label": "Vigilance crues : digues renforcées et alertes",
+   "icon": "≈",
+   "family": "prevention",
+   "description": "Surveillance des cours d'eau, sacs de sable, alertes par SMS, digues consolidées en urgence.",
+   "defaultDays": 60,
+   "local": true,
+   "costBillions": 0.02,
+   "affects": [
+    {
+     "event": "flood",
+     "probability": 0.75,
+     "intensity": 0.5
+    },
+    {
+     "event": "cyclone",
+     "probability": 1.0,
+     "intensity": 0.7
+    },
+    {
+     "event": "storm",
+     "probability": 1.0,
+     "intensity": 0.8
+    }
+   ]
+  },
+  {
+   "id": "heat_plan",
+   "label": "Plan canicule",
+   "icon": "☀",
+   "family": "prevention",
+   "description": "Salles rafraîchies, appels aux personnes âgées isolées, horaires de travail aménagés.",
+   "defaultDays": 60,
+   "costPerMonthBillions": 0.01,
+   "start": [
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.004
+    }
+   ],
+   "affects": [
+    {
+     "event": "heatwave",
+     "probability": 1.0,
+     "intensity": 0.5
+    }
+   ]
+  },
+  {
+   "id": "cold_plan",
+   "label": "Plan grand froid",
+   "icon": "❄",
+   "family": "prevention",
+   "description": "Hébergement d'urgence, maraudes, appels à la sobriété électrique aux heures de pointe.",
+   "defaultDays": 60,
+   "costPerMonthBillions": 0.02,
+   "start": [
+    {
+     "target": "opinion.group.low_income",
+     "amount": 0.003
+    }
+   ],
+   "affects": [
+    {
+     "event": "cold_wave",
+     "probability": 1.0,
+     "intensity": 0.6
+    },
+    {
+     "event": "blackout",
+     "probability": 0.7,
+     "intensity": 1.0
+    }
+   ]
+  },
+  {
+   "id": "water_restrictions",
+   "label": "Restrictions d'eau",
+   "icon": "♒",
+   "family": "prevention",
+   "description": "Arrosage, lavage et remplissage des piscines interdits ; priorité à l'eau potable et aux élevages.",
+   "defaultDays": 60,
+   "daily": [
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.0003
+    },
+    {
+     "target": "quality.agriculture",
+     "amount": -0.0001
+    }
+   ],
+   "affects": [
+    {
+     "event": "drought",
+     "probability": 1.0,
+     "intensity": 0.6
+    },
+    {
+     "event": "dam_drought",
+     "probability": 0.7,
+     "intensity": 1.0
+    }
+   ]
+  },
+  {
+   "id": "vaccination",
+   "label": "Grande campagne de vaccination",
+   "icon": "✚",
+   "family": "prevention",
+   "description": "Vaccination gratuite en pharmacie, à l'école et en entreprise.",
+   "defaultDays": 90,
+   "costBillions": 0.3,
+   "daily": [
+    {
+     "target": "quality.health",
+     "amount": 0.0001
+    }
+   ],
+   "affects": [
+    {
+     "event": "epidemic",
+     "probability": 0.5,
+     "intensity": 0.7
+    },
+    {
+     "event": "pandemic_wave",
+     "probability": 0.6,
+     "intensity": 0.7
+    }
+   ]
+  },
+  {
+   "id": "strategic_stocks",
+   "label": "Constituer des stocks stratégiques",
+   "icon": "▣",
+   "family": "prevention",
+   "description": "Masques, médicaments essentiels, carburant et pièces critiques stockés pour tenir des mois.",
+   "defaultDays": 180,
+   "costBillions": 0.4,
+   "affects": [
+    {
+     "event": "drug_shortage",
+     "probability": 0.4,
+     "intensity": 0.6
+    },
+    {
+     "event": "fuel_shortage",
+     "probability": 0.7,
+     "intensity": 0.5
+    },
+    {
+     "event": "pandemic_wave",
+     "probability": 1.0,
+     "intensity": 0.85
+    }
+   ]
+  },
+  {
+   "id": "cyber_shield",
+   "label": "Cyberbouclier de l'ANSSI",
+   "icon": "◎",
+   "family": "prevention",
+   "description": "Audits d'urgence, sauvegardes hors ligne, équipes de réponse dans les hôpitaux et collectivités.",
+   "defaultDays": 180,
+   "costPerMonthBillions": 0.1,
+   "affects": [
+    {
+     "event": "cyberattack",
+     "probability": 0.5,
+     "intensity": 0.6
+    },
+    {
+     "event": "hybrid_cyber",
+     "probability": 1.0,
+     "intensity": 0.6
+    },
+    {
+     "event": "health_data_leak",
+     "probability": 0.5,
+     "intensity": 0.6
+    }
+   ]
+  },
+  {
+   "id": "seveso_inspections",
+   "label": "Inspections renforcées des sites à risque",
+   "icon": "☢",
+   "family": "prevention",
+   "description": "Centrales, raffineries et usines chimiques contrôlées de fond en comble ; les industriels râlent.",
+   "defaultDays": 180,
+   "costPerMonthBillions": 0.02,
+   "start": [
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.003
+    }
+   ],
+   "affects": [
+    {
+     "event": "nuclear_incident",
+     "probability": 0.6,
+     "intensity": 0.7
+    },
+    {
+     "event": "refinery_accident",
+     "probability": 0.5,
+     "intensity": 0.7
+    }
+   ]
+  },
+  {
+   "id": "social_conference",
+   "label": "Conférence sociale permanente",
+   "icon": "☎",
+   "family": "prevention",
+   "description": "Syndicats et patronat réunis chaque semaine : on désamorce avant de bloquer.",
+   "defaultDays": 90,
+   "affects": [
+    {
+     "event": "national_strike",
+     "probability": 0.6,
+     "intensity": 1.0
+    },
+    {
+     "event": "rail_strike",
+     "probability": 0.7,
+     "intensity": 1.0
+    },
+    {
+     "event": "teachers_strike",
+     "probability": 0.7,
+     "intensity": 1.0
+    },
+    {
+     "event": "port_strike",
+     "probability": 0.7,
+     "intensity": 1.0
+    }
+   ]
+  },
+  {
+   "id": "community_policing",
+   "label": "Police de proximité dans les quartiers",
+   "icon": "⚑",
+   "family": "prevention",
+   "description": "Des policiers connus des habitants, des médiateurs et des éducateurs de rue.",
+   "defaultDays": 180,
+   "costPerMonthBillions": 0.05,
+   "affects": [
+    {
+     "event": "urban_riots",
+     "probability": 0.6,
+     "intensity": 0.8
+    },
+    {
+     "event": "police_incident",
+     "probability": 0.7,
+     "intensity": 1.0
+    }
+   ]
+  },
+  {
+   "id": "lockdown",
+   "label": "Confinement national",
+   "icon": "⌂",
+   "family": "health",
+   "description": "Chacun reste chez soi sauf nécessité. L'épidémie recule fortement, l'économie et le moral aussi.",
+   "defaultDays": 30,
+   "costPerMonthBillions": 3.0,
+   "start": [
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.03
+    },
+    {
+     "target": "opinion.national",
+     "amount": 0.004
+    }
+   ],
+   "daily": [
+    {
+     "target": "economy.output",
+     "amount": -0.0006
+    },
+    {
+     "target": "economy.unemployment",
+     "amount": 4e-05
+    },
+    {
+     "target": "opinion.national",
+     "amount": -0.0005
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": -0.0004
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": -0.0006
+    }
+   ],
+   "end": [
+    {
+     "target": "economy.output",
+     "amount": 0.003,
+     "days": 60
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": 0.015
+    }
+   ],
+   "affects": [
+    {
+     "event": "epidemic",
+     "probability": 0.3,
+     "intensity": 0.5
+    },
+    {
+     "event": "pandemic_wave",
+     "probability": 0.2,
+     "intensity": 0.4
+    },
+    {
+     "event": "city_demonstration",
+     "probability": 0.2,
+     "intensity": 1.0
+    },
+    {
+     "event": "urban_riots",
+     "probability": 0.5,
+     "intensity": 1.0
+    },
+    {
+     "event": "terror_attack",
+     "probability": 0.6,
+     "intensity": 1.0
+    }
+   ],
+   "confirm": true,
+   "cooldownDays": 30
+  },
+  {
+   "id": "local_lockdown",
+   "label": "Confinement local",
+   "icon": "⌂",
+   "family": "health",
+   "description": "Le département est confiné : la circulation du virus y est freinée, l'économie locale souffre.",
+   "defaultDays": 21,
+   "local": true,
+   "costPerMonthBillions": 0.05,
+   "daily": [
+    {
+     "target": "local.approval",
+     "amount": -0.001
+    },
+    {
+     "target": "local.unemployment",
+     "amount": 5e-05
+    },
+    {
+     "target": "economy.output",
+     "amount": -3e-05
+    }
+   ],
+   "affects": [
+    {
+     "event": "epidemic",
+     "probability": 0.85,
+     "intensity": 0.85
+    },
+    {
+     "event": "pandemic_wave",
+     "probability": 0.85,
+     "intensity": 0.85
+    }
+   ],
+   "cooldownDays": 15
+  },
+  {
+   "id": "curfew",
+   "label": "Couvre-feu national (21 h – 6 h)",
+   "icon": "☾",
+   "family": "health",
+   "description": "Bars, restaurants et sorties le soir fermés. Moins dur qu'un confinement.",
+   "defaultDays": 30,
+   "daily": [
+    {
+     "target": "economy.output",
+     "amount": -0.0002
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": -0.0004
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": -0.0003
+    }
+   ],
+   "affects": [
+    {
+     "event": "epidemic",
+     "probability": 0.7,
+     "intensity": 0.8
+    },
+    {
+     "event": "pandemic_wave",
+     "probability": 0.6,
+     "intensity": 0.8
+    },
+    {
+     "event": "urban_riots",
+     "probability": 0.4,
+     "intensity": 1.0
+    }
+   ],
+   "cooldownDays": 15
+  },
+  {
+   "id": "masks",
+   "label": "Port du masque obligatoire",
+   "icon": "◐",
+   "family": "health",
+   "description": "Dans les transports, les commerces et les lieux clos.",
+   "defaultDays": 60,
+   "daily": [
+    {
+     "target": "opinion.national",
+     "amount": -0.0001
+    }
+   ],
+   "affects": [
+    {
+     "event": "epidemic",
+     "probability": 0.7,
+     "intensity": 0.85
+    },
+    {
+     "event": "pandemic_wave",
+     "probability": 0.8,
+     "intensity": 0.8
+    }
+   ]
+  },
+  {
+   "id": "white_plan",
+   "label": "Plan blanc dans les hôpitaux",
+   "icon": "✚",
+   "family": "health",
+   "description": "Opérations non urgentes reportées, personnels rappelés, lits supplémentaires ouverts.",
+   "defaultDays": 30,
+   "costPerMonthBillions": 0.1,
+   "daily": [
+    {
+     "target": "quality.health",
+     "amount": 0.0002
+    },
+    {
+     "target": "opinion.group.civil_servants",
+     "amount": -0.0002
+    }
+   ],
+   "affects": [
+    {
+     "event": "epidemic",
+     "probability": 1.0,
+     "intensity": 0.7
+    },
+    {
+     "event": "pandemic_wave",
+     "probability": 1.0,
+     "intensity": 0.75
+    },
+    {
+     "event": "terror_attack",
+     "probability": 1.0,
+     "intensity": 0.85
+    }
+   ]
+  },
+  {
+   "id": "health_borders",
+   "label": "Fermeture sanitaire des frontières",
+   "icon": "⊠",
+   "family": "health",
+   "description": "Voyageurs testés et mis en quarantaine ; vols suspendus depuis les zones touchées.",
+   "defaultDays": 30,
+   "start": [
+    {
+     "target": "alliance.EU.DISAGREEMENT",
+     "amount": -0.01
+    }
+   ],
+   "daily": [
+    {
+     "target": "economy.output",
+     "amount": -0.0003
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.0002
+    }
+   ],
+   "affects": [
+    {
+     "event": "new_virus",
+     "probability": 0.5,
+     "intensity": 1.0
+    },
+    {
+     "event": "pandemic_wave",
+     "probability": 0.6,
+     "intensity": 0.9
+    }
+   ],
+   "confirm": true
+  },
+  {
+   "id": "health_emergency",
+   "label": "État d'urgence sanitaire",
+   "icon": "⚠",
+   "family": "health",
+   "description": "Cadre légal d'exception : le gouvernement peut décider vite, l'Assemblée s'agace.",
+   "defaultDays": 60,
+   "daily": [
+    {
+     "target": "government.parliamentSupport",
+     "amount": -0.0002
+    }
+   ],
+   "affects": [
+    {
+     "event": "pandemic_wave",
+     "probability": 1.0,
+     "intensity": 0.85
+    },
+    {
+     "event": "epidemic",
+     "probability": 1.0,
+     "intensity": 0.85
+    }
+   ],
+   "confirm": true
+  },
+  {
+   "id": "orsec",
+   "label": "Déclencher le plan ORSEC",
+   "icon": "✚",
+   "family": "disaster",
+   "description": "Le préfet coordonne pompiers, gendarmes, SAMU et collectivités sous une direction unique.",
+   "defaultDays": 15,
+   "local": true,
+   "costBillions": 0.02,
+   "start": [
+    {
+     "target": "local.approval",
+     "amount": 0.01
+    }
+   ],
+   "affects": [
+    {
+     "event": "flood",
+     "probability": 1.0,
+     "intensity": 0.6
+    },
+    {
+     "event": "storm",
+     "probability": 1.0,
+     "intensity": 0.6
+    },
+    {
+     "event": "wildfire",
+     "probability": 1.0,
+     "intensity": 0.6
+    },
+    {
+     "event": "cyclone",
+     "probability": 1.0,
+     "intensity": 0.6
+    }
+   ]
+  },
+  {
+   "id": "evacuation",
+   "label": "Évacuer la population",
+   "icon": "⇢",
+   "family": "disaster",
+   "description": "Les habitants menacés sont mis à l'abri : beaucoup moins de victimes, une économie locale à l'arrêt.",
+   "defaultDays": 7,
+   "local": true,
+   "costBillions": 0.03,
+   "start": [
+    {
+     "target": "local.approval",
+     "amount": -0.005
+    }
+   ],
+   "daily": [
+    {
+     "target": "economy.output",
+     "amount": -5e-05
+    }
+   ],
+   "affects": [
+    {
+     "event": "flood",
+     "probability": 1.0,
+     "intensity": 0.4
+    },
+    {
+     "event": "wildfire",
+     "probability": 1.0,
+     "intensity": 0.4
+    },
+    {
+     "event": "cyclone",
+     "probability": 1.0,
+     "intensity": 0.4
+    },
+    {
+     "event": "storm",
+     "probability": 1.0,
+     "intensity": 0.5
+    }
+   ]
+  },
+  {
+   "id": "army_relief",
+   "label": "Déployer l'armée en soutien des secours",
+   "icon": "⚔",
+   "family": "disaster",
+   "description": "Génie, hélicoptères et hôpitaux de campagne au service de la population.",
+   "defaultDays": 30,
+   "costPerMonthBillions": 0.05,
+   "start": [
+    {
+     "target": "opinion.national",
+     "amount": 0.003
+    }
+   ],
+   "daily": [
+    {
+     "target": "military.readiness",
+     "amount": -0.0005
+    }
+   ],
+   "affects": [
+    {
+     "event": "flood",
+     "probability": 1.0,
+     "intensity": 0.75
+    },
+    {
+     "event": "storm",
+     "probability": 1.0,
+     "intensity": 0.75
+    },
+    {
+     "event": "wildfire",
+     "probability": 1.0,
+     "intensity": 0.75
+    },
+    {
+     "event": "cyclone",
+     "probability": 1.0,
+     "intensity": 0.7
+    }
+   ]
+  },
+  {
+   "id": "disaster_fund",
+   "label": "Fonds d'urgence catastrophes naturelles",
+   "icon": "€",
+   "family": "disaster",
+   "description": "Indemnisation accélérée des sinistrés et des communes, avances sur assurances.",
+   "defaultDays": 90,
+   "costBillions": 0.3,
+   "start": [
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.004
+    },
+    {
+     "target": "opinion.national",
+     "amount": 0.002
+    }
+   ],
+   "affects": [
+    {
+     "event": "storm",
+     "probability": 1.0,
+     "intensity": 0.9
+    },
+    {
+     "event": "flood",
+     "probability": 1.0,
+     "intensity": 0.9
+    }
+   ]
+  },
+  {
+   "id": "vigipirate",
+   "label": "Vigipirate « urgence attentat »",
+   "icon": "⚑",
+   "family": "security",
+   "description": "Fouilles, militaires devant les écoles et les lieux de culte, événements annulés.",
+   "defaultDays": 30,
+   "costPerMonthBillions": 0.05,
+   "daily": [
+    {
+     "target": "quality.security",
+     "amount": 0.0002
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.0001
+    }
+   ],
+   "affects": [
+    {
+     "event": "terror_attack",
+     "probability": 0.6,
+     "intensity": 0.7
+    }
+   ]
+  },
+  {
+   "id": "sentinelle",
+   "label": "Renforcer l'opération Sentinelle",
+   "icon": "⚔",
+   "family": "security",
+   "description": "Dix mille soldats patrouillent dans les grandes villes.",
+   "defaultDays": 90,
+   "costPerMonthBillions": 0.08,
+   "daily": [
+    {
+     "target": "military.readiness",
+     "amount": -0.0003
+    }
+   ],
+   "affects": [
+    {
+     "event": "terror_attack",
+     "probability": 0.7,
+     "intensity": 0.8
+    }
+   ]
+  },
+  {
+   "id": "gathering_ban",
+   "label": "Interdire les rassemblements",
+   "icon": "⊘",
+   "family": "security",
+   "description": "Manifestations et grands événements interdits : l'ordre est maintenu, les libertés en débat.",
+   "defaultDays": 15,
+   "daily": [
+    {
+     "target": "opinion.group.young",
+     "amount": -0.0005
+    },
+    {
+     "target": "government.parliamentSupport",
+     "amount": -0.0002
+    }
+   ],
+   "affects": [
+    {
+     "event": "city_demonstration",
+     "probability": 0.3,
+     "intensity": 1.0
+    },
+    {
+     "event": "urban_riots",
+     "probability": 0.6,
+     "intensity": 1.0
+    },
+    {
+     "event": "terror_attack",
+     "probability": 0.8,
+     "intensity": 1.0
+    }
+   ],
+   "confirm": true
+  },
+  {
+   "id": "local_curfew",
+   "label": "Couvre-feu local",
+   "icon": "☾",
+   "family": "security",
+   "description": "Dans le département touché par les violences : rues vidées la nuit.",
+   "defaultDays": 10,
+   "local": true,
+   "daily": [
+    {
+     "target": "local.crime",
+     "amount": -0.0005
+    },
+    {
+     "target": "local.approval",
+     "amount": -0.0005
+    }
+   ],
+   "affects": [
+    {
+     "event": "urban_riots",
+     "probability": 0.3,
+     "intensity": 0.6
+    }
+   ]
+  },
+  {
+   "id": "security_borders",
+   "label": "Rétablir les contrôles aux frontières",
+   "icon": "⊠",
+   "family": "security",
+   "description": "Contrôles d'identité aux frontières intérieures de l'espace Schengen.",
+   "defaultDays": 60,
+   "start": [
+    {
+     "target": "alliance.EU.DISAGREEMENT",
+     "amount": -0.01
+    }
+   ],
+   "daily": [
+    {
+     "target": "economy.output",
+     "amount": -0.0001
+    }
+   ],
+   "affects": [
+    {
+     "event": "terror_attack",
+     "probability": 0.85,
+     "intensity": 1.0
+    },
+    {
+     "event": "refugee_crisis",
+     "probability": 1.0,
+     "intensity": 0.7
+    }
+   ]
+  },
+  {
+   "id": "load_shedding",
+   "label": "Délestages tournants préventifs",
+   "icon": "⚡",
+   "family": "energy",
+   "description": "Deux heures de coupure programmée par quartier, pour éviter la panne générale.",
+   "defaultDays": 15,
+   "daily": [
+    {
+     "target": "economy.output",
+     "amount": -0.0003
+    },
+    {
+     "target": "opinion.national",
+     "amount": -0.0004
+    }
+   ],
+   "affects": [
+    {
+     "event": "blackout",
+     "probability": 0.2,
+     "intensity": 0.5
+    }
+   ],
+   "requires": [
+    {
+     "variable": "energy.margin",
+     "max": 0.08
+    }
+   ],
+   "requiresText": "quand la marge électrique est faible"
+  },
+  {
+   "id": "sobriety",
+   "label": "Sobriété énergétique obligatoire",
+   "icon": "♻",
+   "family": "energy",
+   "description": "Chauffage limité à 19 °C dans les bâtiments publics, vitrines éteintes la nuit.",
+   "defaultDays": 90,
+   "daily": [
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.0001
+    }
+   ],
+   "affects": [
+    {
+     "event": "blackout",
+     "probability": 0.6,
+     "intensity": 1.0
+    },
+    {
+     "event": "cold_wave",
+     "probability": 1.0,
+     "intensity": 0.85
+    },
+    {
+     "event": "gas_price_spike",
+     "probability": 1.0,
+     "intensity": 0.8
+    }
+   ]
+  },
+  {
+   "id": "fuel_rationing",
+   "label": "Rationnement du carburant",
+   "icon": "⛁",
+   "family": "energy",
+   "description": "Trente litres par plein, priorité aux soignants, aux transporteurs et aux agriculteurs.",
+   "defaultDays": 15,
+   "daily": [
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.0005
+    }
+   ],
+   "affects": [
+    {
+     "event": "fuel_shortage",
+     "probability": 1.0,
+     "intensity": 0.5
+    },
+    {
+     "event": "fuel_blockade",
+     "probability": 0.6,
+     "intensity": 0.6
+    }
+   ]
+  },
+  {
+   "id": "mediator",
+   "label": "Nommer un médiateur national",
+   "icon": "☎",
+   "family": "social",
+   "description": "Une personnalité respectée réunit les parties pour sortir d'un conflit.",
+   "defaultDays": 60,
+   "costBillions": 0.005,
+   "affects": [
+    {
+     "event": "national_strike",
+     "probability": 0.7,
+     "intensity": 0.8
+    },
+    {
+     "event": "rail_strike",
+     "probability": 0.7,
+     "intensity": 0.8
+    },
+    {
+     "event": "strike_spreads",
+     "probability": 0.6,
+     "intensity": 1.0
+    },
+    {
+     "event": "teachers_strike",
+     "probability": 0.7,
+     "intensity": 0.8
+    }
+   ]
+  },
+  {
+   "id": "requisition",
+   "label": "Réquisitionner les grévistes des secteurs vitaux",
+   "icon": "⚠",
+   "family": "social",
+   "description": "Raffineries, énergie, soins : le service est assuré, la colère syndicale explose.",
+   "defaultDays": 15,
+   "daily": [
+    {
+     "target": "opinion.group.civil_servants",
+     "amount": -0.0008
+    },
+    {
+     "target": "opinion.group.private_employees",
+     "amount": -0.0003
+    }
+   ],
+   "affects": [
+    {
+     "event": "fuel_blockade",
+     "probability": 0.4,
+     "intensity": 0.5
+    },
+    {
+     "event": "strike_spreads",
+     "probability": 1.0,
+     "intensity": 0.6
+    },
+    {
+     "event": "fuel_shortage",
+     "probability": 1.0,
+     "intensity": 0.6
+    }
+   ],
+   "confirm": true
+  },
+  {
+   "id": "short_time_work",
+   "label": "Chômage partiel massif",
+   "icon": "€",
+   "family": "economy",
+   "description": "L'État paie une grande partie des salaires des entreprises à l'arrêt : les emplois sont sauvés.",
+   "defaultDays": 90,
+   "costPerMonthBillions": 1.5,
+   "daily": [
+    {
+     "target": "economy.unemployment",
+     "amount": -4e-05
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": 0.0001
+    },
+    {
+     "target": "opinion.group.private_employees",
+     "amount": 0.0002
+    }
+   ]
+  },
+  {
+   "id": "business_support",
+   "label": "Prêts garantis et reports de charges",
+   "icon": "◆",
+   "family": "economy",
+   "description": "Trésorerie pour les entreprises en difficulté, reports de cotisations.",
+   "defaultDays": 90,
+   "costPerMonthBillions": 0.5,
+   "daily": [
+    {
+     "target": "economy.businessConfidence",
+     "amount": 0.0002
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": 0.0002
+    }
+   ]
+  }
+ ],
+ "risks": [
+  {
+   "id": "fire",
+   "label": "Incendies de forêt",
+   "icon": "♣",
+   "description": "Chaleur, sécheresse et vent font monter le risque l'été.",
+   "events": [
+    "wildfire"
+   ]
+  },
+  {
+   "id": "flood",
+   "label": "Crues et tempêtes",
+   "icon": "≈",
+   "description": "Pluies d'automne et d'hiver, cyclones outre-mer.",
+   "events": [
+    "flood",
+    "storm",
+    "cyclone"
+   ]
+  },
+  {
+   "id": "heat",
+   "label": "Canicule et sécheresse",
+   "icon": "☀",
+   "description": "Vagues de chaleur et manque d'eau.",
+   "events": [
+    "heatwave",
+    "drought",
+    "dam_drought"
+   ]
+  },
+  {
+   "id": "cold",
+   "label": "Froid et électricité",
+   "icon": "❄",
+   "description": "Vague de froid, réseau électrique sous tension.",
+   "events": [
+    "cold_wave",
+    "blackout"
+   ]
+  },
+  {
+   "id": "epidemic",
+   "label": "Épidémies",
+   "icon": "⚕",
+   "description": "Virus saisonniers, nouvelles maladies, épizooties.",
+   "events": [
+    "epidemic",
+    "new_virus",
+    "pandemic_wave",
+    "bird_flu"
+   ]
+  },
+  {
+   "id": "terror",
+   "label": "Terrorisme",
+   "icon": "⚑",
+   "description": "Menace terroriste sur les grandes villes.",
+   "events": [
+    "terror_attack"
+   ]
+  },
+  {
+   "id": "unrest",
+   "label": "Colère sociale et émeutes",
+   "icon": "☎",
+   "description": "Grèves, manifestations, violences urbaines.",
+   "events": [
+    "urban_riots",
+    "city_demonstration",
+    "police_incident",
+    "national_strike",
+    "rail_strike",
+    "teachers_strike"
+   ]
+  },
+  {
+   "id": "cyber",
+   "label": "Cyberattaques",
+   "icon": "◎",
+   "description": "Rançongiciels, espionnage, attaques d'États hostiles.",
+   "events": [
+    "cyberattack",
+    "cyber_espionage",
+    "health_data_leak"
+   ]
+  },
+  {
+   "id": "supply",
+   "label": "Pénuries",
+   "icon": "▣",
+   "description": "Carburant, médicaments, gaz.",
+   "events": [
+    "fuel_shortage",
+    "drug_shortage",
+    "gas_price_spike"
+   ]
+  },
+  {
+   "id": "industrial",
+   "label": "Accidents industriels",
+   "icon": "☢",
+   "description": "Centrales, raffineries, sites chimiques.",
+   "events": [
+    "nuclear_incident",
+    "refinery_accident"
+   ]
+  }
+ ]
+}

@@ -37,7 +37,28 @@ class EventSystem : SimulationSystem {
             val value = ctx.variables.resolve(m.variable, scope) ?: continue
             p *= lerp(m.factorAtFrom, m.factorAtTo, inverseLerp(m.from, m.to, value))
         }
+        // Prévention et mesures de crise en vigueur.
+        p *= fr.president.engine.crisis.MeasureSystem.probabilityFactor(ctx, def, scope)
         return p.coerceIn(0.0, MAX_DAILY_PROBABILITY)
+    }
+
+    /**
+     * Risque quotidien d'un événement (toutes cibles confondues) et la cible la plus exposée.
+     * Sert à l'affichage des risques ; ne tire rien au hasard.
+     */
+    fun dailyRisk(ctx: SimulationContext, def: EventDefinition): Pair<Double, ScopeRef?> {
+        if (onCooldown(def.cooldownDays, ctx.state.events.lastFired[def.id], ctx.now)) return 0.0 to null
+        var none = 1.0
+        var best: ScopeRef? = null
+        var bestP = 0.0
+        // Sans mélange : l'affichage des risques ne doit pas consommer le hasard de la simulation.
+        for (scope in candidates(ctx, def, shuffle = false)) {
+            if (!eligible(ctx, def, scope)) continue
+            val p = probability(ctx, def, scope)
+            none *= 1 - p
+            if (p > bestP) { bestP = p; best = scope }
+        }
+        return (1 - none) to best
     }
 
     private fun eligible(ctx: SimulationContext, def: EventDefinition, scope: ScopeRef): Boolean {
@@ -52,7 +73,7 @@ class EventSystem : SimulationSystem {
     }
 
     /** Cibles possibles, dans un ordre mélangé pour ne favoriser aucun territoire. */
-    private fun candidates(ctx: SimulationContext, def: EventDefinition): List<ScopeRef> {
+    private fun candidates(ctx: SimulationContext, def: EventDefinition, shuffle: Boolean = true): List<ScopeRef> {
         val ids: List<String?> = when (def.scope) {
             EventScope.NATIONAL -> listOf(null)
             EventScope.DEPARTMENT -> ctx.state.territory.departments.keys.toList()
@@ -62,7 +83,7 @@ class EventSystem : SimulationSystem {
             EventScope.MINISTER -> ctx.state.government.ministers.values.toList()
             EventScope.FOREIGN_COUNTRY -> ctx.state.countries.keys.filter { it != ctx.state.player.countryId }
         }
-        return shuffled(ids, ctx).map { ScopeRef(def.scope, it) }
+        return (if (shuffle) shuffled(ids, ctx) else ids).map { ScopeRef(def.scope, it) }
     }
 
     private fun <T> shuffled(items: List<T>, ctx: SimulationContext): List<T> {

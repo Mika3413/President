@@ -15,10 +15,11 @@ class EventLauncher(private val ctx: SimulationContext) {
 
     fun launch(def: EventDefinition, scope: ScopeRef): EventInstance {
         val level = drawIntensity(def)
-        val factor = level?.second?.factor ?: 1.0
+        // La prévention (débroussaillage, digues, plan grand froid...) réduit l'ampleur.
+        val factor = (level?.second?.factor ?: 1.0) * fr.president.engine.crisis.MeasureSystem.intensityFactor(ctx, def, scope)
         // Les montants tirés (dégâts, sommes demandées) suivent l'ampleur.
         val params = drawParams(def, scope).mapValues { (_, v) -> v * factor }.toMutableMap()
-        level?.let { (index, l) -> params[EventIntensity.FACTOR] = l.factor; params[EventIntensity.LEVEL] = index.toDouble() }
+        level?.let { (index, _) -> params[EventIntensity.FACTOR] = factor; params[EventIntensity.LEVEL] = index.toDouble() }
         val instance = EventInstance(ctx.state.newId("evt"), def.id, scope.id, params, ctx.now)
         ctx.state.events.active.add(instance)
         ctx.state.events.lastFired[def.id] = ctx.now
@@ -88,6 +89,8 @@ class EventLauncher(private val ctx: SimulationContext) {
             deadline = ctx.now.plusDays(m.responseDays),
             defaultOptionId = m.defaultOption,
             focusId = focusOf(scope),
+            measures = def.measures,
+            measureDepartment = senders.departmentOf(scope),
         )
         instance.messageId = message.id
         ctx.state.inbox.messages.add(message)

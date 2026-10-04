@@ -34,7 +34,7 @@ class InboxPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit, privat
     }
 
     private fun Table.onClickOpen(m: InboxMessage) {
-        onClick { openMessage = m.id; session.markRead(m.id); nav.refresh() }
+        onClick { openMessage = m.id; measureNote = null; session.markRead(m.id); nav.refresh() }
     }
 
     private fun message(into: Table, m: InboxMessage) {
@@ -46,28 +46,75 @@ class InboxPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit, privat
         into.add(head).growX().padTop(4f).row()
         into.add(ui.label("${m.senderLabel} · ${Formats.dateTime(m.time)}", "muted", wrap = true)).growX().row()
         into.add(ui.label(m.body, "default", wrap = true)).growX().padTop(GAP).row()
+        measureNote?.let { into.add(ui.label(it, "small", Theme.accent, wrap = true)).growX().padTop(4f).row() }
         m.focusId?.let { focus -> into.add(ui.button("Voir sur la carte", "flat") { nav.focusOn(focus) }).left().padTop(4f).row() }
         if (m.awaitingAnswer) {
             into.add(ui.label("Votre décision", "bold")).padTop(GAP).row()
             m.deadline?.let { into.add(ui.label("Sans réponse avant le ${Formats.dateTime(it)}, l'option par défaut sera appliquée.", "muted", wrap = true)).growX().row() }
-            m.options.forEach { o ->
-                val box = Table().apply { defaults().left() }
-                box.add(ui.button(o.label, if (o.id == m.defaultOptionId) "default" else "accent") {
-                    if (o.id == DiplomacyService.OPTION_NEGOTIATE) onNegotiate(m.originId ?: "")
-                    session.answer(m.id, o.id)
-                    nav.refresh()
-                }).left().row()
-                if (o.hint.isNotBlank()) box.add(ui.label(o.hint, "muted", wrap = true)).growX().row()
-                into.add(box).growX().padBottom(6f).row()
+            // Réponses propres au dossier d'abord, puis les autres leviers du président.
+            val (extra, main) = m.options.partition { it.id.startsWith(EXTRA_PREFIX) }
+            main.forEach { o -> into.add(optionCard(m, o)).growX().padBottom(4f).row() }
+            if (extra.isNotEmpty()) {
+                into.add(ui.label("Autres réponses possibles", "bold", Theme.highlight)).padTop(4f).row()
+                extra.forEach { o -> into.add(optionCard(m, o)).growX().padBottom(4f).row() }
             }
         } else if (m.chosenOptionId != null) {
             val chosen = m.options.firstOrNull { it.id == m.chosenOptionId }?.label ?: m.chosenOptionId
             into.add(ui.label("Décision : $chosen" + if (m.answeredByDefault) " (appliquée par défaut)" else "", "small", Theme.textMuted, wrap = true)).growX().padTop(GAP).row()
         }
+        measures(into, m)
+    }
+
+    /** Une réponse : texte complet (qui passe à la ligne) et ce qu'elle implique. */
+    private fun optionCard(m: InboxMessage, o: fr.president.engine.inbox.MessageOption): Table {
+        val isDefault = o.id == m.defaultOptionId
+        val card = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(5f, 8f, 5f, 8f); defaults().left() }
+        val head = Table()
+        head.add(ui.label("▶", "bold", if (isDefault) Theme.textMuted else Theme.accent)).top().padRight(6f)
+        head.add(ui.label(o.label, "bold", wrap = true)).growX().minWidth(0f)
+        card.add(head).growX().row()
+        val hint = listOfNotNull(o.hint.ifBlank { null }, if (isDefault) "option appliquée si vous ne répondez pas" else null).joinToString(" · ")
+        if (hint.isNotBlank()) card.add(ui.label(hint, "muted", wrap = true)).growX().padLeft(ARROW).row()
+        card.onClick {
+            if (o.id == DiplomacyService.OPTION_NEGOTIATE) onNegotiate(m.originId ?: "")
+            fr.president.game.ui.Sfx.play(fr.president.game.ui.Sfx.Kind.DECISION)
+            session.answer(m.id, o.id)
+            nav.refresh()
+        }
+        return card
+    }
+
+    /** Mesures d'urgence cumulables avec la réponse : évacuer, confiner, couvre-feu, Vigipirate... */
+    private fun measures(into: Table, m: InboxMessage) {
+        if (m.measures.isEmpty()) return
+        val key = "measures.${m.id}"
+        val open = key in expanded || m.awaitingAnswer
+        val views = m.measures.mapNotNull { id -> session.measures.definitions.firstOrNull { it.id == id } }
+            .map { session.measures.view(it, if (it.local) m.measureDepartment else null) }
+        val active = views.count { it.active != null }
+        val head = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(5f, 8f, 5f, 8f) }
+        head.add(ui.label("⚠ Mesures d'urgence en complément (${views.size})" + if (active > 0) " · $active en vigueur" else "", "bold", Theme.warning, wrap = true)).growX().minWidth(0f)
+        head.add(ui.label(if (open) "▲" else "▼", "small", Theme.textMuted)).right()
+        head.onClick { if (!expanded.remove(key)) expanded += key; nav.refresh() }
+        into.add(head).growX().padTop(GAP).row()
+        if (!open) return
+        into.add(ui.label("Cumulables avec votre réponse : vous pouvez en décréter plusieurs.", "muted", wrap = true)).growX().padBottom(4f).row()
+        views.sortedBy { if (it.active != null) 0 else if (it.blocker == null) 1 else 2 }.forEach { v ->
+            into.add(measureCards.card(v, if (v.def.local) m.measureDepartment else null, compact = true)).growX().padBottom(4f).row()
+        }
+        into.add(ui.button("Tous les risques et mesures ▶", "flat") { nav.open(PanelId.CRISIS, m.measureDepartment?.let { "dept:$it" } ?: "active") }).left().row()
+    }
+
+    private var measureNote: String? = null
+    private val measureCards = fr.president.game.ui.widgets.MeasureCards(ui, nav.session, { nav.refresh() }) { result ->
+        measureNote = result
+        nav.refresh()
     }
 
     private companion object {
         const val MAX_LISTED = 60
         const val PORTRAIT = 48f
+        const val ARROW = 14f
+        const val EXTRA_PREFIX = "x_"
     }
 }

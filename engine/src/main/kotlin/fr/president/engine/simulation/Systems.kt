@@ -31,6 +31,7 @@ object Systems {
         MilitaryAiSystem(),
         fr.president.engine.military.ForeignOperationsSystem(),
         fr.president.engine.military.CitiesSystem(),
+        fr.president.engine.crisis.MeasureSystem(),
         EffectSystem(),
         InfrastructureSystem(),
         EventSystem(),

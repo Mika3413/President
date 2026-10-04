@@ -16,7 +16,7 @@ LEVELS = [
 
 events = {}
 for f in glob.glob(os.path.join(ROOT, "events", "*.json")):
-    if f.endswith("intensity.json"):
+    if f.endswith(("intensity.json", "responses.json")):
         continue
     for e in json.load(open(f))["events"]:
         events[e["id"]] = os.path.basename(f)

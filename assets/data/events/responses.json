@@ -1,0 +1,2227 @@
+{
+ "_doc": "Options et mesures supplémentaires par famille d'événements. Généré par tools/datagen/event_responses_fr.py.",
+ "packs": [
+  {
+   "id": "disaster_local",
+   "label": "Catastrophe naturelle",
+   "events": [
+    "wildfire",
+    "flood",
+    "storm",
+    "cyclone"
+   ],
+   "options": [
+    {
+     "id": "x_visit",
+     "label": "Me rendre sur place dès ce soir",
+     "hint": "Coût : 2 M€ ; présence saluée, risque de huées",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.002
+      },
+      {
+       "target": "scope.approval",
+       "amount": 0.03,
+       "days": 15
+      },
+      {
+       "target": "opinion.national",
+       "amount": 0.004
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_army",
+     "label": "Déployer l'armée en renfort (opération Résilience)",
+     "hint": "Coût : 40 M€ ; soldats mobilisés",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.04
+      },
+      {
+       "target": "scope.approval",
+       "amount": 0.03,
+       "days": 20
+      },
+      {
+       "target": "military.readiness",
+       "amount": -0.01
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_eu",
+     "label": "Activer le mécanisme européen de protection civile",
+     "hint": "Renforts étrangers ; aveu de faiblesse",
+     "effects": [
+      {
+       "target": "scope.approval",
+       "amount": 0.02,
+       "days": 15
+      },
+      {
+       "target": "alliance.EU.NEGOTIATION_GOODWILL",
+       "amount": 0.005
+      },
+      {
+       "target": "opinion.national",
+       "amount": -0.002
+      }
+     ],
+     "outcome": "PARTIAL"
+    },
+    {
+     "id": "x_insurers",
+     "label": "Exiger des assureurs une indemnisation sous un mois",
+     "hint": "Sinistrés soulagés, assureurs furieux",
+     "effects": [
+      {
+       "target": "opinion.group.middle_income",
+       "amount": 0.01
+      },
+      {
+       "target": "scope.approval",
+       "amount": 0.015
+      },
+      {
+       "target": "economy.businessConfidence",
+       "amount": -0.003
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_rebuild",
+     "label": "Plan de reconstruction et d'adaptation sur cinq ans",
+     "hint": "Coût : 600 M€ étalés ; territoire mieux protégé",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.6,
+       "days": 365
+      },
+      {
+       "target": "scope.approval",
+       "amount": 0.04,
+       "days": 30
+      },
+      {
+       "target": "economy.output",
+       "amount": 0.0002,
+       "days": 180
+      },
+      {
+       "target": "quality.environment",
+       "amount": 0.004
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_inquiry",
+     "label": "Mission d'inspection sur les responsabilités",
+     "hint": "Rassure l'opinion, inquiète les élus locaux",
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": 0.003
+      },
+      {
+       "target": "sender.relation",
+       "amount": -0.03
+      }
+     ],
+     "outcome": "NEUTRAL"
+    }
+   ],
+   "measures": [
+    "orsec",
+    "evacuation",
+    "army_relief",
+    "disaster_fund"
+   ]
+  },
+  {
+   "id": "fire",
+   "label": "Feux",
+   "events": [
+    "wildfire",
+    "forest_fire_prevention"
+   ],
+   "options": [
+    {
+     "id": "x_canadair_buy",
+     "label": "Commander de nouveaux Canadair",
+     "hint": "Coût : 400 M€ ; livrés dans deux ans",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.4,
+       "days": 365
+      },
+      {
+       "target": "quality.environment",
+       "amount": 0.006,
+       "delayDays": 365
+      },
+      {
+       "target": "opinion.group.rural",
+       "amount": 0.01
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_arsonists",
+     "label": "Traquer les incendiaires : enquêteurs et peines alourdies",
+     "hint": "Coût : 10 M€ ; message de fermeté",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.01
+      },
+      {
+       "target": "quality.security",
+       "amount": 0.003
+      },
+      {
+       "target": "opinion.group.seniors",
+       "amount": 0.008
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_volunteers",
+     "label": "Grande campagne pour les pompiers volontaires",
+     "hint": "Coût : 50 M€ ; plus de bras l'an prochain",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.05
+      },
+      {
+       "target": "opinion.group.rural",
+       "amount": 0.01
+      },
+      {
+       "target": "quality.environment",
+       "amount": 0.003,
+       "delayDays": 180
+      }
+     ],
+     "outcome": "NEUTRAL"
+    }
+   ],
+   "measures": [
+    "canadair",
+    "forest_ban",
+    "fire_prevention"
+   ]
+  },
+  {
+   "id": "water",
+   "label": "Crues et tempêtes",
+   "events": [
+    "flood",
+    "storm",
+    "cyclone",
+    "flood_defense",
+    "coastal_erosion"
+   ],
+   "options": [
+    {
+     "id": "x_no_build",
+     "label": "Interdire toute construction en zone inondable",
+     "hint": "Moins de victimes demain ; élus et promoteurs fâchés",
+     "effects": [
+      {
+       "target": "quality.environment",
+       "amount": 0.005
+      },
+      {
+       "target": "sender.relation",
+       "amount": -0.04
+      },
+      {
+       "target": "economy.businessConfidence",
+       "amount": -0.002
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_levees",
+     "label": "Programme national de digues",
+     "hint": "Coût : 800 M€ étalés sur deux ans",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.8,
+       "days": 730
+      },
+      {
+       "target": "scope.approval",
+       "amount": 0.02,
+       "days": 30
+      },
+      {
+       "target": "quality.environment",
+       "amount": 0.004,
+       "delayDays": 365
+      }
+     ],
+     "outcome": "ACCEPTED"
+    }
+   ],
+   "measures": [
+    "flood_watch",
+    "evacuation"
+   ]
+  },
+  {
+   "id": "heat",
+   "label": "Chaleur et eau",
+   "events": [
+    "heatwave",
+    "overseas_water",
+    "water_crisis",
+    "ski_no_snow"
+   ],
+   "options": [
+    {
+     "id": "x_cooling",
+     "label": "Ouvrir salles rafraîchies et visites aux personnes âgées",
+     "hint": "Coût : 30 M€ ; vies sauvées",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.03
+      },
+      {
+       "target": "quality.health",
+       "amount": 0.004,
+       "days": 30
+      },
+      {
+       "target": "opinion.group.seniors",
+       "amount": 0.015
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_work_hours",
+     "label": "Adapter les horaires de travail et l'école",
+     "hint": "Activité un peu freinée, salariés soulagés",
+     "effects": [
+      {
+       "target": "economy.output",
+       "amount": -0.0002,
+       "days": 10
+      },
+      {
+       "target": "opinion.group.private_employees",
+       "amount": 0.008
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": 0.005
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_farm_water",
+     "label": "Aide d'urgence aux agriculteurs et retenues d'eau",
+     "hint": "Coût : 150 M€ ; écologistes opposés",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.15
+      },
+      {
+       "target": "quality.agriculture",
+       "amount": 0.006
+      },
+      {
+       "target": "opinion.group.rural",
+       "amount": 0.012
+      },
+      {
+       "target": "quality.environment",
+       "amount": -0.003
+      }
+     ],
+     "outcome": "NEUTRAL"
+    }
+   ],
+   "measures": [
+    "heat_plan",
+    "water_restrictions"
+   ]
+  },
+  {
+   "id": "cold",
+   "label": "Froid",
+   "events": [
+    "cold_wave"
+   ],
+   "options": [
+    {
+     "id": "x_homeless",
+     "label": "Ouvrir gymnases et casernes aux sans-abri",
+     "hint": "Coût : 20 M€",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.02
+      },
+      {
+       "target": "quality.social",
+       "amount": 0.004
+      },
+      {
+       "target": "opinion.group.low_income",
+       "amount": 0.01
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_energy_cheque",
+     "label": "Chèque énergie exceptionnel",
+     "hint": "Coût : 600 M€",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.6
+      },
+      {
+       "target": "opinion.group.low_income",
+       "amount": 0.02
+      },
+      {
+       "target": "opinion.group.retirees",
+       "amount": 0.01
+      }
+     ],
+     "outcome": "ACCEPTED"
+    }
+   ],
+   "measures": [
+    "cold_plan",
+    "load_shedding",
+    "sobriety"
+   ]
+  },
+  {
+   "id": "health",
+   "label": "Santé publique",
+   "events": [
+    "epidemic",
+    "pandemic_wave",
+    "new_virus",
+    "bird_flu",
+    "drug_shortage",
+    "food_scandal"
+   ],
+   "options": [
+    {
+     "id": "x_council",
+     "label": "Réunir un conseil scientifique et suivre ses avis",
+     "hint": "Décisions mieux acceptées",
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": 0.003
+      },
+      {
+       "target": "quality.health",
+       "amount": 0.003,
+       "days": 30
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_address",
+     "label": "Allocution solennelle à la nation",
+     "hint": "Rassemble si les chiffres suivent",
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": 0.006
+      },
+      {
+       "target": "opinion.group.seniors",
+       "amount": 0.01
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_eu_buy",
+     "label": "Achats groupés européens (vaccins, médicaments)",
+     "hint": "Coût : 500 M€ ; plus lent, moins cher",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.5,
+       "days": 60
+      },
+      {
+       "target": "quality.health",
+       "amount": 0.006,
+       "days": 60,
+       "delayDays": 15
+      },
+      {
+       "target": "alliance.EU.NEGOTIATION_GOODWILL",
+       "amount": 0.008
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_caregivers",
+     "label": "Prime exceptionnelle aux soignants",
+     "hint": "Coût : 800 M€",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.8
+      },
+      {
+       "target": "opinion.group.civil_servants",
+       "amount": 0.02
+      },
+      {
+       "target": "quality.health",
+       "amount": 0.005,
+       "days": 60
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_testing",
+     "label": "Dépistage gratuit et massif",
+     "hint": "Coût : 1 Md€ ; foyers repérés plus tôt",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 1.0,
+       "days": 45
+      },
+      {
+       "target": "quality.health",
+       "amount": 0.008,
+       "days": 45
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_reserve",
+     "label": "Mobiliser la réserve sanitaire et les étudiants en santé",
+     "hint": "Coût : 50 M€ ; examens reportés",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.05
+      },
+      {
+       "target": "quality.health",
+       "amount": 0.004,
+       "days": 30
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": -0.004
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_relocate",
+     "label": "Relocaliser la production de médicaments essentiels",
+     "hint": "Coût : 1,2 Md€ sur deux ans",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 1.2,
+       "days": 730
+      },
+      {
+       "target": "economy.output",
+       "amount": 0.0002,
+       "days": 365
+      },
+      {
+       "target": "quality.health",
+       "amount": 0.005,
+       "delayDays": 365
+      }
+     ],
+     "outcome": "ACCEPTED"
+    }
+   ],
+   "measures": [
+    "masks",
+    "curfew",
+    "local_lockdown",
+    "lockdown",
+    "white_plan",
+    "health_borders",
+    "health_emergency",
+    "vaccination",
+    "strategic_stocks",
+    "short_time_work",
+    "business_support"
+   ]
+  },
+  {
+   "id": "terror",
+   "label": "Terrorisme",
+   "events": [
+    "terror_attack",
+    "corsica_tensions",
+    "prison_escape",
+    "embassy_attack"
+   ],
+   "options": [
+    {
+     "id": "x_defense_council",
+     "label": "Conseil de défense immédiat à l'Élysée",
+     "hint": "Montre que l'État tient la barre",
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": 0.004
+      },
+      {
+       "target": "quality.security",
+       "amount": 0.004,
+       "days": 30
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_visit",
+     "label": "Me rendre sur les lieux et au chevet des blessés",
+     "hint": "Coût : 1 M€ ; geste attendu",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.001
+      },
+      {
+       "target": "scope.approval",
+       "amount": 0.03
+      },
+      {
+       "target": "opinion.national",
+       "amount": 0.005
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_victims",
+     "label": "Fonds d'indemnisation et cellule d'aide aux victimes",
+     "hint": "Coût : 80 M€",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.08
+      },
+      {
+       "target": "scope.approval",
+       "amount": 0.02
+      },
+      {
+       "target": "opinion.group.seniors",
+       "amount": 0.005
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_strike",
+     "label": "Frapper les commanditaires à l'étranger",
+     "hint": "Armées sollicitées ; risque d'escalade",
+     "effects": [
+      {
+       "target": "military.readiness",
+       "amount": -0.02
+      },
+      {
+       "target": "quality.security",
+       "amount": 0.008,
+       "days": 90
+      },
+      {
+       "target": "opinion.national",
+       "amount": 0.006
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": -0.006
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_law",
+     "label": "Nouvelle loi antiterroriste",
+     "hint": "Sécurité accrue ; libertés en débat",
+     "effects": [
+      {
+       "target": "quality.security",
+       "amount": 0.01,
+       "delayDays": 60
+      },
+      {
+       "target": "government.parliamentSupport",
+       "amount": -0.01
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": -0.008
+      },
+      {
+       "target": "opinion.group.seniors",
+       "amount": 0.01
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_eu_intel",
+     "label": "Proposer un parquet et un fichier européens",
+     "hint": "Partenaires sollicités ; effet lent",
+     "effects": [
+      {
+       "target": "alliance.EU.NEGOTIATION_GOODWILL",
+       "amount": 0.008
+      },
+      {
+       "target": "quality.security",
+       "amount": 0.005,
+       "delayDays": 180
+      }
+     ],
+     "outcome": "NEUTRAL"
+    }
+   ],
+   "measures": [
+    "vigipirate",
+    "sentinelle",
+    "gathering_ban",
+    "security_borders",
+    "local_curfew"
+   ]
+  },
+  {
+   "id": "unrest",
+   "label": "Violences et désordres",
+   "events": [
+    "urban_riots",
+    "police_incident",
+    "fuel_protest_hardens",
+    "city_demonstration",
+    "stadium_violence",
+    "campus_occupation",
+    "local_violence_school"
+   ],
+   "options": [
+    {
+     "id": "x_mayors",
+     "label": "Réunir les maires des villes touchées",
+     "hint": "Écoute ; les élus se sentent soutenus",
+     "effects": [
+      {
+       "target": "sender.relation",
+       "amount": 0.04
+      },
+      {
+       "target": "scope.approval",
+       "amount": 0.015
+      },
+      {
+       "target": "opinion.national",
+       "amount": 0.002
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_gendarmerie",
+     "label": "Envoyer gendarmes mobiles et blindés",
+     "hint": "Coût : 15 M€ ; ordre rétabli, images dures",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.015
+      },
+      {
+       "target": "quality.security",
+       "amount": 0.008,
+       "days": 20
+      },
+      {
+       "target": "opinion.group.seniors",
+       "amount": 0.012
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": -0.015
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_fast_justice",
+     "label": "Comparutions immédiates et peines rapides",
+     "hint": "Fermeté ; magistrats débordés",
+     "effects": [
+      {
+       "target": "quality.security",
+       "amount": 0.005,
+       "days": 30
+      },
+      {
+       "target": "quality.justice",
+       "amount": -0.004
+      },
+      {
+       "target": "opinion.group.seniors",
+       "amount": 0.008
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_families",
+     "label": "Recevoir les familles et les associations",
+     "hint": "Apaise ; vos soutiens y voient de la faiblesse",
+     "effects": [
+      {
+       "target": "opinion.group.young",
+       "amount": 0.012
+      },
+      {
+       "target": "opinion.group.urban",
+       "amount": 0.006
+      },
+      {
+       "target": "opinion.group.seniors",
+       "amount": -0.006
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_neighbourhoods",
+     "label": "Plan pour les quartiers : emploi, écoles, transports",
+     "hint": "Coût : 1,5 Md€ sur deux ans",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 1.5,
+       "days": 730
+      },
+      {
+       "target": "scope.approval",
+       "amount": 0.03,
+       "days": 60
+      },
+      {
+       "target": "opinion.group.low_income",
+       "amount": 0.015
+      },
+      {
+       "target": "quality.social",
+       "amount": 0.006,
+       "delayDays": 120
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_parents",
+     "label": "Sanctionner les parents (allocations suspendues)",
+     "hint": "Populaire à droite, contesté",
+     "effects": [
+      {
+       "target": "opinion.group.seniors",
+       "amount": 0.01
+      },
+      {
+       "target": "opinion.group.low_income",
+       "amount": -0.012
+      },
+      {
+       "target": "government.parliamentSupport",
+       "amount": -0.004
+      }
+     ],
+     "outcome": "NEUTRAL"
+    }
+   ],
+   "measures": [
+    "local_curfew",
+    "gathering_ban",
+    "community_policing",
+    "mediator"
+   ]
+  },
+  {
+   "id": "social",
+   "label": "Conflits sociaux",
+   "events": [
+    "national_strike",
+    "rail_strike",
+    "teachers_strike",
+    "doctor_strike",
+    "strike_spreads",
+    "farmers_protest",
+    "fuel_tax_protest",
+    "delivery_strike",
+    "student_protest",
+    "youth_movement",
+    "cost_of_living_overseas",
+    "court_backlog"
+   ],
+   "options": [
+    {
+     "id": "x_tv",
+     "label": "M'exprimer au journal de 20 heures",
+     "hint": "Reprend la main ; ou ravive la colère",
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": 0.005
+      },
+      {
+       "target": "opinion.group.private_employees",
+       "amount": -0.003
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_pm",
+     "label": "Laisser le Premier ministre mener la négociation",
+     "hint": "Vous protège ; il s'use",
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": 0.002
+      },
+      {
+       "target": "government.parliamentSupport",
+       "amount": -0.004
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_mediator",
+     "label": "Nommer un médiateur indépendant",
+     "hint": "Coût : 1 M€ ; temps gagné",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.001
+      },
+      {
+       "target": "opinion.national",
+       "amount": 0.002
+      },
+      {
+       "target": "economy.output",
+       "amount": -0.0002,
+       "days": 10
+      }
+     ],
+     "outcome": "PARTIAL"
+    },
+    {
+     "id": "x_conference",
+     "label": "Grande conférence sociale avec syndicats et patronat",
+     "hint": "Dialogue ; le patronat se méfie",
+     "effects": [
+      {
+       "target": "opinion.group.private_employees",
+       "amount": 0.01
+      },
+      {
+       "target": "opinion.group.civil_servants",
+       "amount": 0.01
+      },
+      {
+       "target": "economy.businessConfidence",
+       "amount": -0.003
+      }
+     ],
+     "outcome": "PARTIAL"
+    },
+    {
+     "id": "x_minimum_service",
+     "label": "Imposer un service minimum",
+     "hint": "Usagers soulagés, syndicats furieux",
+     "effects": [
+      {
+       "target": "opinion.group.seniors",
+       "amount": 0.01
+      },
+      {
+       "target": "opinion.group.self_employed",
+       "amount": 0.008
+      },
+      {
+       "target": "opinion.group.civil_servants",
+       "amount": -0.015
+      },
+      {
+       "target": "economy.output",
+       "amount": 0.0002,
+       "days": 10
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_referendum_idea",
+     "label": "Proposer une consultation citoyenne",
+     "hint": "Coût : 20 M€ ; sort du face-à-face",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.02
+      },
+      {
+       "target": "opinion.national",
+       "amount": 0.003
+      },
+      {
+       "target": "government.parliamentSupport",
+       "amount": -0.005
+      }
+     ],
+     "outcome": "NEUTRAL"
+    }
+   ],
+   "measures": [
+    "social_conference",
+    "mediator",
+    "requisition",
+    "gathering_ban",
+    "short_time_work"
+   ]
+  },
+  {
+   "id": "energy",
+   "label": "Énergie",
+   "events": [
+    "blackout",
+    "fuel_shortage",
+    "fuel_blockade",
+    "gas_price_spike",
+    "nuclear_incident",
+    "cold_wave"
+   ],
+   "options": [
+    {
+     "id": "x_sobriety_call",
+     "label": "Appel national à la sobriété",
+     "hint": "Gratuit ; demande −5 % suivie à moitié",
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": 0.002
+      },
+      {
+       "target": "economy.output",
+       "amount": -0.0001,
+       "days": 15
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_eu_grid",
+     "label": "Demander la solidarité énergétique européenne",
+     "hint": "Importations garanties ; dette politique",
+     "effects": [
+      {
+       "target": "alliance.EU.NEGOTIATION_GOODWILL",
+       "amount": -0.004
+      },
+      {
+       "target": "economy.output",
+       "amount": 0.0003,
+       "days": 20
+      },
+      {
+       "target": "budget.oneOff",
+       "amount": 0.2
+      }
+     ],
+     "outcome": "PARTIAL"
+    },
+    {
+     "id": "x_reactors",
+     "label": "Accélérer le redémarrage des réacteurs",
+     "hint": "Coût : 300 M€ ; l'Autorité de sûreté s'inquiète",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.3
+      },
+      {
+       "target": "economy.output",
+       "amount": 0.0004,
+       "days": 30
+      },
+      {
+       "target": "quality.environment",
+       "amount": 0.002
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_coal",
+     "label": "Rouvrir une centrale à charbon pour l'hiver",
+     "hint": "Coût : 100 M€ ; émissions et colère écologiste",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.1
+      },
+      {
+       "target": "economy.output",
+       "amount": 0.0003,
+       "days": 60
+      },
+      {
+       "target": "quality.environment",
+       "amount": -0.008
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": -0.008
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_price_cap",
+     "label": "Bloquer les prix à la pompe et sur les factures",
+     "hint": "Coût : 3 Md€ ; très populaire",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 3.0,
+       "days": 90
+      },
+      {
+       "target": "opinion.group.low_income",
+       "amount": 0.02
+      },
+      {
+       "target": "opinion.group.middle_income",
+       "amount": 0.015
+      },
+      {
+       "target": "economy.inflation",
+       "amount": -0.002
+      }
+     ],
+     "outcome": "ACCEPTED"
+    }
+   ],
+   "measures": [
+    "load_shedding",
+    "sobriety",
+    "fuel_rationing",
+    "strategic_stocks",
+    "requisition"
+   ]
+  },
+  {
+   "id": "cyber",
+   "label": "Cyber et hybride",
+   "events": [
+    "cyberattack",
+    "health_data_leak",
+    "hybrid_cyber",
+    "cyber_espionage",
+    "data_lawsuit",
+    "defense_leak",
+    "deepfake_president",
+    "hybrid_sabotage"
+   ],
+   "options": [
+    {
+     "id": "x_anssi",
+     "label": "Mobiliser l'ANSSI et les meilleurs experts privés",
+     "hint": "Coût : 60 M€ ; services rétablis plus vite",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.06
+      },
+      {
+       "target": "quality.security",
+       "amount": 0.006,
+       "days": 60
+      },
+      {
+       "target": "economy.output",
+       "amount": 0.0002,
+       "days": 15
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_transparency",
+     "label": "Tout dire aux Français, chiffres à l'appui",
+     "hint": "Confiance préservée, inquiétude immédiate",
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": 0.003
+      },
+      {
+       "target": "economy.consumerConfidence",
+       "amount": -0.003
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_cyber_command",
+     "label": "Doubler les moyens du Commandement cyber",
+     "hint": "Coût : 500 M€ sur un an",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.5,
+       "days": 365
+      },
+      {
+       "target": "quality.security",
+       "amount": 0.01,
+       "delayDays": 120
+      },
+      {
+       "target": "military.readiness",
+       "amount": 0.005
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_eu_attribution",
+     "label": "Attribution publique conjointe avec nos alliés",
+     "hint": "L'agresseur est désigné ; il peut répliquer",
+     "effects": [
+      {
+       "target": "alliance.EU.NEGOTIATION_GOODWILL",
+       "amount": 0.006
+      },
+      {
+       "target": "alliance.NATO.NEGOTIATION_GOODWILL",
+       "amount": 0.004
+      },
+      {
+       "target": "opinion.national",
+       "amount": 0.002
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_platforms",
+     "label": "Convoquer les plateformes et exiger des retraits",
+     "hint": "Désinformation freinée ; Washington agacé",
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": 0.002
+      },
+      {
+       "target": "memory.USA.DISAGREEMENT",
+       "amount": -0.01
+      }
+     ],
+     "outcome": "NEUTRAL"
+    }
+   ],
+   "measures": [
+    "cyber_shield",
+    "vigipirate"
+   ]
+  },
+  {
+   "id": "industrial",
+   "label": "Accident industriel",
+   "events": [
+    "refinery_accident",
+    "nuclear_incident"
+   ],
+   "options": [
+    {
+     "id": "x_visit",
+     "label": "Me rendre sur le site avec les experts",
+     "hint": "Coût : 1 M€",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.001
+      },
+      {
+       "target": "scope.approval",
+       "amount": 0.025
+      },
+      {
+       "target": "opinion.national",
+       "amount": 0.003
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_health_check",
+     "label": "Suivi médical gratuit des riverains",
+     "hint": "Coût : 40 M€",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.04
+      },
+      {
+       "target": "scope.approval",
+       "amount": 0.03
+      },
+      {
+       "target": "scope.healthAccess",
+       "amount": 0.02
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_polluter_pays",
+     "label": "Faire payer l'exploitant, jusqu'au bout",
+     "hint": "Exploitant poursuivi ; industrie inquiète",
+     "effects": [
+      {
+       "target": "scope.approval",
+       "amount": 0.02
+      },
+      {
+       "target": "economy.businessConfidence",
+       "amount": -0.004
+      },
+      {
+       "target": "quality.environment",
+       "amount": 0.004
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_audit",
+     "label": "Audit de tous les sites à risque du pays",
+     "hint": "Coût : 120 M€ ; d'autres accidents évités",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.12,
+       "days": 180
+      },
+      {
+       "target": "quality.environment",
+       "amount": 0.005,
+       "delayDays": 120
+      },
+      {
+       "target": "quality.security",
+       "amount": 0.003
+      }
+     ],
+     "outcome": "ACCEPTED"
+    }
+   ],
+   "measures": [
+    "orsec",
+    "evacuation",
+    "local_lockdown"
+   ]
+  },
+  {
+   "id": "economy",
+   "label": "Crise économique",
+   "events": [
+    "bank_fragility",
+    "bank_run",
+    "bankruptcy",
+    "factory_closure",
+    "ai_layoffs",
+    "wine_crisis",
+    "farmers_local",
+    "strategic_acquisition",
+    "trade_tariffs"
+   ],
+   "options": [
+    {
+     "id": "x_bpi",
+     "label": "Entrée de Bpifrance au capital",
+     "hint": "Coût : 500 M€ ; l'État actionnaire",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.5
+      },
+      {
+       "target": "economy.businessConfidence",
+       "amount": 0.004
+      },
+      {
+       "target": "opinion.group.private_employees",
+       "amount": 0.008
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_buyer",
+     "label": "Chercher un repreneur, Bercy en première ligne",
+     "hint": "Lent ; peut sauver l'essentiel",
+     "effects": [
+      {
+       "target": "economy.businessConfidence",
+       "amount": 0.002
+      },
+      {
+       "target": "scope.approval",
+       "amount": 0.01,
+       "days": 30,
+       "delayDays": 20
+      }
+     ],
+     "outcome": "PARTIAL"
+    },
+    {
+     "id": "x_eu_fund",
+     "label": "Mobiliser le fonds européen d'ajustement",
+     "hint": "Bruxelles paie une partie de la facture",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": -0.05
+      },
+      {
+       "target": "alliance.EU.NEGOTIATION_GOODWILL",
+       "amount": 0.004
+      },
+      {
+       "target": "scope.approval",
+       "amount": 0.01
+      }
+     ],
+     "outcome": "PARTIAL"
+    },
+    {
+     "id": "x_reskill",
+     "label": "Cellule de reclassement et formation des salariés",
+     "hint": "Coût : 80 M€",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.08
+      },
+      {
+       "target": "scope.unemployment",
+       "amount": -0.001,
+       "delayDays": 90
+      },
+      {
+       "target": "opinion.group.private_employees",
+       "amount": 0.008
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_ceo",
+     "label": "Convoquer les dirigeants à l'Élysée",
+     "hint": "Pression publique ; les investisseurs observent",
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": 0.003
+      },
+      {
+       "target": "economy.businessConfidence",
+       "amount": -0.003
+      }
+     ],
+     "outcome": "NEUTRAL"
+    }
+   ],
+   "measures": [
+    "short_time_work",
+    "business_support"
+   ]
+  },
+  {
+   "id": "abroad_disaster",
+   "label": "Catastrophe à l'étranger",
+   "events": [
+    "disaster_abroad",
+    "flood_abroad",
+    "wildfire_abroad",
+    "storm_abroad",
+    "drought_abroad"
+   ],
+   "options": [
+    {
+     "id": "x_rescuers",
+     "label": "Envoyer la Sécurité civile : sauveteurs et chiens",
+     "hint": "Coût : 20 M€ ; geste très visible",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.02
+      },
+      {
+       "target": "country.CRISIS_SOLIDARITY",
+       "amount": 0.04
+      },
+      {
+       "target": "abroad.approval",
+       "amount": 0.005
+      },
+      {
+       "target": "opinion.national",
+       "amount": 0.002
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_navy",
+     "label": "Envoyer un porte-hélicoptères et un hôpital de campagne",
+     "hint": "Coût : 60 M€ ; marine mobilisée",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.06
+      },
+      {
+       "target": "country.CRISIS_SOLIDARITY",
+       "amount": 0.06
+      },
+      {
+       "target": "abroad.output",
+       "amount": 0.002,
+       "days": 90
+      },
+      {
+       "target": "military.readiness",
+       "amount": -0.008
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_eu_coord",
+     "label": "Coordonner une réponse européenne",
+     "hint": "Moins cher ; mérite partagé",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.02
+      },
+      {
+       "target": "country.CRISIS_SOLIDARITY",
+       "amount": 0.03
+      },
+      {
+       "target": "alliance.EU.NEGOTIATION_GOODWILL",
+       "amount": 0.006
+      }
+     ],
+     "outcome": "PARTIAL"
+    },
+    {
+     "id": "x_nationals",
+     "label": "Cellule de crise et rapatriement des Français",
+     "hint": "Coût : 15 M€ ; familles rassurées",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.015
+      },
+      {
+       "target": "opinion.national",
+       "amount": 0.004
+      }
+     ],
+     "outcome": "PARTIAL"
+    },
+    {
+     "id": "x_ngo",
+     "label": "Doubler chaque euro donné aux ONG",
+     "hint": "Coût : 30 M€ ; élan de générosité",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.03
+      },
+      {
+       "target": "country.CRISIS_SOLIDARITY",
+       "amount": 0.025
+      },
+      {
+       "target": "opinion.national",
+       "amount": 0.002
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_debt",
+     "label": "Suspendre le remboursement de sa dette envers la France",
+     "hint": "Coût : 100 M€ ; reconnaissance durable",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.1
+      },
+      {
+       "target": "country.CRISIS_SOLIDARITY",
+       "amount": 0.07
+      },
+      {
+       "target": "country.NEGOTIATION_GOODWILL",
+       "amount": 0.03
+      },
+      {
+       "target": "abroad.output",
+       "amount": 0.002,
+       "days": 180
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_visit",
+     "label": "Me rendre sur place",
+     "hint": "Coût : 2 M€ ; image forte, sécurité délicate",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.002
+      },
+      {
+       "target": "country.CRISIS_SOLIDARITY",
+       "amount": 0.03
+      },
+      {
+       "target": "abroad.approval",
+       "amount": 0.006
+      },
+      {
+       "target": "opinion.national",
+       "amount": 0.003
+      }
+     ],
+     "outcome": "ACCEPTED"
+    }
+   ],
+   "measures": []
+  },
+  {
+   "id": "diplomacy",
+   "label": "Crise diplomatique",
+   "events": [
+    "diplomatic_incident",
+    "embassy_attack",
+    "hostages_abroad",
+    "foreign_interference",
+    "fishing_dispute",
+    "trade_tariffs",
+    "cyber_espionage",
+    "hybrid_sabotage",
+    "hybrid_cyber",
+    "strategic_acquisition",
+    "arms_contract"
+   ],
+   "options": [
+    {
+     "id": "x_call",
+     "label": "Appeler directement son dirigeant",
+     "hint": "Désamorce, ou montre notre faiblesse",
+     "effects": [
+      {
+       "target": "country.TALK_CORDIAL",
+       "amount": 0.03
+      },
+      {
+       "target": "opinion.national",
+       "amount": -0.001
+      }
+     ],
+     "outcome": "PARTIAL"
+    },
+    {
+     "id": "x_ambassador",
+     "label": "Rappeler notre ambassadeur pour consultations",
+     "hint": "Signal fort ; canal coupé",
+     "effects": [
+      {
+       "target": "country.TALK_TENSE",
+       "amount": -0.04
+      },
+      {
+       "target": "opinion.national",
+       "amount": 0.003
+      }
+     ],
+     "outcome": "REFUSED"
+    },
+    {
+     "id": "x_eu_front",
+     "label": "Obtenir une position européenne commune",
+     "hint": "Plus de poids ; il faut convaincre Berlin",
+     "effects": [
+      {
+       "target": "alliance.EU.NEGOTIATION_GOODWILL",
+       "amount": 0.005
+      },
+      {
+       "target": "country.DISAGREEMENT",
+       "amount": -0.02
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_un",
+     "label": "Saisir le Conseil de sécurité de l'ONU",
+     "hint": "Tribune mondiale ; résultat incertain",
+     "effects": [
+      {
+       "target": "country.DISAGREEMENT",
+       "amount": -0.03
+      },
+      {
+       "target": "opinion.national",
+       "amount": 0.002
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_mediation",
+     "label": "Proposer une médiation d'un pays tiers",
+     "hint": "Lent, mais sauve la face des deux côtés",
+     "effects": [
+      {
+       "target": "country.NEGOTIATION_GOODWILL",
+       "amount": 0.03
+      },
+      {
+       "target": "opinion.national",
+       "amount": -0.001
+      }
+     ],
+     "outcome": "PARTIAL"
+    },
+    {
+     "id": "x_sanction",
+     "label": "Sanctions économiques ciblées",
+     "hint": "Il en paiera le prix ; nos exportateurs aussi",
+     "effects": [
+      {
+       "target": "operation.sanction",
+       "amount": 1
+      },
+      {
+       "target": "economy.businessConfidence",
+       "amount": -0.002
+      },
+      {
+       "target": "opinion.national",
+       "amount": 0.002
+      }
+     ],
+     "outcome": "REFUSED"
+    }
+   ],
+   "measures": []
+  },
+  {
+   "id": "scandal",
+   "label": "Affaires",
+   "events": [
+    "minister_scandal",
+    "minister_indicted",
+    "minister_investigation",
+    "president_scandal",
+    "tax_leak",
+    "child_protection",
+    "ehpad_scandal"
+   ],
+   "options": [
+    {
+     "id": "x_press",
+     "label": "Conférence de presse : répondre à toutes les questions",
+     "hint": "Risqué mais courageux",
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": 0.004
+      },
+      {
+       "target": "president.popularity",
+       "amount": 0.005
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_ethics_law",
+     "label": "Loi de moralisation de la vie publique",
+     "hint": "Répond à la défiance ; la majorité grince",
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": 0.005
+      },
+      {
+       "target": "government.parliamentSupport",
+       "amount": -0.008
+      },
+      {
+       "target": "quality.justice",
+       "amount": 0.003
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_independent",
+     "label": "Confier l'enquête à une autorité indépendante",
+     "hint": "Vous met à distance",
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": 0.003
+      },
+      {
+       "target": "quality.justice",
+       "amount": 0.002
+      }
+     ],
+     "outcome": "PARTIAL"
+    }
+   ],
+   "measures": []
+  },
+  {
+   "id": "terrain",
+   "label": "Demande de terrain",
+   "events": [
+    "hospital_overload",
+    "hospital_maternity",
+    "medical_desert",
+    "migrant_reception",
+    "police_reinforcement",
+    "prison_overcrowding",
+    "refugee_crisis"
+   ],
+   "options": [
+    {
+     "id": "x_visit",
+     "label": "Aller sur place écouter les personnels",
+     "hint": "Coût : 1 M€ ; élus ravis",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.001
+      },
+      {
+       "target": "scope.approval",
+       "amount": 0.025
+      },
+      {
+       "target": "sender.relation",
+       "amount": 0.04
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_prefect",
+     "label": "Mandater le préfet pour une solution en un mois",
+     "hint": "Rien à payer maintenant ; attente",
+     "effects": [
+      {
+       "target": "scope.approval",
+       "amount": 0.008,
+       "days": 30,
+       "delayDays": 15
+      },
+      {
+       "target": "sender.relation",
+       "amount": 0.01
+      }
+     ],
+     "outcome": "PARTIAL"
+    },
+    {
+     "id": "x_experiment",
+     "label": "En faire un territoire d'expérimentation",
+     "hint": "Coût : 30 M€ ; innovation locale",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.03
+      },
+      {
+       "target": "scope.approval",
+       "amount": 0.02
+      },
+      {
+       "target": "sender.relation",
+       "amount": 0.03
+      }
+     ],
+     "outcome": "ACCEPTED"
+    }
+   ],
+   "measures": [
+    "mediator",
+    "community_policing",
+    "white_plan"
+   ]
+  },
+  {
+   "id": "summit",
+   "label": "Sommet",
+   "events": [
+    "eu_budget",
+    "eu_migration",
+    "eu_defense",
+    "eu_sanctions_war",
+    "eu_common_debt",
+    "g7_tax",
+    "g7_africa",
+    "nato_spending",
+    "nato_war_support",
+    "un_resolution",
+    "un_nuclear",
+    "cop_climate",
+    "mercosur_deal",
+    "eu_deficit_procedure"
+   ],
+   "options": [
+    {
+     "id": "x_berlin",
+     "label": "Préparer une position commune avec Berlin",
+     "hint": "Le couple franco-allemand pèse double",
+     "effects": [
+      {
+       "target": "memory.DEU.NEGOTIATION_GOODWILL",
+       "amount": 0.03
+      },
+      {
+       "target": "alliance.EU.NEGOTIATION_GOODWILL",
+       "amount": 0.004
+      }
+     ],
+     "outcome": "PARTIAL"
+    },
+    {
+     "id": "x_south",
+     "label": "Former une coalition avec Rome et Madrid",
+     "hint": "L'Europe du Sud derrière nous ; le Nord se braque",
+     "effects": [
+      {
+       "target": "memory.ITA.NEGOTIATION_GOODWILL",
+       "amount": 0.03
+      },
+      {
+       "target": "memory.ESP.NEGOTIATION_GOODWILL",
+       "amount": 0.03
+      },
+      {
+       "target": "memory.NLD.DISAGREEMENT",
+       "amount": -0.02
+      }
+     ],
+     "outcome": "PARTIAL"
+    },
+    {
+     "id": "x_parliament",
+     "label": "Faire voter la position française au Parlement",
+     "hint": "Mandat clair ; marge de négociation réduite",
+     "effects": [
+      {
+       "target": "government.parliamentSupport",
+       "amount": 0.006
+      },
+      {
+       "target": "opinion.national",
+       "amount": 0.002
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_veto",
+     "label": "Menacer d'un veto",
+     "hint": "Fermeté saluée en France ; partenaires agacés",
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": 0.004
+      },
+      {
+       "target": "alliance.EU.DISAGREEMENT",
+       "amount": -0.01
+      }
+     ],
+     "outcome": "REFUSED"
+    }
+   ],
+   "measures": []
+  },
+  {
+   "id": "local",
+   "label": "Demande locale",
+   "events": [
+    "school_renovation",
+    "housing_shortage",
+    "rail_line",
+    "broadband",
+    "sports_facility",
+    "heritage_restoration",
+    "industrial_zone",
+    "post_office_closure",
+    "bridge_repair",
+    "tourism_fund",
+    "university_campus",
+    "energy_bills_local",
+    "public_transport_strike_local",
+    "cultural_center",
+    "road_safety",
+    "neighborhood_renewal",
+    "airport_noise",
+    "illegal_gold_mining",
+    "city_transport_request"
+   ],
+   "options": [
+    {
+     "id": "x_visit",
+     "label": "Venir sur place annoncer moi-même la décision",
+     "hint": "Coût : 1 M€ ; la presse régionale en parle",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.001
+      },
+      {
+       "target": "scope.approval",
+       "amount": 0.02
+      },
+      {
+       "target": "sender.relation",
+       "amount": 0.03
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_contract",
+     "label": "Contrat pluriannuel État-collectivité",
+     "hint": "Coût : 120 M€ sur trois ans ; partenaires engagés",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.12,
+       "days": 1095
+      },
+      {
+       "target": "scope.approval",
+       "amount": 0.025,
+       "days": 60
+      },
+      {
+       "target": "sender.relation",
+       "amount": 0.05
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_bank",
+     "label": "Prêt de la Banque des territoires",
+     "hint": "Rien pour l'État ; la collectivité s'endette",
+     "effects": [
+      {
+       "target": "scope.approval",
+       "amount": 0.008
+      },
+      {
+       "target": "sender.relation",
+       "amount": -0.01
+      }
+     ],
+     "outcome": "PARTIAL"
+    }
+   ],
+   "measures": []
+  },
+  {
+   "id": "policy",
+   "label": "Débat national",
+   "events": [
+    "pension_deficit",
+    "teacher_shortage",
+    "teen_screens",
+    "nuclear_waste_site",
+    "ai_exodus",
+    "data_sovereignty",
+    "winter_olympics",
+    "tech_hq",
+    "ai_champion",
+    "nobel_prize",
+    "space_success",
+    "space_failure",
+    "military_accident"
+   ],
+   "options": [
+    {
+     "id": "x_citizens",
+     "label": "Confier la question à une convention citoyenne",
+     "hint": "Coût : 10 M€ ; décision plus légitime, plus lente",
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.01
+      },
+      {
+       "target": "opinion.national",
+       "amount": 0.003
+      },
+      {
+       "target": "government.parliamentSupport",
+       "amount": -0.003
+      }
+     ],
+     "outcome": "PARTIAL"
+    },
+    {
+     "id": "x_tv",
+     "label": "Trancher et l'expliquer à la télévision",
+     "hint": "Autorité affirmée",
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": 0.003
+      },
+      {
+       "target": "president.popularity",
+       "amount": 0.003
+      }
+     ],
+     "outcome": "NEUTRAL"
+    },
+    {
+     "id": "x_experts",
+     "label": "Commander un rapport d'experts (réponse dans deux mois)",
+     "hint": "Le dossier reviendra",
+     "effects": [],
+     "outcome": "POSTPONED",
+     "reaskAfterDays": 60
+    }
+   ],
+   "measures": []
+  },
+  {
+   "id": "majority",
+   "label": "Majorité",
+   "events": [
+    "majority_rebels",
+    "group_split"
+   ],
+   "options": [
+    {
+     "id": "x_dinner",
+     "label": "Recevoir les frondeurs à dîner à l'Élysée",
+     "hint": "Liens renoués ; on dira que vous cédez",
+     "effects": [
+      {
+       "target": "government.parliamentSupport",
+       "amount": 0.01
+      },
+      {
+       "target": "opinion.national",
+       "amount": -0.001
+      }
+     ],
+     "outcome": "PARTIAL"
+    },
+    {
+     "id": "x_posts",
+     "label": "Leur offrir des postes (rapports, missions)",
+     "hint": "Efficace et discret ; la presse finira par le savoir",
+     "effects": [
+      {
+       "target": "government.parliamentSupport",
+       "amount": 0.012
+      },
+      {
+       "target": "opinion.national",
+       "amount": -0.002,
+       "delayDays": 30
+      }
+     ],
+     "outcome": "ACCEPTED"
+    },
+    {
+     "id": "x_dissolution_threat",
+     "label": "Laisser planer la menace d'une dissolution",
+     "hint": "Les députés réfléchissent à deux fois",
+     "effects": [
+      {
+       "target": "government.parliamentSupport",
+       "amount": 0.006
+      },
+      {
+       "target": "opinion.national",
+       "amount": -0.002
+      }
+     ],
+     "outcome": "NEUTRAL"
+    }
+   ],
+   "measures": []
+  }
+ ]
+}

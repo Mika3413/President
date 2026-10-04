@@ -10,8 +10,9 @@ import fr.president.engine.util.Formatting
  * sache toujours quoi faire ensuite (décisions en attente, territoire en colère, budget...).
  */
 class AdvisorReadout(private val ctx: SimulationContext) {
+    private val risks = RiskReadout(ctx)
 
-    enum class Target { INBOX, DEPARTMENT, COUNTRY, ECONOMY, ELECTIONS, GOVERNMENT, DECISIONS }
+    enum class Target { INBOX, DEPARTMENT, COUNTRY, ECONOMY, ELECTIONS, GOVERNMENT, DECISIONS, CRISIS }
 
     data class Advice(val icon: String, val text: String, val target: Target, val targetId: String? = null, val tone: Tone, val priority: Int)
 
@@ -65,6 +66,17 @@ class AdvisorReadout(private val ctx: SimulationContext) {
 
         unhappyGroup()?.let { list += it }
 
+        // Risque élevé sans prévention : agir avant le drame.
+        risks.unattended().firstOrNull()?.let { r ->
+            val where = r.hotspot?.let { " (surtout $it)" } ?: ""
+            list += Advice(r.def.icon.ifBlank { "⚠" }, "${r.def.label} : risque ${r.level.lowercase()}$where. Prévenez : ${r.measures.first().label.lowercase()}",
+                Target.CRISIS, r.def.id, r.tone, PRIORITY_RISK + (r.probability * SCALE).toInt())
+        }
+        ctx.state.measures.active.firstOrNull { m -> m.endsAt == null && ctx.state.time.let { m.startedAt.daysUntil(it) } > LONG_MEASURE_DAYS }?.let { m ->
+            val label = ctx.playerData.measures?.measures?.firstOrNull { it.id == m.id }?.label ?: m.id
+            list += Advice("◷", "« $label » dure depuis longtemps : faut-il la lever ?", Target.CRISIS, null, Tone.WARNING, PRIORITY_PARLIAMENT)
+        }
+
         if (ctx.state.government.parliamentSupport < WEAK_PARLIAMENT) {
             list += Advice("⌂", "Assemblée hésitante : vos lois risquent d'être rejetées", Target.GOVERNMENT, null, Tone.WARNING, PRIORITY_PARLIAMENT)
         }
@@ -111,6 +123,8 @@ class AdvisorReadout(private val ctx: SimulationContext) {
         const val PRIORITY_PARLIAMENT = 35
         const val PRIORITY_DIPLOMACY = 20
         const val PRIORITY_GROUP = 25
+        const val PRIORITY_RISK = 30
+        const val LONG_MEASURE_DAYS = 60
         const val UNHAPPY_GROUP = 0.38
     }
 }

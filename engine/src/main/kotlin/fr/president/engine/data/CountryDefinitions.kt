@@ -33,6 +33,7 @@ data class CountryDefinition(
     val promises: String? = null,
     val localActions: String? = null,
     val nationalActions: String? = null,
+    val measures: String? = null,
     val demography: fr.president.engine.government.DemographyDef? = null,
 )
 

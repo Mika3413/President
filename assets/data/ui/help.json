@@ -160,6 +160,14 @@
   {
    "term": "Climat médiatique",
    "definition": "Tendance des unes des journaux, de très hostile à très favorable. Il pèse chaque jour un peu sur votre popularité."
+  },
+  {
+   "term": "Mesure de crise",
+   "definition": "Décision qui dure (confinement, couvre-feu, plan ORSEC, Vigipirate, prévention des feux...). Elle coûte au lancement et chaque mois, agit chaque jour et réduit la probabilité ou l'ampleur de certains drames. Panneau « ⚠ Crises et risques », ou onglet « ⚠ Crise » d'un département pour les mesures locales."
+  },
+  {
+   "term": "Risque à 30 jours",
+   "definition": "Probabilité qu'au moins un drame de ce type survienne dans le mois, calculée avec les mêmes règles que la simulation : saison, météo, état des infrastructures, colère sociale, et vos mesures de prévention."
   }
  ]
 }

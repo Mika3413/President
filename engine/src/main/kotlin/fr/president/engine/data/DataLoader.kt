@@ -23,7 +23,10 @@ class DataLoader(private val source: DataSource) {
             countries = countries,
             economyParameters = read(files.economyParameters),
             infrastructureTypes = read<InfrastructureTypesFile>(files.infrastructureTypes).types.associateBy { it.id },
-            events = files.events.flatMap { read<EventFile>(it).events },
+            events = fr.president.engine.events.ResponsePacks.merge(
+                files.events.flatMap { read<EventFile>(it).events },
+                files.eventResponses?.let { read<fr.president.engine.events.ResponsesFile>(it) },
+            ),
             dialogue = files.dialogue.flatMap { read<DialogueFile>(it).templates }.associateBy { it.id },
             lexicon = read<Lexicon>(files.lexicon),
             diplomacy = read<DiplomacyDefinitions>(files.diplomacyClauses),
@@ -57,6 +60,7 @@ class DataLoader(private val source: DataSource) {
             promises = def.promises?.let { read(it) },
             localActions = def.localActions?.let { read(it) },
             nationalActions = def.nationalActions?.let { read(it) },
+            measures = def.measures?.let { read(it) },
         )
     }
 

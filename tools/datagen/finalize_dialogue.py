@@ -10,7 +10,7 @@ from dialogue_fr_lib import option_requests
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "assets", "data")
 options_by_template = {}
 for f in glob.glob(os.path.join(ROOT, "events", "*.json")):
-    for e in json.load(open(f))["events"]:
+    for e in json.load(open(f)).get("events", []):
         m = e.get("message")
         if m and len(m.get("options", [])) >= 2:
             options_by_template.setdefault(m["template"], m["options"])

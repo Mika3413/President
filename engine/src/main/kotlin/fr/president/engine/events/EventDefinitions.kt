@@ -40,6 +40,8 @@ data class EventDefinition(
     val message: EventMessageDef? = null,
     val urgency: Urgency = Urgency.INFO,
     val notificationText: String = "",
+    /** Mesures de crise proposées en complément de la réponse (ajoutées au chargement). */
+    val measures: List<String> = emptyList(),
 )
 
 /** Multiplicateur de probabilité interpolé linéairement selon une variable de simulation. */

@@ -45,6 +45,12 @@ class DevScriptDriver(private val game: PresidentGame, script: String) : Applica
             "inbox" -> game.mainScreen?.let { screen -> screen.open(PanelId.INBOX); screen.devOpenFirstPendingMessage() }
             "war" -> game.controller?.session?.context?.let { ctx -> arg.split(',').let { (a, b) -> fr.president.engine.military.WarService(ctx).declare(a, b, "Script de test") } }
             "order" -> game.controller?.session?.let { s -> arg.split(',').let { (u, o, lon, lat) -> s.military.order(u, fr.president.engine.military.UnitOrder.valueOf(o), s.military.zoneAt(lon.toDouble(), lat.toDouble())) } }
+            "event" -> game.controller?.session?.context?.let { ctx ->
+                val (id, scopeId) = arg.split(',').let { it[0] to it.getOrNull(1) }
+                val def = ctx.db.event(id)
+                fr.president.engine.events.EventLauncher(ctx).launch(def, fr.president.engine.events.ScopeRef(def.scope, scopeId))
+            }
+            "measure" -> game.controller?.session?.let { s -> arg.split(',').let { s.measures.activate(it[0], it.getOrNull(1)) } }
             "quit" -> Gdx.app.exit()
         }
         if (cmd != "wait") waitFrames = STEP_FRAMES

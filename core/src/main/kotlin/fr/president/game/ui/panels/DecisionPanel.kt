@@ -49,6 +49,7 @@ class DecisionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : P
         into.add(grid).growX().padBottom(GAP).row()
 
         message?.let { into.add(ui.label(it, "small", Theme.accent, wrap = true)).padBottom(GAP).row() }
+        crisisLink(into)
         situational(into)
         running(into)
 
@@ -62,6 +63,26 @@ class DecisionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : P
                 nav.refresh()
             }).growX().padBottom(4f).row()
         }
+    }
+
+    /** Accès aux mesures de crise (confinement, couvre-feu, ORSEC...) et aux risques du moment. */
+    private fun crisisLink(into: Table) {
+        val high = session.risks.risks().count { it.probability >= fr.president.engine.readout.RiskReadout.HIGH }
+        val active = session.state.measures.active.size
+        val text = buildList {
+            add(if (high > 0) "$high risque(s) élevé(s)" else "Aucun risque élevé")
+            if (active > 0) add("$active mesure(s) en vigueur")
+        }.joinToString(" · ")
+        val row = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(5f, 8f, 5f, 8f) }
+        row.add(ui.label("⚠", "value", if (high > 0) Theme.warning else Theme.good)).padRight(6f)
+        val col = Table()
+        col.add(ui.label("Crises et risques", "bold")).left().row()
+        col.add(ui.label("$text. Confinement, couvre-feu, plan ORSEC, prévention des feux...", "small", Theme.textMuted, wrap = true)).left().growX()
+        row.add(col).growX().minWidth(0f)
+        row.add(ui.label("▶", "bold", Theme.warning)).right().padLeft(6f)
+        row.onClick { nav.open(PanelId.CRISIS) }
+        row.name = "decide.crisis"
+        into.add(row).growX().padBottom(GAP).row()
     }
 
     /** Décisions de crise que la situation vient de débloquer : signalées en tête. */
