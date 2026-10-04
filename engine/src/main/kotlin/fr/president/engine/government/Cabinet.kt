@@ -116,13 +116,13 @@ class CabinetSystem : SimulationSystem {
         const val THREAT_MARGIN = 0.12
         const val THREAT_EGO = 0.45
         const val THREAT_CHANCE = 0.5
-        const val GAFFE_BASE = 0.01
-        const val GAFFE_RECKLESS = 0.04
-        const val GAFFE_DISLOYAL = 0.04
-        const val INITIATIVE_BASE = 0.02
-        const val INITIATIVE_EGO = 0.06
-        const val INITIATIVE_COMPETENCE = 0.04
-        const val DISPUTE_CHANCE = 0.3
+        const val GAFFE_BASE = 0.003
+        const val GAFFE_RECKLESS = 0.012
+        const val GAFFE_DISLOYAL = 0.015
+        const val INITIATIVE_BASE = 0.01
+        const val INITIATIVE_EGO = 0.03
+        const val INITIATIVE_COMPETENCE = 0.015
+        const val DISPUTE_CHANCE = 0.2
         const val DISPUTE_COOLDOWN_DAYS = 365.0
     }
 }

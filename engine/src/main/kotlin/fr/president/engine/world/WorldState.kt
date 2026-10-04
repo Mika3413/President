@@ -74,6 +74,7 @@ class WorldState(
     /** Mesures de crise et de prévention en vigueur. */
     val measures: fr.president.engine.crisis.MeasureState = fr.president.engine.crisis.MeasureState(),
     val agenda: fr.president.engine.session.AgendaState = fr.president.engine.session.AgendaState(),
+    val market: fr.president.engine.economy.MarketState = fr.president.engine.economy.MarketState(),
 ) {
     val playerCountry: CountryState get() = countries.getValue(player.countryId)
 

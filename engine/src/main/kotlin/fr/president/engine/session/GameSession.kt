@@ -42,6 +42,7 @@ class GameSession(
     val measures = fr.president.engine.crisis.MeasureCommands(context)
     val risks = fr.president.engine.readout.RiskReadout(context)
     val agenda = AgendaService(context)
+    val market = MarketCommands(context)
     val characters = CharacterReadout(context)
     val military = MilitaryCommands(context)
     val militaryReadouts = fr.president.engine.readout.MilitaryReadouts(context)

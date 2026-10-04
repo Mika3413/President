@@ -16,22 +16,75 @@ class EconomyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pa
     private val draftFactors = mutableMapOf<String, Double>()
     private var message: String? = null
 
-    private enum class Tab(val label: String) { OVERVIEW("Situation"), TAXES("Impôts"), SPENDING("Dépenses"), SERVICES("Services") }
+    private enum class Tab(val label: String) { OVERVIEW("Situation"), TAXES("Impôts"), SPENDING("Dépenses"), SERVICES("Services"), MARKET("Entreprises") }
 
     override fun build(into: Table) {
-        val tabs = Table().apply { defaults().padRight(4f) }
+        // Les onglets passent à la ligne plutôt que d'élargir le panneau.
+        val tabs = com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup().apply { wrap(); left(); rowLeft(); space(4f); wrapSpace(4f) }
         Tab.entries.forEach { t ->
-            tabs.add(ui.button(t.label, "toggle") { tab = t; nav.refresh() }.also { it.isChecked = t == tab })
+            tabs.addActor(ui.button(t.label, "toggle") { tab = t; nav.refresh() }.also { it.isChecked = t == tab })
         }
-        into.add(tabs).left().padBottom(GAP).row()
+        into.add(tabs).growX().left().padBottom(GAP).row()
         message?.let { into.add(ui.label(it, "small", Theme.accent, wrap = true)).padBottom(GAP).row() }
         when (tab) {
             Tab.OVERVIEW -> session.national.all().forEach { into.add(IndicatorView(ui, it, expanded)).padBottom(GAP).row() }
             Tab.TAXES -> taxes(into)
             Tab.SPENDING -> spending(into)
             Tab.SERVICES -> session.national.services().forEach { into.add(IndicatorView(ui, it, expanded)).padBottom(GAP).row() }
+            Tab.MARKET -> market(into)
         }
         pending(into)
+    }
+
+    /** Bourse, secteurs et grandes entreprises, avec les leviers du président. */
+    private fun market(into: Table) {
+        val m = session.market
+        if (!m.available) return
+        val head = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(6f, 8f, 6f, 8f); defaults().left() }
+        val top = Table()
+        top.add(ui.label(m.indexName, "bold")).left().expandX()
+        top.add(ui.label(Math.round(m.index).toString(), "value")).right()
+        head.add(top).growX().row()
+        m.monthChange?.let { c ->
+            head.add(ui.label("Sur 30 jours : ${Formatting.signedPercent(c)}", "small", if (c >= 0) Theme.good else Theme.bad)).row()
+        }
+        if (m.history.size > 2) head.add(fr.president.game.ui.widgets.LineChart(ui.skin.white, m.history, true)).growX().height(CHART).padTop(3f).row()
+        into.add(head).growX().padBottom(GAP).row()
+
+        into.add(ui.label("Secteurs", "bold")).padTop(2f).row()
+        into.add(ui.label("Activité par rapport au début du mandat. Elle suit le moral, l'énergie, les taux, la croissance mondiale, la sécurité et vos mesures de crise.", "muted", wrap = true)).growX().padBottom(4f).row()
+        m.sectors().forEach { s ->
+            val row = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(4f, 8f, 4f, 8f) }
+            row.add(ui.label(s.def.icon, "bold", Theme.accent)).width(ICON).left()
+            val col = Table().apply { left() }
+            col.add(ui.label(s.def.label, "default")).left().row()
+            col.add(ui.label("${Formatting.wholePercent(s.def.gdpShare)} du PIB · ${Formatting.integer(s.jobs)} emplois", "muted")).left()
+            row.add(col).left().growX().minWidth(0f)
+            val change = s.activity - 1
+            val trend = if (s.shock > SHOCK) " ▲" else if (s.shock < -SHOCK) " ▼" else ""
+            row.add(ui.label(Formatting.signedPercent(change) + trend, "bold", if (change >= 0) Theme.good else Theme.bad)).right()
+            into.add(row).growX().padBottom(2f).row()
+        }
+
+        into.add(ui.label("Grandes entreprises", "bold")).padTop(GAP).row()
+        m.companies().forEach { c ->
+            val card = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(5f, 8f, 5f, 8f); defaults().left() }
+            val line = Table()
+            line.add(ui.label(c.def.name, "bold")).left().growX().minWidth(0f)
+            line.add(ui.label(Formatting.signedPercent(c.change), "bold", if (c.change >= 0) Theme.good else Theme.bad)).right()
+            card.add(line).growX().row()
+            card.add(ui.label("${c.sector} · ${Formatting.billions(c.capBillions)} en Bourse · ${Formatting.integer(c.employees.toLong())} salariés en France", "muted", wrap = true)).growX().row()
+            val buttons = Table().apply { defaults().padRight(4f).padTop(3f) }
+            buttons.add(ui.button("Soutenir (${Formatting.billions(c.supportCost)})", "flat") {
+                message = m.support(c.def.id).fold({ it }, { it.message ?: "Impossible." }); nav.refresh()
+            }.also { it.isDisabled = c.supportBlocker != null })
+            buttons.add(ui.button("Convoquer le PDG", "flat") {
+                message = m.summon(c.def.id).fold({ it }, { it.message ?: "Impossible." }); nav.refresh()
+            }.also { it.isDisabled = c.summonBlocker != null })
+            card.add(buttons).left().row()
+            (c.supportBlocker ?: c.summonBlocker)?.let { card.add(ui.label("↻ $it", "small", Theme.warning, wrap = true)).growX().row() }
+            into.add(card).growX().padBottom(3f).row()
+        }
     }
 
     private fun taxes(into: Table) {
@@ -127,5 +180,8 @@ class EconomyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pa
         const val MAX_FACTOR = 1.6
         const val EPS = 1e-6
         const val MAX_PENDING_SHOWN = 6
+        const val CHART = 70f
+        const val ICON = 22f
+        const val SHOCK = 0.005
     }
 }

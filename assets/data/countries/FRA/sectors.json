@@ -1,0 +1,486 @@
+{
+ "_doc": "Secteurs, entreprises (fictives) et Bourse. Généré par tools/datagen/sectors_fr.py.",
+ "indexName": "Indice de Paris",
+ "indexBase": 7800,
+ "sectors": [
+  {
+   "id": "industry",
+   "label": "Industrie et automobile",
+   "icon": "⚙",
+   "gdpShare": 0.1,
+   "jobShare": 0.1,
+   "drivers": {
+    "business": 0.5,
+    "energy": -0.25,
+    "world": 3.0,
+    "growth": 2.0
+   }
+  },
+  {
+   "id": "aerospace",
+   "label": "Aéronautique et défense",
+   "icon": "✈",
+   "gdpShare": 0.03,
+   "jobShare": 0.02,
+   "drivers": {
+    "world": 4.0,
+    "defense": 0.6,
+    "business": 0.3
+   }
+  },
+  {
+   "id": "luxury",
+   "label": "Luxe et cosmétiques",
+   "icon": "◆",
+   "gdpShare": 0.03,
+   "jobShare": 0.01,
+   "drivers": {
+    "world": 5.0,
+    "consumer": 0.2,
+    "restrictions": -0.15
+   }
+  },
+  {
+   "id": "energy",
+   "label": "Énergie",
+   "icon": "⚡",
+   "gdpShare": 0.04,
+   "jobShare": 0.01,
+   "drivers": {
+    "energy": 0.3,
+    "business": 0.2
+   }
+  },
+  {
+   "id": "banking",
+   "label": "Banque et assurance",
+   "icon": "€",
+   "gdpShare": 0.05,
+   "jobShare": 0.03,
+   "drivers": {
+    "rates": 2.0,
+    "business": 0.6,
+    "growth": 2.0
+   }
+  },
+  {
+   "id": "agrifood",
+   "label": "Agriculture et agroalimentaire",
+   "icon": "♣",
+   "gdpShare": 0.04,
+   "jobShare": 0.05,
+   "drivers": {
+    "agriculture": 0.8,
+    "consumer": 0.2,
+    "world": 1.0
+   }
+  },
+  {
+   "id": "tourism",
+   "label": "Tourisme et restauration",
+   "icon": "☀",
+   "gdpShare": 0.08,
+   "jobShare": 0.07,
+   "drivers": {
+    "consumer": 0.6,
+    "security": 1.0,
+    "restrictions": -0.6,
+    "world": 2.0
+   }
+  },
+  {
+   "id": "construction",
+   "label": "BTP et immobilier",
+   "icon": "⌂",
+   "gdpShare": 0.06,
+   "jobShare": 0.07,
+   "drivers": {
+    "rates": -6.0,
+    "consumer": 0.5,
+    "business": 0.3
+   }
+  },
+  {
+   "id": "tech",
+   "label": "Numérique et télécoms",
+   "icon": "◎",
+   "gdpShare": 0.06,
+   "jobShare": 0.04,
+   "drivers": {
+    "business": 0.7,
+    "world": 2.0,
+    "growth": 1.5
+   }
+  },
+  {
+   "id": "retail",
+   "label": "Commerce et distribution",
+   "icon": "▣",
+   "gdpShare": 0.1,
+   "jobShare": 0.12,
+   "drivers": {
+    "consumer": 0.8,
+    "restrictions": -0.25,
+    "growth": 1.0
+   }
+  },
+  {
+   "id": "transport",
+   "label": "Transports et logistique",
+   "icon": "⇢",
+   "gdpShare": 0.05,
+   "jobShare": 0.05,
+   "drivers": {
+    "energy": -0.2,
+    "business": 0.4,
+    "restrictions": -0.3,
+    "world": 1.5
+   }
+  },
+  {
+   "id": "health",
+   "label": "Santé et pharmacie",
+   "icon": "✚",
+   "gdpShare": 0.04,
+   "jobShare": 0.04,
+   "drivers": {
+    "business": 0.2,
+    "restrictions": 0.05
+   }
+  }
+ ],
+ "companies": [
+  {
+   "id": "delmas",
+   "name": "Automobiles Delmas",
+   "sector": "industry",
+   "capBillions": 45,
+   "employees": 60000,
+   "beta": 1.4
+  },
+  {
+   "id": "acieries",
+   "name": "Aciéries de Lorraine",
+   "sector": "industry",
+   "capBillions": 12,
+   "employees": 18000,
+   "beta": 1.6
+  },
+  {
+   "id": "aerolis",
+   "name": "Aérolis",
+   "sector": "aerospace",
+   "capBillions": 120,
+   "employees": 55000,
+   "beta": 1.2
+  },
+  {
+   "id": "navalis",
+   "name": "Navalis Défense",
+   "sector": "aerospace",
+   "capBillions": 30,
+   "employees": 25000,
+   "beta": 0.9
+  },
+  {
+   "id": "verlaine",
+   "name": "Maison Verlaine",
+   "sector": "luxury",
+   "capBillions": 320,
+   "employees": 40000,
+   "beta": 1.1
+  },
+  {
+   "id": "belleroche",
+   "name": "Belleroche Cosmétiques",
+   "sector": "luxury",
+   "capBillions": 190,
+   "employees": 15000,
+   "beta": 0.9
+  },
+  {
+   "id": "energiefrance",
+   "name": "ÉnergieFrance",
+   "sector": "energy",
+   "capBillions": 70,
+   "employees": 130000,
+   "beta": 0.7
+  },
+  {
+   "id": "petrolia",
+   "name": "Pétrolia",
+   "sector": "energy",
+   "capBillions": 130,
+   "employees": 35000,
+   "beta": 1.0
+  },
+  {
+   "id": "hexagone",
+   "name": "Banque Hexagone",
+   "sector": "banking",
+   "capBillions": 75,
+   "employees": 60000,
+   "beta": 1.3
+  },
+  {
+   "id": "provinces",
+   "name": "Crédit des Provinces",
+   "sector": "banking",
+   "capBillions": 40,
+   "employees": 70000,
+   "beta": 1.1
+  },
+  {
+   "id": "lafayette",
+   "name": "Assurances Lafayette",
+   "sector": "banking",
+   "capBillions": 60,
+   "employees": 30000,
+   "beta": 0.9
+  },
+  {
+   "id": "laiteries",
+   "name": "Laiteries Réunies",
+   "sector": "agrifood",
+   "capBillions": 55,
+   "employees": 45000,
+   "beta": 0.6
+  },
+  {
+   "id": "riviera",
+   "name": "Hôtels Riviera",
+   "sector": "tourism",
+   "capBillions": 25,
+   "employees": 40000,
+   "beta": 1.5
+  },
+  {
+   "id": "batir",
+   "name": "Groupe Bâtir",
+   "sector": "construction",
+   "capBillions": 50,
+   "employees": 90000,
+   "beta": 1.2
+  },
+  {
+   "id": "numeris",
+   "name": "Numéris",
+   "sector": "tech",
+   "capBillions": 35,
+   "employees": 20000,
+   "beta": 1.6
+  },
+  {
+   "id": "telecomhexa",
+   "name": "Télécom Hexa",
+   "sector": "tech",
+   "capBillions": 40,
+   "employees": 50000,
+   "beta": 0.7
+  },
+  {
+   "id": "marcheplus",
+   "name": "Marché Plus",
+   "sector": "retail",
+   "capBillions": 30,
+   "employees": 110000,
+   "beta": 0.8
+  },
+  {
+   "id": "railroute",
+   "name": "Rail & Route",
+   "sector": "transport",
+   "capBillions": 20,
+   "employees": 45000,
+   "beta": 1.0
+  },
+  {
+   "id": "pharmaxis",
+   "name": "Pharmaxis",
+   "sector": "health",
+   "capBillions": 110,
+   "employees": 25000,
+   "beta": 0.6
+  }
+ ],
+ "eventShocks": {
+  "terror_attack": {
+   "tourism": -0.05,
+   "retail": -0.01
+  },
+  "pandemic_wave": {
+   "tourism": -0.12,
+   "retail": -0.04,
+   "transport": -0.05,
+   "health": 0.03
+  },
+  "epidemic": {
+   "tourism": -0.04,
+   "health": 0.02
+  },
+  "new_virus": {
+   "tourism": -0.02,
+   "health": 0.03
+  },
+  "wine_crisis": {
+   "agrifood": -0.05
+  },
+  "ski_no_snow": {
+   "tourism": -0.03
+  },
+  "trade_tariffs": {
+   "luxury": -0.05,
+   "aerospace": -0.03,
+   "agrifood": -0.03
+  },
+  "arms_contract": {
+   "aerospace": 0.04
+  },
+  "nuclear_incident": {
+   "energy": -0.04
+  },
+  "bank_run": {
+   "banking": -0.15,
+   "construction": -0.04
+  },
+  "bank_fragility": {
+   "banking": -0.08
+  },
+  "bankruptcy": {
+   "industry": -0.04
+  },
+  "factory_closure": {
+   "industry": -0.01
+  },
+  "investment_announcement": {
+   "industry": 0.03
+  },
+  "space_failure": {
+   "aerospace": -0.03
+  },
+  "space_success": {
+   "aerospace": 0.02
+  },
+  "ai_champion": {
+   "tech": 0.06
+  },
+  "ai_exodus": {
+   "tech": -0.06
+  },
+  "ai_layoffs": {
+   "tech": 0.02
+  },
+  "tech_hq": {
+   "tech": 0.03
+  },
+  "national_strike": {
+   "transport": -0.03,
+   "retail": -0.02
+  },
+  "rail_strike": {
+   "transport": -0.04,
+   "tourism": -0.01
+  },
+  "strike_spreads": {
+   "transport": -0.05,
+   "energy": -0.03
+  },
+  "port_strike": {
+   "transport": -0.03,
+   "agrifood": -0.01
+  },
+  "fuel_shortage": {
+   "transport": -0.05,
+   "retail": -0.01
+  },
+  "fuel_blockade": {
+   "transport": -0.06
+  },
+  "gas_price_spike": {
+   "industry": -0.04,
+   "agrifood": -0.02
+  },
+  "blackout": {
+   "industry": -0.03,
+   "tech": -0.01
+  },
+  "heatwave": {
+   "agrifood": -0.02,
+   "tourism": 0.01
+  },
+  "drought": {
+   "agrifood": -0.05,
+   "energy": -0.01
+  },
+  "cyberattack": {
+   "tech": -0.02,
+   "banking": -0.01
+  },
+  "hybrid_cyber": {
+   "tech": -0.03,
+   "banking": -0.02
+  },
+  "urban_riots": {
+   "retail": -0.02,
+   "tourism": -0.02
+  },
+  "rating_downgrade": {
+   "banking": -0.06,
+   "construction": -0.02
+  },
+  "mercosur_deal": {
+   "agrifood": -0.03,
+   "industry": 0.01
+  },
+  "winter_olympics": {
+   "tourism": 0.03,
+   "construction": 0.02
+  },
+  "sports_victory": {
+   "retail": 0.01
+  },
+  "refinery_accident": {
+   "energy": -0.03
+  },
+  "storm": {
+   "construction": 0.01,
+   "agrifood": -0.01
+  },
+  "flood": {
+   "construction": 0.01,
+   "agrifood": -0.01
+  },
+  "cyclone": {
+   "tourism": -0.02
+  },
+  "wildfire": {
+   "tourism": -0.01
+  },
+  "bird_flu": {
+   "agrifood": -0.04
+  },
+  "food_scandal": {
+   "agrifood": -0.04,
+   "retail": -0.01
+  },
+  "drug_shortage": {
+   "health": -0.03
+  },
+  "farmers_protest": {
+   "agrifood": -0.02,
+   "transport": -0.01
+  }
+ },
+ "restrictions": {
+  "lockdown": 1.0,
+  "curfew": 0.35,
+  "local_lockdown": 0.05,
+  "local_curfew": 0.02,
+  "health_borders": 0.4,
+  "gathering_ban": 0.15,
+  "fuel_rationing": 0.3,
+  "load_shedding": 0.2,
+  "masks": 0.03,
+  "forest_ban": 0.02
+ }
+}

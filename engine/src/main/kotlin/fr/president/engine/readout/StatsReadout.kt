@@ -56,7 +56,7 @@ class StatsReadout(private val ctx: SimulationContext) {
     )
 
     /** Courbes principales du tableau de bord, dans l'ordre d'affichage. */
-    val mainKeys = listOf("approval", "unemployment", "growth", "inflation", "deficit", "debt", "parliament", "readiness")
+    val mainKeys = listOf("approval", "unemployment", "growth", "inflation", "deficit", "debt", "parliament", "readiness", "market")
 
     fun series(key: String): Series? {
         val values = ctx.state.stats.series[key]?.all() ?: return null
@@ -76,6 +76,7 @@ class StatsReadout(private val ctx: SimulationContext) {
             key == "debt" -> Triple("Dette publique (% du PIB)", false, whole)
             key == "parliament" -> Triple("Soutien à l'Assemblée", true, whole)
             key == "readiness" -> Triple("Préparation des armées", true, whole)
+            key == "market" -> Triple(ctx.playerData.sectors?.indexName ?: "Bourse", true) { v: Double -> Math.round(v).toString() }
             key.startsWith("group.") -> {
                 val label = ctx.playerData.socialGroups?.groups?.firstOrNull { it.id == key.removePrefix("group.") }?.label ?: return null
                 Triple(label, true, whole)

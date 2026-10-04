@@ -36,6 +36,7 @@ class StatsSystem : SimulationSystem {
             put("debt", e.debtRatio)
             put("parliament", s.government.parliamentSupport)
             put("readiness", s.military.overallReadiness)
+            if (s.market.index > 0) put("market", s.market.index)
             s.opinion.groups.forEach { (id, g) -> put("group.$id", g.effective) }
             val player = s.player.countryId
             val relations = RelationCalculator(ctx)

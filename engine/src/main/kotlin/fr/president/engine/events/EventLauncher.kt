@@ -28,6 +28,7 @@ class EventLauncher(private val ctx: SimulationContext) {
         def.immediateEffects.forEach { ctx.effects.trigger(EventIntensity.scale(it, factor), scope, params, def.id) }
         // Conséquences en chaîne propres au type d'événement (économie, services, voisins...).
         ctx.db.intensity?.consequences?.get(def.id)?.forEach { ctx.effects.trigger(EventIntensity.scale(it, factor), scope, params, def.id) }
+        fr.president.engine.economy.SectorSystem.onEvent(ctx, def.id, factor)
 
         val vars = variables(def, scope, params)
         val titled = level?.let { (index, _) -> ctx.db.intensity?.headlines?.get(def.id)?.getOrNull(index) } ?: def.headline

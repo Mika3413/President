@@ -24,6 +24,7 @@ class CountryData(
     val measures: fr.president.engine.crisis.MeasuresFile? = null,
     val cabinet: fr.president.engine.government.CabinetFile? = null,
     val agenda: fr.president.engine.session.AgendaRules? = null,
+    val sectors: fr.president.engine.economy.SectorsFile? = null,
 ) {
     val id: String get() = definition.id
 }

@@ -42,6 +42,7 @@ object Systems {
         AgreementSystem(),
         EnergySystem(),
         EconomySystem(),
+        fr.president.engine.economy.SectorSystem(),
         ServiceQualitySystem(),
         TerritorySystem(),
         fr.president.engine.territory.DemographySystem(),

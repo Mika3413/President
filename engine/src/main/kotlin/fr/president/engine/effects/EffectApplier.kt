@@ -147,6 +147,7 @@ class EffectApplier(private val ctx: SimulationContext) {
             "revenue" -> economy.budget?.revenues?.get(parts[1])?.let { it.rate = (it.rate + delta).coerceAtLeast(0.0) }
             "demography" -> if (parts[1] == "immigration") state.demography.immigrationFactor = (state.demography.immigrationFactor + delta).coerceAtLeast(0.0)
             "energy" -> if (parts[1] == "capacity") state.energy.extraCapacityMW.merge(parts[2], delta, Double::plus)
+            "sector" -> fr.president.engine.economy.SectorSystem.shock(ctx, parts[1], delta)
             "president" -> apply("character.${state.player.presidentId}.${parts[1]}", delta)
             "opinion" -> when (parts[1]) {
                 "national" -> state.opinion.groups.values.forEach { it.shock += delta }
