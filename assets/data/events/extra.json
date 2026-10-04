@@ -2531,6 +2531,184 @@
     ],
     "ministry": "economy"
    }
+  },
+  {
+   "id": "hybrid_cyber",
+   "category": "SECURITY",
+   "scope": "FOREIGN_COUNTRY",
+   "baseDailyProbability": 0.0,
+   "cooldownDays": 60,
+   "urgency": "URGENT",
+   "headline": "Cyberattaque massive : nos services soupçonnent {foreignThe}",
+   "notificationText": "Hôpitaux, collectivités et réseau électrique visés.",
+   "modifiers": [],
+   "immediateEffects": [
+    {
+     "target": "economy.output",
+     "amount": -0.0015,
+     "days": 20
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.01
+    },
+    {
+     "target": "quality.health",
+     "amount": -0.005
+    }
+   ],
+   "message": {
+    "template": "hybrid_cyber",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "defend",
+    "options": [
+     {
+      "id": "riposte",
+      "label": "Riposte cyber contre leurs infrastructures",
+      "hint": "Fermeté ; escalade possible",
+      "effects": [
+       {
+        "target": "operation.cyber",
+        "amount": 1
+       },
+       {
+        "target": "country.DISAGREEMENT",
+        "amount": -0.04
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "REFUSED"
+     },
+     {
+      "id": "sanction",
+      "label": "Attribution publique et sanctions",
+      "hint": "Coût diplomatique ; soutien européen",
+      "effects": [
+       {
+        "target": "operation.sanction",
+        "amount": 1
+       },
+       {
+        "target": "country.DISAGREEMENT",
+        "amount": -0.05
+       },
+       {
+        "target": "alliance.EU.NEGOTIATION_GOODWILL",
+        "amount": 0.01
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "defend",
+      "label": "Renforcer discrètement nos défenses",
+      "hint": "Coût : 600 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.6
+       },
+       {
+        "target": "quality.security",
+        "amount": 0.01
+       }
+      ],
+      "outcome": "ACCEPTED"
+     }
+    ],
+    "ministry": "interior"
+   }
+  },
+  {
+   "id": "hybrid_sabotage",
+   "category": "SECURITY",
+   "scope": "FOREIGN_COUNTRY",
+   "baseDailyProbability": 0.0,
+   "cooldownDays": 60,
+   "urgency": "URGENT",
+   "headline": "Sabotage : câbles et voies ferrées coupés, {foreignThe} soupçonné",
+   "notificationText": "Des actes coordonnés paralysent une partie du pays.",
+   "modifiers": [],
+   "immediateEffects": [
+    {
+     "target": "economy.output",
+     "amount": -0.001,
+     "days": 15
+    },
+    {
+     "target": "quality.transport",
+     "amount": -0.008
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.005
+    }
+   ],
+   "message": {
+    "template": "hybrid_sabotage",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "protect",
+    "options": [
+     {
+      "id": "expel",
+      "label": "Expulser leurs diplomates et sanctionner",
+      "hint": "Fermeté ; représailles probables",
+      "effects": [
+       {
+        "target": "operation.sanction",
+        "amount": 1
+       },
+       {
+        "target": "country.DISAGREEMENT",
+        "amount": -0.06
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.004
+       }
+      ],
+      "outcome": "REFUSED"
+     },
+     {
+      "id": "protect",
+      "label": "Plan de protection des infrastructures",
+      "hint": "Coût : 1 Md€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 1.0
+       },
+       {
+        "target": "quality.security",
+        "amount": 0.012
+       },
+       {
+        "target": "quality.transport",
+        "amount": 0.005
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "investigate",
+      "label": "Enquêter discrètement",
+      "hint": "Aucun coût ; risque de récidive",
+      "effects": [
+       {
+        "target": "opinion.national",
+        "amount": -0.003
+       }
+      ],
+      "outcome": "PARTIAL"
+     }
+    ],
+    "ministry": "interior"
+   }
   }
  ]
 }

@@ -120,6 +120,11 @@ class MediaSystem : SimulationSystem {
             pages += FrontPage(ctx.now, paper.id, story.topic, headline.replaceFirstChar { it.uppercase() }, story.subtitle, tone)
         }
         while (pages.size > MAX_PAGES) pages.removeAt(0)
+        // Le climat médiatique pèse peu à peu sur l'opinion : une presse hostile use un président.
+        val today = pages.takeLast(def.papers.size).sumOf { p -> when (p.tone) { Tone.GOOD -> 1.0; Tone.BAD -> -1.0; else -> 0.0 } } / def.papers.size
+        val media = ctx.state.media
+        media.climate = media.climate * (1 - CLIMATE_SMOOTHING) + today * CLIMATE_SMOOTHING
+        ctx.effects.trigger(fr.president.engine.effects.EffectSpec("opinion.national", media.climate * CLIMATE_EFFECT), null, emptyMap(), "media")
     }
 
     private fun publishPoll(ctx: SimulationContext, def: MediaFile) {
@@ -136,10 +141,38 @@ class MediaSystem : SimulationSystem {
         val concern = factors.minByOrNull { s.opinion.factorScores[it.id] ?: 0.0 }?.label.orEmpty()
         polls += PollRelease(ctx.now, institute.id, approval, intention, concern)
         while (polls.size > MAX_POLLS) polls.removeAt(0)
+        reactToPoll(ctx, institute.name, approval)
+    }
+
+    /** Un sondage alarmant inquiète les députés ; un très mauvais peut faire naître une fronde. */
+    private fun reactToPoll(ctx: SimulationContext, institute: String, approval: Double) {
+        val journal = fr.president.engine.stats.JournalService(ctx)
+        val gov = ctx.state.government
+        when {
+            approval < BAD_POLL -> {
+                gov.parliamentSupport = (gov.parliamentSupport - BAD_POLL_SUPPORT).coerceAtLeast(0.0)
+                journal.add("Sondage", "$institute : ${Formatting.wholePercent(approval)} d'opinions favorables, la majorité s'inquiète", Tone.BAD)
+                if (approval < TERRIBLE_POLL) {
+                    ctx.effects.trigger(fr.president.engine.effects.EffectSpec("chain.majority_rebels", REBELS_CHANCE, delayDays = 3.0), null, emptyMap(), "poll")
+                }
+            }
+            approval > GOOD_POLL -> {
+                gov.parliamentSupport = (gov.parliamentSupport + GOOD_POLL_SUPPORT).coerceAtMost(1.0)
+                journal.add("Sondage", "$institute : ${Formatting.wholePercent(approval)} d'opinions favorables, la majorité se ressoude", Tone.GOOD)
+            }
+        }
     }
 
     private companion object {
         const val POLL_DAYS = 7
+        const val CLIMATE_SMOOTHING = 0.15
+        const val CLIMATE_EFFECT = 0.0006
+        const val BAD_POLL = 0.38
+        const val TERRIBLE_POLL = 0.32
+        const val GOOD_POLL = 0.56
+        const val BAD_POLL_SUPPORT = 0.006
+        const val GOOD_POLL_SUPPORT = 0.004
+        const val REBELS_CHANCE = 0.25
         const val MONTH = 4
         const val ADOPTED = "Adoptée : "
         const val REJECTED = "Rejetée : "

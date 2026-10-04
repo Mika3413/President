@@ -59,6 +59,8 @@ class EffectApplier(private val ctx: SimulationContext) {
             "sender" -> scope?.senderId?.let { "character.$it.$rest" }
             "subject" -> scope?.id?.takeIf { scope.type == EventScope.MINISTER }?.let { "character.$it.$rest" }
             "country" -> scope?.id?.takeIf { scope.type == EventScope.FOREIGN_COUNTRY }?.let { "memory.$it.$rest" }
+            // Riposte contre le pays de l'événement : « operation.cyber », « operation.sanction ».
+            "operation" -> scope?.id?.takeIf { scope.type == EventScope.FOREIGN_COUNTRY }?.let { "operation.$rest.$it" }
             "region" -> if (rest == "approval") departmentOf(scope)?.let { dept ->
                 ctx.state.territory.departments[dept]?.region?.let { "region.$it.approval" }
             } else target
@@ -164,6 +166,12 @@ class EffectApplier(private val ctx: SimulationContext) {
             "war" -> fr.president.engine.military.Geopolitics(ctx).mainWarWithout(state.player.countryId)?.let { w ->
                 val side = if (parts[1] == "attackers") w.attackers else w.defenders
                 side.filter { it != state.player.countryId }.forEach { apply("memory.$it.${parts[2]}", delta) }
+            }
+            "operation" -> if (delta > 0) parts.getOrNull(2)?.let { country ->
+                when (parts[1]) {
+                    "cyber" -> fr.president.engine.military.OperationsService(ctx).riposteCyber(country)
+                    "sanction" -> fr.president.engine.diplomacy.SanctionsService(ctx).impose(state.player.countryId, country)
+                }
             }
             else -> ctx.log("effects", "Cible inconnue : $target")
         }

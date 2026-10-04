@@ -27,6 +27,9 @@ class MediaReadout(private val ctx: SimulationContext) {
         return ctx.state.media.polls.asReversed().mapNotNull { r -> def.institutes.firstOrNull { it.id == r.instituteId }?.let { it to r } }
     }
 
+    /** Climat médiatique : de -1 (hostile) à +1 (favorable). */
+    val climate: Double get() = ctx.state.media.climate
+
     /** Ce qui préoccupe le plus les Français (facteurs d'opinion les plus négatifs). */
     fun concerns(limit: Int = MAX_CONCERNS): List<Concern> {
         val factors = ctx.playerData.socialGroups?.factors.orEmpty()

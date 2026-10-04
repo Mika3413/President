@@ -40,6 +40,22 @@ class PressPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pane
             }
         }
 
+        // Climat médiatique : jauge de -1 (hostile) à +1 (favorable), et ce que cela change.
+        val climate = session.media.climate
+        val color = if (climate > CLIMATE_EPS) Theme.good else if (climate < -CLIMATE_EPS) Theme.bad else Theme.neutral
+        val head = Table()
+        head.add(ui.label("Climat médiatique", "title")).left().expandX()
+        head.add(ui.label(when {
+            climate > STRONG -> "très favorable"; climate > CLIMATE_EPS -> "plutôt favorable"
+            climate < -STRONG -> "très hostile"; climate < -CLIMATE_EPS -> "plutôt hostile"; else -> "partagé"
+        }, "value", color)).right()
+        into.add(head).growX().padTop(GAP).row()
+        val gauge = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)) }
+        gauge.add(Table().apply { setBackground(ui.skin.fill(color)) })
+            .width(Value.percentWidth(((climate + 1) / 2).toFloat().coerceIn(MIN_BAR, 1f), gauge)).height(BAR * 2).left().expandX()
+        into.add(gauge).growX().height(BAR * 2).row()
+        into.add(ui.label("La presse pèse chaque jour un peu sur votre popularité. Un sondage sous 38 % inquiète vos députés (soutien en baisse, fronde possible) ; au-dessus de 56 %, la majorité se ressoude.", "muted", wrap = true)).growX().padBottom(GAP).row()
+
         into.add(ui.label("Ce qui inquiète les Français", "title")).padTop(GAP).row()
         val concerns = session.media.concerns()
         val worst = concerns.minOfOrNull { it.score }?.let { -it }?.coerceAtLeast(MIN_SCALE) ?: MIN_SCALE
@@ -92,5 +108,7 @@ class PressPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pane
         const val CHART = 60f
         const val MAX_POLLS = 8
         const val LEAN = 0.5
+        const val CLIMATE_EPS = 0.1
+        const val STRONG = 0.45
     }
 }

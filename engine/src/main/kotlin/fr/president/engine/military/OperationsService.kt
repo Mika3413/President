@@ -74,8 +74,8 @@ class OperationsService(private val ctx: SimulationContext) {
 
     // ------------------------------------------------------------------ Frappes
     /** Zone à frapper : la concentration ennemie la plus forte à portée, sinon la plus proche. */
-    fun strikeTarget(country: String): String? {
-        val launchers = launchers()
+    fun strikeTarget(country: String, actor: String = player): String? {
+        val launchers = launchers(actor)
         val inRange = { z: String -> launchers.any { zones.distanceKm(it.zoneId, z) <= STRIKE_RANGE_KM } }
         return units.filter { it.countryId == country && !it.destroyed && !zones.zone(it.zoneId).sea }
             .groupBy { it.zoneId }.entries.filter { inRange(it.key) }
@@ -141,9 +141,62 @@ class OperationsService(private val ctx: SimulationContext) {
         text
     }
 
+    // ------------------------------------------------------------------ IA étrangère
+    /**
+     * Frappe menée par un pays IA en guerre. Mêmes règles de portée que pour nous ; le joueur est
+     * prévenu si ses forces, celles d'un allié ou son territoire sont visés.
+     */
+    fun aiStrike(actor: String, enemy: String): Boolean {
+        if (!geo.atWar(actor, enemy) || launchers(actor).isEmpty()) return false
+        if (wait("$STRIKE_KEY|$actor", AI_STRIKE_COOLDOWN) != null) return false
+        val target = strikeTarget(enemy, actor) ?: return false
+        val hit = units.filter { it.zoneId == target && it.countryId == enemy && !it.destroyed }
+        hit.forEach {
+            it.strength = (it.strength - STRIKE_STRENGTH).coerceAtLeast(MIN_STRENGTH)
+            it.readiness = (it.readiness - STRIKE_READINESS).coerceAtLeast(0.0)
+            it.morale = (it.morale - STRIKE_MORALE).coerceAtLeast(0.0)
+        }
+        ctx.state.countries[enemy]?.economy?.let { it.pendingOutputShock -= STRIKE_ECONOMY }
+        mark("$STRIKE_KEY|$actor")
+        val by = countryName(actor)
+        when {
+            enemy == player -> {
+                // Être frappé soude d'abord le pays derrière son président, puis use les esprits.
+                ctx.effects.trigger(EffectSpec("opinion.national", RALLY), null, emptyMap(), "ai:strike")
+                ctx.notifications.post(NotificationCategory.MILITARY, Urgency.URGENT, "$by frappe nos forces",
+                    "Missiles de croisière sur nos positions : ${hit.size} unité(s) touchée(s).", target, journal = false)
+                JournalService(ctx).add("Opération", "$by frappe nos forces (${hit.size} unité(s) touchée(s))", Tone.BAD)
+            }
+            enemy in geo.coBelligerents(player) || geo.allied(player, enemy) ->
+                ctx.notifications.news(NotificationCategory.MILITARY, "$by frappe les forces de ${countryName(enemy)}", target)
+            else -> ctx.notifications.news(NotificationCategory.MILITARY, "Frappes de $by contre ${countryName(enemy)}", target)
+        }
+        return true
+    }
+
+    /** Cyberattaque d'un pays IA contre un ennemi en guerre (contre la France, voir aussi les menaces hybrides). */
+    fun aiCyber(actor: String, enemy: String): Boolean {
+        if (wait("$CYBER_KEY$actor|$enemy", CYBER_COOLDOWN) != null) return false
+        ctx.state.countries[enemy]?.economy?.let { it.pendingOutputShock -= CYBER_ECONOMY }
+        units.filter { it.countryId == enemy && !it.destroyed }.forEach { it.readiness = (it.readiness - CYBER_READINESS).coerceAtLeast(0.0) }
+        mark("$CYBER_KEY$actor|$enemy")
+        if (enemy == player) {
+            ctx.notifications.post(NotificationCategory.SECURITY, Urgency.IMPORTANT, "Cyberattaque de ${countryName(actor)}",
+                "Réseaux de l'armée et de l'énergie perturbés.", null, journal = false)
+            JournalService(ctx).add("Opération", "Cyberattaque de ${countryName(actor)} contre la France", Tone.BAD)
+        }
+        return true
+    }
+
+    /** Riposte cyber décidée en réponse à une attaque (sans délai d'attente). */
+    fun riposteCyber(country: String) {
+        ctx.state.localActions.remove(CYBER_KEY + country)
+        cyber(country)
+    }
+
     // ------------------------------------------------------------------ Outils
-    private fun launchers(): List<UnitState> = units.filter { u ->
-        u.countryId == player && !u.destroyed && u.type in LAUNCHERS && u.readiness > MIN_READINESS
+    private fun launchers(actor: String = player): List<UnitState> = units.filter { u ->
+        u.countryId == actor && !u.destroyed && u.type in LAUNCHERS && u.readiness > MIN_READINESS
     }
 
     private fun cooldown(unit: UnitState): String? {
@@ -201,5 +254,7 @@ class OperationsService(private val ctx: SimulationContext) {
         const val CYBER_READINESS = 0.03
         const val CYBER_COST = 0.05
         const val DETECTION_CHANCE = 0.35
+        const val AI_STRIKE_COOLDOWN = 6
+        const val RALLY = 0.002
     }
 }

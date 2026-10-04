@@ -49,4 +49,6 @@ class MediaState(
     val polls: MutableList<PollRelease> = mutableListOf(),
     var lastPressDay: Long = Long.MIN_VALUE,
     var lastPollDay: Long = Long.MIN_VALUE,
+    /** Climat médiatique lissé, de -1 (presse unanimement hostile) à +1 (presse favorable). */
+    var climate: Double = 0.0,
 )

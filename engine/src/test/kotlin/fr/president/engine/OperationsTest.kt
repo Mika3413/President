@@ -50,4 +50,18 @@ class OperationsTest {
             assertTrue(r is OrderService.Outcome.Ok || (r as OrderService.Outcome.Refused).reason.isNotBlank())
         }
     }
+
+    @Test
+    fun foreignCountriesStrikeTheirEnemiesAndWarnThePlayer() {
+        val s = TestData.newSession()
+        WarService(s.context).declare("DEU", "FRA", "test")
+        val ops = s.military.operations
+        val struck = ops.aiStrike("DEU", "FRA")
+        if (struck) {
+            assertTrue(s.state.notifications.feed.any { it.title.contains("frappe nos forces") })
+            assertTrue(!ops.aiStrike("DEU", "FRA"), "délai entre deux frappes")
+        }
+        assertTrue(ops.aiCyber("DEU", "FRA"))
+        assertTrue(s.stats.journal().any { it.text.contains("Cyberattaque") })
+    }
 }

@@ -35,11 +35,11 @@ EVENTS, TEMPLATES = [], []
 
 
 def event(id, category, headline, text, prob, cooldown, urgency, subjects, context, problem, request, sender, default, options,
-          ministry=None, scope="NATIONAL", modifiers=(), conditions=(), days=4, scope_cooldown=0):
+          ministry=None, scope="NATIONAL", modifiers=(), conditions=(), days=4, scope_cooldown=0, immediate=()):
     m = {"template": id, "sender": sender, "responseDays": days, "defaultOption": default, "options": options}
     if ministry: m["ministry"] = ministry
     ev = {"id": id, "category": category, "scope": scope, "baseDailyProbability": prob, "cooldownDays": cooldown, "urgency": urgency,
-          "headline": headline, "notificationText": text, "modifiers": list(modifiers), "immediateEffects": [], "message": m}
+          "headline": headline, "notificationText": text, "modifiers": list(modifiers), "immediateEffects": list(immediate), "message": m}
     if conditions: ev["conditions"] = list(conditions)
     if scope_cooldown: ev["scopeCooldownDays"] = scope_cooldown
     EVENTS.append(ev)
@@ -483,6 +483,37 @@ simple("ski_no_snow", "ECONOMY", "Stations de ski sans neige : la montagne en d�
   opt("cannons", "Financer des canons à neige", "Coût : 200 M€ ; écologistes furieux", [E("budget.oneOff", 0.2), E(G + "rural", 0.004), E("quality.environment", -0.005)], "PARTIAL"),
   opt("emergency", "Aide d'urgence aux saisonniers", "Coût : 100 M€", [E("budget.oneOff", 0.1), E(G + "rural", 0.002)], "NEUTRAL")],
  ministry="economy", modifiers=[mod("season.month", 1, 12, 2.5, 2.0)])
+
+# ============================ Menaces hybrides (lancées par l'IA étrangère) ============================
+event("hybrid_cyber", "SECURITY", "Cyberattaque massive : nos services soupçonnent {foreignThe}", "Hôpitaux, collectivités et réseau électrique visés.",
+ 0.0, 60, "URGENT",
+ ["Cyberattaque d'origine étatique", "Attaque informatique contre la France", "Nos réseaux sous le feu"],
+ ["Une cyberattaque coordonnée a frappé plusieurs hôpitaux, des préfectures et le gestionnaire du réseau électrique.",
+  "Les traces techniques mènent à des groupes liés aux services de {foreignThe}.",
+  "Des données administratives ont été chiffrées et une rançon est exigée."],
+ ["L'attribution n'est jamais certaine à 100 %.", "Une riposte pourrait provoquer une escalade, l'inaction serait un aveu de faiblesse."],
+ ["Je vous propose une riposte cyber, une attribution publique avec sanctions, ou un renforcement discret de nos défenses."],
+ "MINISTER", "defend", [
+  opt("riposte", "Riposte cyber contre leurs infrastructures", "Fermeté ; escalade possible", [E("operation.cyber", 1), E("country.DISAGREEMENT", -0.04), E("opinion.national", 0.003)], "REFUSED"),
+  opt("sanction", "Attribution publique et sanctions", "Coût diplomatique ; soutien européen", [E("operation.sanction", 1), E("country.DISAGREEMENT", -0.05), E("alliance.EU.NEGOTIATION_GOODWILL", 0.01)], "PARTIAL"),
+  opt("defend", "Renforcer discrètement nos défenses", "Coût : 600 M€", [E("budget.oneOff", 0.6), E("quality.security", 0.01)], "ACCEPTED")],
+ ministry="interior", scope="FOREIGN_COUNTRY",
+ immediate=[E("economy.output", -0.0015, days=20), E("economy.businessConfidence", -0.01), E("quality.health", -0.005)])
+
+event("hybrid_sabotage", "SECURITY", "Sabotage : câbles et voies ferrées coupés, {foreignThe} soupçonné", "Des actes coordonnés paralysent une partie du pays.",
+ 0.0, 60, "URGENT",
+ ["Vague de sabotages", "Actes de sabotage coordonnés", "Infrastructures visées"],
+ ["Plusieurs câbles de fibre optique et des installations ferroviaires ont été sabotés la même nuit.",
+  "Les enquêteurs ont identifié des agents liés à {foreignThe}.",
+  "Le trafic des trains à grande vitesse est fortement perturbé."],
+ ["Ces attaques visent à tester notre résilience.", "L'opinion réclame une réponse ferme."],
+ ["Je vous propose d'expulser leurs diplomates et de sanctionner, de protéger nos infrastructures, ou d'enquêter discrètement."],
+ "MINISTER", "protect", [
+  opt("expel", "Expulser leurs diplomates et sanctionner", "Fermeté ; représailles probables", [E("operation.sanction", 1), E("country.DISAGREEMENT", -0.06), E("opinion.national", 0.004)], "REFUSED"),
+  opt("protect", "Plan de protection des infrastructures", "Coût : 1 Md€", [E("budget.oneOff", 1.0), E("quality.security", 0.012), E("quality.transport", 0.005)], "ACCEPTED"),
+  opt("investigate", "Enquêter discrètement", "Aucun coût ; risque de récidive", [E("opinion.national", -0.003)], "PARTIAL")],
+ ministry="interior", scope="FOREIGN_COUNTRY",
+ immediate=[E("economy.output", -0.001, days=15), E("quality.transport", -0.008), E("economy.consumerConfidence", -0.005)])
 
 json.dump({"events": EVENTS}, open(os.path.join(ROOT, "events", "extra.json"), "w"), ensure_ascii=False, indent=1)
 json.dump({"templates": TEMPLATES}, open(os.path.join(ROOT, "dialogue", "fr", "extra.json"), "w"), ensure_ascii=False, indent=1)
