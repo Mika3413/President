@@ -472,6 +472,48 @@
    ]
   },
   {
+   "id": "fracking",
+   "category": "societe",
+   "title": "Gaz de schiste",
+   "description": "La loi de 2011 interdit la fracturation hydraulique.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "banned",
+     "label": "Fracturation interdite",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0,
+     "flags": {
+      "shaleBan": 0
+     }
+    },
+    {
+     "id": "allowed",
+     "label": "Exploration et exploitation autorisées",
+     "description": "Le gouvernement peut ensuite autoriser des forages (panneau « Commerce »).",
+     "difficulty": 0.1,
+     "effects": [
+      {
+       "target": "opinion.group.young",
+       "amount": -0.012
+      },
+      {
+       "target": "opinion.group.rural",
+       "amount": -0.006
+      },
+      {
+       "target": "economy.businessConfidence",
+       "amount": 0.004
+      }
+     ],
+     "flags": {
+      "shaleBan": 1
+     },
+     "appeal": -0.1
+    }
+   ]
+  },
+  {
    "id": "death_penalty",
    "category": "justice",
    "title": "Peine de mort",

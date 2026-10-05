@@ -24,6 +24,7 @@ class MenuPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel
         Entry("⚒", "Société civile", "Syndicats, patronat, cultes, lobbies, associations.", Theme.catElections, PanelId.ACTORS) { session.actors.rows().count { it.satisfaction < 0.3 } },
         Entry("⌂", "Gouvernement", "Ministres, Assemblée, Sénat, réformes.", Theme.catGovernment, PanelId.GOVERNMENT),
         Entry("€", "Économie", "Impôts, dépenses, services publics.", Theme.catEconomy, PanelId.ECONOMY),
+        Entry("⛁", "Commerce et matières premières", "Pétrole, gaz, blé, contrats, exportations, FMI, OMC.", Theme.catEconomy, PanelId.TRADE) { session.state.trade.tenders.size },
         Entry("☎", "Diplomatie", "Accords, sanctions, ultimatums.", Theme.catDiplomacy, PanelId.DIPLOMACY),
         Entry("✎", "Académie", "Apprendre à jouer en profondeur : 8 modules guidés.", Theme.catHelp, PanelId.ACADEMY),
         Entry("◷", "Agenda", "Votre semaine : déplacements, sommets, visites, entretiens.", Theme.catStats, PanelId.AGENDA),

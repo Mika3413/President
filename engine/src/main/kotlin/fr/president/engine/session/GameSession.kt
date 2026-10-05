@@ -48,6 +48,7 @@ class GameSession(
     val actors = fr.president.engine.politics.ActorService(context)
     val fiscal = fr.president.engine.economy.FiscalService(context)
     val monetary = fr.president.engine.economy.MonetaryService(context)
+    val trade = fr.president.engine.economy.TradeService(context)
     val characters = CharacterReadout(context)
     val military = MilitaryCommands(context)
     val militaryReadouts = fr.president.engine.readout.MilitaryReadouts(context)

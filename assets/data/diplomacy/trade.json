@@ -1,0 +1,368 @@
+{
+ "_doc": "Matières premières, exportations, institutions. Généré par tools/datagen/trade_fr.py.",
+ "commodities": [
+  {
+   "id": "oil",
+   "label": "Pétrole (Brent)",
+   "unit": "$/baril",
+   "basePrice": 72,
+   "volatility": 0.07,
+   "energyWeight": 0.35,
+   "inflationWeight": 0.02,
+   "sectors": {
+    "transport": -0.25,
+    "energy": 0.1,
+    "tourism": -0.1,
+    "industry": -0.05
+   },
+   "producers": {
+    "SAU": 0.35,
+    "RUS": 0.25,
+    "USA": 0.25,
+    "NOR": 0.1,
+    "CAN": 0.05
+   },
+   "reserveDays": 90,
+   "refillCostBillions": 2.4
+  },
+  {
+   "id": "gas",
+   "label": "Gaz naturel (TTF)",
+   "unit": "€/MWh",
+   "basePrice": 35,
+   "volatility": 0.12,
+   "energyWeight": 0.25,
+   "inflationWeight": 0.015,
+   "sectors": {
+    "industry": -0.25,
+    "agrifood": -0.08,
+    "energy": 0.05
+   },
+   "producers": {
+    "NOR": 0.35,
+    "USA": 0.3,
+    "RUS": 0.15,
+    "DZA": 0.15
+   },
+   "reserveDays": 60,
+   "refillCostBillions": 2.5
+  },
+  {
+   "id": "uranium",
+   "label": "Uranium",
+   "unit": "$/livre",
+   "basePrice": 80,
+   "volatility": 0.05,
+   "energyWeight": 0.08,
+   "inflationWeight": 0.0,
+   "sectors": {
+    "energy": -0.1
+   },
+   "producers": {
+    "CAN": 0.35,
+    "RUS": 0.25,
+    "USA": 0.1
+   }
+  },
+  {
+   "id": "wheat",
+   "label": "Blé",
+   "unit": "€/tonne",
+   "basePrice": 220,
+   "volatility": 0.06,
+   "energyWeight": 0.0,
+   "inflationWeight": 0.01,
+   "sectors": {
+    "agrifood": 0.15
+   },
+   "producers": {
+    "RUS": 0.25,
+    "USA": 0.2,
+    "UKR": 0.15,
+    "CAN": 0.15,
+    "IND": 0.1
+   }
+  },
+  {
+   "id": "copper",
+   "label": "Cuivre",
+   "unit": "$/tonne",
+   "basePrice": 9500,
+   "volatility": 0.05,
+   "energyWeight": 0.0,
+   "inflationWeight": 0.003,
+   "sectors": {
+    "industry": -0.08,
+    "construction": -0.06,
+    "tech": -0.04
+   },
+   "producers": {
+    "CHN": 0.3,
+    "USA": 0.1,
+    "RUS": 0.1
+   }
+  },
+  {
+   "id": "lithium",
+   "label": "Lithium",
+   "unit": "$/tonne",
+   "basePrice": 12000,
+   "volatility": 0.09,
+   "energyWeight": 0.0,
+   "inflationWeight": 0.0,
+   "sectors": {
+    "industry": -0.08,
+    "tech": -0.04
+   },
+   "producers": {
+    "CHN": 0.6,
+    "BRA": 0.1
+   }
+  },
+  {
+   "id": "gold",
+   "label": "Or",
+   "unit": "$/once",
+   "basePrice": 2600,
+   "volatility": 0.04,
+   "energyWeight": 0.0,
+   "inflationWeight": 0.0,
+   "sectors": {
+    "banking": 0.03,
+    "luxury": -0.03
+   },
+   "producers": {
+    "CHN": 0.2,
+    "RUS": 0.15,
+    "USA": 0.1,
+    "CAN": 0.1
+   }
+  }
+ ],
+ "eventShocks": {
+  "gas_price_spike": {
+   "gas": 0.5
+  },
+  "fuel_shortage": {
+   "oil": 0.15
+  },
+  "fuel_blockade": {
+   "oil": 0.08
+  },
+  "drought": {
+   "wheat": 0.2
+  },
+  "drought_abroad": {
+   "wheat": 0.15
+  },
+  "cold_wave": {
+   "gas": 0.2
+  },
+  "refinery_accident": {
+   "oil": 0.05
+  },
+  "nuclear_incident": {
+   "uranium": 0.05
+  },
+  "trade_tariffs": {
+   "copper": 0.05
+  }
+ },
+ "contracts": [
+  {
+   "country": "NOR",
+   "commodity": "gas",
+   "discount": 0.1,
+   "years": 3,
+   "minRelation": 0.45
+  },
+  {
+   "country": "USA",
+   "commodity": "gas",
+   "discount": 0.05,
+   "years": 3,
+   "minRelation": 0.45
+  },
+  {
+   "country": "DZA",
+   "commodity": "gas",
+   "discount": 0.12,
+   "years": 3,
+   "minRelation": 0.4
+  },
+  {
+   "country": "SAU",
+   "commodity": "oil",
+   "discount": 0.06,
+   "years": 3,
+   "minRelation": 0.4
+  },
+  {
+   "country": "NOR",
+   "commodity": "oil",
+   "discount": 0.04,
+   "years": 3,
+   "minRelation": 0.45
+  },
+  {
+   "country": "CAN",
+   "commodity": "uranium",
+   "discount": 0.1,
+   "years": 5,
+   "minRelation": 0.45
+  },
+  {
+   "country": "BRA",
+   "commodity": "lithium",
+   "discount": 0.1,
+   "years": 3,
+   "minRelation": 0.4
+  },
+  {
+   "country": "CAN",
+   "commodity": "copper",
+   "discount": 0.05,
+   "years": 3,
+   "minRelation": 0.45
+  }
+ ],
+ "products": [
+  {
+   "id": "airliners",
+   "label": "Avions de ligne",
+   "sector": "aerospace",
+   "valueBillions": 12.0,
+   "delayDays": 45,
+   "clients": [
+    "USA",
+    "CHN",
+    "IND",
+    "SAU",
+    "TUR",
+    "JPN",
+    "EGY",
+    "BRA"
+   ]
+  },
+  {
+   "id": "nuclear_plant",
+   "label": "Centrales nucléaires",
+   "sector": "energy",
+   "valueBillions": 20.0,
+   "delayDays": 120,
+   "clients": [
+    "IND",
+    "POL",
+    "SAU",
+    "EGY",
+    "GBR",
+    "NLD",
+    "SWE"
+   ]
+  },
+  {
+   "id": "high_speed_rail",
+   "label": "Trains à grande vitesse",
+   "sector": "industry",
+   "valueBillions": 6.0,
+   "delayDays": 90,
+   "clients": [
+    "USA",
+    "CAN",
+    "IND",
+    "MAR",
+    "EGY",
+    "SAU",
+    "BRA"
+   ]
+  },
+  {
+   "id": "satellites",
+   "label": "Satellites et lanceurs",
+   "sector": "aerospace",
+   "valueBillions": 2.0,
+   "delayDays": 60,
+   "clients": [
+    "IND",
+    "BRA",
+    "SAU",
+    "EGY",
+    "JPN",
+    "CAN"
+   ]
+  },
+  {
+   "id": "wheat",
+   "label": "Céréales",
+   "sector": "agrifood",
+   "valueBillions": 1.5,
+   "delayDays": 30,
+   "clients": [
+    "DZA",
+    "MAR",
+    "EGY",
+    "SAU",
+    "TUN"
+   ]
+  },
+  {
+   "id": "wine",
+   "label": "Vins et spiritueux",
+   "sector": "agrifood",
+   "valueBillions": 1.0,
+   "delayDays": 30,
+   "clients": [
+    "USA",
+    "CHN",
+    "GBR",
+    "JPN",
+    "CAN",
+    "BRA"
+   ]
+  },
+  {
+   "id": "luxury",
+   "label": "Luxe et cosmétiques",
+   "sector": "luxury",
+   "valueBillions": 2.5,
+   "delayDays": 30,
+   "clients": [
+    "CHN",
+    "USA",
+    "JPN",
+    "SAU",
+    "IND",
+    "GBR"
+   ]
+  },
+  {
+   "id": "pharma",
+   "label": "Médicaments et vaccins",
+   "sector": "health",
+   "valueBillions": 1.5,
+   "delayDays": 45,
+   "clients": [
+    "EGY",
+    "MAR",
+    "TUN",
+    "DZA",
+    "BRA",
+    "IND"
+   ]
+  },
+  {
+   "id": "water_services",
+   "label": "Eau et services urbains",
+   "sector": "construction",
+   "valueBillions": 1.0,
+   "delayDays": 60,
+   "clients": [
+    "SAU",
+    "MAR",
+    "EGY",
+    "IND",
+    "CHN"
+   ]
+  }
+ ]
+}

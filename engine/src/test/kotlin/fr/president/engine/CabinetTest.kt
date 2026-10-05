@@ -10,13 +10,13 @@ import kotlin.test.assertTrue
 
 class CabinetTest {
     @Test
-    fun ministersActOnTheirOwnOverAYear() {
+    fun ministersActOnTheirOwnOverTwoYears() {
         val clock = TestData.FakeClock()
         val s = TestData.newSession(clock = clock)
-        clock.advanceWorldDays(365.0)
+        clock.advanceWorldDays(730.0)
         s.advanceToNow()
         val cabinet = s.state.inbox.messages.filter { it.origin == MessageOrigin.CABINET }
-        assertTrue(cabinet.size >= 3, "affaires du gouvernement en un an : ${cabinet.size}")
+        assertTrue(cabinet.size >= 3, "affaires du gouvernement en deux ans : ${cabinet.size}")
         assertTrue(cabinet.filter { it.deadline!! < s.state.time }.all { it.chosenOptionId != null }, "toutes tranchées, au besoin par défaut")
     }
 

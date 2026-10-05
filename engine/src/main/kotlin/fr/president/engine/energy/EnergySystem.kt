@@ -29,7 +29,7 @@ class EnergySystem : SimulationSystem {
         val priceTarget = (1.0 + params.energyPriceMarginSensitivity * (referenceMargin - state.margin))
             .coerceIn(MIN_PRICE_INDEX, MAX_PRICE_INDEX)
         state.priceIndex = approach(state.priceIndex, priceTarget, PRICE_ADJUSTMENT)
-        economy.energyPriceIndex = state.priceIndex
+        economy.energyPriceIndex = state.priceIndex * ctx.state.trade.energyFactor
     }
 
     companion object {

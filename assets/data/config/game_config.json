@@ -115,6 +115,7 @@
     "eventResponses": "events/responses.json",
     "eventFrequency": "config/event_frequency.json",
     "eu": "diplomacy/eu.json",
-    "scenarios": "config/scenarios.json"
+    "scenarios": "config/scenarios.json",
+    "trade": "diplomacy/trade.json"
   }
 }

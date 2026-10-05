@@ -106,6 +106,12 @@ law("societe", "hunting", "Chasse", "La chasse est autorisée tous les jours de 
         [e(G + "urban", 0.006), e(G + "rural", -0.014)], appeal=0.08),
 ])
 
+law("societe", "fracking", "Gaz de schiste", "La loi de 2011 interdit la fracturation hydraulique.", [
+    opt("banned", "Fracturation interdite", "La situation actuelle.", flags={"shaleBan": 0}),
+    opt("allowed", "Exploration et exploitation autorisées", "Le gouvernement peut ensuite autoriser des forages (panneau « Commerce »).", 0.1,
+        [e(G + "young", -0.012), e(G + "rural", -0.006), e("economy.businessConfidence", 0.004)], appeal=-0.1, flags={"shaleBan": 1}),
+])
+
 # --- Justice et sécurité -------------------------------------------------------------------------
 law("justice", "death_penalty", "Peine de mort", "Abolie en 1981, interdite par la Constitution et les traités européens.", [
     opt("abolished", "Abolie", "La situation actuelle."),

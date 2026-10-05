@@ -40,6 +40,7 @@ object Systems {
         ForeignAiSystem(),
         fr.president.engine.ai.WorldPoliticsSystem(),
         AgreementSystem(),
+        fr.president.engine.economy.TradeSystem(),
         EnergySystem(),
         EconomySystem(),
         fr.president.engine.economy.SectorSystem(),

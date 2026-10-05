@@ -54,6 +54,8 @@ data class GlobalDataFiles(
     val eu: String? = null,
     /** Scénarios de départ (facultatif). */
     val scenarios: String? = null,
+    /** Matières premières, exportations et institutions économiques (facultatif). */
+    val trade: String? = null,
 )
 
 /** Multiplicateurs de fréquence : l'outil d'équilibrage du rythme des événements. */

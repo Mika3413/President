@@ -59,6 +59,7 @@ class GameDatabase(
     val frequency: EventFrequency? = null,
     val eu: fr.president.engine.diplomacy.EuFile? = null,
     val scenarios: List<fr.president.engine.setup.ScenarioDef> = emptyList(),
+    val trade: fr.president.engine.economy.TradeFile? = null,
 ) {
     val alliances: List<AllianceDef> get() = snapshot.alliances
     fun unitType(id: String): UnitTypeDef = unitTypes[id] ?: error("Type d'unité inconnu : $id")
