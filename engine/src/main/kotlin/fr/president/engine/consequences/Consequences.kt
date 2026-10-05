@@ -117,7 +117,8 @@ class ConsequenceService(private val ctx: SimulationContext) {
 
     /** Conséquences proches du seuil (alerte avant qu'elles ne frappent). */
     fun nearThreshold(margin: Double = 0.5): List<Pair<ConsequenceRule, Double>> = file?.rules.orEmpty()
-        .filter { state.current[it.id]?.active != true }
+        // Les règles tout-ou-rien (article 16) n'ont pas d'« approche » du seuil.
+        .filter { state.current[it.id]?.active != true && it.maxSeverity > 1.0 }
         .mapNotNull { r ->
             val v = resolver.resolve(r.variable) ?: return@mapNotNull null
             val gap = when {

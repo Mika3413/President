@@ -39,7 +39,7 @@ class GuidedTour(private val ui: Ui, private val session: GameSession, private v
     private val steps = listOf(
         Step("1/10 · Vos chiffres", "En haut, vos chiffres clés. ${Theme.goodName.replaceFirstChar { it.uppercase() }} = bien, orange = à surveiller, ${Theme.badName} = danger. Touchez votre popularité pour voir sa courbe et ses causes.",
             "chip.approval") { host.openPanel == PanelId.STATS },
-        Step("2/10 · Décider", "Le cœur du jeu : touchez « ★ Décider » en bas pour voir les 56 décisions nationales.",
+        Step("2/10 · Décider", "Le cœur du jeu : touchez « ★ Décider » en bas pour voir les 65 décisions nationales.",
             "bar.decide") { host.openPanel == PanelId.DECISIONS },
         Step("3/10 · Prendre une décision", "Choisissez une rubrique, lisez les effets (${Theme.goodName} = gain, ${Theme.badName} = perte) et la prévision, puis touchez « ▶ Lancer ».",
             null, "Décision") { it.newJournal("Décision") },
