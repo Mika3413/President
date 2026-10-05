@@ -73,6 +73,8 @@ class MainScreen(
     private val tour by lazy { fr.president.game.ui.hud.GuidedTour(ui, session, this) }
     private var lod = Lod.FRANCE
     private var sinceRefresh = 0f
+    /** Rafraîchissement automatique (et non suite à une action du joueur). */
+    private var periodic = false
 
     private val topBar = TopBar(ui, session) { panel, arg -> open(panel, arg) }
     private val actionBar = ActionBar(ui, session) { open(it) }
@@ -106,6 +108,7 @@ class MainScreen(
         PanelId.PRESS to fr.president.game.ui.panels.PressPanel(ui, this) { closePanel() },
         PanelId.CRISIS to fr.president.game.ui.panels.CrisisPanel(ui, this) { closePanel() },
         PanelId.EU to fr.president.game.ui.panels.EuPanel(ui, this) { closePanel() },
+        PanelId.AGENDA to fr.president.game.ui.panels.AgendaPanel(ui, this) { closePanel() },
         PanelId.GOVERNMENT to GovernmentPanel(ui, this) { closePanel() },
         PanelId.ECONOMY to EconomyPanel(ui, this) { closePanel() },
         PanelId.DIPLOMACY to diplomacyPanel,
@@ -118,6 +121,12 @@ class MainScreen(
     )
 
     private var cameraReady = false
+    /** Bandeaux et consigne du tutoriel : en haut, ou en bas quand un panneau occupe l'écran du téléphone. */
+    private lateinit var overlayTable: Table
+    private var overlayAtBottom = false
+    private val layers by lazy { LayerBar(ui, layer) { layer = it } }
+    /** Accès direct à l'agenda de la semaine, à côté du choix de la carte. */
+    private val agendaButton by lazy { ui.colorButton("◷", fr.president.game.ui.Theme.catStats) { open(PanelId.AGENDA) }.also { it.name = "agenda" } }
 
     init {
         buildLayout()
@@ -128,9 +137,12 @@ class MainScreen(
     private fun buildLayout() {
         val root = Table().apply { setFillParent(true) }
         root.add(topBar.root).growX().colspan(2).row()
-        val layers = LayerBar(ui, layer) { layer = it }
+        layers.topOffset = { topBar.root.height + layers.root.height + 10f }
         val left = Table()
-        left.add(layers.root).top().left().growX().row()
+        val mapRow = Table()
+        mapRow.add(layers.root).growX()
+        mapRow.add(agendaButton).padLeft(4f)
+        left.add(mapRow).top().left().growX().row()
         left.add(advisor.root).top().left().growX().padTop(6f).row()
         left.add().growY().row()
         left.add(legend.root).left().bottom().padTop(6f)
@@ -148,7 +160,7 @@ class MainScreen(
             .height(dyn { (stage.height - topBar.root.height - actions.height - PANEL_MARGINS).coerceAtLeast(MIN_PANEL_HEIGHT) })
             .padTop(dyn { topBar.root.height + 6f }).padRight(6f)
         stage.addActor(panelLayer)
-        val overlayTable = Table().apply { setFillParent(true); top().padTop(TOAST_TOP) }
+        overlayTable = Table().apply { setFillParent(true); top().padTop(TOAST_TOP) }
         overlayTable.add(tour.card).padBottom(6f).row()
         overlayTable.add(targetingBanner).padBottom(6f).row()
         targetingBanner.isVisible = false
@@ -159,6 +171,8 @@ class MainScreen(
         stage.addActor(tour.highlight)
         stage.addActor(quickOrders.root)
         stage.addActor(hints.bubble)
+        // La grille des couches passe au-dessus de tout (tutoriel compris) quand elle est ouverte.
+        stage.addActor(layers.popup)
         stage.addListener(object : com.badlogic.gdx.scenes.scene2d.InputListener() {
             override fun keyDown(event: com.badlogic.gdx.scenes.scene2d.InputEvent?, keycode: Int): Boolean = onBack(keycode)
         })
@@ -179,6 +193,7 @@ class MainScreen(
     private fun onBack(keycode: Int): Boolean {
         if (keycode != com.badlogic.gdx.Input.Keys.BACK && keycode != com.badlogic.gdx.Input.Keys.ESCAPE) return false
         when {
+            layers.isOpen -> layers.close()
             quickOrders.root.isVisible -> quickOrders.hide()
             briefing.root.isVisible -> briefing.hide()
             targeting != null -> stopTargeting()
@@ -207,7 +222,7 @@ class MainScreen(
         mapRenderer.render(camera, session.state, layer, lod, selection)
         overlay.render(camera, session, layer, lod, delta, selectedMapId())
         sinceRefresh += delta
-        if (sinceRefresh >= REFRESH_SECONDS && !Gdx.input.isTouched) refresh()
+        if (sinceRefresh >= REFRESH_SECONDS && !Gdx.input.isTouched) { periodic = true; refresh(); periodic = false }
         tour.update()
         stage.act(delta)
         stage.draw()
@@ -294,6 +309,7 @@ class MainScreen(
         val changed = currentPanel !== p
         currentPanel = p
         openPanel = panel
+        placeOverlay()
         panelSlot.actor = p.root
         p.refresh()
         // Apparition en fondu quand on change de panneau (pas lors d'un simple rafraîchissement).
@@ -309,6 +325,7 @@ class MainScreen(
         openPanel = null
         panelSlot.actor = null
         selection = null
+        placeOverlay()
     }
 
     override fun focusOn(mapId: String) {
@@ -351,8 +368,10 @@ class MainScreen(
         topBar.refresh()
         actionBar.refresh()
         advisor.refresh()
+        placeOverlay()
+        session.agenda.summary().let { a -> agendaButton.setText("◷ ${fmtDays(a.usedDays)}/${fmtDays(a.capacity)} j") }
         fr.president.game.ui.MusicPlayer.setMood(mood())
-        currentPanel?.refresh()
+        currentPanel?.let { if (periodic) it.refreshIfIdle() else it.refresh() }
     }
 
     /** Bilan affiché au retour du joueur après une absence. */
@@ -391,8 +410,30 @@ class MainScreen(
         topBar.compact = narrow
         actionBar.setCompact(narrow)
         advisor.compact = narrow
+        layers.compact = narrow
         refresh()
     }
+
+    /** Sur téléphone, un panneau ouvert prend tout l'écran : la consigne du tutoriel passe en bas pour ne rien cacher. */
+    private fun placeOverlay() {
+        val bottom = currentPanel != null && stage.width < NARROW
+        if (bottom == overlayAtBottom) return
+        overlayAtBottom = bottom
+        overlayTable.clearChildren()
+        if (bottom) {
+            overlayTable.bottom().padTop(0f).padBottom(BOTTOM_OVERLAY)
+            overlayTable.add(toasts.root).padBottom(6f).row()
+            overlayTable.add(targetingBanner).padBottom(6f).row()
+            overlayTable.add(tour.card)
+        } else {
+            overlayTable.top().padBottom(0f).padTop(TOAST_TOP)
+            overlayTable.add(tour.card).padBottom(6f).row()
+            overlayTable.add(targetingBanner).padBottom(6f).row()
+            overlayTable.add(toasts.root)
+        }
+    }
+
+    private fun fmtDays(v: Double) = if (v == Math.floor(v)) v.toInt().toString() else String.format(java.util.Locale.FRENCH, "%.1f", v)
 
     /** Ambiance musicale : tendue en guerre, en crise grave ou quand le pays gronde. */
     private fun mood(): fr.president.game.ui.MusicPlayer.Mood {
@@ -411,6 +452,7 @@ class MainScreen(
     }
 
     private companion object {
+        const val BOTTOM_OVERLAY = 90f
         const val TENSE_APPROVAL = 0.3
         const val PANEL_FADE_SECONDS = 0.18f
         const val FRANCE_LON = 2.4

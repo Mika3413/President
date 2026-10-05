@@ -37,7 +37,7 @@ class AgendaState(val entries: MutableList<AgendaEntry> = mutableListOf())
  * visite en France ; une crise grave qui éclate en son absence lui est reprochée.
  */
 class AgendaService(private val ctx: SimulationContext) {
-    private val rules get() = ctx.playerData.agenda ?: AgendaRules()
+    val rules: AgendaRules get() = ctx.playerData.agenda ?: AgendaRules()
     private val state get() = ctx.state.agenda
 
     data class Summary(val usedDays: Double, val capacity: Double, val current: AgendaEntry?, val upcoming: List<AgendaEntry>, val recent: List<AgendaEntry>)

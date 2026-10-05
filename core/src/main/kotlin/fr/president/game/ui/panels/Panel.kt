@@ -27,6 +27,30 @@ abstract class Panel(protected val ui: Ui, private val onClose: () -> Unit) {
         root.add(ui.separator()).growX().height(1f).padTop(4f).padBottom(6f).row()
         root.add(scroll).grow()
         content.top().left().defaults().left().growX()
+        // Toute interaction avec le défilement repousse la mise à jour automatique du contenu.
+        scroll.addCaptureListener(object : com.badlogic.gdx.scenes.scene2d.InputListener() {
+            override fun touchDown(event: com.badlogic.gdx.scenes.scene2d.InputEvent?, x: Float, y: Float, pointer: Int, button: Int): Boolean {
+                lastInteraction = System.currentTimeMillis(); return false
+            }
+            override fun touchDragged(event: com.badlogic.gdx.scenes.scene2d.InputEvent?, x: Float, y: Float, pointer: Int) {
+                lastInteraction = System.currentTimeMillis()
+            }
+            override fun scrolled(event: com.badlogic.gdx.scenes.scene2d.InputEvent?, x: Float, y: Float, amountX: Float, amountY: Float): Boolean {
+                lastInteraction = System.currentTimeMillis(); return false
+            }
+        })
+    }
+
+    private var lastInteraction = 0L
+
+    /** Le joueur fait défiler ou vient de le faire : ne pas reconstruire le contenu sous son doigt. */
+    val busy: Boolean
+        get() = scroll.isDragging || scroll.isFlinging || scroll.isPanning ||
+            System.currentTimeMillis() - lastInteraction < IDLE_MILLIS
+
+    /** Mise à jour périodique : seulement si le joueur ne fait pas défiler le panneau. */
+    fun refreshIfIdle() {
+        if (!busy) refresh()
     }
 
     abstract val title: String
@@ -39,8 +63,12 @@ abstract class Panel(protected val ui: Ui, private val onClose: () -> Unit) {
         val scrollY = scroll.scrollY
         content.clearChildren()
         build(content)
+        // Deux passes : les textes qui passent à la ligne ne connaissent leur hauteur qu'après
+        // la première. Sans cela, la hauteur est sous-estimée et la position remonte.
+        content.invalidateHierarchy()
+        scroll.validate()
         scroll.layout()
-        scroll.scrollY = scrollY
+        scroll.scrollY = scrollY.coerceIn(0f, scroll.maxY.coerceAtLeast(0f))
         scroll.updateVisualScroll()
     }
 
@@ -50,5 +78,6 @@ abstract class Panel(protected val ui: Ui, private val onClose: () -> Unit) {
     protected companion object {
         const val PAD = 12f
         const val GAP = 8f
+        const val IDLE_MILLIS = 4000L
     }
 }
