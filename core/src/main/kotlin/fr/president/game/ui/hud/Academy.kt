@@ -102,7 +102,23 @@ object AcademyCourse {
             Step("Donnez-lui un ordre : déplacer, puis touchez la zone visée sur la carte. L'aperçu indique la durée du trajet et le rapport de forces.") { ordered },
             Step("En guerre : attaque, soutien aérien, débarquement, parachutage, frappes et cyberattaques. Le ravitaillement et le moral comptent ; les flèches et les épées sur la carte montrent les mouvements et les batailles. Module terminé !"),
         )),
-        Module("opinion", "▤", "8 · Opinion, presse et élections", "Gagner la confiance et la réélection.", listOf(
+        Module("puissance", "◎", "8 · Puissance : commerce, défense, renseignement, ONU", "Peser dans le monde avec tous les leviers d'un État.", listOf(
+            Step("Ouvrez « Commerce et matières premières » depuis « Plus ». Les cours du pétrole, du gaz ou du blé font votre prix de l'énergie et votre inflation.", null, PanelId.TRADE) { panel(PanelId.TRADE) },
+            Step("Contrats à long terme et stocks stratégiques amortissent une flambée ; l'onglet « Exportations » vous fait vendre avions, centrales ou TGV face à la concurrence ; le FMI, l'OMC et la Banque mondiale sont dans le troisième onglet."),
+            Step("Ouvrez « Défense » : capacités des armées, catalogue d'armement, ventes d'armes, bases à l'étranger et dissuasion nucléaire.", null, PanelId.DEFENSE) { panel(PanelId.DEFENSE) },
+            Step("Commandez un équipement : il livre une unité ou renforce une capacité (défense aérienne, frappe, cyber...).", null, PanelId.DEFENSE) { journal("Défense") },
+            Step("Ouvrez « Renseignement » : opérations de la DGSE pays par pays, groupes armés et terroristes, contre-espionnage. Un échec peut éclater au grand jour.", null, PanelId.INTEL) { panel(PanelId.INTEL) },
+            Step("Ouvrez « ONU » : 15 membres, 9 voix et aucun veto pour adopter une résolution. Votez, opposez le veto de la France, ou déposez votre propre texte et convainquez les indécis.", null, PanelId.UN) { panel(PanelId.UN) },
+            Step("Retenez : l'économie, l'armée, les services secrets et la diplomatie se répondent. Un contrat d'armement soigne une relation ; une opération ratée la détruit. Module terminé !"),
+        )),
+        Module("societe", "⚑", "9 · Lois, société civile et la rue", "Changer la société sans mettre le pays dans la rue.", listOf(
+            Step("Ouvrez « Lois et Constitution » : fin de vie, cannabis, durée du travail, libertés, mandat présidentiel... Chaque changement passe au Parlement ou par référendum.", null, PanelId.LAWS) { panel(PanelId.LAWS) },
+            Step("Ouvrez « Société civile » : syndicats, patronat, cultes, lobbies. Un acteur influent en colère mobilise.", null, PanelId.ACTORS) { panel(PanelId.ACTORS) },
+            Step("Ouvrez « La rue et l'armée ». Une réforme qui fâche fait descendre les Français dans la rue : manifestations, blocages, émeutes, insurrection.", null, PanelId.UNREST) { panel(PanelId.UNREST) },
+            Step("Face à un mouvement : parler aux Français, recevoir les organisateurs, céder, encadrer les cortèges ou réprimer (au risque d'une bavure). Une insurrection qui dure peut vous renverser."),
+            Step("L'armée aussi a son humeur : budget rogné, invasion ou chaos la rendent moins loyale ; sous 50 %, des officiers complotent. La DGSI peut vous prévenir. Module terminé !"),
+        )),
+        Module("opinion", "▤", "10 · Opinion, presse et élections", "Gagner la confiance et la réélection.", listOf(
             Step("Ouvrez « Presse » depuis « Plus » : les unes du jour, le climat médiatique et les sondages.", null, PanelId.PRESS) { panel(PanelId.PRESS) },
             Step("Ouvrez « Élections » : intentions de vote au premier et au second tour, et vos promesses de campagne.", null, PanelId.ELECTIONS) { panel(PanelId.ELECTIONS) },
             Step("Les promesses tenues ou rompues pèsent sur le vote ; chaque groupe social juge votre bilan sur ce qui le touche."),

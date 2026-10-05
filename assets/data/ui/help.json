@@ -184,6 +184,54 @@
   {
    "term": "Bilan historique",
    "definition": "La note sur 20 que l'Histoire donnerait à votre présidence : opinion, emploi, croissance, dette, déficit, réformes, crises, Europe, guerres, élections, affaires. Onglet « Héritage » du Bilan."
+  },
+  {
+   "term": "BCE",
+   "definition": "Banque centrale européenne : elle fixe les taux de la zone euro d'après l'inflation et la croissance. La France ne la contrôle pas ; elle peut seulement l'interpeller."
+  },
+  {
+   "term": "Matières premières",
+   "definition": "Pétrole, gaz, uranium, blé, cuivre, lithium, or : leurs cours mondiaux font le prix de l'énergie et une partie de l'inflation. Une guerre ou des sanctions chez un grand producteur les font flamber."
+  },
+  {
+   "term": "Stocks stratégiques",
+   "definition": "Réserves de pétrole et de gaz (90 et 60 jours au départ) que l'État peut débloquer pour amortir une flambée, puis racheter quand les cours baissent."
+  },
+  {
+   "term": "FMI",
+   "definition": "Fonds monétaire international : il publie chaque année un rapport sur la France et peut prêter à taux réduit en cas de crise de la dette, contre une cure d'austérité."
+  },
+  {
+   "term": "OMC",
+   "definition": "Organisation mondiale du commerce : la France peut y contester des sanctions ou des pratiques déloyales ; la décision tombe en six mois environ."
+  },
+  {
+   "term": "DGSE / DGSI",
+   "definition": "Services de renseignement extérieur (espionnage, opérations clandestines, neutralisations) et intérieur (contre-espionnage, lutte antiterroriste, infiltration)."
+  },
+  {
+   "term": "Coup d'État",
+   "definition": "Renversement du pouvoir par la force. La DGSE peut en soutenir un à l'étranger ; chez vous, une armée déloyale peut en tenter un."
+  },
+  {
+   "term": "Conseil de sécurité",
+   "definition": "Organe de l'ONU de 15 membres, dont 5 permanents (États-Unis, Royaume-Uni, France, Russie, Chine) avec droit de veto. Une résolution passe avec 9 voix et sans veto."
+  },
+  {
+   "term": "Veto",
+   "definition": "Vote contre d'un membre permanent du Conseil de sécurité : il suffit à bloquer une résolution. Ceux qui la soutenaient s'en souviennent."
+  },
+  {
+   "term": "Radicalité",
+   "definition": "Part de violence dans un mouvement de contestation. La répression la fait monter ; le dialogue et les concessions la font baisser. Au-delà de 50 %, ce sont des émeutes."
+  },
+  {
+   "term": "Insurrection",
+   "definition": "Phase ultime d'un mouvement : barricades, bâtiments occupés. Si elle dure plus de deux semaines alors que vous êtes impopulaire ou que l'armée vacille, vous pouvez tomber."
+  },
+  {
+   "term": "Loyauté de l'armée",
+   "definition": "Confiance des militaires envers le président. Elle baisse avec un budget rogné, une invasion, le chaos ou l'impopularité ; sous 50 %, un complot peut naître."
   }
  ]
 }

@@ -26,7 +26,7 @@ class MenuPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel
         Entry("€", "Économie", "Impôts, dépenses, services publics.", Theme.catEconomy, PanelId.ECONOMY),
         Entry("⛁", "Commerce et matières premières", "Pétrole, gaz, blé, contrats, exportations, FMI, OMC.", Theme.catEconomy, PanelId.TRADE) { session.state.trade.tenders.size },
         Entry("☎", "Diplomatie", "Accords, sanctions, ultimatums.", Theme.catDiplomacy, PanelId.DIPLOMACY),
-        Entry("✎", "Académie", "Apprendre à jouer en profondeur : 8 modules guidés.", Theme.catHelp, PanelId.ACADEMY),
+        Entry("✎", "Académie", "Apprendre à jouer en profondeur : 10 modules guidés.", Theme.catHelp, PanelId.ACADEMY),
         Entry("◷", "Agenda", "Votre semaine : déplacements, sommets, visites, entretiens.", Theme.catStats, PanelId.AGENDA),
         Entry("◎", "ONU", "Conseil de sécurité : résolutions, votes, veto de la France.", Theme.catDiplomacy, PanelId.UN) { session.state.un.drafts.count { it.sponsor != session.state.player.countryId && it.france == fr.president.engine.diplomacy.UnVote.ABSTAIN } },
         Entry("★", "Union européenne", "Textes au Conseil, votes, alliés à Bruxelles.", Theme.catDiplomacy, PanelId.EU) { if (session.state.eu.current?.francePosition == fr.president.engine.diplomacy.EuVote.ABSTAIN) 1 else 0 },
@@ -48,13 +48,13 @@ class MenuPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel
             val tile = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(8f); defaults().left() }
             val head = Table()
             head.add(Table().apply { setBackground(ui.skin.fill(e.color)) }.also { it.add(ui.label(e.icon, "value", Color.WHITE)) }).size(ICON).padRight(8f)
-            head.add(ui.label(e.label, "bold")).left().expandX()
+            head.add(ui.label(e.label, "bold", wrap = true)).left().growX().minWidth(0f)
             val n = e.badge()
             if (n > 0) head.add(ui.label("● $n", "small", Theme.warning)).right()
             tile.add(head).growX().row()
             tile.add(ui.label(e.text, "muted", wrap = true)).growX().padTop(3f).row()
             tile.onClick { nav.open(e.panel) }
-            grid.add(tile).fill()
+            grid.add(tile).fill().minWidth(0f)
             if (i % 2 == 1) grid.row()
         }
         into.add(grid).growX().row()
