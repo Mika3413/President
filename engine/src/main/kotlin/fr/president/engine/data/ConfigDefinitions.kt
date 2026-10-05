@@ -62,6 +62,8 @@ data class GlobalDataFiles(
     val intel: String? = null,
     /** Mouvements de contestation et loyauté de l'armée (facultatif). */
     val unrest: String? = null,
+    /** Conseil de sécurité de l'ONU (facultatif). */
+    val un: String? = null,
 )
 
 /** Multiplicateurs de fréquence : l'outil d'équilibrage du rythme des événements. */

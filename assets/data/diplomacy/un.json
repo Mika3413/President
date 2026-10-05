@@ -1,0 +1,616 @@
+{
+ "_doc": "Conseil de sécurité de l'ONU. Généré par tools/datagen/un_fr.py.",
+ "permanent": [
+  {
+   "id": "USA",
+   "profile": {
+    "west": 1,
+    "russia": 0,
+    "china": 0,
+    "nonaligned": 0
+   }
+  },
+  {
+   "id": "GBR",
+   "profile": {
+    "west": 1,
+    "russia": 0,
+    "china": 0,
+    "nonaligned": 0
+   }
+  },
+  {
+   "id": "FRA",
+   "profile": {
+    "west": 1,
+    "russia": 0,
+    "china": 0,
+    "nonaligned": 0
+   }
+  },
+  {
+   "id": "RUS",
+   "profile": {
+    "west": 0,
+    "russia": 1,
+    "china": 0,
+    "nonaligned": 0
+   }
+  },
+  {
+   "id": "CHN",
+   "profile": {
+    "west": 0,
+    "russia": 0.2,
+    "china": 0.8,
+    "nonaligned": 0
+   }
+  }
+ ],
+ "elected": [
+  {
+   "id": "DNK",
+   "name": "Danemark",
+   "profile": {
+    "west": 0.9,
+    "russia": 0,
+    "china": 0,
+    "nonaligned": 0.1
+   },
+   "until": 2026
+  },
+  {
+   "id": "GRC",
+   "name": "Grèce",
+   "profile": {
+    "west": 0.8,
+    "russia": 0.05,
+    "china": 0,
+    "nonaligned": 0.15
+   },
+   "until": 2026,
+   "country": "GRC"
+  },
+  {
+   "id": "PAK",
+   "name": "Pakistan",
+   "profile": {
+    "west": 0.2,
+    "russia": 0.05,
+    "china": 0.45,
+    "nonaligned": 0.3
+   },
+   "until": 2026
+  },
+  {
+   "id": "PAN",
+   "name": "Panama",
+   "profile": {
+    "west": 0.6,
+    "russia": 0,
+    "china": 0.05,
+    "nonaligned": 0.35
+   },
+   "until": 2026
+  },
+  {
+   "id": "SOM",
+   "name": "Somalie",
+   "profile": {
+    "west": 0.3,
+    "russia": 0,
+    "china": 0.1,
+    "nonaligned": 0.6
+   },
+   "until": 2026
+  },
+  {
+   "id": "BHR",
+   "name": "Bahreïn",
+   "profile": {
+    "west": 0.5,
+    "russia": 0.05,
+    "china": 0.1,
+    "nonaligned": 0.35
+   },
+   "until": 2027
+  },
+  {
+   "id": "COL",
+   "name": "Colombie",
+   "profile": {
+    "west": 0.45,
+    "russia": 0,
+    "china": 0.05,
+    "nonaligned": 0.5
+   },
+   "until": 2027
+  },
+  {
+   "id": "COD",
+   "name": "RD Congo",
+   "profile": {
+    "west": 0.3,
+    "russia": 0.05,
+    "china": 0.2,
+    "nonaligned": 0.45
+   },
+   "until": 2027
+  },
+  {
+   "id": "LVA",
+   "name": "Lettonie",
+   "profile": {
+    "west": 0.95,
+    "russia": 0,
+    "china": 0,
+    "nonaligned": 0.05
+   },
+   "until": 2027
+  },
+  {
+   "id": "LBR",
+   "name": "Liberia",
+   "profile": {
+    "west": 0.55,
+    "russia": 0,
+    "china": 0.1,
+    "nonaligned": 0.35
+   },
+   "until": 2027
+  }
+ ],
+ "candidates": [
+  {
+   "id": "DEU",
+   "name": "Allemagne",
+   "profile": {
+    "west": 0.95,
+    "russia": 0,
+    "china": 0,
+    "nonaligned": 0.05
+   },
+   "country": "DEU"
+  },
+  {
+   "id": "IND",
+   "name": "Inde",
+   "profile": {
+    "west": 0.35,
+    "russia": 0.2,
+    "china": 0,
+    "nonaligned": 0.45
+   },
+   "country": "IND"
+  },
+  {
+   "id": "BRA",
+   "name": "Brésil",
+   "profile": {
+    "west": 0.3,
+    "russia": 0.1,
+    "china": 0.15,
+    "nonaligned": 0.45
+   },
+   "country": "BRA"
+  },
+  {
+   "id": "ZAF",
+   "name": "Afrique du Sud",
+   "profile": {
+    "west": 0.2,
+    "russia": 0.2,
+    "china": 0.2,
+    "nonaligned": 0.4
+   }
+  },
+  {
+   "id": "KAZ",
+   "name": "Kazakhstan",
+   "profile": {
+    "west": 0.1,
+    "russia": 0.5,
+    "china": 0.25,
+    "nonaligned": 0.15
+   }
+  },
+  {
+   "id": "JPN",
+   "name": "Japon",
+   "profile": {
+    "west": 0.95,
+    "russia": 0,
+    "china": 0,
+    "nonaligned": 0.05
+   },
+   "country": "JPN"
+  },
+  {
+   "id": "EGY",
+   "name": "Égypte",
+   "profile": {
+    "west": 0.35,
+    "russia": 0.15,
+    "china": 0.15,
+    "nonaligned": 0.35
+   },
+   "country": "EGY"
+  },
+  {
+   "id": "NOR",
+   "name": "Norvège",
+   "profile": {
+    "west": 0.9,
+    "russia": 0,
+    "china": 0,
+    "nonaligned": 0.1
+   },
+   "country": "NOR"
+  },
+  {
+   "id": "IDN",
+   "name": "Indonésie",
+   "profile": {
+    "west": 0.25,
+    "russia": 0.05,
+    "china": 0.2,
+    "nonaligned": 0.5
+   }
+  },
+  {
+   "id": "MEX",
+   "name": "Mexique",
+   "profile": {
+    "west": 0.45,
+    "russia": 0,
+    "china": 0.05,
+    "nonaligned": 0.5
+   }
+  },
+  {
+   "id": "POL",
+   "name": "Pologne",
+   "profile": {
+    "west": 0.95,
+    "russia": 0,
+    "china": 0,
+    "nonaligned": 0.05
+   },
+   "country": "POL"
+  },
+  {
+   "id": "MAR",
+   "name": "Maroc",
+   "profile": {
+    "west": 0.6,
+    "russia": 0,
+    "china": 0.05,
+    "nonaligned": 0.35
+   },
+   "country": "MAR"
+  },
+  {
+   "id": "CAN",
+   "name": "Canada",
+   "profile": {
+    "west": 0.95,
+    "russia": 0,
+    "china": 0,
+    "nonaligned": 0.05
+   },
+   "country": "CAN"
+  },
+  {
+   "id": "NGA",
+   "name": "Nigeria",
+   "profile": {
+    "west": 0.35,
+    "russia": 0.05,
+    "china": 0.15,
+    "nonaligned": 0.45
+   }
+  },
+  {
+   "id": "VNM",
+   "name": "Viêt Nam",
+   "profile": {
+    "west": 0.15,
+    "russia": 0.15,
+    "china": 0.35,
+    "nonaligned": 0.35
+   }
+  },
+  {
+   "id": "ITA",
+   "name": "Italie",
+   "profile": {
+    "west": 0.9,
+    "russia": 0,
+    "china": 0,
+    "nonaligned": 0.1
+   },
+   "country": "ITA"
+  },
+  {
+   "id": "DZA",
+   "name": "Algérie",
+   "profile": {
+    "west": 0.15,
+    "russia": 0.4,
+    "china": 0.15,
+    "nonaligned": 0.3
+   },
+   "country": "DZA"
+  },
+  {
+   "id": "TUR",
+   "name": "Turquie",
+   "profile": {
+    "west": 0.5,
+    "russia": 0.15,
+    "china": 0.05,
+    "nonaligned": 0.3
+   },
+   "country": "TUR"
+  },
+  {
+   "id": "ARG",
+   "name": "Argentine",
+   "profile": {
+    "west": 0.6,
+    "russia": 0,
+    "china": 0.05,
+    "nonaligned": 0.35
+   }
+  },
+  {
+   "id": "KEN",
+   "name": "Kenya",
+   "profile": {
+    "west": 0.45,
+    "russia": 0,
+    "china": 0.15,
+    "nonaligned": 0.4
+   }
+  }
+ ],
+ "warTemplates": [
+  {
+   "id": "condemn",
+   "kind": "condemn",
+   "title": "Condamner l'agression {aggressorOf} contre {victimThe}",
+   "description": "Le Conseil exige le retrait immédiat des forces {aggressorOf}.",
+   "stances": {
+    "west": 0.8,
+    "russia": -0.2,
+    "china": -0.1,
+    "nonaligned": 0.3
+   }
+  },
+  {
+   "id": "ceasefire",
+   "kind": "ceasefire",
+   "title": "Cessez-le-feu immédiat entre {aggressorThe} et {victimThe}",
+   "description": "Arrêt des combats, couloirs humanitaires, négociations sous l'égide de l'ONU.",
+   "stances": {
+    "west": 0.5,
+    "russia": 0.2,
+    "china": 0.5,
+    "nonaligned": 0.8
+   }
+  },
+  {
+   "id": "sanctions",
+   "kind": "sanctions",
+   "title": "Sanctions et embargo sur les armes contre {aggressorThe}",
+   "description": "Gel des avoirs, interdiction de voyager, embargo sur les armes.",
+   "stances": {
+    "west": 0.7,
+    "russia": -0.5,
+    "china": -0.4,
+    "nonaligned": 0.0
+   }
+  },
+  {
+   "id": "peacekeeping",
+   "kind": "peacekeeping",
+   "title": "Force de maintien de la paix entre {aggressorThe} et {victimThe}",
+   "description": "Des Casques bleus s'interposent le long de la ligne de front.",
+   "stances": {
+    "west": 0.4,
+    "russia": -0.1,
+    "china": 0.2,
+    "nonaligned": 0.6
+   }
+  },
+  {
+   "id": "force",
+   "kind": "force",
+   "title": "Autoriser le recours à la force pour défendre {victimThe}",
+   "description": "Chapitre VII : les États membres peuvent employer « tous les moyens nécessaires ».",
+   "stances": {
+    "west": 0.5,
+    "russia": -0.8,
+    "china": -0.7,
+    "nonaligned": -0.2
+   }
+  }
+ ],
+ "thematic": [
+  {
+   "id": "sudan",
+   "kind": "thematic",
+   "title": "Soudan : accès humanitaire et protection des civils",
+   "description": "Couloirs humanitaires au Darfour, enquête sur les massacres.",
+   "interest": "Les ONG françaises pourront travailler ; geste humanitaire salué.",
+   "stances": {
+    "west": 0.8,
+    "russia": 0.0,
+    "china": 0.1,
+    "nonaligned": 0.5
+   },
+   "effects": [
+    {
+     "target": "opinion.group.young",
+     "amount": 0.003
+    }
+   ]
+  },
+  {
+   "id": "unifil",
+   "kind": "thematic",
+   "title": "Liban : renouvellement de la FINUL",
+   "description": "Les Casques bleus restent au Sud-Liban, dont 700 soldats français.",
+   "interest": "Nos soldats restent ; la France garde son rôle au Liban.",
+   "stances": {
+    "west": 0.7,
+    "russia": 0.2,
+    "china": 0.3,
+    "nonaligned": 0.6
+   },
+   "effects": [
+    {
+     "target": "budget.oneOff",
+     "amount": 0.1
+    }
+   ]
+  },
+  {
+   "id": "dprk",
+   "kind": "thematic",
+   "title": "Corée du Nord : nouvelles sanctions après un essai de missile",
+   "description": "Durcissement des sanctions contre le programme balistique.",
+   "interest": "Non-prolifération : une priorité française.",
+   "stances": {
+    "west": 0.9,
+    "russia": -0.6,
+    "china": -0.5,
+    "nonaligned": 0.2
+   },
+   "effects": []
+  },
+  {
+   "id": "haiti",
+   "kind": "thematic",
+   "title": "Haïti : mission multinationale contre les gangs",
+   "description": "Une force internationale aide la police haïtienne.",
+   "interest": "Haïti est francophone : la France y est attendue.",
+   "stances": {
+    "west": 0.7,
+    "russia": 0.0,
+    "china": 0.0,
+    "nonaligned": 0.5
+   },
+   "effects": [
+    {
+     "target": "budget.oneOff",
+     "amount": 0.05
+    }
+   ]
+  },
+  {
+   "id": "piracy",
+   "kind": "thematic",
+   "title": "Golfe de Guinée : lutte contre la piraterie",
+   "description": "Coordination navale contre les pirates et les trafics.",
+   "interest": "Protège nos navires et nos approvisionnements en pétrole.",
+   "stances": {
+    "west": 0.8,
+    "russia": 0.3,
+    "china": 0.3,
+    "nonaligned": 0.6
+   },
+   "effects": [
+    {
+     "target": "sector.transport",
+     "amount": 0.005
+    }
+   ]
+  },
+  {
+   "id": "climate",
+   "kind": "thematic",
+   "title": "Climat et sécurité",
+   "description": "Le changement climatique reconnu comme menace pour la paix.",
+   "interest": "Une victoire diplomatique pour la France, pays de l'accord de Paris.",
+   "stances": {
+    "west": 0.7,
+    "russia": -0.5,
+    "china": -0.3,
+    "nonaligned": 0.6
+   },
+   "effects": [
+    {
+     "target": "opinion.group.young",
+     "amount": 0.004
+    }
+   ]
+  },
+  {
+   "id": "iran",
+   "kind": "thematic",
+   "title": "Iran : rétablissement des sanctions nucléaires",
+   "description": "Retour des sanctions de l'ONU après les violations de l'accord de Vienne.",
+   "interest": "Non-prolifération ; mais nos entreprises perdent le marché iranien.",
+   "stances": {
+    "west": 0.8,
+    "russia": -0.7,
+    "china": -0.5,
+    "nonaligned": 0.0
+   },
+   "effects": [
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.002
+    }
+   ]
+  },
+  {
+   "id": "journalists",
+   "kind": "thematic",
+   "title": "Protection des journalistes dans les conflits",
+   "description": "Les attaques contre la presse deviennent des crimes de guerre poursuivis.",
+   "interest": "Défense de la liberté de la presse.",
+   "stances": {
+    "west": 0.8,
+    "russia": -0.3,
+    "china": -0.4,
+    "nonaligned": 0.4
+   },
+   "effects": []
+  },
+  {
+   "id": "sahel",
+   "kind": "thematic",
+   "title": "Sahel : mission d'appui contre le terrorisme",
+   "description": "Soutien logistique et financier aux armées africaines contre les jihadistes.",
+   "interest": "Prolonge l'effort français au Sahel sans troupes au sol.",
+   "stances": {
+    "west": 0.6,
+    "russia": -0.4,
+    "china": 0.0,
+    "nonaligned": 0.3
+   },
+   "effects": [
+    {
+     "target": "budget.oneOff",
+     "amount": 0.1
+    }
+   ]
+  },
+  {
+   "id": "cyber",
+   "kind": "thematic",
+   "title": "Normes de comportement dans le cyberespace",
+   "description": "Interdiction des attaques contre les hôpitaux et les infrastructures civiles.",
+   "interest": "Protège nos hôpitaux et nos réseaux.",
+   "stances": {
+    "west": 0.8,
+    "russia": -0.5,
+    "china": -0.4,
+    "nonaligned": 0.5
+   },
+   "effects": []
+  }
+ ]
+}

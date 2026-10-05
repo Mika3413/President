@@ -28,6 +28,7 @@ class MenuPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel
         Entry("☎", "Diplomatie", "Accords, sanctions, ultimatums.", Theme.catDiplomacy, PanelId.DIPLOMACY),
         Entry("✎", "Académie", "Apprendre à jouer en profondeur : 8 modules guidés.", Theme.catHelp, PanelId.ACADEMY),
         Entry("◷", "Agenda", "Votre semaine : déplacements, sommets, visites, entretiens.", Theme.catStats, PanelId.AGENDA),
+        Entry("◎", "ONU", "Conseil de sécurité : résolutions, votes, veto de la France.", Theme.catDiplomacy, PanelId.UN) { session.state.un.drafts.count { it.sponsor != session.state.player.countryId && it.france == fr.president.engine.diplomacy.UnVote.ABSTAIN } },
         Entry("★", "Union européenne", "Textes au Conseil, votes, alliés à Bruxelles.", Theme.catDiplomacy, PanelId.EU) { if (session.state.eu.current?.francePosition == fr.president.engine.diplomacy.EuVote.ABSTAIN) 1 else 0 },
         Entry("✪", "Défense", "Armement, ventes d'armes, bases à l'étranger, dissuasion nucléaire.", Theme.catArmy, PanelId.DEFENSE),
         Entry("⊘", "Renseignement", "DGSE, DGSI : espionnage, coups d'État, groupes armés, contre-espionnage.", Theme.catArmy, PanelId.INTEL) { session.state.intel.operations.size },

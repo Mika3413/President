@@ -18,6 +18,7 @@ class UnrestTest {
         assertEquals("pensions", m.cause)
         clock.advanceWorldDays(10.0); s.advanceToNow()
         assertTrue(m.crowd > 50, "foule : ${m.crowd}")
+        s.state.agenda.entries.clear()
         assertTrue(s.unrest.respond(m.id, "dialogue").isSuccess)
         assertTrue(s.unrest.respond(m.id, "dialogue").isFailure, "délai")
         assertTrue(s.unrest.respond(m.id, "concede").isSuccess)

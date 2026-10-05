@@ -119,6 +119,7 @@
     "trade": "diplomacy/trade.json",
     "defense": "military/defense.json",
     "intel": "military/intel.json",
-    "unrest": "config/unrest.json"
+    "unrest": "config/unrest.json",
+    "un": "diplomacy/un.json"
   }
 }
