@@ -1,0 +1,2023 @@
+{
+ "_doc": "Législation unifiée : réglages chiffrés, incidence, constructeur de mesures. Généré par tools/datagen/legislation_fr.py.",
+ "parameters": [
+  {
+   "id": "pension_age",
+   "channel": "LAW",
+   "domain": "travail",
+   "label": "Âge légal de départ à la retraite",
+   "description": "L'âge à partir duquel on peut partir à la retraite. Chaque année de plus fait économiser des milliards, mais fâche les salariés.",
+   "unit": "ans",
+   "format": "years",
+   "reference": 64,
+   "min": 60,
+   "max": 67,
+   "step": 0.25,
+   "per": 1,
+   "up": [
+    {
+     "target": "opinion.group.private_employees",
+     "amount": -0.06
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.02
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": -0.02
+    },
+    {
+     "target": "opinion.group.civil_servants",
+     "amount": -0.04
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": 0.02
+    },
+    {
+     "target": "spending.pensions",
+     "amount": -0.05,
+     "days": 1460
+    },
+    {
+     "target": "economy.potentialGrowth",
+     "amount": 0.0015,
+     "days": 1460
+    },
+    {
+     "target": "economy.naturalUnemployment",
+     "amount": 0.001,
+     "days": 730
+    }
+   ],
+   "down": [
+    {
+     "target": "opinion.group.private_employees",
+     "amount": 0.025
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.01
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": -0.015
+    },
+    {
+     "target": "opinion.group.high_income",
+     "amount": -0.01
+    },
+    {
+     "target": "spending.pensions",
+     "amount": 0.025,
+     "days": 730
+    },
+    {
+     "target": "economy.potentialGrowth",
+     "amount": -0.00075,
+     "days": 1460
+    }
+   ],
+   "difficultyUp": 0.08,
+   "difficultyDown": 0.025,
+   "appealUp": -0.25,
+   "appealDown": 0.2,
+   "links": [
+    {
+     "reform": "pension_age_65",
+     "above": 64.0
+    },
+    {
+     "reform": "pension_age_62",
+     "below": 64.0
+    }
+   ]
+  },
+  {
+   "id": "smic_boost",
+   "channel": "DECREE",
+   "domain": "travail",
+   "label": "Coup de pouce au SMIC",
+   "description": "Hausse du salaire minimum au-delà de l'inflation, cumulée depuis le début du mandat. Un SMIC ne se baisse pas.",
+   "unit": "%",
+   "format": "number",
+   "decimals": 1,
+   "reference": 0,
+   "min": 0,
+   "max": 25,
+   "step": 0.5,
+   "per": 5,
+   "noDecrease": true,
+   "up": [
+    {
+     "target": "opinion.group.low_income",
+     "amount": 0.05
+    },
+    {
+     "target": "opinion.group.private_employees",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": -0.04
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.02
+    },
+    {
+     "target": "economy.inflation",
+     "amount": 0.002,
+     "days": 180
+    },
+    {
+     "target": "economy.naturalUnemployment",
+     "amount": 0.002,
+     "days": 730
+    },
+    {
+     "target": "spending.solidarity",
+     "amount": 0.01,
+     "days": 180
+    }
+   ],
+   "down": [],
+   "decreeLimit": 10,
+   "links": [
+    {
+     "reform": "minimum_wage",
+     "above": 0.0
+    }
+   ]
+  },
+  {
+   "id": "rsa_amount",
+   "channel": "BUDGET",
+   "domain": "solidarite",
+   "label": "Montant du RSA (personne seule)",
+   "description": "Revenu de solidarité active versé à 1,9 million de foyers. Une partie du budget « Solidarité ».",
+   "unit": "€/mois",
+   "format": "number",
+   "decimals": 0,
+   "reference": 646,
+   "min": 400,
+   "max": 1000,
+   "step": 5,
+   "per": 50,
+   "costPerUnit": 0.0228,
+   "spendingItem": "solidarity",
+   "up": [
+    {
+     "target": "opinion.group.low_income",
+     "amount": 0.008
+    },
+    {
+     "target": "opinion.group.inactive",
+     "amount": 0.012
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": -0.003
+    },
+    {
+     "target": "economy.naturalUnemployment",
+     "amount": 0.0003,
+     "days": 365
+    }
+   ],
+   "down": [
+    {
+     "target": "opinion.group.low_income",
+     "amount": 0.008
+    },
+    {
+     "target": "opinion.group.inactive",
+     "amount": 0.012
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": -0.002
+    }
+   ]
+  },
+  {
+   "id": "speed_limit",
+   "channel": "DECREE",
+   "domain": "securite",
+   "label": "Vitesse maximale sur les routes secondaires",
+   "description": "Limitation sur les routes à double sens sans séparateur. Plus vite : moins de colère rurale, plus de morts.",
+   "unit": "km/h",
+   "format": "number",
+   "decimals": 0,
+   "reference": 80,
+   "min": 70,
+   "max": 100,
+   "step": 10,
+   "per": 10,
+   "up": [
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.012
+    },
+    {
+     "target": "opinion.group.urban",
+     "amount": -0.002
+    },
+    {
+     "target": "quality.security",
+     "amount": -0.006
+    },
+    {
+     "target": "quality.environment",
+     "amount": -0.003
+    }
+   ],
+   "down": [
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.012
+    },
+    {
+     "target": "quality.security",
+     "amount": -0.006
+    },
+    {
+     "target": "quality.environment",
+     "amount": -0.003
+    }
+   ],
+   "decreeLimit": 10
+  }
+ ],
+ "incidence": {
+  "tax:social_contributions": {
+   "private_employees": 0.45,
+   "self_employed": 0.3,
+   "civil_servants": 0.15
+  },
+  "tax:vat": {
+   "low_income": 0.4,
+   "middle_income": 0.35,
+   "retirees": 0.15
+  },
+  "tax:csg": {
+   "private_employees": 0.35,
+   "retirees": 0.35,
+   "civil_servants": 0.2
+  },
+  "tax:income_tax": {
+   "high_income": 0.55,
+   "middle_income": 0.35
+  },
+  "tax:corporate_tax": {
+   "self_employed": 0.4,
+   "high_income": 0.3
+  },
+  "tax:property_taxes": {
+   "middle_income": 0.35,
+   "high_income": 0.3,
+   "seniors": 0.25
+  },
+  "tax:energy_taxes": {
+   "rural": 0.45,
+   "low_income": 0.3
+  },
+  "spend:pensions": {
+   "retirees": 0.7,
+   "seniors": 0.6
+  },
+  "spend:health": {
+   "seniors": 0.4,
+   "adults": 0.25,
+   "low_income": 0.2
+  },
+  "spend:education": {
+   "young": 0.5,
+   "adults": 0.3,
+   "civil_servants": 0.3
+  },
+  "spend:defense": {
+   "civil_servants": 0.1
+  },
+  "spend:police": {
+   "urban": 0.3,
+   "seniors": 0.3
+  },
+  "spend:justice": {
+   "urban": 0.2
+  },
+  "spend:solidarity": {
+   "low_income": 0.6,
+   "inactive": 0.4
+  },
+  "spend:unemployment_benefits": {
+   "inactive": 0.6,
+   "low_income": 0.3
+  },
+  "spend:transport": {
+   "rural": 0.35,
+   "urban": 0.35
+  },
+  "spend:ecology": {
+   "young": 0.4
+  },
+  "spend:agriculture": {
+   "rural": 0.6
+  },
+  "spend:local_authorities": {
+   "rural": 0.4,
+   "civil_servants": 0.2
+  },
+  "spend:state_operations": {
+   "civil_servants": 0.6
+  }
+ },
+ "domains": [
+  {
+   "id": "budget_tax",
+   "label": "Impôts",
+   "icon": "€"
+  },
+  {
+   "id": "budget_spending",
+   "label": "Dépenses",
+   "icon": "▣"
+  },
+  {
+   "id": "fiscal",
+   "label": "Fiscalité fine",
+   "icon": "◆"
+  },
+  {
+   "id": "measures",
+   "label": "Mesures sur mesure",
+   "icon": "✎"
+  },
+  {
+   "id": "societe",
+   "label": "Société",
+   "icon": "♥"
+  },
+  {
+   "id": "justice",
+   "label": "Justice et sécurité",
+   "icon": "⚖"
+  },
+  {
+   "id": "travail",
+   "label": "Travail et social",
+   "icon": "⚒"
+  },
+  {
+   "id": "libertes",
+   "label": "Libertés et médias",
+   "icon": "▤"
+  },
+  {
+   "id": "institutions",
+   "label": "Constitution et institutions",
+   "icon": "⌂"
+  },
+  {
+   "id": "reformes",
+   "label": "Grandes réformes",
+   "icon": "★"
+  },
+  {
+   "id": "solidarite",
+   "label": "Solidarité",
+   "icon": "♥"
+  },
+  {
+   "id": "securite",
+   "label": "Sécurité routière",
+   "icon": "⚠"
+  }
+ ],
+ "builder": {
+  "targets": [
+   {
+    "id": "doctors",
+    "category": "profession",
+    "label": "les médecins libéraux",
+    "short": "Médecins libéraux",
+    "count": 120000,
+    "income": 120000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.3,
+    "groups": {
+     "high_income": 0.25,
+     "self_employed": 0.35,
+     "seniors": 0.15
+    },
+    "actors": {},
+    "quality": "health",
+    "qualityWeight": 0.6,
+    "rural": 0.12,
+    "idf": 0.22,
+    "sigma": 0.5,
+    "obligation": {
+     "label": "exercer en zone sous-dotée",
+     "unit": "ans",
+     "max": 5,
+     "step": 1,
+     "risk": 0.15
+    }
+   },
+   {
+    "id": "hospital_doctors",
+    "category": "profession",
+    "label": "les médecins hospitaliers",
+    "short": "Médecins hospitaliers",
+    "count": 110000,
+    "income": 85000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.25,
+    "groups": {
+     "civil_servants": 0.3,
+     "high_income": 0.15
+    },
+    "actors": {},
+    "quality": "health",
+    "qualityWeight": 0.6,
+    "public": true,
+    "salary": 130000,
+    "rural": 0.1
+   },
+   {
+    "id": "nurses",
+    "category": "profession",
+    "label": "les infirmiers",
+    "short": "Infirmiers",
+    "count": 640000,
+    "income": 34000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.12,
+    "groups": {
+     "civil_servants": 0.3,
+     "middle_income": 0.15
+    },
+    "actors": {},
+    "quality": "health",
+    "qualityWeight": 0.5,
+    "public": true,
+    "salary": 52000,
+    "rural": 0.15
+   },
+   {
+    "id": "pharmacists",
+    "category": "profession",
+    "label": "les pharmaciens d'officine",
+    "short": "Pharmaciens",
+    "count": 55000,
+    "income": 85000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.15,
+    "groups": {
+     "self_employed": 0.2,
+     "high_income": 0.1
+    },
+    "actors": {},
+    "quality": "health",
+    "qualityWeight": 0.15,
+    "rural": 0.2,
+    "obligation": {
+     "label": "maintenir une officine en zone rurale",
+     "unit": "ans",
+     "max": 5,
+     "step": 1,
+     "risk": 0.2
+    }
+   },
+   {
+    "id": "teachers",
+    "category": "profession",
+    "label": "les enseignants",
+    "short": "Enseignants",
+    "count": 870000,
+    "income": 36000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.08,
+    "groups": {
+     "civil_servants": 0.5,
+     "middle_income": 0.15
+    },
+    "actors": {
+     "union_public": 0.5
+    },
+    "quality": "education",
+    "qualityWeight": 0.7,
+    "public": true,
+    "salary": 56000,
+    "event": "national_strike",
+    "rural": 0.2
+   },
+   {
+    "id": "police",
+    "category": "profession",
+    "label": "les policiers et gendarmes",
+    "short": "Policiers et gendarmes",
+    "count": 250000,
+    "income": 34000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.05,
+    "groups": {
+     "civil_servants": 0.3,
+     "seniors": 0.1
+    },
+    "actors": {},
+    "quality": "security",
+    "qualityWeight": 0.7,
+    "public": true,
+    "salary": 55000,
+    "rural": 0.3
+   },
+   {
+    "id": "judges",
+    "category": "profession",
+    "label": "les magistrats",
+    "short": "Magistrats",
+    "count": 9000,
+    "income": 70000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.05,
+    "groups": {
+     "civil_servants": 0.05
+    },
+    "actors": {},
+    "quality": "justice",
+    "qualityWeight": 0.8,
+    "public": true,
+    "salary": 105000
+   },
+   {
+    "id": "court_clerks",
+    "category": "profession",
+    "label": "les greffiers",
+    "short": "Greffiers",
+    "count": 11000,
+    "income": 30000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.05,
+    "groups": {
+     "civil_servants": 0.05
+    },
+    "actors": {},
+    "quality": "justice",
+    "qualityWeight": 0.4,
+    "public": true,
+    "salary": 48000
+   },
+   {
+    "id": "soldiers",
+    "category": "profession",
+    "label": "les militaires",
+    "short": "Militaires",
+    "count": 205000,
+    "income": 30000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.05,
+    "groups": {
+     "civil_servants": 0.15
+    },
+    "actors": {},
+    "quality": "defense",
+    "qualityWeight": 0.7,
+    "public": true,
+    "salary": 50000,
+    "rural": 0.3
+   },
+   {
+    "id": "prison_guards",
+    "category": "profession",
+    "label": "les surveillants pénitentiaires",
+    "short": "Surveillants de prison",
+    "count": 28000,
+    "income": 28000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.05,
+    "groups": {
+     "civil_servants": 0.05
+    },
+    "actors": {},
+    "quality": "justice",
+    "qualityWeight": 0.3,
+    "public": true,
+    "salary": 45000
+   },
+   {
+    "id": "caregivers",
+    "category": "profession",
+    "label": "les aides-soignants",
+    "short": "Aides-soignants",
+    "count": 400000,
+    "income": 25000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.1,
+    "groups": {
+     "civil_servants": 0.2,
+     "low_income": 0.2
+    },
+    "actors": {},
+    "quality": "health",
+    "qualityWeight": 0.35,
+    "public": true,
+    "salary": 40000
+   },
+   {
+    "id": "researchers",
+    "category": "profession",
+    "label": "les chercheurs publics",
+    "short": "Chercheurs",
+    "count": 110000,
+    "income": 45000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.35,
+    "groups": {
+     "civil_servants": 0.1,
+     "young": 0.05
+    },
+    "actors": {},
+    "quality": "education",
+    "qualityWeight": 0.25,
+    "public": true,
+    "salary": 70000,
+    "sector": "tech"
+   },
+   {
+    "id": "farmers",
+    "category": "profession",
+    "label": "les agriculteurs",
+    "short": "Agriculteurs",
+    "count": 390000,
+    "income": 25000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.05,
+    "groups": {
+     "rural": 0.6,
+     "self_employed": 0.4
+    },
+    "actors": {
+     "farmers_union": 1.0
+    },
+    "quality": "agriculture",
+    "qualityWeight": 0.4,
+    "sector": "agrifood",
+    "event": "farmers_protest",
+    "rural": 0.85
+   },
+   {
+    "id": "lawyers",
+    "category": "profession",
+    "label": "les avocats",
+    "short": "Avocats",
+    "count": 77000,
+    "income": 80000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.15,
+    "groups": {
+     "high_income": 0.1,
+     "self_employed": 0.1
+    },
+    "actors": {},
+    "quality": "justice",
+    "qualityWeight": 0.1,
+    "idf": 0.45,
+    "sigma": 0.8
+   },
+   {
+    "id": "notaries",
+    "category": "profession",
+    "label": "les notaires",
+    "short": "Notaires",
+    "count": 18000,
+    "income": 230000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.1,
+    "groups": {
+     "high_income": 0.05
+    },
+    "actors": {},
+    "sigma": 0.6
+   },
+   {
+    "id": "taxi_vtc",
+    "category": "profession",
+    "label": "les chauffeurs de taxi et de VTC",
+    "short": "Taxis et VTC",
+    "count": 120000,
+    "income": 24000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.05,
+    "groups": {
+     "self_employed": 0.15,
+     "urban": 0.1,
+     "low_income": 0.1
+    },
+    "actors": {},
+    "sector": "transport",
+    "idf": 0.6,
+    "event": "fuel_blockade"
+   },
+   {
+    "id": "truckers",
+    "category": "profession",
+    "label": "les routiers",
+    "short": "Routiers",
+    "count": 400000,
+    "income": 28000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.05,
+    "groups": {
+     "private_employees": 0.1,
+     "rural": 0.15
+    },
+    "actors": {},
+    "sector": "transport",
+    "event": "fuel_blockade",
+    "rural": 0.4
+   },
+   {
+    "id": "artisans",
+    "category": "profession",
+    "label": "les artisans et commerçants",
+    "short": "Artisans et commerçants",
+    "count": 3000000,
+    "income": 32000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.08,
+    "groups": {
+     "self_employed": 0.8,
+     "rural": 0.2
+    },
+    "actors": {
+     "employers_small": 0.8
+    },
+    "sector": "retail",
+    "rural": 0.3,
+    "sigma": 0.8
+   },
+   {
+    "id": "athletes",
+    "category": "profession",
+    "label": "les sportifs professionnels",
+    "short": "Sportifs professionnels",
+    "count": 12000,
+    "income": 250000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.6,
+    "groups": {
+     "young": 0.05
+    },
+    "actors": {},
+    "sigma": 1.2
+   },
+   {
+    "id": "executives",
+    "category": "profession",
+    "label": "les cadres",
+    "short": "Cadres",
+    "count": 5400000,
+    "income": 62000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.08,
+    "groups": {
+     "high_income": 0.5,
+     "private_employees": 0.4,
+     "urban": 0.2
+    },
+    "actors": {},
+    "idf": 0.38,
+    "sigma": 0.5
+   },
+   {
+    "id": "civil_servants",
+    "category": "profession",
+    "label": "les fonctionnaires",
+    "short": "Fonctionnaires",
+    "count": 5700000,
+    "income": 31000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.03,
+    "groups": {
+     "civil_servants": 1.0
+    },
+    "actors": {
+     "union_public": 1.0
+    },
+    "public": true,
+    "salary": 47000,
+    "event": "national_strike"
+   },
+   {
+    "id": "top1",
+    "category": "group",
+    "label": "les 1 % les plus riches",
+    "short": "1 % les plus riches",
+    "count": 400000,
+    "income": 330000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.45,
+    "groups": {
+     "high_income": 0.6
+    },
+    "actors": {
+     "employers_big": 0.4
+    },
+    "sigma": 0.9,
+    "idf": 0.5,
+    "richTax": true
+   },
+   {
+    "id": "top10",
+    "category": "group",
+    "label": "les 10 % les plus aisés",
+    "short": "10 % les plus aisés",
+    "count": 4000000,
+    "income": 110000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.15,
+    "groups": {
+     "high_income": 1.0,
+     "urban": 0.2
+    },
+    "actors": {},
+    "sigma": 0.6,
+    "idf": 0.35,
+    "richTax": true
+   },
+   {
+    "id": "middle_class",
+    "category": "group",
+    "label": "les classes moyennes",
+    "short": "Classes moyennes",
+    "count": 12000000,
+    "income": 38000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.03,
+    "groups": {
+     "middle_income": 1.0,
+     "adults": 0.3
+    },
+    "actors": {},
+    "sigma": 0.3
+   },
+   {
+    "id": "modest",
+    "category": "group",
+    "label": "les ménages modestes",
+    "short": "Ménages modestes",
+    "count": 9000000,
+    "income": 17000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.01,
+    "groups": {
+     "low_income": 1.0
+    },
+    "actors": {},
+    "sigma": 0.35
+   },
+   {
+    "id": "retirees",
+    "category": "group",
+    "label": "les retraités",
+    "short": "Retraités",
+    "count": 17000000,
+    "income": 22000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.02,
+    "groups": {
+     "retirees": 1.0,
+     "seniors": 0.9
+    },
+    "actors": {},
+    "sigma": 0.55,
+    "rural": 0.3
+   },
+   {
+    "id": "students",
+    "category": "group",
+    "label": "les étudiants",
+    "short": "Étudiants",
+    "count": 3000000,
+    "income": 9000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.02,
+    "groups": {
+     "young": 0.7
+    },
+    "actors": {},
+    "sigma": 0.6,
+    "idf": 0.3
+   },
+   {
+    "id": "young_workers",
+    "category": "group",
+    "label": "les jeunes actifs de moins de 30 ans",
+    "short": "Jeunes actifs",
+    "count": 5000000,
+    "income": 24000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.05,
+    "groups": {
+     "young": 0.8,
+     "private_employees": 0.2
+    },
+    "actors": {},
+    "sigma": 0.4
+   },
+   {
+    "id": "families",
+    "category": "group",
+    "label": "les familles avec enfants",
+    "short": "Familles avec enfants",
+    "count": 8000000,
+    "income": 45000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.02,
+    "groups": {
+     "adults": 0.7,
+     "middle_income": 0.3
+    },
+    "actors": {},
+    "sigma": 0.5
+   },
+   {
+    "id": "landlords",
+    "category": "group",
+    "label": "les propriétaires bailleurs",
+    "short": "Propriétaires bailleurs",
+    "count": 3500000,
+    "income": 13000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.1,
+    "groups": {
+     "high_income": 0.3,
+     "seniors": 0.3
+    },
+    "actors": {},
+    "sigma": 0.9,
+    "sector": "construction"
+   },
+   {
+    "id": "tenants",
+    "category": "group",
+    "label": "les locataires",
+    "short": "Locataires",
+    "count": 11000000,
+    "income": 26000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.01,
+    "groups": {
+     "low_income": 0.4,
+     "young": 0.4,
+     "urban": 0.4
+    },
+    "actors": {},
+    "sigma": 0.5,
+    "idf": 0.25
+   },
+   {
+    "id": "unemployed",
+    "category": "group",
+    "label": "les chômeurs",
+    "short": "Chômeurs",
+    "count": 2300000,
+    "income": 14000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.0,
+    "groups": {
+     "inactive": 0.8,
+     "low_income": 0.4
+    },
+    "actors": {},
+    "sigma": 0.5
+   },
+   {
+    "id": "rural_people",
+    "category": "group",
+    "label": "les habitants des zones rurales",
+    "short": "Ruraux",
+    "count": 11000000,
+    "income": 25000,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.02,
+    "groups": {
+     "rural": 1.0
+    },
+    "actors": {},
+    "sigma": 0.5,
+    "rural": 1.0
+   },
+   {
+    "id": "big_companies",
+    "category": "company",
+    "label": "les grandes entreprises",
+    "short": "Grandes entreprises",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 120,
+    "baseLabel": "bénéfices",
+    "mobility": 0.25,
+    "groups": {
+     "high_income": 0.2
+    },
+    "actors": {
+     "employers_big": 1.0
+    },
+    "sector": "industry",
+    "priceWeight": 0.2
+   },
+   {
+    "id": "smes",
+    "category": "company",
+    "label": "les PME",
+    "short": "PME",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 60,
+    "baseLabel": "bénéfices",
+    "mobility": 0.05,
+    "groups": {
+     "self_employed": 0.5
+    },
+    "actors": {
+     "employers_small": 1.0
+    },
+    "sector": "retail",
+    "priceWeight": 0.3
+   },
+   {
+    "id": "banks",
+    "category": "company",
+    "label": "les banques",
+    "short": "Banques",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 35,
+    "baseLabel": "bénéfices",
+    "mobility": 0.15,
+    "groups": {
+     "high_income": 0.1
+    },
+    "actors": {
+     "banking_lobby": 1.0
+    },
+    "sector": "banking",
+    "priceWeight": 0.05
+   },
+   {
+    "id": "energy_firms",
+    "category": "company",
+    "label": "les énergéticiens",
+    "short": "Énergéticiens",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 25,
+    "baseLabel": "bénéfices",
+    "mobility": 0.1,
+    "groups": {},
+    "actors": {
+     "oil_lobby": 1.0
+    },
+    "sector": "energy",
+    "priceWeight": 0.4
+   },
+   {
+    "id": "tech_giants",
+    "category": "company",
+    "label": "les géants du numérique",
+    "short": "Géants du numérique",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 30,
+    "baseLabel": "chiffre d'affaires en France",
+    "mobility": 0.2,
+    "groups": {},
+    "actors": {
+     "tech_lobby": 1.0
+    },
+    "sector": "tech",
+    "priceWeight": 0.05,
+    "foreign": "USA"
+   },
+   {
+    "id": "supermarkets",
+    "category": "company",
+    "label": "la grande distribution",
+    "short": "Grande distribution",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 12,
+    "baseLabel": "marges",
+    "mobility": 0.05,
+    "groups": {},
+    "actors": {
+     "retail_lobby": 1.0
+    },
+    "sector": "retail",
+    "priceWeight": 0.6
+   },
+   {
+    "id": "pharma",
+    "category": "company",
+    "label": "les laboratoires pharmaceutiques",
+    "short": "Laboratoires pharmaceutiques",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 30,
+    "baseLabel": "chiffre d'affaires",
+    "mobility": 0.2,
+    "groups": {},
+    "actors": {
+     "pharma_lobby": 1.0
+    },
+    "sector": "health",
+    "priceWeight": 0.1
+   },
+   {
+    "id": "airlines",
+    "category": "company",
+    "label": "les compagnies aériennes",
+    "short": "Compagnies aériennes",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 25,
+    "baseLabel": "chiffre d'affaires",
+    "mobility": 0.15,
+    "groups": {},
+    "actors": {},
+    "sector": "transport",
+    "priceWeight": 0.05,
+    "environment": 0.004
+   },
+   {
+    "id": "shipping",
+    "category": "company",
+    "label": "les armateurs",
+    "short": "Armateurs",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 10,
+    "baseLabel": "bénéfices",
+    "mobility": 0.4,
+    "groups": {},
+    "actors": {},
+    "sector": "transport",
+    "priceWeight": 0.05
+   },
+   {
+    "id": "platforms",
+    "category": "company",
+    "label": "les plateformes de livraison et de VTC",
+    "short": "Plateformes (VTC, livraison)",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 5,
+    "baseLabel": "chiffre d'affaires",
+    "mobility": 0.2,
+    "groups": {},
+    "actors": {},
+    "sector": "transport",
+    "priceWeight": 0.02,
+    "foreign": "USA"
+   },
+   {
+    "id": "fuel",
+    "category": "product",
+    "label": "les carburants",
+    "short": "Carburants",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 60,
+    "baseLabel": "ventes",
+    "mobility": 0.1,
+    "groups": {
+     "rural": 0.6,
+     "low_income": 0.3
+    },
+    "actors": {},
+    "sector": "transport",
+    "priceWeight": 0.04,
+    "environment": 0.01,
+    "event": "fuel_tax_protest",
+    "normalIncrease": 3.0,
+    "capSector": "energy",
+    "capWinners": {
+     "rural": 1.0,
+     "low_income": 0.6
+    },
+    "capLosers": {}
+   },
+   {
+    "id": "junk_food",
+    "category": "product",
+    "label": "les aliments ultra-transformés",
+    "short": "Aliments ultra-transformés",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 50,
+    "baseLabel": "ventes",
+    "mobility": 0.05,
+    "groups": {
+     "low_income": 0.3
+    },
+    "actors": {},
+    "sector": "agrifood",
+    "priceWeight": 0.05,
+    "health": 0.006
+   },
+   {
+    "id": "plastic",
+    "category": "product",
+    "label": "les emballages plastiques",
+    "short": "Emballages plastiques",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 10,
+    "baseLabel": "ventes",
+    "mobility": 0.1,
+    "groups": {},
+    "actors": {},
+    "sector": "industry",
+    "priceWeight": 0.01,
+    "environment": 0.008
+   },
+   {
+    "id": "suv",
+    "category": "product",
+    "label": "les voitures lourdes (SUV)",
+    "short": "Voitures lourdes",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 20,
+    "baseLabel": "ventes",
+    "mobility": 0.15,
+    "groups": {
+     "high_income": 0.2,
+     "rural": 0.2
+    },
+    "actors": {},
+    "sector": "industry",
+    "priceWeight": 0.01,
+    "environment": 0.006
+   },
+   {
+    "id": "private_jets",
+    "category": "product",
+    "label": "les vols en jet privé",
+    "short": "Jets privés",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 1.0,
+    "baseLabel": "ventes",
+    "mobility": 0.3,
+    "groups": {
+     "high_income": 0.05
+    },
+    "actors": {},
+    "priceWeight": 0.0,
+    "environment": 0.002,
+    "symbolic": 0.004
+   },
+   {
+    "id": "luxury",
+    "category": "product",
+    "label": "les produits de luxe",
+    "short": "Produits de luxe",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 40,
+    "baseLabel": "ventes en France",
+    "mobility": 0.3,
+    "groups": {},
+    "actors": {},
+    "sector": "luxury",
+    "priceWeight": 0.0,
+    "symbolic": 0.003
+   },
+   {
+    "id": "betting",
+    "category": "product",
+    "label": "les paris sportifs en ligne",
+    "short": "Paris en ligne",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 3,
+    "baseLabel": "mises nettes",
+    "mobility": 0.2,
+    "groups": {
+     "young": 0.1
+    },
+    "actors": {},
+    "priceWeight": 0.0,
+    "health": 0.002
+   },
+   {
+    "id": "rents",
+    "category": "product",
+    "label": "les loyers",
+    "short": "Loyers",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 90,
+    "baseLabel": "loyers",
+    "mobility": 0.0,
+    "groups": {},
+    "actors": {},
+    "priceWeight": 0.07,
+    "normalIncrease": 3.5,
+    "capSector": "construction",
+    "capWinners": {
+     "young": 0.8,
+     "urban": 0.8,
+     "low_income": 0.6
+    },
+    "capLosers": {
+     "high_income": 0.5,
+     "seniors": 0.4
+    }
+   },
+   {
+    "id": "electricity",
+    "category": "product",
+    "label": "l'électricité",
+    "short": "Électricité",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 45,
+    "baseLabel": "ventes aux ménages",
+    "mobility": 0.0,
+    "groups": {
+     "low_income": 0.3,
+     "rural": 0.3
+    },
+    "actors": {},
+    "priceWeight": 0.03,
+    "normalIncrease": 5.0,
+    "capSector": "energy",
+    "capWinners": {
+     "low_income": 0.8,
+     "rural": 0.6,
+     "seniors": 0.4
+    },
+    "capLosers": {},
+    "capCost": 0.9
+   },
+   {
+    "id": "food",
+    "category": "product",
+    "label": "les produits alimentaires de base",
+    "short": "Alimentation de base",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 150,
+    "baseLabel": "ventes",
+    "mobility": 0.0,
+    "groups": {},
+    "actors": {},
+    "priceWeight": 0.15,
+    "normalIncrease": 3.0,
+    "capSector": "agrifood",
+    "capWinners": {
+     "low_income": 1.0,
+     "middle_income": 0.5
+    },
+    "capLosers": {
+     "rural": 0.5,
+     "self_employed": 0.2
+    }
+   },
+   {
+    "id": "medicines",
+    "category": "product",
+    "label": "les médicaments",
+    "short": "Médicaments",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 30,
+    "baseLabel": "ventes",
+    "mobility": 0.0,
+    "groups": {},
+    "actors": {},
+    "priceWeight": 0.02,
+    "normalIncrease": 1.0,
+    "capSector": "health",
+    "capWinners": {
+     "seniors": 0.4
+    },
+    "capLosers": {}
+   },
+   {
+    "id": "single_plastic",
+    "category": "practice",
+    "label": "le plastique à usage unique",
+    "short": "Plastique à usage unique",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.2,
+    "groups": {},
+    "actors": {},
+    "sector": "industry",
+    "ban": {
+     "label": "Interdire",
+     "revenueLoss": 0.0,
+     "effects": [
+      {
+       "target": "quality.environment",
+       "amount": 0.01
+      },
+      {
+       "target": "sector.industry",
+       "amount": -0.008
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": 0.006
+      }
+     ],
+     "liberty": 0,
+     "risk": 0.0
+    }
+   },
+   {
+    "id": "short_flights",
+    "category": "practice",
+    "label": "les vols intérieurs quand le train fait moins de 4 h",
+    "short": "Vols courts",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.2,
+    "groups": {},
+    "actors": {},
+    "sector": "transport",
+    "ban": {
+     "label": "Interdire",
+     "revenueLoss": 0.2,
+     "effects": [
+      {
+       "target": "quality.environment",
+       "amount": 0.008
+      },
+      {
+       "target": "sector.transport",
+       "amount": -0.01
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": 0.006
+      },
+      {
+       "target": "opinion.group.high_income",
+       "amount": -0.004
+      }
+     ],
+     "liberty": -0.5,
+     "risk": 0.05
+    }
+   },
+   {
+    "id": "glyphosate",
+    "category": "practice",
+    "label": "le glyphosate",
+    "short": "Glyphosate",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.2,
+    "groups": {},
+    "actors": {},
+    "sector": "agrifood",
+    "event": "farmers_protest",
+    "ban": {
+     "label": "Interdire",
+     "revenueLoss": 0.0,
+     "effects": [
+      {
+       "target": "quality.environment",
+       "amount": 0.012
+      },
+      {
+       "target": "quality.agriculture",
+       "amount": -0.015
+      },
+      {
+       "target": "sector.agrifood",
+       "amount": -0.015
+      },
+      {
+       "target": "opinion.group.rural",
+       "amount": -0.012
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": 0.008
+      }
+     ],
+     "liberty": 0,
+     "risk": 0.05
+    }
+   },
+   {
+    "id": "fast_fashion_ads",
+    "category": "practice",
+    "label": "la publicité pour la mode ultra-éphémère",
+    "short": "Pub pour la mode éphémère",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.2,
+    "groups": {},
+    "actors": {},
+    "sector": "retail",
+    "ban": {
+     "label": "Interdire",
+     "revenueLoss": 0.0,
+     "effects": [
+      {
+       "target": "quality.environment",
+       "amount": 0.004
+      },
+      {
+       "target": "sector.retail",
+       "amount": 0.004
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": -0.003
+      }
+     ],
+     "liberty": -0.5,
+     "risk": 0.1
+    }
+   },
+   {
+    "id": "phones_school",
+    "category": "practice",
+    "label": "le téléphone portable au collège et au lycée",
+    "short": "Téléphone à l'école",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.2,
+    "groups": {},
+    "actors": {},
+    "ban": {
+     "label": "Interdire",
+     "revenueLoss": 0.0,
+     "effects": [
+      {
+       "target": "quality.education",
+       "amount": 0.008
+      },
+      {
+       "target": "opinion.group.adults",
+       "amount": 0.01
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": -0.006
+      }
+     ],
+     "liberty": -0.5,
+     "risk": 0.0
+    }
+   },
+   {
+    "id": "short_rentals",
+    "category": "practice",
+    "label": "les locations touristiques de courte durée en zone tendue",
+    "short": "Locations de type Airbnb",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.2,
+    "groups": {},
+    "actors": {},
+    "sector": "tourism",
+    "ban": {
+     "label": "Interdire",
+     "revenueLoss": 0.1,
+     "effects": [
+      {
+       "target": "sector.tourism",
+       "amount": -0.012
+      },
+      {
+       "target": "opinion.group.urban",
+       "amount": 0.008
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": 0.006
+      },
+      {
+       "target": "opinion.group.high_income",
+       "amount": -0.006
+      }
+     ],
+     "liberty": -1,
+     "risk": 0.25
+    }
+   },
+   {
+    "id": "cage_farming",
+    "category": "practice",
+    "label": "l'élevage de poules en cage",
+    "short": "Poules en cage",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.2,
+    "groups": {},
+    "actors": {},
+    "sector": "agrifood",
+    "event": "farmers_protest",
+    "ban": {
+     "label": "Interdire",
+     "revenueLoss": 0.0,
+     "effects": [
+      {
+       "target": "sector.agrifood",
+       "amount": -0.006
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": 0.006
+      },
+      {
+       "target": "opinion.group.rural",
+       "amount": -0.004
+      },
+      {
+       "target": "economy.inflation",
+       "amount": 0.0005
+      }
+     ],
+     "liberty": 0,
+     "risk": 0.0
+    }
+   },
+   {
+    "id": "cash_large",
+    "category": "practice",
+    "label": "les paiements en espèces au-delà de 500 €",
+    "short": "Paiements en espèces",
+    "count": 0.0,
+    "income": 0.0,
+    "base": 0.0,
+    "baseLabel": "",
+    "mobility": 0.2,
+    "groups": {},
+    "actors": {},
+    "sector": "retail",
+    "ban": {
+     "label": "Interdire",
+     "revenueLoss": -1.0,
+     "effects": [
+      {
+       "target": "opinion.group.seniors",
+       "amount": -0.006
+      },
+      {
+       "target": "opinion.group.self_employed",
+       "amount": -0.004
+      },
+      {
+       "target": "quality.justice",
+       "amount": 0.004
+      }
+     ],
+     "liberty": -1.5,
+     "risk": 0.1
+    }
+   }
+  ],
+  "actions": [
+   {
+    "id": "surtax",
+    "verb": "Taxer",
+    "button": "Taxer des revenus",
+    "model": "SURTAX",
+    "categories": [
+     "profession",
+     "group"
+    ],
+    "unit": "%",
+    "min": 0.5,
+    "max": 30,
+    "step": 0.5,
+    "default": 5,
+    "channel": "BUDGET",
+    "conditions": [
+     "threshold",
+     "zone",
+     "exempt",
+     "duration",
+     "phaseIn"
+    ],
+    "phrase": "surtaxe de {value} sur les revenus"
+   },
+   {
+    "id": "tax_cut",
+    "verb": "Baisser l'impôt de",
+    "button": "Baisser l'impôt",
+    "model": "TAX_CUT",
+    "categories": [
+     "profession",
+     "group"
+    ],
+    "unit": "%",
+    "min": 1,
+    "max": 50,
+    "step": 1,
+    "default": 10,
+    "channel": "BUDGET",
+    "conditions": [
+     "threshold",
+     "zone",
+     "duration",
+     "phaseIn"
+    ],
+    "phrase": "baisse de {value} de leur impôt sur le revenu"
+   },
+   {
+    "id": "bonus",
+    "verb": "Verser une prime à",
+    "button": "Verser une prime",
+    "model": "BONUS",
+    "categories": [
+     "profession",
+     "group"
+    ],
+    "unit": "€/mois",
+    "min": 10,
+    "max": 1000,
+    "step": 10,
+    "default": 100,
+    "channel": "BUDGET",
+    "conditions": [
+     "below",
+     "zone",
+     "duration"
+    ],
+    "phrase": "prime de {value}"
+   },
+   {
+    "id": "turnover_tax",
+    "verb": "Taxer",
+    "button": "Taxer des entreprises ou des produits",
+    "model": "TURNOVER_TAX",
+    "categories": [
+     "company",
+     "product"
+    ],
+    "unit": "%",
+    "min": 0.5,
+    "max": 40,
+    "step": 0.5,
+    "default": 5,
+    "channel": "BUDGET",
+    "conditions": [
+     "duration",
+     "phaseIn"
+    ],
+    "phrase": "taxe de {value} sur les {baseLabel}"
+   },
+   {
+    "id": "subsidy",
+    "verb": "Subventionner",
+    "button": "Subventionner",
+    "model": "SUBSIDY",
+    "categories": [
+     "company",
+     "product",
+     "profession"
+    ],
+    "unit": "Md€/an",
+    "min": 0.1,
+    "max": 10,
+    "step": 0.1,
+    "default": 1,
+    "channel": "BUDGET",
+    "conditions": [
+     "duration"
+    ],
+    "phrase": "aide de {value}"
+   },
+   {
+    "id": "price_cap",
+    "verb": "Plafonner la hausse des prix de",
+    "button": "Plafonner des prix",
+    "model": "PRICE_CAP",
+    "categories": [
+     "product"
+    ],
+    "unit": "%/an",
+    "min": -5,
+    "max": 10,
+    "step": 0.5,
+    "default": 1,
+    "channel": "LAW",
+    "conditions": [
+     "duration",
+     "zone"
+    ],
+    "requires": "normalIncrease",
+    "phrase": "hausse limitée à {value}"
+   },
+   {
+    "id": "ban",
+    "verb": "Interdire",
+    "button": "Interdire",
+    "model": "BAN",
+    "categories": [
+     "practice"
+    ],
+    "unit": "",
+    "min": 0,
+    "max": 1,
+    "step": 1,
+    "default": 1,
+    "channel": "LAW",
+    "conditions": [
+     "phaseIn"
+    ],
+    "requires": "ban",
+    "phrase": ""
+   },
+   {
+    "id": "oblige",
+    "verb": "Obliger",
+    "button": "Obliger",
+    "model": "OBLIGATION",
+    "categories": [
+     "profession"
+    ],
+    "unit": "ans",
+    "min": 1,
+    "max": 5,
+    "step": 1,
+    "default": 2,
+    "channel": "LAW",
+    "conditions": [
+     "phaseIn"
+    ],
+    "requires": "obligation",
+    "phrase": "{obligation} pendant {value}"
+   },
+   {
+    "id": "recruit",
+    "verb": "Recruter",
+    "button": "Recruter",
+    "model": "RECRUIT",
+    "categories": [
+     "profession"
+    ],
+    "unit": "postes",
+    "min": 500,
+    "max": 60000,
+    "step": 500,
+    "default": 5000,
+    "channel": "BUDGET",
+    "conditions": [
+     "zone",
+     "phaseIn"
+    ],
+    "requires": "public",
+    "phrase": "{value} de plus"
+   },
+   {
+    "id": "pay_raise",
+    "verb": "Augmenter les salaires de",
+    "button": "Augmenter des salaires",
+    "model": "PAY_RAISE",
+    "categories": [
+     "profession"
+    ],
+    "unit": "%",
+    "min": 1,
+    "max": 30,
+    "step": 1,
+    "default": 5,
+    "channel": "BUDGET",
+    "conditions": [
+     "phaseIn"
+    ],
+    "requires": "public",
+    "phrase": "hausse de {value} des salaires"
+   }
+  ],
+  "categories": [
+   {
+    "id": "profession",
+    "label": "Professions"
+   },
+   {
+    "id": "group",
+    "label": "Groupes de la population"
+   },
+   {
+    "id": "company",
+    "label": "Entreprises"
+   },
+   {
+    "id": "product",
+    "label": "Produits et prix"
+   },
+   {
+    "id": "practice",
+    "label": "Pratiques"
+   }
+  ],
+  "thresholds": [
+   0,
+   30000,
+   50000,
+   80000,
+   120000,
+   180000,
+   250000,
+   500000
+  ],
+  "below": [
+   0,
+   15000,
+   20000,
+   30000,
+   50000
+  ],
+  "zones": [
+   {
+    "id": "national",
+    "label": "Toute la France"
+   },
+   {
+    "id": "idf",
+    "label": "Île-de-France seulement"
+   },
+   {
+    "id": "province",
+    "label": "Hors Île-de-France"
+   },
+   {
+    "id": "rural",
+    "label": "Zones rurales seulement"
+   },
+   {
+    "id": "urban",
+    "label": "Grandes villes seulement"
+   }
+  ],
+  "durations": [
+   0,
+   1,
+   2,
+   3,
+   5
+  ]
+ }
+}

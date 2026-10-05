@@ -313,6 +313,15 @@ class UnrestService(private val ctx: SimulationContext) {
         }
     }
 
+    /** Un texte qui fâche fortement certains groupes fait descendre dans la rue ceux qui les mobilisent. */
+    fun onDiscontent(groups: Map<String, Double>) {
+        val f = file ?: return
+        for (c in f.causes) {
+            val hit = c.groups.sumOf { (groups[it] ?: 0.0).coerceAtMost(0.0) }
+            if (hit < -DISCONTENT) spark(c, (-hit * DISCONTENT_SCALE).coerceAtMost(1.5))
+        }
+    }
+
     /** Chaque mois : la colère diffuse peut faire naître un mouvement. */
     fun monthlyAnger(f: UnrestFile) {
         val e = ctx.state.playerCountry.economy
@@ -483,6 +492,8 @@ class UnrestService(private val ctx: SimulationContext) {
         private const val MAX_START = 1.5
         private const val POLICY_SPARK = 1.2
         private const val ANGER_SPARK = 0.9
+        private const val DISCONTENT = 0.04
+        private const val DISCONTENT_SCALE = 15.0
         private const val ANGRY_POPULARITY = 0.3
         private const val HIGH_INFLATION = 0.045
         private const val WEARY = 0.4

@@ -36,890 +36,1280 @@
   {
    "id": "wealth",
    "category": "patrimoine",
-   "label": "Impôt sur la fortune",
-   "description": "L'IFI ne taxe que le patrimoine immobilier au-delà de 1,3 M€.",
-   "options": [
+   "label": "Impôt sur la fortune financière (ISF)",
+   "description": "Taux annuel sur le patrimoine financier au-delà de 1,3 M€ (l'IFI sur l'immobilier reste).",
+   "unit": "%",
+   "decimals": 1,
+   "reference": 0.0,
+   "min": 0.0,
+   "max": 3.0,
+   "step": 0.1,
+   "revenue": [
+    [
+     0,
+     0
+    ],
+    [
+     0.5,
+     2.5
+    ],
+    [
+     1.0,
+     4.0
+    ],
+    [
+     1.5,
+     4.6
+    ],
+    [
+     2.0,
+     4.5
+    ],
+    [
+     3.0,
+     3.6
+    ]
+   ],
+   "per": 1.0,
+   "effects": [
     {
-     "label": "IFI (immobilier seulement)",
-     "revenueBillions": 0.0,
-     "effects": []
+     "target": "opinion.group.high_income",
+     "amount": -0.03
     },
     {
-     "label": "Rétablir l'ISF (tout le patrimoine)",
-     "revenueBillions": 4.0,
-     "effects": [
-      {
-       "target": "opinion.group.high_income",
-       "amount": -0.03
-      },
-      {
-       "target": "opinion.group.low_income",
-       "amount": 0.012
-      },
-      {
-       "target": "economy.businessConfidence",
-       "amount": -0.015
-      }
-     ],
-     "description": "Symbole fort ; certains contribuables partent."
+     "target": "opinion.group.low_income",
+     "amount": 0.012
     },
     {
-     "label": "Supprimer l'IFI",
-     "revenueBillions": -2.0,
-     "effects": [
-      {
-       "target": "opinion.group.high_income",
-       "amount": 0.015
-      },
-      {
-       "target": "opinion.group.low_income",
-       "amount": -0.012
-      },
-      {
-       "target": "economy.businessConfidence",
-       "amount": 0.005
-      }
-     ]
+     "target": "economy.businessConfidence",
+     "amount": -0.015
+    },
+    {
+     "target": "economy.potentialGrowth",
+     "amount": -0.0003,
+     "days": 1460
     }
-   ]
+   ],
+   "legacy": [
+    0.0,
+    1.0,
+    0.0
+   ],
+   "reform": {
+    "reform": "wealth_tax",
+    "above": 0.3
+   }
   },
   {
    "id": "flat_tax",
    "category": "patrimoine",
    "label": "Prélèvement forfaitaire sur le capital",
-   "description": "Les revenus du capital sont taxés à 30 % (flat tax).",
-   "options": [
+   "description": "Taux unique sur les dividendes, intérêts et plus-values (flat tax).",
+   "unit": "%",
+   "decimals": 0,
+   "reference": 30.0,
+   "min": 20.0,
+   "max": 50.0,
+   "step": 1.0,
+   "revenue": [
+    [
+     20,
+     -4
+    ],
+    [
+     25,
+     -2
+    ],
+    [
+     30,
+     0
+    ],
+    [
+     35,
+     2
+    ],
+    [
+     40,
+     3.2
+    ],
+    [
+     45,
+     3.6
+    ],
+    [
+     50,
+     3.4
+    ]
+   ],
+   "per": 5.0,
+   "effects": [
     {
-     "label": "30 % (flat tax)",
-     "revenueBillions": 0.0,
-     "effects": []
+     "target": "opinion.group.high_income",
+     "amount": -0.015
     },
     {
-     "label": "35 %",
-     "revenueBillions": 2.0,
-     "effects": [
-      {
-       "target": "opinion.group.high_income",
-       "amount": -0.015
-      },
-      {
-       "target": "economy.businessConfidence",
-       "amount": -0.008
-      }
-     ]
-    },
-    {
-     "label": "Retour au barème progressif",
-     "revenueBillions": 4.0,
-     "effects": [
-      {
-       "target": "opinion.group.high_income",
-       "amount": -0.025
-      },
-      {
-       "target": "opinion.group.low_income",
-       "amount": 0.008
-      },
-      {
-       "target": "economy.businessConfidence",
-       "amount": -0.015
-      }
-     ]
-    },
-    {
-     "label": "25 %",
-     "revenueBillions": -2.0,
-     "effects": [
-      {
-       "target": "opinion.group.high_income",
-       "amount": 0.012
-      },
-      {
-       "target": "economy.businessConfidence",
-       "amount": 0.008
-      }
-     ]
+     "target": "economy.businessConfidence",
+     "amount": -0.008
     }
+   ],
+   "legacy": [
+    30.0,
+    35.0,
+    42.0,
+    25.0
    ]
   },
   {
    "id": "inheritance",
    "category": "patrimoine",
-   "label": "Droits de succession",
-   "description": "Jusqu'à 45 % en ligne directe au-delà de 1,8 M€.",
-   "options": [
+   "label": "Abattement sur les successions",
+   "description": "Part d'un héritage en ligne directe transmise sans impôt, par enfant.",
+   "unit": "k€",
+   "decimals": 0,
+   "reference": 100.0,
+   "min": 50.0,
+   "max": 500.0,
+   "step": 10.0,
+   "revenue": [
+    [
+     50,
+     2.0
+    ],
+    [
+     100,
+     0
+    ],
+    [
+     200,
+     -3.0
+    ],
+    [
+     300,
+     -4.8
+    ],
+    [
+     500,
+     -7.5
+    ]
+   ],
+   "per": 100.0,
+   "effects": [
     {
-     "label": "Barème actuel",
-     "revenueBillions": 0.0,
-     "effects": []
+     "target": "opinion.group.middle_income",
+     "amount": 0.012
     },
     {
-     "label": "Allégés pour les classes moyennes",
-     "revenueBillions": -4.0,
-     "effects": [
-      {
-       "target": "opinion.group.middle_income",
-       "amount": 0.015
-      },
-      {
-       "target": "opinion.group.seniors",
-       "amount": 0.01
-      }
-     ]
+     "target": "opinion.group.seniors",
+     "amount": 0.008
     },
     {
-     "label": "Alourdis sur les très gros héritages",
-     "revenueBillions": 3.0,
-     "effects": [
-      {
-       "target": "opinion.group.high_income",
-       "amount": -0.015
-      },
-      {
-       "target": "opinion.group.low_income",
-       "amount": 0.006
-      }
-     ]
+     "target": "opinion.group.low_income",
+     "amount": -0.004
     }
+   ],
+   "legacy": [
+    100.0,
+    250.0,
+    100.0
+   ]
+  },
+  {
+   "id": "inheritance_top",
+   "category": "patrimoine",
+   "label": "Taux maximal sur les très gros héritages",
+   "description": "Taux marginal en ligne directe au-delà de 1,8 M€.",
+   "unit": "%",
+   "decimals": 0,
+   "reference": 45.0,
+   "min": 30.0,
+   "max": 75.0,
+   "step": 1.0,
+   "revenue": [
+    [
+     30,
+     -1.5
+    ],
+    [
+     45,
+     0
+    ],
+    [
+     55,
+     1.6
+    ],
+    [
+     60,
+     2.2
+    ],
+    [
+     70,
+     2.5
+    ],
+    [
+     75,
+     2.4
+    ]
+   ],
+   "per": 10.0,
+   "effects": [
+    {
+     "target": "opinion.group.high_income",
+     "amount": -0.012
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": 0.005
+    }
+   ],
+   "legacy": [
+    45.0,
+    45.0,
+    60.0
    ]
   },
   {
    "id": "financial_transactions",
    "category": "patrimoine",
    "label": "Taxe sur les transactions financières",
-   "description": "0,3 % sur les achats d'actions des grandes entreprises.",
-   "options": [
+   "description": "Taux sur les achats d'actions des grandes entreprises françaises.",
+   "unit": "%",
+   "decimals": 2,
+   "reference": 0.3,
+   "min": 0.0,
+   "max": 1.0,
+   "step": 0.05,
+   "revenue": [
+    [
+     0,
+     -1.7
+    ],
+    [
+     0.3,
+     0
+    ],
+    [
+     0.6,
+     1.3
+    ],
+    [
+     1.0,
+     1.8
+    ]
+   ],
+   "per": 0.3,
+   "effects": [
     {
-     "label": "0,3 %",
-     "revenueBillions": 0.0,
-     "effects": []
+     "target": "sector.banking",
+     "amount": -0.015
     },
     {
-     "label": "0,6 % et élargie aux opérations intrajournalières",
-     "revenueBillions": 1.5,
-     "effects": [
-      {
-       "target": "sector.banking",
-       "amount": -0.02
-      },
-      {
-       "target": "opinion.group.low_income",
-       "amount": 0.004
-      }
-     ]
-    },
-    {
-     "label": "Supprimée",
-     "revenueBillions": -1.7,
-     "effects": [
-      {
-       "target": "sector.banking",
-       "amount": 0.01
-      }
-     ]
+     "target": "opinion.group.low_income",
+     "amount": 0.003
     }
+   ],
+   "legacy": [
+    0.3,
+    0.6,
+    0.0
    ]
   },
   {
    "id": "buybacks",
    "category": "patrimoine",
    "label": "Taxe sur les rachats d'actions",
-   "description": "Aucune taxe spécifique.",
-   "options": [
+   "description": "Taux sur les montants rachetés par les grandes entreprises.",
+   "unit": "%",
+   "decimals": 1,
+   "reference": 0.0,
+   "min": 0.0,
+   "max": 5.0,
+   "step": 0.5,
+   "revenue": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0.6
+    ],
+    [
+     2,
+     1.0
+    ],
+    [
+     5,
+     1.5
+    ]
+   ],
+   "per": 1.0,
+   "effects": [
     {
-     "label": "Aucune",
-     "revenueBillions": 0.0,
-     "effects": []
+     "target": "economy.businessConfidence",
+     "amount": -0.004
     },
     {
-     "label": "1 % des rachats",
-     "revenueBillions": 0.6,
-     "effects": [
-      {
-       "target": "economy.businessConfidence",
-       "amount": -0.004
-      },
-      {
-       "target": "opinion.group.private_employees",
-       "amount": 0.004
-      }
-     ]
+     "target": "opinion.group.private_employees",
+     "amount": 0.003
     }
+   ],
+   "legacy": [
+    0.0,
+    1.0
    ]
   },
   {
    "id": "high_incomes",
    "category": "revenus",
    "label": "Contribution sur les hauts revenus",
-   "description": "3 à 4 % au-delà de 250 000 € de revenus.",
-   "options": [
+   "description": "Surtaxe au-delà de 250 000 € de revenus par an.",
+   "unit": "%",
+   "decimals": 1,
+   "reference": 3.5,
+   "min": 0.0,
+   "max": 12.0,
+   "step": 0.5,
+   "revenue": [
+    [
+     0,
+     -1.3
+    ],
+    [
+     3.5,
+     0
+    ],
+    [
+     7,
+     1.5
+    ],
+    [
+     10,
+     2.0
+    ],
+    [
+     12,
+     2.1
+    ]
+   ],
+   "per": 3.5,
+   "effects": [
     {
-     "label": "3 à 4 %",
-     "revenueBillions": 0.0,
-     "effects": []
+     "target": "opinion.group.high_income",
+     "amount": -0.02
     },
     {
-     "label": "Doublée (6 à 8 %)",
-     "revenueBillions": 1.5,
-     "effects": [
-      {
-       "target": "opinion.group.high_income",
-       "amount": -0.02
-      },
-      {
-       "target": "opinion.group.low_income",
-       "amount": 0.006
-      }
-     ]
-    },
-    {
-     "label": "Supprimée",
-     "revenueBillions": -1.3,
-     "effects": [
-      {
-       "target": "opinion.group.high_income",
-       "amount": 0.012
-      }
-     ]
+     "target": "opinion.group.low_income",
+     "amount": 0.006
     }
+   ],
+   "legacy": [
+    3.5,
+    7.0,
+    0.0
    ]
   },
   {
    "id": "family_quotient",
    "category": "revenus",
-   "label": "Quotient familial",
-   "description": "L'avantage par enfant est plafonné à environ 1 800 € par an.",
-   "options": [
+   "label": "Plafond du quotient familial",
+   "description": "Avantage fiscal maximal par demi-part d'enfant, par an.",
+   "unit": "€",
+   "decimals": 0,
+   "reference": 1800.0,
+   "min": 1000.0,
+   "max": 3000.0,
+   "step": 50.0,
+   "revenue": [
+    [
+     1000,
+     2.5
+    ],
+    [
+     1800,
+     0
+    ],
+    [
+     2500,
+     -1.5
+    ],
+    [
+     3000,
+     -2.4
+    ]
+   ],
+   "per": 500.0,
+   "effects": [
     {
-     "label": "Plafond actuel",
-     "revenueBillions": 0.0,
-     "effects": []
+     "target": "opinion.group.adults",
+     "amount": 0.008
     },
     {
-     "label": "Plafond abaissé",
-     "revenueBillions": 1.5,
-     "effects": [
-      {
-       "target": "opinion.group.middle_income",
-       "amount": -0.012
-      },
-      {
-       "target": "opinion.group.adults",
-       "amount": -0.008
-      }
-     ]
-    },
-    {
-     "label": "Plafond relevé",
-     "revenueBillions": -1.0,
-     "effects": [
-      {
-       "target": "opinion.group.adults",
-       "amount": 0.01
-      },
-      {
-       "target": "opinion.group.middle_income",
-       "amount": 0.006
-      }
-     ]
+     "target": "opinion.group.middle_income",
+     "amount": 0.006
     }
+   ],
+   "legacy": [
+    1800.0,
+    1300.0,
+    2400.0
    ]
   },
   {
    "id": "housing_tax",
    "category": "revenus",
-   "label": "Taxe d'habitation",
-   "description": "Supprimée sur les résidences principales, maintenue sur les secondaires.",
-   "options": [
+   "label": "Taxe d'habitation sur les résidences principales",
+   "description": "Part de l'ancienne taxe rétablie au profit des communes (0 % : supprimée).",
+   "unit": "%",
+   "decimals": 0,
+   "reference": 0.0,
+   "min": 0.0,
+   "max": 100.0,
+   "step": 5.0,
+   "revenue": [
+    [
+     0,
+     0
+    ],
+    [
+     50,
+     9.0
+    ],
+    [
+     100,
+     18.0
+    ]
+   ],
+   "per": 30.0,
+   "effects": [
     {
-     "label": "Résidences secondaires seulement",
-     "revenueBillions": 0.0,
-     "effects": []
+     "target": "opinion.group.middle_income",
+     "amount": -0.012
     },
     {
-     "label": "Surtaxe sur les résidences secondaires en zone tendue",
-     "revenueBillions": 0.8,
-     "effects": [
-      {
-       "target": "opinion.group.high_income",
-       "amount": -0.006
-      },
-      {
-       "target": "opinion.group.urban",
-       "amount": 0.004
-      }
-     ]
+     "target": "opinion.group.low_income",
+     "amount": -0.008
     },
     {
-     "label": "Rétablie sur les résidences principales (communes)",
-     "revenueBillions": 6.0,
-     "effects": [
-      {
-       "target": "opinion.group.middle_income",
-       "amount": -0.025
-      },
-      {
-       "target": "opinion.group.low_income",
-       "amount": -0.015
-      }
-     ]
+     "target": "economy.consumerConfidence",
+     "amount": -0.004
     }
+   ],
+   "legacy": [
+    0.0,
+    0.0,
+    35.0
    ]
   },
   {
    "id": "tax_niches",
    "category": "revenus",
-   "label": "Niches fiscales",
-   "description": "Environ 90 Md€ d'avantages fiscaux (emploi à domicile, investissement locatif...).",
-   "options": [
+   "label": "Rabot sur les niches fiscales",
+   "description": "Réduction de tous les avantages fiscaux (emploi à domicile, investissement locatif...).",
+   "unit": "%",
+   "decimals": 0,
+   "reference": 0.0,
+   "min": 0.0,
+   "max": 50.0,
+   "step": 1.0,
+   "revenue": [
+    [
+     0,
+     0
+    ],
+    [
+     10,
+     8.0
+    ],
+    [
+     20,
+     15.0
+    ],
+    [
+     30,
+     20.0
+    ],
+    [
+     50,
+     27.0
+    ]
+   ],
+   "per": 10.0,
+   "effects": [
     {
-     "label": "Inchangées",
-     "revenueBillions": 0.0,
-     "effects": []
+     "target": "opinion.group.middle_income",
+     "amount": -0.012
     },
     {
-     "label": "Rabot de 10 % sur toutes les niches",
-     "revenueBillions": 8.0,
-     "effects": [
-      {
-       "target": "opinion.group.middle_income",
-       "amount": -0.012
-      },
-      {
-       "target": "opinion.group.high_income",
-       "amount": -0.012
-      },
-      {
-       "target": "sector.construction",
-       "amount": -0.01
-      }
-     ]
+     "target": "opinion.group.high_income",
+     "amount": -0.012
     },
     {
-     "label": "Suppression des niches les plus coûteuses",
-     "revenueBillions": 15.0,
-     "effects": [
-      {
-       "target": "opinion.group.high_income",
-       "amount": -0.025
-      },
-      {
-       "target": "opinion.group.middle_income",
-       "amount": -0.015
-      },
-      {
-       "target": "sector.construction",
-       "amount": -0.02
-      },
-      {
-       "target": "economy.businessConfidence",
-       "amount": -0.01
-      }
-     ]
+     "target": "sector.construction",
+     "amount": -0.01
     }
+   ],
+   "legacy": [
+    0.0,
+    10.0,
+    20.0
    ]
   },
   {
    "id": "tax_shield",
    "category": "revenus",
    "label": "Bouclier fiscal",
-   "description": "Aucun plafonnement des impôts en fonction des revenus.",
-   "options": [
+   "description": "Plafond des impôts en part des revenus (100 % : pas de bouclier).",
+   "unit": "%",
+   "decimals": 0,
+   "reference": 100.0,
+   "min": 40.0,
+   "max": 100.0,
+   "step": 5.0,
+   "revenue": [
+    [
+     40,
+     -1.4
+    ],
+    [
+     50,
+     -0.8
+    ],
+    [
+     70,
+     -0.3
+    ],
+    [
+     100,
+     0
+    ]
+   ],
+   "per": -10.0,
+   "effects": [
     {
-     "label": "Aucun",
-     "revenueBillions": 0.0,
-     "effects": []
+     "target": "opinion.group.high_income",
+     "amount": 0.003
     },
     {
-     "label": "Impôts plafonnés à 50 % des revenus",
-     "revenueBillions": -0.8,
-     "effects": [
-      {
-       "target": "opinion.group.high_income",
-       "amount": 0.012
-      },
-      {
-       "target": "opinion.group.low_income",
-       "amount": -0.012
-      }
-     ]
+     "target": "opinion.group.low_income",
+     "amount": -0.003
     }
+   ],
+   "legacy": [
+    100.0,
+    50.0
    ]
   },
   {
    "id": "exit_tax",
    "category": "revenus",
    "label": "Exit tax",
-   "description": "Taxe allégée sur les plus-values latentes en cas de départ à l'étranger.",
-   "options": [
+   "description": "Taux sur les plus-values latentes des contribuables qui s'expatrient.",
+   "unit": "%",
+   "decimals": 1,
+   "reference": 12.8,
+   "min": 0.0,
+   "max": 30.0,
+   "step": 0.5,
+   "revenue": [
+    [
+     0,
+     -0.2
+    ],
+    [
+     12.8,
+     0
+    ],
+    [
+     20,
+     0.25
+    ],
+    [
+     30,
+     0.3
+    ]
+   ],
+   "per": 10.0,
+   "effects": [
     {
-     "label": "Allégée",
-     "revenueBillions": 0.0,
-     "effects": []
+     "target": "opinion.group.high_income",
+     "amount": -0.005
     },
     {
-     "label": "Renforcée",
-     "revenueBillions": 0.3,
-     "effects": [
-      {
-       "target": "opinion.group.high_income",
-       "amount": -0.006
-      },
-      {
-       "target": "economy.businessConfidence",
-       "amount": -0.004
-      }
-     ]
+     "target": "economy.businessConfidence",
+     "amount": -0.003
     }
+   ],
+   "legacy": [
+    12.8,
+    25.0
    ]
   },
   {
    "id": "production_taxes",
    "category": "entreprises",
    "label": "Impôts de production",
-   "description": "Taxes sur la valeur ajoutée et le chiffre d'affaires des entreprises.",
-   "options": [
+   "description": "Taxes sur la valeur ajoutée et le chiffre d'affaires des entreprises (Md€ par an).",
+   "unit": "Md€",
+   "decimals": 0,
+   "reference": 75.0,
+   "min": 60.0,
+   "max": 90.0,
+   "step": 1.0,
+   "revenue": [
+    [
+     60,
+     -15
+    ],
+    [
+     75,
+     0
+    ],
+    [
+     90,
+     14
+    ]
+   ],
+   "per": 5.0,
+   "effects": [
     {
-     "label": "Niveau actuel",
-     "revenueBillions": 0.0,
-     "effects": []
+     "target": "economy.businessConfidence",
+     "amount": -0.02
     },
     {
-     "label": "Baisse de 5 Md€",
-     "revenueBillions": -5.0,
-     "effects": [
-      {
-       "target": "economy.businessConfidence",
-       "amount": 0.02
-      },
-      {
-       "target": "sector.industry",
-       "amount": 0.02
-      }
-     ]
-    },
-    {
-     "label": "Hausse de 3 Md€",
-     "revenueBillions": 3.0,
-     "effects": [
-      {
-       "target": "economy.businessConfidence",
-       "amount": -0.015
-      },
-      {
-       "target": "sector.industry",
-       "amount": -0.015
-      }
-     ]
+     "target": "sector.industry",
+     "amount": -0.02
     }
+   ],
+   "legacy": [
+    75.0,
+    70.0,
+    78.0
    ]
   },
   {
    "id": "low_wage_relief",
    "category": "entreprises",
    "label": "Allègements de charges sur les bas salaires",
-   "description": "Environ 80 Md€ de réductions de cotisations.",
-   "options": [
+   "description": "Réductions de cotisations patronales près du SMIC (Md€ par an).",
+   "unit": "Md€",
+   "decimals": 0,
+   "reference": 80.0,
+   "min": 60.0,
+   "max": 100.0,
+   "step": 1.0,
+   "revenue": [
+    [
+     60,
+     20
+    ],
+    [
+     80,
+     0
+    ],
+    [
+     100,
+     -20
+    ]
+   ],
+   "per": 5.0,
+   "effects": [
     {
-     "label": "Niveau actuel",
-     "revenueBillions": 0.0,
-     "effects": []
+     "target": "economy.businessConfidence",
+     "amount": 0.01
     },
     {
-     "label": "Recentrés sur le SMIC",
-     "revenueBillions": 5.0,
-     "effects": [
-      {
-       "target": "economy.businessConfidence",
-       "amount": -0.01
-      },
-      {
-       "target": "economy.unemployment",
-       "amount": 0.001
-      }
-     ]
-    },
-    {
-     "label": "Renforcés",
-     "revenueBillions": -5.0,
-     "effects": [
-      {
-       "target": "economy.businessConfidence",
-       "amount": 0.01
-      },
-      {
-       "target": "economy.unemployment",
-       "amount": -0.001
-      }
-     ]
+     "target": "economy.unemployment",
+     "amount": -0.001
     }
+   ],
+   "legacy": [
+    80.0,
+    75.0,
+    85.0
    ]
   },
   {
    "id": "research_credit",
    "category": "entreprises",
    "label": "Crédit d'impôt recherche",
-   "description": "7 Md€ par an pour la recherche des entreprises.",
-   "options": [
+   "description": "Aide fiscale à la recherche des entreprises (Md€ par an).",
+   "unit": "Md€",
+   "decimals": 1,
+   "reference": 7.5,
+   "min": 2.0,
+   "max": 15.0,
+   "step": 0.5,
+   "revenue": [
+    [
+     2,
+     5.5
+    ],
+    [
+     7.5,
+     0
+    ],
+    [
+     15,
+     -7.5
+    ]
+   ],
+   "per": 2.5,
+   "effects": [
     {
-     "label": "Actuel",
-     "revenueBillions": 0.0,
-     "effects": []
+     "target": "sector.tech",
+     "amount": 0.012
     },
     {
-     "label": "Recentré sur les PME",
-     "revenueBillions": 2.0,
-     "effects": [
-      {
-       "target": "sector.tech",
-       "amount": -0.01
-      },
-      {
-       "target": "opinion.group.self_employed",
-       "amount": 0.004
-      }
-     ]
+     "target": "sector.health",
+     "amount": 0.006
     },
     {
-     "label": "Doublé",
-     "revenueBillions": -5.0,
-     "effects": [
-      {
-       "target": "sector.tech",
-       "amount": 0.03
-      },
-      {
-       "target": "sector.health",
-       "amount": 0.02
-      },
-      {
-       "target": "economy.potentialGrowth",
-       "amount": 0.0005,
-       "days": 365
-      }
-     ]
+     "target": "economy.potentialGrowth",
+     "amount": 0.0002,
+     "days": 365
     }
+   ],
+   "legacy": [
+    7.5,
+    5.5,
+    12.5
    ]
   },
   {
    "id": "windfall",
    "category": "entreprises",
    "label": "Taxe sur les superprofits",
-   "description": "Pas de taxe sur les bénéfices exceptionnels.",
-   "options": [
+   "description": "Taux sur les bénéfices exceptionnels (énergie, banques, transport maritime).",
+   "unit": "%",
+   "decimals": 0,
+   "reference": 0.0,
+   "min": 0.0,
+   "max": 60.0,
+   "step": 5.0,
+   "revenue": [
+    [
+     0,
+     0
+    ],
+    [
+     25,
+     5.0
+    ],
+    [
+     50,
+     7.0
+    ],
+    [
+     60,
+     7.2
+    ]
+   ],
+   "per": 25.0,
+   "effects": [
     {
-     "label": "Aucune",
-     "revenueBillions": 0.0,
-     "effects": []
+     "target": "sector.energy",
+     "amount": -0.02
     },
     {
-     "label": "Temporaire (énergie, banques, transport maritime)",
-     "revenueBillions": 5.0,
-     "effects": [
-      {
-       "target": "sector.energy",
-       "amount": -0.02
-      },
-      {
-       "target": "sector.banking",
-       "amount": -0.015
-      },
-      {
-       "target": "opinion.group.low_income",
-       "amount": 0.01
-      },
-      {
-       "target": "economy.businessConfidence",
-       "amount": -0.008
-      }
-     ]
+     "target": "sector.banking",
+     "amount": -0.015
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": 0.01
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.008
     }
+   ],
+   "legacy": [
+    0.0,
+    25.0
    ]
   },
   {
    "id": "digital_tax",
    "category": "entreprises",
    "label": "Taxe sur les services numériques",
-   "description": "3 % du chiffre d'affaires des grandes plateformes réalisé en France.",
-   "options": [
+   "description": "Taux sur le chiffre d'affaires des grandes plateformes réalisé en France.",
+   "unit": "%",
+   "decimals": 1,
+   "reference": 3.0,
+   "min": 0.0,
+   "max": 10.0,
+   "step": 0.5,
+   "revenue": [
+    [
+     0,
+     -0.7
+    ],
+    [
+     3,
+     0
+    ],
+    [
+     6,
+     0.7
+    ],
+    [
+     10,
+     1.0
+    ]
+   ],
+   "per": 3.0,
+   "effects": [
     {
-     "label": "3 %",
-     "revenueBillions": 0.0,
-     "effects": []
+     "target": "sector.tech",
+     "amount": -0.008
     },
     {
-     "label": "6 %",
-     "revenueBillions": 0.7,
-     "effects": [
-      {
-       "target": "sector.tech",
-       "amount": -0.01
-      },
-      {
-       "target": "memory.USA.DISAGREEMENT",
-       "amount": -0.02
-      }
-     ]
-    },
-    {
-     "label": "Supprimée",
-     "revenueBillions": -0.7,
-     "effects": [
-      {
-       "target": "memory.USA.NEGOTIATION_GOODWILL",
-       "amount": 0.01
-      }
-     ]
+     "target": "memory.USA.DISAGREEMENT",
+     "amount": -0.02
     }
+   ],
+   "legacy": [
+    3.0,
+    6.0,
+    0.0
    ]
   },
   {
    "id": "restaurant_vat",
    "category": "consommation",
    "label": "TVA dans la restauration",
-   "description": "Taux réduit de 10 %.",
-   "options": [
+   "description": "Taux réduit sur les repas au restaurant.",
+   "unit": "%",
+   "decimals": 1,
+   "reference": 10.0,
+   "min": 5.5,
+   "max": 20.0,
+   "step": 0.5,
+   "revenue": [
+    [
+     5.5,
+     -2.5
+    ],
+    [
+     10,
+     0
+    ],
+    [
+     20,
+     3.0
+    ]
+   ],
+   "per": 5.0,
+   "effects": [
     {
-     "label": "10 %",
-     "revenueBillions": 0.0,
-     "effects": []
+     "target": "sector.tourism",
+     "amount": -0.02
     },
     {
-     "label": "5,5 %",
-     "revenueBillions": -2.5,
-     "effects": [
-      {
-       "target": "sector.tourism",
-       "amount": 0.02
-      },
-      {
-       "target": "opinion.group.self_employed",
-       "amount": 0.008
-      }
-     ]
-    },
-    {
-     "label": "20 %",
-     "revenueBillions": 3.0,
-     "effects": [
-      {
-       "target": "sector.tourism",
-       "amount": -0.03
-      },
-      {
-       "target": "opinion.group.self_employed",
-       "amount": -0.012
-      }
-     ]
+     "target": "opinion.group.self_employed",
+     "amount": -0.008
     }
+   ],
+   "legacy": [
+    10.0,
+    5.5,
+    20.0
    ]
   },
   {
    "id": "essentials_vat",
    "category": "consommation",
    "label": "TVA sur les produits de première nécessité",
-   "description": "Taux réduit de 5,5 % sur l'alimentation et l'énergie.",
-   "options": [
+   "description": "Taux réduit sur l'alimentation de base.",
+   "unit": "%",
+   "decimals": 1,
+   "reference": 5.5,
+   "min": 0.0,
+   "max": 10.0,
+   "step": 0.5,
+   "revenue": [
+    [
+     0,
+     -7.0
+    ],
+    [
+     5.5,
+     0
+    ],
+    [
+     10,
+     5.0
+    ]
+   ],
+   "per": 5.5,
+   "effects": [
     {
-     "label": "5,5 %",
-     "revenueBillions": 0.0,
-     "effects": []
+     "target": "opinion.group.low_income",
+     "amount": -0.025
     },
     {
-     "label": "0 % sur les produits de base",
-     "revenueBillions": -7.0,
-     "effects": [
-      {
-       "target": "opinion.group.low_income",
-       "amount": 0.025
-      },
-      {
-       "target": "opinion.group.middle_income",
-       "amount": 0.012
-      },
-      {
-       "target": "economy.inflation",
-       "amount": -0.004,
-       "days": 180
-      }
-     ]
+     "target": "opinion.group.middle_income",
+     "amount": -0.012
+    },
+    {
+     "target": "economy.inflation",
+     "amount": 0.004,
+     "days": 180
     }
+   ],
+   "legacy": [
+    5.5,
+    0.0
    ]
   },
   {
    "id": "electricity_vat",
    "category": "consommation",
    "label": "TVA sur l'électricité et le gaz",
-   "description": "20 % sur la consommation.",
-   "options": [
+   "description": "Taux sur la consommation d'énergie des ménages.",
+   "unit": "%",
+   "decimals": 1,
+   "reference": 20.0,
+   "min": 5.5,
+   "max": 20.0,
+   "step": 0.5,
+   "revenue": [
+    [
+     5.5,
+     -6.0
+    ],
+    [
+     20,
+     0
+    ]
+   ],
+   "per": 14.5,
+   "effects": [
     {
-     "label": "20 %",
-     "revenueBillions": 0.0,
-     "effects": []
+     "target": "opinion.group.low_income",
+     "amount": -0.02
     },
     {
-     "label": "5,5 %",
-     "revenueBillions": -6.0,
-     "effects": [
-      {
-       "target": "opinion.group.low_income",
-       "amount": 0.02
-      },
-      {
-       "target": "opinion.group.rural",
-       "amount": 0.012
-      },
-      {
-       "target": "economy.inflation",
-       "amount": -0.003,
-       "days": 180
-      }
-     ]
+     "target": "opinion.group.rural",
+     "amount": -0.012
+    },
+    {
+     "target": "economy.inflation",
+     "amount": 0.003,
+     "days": 180
     }
+   ],
+   "legacy": [
+    20.0,
+    5.5
    ]
   },
   {
    "id": "tobacco",
    "category": "comportement",
-   "label": "Fiscalité du tabac",
-   "description": "Un paquet coûte environ 13 €.",
-   "options": [
+   "label": "Prix du paquet de cigarettes",
+   "description": "Les accises fixent le prix du paquet ; trop cher, la contrebande explose.",
+   "unit": "€",
+   "decimals": 1,
+   "reference": 13.0,
+   "min": 10.0,
+   "max": 25.0,
+   "step": 0.5,
+   "revenue": [
+    [
+     10,
+     -2.0
+    ],
+    [
+     13,
+     0
+    ],
+    [
+     16,
+     1.5
+    ],
+    [
+     20,
+     2.4
+    ],
+    [
+     25,
+     2.0
+    ]
+   ],
+   "per": 3.0,
+   "effects": [
     {
-     "label": "Paquet à 13 €",
-     "revenueBillions": 0.0,
-     "effects": []
+     "target": "quality.health",
+     "amount": 0.004
     },
     {
-     "label": "Paquet à 16 €",
-     "revenueBillions": 1.5,
-     "effects": [
-      {
-       "target": "quality.health",
-       "amount": 0.004
-      },
-      {
-       "target": "opinion.group.low_income",
-       "amount": -0.008
-      }
-     ]
+     "target": "opinion.group.low_income",
+     "amount": -0.008
     }
+   ],
+   "legacy": [
+    13.0,
+    16.0
    ]
   },
   {
    "id": "sugar",
    "category": "comportement",
    "label": "Taxe sur les boissons sucrées",
-   "description": "Taxe modulée selon la teneur en sucre.",
-   "options": [
+   "description": "Montant par hectolitre pour les boissons les plus sucrées.",
+   "unit": "€/hl",
+   "decimals": 0,
+   "reference": 7.0,
+   "min": 0.0,
+   "max": 40.0,
+   "step": 1.0,
+   "revenue": [
+    [
+     0,
+     -0.3
+    ],
+    [
+     7,
+     0
+    ],
+    [
+     20,
+     0.6
+    ],
+    [
+     40,
+     0.9
+    ]
+   ],
+   "per": 10.0,
+   "effects": [
     {
-     "label": "Actuelle",
-     "revenueBillions": 0.0,
-     "effects": []
+     "target": "quality.health",
+     "amount": 0.003
     },
     {
-     "label": "Renforcée et élargie aux produits transformés",
-     "revenueBillions": 0.6,
-     "effects": [
-      {
-       "target": "quality.health",
-       "amount": 0.004
-      },
-      {
-       "target": "sector.agrifood",
-       "amount": -0.01
-      }
-     ]
+     "target": "sector.agrifood",
+     "amount": -0.008
     }
+   ],
+   "legacy": [
+    7.0,
+    20.0
    ]
   },
   {
    "id": "alcohol",
    "category": "comportement",
-   "label": "Fiscalité de l'alcool",
-   "description": "Accises sur les alcools forts, très faibles sur le vin.",
-   "options": [
+   "label": "Prix minimum par unité d'alcool",
+   "description": "Prix plancher d'une unité d'alcool (0 : pas de prix minimum).",
+   "unit": "€",
+   "decimals": 2,
+   "reference": 0.0,
+   "min": 0.0,
+   "max": 1.0,
+   "step": 0.05,
+   "revenue": [
+    [
+     0,
+     0
+    ],
+    [
+     0.5,
+     0.8
+    ],
+    [
+     1.0,
+     1.1
+    ]
+   ],
+   "per": 0.5,
+   "effects": [
     {
-     "label": "Actuelle",
-     "revenueBillions": 0.0,
-     "effects": []
+     "target": "quality.health",
+     "amount": 0.004
     },
     {
-     "label": "Prix minimum par unité d'alcool",
-     "revenueBillions": 0.8,
-     "effects": [
-      {
-       "target": "quality.health",
-       "amount": 0.004
-      },
-      {
-       "target": "opinion.group.rural",
-       "amount": -0.008
-      },
-      {
-       "target": "sector.agrifood",
-       "amount": -0.01
-      }
-     ]
+     "target": "opinion.group.rural",
+     "amount": -0.008
+    },
+    {
+     "target": "sector.agrifood",
+     "amount": -0.01
     }
+   ],
+   "legacy": [
+    0.0,
+    0.5
    ]
   },
   {
    "id": "air_tickets",
    "category": "comportement",
    "label": "Taxe sur les billets d'avion",
-   "description": "Quelques euros par billet.",
-   "options": [
+   "description": "Montant par billet en classe économique sur les vols européens.",
+   "unit": "€",
+   "decimals": 1,
+   "reference": 7.5,
+   "min": 0.0,
+   "max": 60.0,
+   "step": 0.5,
+   "revenue": [
+    [
+     0,
+     -0.9
+    ],
+    [
+     7.5,
+     0
+    ],
+    [
+     22,
+     1.0
+    ],
+    [
+     40,
+     1.4
+    ],
+    [
+     60,
+     1.5
+    ]
+   ],
+   "per": 15.0,
+   "effects": [
     {
-     "label": "Actuelle",
-     "revenueBillions": 0.0,
-     "effects": []
+     "target": "quality.environment",
+     "amount": 0.004
     },
     {
-     "label": "Triplée",
-     "revenueBillions": 1.0,
-     "effects": [
-      {
-       "target": "quality.environment",
-       "amount": 0.004
-      },
-      {
-       "target": "sector.tourism",
-       "amount": -0.01
-      },
-      {
-       "target": "sector.transport",
-       "amount": -0.01
-      }
-     ]
+     "target": "sector.tourism",
+     "amount": -0.01
+    },
+    {
+     "target": "sector.transport",
+     "amount": -0.01
     }
+   ],
+   "legacy": [
+    7.5,
+    22.0
    ]
   },
   {
    "id": "vacant_homes",
    "category": "comportement",
    "label": "Taxe sur les logements vacants",
-   "description": "Dans les zones tendues seulement.",
-   "options": [
+   "description": "Taux sur la valeur locative des logements vides depuis plus d'un an.",
+   "unit": "%",
+   "decimals": 0,
+   "reference": 17.0,
+   "min": 0.0,
+   "max": 60.0,
+   "step": 1.0,
+   "revenue": [
+    [
+     0,
+     -0.2
+    ],
+    [
+     17,
+     0
+    ],
+    [
+     34,
+     0.4
+    ],
+    [
+     60,
+     0.6
+    ]
+   ],
+   "per": 17.0,
+   "effects": [
     {
-     "label": "Zones tendues",
-     "revenueBillions": 0.0,
-     "effects": []
+     "target": "opinion.group.urban",
+     "amount": 0.006
     },
     {
-     "label": "Généralisée et doublée",
-     "revenueBillions": 0.4,
-     "effects": [
-      {
-       "target": "opinion.group.urban",
-       "amount": 0.006
-      },
-      {
-       "target": "opinion.group.high_income",
-       "amount": -0.004
-      }
-     ]
+     "target": "opinion.group.high_income",
+     "amount": -0.004
     }
+   ],
+   "legacy": [
+    17.0,
+    34.0
    ]
+  },
+  {
+   "id": "carbon_tax",
+   "category": "comportement",
+   "label": "Taxe carbone",
+   "description": "Prix de la tonne de CO₂ dans les taxes sur les carburants et le chauffage (gelé depuis 2018).",
+   "unit": "€/t",
+   "decimals": 0,
+   "reference": 44.6,
+   "min": 0.0,
+   "max": 250.0,
+   "step": 2.0,
+   "revenue": [
+    [
+     0,
+     -9.0
+    ],
+    [
+     44.6,
+     0
+    ],
+    [
+     100,
+     9.0
+    ],
+    [
+     150,
+     16.0
+    ],
+    [
+     250,
+     25.0
+    ]
+   ],
+   "per": 20.0,
+   "effects": [
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.025
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": -0.012
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": 0.004
+    },
+    {
+     "target": "quality.environment",
+     "amount": 0.012,
+     "days": 1095
+    },
+    {
+     "target": "economy.inflation",
+     "amount": 0.001,
+     "days": 365
+    },
+    {
+     "target": "chain.fuel_tax_protest",
+     "amount": 0.08
+    }
+   ],
+   "legacy": [
+    44.6
+   ],
+   "reform": {
+    "reform": "carbon_tax",
+    "above": 60.0
+   }
   }
  ]
 }

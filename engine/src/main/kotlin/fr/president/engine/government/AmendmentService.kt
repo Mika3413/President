@@ -53,9 +53,23 @@ class AmendmentService(private val ctx: SimulationContext) {
         p.amendments += a.id
         p.supportBonus += a.supportGain
         if (a.scale != 1.0) {
-            p.effectScale *= a.scale
-            // Pour un impôt ou un budget, adoucir rapproche la valeur visée de la valeur actuelle.
-            if (p.kind != PolicyKind.REFORM) p.newValue = p.oldValue + (p.newValue - p.oldValue) * a.scale
+            if (p.kind == PolicyKind.BUDGET_BILL || p.kind == PolicyKind.LAW_BILL) {
+                // Chaque réglage chiffré se rapproche de la valeur actuelle ; un choix garde sa portée réduite.
+                val levers = fr.president.engine.legislation.LeverService(ctx)
+                var numeric = true
+                p.changes.forEach { c ->
+                    val l = levers.lever(c.lever) ?: c.measure?.let { levers.measureLever(it) }
+                    if (l != null && l.numeric) {
+                        val v = c.from + (c.to - c.from) * a.scale
+                        c.to = if (l.step > 0) Math.round(v / l.step) * l.step else v
+                    } else numeric = false
+                }
+                if (!numeric) p.effectScale *= a.scale
+            } else {
+                p.effectScale *= a.scale
+                // Pour un impôt ou un budget, adoucir rapproche la valeur visée de la valeur actuelle.
+                if (p.kind != PolicyKind.REFORM) p.newValue = p.oldValue + (p.newValue - p.oldValue) * a.scale
+            }
         }
         if (a.costBillions > 0) ctx.effects.trigger(EffectSpec("budget.oneOff", a.costBillions, days = 1.0), null, emptyMap(), "amend:${a.id}")
         a.sideEffects.forEach { ctx.effects.trigger(it, null, emptyMap(), "amend:${a.id}") }
@@ -66,7 +80,11 @@ class AmendmentService(private val ctx: SimulationContext) {
     fun chance(proposalId: String): Double {
         val p = proposal(proposalId) ?: return 0.0
         val params = ctx.playerData.government!!.parliament
-        val difficulty = if (p.kind == PolicyKind.REFORM) ctx.playerData.reforms?.reforms?.firstOrNull { it.id == p.itemId }?.difficulty ?: 0.0 else 0.0
+        val difficulty = when (p.kind) {
+            PolicyKind.REFORM -> ctx.playerData.reforms?.reforms?.firstOrNull { it.id == p.itemId }?.difficulty ?: 0.0
+            PolicyKind.BUDGET_BILL, PolicyKind.LAW_BILL -> fr.president.engine.legislation.LegislationService(ctx).difficulty(p)
+            else -> 0.0
+        }
         val margin = ctx.state.government.parliamentSupport + p.supportBonus - params.passThreshold - difficulty
         return normalCdf(margin / params.voteNoise.coerceAtLeast(MIN_NOISE))
     }

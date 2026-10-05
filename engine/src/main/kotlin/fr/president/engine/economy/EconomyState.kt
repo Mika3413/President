@@ -45,6 +45,9 @@ class EconomyState(
     /** Gestion de la dette : vitesse de refinancement (court terme > 1) et surcoût de la stratégie. */
     var debtRolloverFactor: Double = 1.0
     var debtRateOffset: Double = 0.0
+    /** Recettes et dépenses annuelles des mesures sur mesure (Md€, aux prix de départ). */
+    var measureRevenueBillions: Double = 0.0
+    var measureSpendingBillions: Double = 0.0
     /** Allègement de taux accordé par un programme du FMI. */
     var imfRelief: Double = 0.0
     val impulses: MutableList<GrowthImpulse> = mutableListOf()

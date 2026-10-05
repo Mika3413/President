@@ -24,10 +24,11 @@ class MediaAndAmendmentsTest {
         val s = TestData.newSession()
         val p = s.policy.proposeTaxRate("vat", 25.0)
         val before = s.amendments.chance(p.id)
-        val old = p.newValue
+        val change = p.changes.single()
+        val old = change.to
         assertTrue(s.amendments.amend(p.id, "water_down").isSuccess)
         assertTrue(s.amendments.chance(p.id) > before)
-        assertTrue(kotlin.math.abs(p.newValue - p.oldValue) < kotlin.math.abs(old - p.oldValue))
+        assertTrue(kotlin.math.abs(change.to - change.from) < kotlin.math.abs(old - change.from), "le taux visé se rapproche du taux actuel")
         assertTrue(s.amendments.amend(p.id, "water_down").isFailure, "un amendement ne se négocie qu'une fois")
         assertTrue(p.status == PolicyStatus.PENDING_VOTE)
     }

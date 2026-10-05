@@ -18,17 +18,40 @@ import kotlinx.serialization.Serializable
 
 // --- Fiscalité détaillée -----------------------------------------------------------------------------
 
+/**
+ * Dispositif fiscal détaillé : un curseur chiffré (taux, montant, prix). La courbe [revenue] donne
+ * la recette supplémentaire par an (Md€) par rapport à la valeur de départ ; elle s'infléchit quand
+ * la taxe devient trop lourde (effet Laffer). Les effets sont donnés pour une hausse de [per] unités.
+ */
 @Serializable
-data class FiscalOption(val label: String, val revenueBillions: Double = 0.0, val effects: List<EffectSpec> = emptyList(), val description: String = "")
-
-@Serializable
-data class FiscalDef(val id: String, val category: String, val label: String, val description: String, val options: List<FiscalOption>)
+data class FiscalDef(
+    val id: String,
+    val category: String,
+    val label: String,
+    val description: String,
+    val unit: String = "",
+    val decimals: Int = 1,
+    val reference: Double = 0.0,
+    val min: Double = 0.0,
+    val max: Double = 1.0,
+    val step: Double = 1.0,
+    val revenue: List<List<Double>> = emptyList(),
+    val per: Double = 1.0,
+    val effects: List<EffectSpec> = emptyList(),
+    /** Valeur correspondant à chaque option des anciennes versions (reprise des sauvegardes). */
+    val legacy: List<Double> = emptyList(),
+    val reform: fr.president.engine.legislation.ReformLink? = null,
+)
 
 @Serializable
 data class FiscalFile(val categories: List<ActionCategory> = emptyList(), val taxes: List<FiscalDef>)
 
 @Serializable
-class FiscalState(val values: MutableMap<String, Int> = mutableMapOf())
+class FiscalState(
+    /** Anciennes sauvegardes : option choisie (remplacé par [amounts]). */
+    val values: MutableMap<String, Int> = mutableMapOf(),
+    val amounts: MutableMap<String, Double> = mutableMapOf(),
+)
 
 /** Les dispositifs fiscaux détaillés : votés dans une loi de finances, ils ajoutent ou retirent des recettes. */
 class FiscalService(private val ctx: SimulationContext) {
@@ -36,37 +59,54 @@ class FiscalService(private val ctx: SimulationContext) {
     val categories: List<ActionCategory> get() = file?.categories.orEmpty()
     val taxes: List<FiscalDef> get() = file?.taxes.orEmpty()
 
-    fun current(id: String): Int = ctx.state.fiscal.values[id] ?: 0
+    fun def(id: String) = taxes.firstOrNull { it.id == id }
 
-    fun blocker(id: String, option: Int): String? {
-        if (option == current(id)) return "Déjà en vigueur."
-        if (ctx.state.policy.proposals.any { it.kind == PolicyKind.FISCAL && it.itemId == id && it.status == PolicyStatus.PENDING_VOTE }) return "Déjà au vote."
-        return null
+    /** Valeur en vigueur (reprend l'option d'une ancienne sauvegarde si besoin). */
+    fun value(id: String): Double {
+        val d = def(id) ?: return 0.0
+        ctx.state.fiscal.amounts[id]?.let { return it }
+        ctx.state.fiscal.values[id]?.let { o -> d.legacy.getOrNull(o)?.let { return it } }
+        return d.reference
     }
 
-    fun propose(id: String, option: Int): Result<PolicyProposal> = runCatching {
-        blocker(id, option)?.let { error(it) }
-        PolicyService(ctx).submitFiscal(id, current(id), option)
+    /** Recette annuelle (Md€) par rapport à la valeur de départ, pour une valeur donnée. */
+    fun revenueAt(d: FiscalDef, v: Double): Double {
+        val c = d.revenue
+        if (c.isEmpty()) return 0.0
+        if (v <= c.first()[0]) return c.first()[1]
+        if (v >= c.last()[0]) return c.last()[1]
+        val i = c.indexOfFirst { it[0] >= v }
+        val (x0, y0) = c[i - 1][0] to c[i - 1][1]
+        val (x1, y1) = c[i][0] to c[i][1]
+        return y0 + (y1 - y0) * (v - x0) / (x1 - x0)
     }
 
-    /** Recette supplémentaire par an (Md€) d'une option par rapport à la situation actuelle. */
-    fun delta(id: String, option: Int): Double {
-        val def = taxes.firstOrNull { it.id == id } ?: return 0.0
-        return (def.options.getOrNull(option)?.revenueBillions ?: 0.0) - (def.options.getOrNull(current(id))?.revenueBillions ?: 0.0)
+    /** Recette supplémentaire par an (Md€) si l'on passait à [to]. */
+    fun delta(id: String, to: Double): Double {
+        val d = def(id) ?: return 0.0
+        return revenueAt(d, to) - revenueAt(d, value(id))
     }
 
-    fun enact(id: String, option: Int) {
-        val def = taxes.firstOrNull { it.id == id } ?: return
-        val o = def.options.getOrNull(option) ?: return
-        val delta = delta(id, option)
-        ctx.state.fiscal.values[id] = option
+    /** Dépôt d'un nouveau réglage : un budget rectificatif avec ce seul changement. */
+    fun propose(id: String, to: Double): Result<PolicyProposal> =
+        fr.president.engine.legislation.LegislationService(ctx).singleBudgetBill("fiscal:$id", to)
+
+    /** Entrée en vigueur (appelée par la loi de finances). */
+    fun enact(id: String, to: Double, scale: Double = 1.0) {
+        val d = def(id) ?: return
+        val from = value(id)
+        val target = to.coerceIn(d.min, d.max)
+        ctx.state.fiscal.amounts[id] = target
+        ctx.state.fiscal.values.remove(id)
+        val delta = revenueAt(d, target) - revenueAt(d, from)
         val e = ctx.state.playerCountry.economy
         e.fiscalAdjustmentBillions += delta
         BudgetCalculator.recompute(e)
         // Impulsion budgétaire : prélever plus freine la demande, moins la soutient.
         e.impulses += GrowthImpulse(-ctx.db.economyParameters.fiscalMultiplier * delta / e.gdpBillions, ctx.db.economyParameters.fiscalImpulseMonths, "fiscal:$id")
-        o.effects.forEach { ctx.effects.trigger(it, null, emptyMap(), "fiscal:$id") }
-        JournalService(ctx).add("Loi", "${def.label} : ${o.label}", Tone.NEUTRAL)
+        val k = (target - from) / d.per * scale
+        d.effects.forEach { fx -> if (!fx.target.startsWith("chain.") || k > 0) ctx.effects.trigger(fx.copy(amount = fx.amount * if (fx.target.startsWith("chain.")) kotlin.math.abs(k).coerceAtMost(1.0) else k), null, emptyMap(), "fiscal:$id") }
+        fr.president.engine.legislation.LeverService(ctx).syncReforms()
     }
 }
 

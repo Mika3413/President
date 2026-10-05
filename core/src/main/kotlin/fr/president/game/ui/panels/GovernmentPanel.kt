@@ -73,7 +73,7 @@ class GovernmentPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) :
         into.add(ui.label("Une réforme est votée par le Parlement après un mois ; les plus difficiles exigent une majorité plus large. " +
             "Vous pouvez aussi la soumettre directement aux Français par référendum : le vote portera autant sur vous que sur le texte.", "muted", wrap = true)).growX().padBottom(GAP).row()
         into.add(fr.president.game.ui.widgets.IndicatorView(ui, session.national.parliament(), expanded)).growX().padBottom(GAP).row()
-        session.state.policy.proposals.filter { it.status == fr.president.engine.government.PolicyStatus.PENDING_VOTE && it.kind == fr.president.engine.government.PolicyKind.REFORM }.forEach { p ->
+        session.legislation.pendingBills().filter { p -> p.changes.any { it.lever.startsWith("reform:") || it.lever.startsWith("param:") } }.forEach { p ->
             into.add(fr.president.game.ui.widgets.ProposalCard.build(ui, session, p) { message = it; nav.refresh() }).growX().padBottom(GAP).row()
         }
         val parliament = session.state.parliament
@@ -97,11 +97,23 @@ class GovernmentPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) :
                 actions.add(ui.button(if (r.id in expanded) "Moins" else "Détails", "flat") { if (r.id in expanded) expanded -= r.id else expanded += r.id; nav.refresh() })
                 val adopted = session.state.policy.adoptedReforms[r.id]
                 val blocker = session.policy.reformBlocker(r.id)
+                val linked = session.levers.leverForReform(r.id)?.first?.let { session.levers.lever(it) }
                 when {
+                    linked != null -> {
+                        actions.add(ui.button("Régler : ${linked.label.lowercase()} (${session.levers.format(linked, session.levers.current(linked.id))})", "accent") {
+                            nav.open(PanelId.LEGISLATION, if (linked.channel == fr.president.engine.legislation.Channel.BUDGET) "budget:fiscal" else "law:params")
+                        }.also { it.label.setWrap(true) }).growX()
+                    }
                     adopted != null -> actions.add(ui.label("Adoptée le ${Formats.date(adopted)}", "small", Theme.good))
                     blocker != null -> actions.add(ui.label(blocker, "small", Theme.textMuted))
                     else -> {
-                        actions.add(ui.button("Déposer au Parlement", "accent") {
+                        val inDraft = session.legislation.lawChanges().any { it.lever == "reform:${r.id}" }
+                        actions.add(ui.button(if (inDraft) "Dans le projet de loi ✔" else "Ajouter au projet de loi", "accent") {
+                            if (inDraft) session.legislation.removeFromLaw("reform:${r.id}") else message = session.legislation.addToLaw("reform:${r.id}", 1.0)
+                                ?: "Ajoutée au projet de loi (écran « Lois et budget »)."
+                            nav.refresh()
+                        })
+                        actions.add(ui.button("Déposer seule", "flat") {
                             message = session.policy.proposeReform(r.id).fold({ "Réforme déposée : vote dans un mois." }, { it.message }); nav.refresh()
                         })
                         if (session.parliament.referendumBlocker(r.id) == null) {

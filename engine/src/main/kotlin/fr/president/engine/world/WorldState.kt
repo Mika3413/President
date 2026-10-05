@@ -79,6 +79,7 @@ class WorldState(
     val laws: fr.president.engine.government.LawState = fr.president.engine.government.LawState(),
     val actors: fr.president.engine.politics.ActorsState = fr.president.engine.politics.ActorsState(),
     val fiscal: fr.president.engine.economy.FiscalState = fr.president.engine.economy.FiscalState(),
+    val legislation: fr.president.engine.legislation.LegislationState = fr.president.engine.legislation.LegislationState(),
     val monetary: fr.president.engine.economy.MonetaryState = fr.president.engine.economy.MonetaryState(),
     val trade: fr.president.engine.economy.TradeState = fr.president.engine.economy.TradeState(),
     val defense: fr.president.engine.military.DefenseState = fr.president.engine.military.DefenseState(),

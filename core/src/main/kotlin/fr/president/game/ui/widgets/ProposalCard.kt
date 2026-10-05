@@ -17,7 +17,20 @@ object ProposalCard {
     fun build(ui: Ui, session: GameSession, p: PolicyProposal, onChange: (String) -> Unit): Table {
         val card = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(6f, 8f, 6f, 8f); defaults().left() }
         card.add(ui.label(session.policy.label(p), "bold", wrap = true)).growX().row()
-        card.add(ui.label("Vote le ${Formats.date(p.voteAt)}", "muted")).row()
+        val referendum = p.status == fr.president.engine.government.PolicyStatus.PENDING_REFERENDUM
+        card.add(ui.label((if (referendum) "Référendum le " else "Vote le ") + Formats.date(p.voteAt), "muted")).row()
+        // Les articles d'un texte (loi de finances, projet de loi).
+        p.changes.take(MAX_CHANGES).forEach { c ->
+            val l = session.levers.lever(c.lever) ?: c.measure?.let { session.levers.measureLever(it) } ?: return@forEach
+            card.add(ui.label("• ${l.label} : ${session.levers.format(l, c.from)} → ${session.levers.format(l, c.to)}", "small", wrap = true)).growX().row()
+        }
+        if (p.changes.size > MAX_CHANGES) card.add(ui.label("… et ${p.changes.size - MAX_CHANGES} autre(s)", "small", Theme.textMuted)).left().row()
+        if (p.kind == fr.president.engine.government.PolicyKind.BUDGET_BILL && p.changes.isEmpty()) card.add(ui.label("Budget de reconduction : rien ne change.", "small", Theme.textMuted)).left().row()
+        if (referendum) {
+            val yes = session.legislation.referendumEstimate(session.legislation.preview(p.changes))
+            card.add(ui.label("Sondage : ${Math.round(yes * 100)} % de oui", "small", if (yes > 0.5) Theme.good else Theme.bad)).left().row()
+            return card
+        }
         val chance = session.amendments.chance(p.id)
         val color = when {
             chance >= LIKELY -> Theme.good
@@ -55,6 +68,7 @@ object ProposalCard {
     }
 
     private const val PERCENT = 100
+    private const val MAX_CHANGES = 6
     private const val LIKELY = 0.7
     private const val UNSURE = 0.4
     private const val MIN_BAR = 0.02f

@@ -22,8 +22,9 @@ def e(target, amount, days=0, delay=0):
     return d
 
 
-def opt(id, label, description, difficulty=0.0, effects=(), long=(), events=None, liberty=0, press=0, rule=0, flags=None, appeal=0.0):
+def opt(id, label, description, difficulty=0.0, effects=(), long=(), events=None, liberty=0, press=0, rule=0, flags=None, appeal=0.0, reform=None):
     o = {"id": id, "label": label, "description": description, "difficulty": difficulty}
+    if reform: o["reform"] = reform
     if effects: o["effects"] = list(effects)
     if long: o["longTerm"] = list(long)
     if events: o["events"] = events
@@ -38,8 +39,14 @@ def opt(id, label, description, difficulty=0.0, effects=(), long=(), events=None
 LAWS = []
 
 
-def law(category, id, title, description, options, constitutional=False):
-    LAWS.append({"id": id, "category": category, "title": title, "description": description, "constitutional": constitutional, "options": options})
+def law(category, id, title, description, options, constitutional=False, numeric=None):
+    """numeric : la loi se règle par un nombre (heures, âge...). « values » donne la valeur de chaque
+    option ; toute valeur intermédiaire produit des effets interpolés entre les options voisines."""
+    d = {"id": id, "category": category, "title": title, "description": description, "constitutional": constitutional, "options": options}
+    if numeric:
+        assert len(numeric["values"]) == len(options), id
+        d["numeric"] = numeric
+    LAWS.append(d)
 
 
 CATEGORIES = [
@@ -95,7 +102,7 @@ law("societe", "social_media_minors", "Réseaux sociaux et mineurs", "Les mineur
     opt("free", "Accès libre", "La situation actuelle."),
     opt("under15", "Interdits avant 15 ans (vérification d'âge)", "Les plateformes doivent vérifier l'âge.", 0.03,
         [e(G + "adults", 0.012), e(G + "young", -0.008), e("memory.USA.DISAGREEMENT", -0.01)], liberty=-1, appeal=0.2),
-])
+], numeric={"unit": "ans", "values": [0, 15], "min": 0, "max": 18, "step": 1, "decimals": 0, "zeroLabel": "Aucun âge minimum"})
 law("societe", "bullfighting", "Corrida", "La corrida est autorisée là où existe une tradition locale.", [
     opt("tradition", "Autorisée par tradition locale", "La situation actuelle."),
     opt("banned", "Interdite", "Les régions taurines protestent.", 0.05, [e(G + "urban", 0.006), e(G + "rural", -0.006)], appeal=0.1),
@@ -163,12 +170,9 @@ law("travail", "work_week", "Durée légale du travail", "35 heures par semaine,
     opt("32h", "32 heures (semaine de quatre jours)", "Plus de temps libre ; coût pour les entreprises.", 0.12,
         [e(G + "private_employees", 0.015), e(G + "young", 0.012), e("economy.businessConfidence", -0.03)],
         [e("economy.potentialGrowth", -0.0015, 365)], appeal=0.05),
-])
-law("travail", "minimum_wage", "Salaire minimum", "Le SMIC est revalorisé selon l'inflation.", [
-    opt("indexed", "Indexé sur l'inflation", "La situation actuelle."),
-    opt("boost", "Coup de pouce de 10 %", "Pouvoir d'achat en hausse ; certains emplois menacés.", 0.06,
-        [e(G + "low_income", 0.025), e("economy.businessConfidence", -0.02), e("economy.inflation", 0.003, 180)],
-        [e("economy.naturalUnemployment", 0.002, 365)], appeal=0.25),
+], numeric={"unit": "h", "values": [35, 39, 32], "min": 30, "max": 42, "step": 0.5, "decimals": 1})
+law("travail", "minimum_wage", "SMIC national ou régional", "Un SMIC unique dans tout le pays (son niveau se fixe par décret).", [
+    opt("indexed", "SMIC national unique", "La situation actuelle."),
     opt("regional", "SMIC régional modulé", "Plus bas là où la vie coûte moins cher.", 0.12,
         [e(G + "low_income", -0.02), e(G + "rural", -0.012), e("economy.businessConfidence", 0.015)], events={"national_strike": 1.3}, appeal=-0.25),
 ])
@@ -185,7 +189,8 @@ law("travail", "strike_service", "Service minimum", "Un service minimum existe d
 law("travail", "unemployment_rules", "Assurance chômage", "Six mois travaillés pour ouvrir des droits.", [
     opt("current", "Règles actuelles", "La situation actuelle."),
     opt("strict", "Durcies (douze mois, dégressivité)", "Économies, retour à l'emploi plus rapide, colère syndicale.", 0.06,
-        [e("budget.oneOff", -2.0, 365), e(G + "low_income", -0.015), e(G + "inactive", -0.015)], [e("economy.naturalUnemployment", -0.002, 365)], appeal=-0.05),
+        [e("budget.oneOff", -2.0, 365), e(G + "low_income", -0.015), e(G + "inactive", -0.015)], [e("economy.naturalUnemployment", -0.002, 365)], appeal=-0.05,
+        reform="unemployment_insurance"),
     opt("generous", "Assouplies (quatre mois)", "Protection accrue, coût élevé.", 0.04,
         [e("budget.oneOff", 2.5, 365), e(G + "low_income", 0.012)], appeal=0.1),
 ])

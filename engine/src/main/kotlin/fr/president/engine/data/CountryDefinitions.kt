@@ -48,6 +48,8 @@ data class CountryDefinition(
     val actors: String? = null,
     /** Fiscalité détaillée (facultatif). */
     val fiscal: String? = null,
+    /** Législation unifiée : réglages chiffrés, constructeur de mesures (facultatif). */
+    val legislation: String? = null,
     val demography: fr.president.engine.government.DemographyDef? = null,
 )
 

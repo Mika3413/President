@@ -12,8 +12,6 @@ class EconomyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pa
     override val title = "Économie et budget"
     private val session get() = nav.session
     private var tab = Tab.OVERVIEW
-    private val draftRates = mutableMapOf<String, Double>()
-    private val draftFactors = mutableMapOf<String, Double>()
     private var message: String? = null
 
     private enum class Tab(val label: String) { OVERVIEW("Situation"), TAXES("Impôts"), SPENDING("Dépenses"), SERVICES("Services"), FISCAL("Fiscalité fine"), MONEY("Monnaie et dette"), MARKET("Entreprises") }
@@ -97,44 +95,31 @@ class EconomyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pa
         }
     }
 
-    /** Dispositifs fiscaux détaillés : chaque changement passe dans une loi de finances. */
-    private fun fiscal(into: Table) {
-        val f = session.fiscal
-        into.add(ui.label("Au-delà des grands taux : fortune, capital, successions, niches, TVA réduites, taxes comportementales. Chaque changement est voté dans une loi de finances.", "muted", wrap = true)).growX().padBottom(GAP).row()
-        session.state.policy.proposals.filter { it.kind == fr.president.engine.government.PolicyKind.FISCAL && it.status == PolicyStatus.PENDING_VOTE }.forEach { p ->
-            into.add(fr.president.game.ui.widgets.ProposalCard.build(ui, session, p) { message = it; nav.refresh() }).growX().padBottom(4f).row()
-        }
-        f.categories.forEach { cat ->
-            into.add(ui.label("${cat.icon} ${cat.label}", "bold")).padTop(4f).row()
-            f.taxes.filter { it.category == cat.id }.forEach { t ->
-                val key = "fiscal.${t.id}"
-                val open = key in expanded
-                val card = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(5f, 8f, 5f, 8f); defaults().left() }
-                val head = Table()
-                head.add(ui.label(t.label, "bold", wrap = true)).growX().minWidth(0f)
-                head.add(ui.label(if (open) "▲" else "▼", "small", Theme.textMuted)).right()
-                head.onClickToggle(key)
-                card.add(head).growX().row()
-                card.add(ui.label("En vigueur : ${t.options[f.current(t.id)].label}", "small", Theme.good, wrap = true)).growX().row()
-                if (open) {
-                    card.add(ui.label(t.description, "muted", wrap = true)).growX().row()
-                    t.options.forEachIndexed { i, o ->
-                        if (i == f.current(t.id)) return@forEachIndexed
-                        val delta = f.delta(t.id, i)
-                        val box = Table().apply { setBackground(ui.skin.fill(Theme.panel)); pad(4f, 6f, 4f, 6f); defaults().left() }
-                        box.add(ui.label(o.label, "small", wrap = true)).growX().row()
-                        box.add(ui.label((if (delta >= 0) "Recettes +" else "Recettes −") + Formatting.billions(kotlin.math.abs(delta)) + " par an", "small", if (delta >= 0) Theme.good else Theme.warning)).row()
-                        val effects = fr.president.engine.session.ActionPresenter(session.context).summarize(fr.president.engine.territory.LocalActionDef(t.id, o.label, "", "", "", immediate = o.effects))
-                        if (effects.isNotEmpty()) box.add(fr.president.game.ui.widgets.ActionCards.chips(ui, effects)).growX().row()
-                        val blocker = f.blocker(t.id, i)
-                        box.add(ui.button("Proposer au Parlement" + (blocker?.let { " — $it" } ?: ""), "flat") {
-                            message = f.propose(t.id, i).fold({ "Texte déposé : vote dans quelques semaines." }, { it.message ?: "Impossible." }); nav.refresh()
-                        }.also { it.isDisabled = blocker != null }).left().row()
-                        card.add(box).growX().padTop(3f).row()
-                    }
-                }
-                into.add(card).growX().padBottom(3f).row()
-            }
+    /** Dispositifs fiscaux détaillés : des curseurs chiffrés qui rejoignent le projet de budget. */
+    private fun fiscal(into: Table) = budgetLevers(into, "fiscal",
+        "Au-delà des grands taux : fortune, capital, successions, niches, TVA réduites, taxes comportementales. Chaque réglage rejoint le projet de budget.")
+
+    /** Bandeau commun : où vont les réglages, et accès à l'écran « Lois et budget ». */
+    private fun budgetBanner(into: Table) {
+        val leg = session.legislation
+        val plf = leg.openPlf
+        val n = (plf?.changes?.size ?: 0) + leg.state.budgetDraft.size
+        val text = if (plf != null) "${plf.title} en discussion (vote le ${fr.president.game.ui.Formats.date(plf.voteAt)}) : vos réglages y sont ajoutés. $n changement(s)."
+            else "Vos réglages forment le projet de budget ($n changement(s)). Il sera voté avec la loi de finances de l'automne, ou tout de suite en budget rectificatif."
+        val box = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(6f, 8f, 6f, 8f); defaults().left() }
+        box.add(ui.label(text, "small", wrap = true)).growX().row()
+        box.add(ui.colorButton("⚖ Voir le projet de budget", Theme.accentDark) { nav.open(PanelId.LEGISLATION, "budget") }).left().padTop(3f).row()
+        into.add(box).growX().padBottom(GAP).row()
+    }
+
+    private fun budgetLevers(into: Table, domain: String, intro: String) {
+        into.add(ui.label(intro, "muted", wrap = true)).growX().padBottom(4f).row()
+        budgetBanner(into)
+        val c = fr.president.game.ui.widgets.LeverCards.Context(ui, session, expanded, mutableMapOf(), { message = it }, { nav.refresh() })
+        var group = ""
+        session.levers.all().filter { it.domain == domain }.forEach { l ->
+            if (l.group.isNotEmpty() && l.group != group) { group = l.group; into.add(ui.label(group, "bold")).padTop(4f).row() }
+            into.add(fr.president.game.ui.widgets.LeverCards.build(c, l, fr.president.game.ui.widgets.LeverCards.Mode.BUDGET)).growX().padBottom(4f).row()
         }
     }
 
@@ -183,63 +168,11 @@ class EconomyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pa
         }).left().padTop(4f).row()
     }
 
-    private fun taxes(into: Table) {
-        into.add(ui.label("Les changements sont soumis au Parlement (vote sous 14 jours). Leurs effets sur l'activité et l'opinion sont progressifs.", "muted", wrap = true)).padBottom(GAP).row()
-        val budget = session.state.playerCountry.economy.budget!!
-        val defs = session.db.country(session.state.player.countryId).economy.budget!!.revenues.filter { it.adjustable }
-        for (def in defs) {
-            val item = budget.revenues.getValue(def.id)
-            val draft = draftRates[def.id] ?: session.policy.pendingValue(def.id) ?: item.rate
-            val box = Table().apply { defaults().left(); pad(6f); setBackground(ui.skin.fill(Theme.panelAlt)) }
-            box.add(ui.label(def.label, "bold")).left().expandX()
-            box.add(ui.label(Formatting.billions(item.amount) + "/an", "small")).right().row()
-            box.add(ui.label(def.description, "muted", wrap = true)).colspan(2).growX().row()
-            val row = Table().apply { defaults().padRight(4f) }
-            row.add(ui.button("−") { draftRates[def.id] = (draft - def.step).coerceAtLeast(def.minRate); nav.refresh() })
-            row.add(ui.label("${Formatting.amount(draft)} ${def.rateLabel}", if (draft != item.rate) "bold" else "default"))
-            row.add(ui.button("+") { draftRates[def.id] = (draft + def.step).coerceAtMost(def.maxRate); nav.refresh() })
-            if (draft != item.rate && session.policy.pendingValue(def.id) != draft) {
-                row.add(ui.button("Proposer", "accent") {
-                    session.policy.proposeTaxRate(def.id, draft)
-                    draftRates.remove(def.id)
-                    message = "Mesure déposée au Parlement : ${def.label}."
-                    nav.refresh()
-                })
-            }
-            box.add(row).colspan(2).left().padTop(4f).row()
-            into.add(box).growX().padBottom(GAP).row()
-        }
-    }
+    private fun taxes(into: Table) = budgetLevers(into, "budget_tax",
+        "Les grands impôts. Leurs effets sur l'activité et l'opinion sont progressifs ; une partie d'une hausse se perd en comportements.")
 
-    private fun spending(into: Table) {
-        into.add(ui.label("Les budgets suivent l'inflation. Pour améliorer un service public, augmentez ses moyens réels ; pour réduire le déficit, il faut des économies réelles.", "muted", wrap = true)).padBottom(GAP).row()
-        val economy = session.state.playerCountry.economy
-        val defs = session.db.country(session.state.player.countryId).economy.budget!!.spending
-        for (def in defs) {
-            val item = economy.budget!!.spending.getValue(def.id)
-            val draft = draftFactors[def.id] ?: session.policy.pendingValue(def.id) ?: item.policyFactor
-            val box = Table().apply { defaults().left(); pad(6f); setBackground(ui.skin.fill(Theme.panelAlt)) }
-            box.add(ui.label(def.label, "bold")).left().expandX()
-            box.add(ui.label(Formatting.billions(item.amount) + "/an", "small")).right().row()
-            box.add(ui.label(def.description, "muted", wrap = true)).colspan(2).growX().row()
-            if (def.adjustable) {
-                val row = Table().apply { defaults().padRight(4f) }
-                row.add(ui.button("−5 %") { draftFactors[def.id] = (draft - STEP).coerceAtLeast(MIN_FACTOR); nav.refresh() })
-                row.add(ui.label("Budget : ${Formatting.signedPercent(draft - 1.0)}", if (draft != item.policyFactor) "bold" else "default"))
-                row.add(ui.button("+5 %") { draftFactors[def.id] = (draft + STEP).coerceAtMost(MAX_FACTOR); nav.refresh() })
-                if (kotlin.math.abs(draft - item.policyFactor) > EPS && session.policy.pendingValue(def.id) != draft) {
-                    row.add(ui.button("Proposer", "accent") {
-                        session.policy.proposeSpending(def.id, draft)
-                        draftFactors.remove(def.id)
-                        message = "Mesure déposée au Parlement : ${def.label}."
-                        nav.refresh()
-                    })
-                }
-                box.add(row).colspan(2).left().padTop(4f).row()
-            }
-            into.add(box).growX().padBottom(GAP).row()
-        }
-    }
+    private fun spending(into: Table) = budgetLevers(into, "budget_spending",
+        "Les budgets suivent l'inflation. Pour améliorer un service public, augmentez ses moyens réels ; pour réduire le déficit, il faut des économies réelles.")
 
     private fun pending(into: Table) {
         val proposals = session.state.policy.proposals.takeLast(MAX_PENDING_SHOWN).reversed()
@@ -256,6 +189,7 @@ class EconomyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pa
                 PolicyStatus.REJECTED -> "Rejetée"
                 PolicyStatus.FORCED -> "Adoptée sans vote"
                 PolicyStatus.PENDING_CENSURE -> "Responsabilité engagée : motion de censure en cours"
+                PolicyStatus.PENDING_REFERENDUM -> "Référendum le ${p.voteAt.toDateTime().toLocalDate()}"
             }
             val color = when (p.status) {
                 PolicyStatus.REJECTED -> Theme.bad

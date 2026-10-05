@@ -37,24 +37,26 @@ class GuidedTour(private val ui: Ui, private val session: GameSession, private v
     private var journalAtStart = 0
 
     private val steps = listOf(
-        Step("1/9 · Vos chiffres", "En haut, vos chiffres clés. ${Theme.goodName.replaceFirstChar { it.uppercase() }} = bien, orange = à surveiller, ${Theme.badName} = danger. Touchez votre popularité pour voir sa courbe et ses causes.",
+        Step("1/10 · Vos chiffres", "En haut, vos chiffres clés. ${Theme.goodName.replaceFirstChar { it.uppercase() }} = bien, orange = à surveiller, ${Theme.badName} = danger. Touchez votre popularité pour voir sa courbe et ses causes.",
             "chip.approval") { host.openPanel == PanelId.STATS },
-        Step("2/9 · Décider", "Le cœur du jeu : touchez « ★ Décider » en bas pour voir les 56 décisions nationales.",
+        Step("2/10 · Décider", "Le cœur du jeu : touchez « ★ Décider » en bas pour voir les 56 décisions nationales.",
             "bar.decide") { host.openPanel == PanelId.DECISIONS },
-        Step("3/9 · Prendre une décision", "Choisissez une rubrique, lisez les effets (${Theme.goodName} = gain, ${Theme.badName} = perte) et la prévision, puis touchez « ▶ Lancer ».",
+        Step("3/10 · Prendre une décision", "Choisissez une rubrique, lisez les effets (${Theme.goodName} = gain, ${Theme.badName} = perte) et la prévision, puis touchez « ▶ Lancer ».",
             null, "Décision") { it.newJournal("Décision") },
-        Step("4/9 · La carte", "Touchez un département de la France métropolitaine pour ouvrir sa fiche.",
+        Step("4/10 · La carte", "Touchez un département de la France métropolitaine pour ouvrir sa fiche.",
             null) { host.selection is MapSelection.Department },
-        Step("5/9 · Agir sur le terrain", "Ouvrez l'onglet « ▶ Agir » et lancez une action locale : hôpital, usine, police...",
+        Step("5/10 · Agir sur le terrain", "Ouvrez l'onglet « ▶ Agir » et lancez une action locale : hôpital, usine, police...",
             "tab.act", "Territoire") { it.newJournal("Territoire") },
-        Step("6/9 · Lire la carte", "Touchez « ☰ Carte » en haut à gauche et choisissez « Chômage » : chaque département affiche son chiffre.",
+        Step("6/10 · Lire la carte", "Touchez « ☰ Carte » en haut à gauche et choisissez « Chômage » : chaque département affiche son chiffre.",
             "layers") { host.layer != ThematicLayer.ADMIN },
-        Step("7/9 · Le monde", "Dézoomez et touchez un pays étranger : sa couleur dit votre relation. Coopérez ou faites pression.",
+        Step("7/10 · Le monde", "Dézoomez et touchez un pays étranger : sa couleur dit votre relation. Coopérez ou faites pression.",
             null) { host.selection is MapSelection.Country },
-        Step("8/9 · Les messages", "Ministres, élus et dirigeants étrangers vous écrivent. Touchez « ✉ Messages » : chaque dossier propose plusieurs réponses, et souvent des mesures d'urgence cumulables.",
+        Step("8/10 · Les messages", "Ministres, élus et dirigeants étrangers vous écrivent. Touchez « ✉ Messages » : chaque dossier propose plusieurs réponses, et souvent des mesures d'urgence cumulables.",
             "bar.inbox") { host.openPanel == PanelId.INBOX },
-        Step("9/9 · Crises et risques", "Anticipez : dans « ★ Décider », touchez « ⚠ Crises et risques ». Vous y voyez les risques du mois (feux, crues, épidémie...) et décrétez prévention, confinement, couvre-feu ou plan ORSEC.",
+        Step("9/10 · Crises et risques", "Anticipez : dans « ★ Décider », touchez « ⚠ Crises et risques ». Vous y voyez les risques du mois (feux, crues, épidémie...) et décrétez prévention, confinement, couvre-feu ou plan ORSEC.",
             "decide.crisis") { host.openPanel == PanelId.CRISIS },
+        Step("10/10 · Lois et budget", "Trois façons de changer les règles. Les impôts et les dépenses : vous les réglez, ils entrent dans le projet de budget voté chaque automne (pas de nom à donner). Une loi (société, travail, libertés, retraites...) : un projet qui réunit plusieurs changements, avec un nom proposé. Les petits réglages (SMIC, vitesse) : un décret, immédiat. Touchez « ☰ Plus » puis « Lois et budget ».",
+            "bar.more") { host.openPanel == PanelId.LEGISLATION },
     )
 
     private fun newJournal(kind: String) = session.state.stats.journal.count { it.kind == kind } > journalAtStart

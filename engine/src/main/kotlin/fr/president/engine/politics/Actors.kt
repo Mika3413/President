@@ -140,7 +140,7 @@ class ActorService(private val ctx: SimulationContext) {
     fun target(def: ActorDef): Double {
         val laws = LawService(ctx)
         var t = def.satisfaction
-        def.laws.forEach { (lawId, prefs) -> laws.law(lawId)?.let { t += prefs[laws.currentOption(it).id] ?: 0.0 } }
+        def.laws.forEach { (lawId, prefs) -> laws.law(lawId)?.let { l -> laws.currentWeights(l).forEach { (i, w) -> t += w * (prefs[l.options.getOrNull(i)?.id] ?: 0.0) } } }
         def.reforms.forEach { (id, w) -> if (id in ctx.state.policy.adoptedReforms) t += w }
         val now = conditions()
         def.conditions.forEach { (k, w) -> t += w * ((now[k] ?: 0.0) - (state.baseline[k] ?: now[k] ?: 0.0)) }

@@ -43,8 +43,17 @@ class LawsPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel
         into.add(chips).growX().padBottom(GAP).row()
         laws.categories.firstOrNull { it.id == current }?.let { into.add(ui.label(it.description, "muted", wrap = true)).growX().padBottom(4f).row() }
 
+        // Le projet de loi en préparation : tous les changements choisis ici y sont réunis.
+        val leg = session.legislation
+        val box = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(6f, 8f, 6f, 8f); defaults().left() }
+        val n = leg.lawChanges().size
+        box.add(ui.label(if (n == 0) "Choisissez une nouvelle valeur : elle rejoint votre projet de loi, que vous déposez ensuite au Parlement (ou soumettez au référendum)."
+            else "Projet « ${leg.lawName()} » : $n changement(s).", "small", wrap = true)).growX().row()
+        box.add(ui.colorButton("⚖ Ouvrir le projet de loi", Theme.accentDark) { nav.open(PanelId.LEGISLATION, "law") }).left().padTop(3f).row()
+        into.add(box).growX().padBottom(GAP).row()
+
         // Textes en discussion et référendums convoqués.
-        session.state.policy.proposals.filter { it.kind == PolicyKind.LAW && it.status == PolicyStatus.PENDING_VOTE }.forEach { p ->
+        leg.pendingBills().filter { p -> p.changes.any { it.lever.startsWith("law:") } }.forEach { p ->
             into.add(fr.president.game.ui.widgets.ProposalCard.build(ui, session, p) { message = it; nav.refresh() }).growX().padBottom(4f).row()
         }
         session.state.laws.referendums.forEach { r ->
@@ -54,7 +63,14 @@ class LawsPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel
                 "small", if (chance >= 0.5) Theme.good else Theme.bad, wrap = true)).growX().padBottom(4f).row()
         }
 
-        laws.laws.filter { it.category == current }.forEach { into.add(card(it)).growX().padBottom(4f).row() }
+        val c = fr.president.game.ui.widgets.LeverCards.Context(ui, session, expanded, mutableMapOf(), { message = it }, { nav.refresh() })
+        laws.laws.filter { it.category == current }.forEach { l ->
+            session.levers.lever("law:${l.id}")?.let { into.add(fr.president.game.ui.widgets.LeverCards.build(c, it, fr.president.game.ui.widgets.LeverCards.Mode.LAW)).growX().padBottom(4f).row() }
+        }
+        // Les réglages chiffrés du même domaine (âge de la retraite...).
+        session.levers.all().filter { it.source == fr.president.engine.legislation.LeverSource.PARAM && it.domain == current }.forEach { l ->
+            into.add(fr.president.game.ui.widgets.LeverCards.build(c, l, if (l.channel == fr.president.engine.legislation.Channel.DECREE) fr.president.game.ui.widgets.LeverCards.Mode.DECREE else fr.president.game.ui.widgets.LeverCards.Mode.LAW)).growX().padBottom(4f).row()
+        }
     }
 
     private fun indices(into: Table) {
@@ -72,52 +88,6 @@ class LawsPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel
         }
         box.add(ui.label("Les reculs inquiètent l'Union européenne et les investisseurs ; une presse libre révèle plus d'affaires.", "muted", wrap = true)).growX().row()
         into.add(box).growX().padBottom(GAP).row()
-    }
-
-    private fun card(law: LawDef): Table {
-        val laws = session.laws
-        val open = law.id in expanded
-        val current = laws.current(law)
-        val card = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(6f, 8f, 6f, 8f); defaults().left() }
-        val head = Table()
-        head.add(ui.label(law.title + if (law.constitutional) " · Constitution" else "", "bold", wrap = true)).growX().minWidth(0f)
-        head.add(ui.label(if (open) "▲" else "▼", "small", Theme.textMuted)).right()
-        head.onClick { if (!expanded.remove(law.id)) expanded += law.id; nav.refresh() }
-        card.add(head).growX().row()
-        card.add(ui.label("En vigueur : ${law.options[current].label}", "small", Theme.good, wrap = true)).growX().row()
-        if (!open) return card
-        card.add(ui.label(law.description, "muted", wrap = true)).growX().padTop(2f).row()
-        law.options.forEachIndexed { i, o ->
-            if (i == current) return@forEachIndexed
-            val box = Table().apply { setBackground(ui.skin.fill(Theme.panel)); pad(5f, 6f, 5f, 6f); defaults().left() }
-            box.add(ui.label("▶ ${o.label}", "bold", wrap = true)).growX().row()
-            box.add(ui.label(o.description, "small", wrap = true)).growX().row()
-            val effects = ActionPresenter(session.context).summarize(LocalActionDef(o.id, o.label, "", "", "", immediate = o.effects + o.longTerm))
-            if (effects.isNotEmpty()) box.add(ActionCards.chips(ui, effects)).growX().row()
-            val shifts = buildList {
-                fun d(v: Double, base: Double, name: String) { val x = v - base; if (x != 0.0) add("$name ${if (x > 0) "+" else "−"}${Math.round(kotlin.math.abs(x))}") }
-                d(o.liberty, law.options[0].liberty, "libertés")
-                d(o.press, law.options[0].press, "presse")
-                d(o.rule, law.options[0].rule, "État de droit")
-            }
-            if (shifts.isNotEmpty()) box.add(ui.label("Indices : " + shifts.joinToString(", "), "small", Theme.textMuted, wrap = true)).growX().row()
-            val blocker = laws.blocker(law.id, i)
-            val buttons = Table().apply { defaults().padRight(4f).padTop(3f) }
-            val chance = laws.passChance(law.id, i)
-            buttons.add(ui.colorButton("⌂ Au Parlement (${Math.round(chance * 100)} %)", Theme.accentDark) {
-                message = laws.propose(law.id, i).fold({ "Texte déposé : vote dans un mois." }, { it.message ?: "Impossible." }); nav.refresh()
-            }.also { it.isDisabled = blocker != null })
-            if (law.constitutional) {
-                val ref = laws.referendumChance(law.id, i)
-                buttons.add(ui.button("✔ Référendum (${Math.round(ref * 100)} % de oui)", "flat") {
-                    message = laws.referendum(law.id, i).fold({ it }, { it.message ?: "Impossible." }); nav.refresh()
-                }.also { it.isDisabled = blocker != null })
-            }
-            box.add(buttons).left().row()
-            blocker?.let { box.add(ui.label("↻ $it", "small", Theme.warning, wrap = true)).growX().row() }
-            card.add(box).growX().padTop(4f).row()
-        }
-        return card
     }
 
     private companion object {

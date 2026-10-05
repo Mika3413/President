@@ -29,6 +29,7 @@ class CountryData(
     val laws: fr.president.engine.government.LawsFile? = null,
     val actors: fr.president.engine.politics.ActorsFile? = null,
     val fiscal: fr.president.engine.economy.FiscalFile? = null,
+    val legislation: fr.president.engine.legislation.LegislationFile? = null,
 ) {
     val id: String get() = definition.id
 }

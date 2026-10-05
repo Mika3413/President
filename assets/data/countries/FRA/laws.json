@@ -405,7 +405,19 @@
      "liberty": -1,
      "appeal": 0.2
     }
-   ]
+   ],
+   "numeric": {
+    "unit": "ans",
+    "values": [
+     0,
+     15
+    ],
+    "min": 0,
+    "max": 18,
+    "step": 1,
+    "decimals": 0,
+    "zeroLabel": "Aucun âge minimum"
+   }
   },
   {
    "id": "bullfighting",
@@ -896,49 +908,32 @@
      ],
      "appeal": 0.05
     }
-   ]
+   ],
+   "numeric": {
+    "unit": "h",
+    "values": [
+     35,
+     39,
+     32
+    ],
+    "min": 30,
+    "max": 42,
+    "step": 0.5,
+    "decimals": 1
+   }
   },
   {
    "id": "minimum_wage",
    "category": "travail",
-   "title": "Salaire minimum",
-   "description": "Le SMIC est revalorisé selon l'inflation.",
+   "title": "SMIC national ou régional",
+   "description": "Un SMIC unique dans tout le pays (son niveau se fixe par décret).",
    "constitutional": false,
    "options": [
     {
      "id": "indexed",
-     "label": "Indexé sur l'inflation",
+     "label": "SMIC national unique",
      "description": "La situation actuelle.",
      "difficulty": 0.0
-    },
-    {
-     "id": "boost",
-     "label": "Coup de pouce de 10 %",
-     "description": "Pouvoir d'achat en hausse ; certains emplois menacés.",
-     "difficulty": 0.06,
-     "effects": [
-      {
-       "target": "opinion.group.low_income",
-       "amount": 0.025
-      },
-      {
-       "target": "economy.businessConfidence",
-       "amount": -0.02
-      },
-      {
-       "target": "economy.inflation",
-       "amount": 0.003,
-       "days": 180
-      }
-     ],
-     "longTerm": [
-      {
-       "target": "economy.naturalUnemployment",
-       "amount": 0.002,
-       "days": 365
-      }
-     ],
-     "appeal": 0.25
     },
     {
      "id": "regional",
@@ -1057,6 +1052,7 @@
      "label": "Durcies (douze mois, dégressivité)",
      "description": "Économies, retour à l'emploi plus rapide, colère syndicale.",
      "difficulty": 0.06,
+     "reform": "unemployment_insurance",
      "effects": [
       {
        "target": "budget.oneOff",

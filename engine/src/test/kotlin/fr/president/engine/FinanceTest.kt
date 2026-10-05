@@ -10,11 +10,18 @@ class FinanceTest {
     fun detailedTaxesChangeRevenue() {
         val s = TestData.newSession()
         val before = s.state.playerCountry.economy.revenueBillions
-        s.fiscal.enact("wealth", 1)
+        s.fiscal.enact("wealth", 1.0)
         assertTrue(s.state.playerCountry.economy.revenueBillions > before + 3)
-        assertEquals(1, s.fiscal.current("wealth"))
-        assertTrue(s.fiscal.propose("tax_niches", 1).isSuccess)
-        assertTrue(s.fiscal.propose("tax_niches", 1).isFailure)
+        assertEquals(1.0, s.fiscal.value("wealth"))
+        assertTrue("wealth_tax" in s.state.policy.adoptedReforms, "l'ISF rétabli vaut réforme adoptée")
+        // Effet Laffer : au-delà d'un certain taux, la recette baisse.
+        val d = s.fiscal.def("wealth")!!
+        assertTrue(s.fiscal.revenueAt(d, 3.0) < s.fiscal.revenueAt(d, 1.5))
+        val first = s.fiscal.propose("tax_niches", 10.0).getOrThrow()
+        // Un nouveau texte sur le même dispositif remplace le précédent.
+        s.fiscal.propose("tax_niches", 15.0).getOrThrow()
+        assertEquals(fr.president.engine.government.PolicyStatus.REJECTED, first.status)
+        assertEquals(15.0, s.legislation.pendingFor("fiscal:tax_niches")!!.changes.single().to)
     }
 
     @Test

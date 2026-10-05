@@ -47,6 +47,8 @@ class GameSession(
     val laws = fr.president.engine.government.LawService(context)
     val actors = fr.president.engine.politics.ActorService(context)
     val fiscal = fr.president.engine.economy.FiscalService(context)
+    val legislation = fr.president.engine.legislation.LegislationService(context)
+    val levers = fr.president.engine.legislation.LeverService(context)
     val monetary = fr.president.engine.economy.MonetaryService(context)
     val trade = fr.president.engine.economy.TradeService(context)
     val defense = fr.president.engine.military.DefenseService(context)

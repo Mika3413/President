@@ -102,7 +102,18 @@ object AcademyCourse {
             Step("Donnez-lui un ordre : déplacer, puis touchez la zone visée sur la carte. L'aperçu indique la durée du trajet et le rapport de forces.") { ordered },
             Step("En guerre : attaque, soutien aérien, débarquement, parachutage, frappes et cyberattaques. Le ravitaillement et le moral comptent ; les flèches et les épées sur la carte montrent les mouvements et les batailles. Module terminé !"),
         )),
-        Module("puissance", "◎", "8 · Puissance : commerce, défense, renseignement, ONU", "Peser dans le monde avec tous les leviers d'un État.", listOf(
+        Module("legislation", "⚖", "8 · Faire la loi et le budget", "Budget annuel, projets de loi, mesures sur mesure, décrets.", listOf(
+            Step("Ouvrez « Lois et budget » depuis « ☰ Plus ». C'est la fabrique de la loi : tout ce qui change une règle passe par ici.", "bar.more", PanelId.LEGISLATION) { panel(PanelId.LEGISLATION) },
+            Step("Onglet « Budget » : les impôts, les dépenses, la fiscalité fine et les allocations. Augmenter un impôt n'est pas une loi à part : vous bougez le curseur, le changement entre dans le projet de budget. Rien ne change avant le vote."),
+            Step("Chaque automne, le gouvernement dépose la loi de finances de l'année suivante : vos réglages y sont repris et le Parlement vote tout d'un coup en décembre. Pressé ? Faites voter un budget rectificatif à tout moment. Réglez un impôt ou une dépense.", null, PanelId.LEGISLATION, "budget") {
+                session.state.legislation.budgetDraft.isNotEmpty() || (session.legislation.openPlf?.changes?.isNotEmpty() == true) },
+            Step("Onglet « Projet de loi » : tout le reste (société, justice, travail, libertés, Constitution, retraites...). Réunissez plusieurs changements dans un même texte ; un nom est proposé, vous pouvez le changer. Ajoutez un changement à votre projet.", null, PanelId.LEGISLATION, "law") {
+                session.legislation.lawChanges().isNotEmpty() },
+            Step("Onglet « Créer une mesure » : composez une phrase. Action (taxer, primes, recruter, interdire, obliger, plafonner...), cible (médecins, 1 % les plus riches, banques, loyers...), valeur au chiffre près (5 %, 6 %, 6,5 %...) et conditions (seuil de revenus, zone, exception rurale, durée). Tout est chiffré : recettes, départs, gagnants, perdants, services, risque de censure.", null, PanelId.LEGISLATION, "builder"),
+            Step("Onglet « Décrets » : le gouvernement règle seul certaines choses (coup de pouce au SMIC, vitesse sur les routes), tout de suite. Trop brutal, un décret peut être annulé par le Conseil d'État.", null, PanelId.LEGISLATION, "decree"),
+            Step("Onglet « Au Parlement » : les textes en discussion (chances, amendements, 49.3 si rejet), les textes votés (le Conseil constitutionnel peut censurer des articles) et l'abrogation. Chaque réglage n'a qu'une valeur : tous les écrans montrent la même. Module terminé !", null, PanelId.LEGISLATION, "parliament"),
+        )),
+        Module("puissance", "◎", "9 · Puissance : commerce, défense, renseignement, ONU", "Peser dans le monde avec tous les leviers d'un État.", listOf(
             Step("Ouvrez « Commerce et matières premières » depuis « Plus ». Les cours du pétrole, du gaz ou du blé font votre prix de l'énergie et votre inflation.", null, PanelId.TRADE) { panel(PanelId.TRADE) },
             Step("Contrats à long terme et stocks stratégiques amortissent une flambée ; l'onglet « Exportations » vous fait vendre avions, centrales ou TGV face à la concurrence ; le FMI, l'OMC et la Banque mondiale sont dans le troisième onglet."),
             Step("Ouvrez « Défense » : capacités des armées, catalogue d'armement, ventes d'armes, bases à l'étranger et dissuasion nucléaire.", null, PanelId.DEFENSE) { panel(PanelId.DEFENSE) },
@@ -111,14 +122,14 @@ object AcademyCourse {
             Step("Ouvrez « ONU » : 15 membres, 9 voix et aucun veto pour adopter une résolution. Votez, opposez le veto de la France, ou déposez votre propre texte et convainquez les indécis.", null, PanelId.UN) { panel(PanelId.UN) },
             Step("Retenez : l'économie, l'armée, les services secrets et la diplomatie se répondent. Un contrat d'armement soigne une relation ; une opération ratée la détruit. Module terminé !"),
         )),
-        Module("societe", "⚑", "9 · Lois, société civile et la rue", "Changer la société sans mettre le pays dans la rue.", listOf(
+        Module("societe", "⚑", "10 · Lois, société civile et la rue", "Changer la société sans mettre le pays dans la rue.", listOf(
             Step("Ouvrez « Lois et Constitution » : fin de vie, cannabis, durée du travail, libertés, mandat présidentiel... Chaque changement passe au Parlement ou par référendum.", null, PanelId.LAWS) { panel(PanelId.LAWS) },
             Step("Ouvrez « Société civile » : syndicats, patronat, cultes, lobbies. Un acteur influent en colère mobilise.", null, PanelId.ACTORS) { panel(PanelId.ACTORS) },
             Step("Ouvrez « La rue et l'armée ». Une réforme qui fâche fait descendre les Français dans la rue : manifestations, blocages, émeutes, insurrection.", null, PanelId.UNREST) { panel(PanelId.UNREST) },
             Step("Face à un mouvement : parler aux Français, recevoir les organisateurs, céder, encadrer les cortèges ou réprimer (au risque d'une bavure). Une insurrection qui dure peut vous renverser."),
             Step("L'armée aussi a son humeur : budget rogné, invasion ou chaos la rendent moins loyale ; sous 50 %, des officiers complotent. La DGSI peut vous prévenir. Module terminé !"),
         )),
-        Module("opinion", "▤", "10 · Opinion, presse et élections", "Gagner la confiance et la réélection.", listOf(
+        Module("opinion", "▤", "11 · Opinion, presse et élections", "Gagner la confiance et la réélection.", listOf(
             Step("Ouvrez « Presse » depuis « Plus » : les unes du jour, le climat médiatique et les sondages.", null, PanelId.PRESS) { panel(PanelId.PRESS) },
             Step("Ouvrez « Élections » : intentions de vote au premier et au second tour, et vos promesses de campagne.", null, PanelId.ELECTIONS) { panel(PanelId.ELECTIONS) },
             Step("Les promesses tenues ou rompues pèsent sur le vote ; chaque groupe social juge votre bilan sur ce qui le touche."),

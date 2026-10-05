@@ -18,7 +18,7 @@
   {
    "delayHours": 10,
    "subject": "Budget, impôts et Parlement",
-   "body": "Dans « Économie », vous pouvez proposer de modifier les impôts et les budgets des grands postes de dépense. Chaque mesure est votée par le Parlement après quelques jours.\n\nAttention aux effets indirects : une hausse d'impôt rapporte immédiatement, mais elle freine la consommation et l'emploi pendant des mois, et elle pèse sur l'opinion. Un budget qui n'augmente pas perd de sa valeur avec l'inflation : les services publics se dégradent lentement.\n\nLes grandes réformes se trouvent dans « Gouvernement », onglet « Réformes » : vous pouvez les déposer au Parlement ou les soumettre à référendum. L'onglet « Assemblée » montre vos appuis parmi les députés ; sans majorité, un passage en force peut provoquer une motion de censure."
+   "body": "Trois façons de changer les règles du pays, toutes dans « ☰ Plus › Lois et budget ».\n\n1. Le budget. Impôts, dépenses, fiscalité fine (ISF, flat tax, TVA réduites, taxe carbone...), allocations : vous réglez chaque curseur au chiffre près. Ce n'est pas une loi à part : chaque réglage entre dans le projet de budget. Le 1er octobre, le gouvernement dépose la loi de finances de l'année suivante, qui reprend tous vos réglages ; le Parlement la vote en décembre. Pressé ? Un budget rectificatif se vote à tout moment, en deux semaines. Si le budget est rejeté, une loi spéciale reconduit l'ancien ; vous pouvez passer en force (49.3).\n\n2. La loi. Société, justice, travail, libertés, Constitution, retraites, réformes : un projet de loi réunit plusieurs changements, avec un nom proposé (vous pouvez le changer). Les chances d'adoption dépendent de votre majorité et de la difficulté du texte ; amendez pour rallier des voix. Une révision de la Constitution exige une majorité plus large, ou un référendum.\n\n3. Le décret. Coup de pouce au SMIC, vitesse sur les routes : le gouvernement décide seul, tout de suite. Trop brutal, le Conseil d'État peut l'annuler.\n\nCréer une mesure : composez une phrase (taxer, primes, recruter, interdire, obliger, plafonner) avec une cible précise (médecins, 1 % les plus riches, banques, loyers...), une valeur et des conditions. Tout est chiffré en direct, y compris les départs à l'étranger et le risque de censure par le Conseil constitutionnel. Chaque réglage n'a qu'une valeur : la plus récente remplace l'ancienne, et un texte voté peut être abrogé."
   },
   {
    "delayHours": 20,
@@ -232,6 +232,38 @@
   {
    "term": "Loyauté de l'armée",
    "definition": "Confiance des militaires envers le président. Elle baisse avec un budget rogné, une invasion, le chaos ou l'impopularité ; sous 50 %, un complot peut naître."
+  },
+  {
+   "term": "Loi de finances",
+   "definition": "Le budget de l'année suivante : impôts et dépenses. Déposée chaque 1er octobre, votée en décembre. Vos réglages d'impôts et de dépenses y entrent automatiquement."
+  },
+  {
+   "term": "Budget rectificatif",
+   "definition": "Loi de finances votée en cours d'année pour appliquer tout de suite des changements d'impôts ou de dépenses."
+  },
+  {
+   "term": "Loi spéciale",
+   "definition": "Si le budget est rejeté, elle reconduit celui de l'année précédente : rien ne change, les marchés s'inquiètent."
+  },
+  {
+   "term": "Décret",
+   "definition": "Décision du gouvernement, sans vote, immédiate (SMIC, vitesse sur les routes). Le Conseil d'État peut l'annuler s'il va trop loin."
+  },
+  {
+   "term": "Conseil constitutionnel",
+   "definition": "Il contrôle les lois votées : un article confiscatoire, discriminatoire ou liberticide peut être censuré. Il ne contrôle pas une loi adoptée par référendum."
+  },
+  {
+   "term": "Abrogation",
+   "definition": "Supprimer une loi votée : le texte inverse est préparé et doit être voté à son tour."
+  },
+  {
+   "term": "Effet Laffer",
+   "definition": "Au-delà d'un certain taux, une taxe rapporte moins : les contribuables partent, fraudent ou travaillent moins."
+  },
+  {
+   "term": "Mesure sur mesure",
+   "definition": "Une règle que vous composez vous-même : action, cible, valeur, conditions. Même règle sur la même cible : la nouvelle valeur remplace l'ancienne."
   }
  ]
 }

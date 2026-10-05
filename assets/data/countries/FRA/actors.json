@@ -51,7 +51,6 @@
      "32h": 0.15
     },
     "minimum_wage": {
-     "boost": 0.2,
      "regional": -0.3
     },
     "strike_service": {
@@ -69,7 +68,7 @@
     "pension_age_65": -0.3,
     "pension_age_62": 0.25,
     "labour_code": -0.2,
-    "minimum_wage": 0.15,
+    "minimum_wage": 0.25,
     "unemployment_insurance": -0.15
    },
    "conditions": {
@@ -142,7 +141,6 @@
      "32h": 0.05
     },
     "minimum_wage": {
-     "boost": 0.1,
      "regional": -0.2
     },
     "end_of_life": {
@@ -152,7 +150,8 @@
    "reforms": {
     "pension_age_65": -0.2,
     "labour_code": -0.05,
-    "unemployment_insurance": -0.1
+    "unemployment_insurance": -0.1,
+    "minimum_wage": 0.1
    },
    "conditions": {
     "unemployment": -2.0
@@ -345,7 +344,6 @@
      "32h": -0.35
     },
     "minimum_wage": {
-     "boost": -0.2,
      "regional": 0.15
     },
     "sunday_work": {
@@ -366,7 +364,8 @@
     "pension_age_65": 0.2,
     "labour_code": 0.25,
     "wealth_tax": -0.3,
-    "carbon_tax": -0.1
+    "carbon_tax": -0.1,
+    "minimum_wage": -0.2
    },
    "conditions": {
     "businessConfidence": 2.0,
@@ -418,9 +417,6 @@
    ],
    "description": "Commerçants, artisans, petites entreprises : le tissu économique local.",
    "laws": {
-    "minimum_wage": {
-     "boost": -0.25
-    },
     "sunday_work": {
      "free": 0.1
     },
@@ -429,7 +425,8 @@
     }
    },
    "reforms": {
-    "labour_code": 0.15
+    "labour_code": 0.15,
+    "minimum_wage": -0.25
    },
    "conditions": {
     "consumerConfidence": 2.0

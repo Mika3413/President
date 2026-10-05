@@ -22,15 +22,24 @@ object BudgetCalculator {
             item.amount = item.referenceAmount * effectiveRatio * TaxBaseIndex.of(item.base, economy)
             revenue += item.amount
         }
-        revenue += economy.fiscalAdjustmentBillions * TaxBaseIndex.of(fr.president.engine.data.TaxBase.GDP, economy)
+        revenue += (economy.fiscalAdjustmentBillions + economy.measureRevenueBillions) * TaxBaseIndex.of(fr.president.engine.data.TaxBase.GDP, economy)
         var spending = 0.0
         for (item in budget.spending.values) {
             item.amount = item.referenceAmount * item.policyFactor * indexFactor(item.indexation, economy)
             spending += item.amount
         }
+        spending += economy.measureSpendingBillions * economy.priceLevel
         economy.revenueBillions = revenue
         economy.spendingBillions = spending
     }
+
+    /** Recette d'un impôt à un taux donné (comportements et assiette compris). */
+    fun taxAmount(item: RevenueItemState, rate: Double, economy: EconomyState): Double =
+        item.referenceAmount * Math.pow(rate / item.referenceRate, 1.0 - item.behaviouralLoss) * TaxBaseIndex.of(item.base, economy)
+
+    /** Dépense d'un poste pour un multiplicateur donné (indexation comprise). */
+    fun spendingAmount(item: SpendingItemState, factor: Double, economy: EconomyState): Double =
+        item.referenceAmount * factor * indexFactor(item.indexation, economy)
 
     private fun indexFactor(indexation: Indexation, economy: EconomyState): Double = when (indexation) {
         Indexation.NONE -> 1.0

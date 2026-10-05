@@ -76,6 +76,7 @@ class DataLoader(private val source: DataSource) {
             laws = def.laws?.let { read(it) },
             actors = def.actors?.let { read(it) },
             fiscal = def.fiscal?.let { read(it) },
+            legislation = def.legislation?.let { read(it) },
         )
     }
 

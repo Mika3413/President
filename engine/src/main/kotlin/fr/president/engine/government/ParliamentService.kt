@@ -324,13 +324,18 @@ class ParliamentService(private val ctx: SimulationContext) {
 
     /** Estimation de la part de « oui » (sans bruit), utilisée pour les sondages. */
     fun referendumEstimate(reformId: String): Pair<Double, Double> {
-        val def = referendum ?: return NEUTRAL to 0.0
-        val groups = ctx.playerData.socialGroups ?: return NEUTRAL to 0.0
         val reform = ctx.playerData.reforms?.reforms?.firstOrNull { it.id == reformId } ?: return NEUTRAL to 0.0
         val interest = reform.immediateEffects
             .filter { it.target.startsWith(GROUP_PREFIX) }
             .groupBy({ it.target.removePrefix(GROUP_PREFIX) }, { it.amount })
             .mapValues { it.value.sum() }
+        return estimateWithInterest(interest)
+    }
+
+    /** Part de « oui » pour un texte dont on connaît l'intérêt pour chaque groupe (et participation). */
+    fun estimateWithInterest(interest: Map<String, Double>): Pair<Double, Double> {
+        val def = referendum ?: return NEUTRAL to 0.0
+        val groups = ctx.playerData.socialGroups ?: return NEUTRAL to 0.0
         var yes = 0.0
         var voters = 0.0
         for (group in groups.groups) {
