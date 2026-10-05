@@ -95,6 +95,8 @@ class StatsReadout(private val ctx: SimulationContext) {
         "unemployment" -> unemploymentWhy()
         "growth" -> growthWhy()
         "deficit" -> deficitWhy()
+        "inflation" -> inflationWhy()
+        "debt" -> debtWhy()
         else -> null
     }
 
@@ -150,6 +152,35 @@ class StatsReadout(private val ctx: SimulationContext) {
                 Cause("Intérêts de la dette (${Formatting.billions(e.interestBillions)})", -e.interestBillions / gdp * PERCENT),
                 Cause("Dépenses exceptionnelles de l'année (${Formatting.billions(e.oneOffThisYearBillions)})", -e.oneOffThisYearBillions / gdp * PERCENT),
             ))
+    }
+
+    private fun inflationWhy(): Why {
+        val e = ctx.state.playerCountry.economy
+        val p = ctx.db.economyParameters
+        val society = ctx.state.society
+        return Why("Ce qui fait l'inflation",
+            "L'inflation tend vers l'objectif de la BCE (2 %), poussée par une économie qui tourne trop vite et par le prix de l'énergie. Elle s'ajuste avec quelques mois de retard. Chaque ligne est en points.",
+            listOf(
+                Cause("Objectif de la BCE", e.inflationTarget * PERCENT),
+                Cause(if (e.outputGap >= 0) "Économie en surchauffe" else "Économie au ralenti", p.phillipsSlope * e.outputGap * PERCENT),
+                Cause("Prix de l'énergie", p.energyPassThrough * (e.energyPriceIndex - 1.0) * PERCENT),
+                Cause("Retard d'ajustement (inflation passée)", (e.inflation - e.inflationTarget - p.phillipsSlope * e.outputGap - p.energyPassThrough * (e.energyPriceIndex - 1.0)) * PERCENT),
+            ).filter { abs(it.points) >= MIN_POINTS / 10 } + listOf(
+                Cause("Pour info : loyers ${if (society.rentGrowth >= 0) "+" else "−"}${Formatting.percent(abs(society.rentGrowth))} par an", 0.0),
+            ))
+    }
+
+    private fun debtWhy(): Why {
+        val e = ctx.state.playerCountry.economy
+        val gdp = e.gdpBillions.coerceAtLeast(1.0)
+        val nominal = e.realGrowth + e.inflation
+        return Why("Ce qui fait bouger la dette",
+            "La dette rapportée au PIB monte avec le déficit et baisse quand le PIB grandit (croissance et inflation). Chaque ligne est en points de PIB par an.",
+            listOf(
+                Cause("Déficit de l'année (${Formatting.billions(e.deficitBillions)})", -e.deficitBillions / gdp * PERCENT),
+                Cause("Croissance et inflation qui allègent la dette", nominal * e.debtRatio * PERCENT),
+                Cause("Taux moyen payé sur la dette : ${Formatting.percent(e.averageDebtRate)} (marché : ${Formatting.percent(e.marketRate)})", -e.averageDebtRate * e.debtRatio * PERCENT * 0.0),
+            ).filter { abs(it.points) >= MIN_POINTS / 10 || it.points == 0.0 })
     }
 
     /** Les groupes sociaux, du moins favorable au plus favorable. */

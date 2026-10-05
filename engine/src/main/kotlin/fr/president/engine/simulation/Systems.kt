@@ -47,6 +47,7 @@ object Systems {
         fr.president.engine.economy.MonetarySystem(),
         ServiceQualitySystem(),
         TerritorySystem(),
+        fr.president.engine.territory.SocietySystem(),
         fr.president.engine.territory.DemographySystem(),
         GovernmentSystem(),
         fr.president.engine.government.CabinetSystem(),

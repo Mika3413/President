@@ -12,7 +12,7 @@ import fr.president.engine.util.Formatting
 class AdvisorReadout(private val ctx: SimulationContext) {
     private val risks = RiskReadout(ctx)
 
-    enum class Target { INBOX, DEPARTMENT, COUNTRY, ECONOMY, ELECTIONS, GOVERNMENT, DECISIONS, CRISIS }
+    enum class Target { INBOX, DEPARTMENT, COUNTRY, ECONOMY, ELECTIONS, GOVERNMENT, DECISIONS, CRISIS, CONSEQUENCES, OFFICE }
 
     data class Advice(val icon: String, val text: String, val target: Target, val targetId: String? = null, val tone: Tone, val priority: Int)
 
@@ -77,6 +77,11 @@ class AdvisorReadout(private val ctx: SimulationContext) {
             list += Advice("◷", "« $label » dure depuis longtemps : faut-il la lever ?", Target.CRISIS, null, Tone.WARNING, PRIORITY_PARLIAMENT)
         }
 
+        // La conséquence en chaîne la plus grave : ce qui abîme le pays en ce moment.
+        fr.president.engine.consequences.ConsequenceService(ctx).active().firstOrNull()?.let { (r, a) ->
+            list += Advice(r.icon, "${r.label} : ${r.fix.ifEmpty { "voir pourquoi" }}", Target.CONSEQUENCES, r.id,
+                if (a.severity >= 1) Tone.BAD else Tone.WARNING, PRIORITY_CONSEQUENCE + (a.severity * SCALE / 4).toInt())
+        }
         if (ctx.state.government.parliamentSupport < WEAK_PARLIAMENT) {
             list += Advice("⌂", "Assemblée hésitante : vos lois risquent d'être rejetées", Target.GOVERNMENT, null, Tone.WARNING, PRIORITY_PARLIAMENT)
         }
@@ -124,6 +129,7 @@ class AdvisorReadout(private val ctx: SimulationContext) {
         const val PRIORITY_DIPLOMACY = 20
         const val PRIORITY_GROUP = 25
         const val PRIORITY_RISK = 30
+        const val PRIORITY_CONSEQUENCE = 38
         const val LONG_MEASURE_DAYS = 60
         const val UNHAPPY_GROUP = 0.38
     }

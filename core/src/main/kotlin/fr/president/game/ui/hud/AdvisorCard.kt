@@ -38,6 +38,7 @@ class AdvisorCard(private val ui: Ui, private val session: GameSession, private 
             row.onClick { go(a) }
             root.add(row).growX().padTop(3f).row()
         }
+        root.add(ui.button("✪ Bureau du président", "flat") { nav.open(PanelId.OFFICE) }.also { it.name = "advisor.office" }).left().padTop(3f).row()
     }
 
     private fun go(a: AdvisorReadout.Advice) = when (a.target) {
@@ -49,6 +50,8 @@ class AdvisorCard(private val ui: Ui, private val session: GameSession, private 
         AdvisorReadout.Target.GOVERNMENT -> nav.open(PanelId.GOVERNMENT)
         AdvisorReadout.Target.DECISIONS -> nav.open(PanelId.DECISIONS, a.targetId)
         AdvisorReadout.Target.CRISIS -> nav.open(PanelId.CRISIS, a.targetId ?: "active")
+        AdvisorReadout.Target.CONSEQUENCES -> nav.open(PanelId.STATS, "consequences")
+        AdvisorReadout.Target.OFFICE -> nav.open(PanelId.OFFICE)
     }
 
     private companion object {

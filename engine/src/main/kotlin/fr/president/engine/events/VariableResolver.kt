@@ -41,6 +41,19 @@ class VariableResolver(private val ctx: SimulationContext) {
                 "armyLoyalty" -> ctx.state.unrest.armyLoyalty.takeIf { it >= 0 } ?: (ctx.db.unrest?.armyLoyalty ?: 0.8)
                 else -> null
             }
+            "society" -> ctx.state.society.let { so ->
+                when (parts.getOrNull(1)) {
+                    "rentIndex" -> so.rentIndex
+                    // Loyers corrigés de l'inflation : ce qui pèse vraiment sur le budget des ménages.
+                    "realRent" -> so.rentIndex / ctx.state.playerCountry.economy.priceLevel
+                    "housePrices" -> so.housePriceIndex / ctx.state.playerCountry.economy.priceLevel
+                    "fertility" -> so.fertility
+                    "lifeExpectancy" -> so.lifeExpectancy
+                    "savingsRate" -> so.savingsRate
+                    "informal" -> so.informal
+                    else -> null
+                }
+            }
             "intel" -> if (parts.getOrNull(1) == "capacity") ctx.state.intel.capacity.takeIf { it >= 0 } else null
             "season" -> if (parts.getOrNull(1) == "month") ctx.now.month.toDouble() else null
             "scope" -> scoped(parts.getOrNull(1), scope)

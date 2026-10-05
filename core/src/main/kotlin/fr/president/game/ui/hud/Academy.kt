@@ -58,7 +58,9 @@ object AcademyCourse {
             Step("Le bouton « Pourquoi ? » sous une courbe détaille ce qui fait monter ou baisser le chiffre : chaque ligne est une cause, en points. C'est l'outil pour savoir où agir."),
             Step("Dans le Bilan, l'onglet « Groupes » montre l'opinion de 13 groupes sociaux : jeunes, retraités, ruraux, cadres... Chaque décision plaît à certains et déplaît à d'autres.", show = PanelId.STATS, showArg = "groups"),
             Step("Le temps ne s'arrête jamais : le monde avance même application fermée. Les courriers attendent votre réponse avant une échéance, sinon vos services appliquent l'option par défaut. Ouvrez « ✉ Messages ».", "bar.inbox", PanelId.INBOX) { panel(PanelId.INBOX) },
-            Step("Enfin, l'encart « À faire » à gauche vous dit toujours quoi faire ensuite : touchez une ligne pour aller directement au bon écran. Module terminé !"),
+            Step("L'encart « À faire » à gauche vous dit toujours quoi faire ensuite : touchez une ligne pour aller directement au bon écran."),
+            Step("Sous l'encart, « ✪ Bureau du président » : chaque jour, votre administration vous fait remonter la note du matin, le rapport de chaque ministre (chiffres, seuil d'alerte, avis), les alertes des préfets, les notes du renseignement et de Bercy, et des prévisions « si rien ne change ». Ouvrez-le.", "advisor.office", PanelId.OFFICE) { panel(PanelId.OFFICE) },
+            Step("Avant chaque décision, l'aperçu donne aussi l'avis de vos ministres : Bercy chiffre le coût (une fourchette, d'autant plus juste que le ministre est compétent), le ministre concerné défend son domaine, l'Intérieur prévient s'il faut s'attendre à la rue. À vous de trancher. Module terminé !"),
         )),
         Module("decider", "★", "2 · Décider et gouverner", "Prendre des décisions nationales, gérer son agenda et son gouvernement.", listOf(
             Step("« ★ Décider » rassemble vos décisions directes : plans, décrets, annonces, déplacements. Ouvrez-le.", "bar.decide", PanelId.DECISIONS) { panel(PanelId.DECISIONS) },

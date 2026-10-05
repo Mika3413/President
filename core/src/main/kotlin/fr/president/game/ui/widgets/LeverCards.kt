@@ -94,7 +94,7 @@ object LeverCards {
 
         if (changed) {
             val p = leg.previewOf(fr.president.engine.legislation.LeverChange(lever.id, current, target, measure = lever.measure))
-            preview(c, card, p, open, mode)
+            preview(c, card, p, open, mode, lever.id)
             if (mode == Mode.DECREE) {
                 val b = leg.decreeBlocker(lever.id, target)
                 card.add(ui.colorButton("✎ Signer le décret", Theme.accentDark) {
@@ -107,7 +107,7 @@ object LeverCards {
     }
 
     /** Aperçu lisible d'un changement (ou d'un ensemble) : argent, gagnants, perdants, services, risques. */
-    fun preview(c: Context, into: Table, p: Preview, full: Boolean, mode: Mode? = null) {
+    fun preview(c: Context, into: Table, p: Preview, full: Boolean, mode: Mode? = null, leverId: String? = null) {
         val ui = c.ui
         val box = Table().apply { setBackground(ui.skin.fill(Theme.panel)); pad(4f, 6f, 4f, 6f); defaults().left() }
         money(ui, box, p)
@@ -124,6 +124,17 @@ object LeverCards {
         p.warnings.take(if (full) 6 else 2).forEach { box.add(ui.label(it, "small", Theme.bad, wrap = true)).growX().padTop(1f).row() }
         if (p.events.isNotEmpty()) box.add(ui.label("Risque de mobilisation : grèves, manifestations ou blocages", "small", Theme.warning, wrap = true)).growX().row()
         if (p.censure > 0.01) box.add(ui.label("⚖ Risque de censure : ${Math.round(p.censure * 100)} % — ${p.censureReason}", "small", if (p.censure > 0.3) Theme.bad else Theme.warning, wrap = true)).growX().row()
+        leverId?.let { id ->
+            val advice = fr.president.engine.legislation.Advisors(c.session.context).opinions(id, p)
+            if (advice.isNotEmpty()) {
+                box.add(ui.label("Avis du gouvernement", "small", Theme.textMuted)).left().padTop(3f).row()
+                (if (full) advice else advice.take(2)).forEach { a ->
+                    val mark = when (a.stance) { 1 -> "✔"; -1 -> "✖"; else -> "~" }
+                    val color = when (a.stance) { 1 -> Theme.good; -1 -> Theme.bad; else -> Theme.warning }
+                    box.add(ui.label("$mark ${a.role} (${a.minister}) : ${a.text}", "small", color, wrap = true)).growX().row()
+                }
+            }
+        }
         if (mode == Mode.LAW || mode == null) {
             val chance = c.session.legislation.passChance(p.difficulty)
             if (mode == Mode.LAW) box.add(ui.label("Chances au Parlement (seul) : ${Math.round(chance * 100)} %", "small", chanceColor(chance))).left().row()

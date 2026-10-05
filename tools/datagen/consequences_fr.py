@@ -501,6 +501,58 @@ rule("army_distrust", "L'armée prend ses distances", "⚔", "security", "unrest
      monthly=[e("military.readiness", -0.003), e("president.popularity", -0.002)])
 
 
+
+# ---------------------------------------------------------------------------------------------
+# Vie quotidienne : logement, natalité, santé, épargne, travail au noir
+# ---------------------------------------------------------------------------------------------
+rule("rents_unaffordable", "Loyers inabordables", "⌂", "society", "society.realRent",
+     "Les loyers montent plus vite que les revenus : les jeunes ne quittent plus le foyer familial, les familles modestes s'éloignent des villes, les étudiants renoncent.",
+     "Les loyers battent des records dans les grandes villes.",
+     "construire davantage, plafonner les loyers dans les zones tendues, cibler les aides.",
+     0.08, above=1.12, severe="Crise du logement",
+     monthly=[g("young", -0.005), g("low_income", -0.004), g("urban", -0.003), g("middle_income", -0.002), e("economy.consumerConfidence", -0.002)],
+     departments=[d("approval", -0.002, "urban")],
+     events={"housing_shortage": 0.7},
+     unrest={"students": 0.04, "cost_of_living": 0.04})
+
+rule("housing_crash", "Krach immobilier", "▼", "society", "society.housePrices",
+     "Quand les prix des logements chutent, les ménages endettés se sentent plus pauvres, les chantiers s'arrêtent, les banques s'inquiètent.",
+     "Les ventes de logements s'effondrent ; les promoteurs suspendent leurs chantiers.",
+     "baisser le coût du crédit, soutenir la construction, rassurer les banques.",
+     0.1, below=0.85,
+     monthly=[e("sector.construction", -0.005), e("sector.banking", -0.003), e("economy.consumerConfidence", -0.003), g("seniors", -0.002), g("middle_income", -0.002)],
+     events={"bank_fragility": 0.4})
+
+rule("demographic_winter", "Hiver démographique", "◐", "society", "society.fertility",
+     "Moins de naissances aujourd'hui, ce sont moins d'actifs demain pour financer les retraites et faire tourner l'économie ; les écoles ferment dans les campagnes.",
+     "La natalité tombe à son plus bas niveau depuis la guerre.",
+     "soutenir les familles : allocations, crèches, logement abordable.",
+     0.1, below=1.45,
+     monthly=[e("economy.potentialGrowth", -0.00003, cap=0.001), g("seniors", -0.001), g("rural", -0.001), a("church", -0.05)],
+     departments=[d("approval", -0.001, "rural")])
+
+rule("life_expectancy_falls", "L'espérance de vie recule", "✚", "society", "society.lifeExpectancy",
+     "Hôpital dégradé, pauvreté, pollution : pour la première fois depuis des décennies, les Français vivent moins longtemps.",
+     "L'INSEE annonce un recul de l'espérance de vie.",
+     "remettre de l'argent dans la santé et la solidarité, lutter contre la pollution.",
+     0.5, below=82.0,
+     monthly=[e("president.popularity", -0.004), g("seniors", -0.004), g("retirees", -0.004), g("low_income", -0.002)])
+
+rule("savings_glut", "Les Français thésaurisent", "€", "society", "society.savingsRate",
+     "Inquiets, les ménages mettent de côté au lieu de consommer : les commerces, les restaurants et le bâtiment voient leur chiffre d'affaires baisser.",
+     "Le livret A déborde, les commerces se vident.",
+     "redonner confiance : visibilité fiscale, emploi, fin des crises.",
+     0.02, above=0.20,
+     monthly=[e("sector.retail", -0.003), e("sector.tourism", -0.002), e("sector.construction", -0.002), e("economy.output", -0.0003)])
+
+rule("black_market", "Le travail au noir explose", "⊘", "society", "society.informal",
+     "Charges trop lourdes, RSA proche du SMIC, contrôles affaiblis : de plus en plus d'activité échappe à l'impôt et aux cotisations, les entreprises honnêtes subissent une concurrence déloyale, les travailleurs ne sont plus protégés.",
+     "L'Urssaf alerte sur une hausse massive du travail dissimulé.",
+     "alléger les charges sur les bas salaires, renforcer les contrôles, rendre le travail déclaré plus intéressant.",
+     0.02, above=0.13, severe="Une économie parallèle",
+     monthly=[a("employers_small", -0.1), g("self_employed", -0.003), g("private_employees", -0.002), e("quality.social", -0.002), e("economy.businessConfidence", -0.001)],
+     departments=[d("crime", 0.003, "poor")])
+
 # ---------------------------------------------------------------------------------------------
 # Contrôles
 # ---------------------------------------------------------------------------------------------
@@ -533,7 +585,8 @@ WEIGHTS = {"all", "urban", "rural", "poor", "unemployed", "crime"}
 VARIABLES = {"derived.rsaToSmic", "derived.servicesFunding", "derived.article16", "economy.deficitRatio", "economy.debtRatio", "economy.inflation",
              "economy.unemployment", "economy.growth", "energy.priceIndex", "tax.households", "tax.businesses", "laws.liberty", "laws.press",
              "government.parliamentSupport", "opinion.national", "military.warWeariness", "demography.immigration", "intel.capacity",
-             "unrest.phase", "unrest.armyLoyalty"}
+             "unrest.phase", "unrest.armyLoyalty", "society.realRent", "society.housePrices", "society.fertility",
+             "society.lifeExpectancy", "society.savingsRate", "society.informal"}
 
 
 def check_target(t):

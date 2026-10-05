@@ -57,36 +57,61 @@ class StatsPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pane
         }
     }
 
-    /** Conséquences en chaîne : ce qui frappe le pays en ce moment, pourquoi, et ce qui menace. */
+    /** Conséquences en chaîne : ce qui frappe le pays, pourquoi, ce qui menace, ce qui se répare. */
     private fun consequences(into: Table) {
-        val service = fr.president.engine.consequences.ConsequenceService(session.context)
+        val readout = fr.president.engine.readout.ConsequenceReadout(session.context)
         into.add(ui.label("Quand un chiffre dépasse un seuil (service public à bout, RSA trop proche du SMIC, impôts trop lourds, dette, libertés...), le pays réagit chaque mois : opinion, économie, carte, grèves, émeutes. Plus on s'éloigne du seuil, plus c'est grave. Quand la cause disparaît, les dégâts se réparent lentement.", "muted", wrap = true)).growX().padBottom(GAP).row()
-        val active = service.active()
+        val active = readout.active()
         into.add(ui.label(if (active.isEmpty()) "Aucune conséquence en cours." else "En cours (${active.size})", "bold")).left().padBottom(2f).row()
-        active.forEach { (r, a) ->
-            val color = when { a.severity >= 2 -> Theme.bad; a.severity >= 1 -> Theme.warning; else -> Theme.highlight }
+        active.forEach { row ->
+            val r = row.rule
+            val color = when { row.severity >= 2 -> Theme.bad; row.severity >= 1 -> Theme.warning; else -> Theme.highlight }
             val card = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(6f, 8f, 6f, 8f); defaults().left() }
             val head = Table()
             head.add(ui.label("${r.icon} ${r.label}", "bold", wrap = true)).growX().minWidth(0f)
-            head.add(ui.label(fr.president.engine.consequences.ConsequenceService.severityLabel(a.severity), "small", color)).right().padLeft(6f)
+            head.add(ui.label(fr.president.engine.consequences.ConsequenceService.severityLabel(row.severity), "small", color)).right().padLeft(6f)
             card.add(head).growX().row()
             val bar = Table()
             bar.add(Table().apply { setBackground(ui.skin.fill(color)) })
-                .width(Value.percentWidth((a.severity / r.maxSeverity).toFloat().coerceIn(MIN_BAR, 1f), bar)).height(BAR).left().expandX()
+                .width(Value.percentWidth((row.severity / r.maxSeverity).toFloat().coerceIn(MIN_BAR, 1f), bar)).height(BAR).left().expandX()
             card.add(bar).growX().height(BAR).padTop(2f).row()
-            card.add(ui.label("Depuis le ${Formatting.date(a.since)}", "muted")).left().row()
+            card.add(ui.label("${row.value} — ${row.threshold}", "small", color, wrap = true)).growX().padTop(2f).row()
+            row.since?.let { card.add(ui.label("Depuis le ${Formatting.date(it)}", "muted")).left().row() }
             card.add(ui.label("Pourquoi : ${r.why}", "small", wrap = true)).growX().padTop(2f).row()
             if (r.fix.isNotEmpty()) card.add(ui.label("Pour en sortir : ${r.fix}", "small", Theme.good, wrap = true)).growX().padTop(2f).row()
             into.add(card).growX().padBottom(GAP).row()
         }
-        val near = service.nearThreshold()
+        val risks = readout.risks()
+        if (risks.isNotEmpty()) {
+            into.add(ui.label("Risques accrus", "bold")).left().padTop(GAP).padBottom(2f).row()
+            risks.take(MAX_NEAR).forEach { risk ->
+                val row = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(4f, 8f, 4f, 8f); defaults().left() }
+                val col = Table().apply { defaults().left() }
+                col.add(ui.label(risk.label, "small", wrap = true)).growX().row()
+                col.add(ui.label("à cause de : " + risk.causes.joinToString(", ").lowercase(), "muted", wrap = true)).growX().row()
+                row.add(col).growX().minWidth(0f)
+                row.add(ui.label("×" + String.format(java.util.Locale.FRENCH, "%.1f", risk.factor), "bold", if (risk.factor >= 2) Theme.bad else Theme.warning)).right().padLeft(6f)
+                into.add(row).growX().padBottom(2f).row()
+            }
+        }
+        val near = readout.near()
         if (near.isNotEmpty()) {
             into.add(ui.label("Proches du seuil", "bold")).left().padTop(GAP).padBottom(2f).row()
-            near.take(MAX_NEAR).forEach { (r, gap) ->
-                val row = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(4f, 8f, 4f, 8f); defaults().left() }
-                row.add(ui.label("${r.icon} ${r.label}", "small", Theme.warning, wrap = true)).growX().minWidth(0f)
-                row.add(ui.label(if (gap < 0.15) "imminent" else "proche", "small", Theme.textMuted)).right().padLeft(6f)
-                into.add(row).growX().padBottom(2f).row()
+            near.take(MAX_NEAR).forEach { (row, gap) ->
+                val box = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(4f, 8f, 4f, 8f); defaults().left() }
+                val head = Table()
+                head.add(ui.label("${row.rule.icon} ${row.rule.label}", "small", Theme.warning, wrap = true)).growX().minWidth(0f)
+                head.add(ui.label(if (gap < 0.15) "imminent" else "proche", "small", Theme.textMuted)).right().padLeft(6f)
+                box.add(head).growX().row()
+                box.add(ui.label("${row.value} — ${row.threshold}", "muted", wrap = true)).growX().row()
+                into.add(box).growX().padBottom(2f).row()
+            }
+        }
+        val healing = readout.healing()
+        if (healing.isNotEmpty()) {
+            into.add(ui.label("En voie de réparation", "bold")).left().padTop(GAP).padBottom(2f).row()
+            healing.forEach { (r, months) ->
+                into.add(ui.label("${r.icon} ${r.label} : la cause a disparu, encore environ $months mois pour effacer les dégâts.", "small", Theme.good, wrap = true)).growX().padBottom(2f).row()
             }
         }
     }
@@ -154,6 +179,7 @@ class StatsPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pane
             val color = if (c.points >= 0) Theme.good else Theme.bad
             val row = Table()
             row.add(ui.label(c.label, "small", wrap = true)).left().growX().minWidth(0f)
+            if (c.points == 0.0) { into.add(ui.label(c.label, "muted", wrap = true)).growX().padTop(2f).row(); return@forEach }
             row.add(ui.label((if (c.points >= 0) "+" else "−") + Formats.decimal(abs(c.points)) + " pt", "small", color)).right().padLeft(6f)
             into.add(row).growX().padTop(2f).row()
             val bar = Table()

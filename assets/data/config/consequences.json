@@ -2362,6 +2362,232 @@
      "amount": -0.002
     }
    ]
+  },
+  {
+   "id": "rents_unaffordable",
+   "label": "Loyers inabordables",
+   "icon": "⌂",
+   "category": "society",
+   "variable": "society.realRent",
+   "scale": 0.08,
+   "why": "Les loyers montent plus vite que les revenus : les jeunes ne quittent plus le foyer familial, les familles modestes s'éloignent des villes, les étudiants renoncent.",
+   "onset": "Les loyers battent des records dans les grandes villes.",
+   "fix": "construire davantage, plafonner les loyers dans les zones tendues, cibler les aides.",
+   "above": 1.12,
+   "severe": "Crise du logement",
+   "monthly": [
+    {
+     "target": "opinion.group.young",
+     "amount": -0.005
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": -0.004
+    },
+    {
+     "target": "opinion.group.urban",
+     "amount": -0.003
+    },
+    {
+     "target": "opinion.group.middle_income",
+     "amount": -0.002
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.002
+    }
+   ],
+   "departments": [
+    {
+     "field": "approval",
+     "amount": -0.002,
+     "weight": "urban"
+    }
+   ],
+   "events": {
+    "housing_shortage": 0.7
+   },
+   "unrest": {
+    "students": 0.04,
+    "cost_of_living": 0.04
+   }
+  },
+  {
+   "id": "housing_crash",
+   "label": "Krach immobilier",
+   "icon": "▼",
+   "category": "society",
+   "variable": "society.housePrices",
+   "scale": 0.1,
+   "why": "Quand les prix des logements chutent, les ménages endettés se sentent plus pauvres, les chantiers s'arrêtent, les banques s'inquiètent.",
+   "onset": "Les ventes de logements s'effondrent ; les promoteurs suspendent leurs chantiers.",
+   "fix": "baisser le coût du crédit, soutenir la construction, rassurer les banques.",
+   "below": 0.85,
+   "monthly": [
+    {
+     "target": "sector.construction",
+     "amount": -0.005
+    },
+    {
+     "target": "sector.banking",
+     "amount": -0.003
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.003
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.002
+    },
+    {
+     "target": "opinion.group.middle_income",
+     "amount": -0.002
+    }
+   ],
+   "events": {
+    "bank_fragility": 0.4
+   }
+  },
+  {
+   "id": "demographic_winter",
+   "label": "Hiver démographique",
+   "icon": "◐",
+   "category": "society",
+   "variable": "society.fertility",
+   "scale": 0.1,
+   "why": "Moins de naissances aujourd'hui, ce sont moins d'actifs demain pour financer les retraites et faire tourner l'économie ; les écoles ferment dans les campagnes.",
+   "onset": "La natalité tombe à son plus bas niveau depuis la guerre.",
+   "fix": "soutenir les familles : allocations, crèches, logement abordable.",
+   "below": 1.45,
+   "monthly": [
+    {
+     "target": "economy.potentialGrowth",
+     "amount": -3e-05,
+     "cap": 0.001
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.001
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.001
+    },
+    {
+     "target": "actor.church",
+     "amount": -0.05
+    }
+   ],
+   "departments": [
+    {
+     "field": "approval",
+     "amount": -0.001,
+     "weight": "rural"
+    }
+   ]
+  },
+  {
+   "id": "life_expectancy_falls",
+   "label": "L'espérance de vie recule",
+   "icon": "✚",
+   "category": "society",
+   "variable": "society.lifeExpectancy",
+   "scale": 0.5,
+   "why": "Hôpital dégradé, pauvreté, pollution : pour la première fois depuis des décennies, les Français vivent moins longtemps.",
+   "onset": "L'INSEE annonce un recul de l'espérance de vie.",
+   "fix": "remettre de l'argent dans la santé et la solidarité, lutter contre la pollution.",
+   "below": 82.0,
+   "monthly": [
+    {
+     "target": "president.popularity",
+     "amount": -0.004
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.004
+    },
+    {
+     "target": "opinion.group.retirees",
+     "amount": -0.004
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": -0.002
+    }
+   ]
+  },
+  {
+   "id": "savings_glut",
+   "label": "Les Français thésaurisent",
+   "icon": "€",
+   "category": "society",
+   "variable": "society.savingsRate",
+   "scale": 0.02,
+   "why": "Inquiets, les ménages mettent de côté au lieu de consommer : les commerces, les restaurants et le bâtiment voient leur chiffre d'affaires baisser.",
+   "onset": "Le livret A déborde, les commerces se vident.",
+   "fix": "redonner confiance : visibilité fiscale, emploi, fin des crises.",
+   "above": 0.2,
+   "monthly": [
+    {
+     "target": "sector.retail",
+     "amount": -0.003
+    },
+    {
+     "target": "sector.tourism",
+     "amount": -0.002
+    },
+    {
+     "target": "sector.construction",
+     "amount": -0.002
+    },
+    {
+     "target": "economy.output",
+     "amount": -0.0003
+    }
+   ]
+  },
+  {
+   "id": "black_market",
+   "label": "Le travail au noir explose",
+   "icon": "⊘",
+   "category": "society",
+   "variable": "society.informal",
+   "scale": 0.02,
+   "why": "Charges trop lourdes, RSA proche du SMIC, contrôles affaiblis : de plus en plus d'activité échappe à l'impôt et aux cotisations, les entreprises honnêtes subissent une concurrence déloyale, les travailleurs ne sont plus protégés.",
+   "onset": "L'Urssaf alerte sur une hausse massive du travail dissimulé.",
+   "fix": "alléger les charges sur les bas salaires, renforcer les contrôles, rendre le travail déclaré plus intéressant.",
+   "above": 0.13,
+   "severe": "Une économie parallèle",
+   "monthly": [
+    {
+     "target": "actor.employers_small",
+     "amount": -0.1
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": -0.003
+    },
+    {
+     "target": "opinion.group.private_employees",
+     "amount": -0.002
+    },
+    {
+     "target": "quality.social",
+     "amount": -0.002
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.001
+    }
+   ],
+   "departments": [
+    {
+     "field": "crime",
+     "amount": 0.003,
+     "weight": "poor"
+    }
+   ]
   }
  ]
 }

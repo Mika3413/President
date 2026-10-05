@@ -6,6 +6,11 @@
    "body": "1. En haut, vos chiffres clés : popularité, chômage, croissance, budget, dette, jours avant l'élection. Vert = bien, orange = à surveiller, rouge = danger. La flèche montre la tendance.\n2. L'encart « À faire », à gauche, vous dit quoi faire maintenant. Touchez une ligne pour y aller directement. Un appui long (ou le survol à la souris) sur un chiffre, une pastille ou un bouton l'explique ; touchez un chiffre du haut pour voir sa courbe et ses causes.\n3. « ★ Décider », en bas à gauche : plus de 40 décisions nationales rangées en 8 rubriques (économie, social, sécurité, écologie, institutions, communication, international, défense). Chacune montre son coût, sa durée et ses effets : en vert ce qui s'améliore, en rouge ce qui se dégrade, groupe par groupe.\n4. Touchez un département sur la carte : l'onglet « Résumé » donne ses chiffres clés d'un coup d'œil, « ▶ Agir » propose 18 actions locales triées par thème (services publics, emploi, sécurité, cadre de vie).\n5. Guerre : sélectionnez une de vos unités puis touchez une destination sur la carte : une bulle propose les ordres possibles avec la durée du trajet et le rapport de forces. Les villes ennemies sont cerclées de rouge ; prendre une capitale fait capituler un pays.\n5 bis. Touchez un pays : sa couleur dit votre relation (vert allié, jaune neutre, rouge hostile). Coopérez (commerce, aide, alliance) ou faites pression (sanctions, ultimatum, guerre).\n6. « ▲ Bilan » trace les courbes de votre mandat et leurs causes ; « ▤ Presse » montre les unes du jour et les sondages.\n7. « Messages » contient les décisions qui vous attendent : répondez-y, le monde n'attend pas.\n8. Tout coûte de l'argent : surveillez le budget. Dans cinq ans, les Français vous jugeront.\n9. Réglages (⚙) : taille du texte, couleurs pour daltoniens, sons, rythme de la partie, tutoriel guidé."
   },
   {
+   "delayHours": 0,
+   "subject": "Votre bureau, chaque matin",
+   "body": "Un vrai président ne voit pas les rouages du pays : il voit ce que son administration lui fait remonter. Ouvrez « ✪ Bureau du président » (sous l'encart « À faire » ou dans « ☰ Plus ») :\n• Note du jour : les cinq points qui comptent aujourd'hui, du plus urgent au moins urgent.\n• Ministres : chaque ministre donne ses chiffres (crédits, qualité du service, RSA rapporté au SMIC, loyers, natalité...), le seuil où il faudrait s'alarmer, et son avis.\n• Préfets : les départements où la situation se tend, et pourquoi.\n• Services : la DGSI (radicalisation, menaces, espionnage) et Bercy (taux d'emprunt, note de la France, fraude).\n• Prévisions : Bercy simule l'avenir à six mois ou un an si rien ne change, avec les crises qui en découleraient. Plus votre ministre de l'Économie est compétent, plus la prévision est fiable.\nAvant chaque décision, l'aperçu donne l'avis de vos ministres : souvent contradictoires, comme dans la réalité."
+  },
+  {
    "delayHours": 1,
    "subject": "Prendre en main la présidence : la carte",
    "body": "Monsieur le Président, quelques repères pour vos premiers jours.\n\nLa carte est votre principal outil. Faites-la glisser, pincez pour zoomer (molette sur ordinateur). Plus vous zoomez, plus elle se détaille : régions, départements, villes, centrales, ports, bases.\n\nTouchez un territoire, une ville ou un équipement pour ouvrir sa fiche : vous y verrez l'essentiel, et le bouton « Détails » donne tous les chiffres.\n\nÀ gauche, les couches changent ce que montre la carte : opinion, chômage, santé, sécurité, industrie..."
@@ -281,6 +286,18 @@
   {
    "term": "Article 16",
    "definition": "Pleins pouvoirs du président quand les institutions ou le territoire sont gravement menacés : les textes s'appliquent sans vote du Parlement, pour une durée limitée."
+  },
+  {
+   "term": "Indicateur de fécondité",
+   "definition": "Nombre moyen d'enfants par femme. En dessous d'environ 1,45, la population vieillit vite : moins d'actifs demain pour financer les retraites."
+  },
+  {
+   "term": "Travail au noir",
+   "definition": "Activité non déclarée : elle échappe aux impôts et aux cotisations. Elle grossit quand les charges sont lourdes, quand le RSA approche le SMIC et quand les contrôles faiblissent."
+  },
+  {
+   "term": "Préfet",
+   "definition": "Représentant de l'État dans chaque département : il fait remonter au gouvernement les tensions du terrain."
   }
  ]
 }
