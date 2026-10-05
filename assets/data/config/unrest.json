@@ -1,0 +1,494 @@
+{
+ "_doc": "Mouvements de contestation, phases, armée. Généré par tools/datagen/unrest_fr.py.",
+ "causes": [
+  {
+   "id": "pensions",
+   "label": "Contre la réforme des retraites",
+   "slogan": "« 64 ans, c'est non ! »",
+   "reforms": [
+    "pension_age_65"
+   ],
+   "laws": [],
+   "events": [],
+   "groups": [
+    "private_employees",
+    "civil_servants",
+    "low_income"
+   ],
+   "actors": [
+    "union_militant",
+    "union_reformist",
+    "union_public"
+   ],
+   "crowdThousands": 300,
+   "concession": {
+    "label": "Suspendre la réforme jusqu'à la présidentielle",
+    "effects": [
+     {
+      "target": "budget.oneOff",
+      "amount": 4.0,
+      "days": 365
+     },
+     {
+      "target": "economy.businessConfidence",
+      "amount": -0.01
+     },
+     {
+      "target": "opinion.group.seniors",
+      "amount": 0.01
+     },
+     {
+      "target": "opinion.group.private_employees",
+      "amount": 0.02
+     }
+    ]
+   },
+   "blockades": {
+    "transport": -0.04,
+    "energy": -0.02
+   }
+  },
+  {
+   "id": "cost_of_living",
+   "label": "La vie chère",
+   "slogan": "« On ne peut plus remplir le frigo ! »",
+   "reforms": [],
+   "laws": [],
+   "events": [
+    "fuel_tax_protest",
+    "fuel_protest_hardens",
+    "fuel_shortage"
+   ],
+   "groups": [
+    "low_income",
+    "rural",
+    "self_employed"
+   ],
+   "actors": [
+    "ngo_consumers"
+   ],
+   "crowdThousands": 120,
+   "concession": {
+    "label": "Chèque inflation et gel des taxes sur le carburant",
+    "effects": [
+     {
+      "target": "budget.oneOff",
+      "amount": 6.0
+     },
+     {
+      "target": "opinion.group.low_income",
+      "amount": 0.02
+     },
+     {
+      "target": "opinion.group.rural",
+      "amount": 0.015
+     }
+    ]
+   },
+   "blockades": {
+    "retail": -0.03,
+    "transport": -0.03
+   }
+  },
+  {
+   "id": "farmers",
+   "label": "La colère paysanne",
+   "slogan": "« Pas de pays sans paysans »",
+   "reforms": [],
+   "laws": [],
+   "events": [
+    "farmers_protest",
+    "mercosur_deal"
+   ],
+   "groups": [
+    "rural",
+    "self_employed"
+   ],
+   "actors": [
+    "farmers_union"
+   ],
+   "crowdThousands": 60,
+   "concession": {
+    "label": "Plan d'urgence agricole et pause des normes",
+    "effects": [
+     {
+      "target": "budget.oneOff",
+      "amount": 2.0
+     },
+     {
+      "target": "quality.environment",
+      "amount": -0.01
+     },
+     {
+      "target": "opinion.group.rural",
+      "amount": 0.02
+     }
+    ]
+   },
+   "blockades": {
+    "agrifood": -0.03,
+    "transport": -0.02
+   }
+  },
+  {
+   "id": "students",
+   "label": "La jeunesse dans la rue",
+   "slogan": "« Ni chair à canon, ni chair à patron »",
+   "reforms": [],
+   "laws": [],
+   "events": [
+    "student_protest"
+   ],
+   "groups": [
+    "young"
+   ],
+   "actors": [
+    "union_militant"
+   ],
+   "crowdThousands": 80,
+   "concession": {
+    "label": "Revalorisation des bourses et repas à 1 €",
+    "effects": [
+     {
+      "target": "budget.oneOff",
+      "amount": 1.5
+     },
+     {
+      "target": "opinion.group.young",
+      "amount": 0.02
+     }
+    ]
+   },
+   "blockades": {}
+  },
+  {
+   "id": "labour",
+   "label": "Contre la loi Travail",
+   "slogan": "« Loi Travail, non merci ! »",
+   "reforms": [
+    "labour_code",
+    "unemployment_insurance"
+   ],
+   "laws": [
+    "work_week",
+    "strike_service",
+    "sunday_work",
+    "unemployment_rules"
+   ],
+   "events": [],
+   "groups": [
+    "private_employees",
+    "young",
+    "low_income"
+   ],
+   "actors": [
+    "union_militant",
+    "union_public"
+   ],
+   "crowdThousands": 200,
+   "concession": {
+    "label": "Retirer les mesures les plus contestées",
+    "effects": [
+     {
+      "target": "economy.businessConfidence",
+      "amount": -0.008
+     },
+     {
+      "target": "opinion.group.private_employees",
+      "amount": 0.015
+     }
+    ]
+   },
+   "blockades": {
+    "transport": -0.03
+   }
+  },
+  {
+   "id": "ecology",
+   "label": "La marche pour le climat",
+   "slogan": "« Il n'y a pas de planète B »",
+   "reforms": [
+    "nuclear_program"
+   ],
+   "laws": [
+    "fracking"
+   ],
+   "events": [
+    "cop_climate",
+    "heatwave"
+   ],
+   "groups": [
+    "young",
+    "urban"
+   ],
+   "actors": [
+    "ngo_environment"
+   ],
+   "crowdThousands": 100,
+   "concession": {
+    "label": "Loi climat renforcée et fin des forages",
+    "effects": [
+     {
+      "target": "budget.oneOff",
+      "amount": 2.0
+     },
+     {
+      "target": "economy.businessConfidence",
+      "amount": -0.005
+     },
+     {
+      "target": "opinion.group.young",
+      "amount": 0.02
+     }
+    ]
+   },
+   "blockades": {}
+  },
+  {
+   "id": "police",
+   "label": "Justice pour les victimes de violences policières",
+   "slogan": "« Pas de justice, pas de paix »",
+   "reforms": [],
+   "laws": [
+    "police_cameras",
+    "right_to_protest",
+    "facial_recognition",
+    "mass_surveillance"
+   ],
+   "events": [
+    "urban_riots"
+   ],
+   "groups": [
+    "young",
+    "urban"
+   ],
+   "actors": [
+    "ngo_rights"
+   ],
+   "crowdThousands": 50,
+   "concession": {
+    "label": "Réforme de l'IGPN et caméras-piétons obligatoires",
+    "effects": [
+     {
+      "target": "quality.security",
+      "amount": -0.005
+     },
+     {
+      "target": "opinion.group.young",
+      "amount": 0.02
+     },
+     {
+      "target": "opinion.group.urban",
+      "amount": 0.01
+     }
+    ]
+   },
+   "blockades": {
+    "retail": -0.02
+   }
+  },
+  {
+   "id": "society",
+   "label": "La manif pour tous",
+   "slogan": "« Touche pas à nos enfants »",
+   "reforms": [],
+   "laws": [
+    "end_of_life",
+    "surrogacy",
+    "cannabis"
+   ],
+   "events": [],
+   "groups": [
+    "seniors",
+    "rural"
+   ],
+   "actors": [
+    "church"
+   ],
+   "crowdThousands": 150,
+   "concession": {
+    "label": "Retirer le texte de l'ordre du jour",
+    "effects": [
+     {
+      "target": "opinion.group.seniors",
+      "amount": 0.015
+     },
+     {
+      "target": "opinion.group.young",
+      "amount": -0.01
+     }
+    ]
+   },
+   "blockades": {}
+  },
+  {
+   "id": "immigration",
+   "label": "Contre la loi immigration",
+   "slogan": "« Solidarité avec les sans-papiers »",
+   "reforms": [
+    "immigration_strict"
+   ],
+   "laws": [
+    "nationality",
+    "family_reunification"
+   ],
+   "events": [],
+   "groups": [
+    "young",
+    "urban"
+   ],
+   "actors": [
+    "ngo_rights",
+    "muslim_council"
+   ],
+   "crowdThousands": 80,
+   "concession": {
+    "label": "Retirer les articles les plus durs",
+    "effects": [
+     {
+      "target": "opinion.group.urban",
+      "amount": 0.01
+     },
+     {
+      "target": "opinion.group.seniors",
+      "amount": -0.01
+     }
+    ]
+   },
+   "blockades": {}
+  },
+  {
+   "id": "public_services",
+   "label": "Sauvons nos services publics",
+   "slogan": "« L'hôpital, pas la charité »",
+   "reforms": [],
+   "laws": [],
+   "events": [
+    "teachers_strike",
+    "post_office_closure"
+   ],
+   "groups": [
+    "civil_servants",
+    "rural"
+   ],
+   "actors": [
+    "union_public"
+   ],
+   "crowdThousands": 100,
+   "concession": {
+    "label": "Plan d'urgence pour l'hôpital et l'école",
+    "effects": [
+     {
+      "target": "budget.oneOff",
+      "amount": 5.0
+     },
+     {
+      "target": "quality.health",
+      "amount": 0.01
+     },
+     {
+      "target": "opinion.group.civil_servants",
+      "amount": 0.02
+     }
+    ]
+   },
+   "blockades": {
+    "health": -0.02
+   }
+  },
+  {
+   "id": "anger",
+   "label": "La colère sociale",
+   "slogan": "« Démission ! Démission ! »",
+   "reforms": [],
+   "laws": [],
+   "events": [
+    "national_strike"
+   ],
+   "groups": [
+    "low_income",
+    "middle_income",
+    "rural"
+   ],
+   "actors": [
+    "union_militant"
+   ],
+   "crowdThousands": 150,
+   "concession": {
+    "label": "Grand débat national et mesures pour le pouvoir d'achat",
+    "effects": [
+     {
+      "target": "budget.oneOff",
+      "amount": 8.0
+     },
+     {
+      "target": "opinion.group.low_income",
+      "amount": 0.02
+     },
+     {
+      "target": "opinion.group.middle_income",
+      "amount": 0.01
+     }
+    ]
+   },
+   "blockades": {
+    "retail": -0.03,
+    "transport": -0.03,
+    "tourism": -0.03
+   }
+  },
+  {
+   "id": "war",
+   "label": "Non à la guerre",
+   "slogan": "« Pas en notre nom »",
+   "reforms": [],
+   "laws": [],
+   "events": [],
+   "groups": [
+    "young",
+    "urban"
+   ],
+   "actors": [
+    "ngo_rights"
+   ],
+   "crowdThousands": 100,
+   "concession": {
+    "label": "Ouvrir des négociations de paix",
+    "effects": [
+     {
+      "target": "opinion.group.young",
+      "amount": 0.02
+     }
+    ]
+   },
+   "blockades": {}
+  }
+ ],
+ "phases": [
+  {
+   "id": "MARCHES",
+   "label": "Manifestations",
+   "crowdThousands": 0,
+   "radicalization": 0.0
+  },
+  {
+   "id": "BLOCKADES",
+   "label": "Grèves et blocages",
+   "crowdThousands": 400,
+   "radicalization": 0.0
+  },
+  {
+   "id": "RIOTS",
+   "label": "Émeutes",
+   "crowdThousands": 150,
+   "radicalization": 0.5
+  },
+  {
+   "id": "INSURRECTION",
+   "label": "Insurrection",
+   "crowdThousands": 800,
+   "radicalization": 0.75
+  }
+ ],
+ "armyLoyalty": 0.8
+}

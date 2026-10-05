@@ -118,6 +118,7 @@
     "scenarios": "config/scenarios.json",
     "trade": "diplomacy/trade.json",
     "defense": "military/defense.json",
-    "intel": "military/intel.json"
+    "intel": "military/intel.json",
+    "unrest": "config/unrest.json"
   }
 }

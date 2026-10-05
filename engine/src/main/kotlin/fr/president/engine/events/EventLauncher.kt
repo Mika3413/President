@@ -30,6 +30,7 @@ class EventLauncher(private val ctx: SimulationContext) {
         ctx.db.intensity?.consequences?.get(def.id)?.forEach { ctx.effects.trigger(EventIntensity.scale(it, factor), scope, params, def.id) }
         fr.president.engine.economy.SectorSystem.onEvent(ctx, def.id, factor)
         fr.president.engine.economy.TradeSystem.onEvent(ctx, def.id, factor)
+        fr.president.engine.politics.UnrestSystem.onEvent(ctx, def.id, factor)
 
         val vars = variables(def, scope, params)
         val titled = level?.let { (index, _) -> ctx.db.intensity?.headlines?.get(def.id)?.getOrNull(index) } ?: def.headline

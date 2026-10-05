@@ -31,6 +31,7 @@ class MenuPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel
         Entry("★", "Union européenne", "Textes au Conseil, votes, alliés à Bruxelles.", Theme.catDiplomacy, PanelId.EU) { if (session.state.eu.current?.francePosition == fr.president.engine.diplomacy.EuVote.ABSTAIN) 1 else 0 },
         Entry("✪", "Défense", "Armement, ventes d'armes, bases à l'étranger, dissuasion nucléaire.", Theme.catArmy, PanelId.DEFENSE),
         Entry("⊘", "Renseignement", "DGSE, DGSI : espionnage, coups d'État, groupes armés, contre-espionnage.", Theme.catArmy, PanelId.INTEL) { session.state.intel.operations.size },
+        Entry("⚑", "La rue et l'armée", "Manifestations en direct, grèves, émeutes, loyauté de l'armée.", Theme.bad, PanelId.UNREST) { session.state.unrest.movements.size },
         Entry("⚔", "Armées", "Unités, logistique, conflits, opérations.", Theme.catArmy, PanelId.ARMY),
         Entry("▤", "Presse", "Unes du jour, sondages, climat médiatique.", Theme.catPress, PanelId.PRESS),
         Entry("✔", "Élections", "Sondages, candidats, promesses.", Theme.catElections, PanelId.ELECTIONS),

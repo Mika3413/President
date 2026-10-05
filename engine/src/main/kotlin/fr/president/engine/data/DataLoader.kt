@@ -45,6 +45,7 @@ class DataLoader(private val source: DataSource) {
             trade = files.trade?.let { read(it) },
             defense = files.defense?.let { read(it) },
             intel = files.intel?.let { read(it) },
+            unrest = files.unrest?.let { read(it) },
         )
         DataValidator.validate(db)
         return db

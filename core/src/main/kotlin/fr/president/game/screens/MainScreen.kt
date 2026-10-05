@@ -116,6 +116,7 @@ class MainScreen(
         PanelId.TRADE to fr.president.game.ui.panels.TradePanel(ui, this) { closePanel() },
         PanelId.DEFENSE to fr.president.game.ui.panels.DefensePanel(ui, this) { closePanel() },
         PanelId.INTEL to fr.president.game.ui.panels.IntelPanel(ui, this) { closePanel() },
+        PanelId.UNREST to fr.president.game.ui.panels.UnrestPanel(ui, this) { closePanel() },
         PanelId.ACADEMY to fr.president.game.ui.panels.AcademyPanel(ui, this, { academy }) { closePanel() },
         PanelId.GOVERNMENT to GovernmentPanel(ui, this) { closePanel() },
         PanelId.ECONOMY to EconomyPanel(ui, this) { closePanel() },
@@ -136,6 +137,9 @@ class MainScreen(
     /** Accès direct à l'agenda de la semaine, à côté du choix de la carte. */
     private val agendaButton by lazy { ui.colorButton("◷", fr.president.game.ui.Theme.catStats) { open(PanelId.AGENDA) }.also { it.name = "agenda" } }
 
+    /** Alerte « la rue gronde » : visible seulement quand un mouvement est en cours. */
+    private val unrestButton by lazy { ui.colorButton("⚑", fr.president.game.ui.Theme.bad) { open(PanelId.UNREST) }.also { it.name = "unrest"; it.isVisible = false } }
+
     init {
         buildLayout()
         mapRenderer.zoneLookup = session.db.zones
@@ -150,6 +154,7 @@ class MainScreen(
         val mapRow = Table()
         mapRow.add(layers.root).growX()
         mapRow.add(agendaButton).padLeft(4f)
+        mapRow.add(unrestButton).padLeft(4f)
         left.add(mapRow).top().left().growX().row()
         left.add(advisor.root).top().left().growX().padTop(6f).row()
         left.add().growY().row()
@@ -383,6 +388,10 @@ class MainScreen(
         advisor.refresh()
         placeOverlay()
         session.agenda.summary().let { a -> agendaButton.setText("◷ ${fmtDays(a.usedDays)}/${fmtDays(a.capacity)} j") }
+        session.state.unrest.movements.maxByOrNull { it.crowd }.let { m ->
+            unrestButton.isVisible = m != null
+            if (m != null) unrestButton.setText("${m.phase.icon} ${session.unrest.people(m.crowd)}")
+        }
         fr.president.game.ui.MusicPlayer.setMood(mood())
         currentPanel?.let { if (periodic) it.refreshIfIdle() else it.refresh() }
     }

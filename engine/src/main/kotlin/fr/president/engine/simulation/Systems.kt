@@ -53,6 +53,7 @@ object Systems {
         fr.president.engine.diplomacy.EuSystem(),
         fr.president.engine.government.LawSystem(),
         fr.president.engine.politics.ActorSystem(),
+        fr.president.engine.politics.UnrestSystem(),
         MilitarySystem(),
         fr.president.engine.military.DefenseSystem(),
         fr.president.engine.military.IntelSystem(),

@@ -144,10 +144,12 @@ class PolicyService(private val ctx: SimulationContext) {
     private fun apply(proposal: PolicyProposal) {
         if (proposal.kind == PolicyKind.REFORM) {
             applyReform(proposal.itemId, scale = proposal.effectScale)
+            fr.president.engine.politics.UnrestService(ctx).onPolicy(proposal.kind, proposal.itemId, 0)
             return
         }
         if (proposal.kind == PolicyKind.LAW) {
             LawService(ctx).enact(proposal.itemId, proposal.newValue.toInt(), proposal.effectScale)
+            fr.president.engine.politics.UnrestService(ctx).onPolicy(proposal.kind, proposal.itemId, proposal.newValue.toInt())
             return
         }
         if (proposal.kind == PolicyKind.FISCAL) {

@@ -60,6 +60,8 @@ data class GlobalDataFiles(
     val defense: String? = null,
     /** Services secrets et groupes armés (facultatif). */
     val intel: String? = null,
+    /** Mouvements de contestation et loyauté de l'armée (facultatif). */
+    val unrest: String? = null,
 )
 
 /** Multiplicateurs de fréquence : l'outil d'équilibrage du rythme des événements. */

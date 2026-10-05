@@ -83,6 +83,7 @@ class WorldState(
     val trade: fr.president.engine.economy.TradeState = fr.president.engine.economy.TradeState(),
     val defense: fr.president.engine.military.DefenseState = fr.president.engine.military.DefenseState(),
     val intel: fr.president.engine.military.IntelState = fr.president.engine.military.IntelState(),
+    val unrest: fr.president.engine.politics.UnrestState = fr.president.engine.politics.UnrestState(),
 ) {
     val playerCountry: CountryState get() = countries.getValue(player.countryId)
 
