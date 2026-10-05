@@ -1,0 +1,298 @@
+{
+ "_doc": "Parcours du président. Généré par tools/datagen/careers_fr.py.",
+ "careers": [
+  {
+   "id": "haut_fonctionnaire",
+   "label": "Haut fonctionnaire",
+   "description": "Grande école, inspection des finances, cabinets ministériels. Vous connaissez l'État par cœur.",
+   "skills": {
+    "competence": 0.1,
+    "management": 0.12,
+    "experience": 0.1
+   },
+   "traits": {
+    "pragmatism": 0.1,
+    "charisma": -0.05
+   },
+   "effects": [
+    {
+     "target": "government.parliamentSupport",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": -0.01
+    },
+    {
+     "target": "opinion.group.high_income",
+     "amount": 0.01
+    }
+   ]
+  },
+  {
+   "id": "avocat",
+   "label": "Avocat",
+   "description": "Ténor du barreau : vous savez convaincre et défendre une cause.",
+   "skills": {
+    "competence": 0.05,
+    "experience": 0.05
+   },
+   "traits": {
+    "charisma": 0.12,
+    "integrity": 0.05
+   },
+   "effects": [
+    {
+     "target": "quality.justice",
+     "amount": 0.005
+    },
+    {
+     "target": "opinion.national",
+     "amount": 0.005
+    }
+   ]
+  },
+  {
+   "id": "entrepreneur",
+   "label": "Chef d'entreprise",
+   "description": "Vous avez créé et dirigé une entreprise. Les patrons vous font confiance, pas toujours les salariés.",
+   "skills": {
+    "management": 0.15
+   },
+   "traits": {
+    "pragmatism": 0.12,
+    "caution": -0.05
+   },
+   "effects": [
+    {
+     "target": "economy.businessConfidence",
+     "amount": 0.03
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": -0.01
+    }
+   ]
+  },
+  {
+   "id": "medecin",
+   "label": "Médecin",
+   "description": "Des années à l'hôpital : vous connaissez la santé et le terrain.",
+   "skills": {
+    "competence": 0.08
+   },
+   "traits": {
+    "integrity": 0.1,
+    "caution": 0.05
+   },
+   "effects": [
+    {
+     "target": "quality.health",
+     "amount": 0.005
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.015
+    }
+   ]
+  },
+  {
+   "id": "militaire",
+   "label": "Officier",
+   "description": "Saint-Cyr, opérations extérieures : l'autorité et le sens de l'État.",
+   "skills": {
+    "management": 0.08,
+    "experience": 0.05
+   },
+   "traits": {
+    "toughness": 0.15,
+    "militarism": 0.15
+   },
+   "effects": [
+    {
+     "target": "military.readiness",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.01
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": -0.01
+    }
+   ]
+  },
+  {
+   "id": "enseignant",
+   "label": "Professeur",
+   "description": "Vous avez enseigné en collège et lycée avant de vous engager.",
+   "skills": {
+    "competence": 0.05
+   },
+   "traits": {
+    "openness": 0.1,
+    "integrity": 0.05
+   },
+   "effects": [
+    {
+     "target": "opinion.group.civil_servants",
+     "amount": 0.02
+    },
+    {
+     "target": "quality.education",
+     "amount": 0.004
+    }
+   ]
+  },
+  {
+   "id": "syndicaliste",
+   "label": "Syndicaliste",
+   "description": "Vous avez mené des grèves et signé des accords : les salariés vous écoutent.",
+   "skills": {
+    "experience": 0.08
+   },
+   "traits": {
+    "toughness": 0.08,
+    "charisma": 0.05
+   },
+   "effects": [
+    {
+     "target": "opinion.group.private_employees",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": 0.015
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.02
+    }
+   ]
+  },
+  {
+   "id": "diplomate",
+   "label": "Diplomate",
+   "description": "Ambassades et négociations internationales : le monde vous connaît.",
+   "skills": {
+    "competence": 0.06,
+    "experience": 0.06
+   },
+   "traits": {
+    "openness": 0.1,
+    "caution": 0.08
+   },
+   "effects": [
+    {
+     "target": "alliance.EU.NEGOTIATION_GOODWILL",
+     "amount": 0.02
+    },
+    {
+     "target": "alliance.NATO.NEGOTIATION_GOODWILL",
+     "amount": 0.01
+    }
+   ]
+  },
+  {
+   "id": "agriculteur",
+   "label": "Agriculteur",
+   "description": "Exploitant puis responsable syndical agricole : la France rurale est derrière vous.",
+   "skills": {
+    "management": 0.05
+   },
+   "traits": {
+    "nationalism": 0.05,
+    "toughness": 0.05
+   },
+   "effects": [
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.03
+    },
+    {
+     "target": "opinion.group.urban",
+     "amount": -0.01
+    },
+    {
+     "target": "quality.agriculture",
+     "amount": 0.005
+    }
+   ]
+  },
+  {
+   "id": "journaliste",
+   "label": "Journaliste",
+   "description": "Plume et visage connus de la télévision : vous maîtrisez les médias.",
+   "skills": {
+    "experience": 0.03
+   },
+   "traits": {
+    "charisma": 0.15,
+    "ego": 0.05
+   },
+   "effects": [
+    {
+     "target": "opinion.national",
+     "amount": 0.01
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": 0.005
+    }
+   ]
+  },
+  {
+   "id": "elu_local",
+   "label": "Élu local",
+   "description": "Maire puis président de région : vous avez fait vos preuves sur le terrain.",
+   "skills": {
+    "management": 0.1,
+    "experience": 0.08
+   },
+   "traits": {
+    "pragmatism": 0.08
+   },
+   "effects": [
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.01
+    },
+    {
+     "target": "opinion.group.middle_income",
+     "amount": 0.01
+    }
+   ]
+  },
+  {
+   "id": "chercheur",
+   "label": "Scientifique",
+   "description": "Chercheur reconnu, vous arrivez avec une méthode et peu de réseaux politiques.",
+   "skills": {
+    "competence": 0.15
+   },
+   "traits": {
+    "openness": 0.1,
+    "charisma": -0.05
+   },
+   "effects": [
+    {
+     "target": "government.parliamentSupport",
+     "amount": -0.02
+    },
+    {
+     "target": "opinion.group.high_income",
+     "amount": 0.01
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": 0.01
+    }
+   ]
+  }
+ ]
+}

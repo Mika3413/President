@@ -56,6 +56,8 @@ class Character(
     /** Dates (secondes du monde) des scandales : leur effet électoral s'estompe avec le temps. */
     val scandalDates: MutableList<Long> = mutableListOf(),
     var active: Boolean = true,
+    /** Visage choisi par le joueur (sinon dérivé de la graine du portrait). */
+    var appearance: Appearance? = null,
 ) {
     val fullName: String get() = "$firstName $lastName"
 

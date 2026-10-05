@@ -77,6 +77,7 @@ class NewGameFactory(private val db: GameDatabase) {
             energy = EnergyState(country.energy?.electricityDemandTWh ?: 0.0),
             elections = ElectionState(start.plusYears(termYears)),
         )
+        customize(president, options, start)
         state.characters[president.id] = president.also { it.knownTraits += it.traits.keys }
 
         val ctxCountries = db.countries.values
@@ -116,10 +117,27 @@ class NewGameFactory(private val db: GameDatabase) {
         WelcomeMessage(ctx).send()
         WelcomeMessage(ctx).scheduleTutorial()
         state.player.tourStep = 0
+        // Le parcours du président : réseaux et image au début du mandat.
+        options.careerId?.let { id -> country.careers.firstOrNull { it.id == id } }?.let { career ->
+            state.player.career = career.id
+            career.effects.forEach { ctx.effects.trigger(it, null, emptyMap(), "career:${career.id}") }
+        }
         // Premier point des courbes du mandat.
         fr.president.engine.stats.StatsSystem.record(ctx)
         state.stats.lastRecordDay = state.time.dayIndex
         return state
+    }
+
+    /** Âge, tempérament, parcours et visage choisis par le joueur. */
+    private fun customize(p: fr.president.engine.politics.Character, options: NewGameOptions, start: WorldTime) {
+        options.presidentAge?.let { p.birthYear = start.toDateTime().year - it.coerceIn(MIN_AGE, MAX_AGE) }
+        options.presidentTraits.forEach { (t, v) -> p.traits[t] = v.coerceIn(0.0, 1.0) }
+        options.appearance?.let { p.appearance = it }
+        val career = options.careerId?.let { id -> db.country(p.countryId).careers.firstOrNull { it.id == id } } ?: return
+        career.traits.forEach { (t, d) -> p.traits[t] = ((p.traits[t] ?: 0.5) + d).coerceIn(0.0, 1.0) }
+        p.competence = (p.competence + (career.skills["competence"] ?: 0.0)).coerceIn(0.0, 1.0)
+        p.management = (p.management + (career.skills["management"] ?: 0.0)).coerceIn(0.0, 1.0)
+        p.experience = (p.experience + (career.skills["experience"] ?: 0.0)).coerceIn(0.0, 1.0)
     }
 
     private fun createCountry(data: CountryData, state: WorldState, rng: GameRandom): CountryState {
@@ -219,6 +237,8 @@ class NewGameFactory(private val db: GameDatabase) {
     }
 
     private companion object {
+        const val MIN_AGE = 35
+        const val MAX_AGE = 80
         const val REAL_TIME_RATE = 1.0
         const val PRESIDENT_ID = "chr-president"
         val PRESIDENT_AGES = 42..62

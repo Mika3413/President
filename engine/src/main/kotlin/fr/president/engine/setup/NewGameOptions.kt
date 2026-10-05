@@ -16,4 +16,12 @@ data class NewGameOptions(
     val promises: List<String> = emptyList(),
     /** Scénario de départ (null : la situation réelle). */
     val scenarioId: String? = null,
+    /** Âge du président au début du mandat (null : tiré au hasard). */
+    val presidentAge: Int? = null,
+    /** Parcours avant l'élection. */
+    val careerId: String? = null,
+    /** Traits de caractère choisis (0..1), qui remplacent le tirage. */
+    val presidentTraits: Map<String, Double> = emptyMap(),
+    /** Visage choisi. */
+    val appearance: fr.president.engine.politics.Appearance? = null,
 )

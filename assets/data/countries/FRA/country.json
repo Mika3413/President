@@ -20,6 +20,7 @@
  "cabinet": "countries/FRA/cabinet.json",
  "agenda": "countries/FRA/agenda.json",
  "sectors": "countries/FRA/sectors.json",
+ "careers": "countries/FRA/careers.json",
  "institutions": {
   "headOfStateTitle": "Président de la République",
   "headOfGovernmentTitle": "Premier ministre",

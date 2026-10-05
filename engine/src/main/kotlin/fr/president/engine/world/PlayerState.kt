@@ -25,4 +25,6 @@ class PlayerState(
     var academyModule: String? = null,
     var academyStep: Int = 0,
     val academyDone: MutableSet<String> = mutableSetOf(),
+    /** Parcours du président avant son élection. */
+    var career: String? = null,
 )

@@ -40,6 +40,8 @@ data class CountryDefinition(
     val agenda: String? = null,
     /** Secteurs, entreprises et Bourse (facultatif). */
     val sectors: String? = null,
+    /** Parcours possibles du président (facultatif). */
+    val careers: String? = null,
     val demography: fr.president.engine.government.DemographyDef? = null,
 )
 
