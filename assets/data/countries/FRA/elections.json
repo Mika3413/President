@@ -8,7 +8,12 @@
    "economicPosition": -0.8,
    "socialPosition": -0.4,
    "baseStrength": 0.0,
-   "color": "b23a48"
+   "color": "b23a48",
+   "figure": {
+    "firstName": "Jean-Luc",
+    "lastName": "Mélenchin",
+    "birthYear": 1951
+   }
   },
   {
    "id": "left",
@@ -16,7 +21,12 @@
    "economicPosition": -0.45,
    "socialPosition": -0.35,
    "baseStrength": 0.0,
-   "color": "e0607e"
+   "color": "e0607e",
+   "figure": {
+    "firstName": "Raphaël",
+    "lastName": "Glucksmond",
+    "birthYear": 1979
+   }
   },
   {
    "id": "greens",
@@ -24,7 +34,13 @@
    "economicPosition": -0.4,
    "socialPosition": -0.6,
    "baseStrength": -0.1,
-   "color": "5aa95a"
+   "color": "5aa95a",
+   "figure": {
+    "firstName": "Marine",
+    "lastName": "Tondelin",
+    "female": true,
+    "birthYear": 1986
+   }
   },
   {
    "id": "centre",
@@ -32,7 +48,12 @@
    "economicPosition": 0.15,
    "socialPosition": -0.15,
    "baseStrength": -0.08,
-   "color": "e8b23a"
+   "color": "e8b23a",
+   "figure": {
+    "firstName": "Gabriel",
+    "lastName": "Attar",
+    "birthYear": 1989
+   }
   },
   {
    "id": "right",
@@ -40,7 +61,12 @@
    "economicPosition": 0.55,
    "socialPosition": 0.3,
    "baseStrength": 0.0,
-   "color": "3f72c4"
+   "color": "3f72c4",
+   "figure": {
+    "firstName": "Bruno",
+    "lastName": "Retaillot",
+    "birthYear": 1960
+   }
   },
   {
    "id": "nationalist",
@@ -48,7 +74,12 @@
    "economicPosition": 0.2,
    "socialPosition": 0.85,
    "baseStrength": 0.1,
-   "color": "34407a"
+   "color": "34407a",
+   "figure": {
+    "firstName": "Jordan",
+    "lastName": "Bardelli",
+    "birthYear": 1995
+   }
   }
  ],
  "incumbentRecordWeight": 1.8,

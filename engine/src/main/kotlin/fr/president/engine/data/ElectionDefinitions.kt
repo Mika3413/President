@@ -150,7 +150,13 @@ data class PoliticalFamilyDef(
     val baseStrength: Double,
     /** Couleur d'affichage (hémicycle, résultats), en hexadécimal RVB. */
     val color: String = "888888",
+    /** Figure de la famille (nom inspiré d'une personnalité réelle), candidate à la présidentielle. */
+    val figure: NamedFigure? = null,
 )
+
+/** Personnage au nom imposé, inspiré d'une personnalité réelle mais volontairement différent. */
+@Serializable
+data class NamedFigure(val firstName: String, val lastName: String, val female: Boolean = false, val birthYear: Int? = null)
 
 /** Réserves de noms pour le générateur de personnages fictifs. */
 @Serializable

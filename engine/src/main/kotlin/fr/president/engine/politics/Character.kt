@@ -32,10 +32,10 @@ object Traits {
 @Serializable
 class Character(
     val id: String,
-    val firstName: String,
-    val lastName: String,
-    val female: Boolean,
-    val birthYear: Int,
+    var firstName: String,
+    var lastName: String,
+    var female: Boolean,
+    var birthYear: Int,
     val countryId: String,
     var role: CharacterRole,
     /** Référence du poste : ministère, code de département, ville... */
@@ -58,6 +58,14 @@ class Character(
     var active: Boolean = true,
 ) {
     val fullName: String get() = "$firstName $lastName"
+
+    /** Donne au personnage un nom imposé (dirigeants et figures inspirés de personnalités réelles). */
+    fun rename(figure: fr.president.engine.data.NamedFigure) {
+        firstName = figure.firstName
+        lastName = figure.lastName
+        female = figure.female
+        figure.birthYear?.let { birthYear = it }
+    }
     fun trait(id: String): Double = traits[id] ?: NEUTRAL_TRAIT
     fun age(currentYear: Int): Int = currentYear - birthYear
 

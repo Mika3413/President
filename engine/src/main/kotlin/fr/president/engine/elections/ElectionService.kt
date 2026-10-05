@@ -28,6 +28,8 @@ class ElectionService(private val ctx: SimulationContext) {
                     economicLeaning = family.economicPosition, leaningSpread = CANDIDATE_SPREAD),
                 ctx.rng,
             )
+            // La figure de la famille se présente, sauf si elle est déjà au gouvernement ou a déjà été battue.
+            family.figure?.takeIf { f -> ctx.state.characters.values.none { it.firstName == f.firstName && it.lastName == f.lastName } }?.let { c.rename(it) }
             ctx.state.characters[c.id] = c
             state.candidates += Candidate(c.id, family.id, false, family.economicPosition, family.socialPosition)
         }

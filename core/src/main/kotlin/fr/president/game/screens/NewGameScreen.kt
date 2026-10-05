@@ -1,5 +1,6 @@
 package fr.president.game.screens
 
+import fr.president.game.ui.tolerant
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.ScreenAdapter
 import com.badlogic.gdx.graphics.GL20
@@ -44,7 +45,9 @@ class NewGameScreen(
     private val promises = linkedSetOf<String>()
 
     init {
-        regenerateName()
+        // Par défaut, le président sortant (nom inspiré du réel) ; « Autre nom » en tire un autre.
+        first.text = INCUMBENT_FIRST
+        last.text = INCUMBENT_LAST
         val content = Table().apply { pad(24f); defaults().left().padBottom(8f) }
         content.add(ui.label("PRÉSIDENT", "headline")).row()
         content.add(ui.label("Vous venez d'être élu(e) à la tête de la ${db.country(db.snapshot.playableCountries.first()).definition.name}. Le monde ne s'arrêtera pas pour vous attendre.", "default", wrap = true)).width(CONTENT_WIDTH).row()
@@ -141,10 +144,10 @@ class NewGameScreen(
         content.add(ui.button("Prendre ses fonctions", "accent") {
             onStart(NewGameOptions(pace, seed, nowMillis(), first.text, last.text, female, leaning, socialLeaning = social, promises = promises.toList(), scenarioId = scenario?.takeIf { it != STANDARD }))
         }).padTop(16f).row()
-        content.add(ui.label("Pays, institutions et données de départ inspirés du monde réel (${db.snapshot.label}). Tous les personnages sont fictifs.", "muted", wrap = true)).width(CONTENT_WIDTH).row()
+        content.add(ui.label("Pays, institutions et données de départ inspirés du monde réel (${db.snapshot.label}). Personnages fictifs : les noms des dirigeants s'inspirent de personnalités réelles sans les reprendre.", "muted", wrap = true)).width(CONTENT_WIDTH).row()
 
         val root = Table().apply { setFillParent(true) }
-        root.add(ScrollPane(content, ui.s)).grow()
+        root.add(ScrollPane(content, ui.s).tolerant()).grow()
         stage.addActor(root)
     }
 
@@ -168,6 +171,8 @@ class NewGameScreen(
     override fun dispose() = stage.dispose()
 
     private companion object {
+        const val INCUMBENT_FIRST = "Emmanuel"
+        const val INCUMBENT_LAST = "Macrin"
         const val SCENARIO_WIDTH = 2.1f
         const val STANDARD = "standard"
         const val CONTENT_WIDTH = 640f

@@ -40,6 +40,19 @@ fun Actor.onClick(action: () -> Unit) {
     })
 }
 
+/**
+ * Défilement tolérant au doigt : sur un téléphone à haute densité, le seuil par défaut (20 pixels,
+ * soit moins de 2 mm) transformait un simple appui en début de défilement et annulait le bouton.
+ * On le porte à environ 4 mm, quelle que soit la densité de l'écran.
+ */
+fun com.badlogic.gdx.scenes.scene2d.ui.ScrollPane.tolerant(): com.badlogic.gdx.scenes.scene2d.ui.ScrollPane {
+    val density = runCatching { com.badlogic.gdx.Gdx.graphics.density }.getOrDefault(1f).coerceAtLeast(1f)
+    setFlickScrollTapSquareSize(TAP_SQUARE_DP * density)
+    return this
+}
+
+private const val TAP_SQUARE_DP = 26f
+
 /** Empêche les touchers sur un panneau de traverser jusqu'à la carte. */
 fun Actor.blockInput() {
     addListener(object : InputListener() {

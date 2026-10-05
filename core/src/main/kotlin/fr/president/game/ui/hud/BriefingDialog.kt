@@ -1,5 +1,6 @@
 package fr.president.game.ui.hud
 
+import fr.president.game.ui.tolerant
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane
 import com.badlogic.gdx.scenes.scene2d.ui.Table
@@ -51,7 +52,7 @@ class BriefingDialog(private val ui: Ui, private val onMessages: () -> Unit) {
         if (b.pendingDecisions > 0) buttons.add(ui.colorButton("✉ Voir les messages", Theme.catInbox) { hide(); onMessages() })
         buttons.add(ui.colorButton("▶ Au travail", Theme.accentDark) { hide() })
         card.add(buttons).left().padTop(PAD).row()
-        val scroll = ScrollPane(card, ui.s).apply { setFadeScrollBars(false); setScrollingDisabled(true, false) }
+        val scroll = ScrollPane(card, ui.s).apply { setFadeScrollBars(false); setScrollingDisabled(true, false) }.tolerant()
         root.add(scroll).width(com.badlogic.gdx.scenes.scene2d.ui.Value.percentWidth(WIDTH_SHARE, root)).maxWidth(MAX_WIDTH)
             .maxHeight(com.badlogic.gdx.scenes.scene2d.ui.Value.percentHeight(HEIGHT_SHARE, root))
         root.isVisible = true

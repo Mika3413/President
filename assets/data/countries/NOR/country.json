@@ -49,7 +49,12 @@
   "economicLeaningRange": [
    -0.3,
    0.4
-  ]
+  ],
+  "figure": {
+   "firstName": "Jonas",
+   "lastName": "Gahr Støle",
+   "birthYear": 1960
+  }
  },
  "strategic": {
   "electricityBalanceTWh": 20,

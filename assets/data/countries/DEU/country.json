@@ -49,7 +49,12 @@
   "economicLeaningRange": [
    -0.3,
    0.4
-  ]
+  ],
+  "figure": {
+   "firstName": "Friedrich",
+   "lastName": "Mertz",
+   "birthYear": 1955
+  }
  },
  "strategic": {
   "electricityBalanceTWh": -28,

@@ -130,6 +130,7 @@ class NewGameFactory(private val db: GameDatabase) {
             ),
             rng,
         )
+        def.leader.figure?.let { f -> leader.rename(f) }
         state.characters[leader.id] = leader
         val country = CountryState(
             id = def.id,

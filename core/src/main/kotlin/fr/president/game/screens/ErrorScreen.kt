@@ -1,5 +1,6 @@
 package fr.president.game.screens
 
+import fr.president.game.ui.tolerant
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.ScreenAdapter
 import com.badlogic.gdx.graphics.GL20
@@ -32,7 +33,7 @@ class ErrorScreen(
         content.add(ui.label(report.replace("\t", "  ").lines().take(MAX_LINES).joinToString("\n"), "small", Theme.textMuted, wrap = true)).width(TEXT_WIDTH).row()
         content.add(ui.button("Revenir à l'accueil", "accent") { Gdx.app.postRunnable(onHome) }).width(BUTTON_WIDTH).padTop(12f).row()
         val root = Table().apply { setFillParent(true) }
-        root.add(ScrollPane(content, ui.s)).grow()
+        root.add(ScrollPane(content, ui.s).tolerant()).grow()
         stage.addActor(root)
     }
 

@@ -1,5 +1,6 @@
 package fr.president.game.screens
 
+import fr.president.game.ui.tolerant
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.InputMultiplexer
 import com.badlogic.gdx.ScreenAdapter
@@ -148,7 +149,7 @@ class MainScreen(
         left.add(legend.root).left().bottom().padTop(6f)
         root.add(left).top().left().growY().pad(6f)
         root.add().expand().row()
-        val actions = ScrollPane(actionBar.root).apply { setScrollingDisabled(false, true) }
+        val actions = ScrollPane(actionBar.root).apply { setScrollingDisabled(false, true) }.tolerant()
         root.add(actions).colspan(2).center().padBottom(6f)
         stage.addActor(root)
         // Les panneaux ont leur propre calque : à droite sur grand écran, plein écran sur téléphone

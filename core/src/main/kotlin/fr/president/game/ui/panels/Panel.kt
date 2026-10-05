@@ -1,5 +1,6 @@
 package fr.president.game.ui.panels
 
+import fr.president.game.ui.tolerant
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane
 import com.badlogic.gdx.scenes.scene2d.ui.Table
 import fr.president.game.ui.Ui
@@ -11,7 +12,7 @@ import fr.president.game.ui.Ui
 abstract class Panel(protected val ui: Ui, private val onClose: () -> Unit) {
     val root: Table = ui.panelTable()
     private val content = Table()
-    private val scroll = ScrollPane(content, ui.s).apply { setFadeScrollBars(false); setScrollingDisabled(true, false) }
+    private val scroll = ScrollPane(content, ui.s).apply { setFadeScrollBars(false); setScrollingDisabled(true, false) }.tolerant()
     private val titleLabel = ui.label("", "title", wrap = true)
     protected val expanded = mutableSetOf<String>()
 

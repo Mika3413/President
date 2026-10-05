@@ -49,7 +49,13 @@
   "economicLeaningRange": [
    -0.3,
    0.4
-  ]
+  ],
+  "figure": {
+   "firstName": "Giorgia",
+   "lastName": "Meleni",
+   "female": true,
+   "birthYear": 1977
+  }
  },
  "strategic": {
   "electricityBalanceTWh": -48,

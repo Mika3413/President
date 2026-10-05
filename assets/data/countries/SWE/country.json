@@ -49,7 +49,12 @@
   "economicLeaningRange": [
    -0.3,
    0.4
-  ]
+  ],
+  "figure": {
+   "firstName": "Ulf",
+   "lastName": "Kristerson",
+   "birthYear": 1963
+  }
  },
  "strategic": {
   "electricityBalanceTWh": 30,

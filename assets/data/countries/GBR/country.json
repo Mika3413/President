@@ -49,7 +49,12 @@
   "economicLeaningRange": [
    -0.3,
    0.4
-  ]
+  ],
+  "figure": {
+   "firstName": "Keir",
+   "lastName": "Starmor",
+   "birthYear": 1962
+  }
  },
  "strategic": {
   "electricityBalanceTWh": -25,

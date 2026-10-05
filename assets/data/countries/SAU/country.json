@@ -49,7 +49,12 @@
   "economicLeaningRange": [
    -0.3,
    0.4
-  ]
+  ],
+  "figure": {
+   "firstName": "Mohammed",
+   "lastName": "ben Salmine",
+   "birthYear": 1985
+  }
  },
  "strategic": {
   "electricityBalanceTWh": 0,

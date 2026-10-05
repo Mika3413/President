@@ -49,7 +49,12 @@
   "economicLeaningRange": [
    -0.3,
    0.4
-  ]
+  ],
+  "figure": {
+   "firstName": "Abdel Fattah",
+   "lastName": "al-Sassi",
+   "birthYear": 1954
+  }
  },
  "strategic": {
   "electricityBalanceTWh": 0,

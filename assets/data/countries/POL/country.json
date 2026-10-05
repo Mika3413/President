@@ -49,7 +49,12 @@
   "economicLeaningRange": [
    -0.3,
    0.4
-  ]
+  ],
+  "figure": {
+   "firstName": "Donald",
+   "lastName": "Tosk",
+   "birthYear": 1957
+  }
  },
  "strategic": {
   "electricityBalanceTWh": -8,

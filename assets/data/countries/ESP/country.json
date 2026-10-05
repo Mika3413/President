@@ -49,7 +49,12 @@
   "economicLeaningRange": [
    -0.3,
    0.4
-  ]
+  ],
+  "figure": {
+   "firstName": "Pedro",
+   "lastName": "Sanchiz",
+   "birthYear": 1972
+  }
  },
  "strategic": {
   "electricityBalanceTWh": 8,

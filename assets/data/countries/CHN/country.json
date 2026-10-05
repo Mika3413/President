@@ -49,7 +49,12 @@
   "economicLeaningRange": [
    -0.3,
    0.4
-  ]
+  ],
+  "figure": {
+   "firstName": "Xi",
+   "lastName": "Jinpang",
+   "birthYear": 1953
+  }
  },
  "strategic": {
   "electricityBalanceTWh": 0,

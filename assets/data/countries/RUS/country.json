@@ -49,7 +49,12 @@
   "economicLeaningRange": [
    -0.3,
    0.4
-  ]
+  ],
+  "figure": {
+   "firstName": "Vladimir",
+   "lastName": "Poutane",
+   "birthYear": 1952
+  }
  },
  "strategic": {
   "electricityBalanceTWh": 15,

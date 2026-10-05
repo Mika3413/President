@@ -49,7 +49,12 @@
   "economicLeaningRange": [
    -0.3,
    0.4
-  ]
+  ],
+  "figure": {
+   "firstName": "Recep Tayyip",
+   "lastName": "Erdoğal",
+   "birthYear": 1954
+  }
  },
  "strategic": {
   "electricityBalanceTWh": 0,

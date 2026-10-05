@@ -61,6 +61,8 @@ data class LeaderProfile(
     val traitRanges: Map<String, List<Double>>,
     val ageRange: List<Int>,
     val economicLeaningRange: List<Double>,
+    /** Dirigeant au début de la partie (nom inspiré du dirigeant réel). */
+    val figure: NamedFigure? = null,
 )
 
 @Serializable

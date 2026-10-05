@@ -49,7 +49,12 @@
   "economicLeaningRange": [
    -0.3,
    0.4
-  ]
+  ],
+  "figure": {
+   "firstName": "Aziz",
+   "lastName": "Akhanouche",
+   "birthYear": 1961
+  }
  },
  "strategic": {
   "electricityBalanceTWh": 0,

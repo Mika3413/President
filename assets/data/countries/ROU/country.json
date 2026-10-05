@@ -49,7 +49,12 @@
   "economicLeaningRange": [
    -0.3,
    0.4
-  ]
+  ],
+  "figure": {
+   "firstName": "Ilie",
+   "lastName": "Bolojean",
+   "birthYear": 1969
+  }
  },
  "strategic": {
   "electricityBalanceTWh": 0,
