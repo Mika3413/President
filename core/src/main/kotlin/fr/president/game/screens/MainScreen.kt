@@ -114,6 +114,7 @@ class MainScreen(
         PanelId.LAWS to fr.president.game.ui.panels.LawsPanel(ui, this) { closePanel() },
         PanelId.ACTORS to fr.president.game.ui.panels.ActorsPanel(ui, this) { closePanel() },
         PanelId.TRADE to fr.president.game.ui.panels.TradePanel(ui, this) { closePanel() },
+        PanelId.DEFENSE to fr.president.game.ui.panels.DefensePanel(ui, this) { closePanel() },
         PanelId.ACADEMY to fr.president.game.ui.panels.AcademyPanel(ui, this, { academy }) { closePanel() },
         PanelId.GOVERNMENT to GovernmentPanel(ui, this) { closePanel() },
         PanelId.ECONOMY to EconomyPanel(ui, this) { closePanel() },

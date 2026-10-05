@@ -363,6 +363,126 @@
     "IND",
     "CHN"
    ]
+  },
+  {
+   "id": "arms_rafale",
+   "label": "Rafale (24 appareils)",
+   "sector": "aerospace",
+   "valueBillions": 8.0,
+   "delayDays": 120,
+   "clients": [
+    "IND",
+    "EGY",
+    "SAU",
+    "GRC",
+    "BRA",
+    "MAR",
+    "ROU",
+    "POL"
+   ],
+   "arms": true,
+   "sensitive": [
+    "EGY",
+    "SAU"
+   ]
+  },
+  {
+   "id": "arms_submarines",
+   "label": "Sous-marins Scorpène",
+   "sector": "aerospace",
+   "valueBillions": 4.0,
+   "delayDays": 150,
+   "clients": [
+    "IND",
+    "BRA",
+    "POL",
+    "NLD",
+    "MAR",
+    "EGY"
+   ],
+   "arms": true,
+   "sensitive": [
+    "EGY"
+   ]
+  },
+  {
+   "id": "arms_frigates",
+   "label": "Frégates de défense et d'intervention",
+   "sector": "aerospace",
+   "valueBillions": 3.0,
+   "delayDays": 120,
+   "clients": [
+    "GRC",
+    "SAU",
+    "EGY",
+    "MAR",
+    "NOR",
+    "ROU"
+   ],
+   "arms": true,
+   "sensitive": [
+    "SAU",
+    "EGY"
+   ]
+  },
+  {
+   "id": "arms_caesar",
+   "label": "Canons CAESAR",
+   "sector": "aerospace",
+   "valueBillions": 0.5,
+   "delayDays": 60,
+   "clients": [
+    "UKR",
+    "BEL",
+    "ROU",
+    "MAR",
+    "SAU",
+    "IND"
+   ],
+   "arms": true,
+   "sensitive": [
+    "SAU"
+   ]
+  },
+  {
+   "id": "arms_sampt",
+   "label": "Défense sol-air SAMP/T",
+   "sector": "aerospace",
+   "valueBillions": 1.5,
+   "delayDays": 90,
+   "clients": [
+    "UKR",
+    "ROU",
+    "POL",
+    "SAU",
+    "EGY",
+    "GRC"
+   ],
+   "arms": true,
+   "sensitive": [
+    "SAU",
+    "EGY"
+   ]
+  },
+  {
+   "id": "arms_helicopters",
+   "label": "Hélicoptères H225M Caracal",
+   "sector": "aerospace",
+   "valueBillions": 1.2,
+   "delayDays": 90,
+   "clients": [
+    "BRA",
+    "IND",
+    "SAU",
+    "EGY",
+    "MAR",
+    "NLD"
+   ],
+   "arms": true,
+   "sensitive": [
+    "SAU",
+    "EGY"
+   ]
   }
  ]
 }

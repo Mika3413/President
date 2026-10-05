@@ -38,7 +38,7 @@ class Intelligence(private val ctx: SimulationContext) {
     fun estimatedStrength(observer: String, unit: UnitState): Double {
         if (unit.countryId == observer) return unit.strength
         val seed = Hashing.fnv1a64("${observer}|${unit.id}|${ctx.now.dayIndex}|${ctx.state.meta.seed}")
-        val error = GameRandom(seed).nextGaussian() * (1 - quality(observer)) * MAX_ERROR
+        val error = GameRandom(seed).nextGaussian() * (1 - quality(observer)) * MAX_ERROR * (1 - dossier(observer, unit.countryId))
         return (unit.strength + error).coerceIn(0.05, 1.0)
     }
 
@@ -46,9 +46,13 @@ class Intelligence(private val ctx: SimulationContext) {
     fun estimatedForces(observer: String, country: String): Pair<Int, Double> {
         val units = ctx.state.military.units.values.filter { it.countryId == country && !it.destroyed }
         val seed = Hashing.fnv1a64("$observer|$country|${ctx.now.monthIndex}")
-        val error = 1 + GameRandom(seed).nextGaussian() * (1 - quality(observer)) * MAX_ERROR
+        val error = 1 + GameRandom(seed).nextGaussian() * (1 - quality(observer)) * MAX_ERROR * (1 - dossier(observer, country))
         return (units.size * error).toInt().coerceAtLeast(0) to geo.landPower(country) * error
     }
+
+    /** Un dossier de la DGSE sur ce pays rend nos estimations fiables. */
+    private fun dossier(observer: String, country: String): Double =
+        if (observer == ctx.state.player.countryId) ctx.state.intel.dossiers[country] ?: 0.0 else 0.0
 
     private companion object {
         const val DEFENSE_MINISTRY = "armed_forces"

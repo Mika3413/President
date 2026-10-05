@@ -4,6 +4,7 @@ Matières premières : prix mondiaux (cours de départ, volatilité, retour à l
 le prix de l'énergie et l'inflation françaises, secteurs touchés, grands producteurs (une guerre ou
 des sanctions contre eux font flamber les cours), chocs d'événements, contrats possibles.
 Exportations : produits phares que la France peut vendre, pays clients, valeur et secteur.
+Les ventes d'armes sont ajoutées ensuite par defense_fr.py : lancer ce script après celui-ci.
 """
 import json, os
 

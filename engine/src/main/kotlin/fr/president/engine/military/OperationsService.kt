@@ -109,7 +109,7 @@ class OperationsService(private val ctx: SimulationContext) {
         val target = strikeTarget(country)!!
         val hit = units.filter { it.zoneId == target && it.countryId == country && !it.destroyed }
         hit.forEach {
-            it.strength = (it.strength - STRIKE_STRENGTH).coerceAtLeast(MIN_STRENGTH)
+            it.strength = (it.strength - STRIKE_STRENGTH * (1 + DefenseService.strikeBonus(ctx))).coerceAtLeast(MIN_STRENGTH)
             it.readiness = (it.readiness - STRIKE_READINESS).coerceAtLeast(0.0)
             it.morale = (it.morale - STRIKE_MORALE).coerceAtLeast(0.0)
         }
@@ -165,7 +165,7 @@ class OperationsService(private val ctx: SimulationContext) {
         val target = strikeTarget(enemy, actor) ?: return false
         val hit = units.filter { it.zoneId == target && it.countryId == enemy && !it.destroyed }
         hit.forEach {
-            it.strength = (it.strength - STRIKE_STRENGTH).coerceAtLeast(MIN_STRENGTH)
+            it.strength = (it.strength - STRIKE_STRENGTH * (if (enemy == player) 1 - DefenseService.airShield(ctx) else 1.0)).coerceAtLeast(MIN_STRENGTH)
             it.readiness = (it.readiness - STRIKE_READINESS).coerceAtLeast(0.0)
             it.morale = (it.morale - STRIKE_MORALE).coerceAtLeast(0.0)
         }

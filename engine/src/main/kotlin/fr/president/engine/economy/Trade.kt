@@ -54,6 +54,10 @@ data class ExportProductDef(
     val valueBillions: Double,
     val delayDays: Double,
     val clients: List<String>,
+    /** Matériel de guerre : autorisation de la commission interministérielle, embargo sur les agresseurs. */
+    val arms: Boolean = false,
+    /** Clients controversés (droits humains, guerres en cours) : l'opinion et les ONG protestent. */
+    val sensitive: List<String> = emptyList(),
 )
 
 @Serializable
@@ -171,6 +175,7 @@ class TradeSystem : SimulationSystem {
                 e.tradeBalanceBillions += p.valueBillions / YEARS_OF_DELIVERY
                 ctx.state.diplomacy.relation(b.client, ctx.state.player.countryId).memories += DiplomaticMemory("TRADE_PARTNER", WIN_GOODWILL, ctx.now, p.label.lowercase())
                 ctx.effects.trigger(EffectSpec("president.popularity", WIN_POPULARITY * p.valueBillions / BIG_CONTRACT), null, emptyMap(), "trade")
+                if (p.arms) armsDelivered(ctx, p, b.client)
                 t.results += ExportResult(p.id, b.client, ctx.now, true, p.valueBillions)
                 ctx.notifications.post(NotificationCategory.ECONOMY, Urgency.IMPORTANT, "Contrat signé : ${p.label.lowercase()} pour ${client.the}",
                     "${Formatting.billions(p.valueBillions)} de commandes pour l'industrie française, des milliers d'emplois préservés.", b.client)
@@ -205,6 +210,20 @@ class TradeSystem : SimulationSystem {
                 if (won) "L'OMC donne raison à la France" else "L'OMC déboute la France",
                 if (won) "L'organe de règlement des différends condamne ${name.the} : ${case.about}. Les mesures contestées doivent être levées."
                 else "L'organe de règlement des différends estime les mesures ${name.of} conformes aux règles du commerce.", case.target)
+        }
+    }
+
+    /** Une vente d'armes lie les deux pays ; un client controversé ou en guerre fait des mécontents. */
+    private fun armsDelivered(ctx: SimulationContext, p: ExportProductDef, client: String) {
+        val player = ctx.state.player.countryId
+        ctx.state.diplomacy.relation(client, player).memories += DiplomaticMemory("MILITARY_SUPPORT", ARMS_GOODWILL, ctx.now, p.label.lowercase())
+        if (client in p.sensitive) {
+            ctx.effects.trigger(EffectSpec("opinion.group.young", -SENSITIVE_OPINION), null, emptyMap(), "arms")
+            ctx.effects.trigger(EffectSpec("opinion.group.urban", -SENSITIVE_OPINION / 2), null, emptyMap(), "arms")
+            ctx.notifications.news(NotificationCategory.ECONOMY, "Les ONG dénoncent la vente d'armes à ${CountryNames(ctx.db.country(client).definition).the}")
+        }
+        Geopolitics(ctx).enemiesOf(client).filter { it in ctx.state.countries }.forEach {
+            ctx.state.diplomacy.relation(it, player).memories += DiplomaticMemory("CONDEMNATION", -ARMS_ENEMY_ANGER, ctx.now, "armes livrées à son ennemi")
         }
     }
 
@@ -257,6 +276,9 @@ class TradeSystem : SimulationSystem {
         private const val WIN_GOODWILL = 0.06
         private const val WIN_POPULARITY = 0.01
         private const val MAX_RESULTS = 40
+        private const val ARMS_GOODWILL = 0.06
+        private const val SENSITIVE_OPINION = 0.01
+        private const val ARMS_ENEMY_ANGER = 0.1
         private const val WTO_WIN = 0.6
         private const val WTO_SHOCK = 0.02
         private const val WTO_CONFIDENCE = 0.01
@@ -451,6 +473,7 @@ class TradeService(private val ctx: SimulationContext) {
             t.bids.any { it.product == p.id && it.client == client } -> "Offre en cours d'examen."
             sanctions.isSanctioning(player, client) || sanctions.isSanctioning(client, player) -> "Sanctions en vigueur."
             Geopolitics(ctx).atWar(player, client) -> "Nous sommes en guerre."
+            p.arms && Geopolitics(ctx).activeWars().any { client in it.attackers } -> "Embargo : ce pays mène une guerre d'agression."
             t.lastBid["${p.id}:$client"]?.let { it.daysUntil(ctx.now) < BID_COOLDOWN } == true -> "Ce client a déjà reçu une offre récemment."
             else -> null
         }
@@ -462,7 +485,8 @@ class TradeService(private val ctx: SimulationContext) {
         val fx = MonetarySystemFx.REFERENCE / ctx.state.monetary.eurUsd - 1
         val tender = if (t.tenders.any { it.product == p.id && it.client == client }) TENDER_BONUS else 0.0
         val guarantee = if (guaranteed) GUARANTEE_BONUS else 0.0
-        return (BASE_CHANCE + RELATION_WEIGHT * (relation - 0.5) + FX_WEIGHT * fx + tender + guarantee).coerceIn(MIN_CHANCE, MAX_CHANCE)
+        val bases = if (p.arms) fr.president.engine.military.DefenseService(ctx).influenceBonus(client) else 0.0
+        return (BASE_CHANCE + RELATION_WEIGHT * (relation - 0.5) + FX_WEIGHT * fx + tender + guarantee + bases).coerceIn(MIN_CHANCE, MAX_CHANCE)
     }
 
     fun bids(product: ExportProductDef): List<BidOption> = product.clients.filter { it in ctx.state.countries }.map { c ->
@@ -504,7 +528,7 @@ class TradeService(private val ctx: SimulationContext) {
         val target = wtoTargets().first { it.country == country }
         target.blocker?.let { error(it) }
         t.wto += WtoCase(country, ctx.now.plusDays(WTO_DAYS), target.about)
-        ctx.state.diplomacy.relation(country, player).memories += DiplomaticMemory("DISAGREEMENT", -WTO_ANGER, ctx.now, "plainte à l'OMC")
+        ctx.state.diplomacy.relation(country, player).memories += DiplomaticMemory("CONDEMNATION", -WTO_ANGER, ctx.now, "plainte à l'OMC")
         JournalService(ctx).add("Diplomatie", "Plainte à l'OMC contre ${CountryNames(ctx.db.country(country).definition).the}", Tone.NEUTRAL)
         "Plainte déposée à Genève : décision dans six mois environ."
     }

@@ -116,6 +116,8 @@
     "eventFrequency": "config/event_frequency.json",
     "eu": "diplomacy/eu.json",
     "scenarios": "config/scenarios.json",
-    "trade": "diplomacy/trade.json"
+    "trade": "diplomacy/trade.json",
+    "defense": "military/defense.json",
+    "intel": "military/intel.json"
   }
 }

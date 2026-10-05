@@ -117,7 +117,7 @@ class TradePanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pane
                 into.add(ui.label("${p.label} — ${countryName(b.client)} : décision dans ${days.toInt()} j (chances ${Math.round(b.chance * 100)} %)", "small", wrap = true)).growX().row()
             }
         }
-        session.context.db.trade?.products?.forEach { into.add(product(it)).growX().padTop(4f).row() }
+        session.context.db.trade?.products?.filter { !it.arms }?.forEach { into.add(product(it)).growX().padTop(4f).row() }
         if (t.results.isNotEmpty()) {
             into.add(ui.label("Derniers résultats", "bold")).padTop(GAP).row()
             t.results.takeLast(MAX_RESULTS).reversed().forEach { r ->

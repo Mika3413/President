@@ -103,6 +103,10 @@ class CrisisTest {
             val curfew = s.state.measures.active.single()
             clock.advanceWorldDays(11.0); s.advanceToNow()
             assertTrue(curfew.compliance < 1.0, "la lassitude s'installe")
+            // Le juge peut suspendre la mesure avant le vote.
+            if (s.state.measures.active.none { it.id == "curfew" }) {
+                assertTrue(s.state.stats.journal.any { it.kind == "Mesure" && "Conseil" in it.text }); continue
+            }
             val view = s.measures.view(s.measures.definitions.first { it.id == "curfew" })
             assertTrue(view.status.any { it.first.startsWith("Vote de prorogation") })
             clock.advanceWorldDays(3.0); s.advanceToNow()

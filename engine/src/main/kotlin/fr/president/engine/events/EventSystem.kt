@@ -41,6 +41,8 @@ class EventSystem : SimulationSystem {
         p *= fr.president.engine.crisis.MeasureSystem.probabilityFactor(ctx, def, scope)
         // Lois en vigueur (surveillance, service minimum, caméras-piétons...).
         p *= fr.president.engine.government.LawService(ctx).eventFactor(def.id)
+        // Groupes armés et terroristes, surveillance des services.
+        p *= fr.president.engine.military.SecretService.eventFactor(ctx, def.id)
         return p.coerceIn(0.0, MAX_DAILY_PROBABILITY)
     }
 

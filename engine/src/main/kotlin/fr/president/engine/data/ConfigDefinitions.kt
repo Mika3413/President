@@ -56,6 +56,10 @@ data class GlobalDataFiles(
     val scenarios: String? = null,
     /** Matières premières, exportations et institutions économiques (facultatif). */
     val trade: String? = null,
+    /** Catalogue d'armement, bases à l'étranger et dissuasion (facultatif). */
+    val defense: String? = null,
+    /** Services secrets et groupes armés (facultatif). */
+    val intel: String? = null,
 )
 
 /** Multiplicateurs de fréquence : l'outil d'équilibrage du rythme des événements. */

@@ -1,0 +1,282 @@
+{
+ "_doc": "Services secrets et groupes armés. Généré par tools/datagen/intel_fr.py.",
+ "capacity": 0.55,
+ "operations": [
+  {
+   "id": "spy_leader",
+   "kind": "political",
+   "label": "Percer les intentions du dirigeant",
+   "description": "Sources humaines et interceptions : son caractère, ses projets, ce qu'il pense vraiment de la France.",
+   "costBillions": 0.02,
+   "days": 30,
+   "success": 0.75,
+   "exposure": 0.15,
+   "hostileOnly": false
+  },
+  {
+   "id": "spy_military",
+   "kind": "military",
+   "label": "Cartographier ses forces armées",
+   "description": "Satellites, sources, interceptions : ses unités, leur état, ses plans.",
+   "costBillions": 0.03,
+   "days": 45,
+   "success": 0.7,
+   "exposure": 0.15,
+   "hostileOnly": false
+  },
+  {
+   "id": "spy_economy",
+   "kind": "economic",
+   "label": "Espionnage industriel",
+   "description": "Récupérer secrets de fabrication et offres concurrentes pour nos champions.",
+   "costBillions": 0.02,
+   "days": 60,
+   "success": 0.6,
+   "exposure": 0.3,
+   "hostileOnly": false
+  },
+  {
+   "id": "influence",
+   "kind": "influence",
+   "label": "Campagne d'influence",
+   "description": "Médias, réseaux sociaux, relais d'opinion : affaiblir le pouvoir en place.",
+   "costBillions": 0.05,
+   "days": 90,
+   "success": 0.55,
+   "exposure": 0.3,
+   "hostileOnly": true
+  },
+  {
+   "id": "fund_opposition",
+   "kind": "opposition",
+   "label": "Financer l'opposition",
+   "description": "Argent, conseils, protection : préparer une alternance favorable à la France.",
+   "costBillions": 0.1,
+   "days": 120,
+   "success": 0.5,
+   "exposure": 0.35,
+   "hostileOnly": true
+  },
+  {
+   "id": "sabotage",
+   "kind": "sabotage",
+   "label": "Sabotage",
+   "description": "Usines d'armement, dépôts, réseaux : ralentir sa machine de guerre.",
+   "costBillions": 0.08,
+   "days": 45,
+   "success": 0.5,
+   "exposure": 0.4,
+   "hostileOnly": true
+  },
+  {
+   "id": "coup",
+   "kind": "coup",
+   "label": "Soutenir un coup d'État",
+   "description": "Des militaires prêts à renverser le pouvoir attendent un signal et des moyens.",
+   "costBillions": 1.0,
+   "days": 90,
+   "success": 0.3,
+   "exposure": 0.7,
+   "hostileOnly": true
+  }
+ ],
+ "groups": [
+  {
+   "id": "ei",
+   "label": "État islamique",
+   "kind": "jihadist",
+   "description": "Le califat est tombé mais l'organisation inspire et commandite toujours des attentats en Europe.",
+   "where": "Syrie, Irak, Sahel, Afghanistan",
+   "countries": [],
+   "strength": 0.45,
+   "hostility": 0.95,
+   "events": {
+    "terror_attack": 1.0,
+    "embassy_attack": 0.5,
+    "hostages_abroad": 0.4
+   },
+   "actions": [
+    "neutralize",
+    "strike",
+    "infiltrate"
+   ],
+   "domestic": false
+  },
+  {
+   "id": "aqmi",
+   "label": "Al-Qaïda au Maghreb islamique",
+   "kind": "jihadist",
+   "description": "Implantée au Sahel et en Afrique du Nord, spécialiste des enlèvements.",
+   "where": "Sahel, sud de l'Algérie",
+   "countries": [
+    "DZA"
+   ],
+   "strength": 0.35,
+   "hostility": 0.85,
+   "events": {
+    "hostages_abroad": 1.0,
+    "embassy_attack": 0.5,
+    "terror_attack": 0.3
+   },
+   "actions": [
+    "neutralize",
+    "strike",
+    "infiltrate"
+   ],
+   "domestic": false
+  },
+  {
+   "id": "jnim",
+   "label": "JNIM (Sahel)",
+   "kind": "jihadist",
+   "description": "La coalition jihadiste qui gagne du terrain au Mali, au Burkina Faso et au Niger depuis le départ de Barkhane.",
+   "where": "Mali, Burkina Faso, Niger",
+   "countries": [],
+   "strength": 0.55,
+   "hostility": 0.8,
+   "events": {
+    "hostages_abroad": 0.8,
+    "embassy_attack": 0.6
+   },
+   "actions": [
+    "neutralize",
+    "strike"
+   ],
+   "domestic": false
+  },
+  {
+   "id": "africa_corps",
+   "label": "Africa Corps (ex-Wagner)",
+   "kind": "mercenary",
+   "description": "Les mercenaires russes protègent les juntes du Sahel et attisent le sentiment antifrançais.",
+   "where": "Mali, Centrafrique, Libye",
+   "countries": [],
+   "strength": 0.5,
+   "hostility": 0.6,
+   "events": {
+    "embassy_attack": 0.4,
+    "hybrid_sabotage": 0.3
+   },
+   "actions": [
+    "neutralize",
+    "infiltrate"
+   ],
+   "domestic": false,
+   "sponsor": "RUS"
+  },
+  {
+   "id": "hezbollah",
+   "label": "Hezbollah",
+   "kind": "militia",
+   "description": "Milice et parti libanais, armé par l'Iran ; menace les soldats de la FINUL et les intérêts français au Liban.",
+   "where": "Liban",
+   "countries": [],
+   "strength": 0.5,
+   "hostility": 0.4,
+   "events": {
+    "hostages_abroad": 0.3,
+    "embassy_attack": 0.3
+   },
+   "actions": [
+    "neutralize",
+    "infiltrate",
+    "negotiate"
+   ],
+   "domestic": false
+  },
+  {
+   "id": "pkk",
+   "label": "PKK",
+   "kind": "separatist",
+   "description": "La guérilla kurde, combattue par la Turquie ; ses réseaux en Europe financent la lutte.",
+   "where": "Turquie, Irak",
+   "countries": [
+    "TUR"
+   ],
+   "strength": 0.4,
+   "hostility": 0.15,
+   "events": {},
+   "actions": [
+    "infiltrate",
+    "negotiate"
+   ],
+   "domestic": false
+  },
+  {
+   "id": "flnc",
+   "label": "FLNC (Corse)",
+   "kind": "separatist",
+   "description": "Le Front de libération nationale corse a repris les plasticages après des années de trêve.",
+   "where": "Corse",
+   "countries": [],
+   "strength": 0.25,
+   "hostility": 0.5,
+   "events": {
+    "corsica_tensions": 1.0
+   },
+   "actions": [
+    "infiltrate",
+    "negotiate"
+   ],
+   "domestic": true
+  },
+  {
+   "id": "ultra_right",
+   "label": "Groupuscules d'ultradroite",
+   "kind": "extremist",
+   "description": "Petits groupes violents, parfois armés, qui préparent des actions contre des mosquées ou des élus.",
+   "where": "France",
+   "countries": [],
+   "strength": 0.25,
+   "hostility": 0.4,
+   "events": {
+    "terror_attack": 0.3,
+    "urban_riots": 0.2
+   },
+   "actions": [
+    "infiltrate",
+    "dissolve"
+   ],
+   "domestic": true
+  },
+  {
+   "id": "ultra_left",
+   "label": "Ultragauche et black blocs",
+   "kind": "extremist",
+   "description": "Casse dans les manifestations, sabotages de chantiers et de réseaux.",
+   "where": "France",
+   "countries": [],
+   "strength": 0.3,
+   "hostility": 0.35,
+   "events": {
+    "urban_riots": 0.4,
+    "hybrid_sabotage": 0.2
+   },
+   "actions": [
+    "infiltrate",
+    "dissolve"
+   ],
+   "domestic": true
+  },
+  {
+   "id": "narco",
+   "label": "Narcotrafic (DZ Mafia et autres)",
+   "kind": "criminal",
+   "description": "Les réseaux de la drogue tuent à Marseille, corrompent des fonctionnaires et défient l'État.",
+   "where": "Marseille, Grenoble, Nîmes, Antilles",
+   "countries": [
+    "MAR"
+   ],
+   "strength": 0.5,
+   "hostility": 0.3,
+   "events": {
+    "urban_riots": 0.3
+   },
+   "actions": [
+    "neutralize",
+    "infiltrate"
+   ],
+   "domestic": true
+  }
+ ]
+}

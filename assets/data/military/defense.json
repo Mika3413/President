@@ -1,0 +1,437 @@
+{
+ "_doc": "Armement, bases et dissuasion. Généré par tools/datagen/defense_fr.py.",
+ "categories": [
+  {
+   "id": "air",
+   "label": "Air et espace",
+   "icon": "✈"
+  },
+  {
+   "id": "land",
+   "label": "Terre",
+   "icon": "⚔"
+  },
+  {
+   "id": "sea",
+   "label": "Mer",
+   "icon": "⚓"
+  },
+  {
+   "id": "missiles",
+   "label": "Missiles et défense aérienne",
+   "icon": "◎"
+  },
+  {
+   "id": "cyber",
+   "label": "Cyber, drones, renseignement",
+   "icon": "⌘"
+  }
+ ],
+ "equipment": [
+  {
+   "id": "rafale",
+   "category": "air",
+   "label": "Rafale F4 (escadre de 20 appareils)",
+   "description": "L'avion de combat omnirôle français, dernier standard.",
+   "costBillions": 4.0,
+   "days": 900,
+   "capabilities": {
+    "strike": 0.04
+   },
+   "unitType": "FIGHTER_WING"
+  },
+  {
+   "id": "a400m",
+   "category": "air",
+   "label": "A400M Atlas (escadre de transport)",
+   "description": "Projeter troupes et matériel loin et vite.",
+   "costBillions": 2.0,
+   "days": 720,
+   "capabilities": {},
+   "unitType": "TRANSPORT_WING"
+  },
+  {
+   "id": "mrtt",
+   "category": "air",
+   "label": "A330 MRTT Phénix (ravitailleurs)",
+   "description": "Ravitaillement en vol et transport stratégique.",
+   "costBillions": 2.5,
+   "days": 900,
+   "capabilities": {},
+   "unitType": "TANKER_WING"
+  },
+  {
+   "id": "satellites",
+   "category": "air",
+   "label": "Satellites militaires (CSO, Syracuse)",
+   "description": "Images et communications sécurisées partout dans le monde.",
+   "costBillions": 1.5,
+   "days": 720,
+   "capabilities": {
+    "space": 0.2,
+    "strike": 0.03
+   }
+  },
+  {
+   "id": "leclerc",
+   "category": "land",
+   "label": "Chars Leclerc rénovés (brigade blindée)",
+   "description": "Une brigade lourde de plus.",
+   "costBillions": 3.5,
+   "days": 720,
+   "capabilities": {},
+   "unitType": "ARMORED_BRIGADE"
+  },
+  {
+   "id": "griffon",
+   "category": "land",
+   "label": "Griffon et Serval (brigade mécanisée)",
+   "description": "Les nouveaux blindés du programme Scorpion.",
+   "costBillions": 2.5,
+   "days": 540,
+   "capabilities": {},
+   "unitType": "MECHANIZED_BRIGADE"
+  },
+  {
+   "id": "caesar",
+   "category": "land",
+   "label": "Canons CAESAR (60 pièces)",
+   "description": "Artillerie de 155 mm sur camion, précise et mobile.",
+   "costBillions": 0.5,
+   "days": 360,
+   "capabilities": {
+    "strike": 0.04
+   }
+  },
+  {
+   "id": "ammo_plant",
+   "category": "land",
+   "label": "Usine d'obus de 155 mm et de poudre",
+   "description": "Produire en France les munitions d'une guerre longue.",
+   "costBillions": 0.6,
+   "days": 540,
+   "capabilities": {
+    "ammo": 0.3
+   }
+  },
+  {
+   "id": "fdi",
+   "category": "sea",
+   "label": "Frégates de défense et d'intervention (groupe)",
+   "description": "Frégates de premier rang, lutte anti-sous-marine et anti-aérienne.",
+   "costBillions": 3.0,
+   "days": 1080,
+   "capabilities": {
+    "naval": 0.05
+   },
+   "unitType": "SURFACE_GROUP"
+  },
+  {
+   "id": "suffren",
+   "category": "sea",
+   "label": "Sous-marin nucléaire d'attaque Suffren",
+   "description": "Chasse aux sous-marins, missiles de croisière navals.",
+   "costBillions": 1.5,
+   "days": 1440,
+   "capabilities": {
+    "naval": 0.15,
+    "strike": 0.03
+   }
+  },
+  {
+   "id": "pang",
+   "category": "sea",
+   "label": "Porte-avions de nouvelle génération",
+   "description": "Successeur du Charles-de-Gaulle : 30 ans de puissance aéronavale.",
+   "costBillions": 10.0,
+   "days": 3600,
+   "capabilities": {
+    "naval": 0.2
+   },
+   "unitType": "CARRIER_GROUP"
+  },
+  {
+   "id": "sampt",
+   "category": "missiles",
+   "label": "Défense sol-air SAMP/T NG (4 batteries)",
+   "description": "Intercepte avions, missiles de croisière et balistiques.",
+   "costBillions": 1.2,
+   "days": 540,
+   "capabilities": {
+    "airDefense": 0.15
+   }
+  },
+  {
+   "id": "mistral",
+   "category": "missiles",
+   "label": "Missiles Mistral 3 (1 000)",
+   "description": "Défense antiaérienne de courte portée.",
+   "costBillions": 0.4,
+   "days": 270,
+   "capabilities": {
+    "airDefense": 0.05
+   }
+  },
+  {
+   "id": "scalp",
+   "category": "missiles",
+   "label": "Missiles de croisière SCALP (200)",
+   "description": "Frapper loin dans la profondeur ennemie.",
+   "costBillions": 0.6,
+   "days": 360,
+   "capabilities": {
+    "strike": 0.12
+   }
+  },
+  {
+   "id": "patriot",
+   "category": "missiles",
+   "label": "Batteries Patriot (achat américain)",
+   "description": "Livraison plus rapide, mais dépendance aux États-Unis.",
+   "costBillions": 1.0,
+   "days": 270,
+   "capabilities": {
+    "airDefense": 0.12
+   },
+   "supplier": "USA"
+  },
+  {
+   "id": "drones",
+   "category": "cyber",
+   "label": "Drones Aarok et munitions rôdeuses",
+   "description": "Une filière française de drones de combat.",
+   "costBillions": 0.8,
+   "days": 365,
+   "capabilities": {
+    "drones": 0.15,
+    "strike": 0.04
+   }
+  },
+  {
+   "id": "reaper",
+   "category": "cyber",
+   "label": "Drones MQ-9 Reaper (achat américain)",
+   "description": "Éprouvés et vite livrés ; les États-Unis gardent la main sur les logiciels.",
+   "costBillions": 0.6,
+   "days": 180,
+   "capabilities": {
+    "drones": 0.12
+   },
+   "supplier": "USA"
+  },
+  {
+   "id": "cyber_command",
+   "category": "cyber",
+   "label": "Commandement cyber : 1 000 cyber-combattants",
+   "description": "Défendre réseaux, hôpitaux et centrales ; riposter.",
+   "costBillions": 0.5,
+   "days": 365,
+   "capabilities": {
+    "cyber": 0.15
+   }
+  }
+ ],
+ "capabilities": {
+  "airDefense": 0.3,
+  "strike": 0.35,
+  "cyber": 0.35,
+  "drones": 0.2,
+  "space": 0.4,
+  "naval": 0.45,
+  "ammo": 0.2
+ },
+ "capabilityLabels": {
+  "airDefense": "Défense aérienne",
+  "strike": "Frappe dans la profondeur",
+  "cyber": "Cyberdéfense",
+  "drones": "Drones",
+  "space": "Espace et renseignement",
+  "naval": "Puissance navale",
+  "ammo": "Production de munitions"
+ },
+ "bases": [
+  {
+   "id": "djibouti",
+   "label": "Base de Djibouti (1 500 militaires)",
+   "hostName": "Djibouti",
+   "annualCostBillions": 0.3,
+   "open": true,
+   "evictionRisk": 0.002,
+   "influence": [
+    "EGY",
+    "SAU"
+   ],
+   "worries": [],
+   "openCostBillions": 0.5
+  },
+  {
+   "id": "abu_dhabi",
+   "label": "Base interarmées d'Abou Dabi",
+   "hostName": "Émirats arabes unis",
+   "annualCostBillions": 0.2,
+   "open": true,
+   "evictionRisk": 0.0,
+   "influence": [
+    "SAU",
+    "EGY"
+   ],
+   "worries": [],
+   "openCostBillions": 0.4
+  },
+  {
+   "id": "jordan",
+   "label": "Base aérienne projetée en Jordanie",
+   "hostName": "Jordanie",
+   "annualCostBillions": 0.15,
+   "open": true,
+   "evictionRisk": 0.001,
+   "influence": [
+    "EGY",
+    "SAU",
+    "TUR"
+   ],
+   "worries": [],
+   "openCostBillions": 0.3
+  },
+  {
+   "id": "gabon",
+   "label": "Camp de Gaulle à Libreville (partagé)",
+   "hostName": "Gabon",
+   "annualCostBillions": 0.05,
+   "open": true,
+   "evictionRisk": 0.004,
+   "influence": [
+    "MAR"
+   ],
+   "worries": [],
+   "openCostBillions": 0.2
+  },
+  {
+   "id": "romania",
+   "label": "Mission Aigle en Roumanie (Cincu)",
+   "hostName": "Roumanie",
+   "annualCostBillions": 0.3,
+   "open": true,
+   "evictionRisk": 0.0,
+   "influence": [
+    "ROU",
+    "POL",
+    "UKR"
+   ],
+   "worries": [
+    "RUS"
+   ],
+   "openCostBillions": 0.4,
+   "host": "ROU"
+  },
+  {
+   "id": "estonia",
+   "label": "Mission Lynx en Estonie (Tapa)",
+   "hostName": "Estonie",
+   "annualCostBillions": 0.1,
+   "open": true,
+   "evictionRisk": 0.0,
+   "influence": [
+    "POL",
+    "NOR",
+    "SWE"
+   ],
+   "worries": [
+    "RUS"
+   ],
+   "openCostBillions": 0.2
+  },
+  {
+   "id": "cote_ivoire",
+   "label": "Port-Bouët à Abidjan",
+   "hostName": "Côte d'Ivoire",
+   "annualCostBillions": 0.1,
+   "open": false,
+   "evictionRisk": 0.004,
+   "influence": [
+    "MAR"
+   ],
+   "worries": [],
+   "openCostBillions": 0.3
+  },
+  {
+   "id": "senegal",
+   "label": "Camp de Ouakam à Dakar",
+   "hostName": "Sénégal",
+   "annualCostBillions": 0.1,
+   "open": false,
+   "evictionRisk": 0.006,
+   "influence": [
+    "MAR"
+   ],
+   "worries": [],
+   "openCostBillions": 0.3
+  },
+  {
+   "id": "chad",
+   "label": "Base de N'Djamena",
+   "hostName": "Tchad",
+   "annualCostBillions": 0.15,
+   "open": false,
+   "evictionRisk": 0.008,
+   "influence": [
+    "EGY"
+   ],
+   "worries": [],
+   "openCostBillions": 0.3
+  },
+  {
+   "id": "crete",
+   "label": "Base navale de Souda (Crète)",
+   "hostName": "Grèce",
+   "annualCostBillions": 0.15,
+   "open": false,
+   "evictionRisk": 0.0,
+   "influence": [
+    "GRC"
+   ],
+   "worries": [
+    "TUR"
+   ],
+   "openCostBillions": 0.4,
+   "host": "GRC"
+  },
+  {
+   "id": "india",
+   "label": "Point d'appui naval à Bombay",
+   "hostName": "Inde",
+   "annualCostBillions": 0.1,
+   "open": false,
+   "evictionRisk": 0.0,
+   "influence": [
+    "IND"
+   ],
+   "worries": [
+    "CHN"
+   ],
+   "openCostBillions": 0.3,
+   "host": "IND"
+  },
+  {
+   "id": "poland",
+   "label": "Brigade française en Pologne",
+   "hostName": "Pologne",
+   "annualCostBillions": 0.4,
+   "open": false,
+   "evictionRisk": 0.0,
+   "influence": [
+    "POL",
+    "UKR",
+    "DEU"
+   ],
+   "worries": [
+    "RUS",
+    "BLR"
+   ],
+   "openCostBillions": 0.6,
+   "host": "POL"
+  }
+ ],
+ "warheads": 290,
+ "credibility": 0.7
+}

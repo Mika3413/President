@@ -43,6 +43,8 @@ class DataLoader(private val source: DataSource) {
             eu = files.eu?.let { read(it) },
             scenarios = files.scenarios?.let { read<fr.president.engine.setup.ScenariosFile>(it).scenarios }.orEmpty(),
             trade = files.trade?.let { read(it) },
+            defense = files.defense?.let { read(it) },
+            intel = files.intel?.let { read(it) },
         )
         DataValidator.validate(db)
         return db

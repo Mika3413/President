@@ -48,7 +48,7 @@ class ForeignOperationsSystem : SimulationSystem {
             val aggressiveness = leader.trait(Traits.AGGRESSIVENESS)
             if (aggressiveness < MIN_AGGRESSIVENESS) continue
             // Plus le pays est hostile et son dirigeant agressif, plus l'attaque est probable.
-            val chance = BASE_CHANCE * aggressiveness * (1 + (HOSTILE - relation) * HOSTILITY_WEIGHT)
+            val chance = BASE_CHANCE * aggressiveness * (1 + (HOSTILE - relation) * HOSTILITY_WEIGHT) * DefenseService.hybridFactor(ctx)
             if (!ctx.rng.chance(chance)) continue
             val event = HYBRID_EVENTS[ctx.rng.nextInt(HYBRID_EVENTS.size)]
             ctx.state.localActions["$KEY$country"] = ctx.now
