@@ -97,7 +97,7 @@ class MacroEconomyModel(private val p: EconomyParameters) {
         val confidencePremium = p.confidencePremiumSlope * (NEUTRAL - e.businessConfidence).coerceAtLeast(0.0)
         e.marketRate = e.riskFreeRate + debtPremium + deficitPremium + confidencePremium
         // La dette se refinance progressivement : le taux moyen suit lentement le taux de marché.
-        e.averageDebtRate = approach(e.averageDebtRate, e.marketRate, p.rateRolloverMonthly)
+        e.averageDebtRate = approach(e.averageDebtRate, e.marketRate + e.debtRateOffset, (p.rateRolloverMonthly * e.debtRolloverFactor).coerceAtMost(1.0))
     }
 
     private fun applyPublicFinances(e: EconomyState) {

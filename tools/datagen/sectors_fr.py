@@ -49,6 +49,9 @@ COMPANIES = [
     ("pharmaxis", "Pharmaxis", "health", 110, 25000, 0.6),
 ]
 
+# Participations de l'État au début de la partie (part du capital).
+STAKES = {"energiefrance": 1.0, "railroute": 1.0, "navalis": 0.62, "telecomhexa": 0.23, "aerolis": 0.11, "delmas": 0.06, "laiteries": 0.0}
+
 # Effets directs d'événements sur les secteurs (choc d'activité, suit l'ampleur de l'événement).
 EVENT_SHOCKS = {
     "terror_attack": {"tourism": -0.05, "retail": -0.01},
@@ -119,7 +122,7 @@ out = {
     "indexName": "Indice de Paris",
     "indexBase": 7800,
     "sectors": [{"id": i, "label": l, "icon": ic, "gdpShare": g, "jobShare": j, "drivers": d} for i, l, ic, g, j, d in SECTORS],
-    "companies": [{"id": i, "name": n, "sector": s, "capBillions": c, "employees": e, "beta": b} for i, n, s, c, e, b in COMPANIES],
+    "companies": [dict({"id": i, "name": n, "sector": s, "capBillions": c, "employees": e, "beta": b}, **({"stateStake": STAKES[i]} if i in STAKES else {})) for i, n, s, c, e, b in COMPANIES],
     "eventShocks": EVENT_SHOCKS,
     "restrictions": RESTRICTIONS,
 }

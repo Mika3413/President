@@ -156,7 +156,8 @@
    "sector": "industry",
    "capBillions": 45,
    "employees": 60000,
-   "beta": 1.4
+   "beta": 1.4,
+   "stateStake": 0.06
   },
   {
    "id": "acieries",
@@ -172,7 +173,8 @@
    "sector": "aerospace",
    "capBillions": 120,
    "employees": 55000,
-   "beta": 1.2
+   "beta": 1.2,
+   "stateStake": 0.11
   },
   {
    "id": "navalis",
@@ -180,7 +182,8 @@
    "sector": "aerospace",
    "capBillions": 30,
    "employees": 25000,
-   "beta": 0.9
+   "beta": 0.9,
+   "stateStake": 0.62
   },
   {
    "id": "verlaine",
@@ -204,7 +207,8 @@
    "sector": "energy",
    "capBillions": 70,
    "employees": 130000,
-   "beta": 0.7
+   "beta": 0.7,
+   "stateStake": 1.0
   },
   {
    "id": "petrolia",
@@ -244,7 +248,8 @@
    "sector": "agrifood",
    "capBillions": 55,
    "employees": 45000,
-   "beta": 0.6
+   "beta": 0.6,
+   "stateStake": 0.0
   },
   {
    "id": "riviera",
@@ -276,7 +281,8 @@
    "sector": "tech",
    "capBillions": 40,
    "employees": 50000,
-   "beta": 0.7
+   "beta": 0.7,
+   "stateStake": 0.23
   },
   {
    "id": "marcheplus",
@@ -292,7 +298,8 @@
    "sector": "transport",
    "capBillions": 20,
    "employees": 45000,
-   "beta": 1.0
+   "beta": 1.0,
+   "stateStake": 1.0
   },
   {
    "id": "pharmaxis",

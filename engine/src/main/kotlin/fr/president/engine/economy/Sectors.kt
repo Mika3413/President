@@ -23,7 +23,16 @@ data class SectorDef(
 )
 
 @Serializable
-data class CompanyDef(val id: String, val name: String, val sector: String, val capBillions: Double, val employees: Int, val beta: Double = 1.0)
+data class CompanyDef(
+    val id: String,
+    val name: String,
+    val sector: String,
+    val capBillions: Double,
+    val employees: Int,
+    val beta: Double = 1.0,
+    /** Part du capital détenue par l'État au début de la partie. */
+    val stateStake: Double = 0.0,
+)
 
 @Serializable
 data class SectorsFile(
@@ -57,6 +66,8 @@ class MarketState(
     var lastCrash: WorldTime? = null,
     /** Dernière convocation du PDG de chaque entreprise. */
     val summons: MutableMap<String, WorldTime> = mutableMapOf(),
+    /** Participations de l'État (part du capital), après nationalisations et privatisations. */
+    val stakes: MutableMap<String, Double> = mutableMapOf(),
 )
 
 /**

@@ -53,6 +53,10 @@ class PolicyService(private val ctx: SimulationContext) {
         submit(PolicyKind.REFORM, id, 0.0, 1.0, ctx.playerData.reforms!!.voteDelayDays)
     }
 
+    /** Dépôt d'un dispositif fiscal détaillé (loi de finances). */
+    fun submitFiscal(id: String, current: Int, option: Int): PolicyProposal =
+        submit(PolicyKind.FISCAL, id, current.toDouble(), option.toDouble(), gov.parliament.taxVoteDelayDays)
+
     /** Dépôt d'une loi du catalogue (option visée = nouvelle valeur). */
     fun submitLaw(lawId: String, current: Int, option: Int): PolicyProposal =
         submit(PolicyKind.LAW, lawId, current.toDouble(), option.toDouble(), ctx.playerData.reforms?.voteDelayDays ?: LAW_DELAY_DAYS)
@@ -146,6 +150,10 @@ class PolicyService(private val ctx: SimulationContext) {
             LawService(ctx).enact(proposal.itemId, proposal.newValue.toInt(), proposal.effectScale)
             return
         }
+        if (proposal.kind == PolicyKind.FISCAL) {
+            fr.president.engine.economy.FiscalService(ctx).enact(proposal.itemId, proposal.newValue.toInt())
+            return
+        }
         val economy = ctx.state.playerCountry.economy
         val params = ctx.db.economyParameters
         val revenueBefore = economy.revenueBillions
@@ -155,7 +163,7 @@ class PolicyService(private val ctx: SimulationContext) {
         when (proposal.kind) {
             PolicyKind.TAX_RATE -> economy.budget!!.revenues.getValue(proposal.itemId).rate = proposal.newValue
             PolicyKind.SPENDING -> economy.budget!!.spending.getValue(proposal.itemId).policyFactor = proposal.newValue
-            PolicyKind.REFORM, PolicyKind.LAW -> Unit
+            PolicyKind.REFORM, PolicyKind.LAW, PolicyKind.FISCAL -> Unit
         }
         BudgetCalculator.recompute(economy)
         // Impulsion budgétaire : moins de demande quand l'État prélève plus ou dépense moins.
@@ -184,6 +192,8 @@ class PolicyService(private val ctx: SimulationContext) {
         val budget = ctx.playerData.economy.budget!!
         return when (p.kind) {
             PolicyKind.REFORM -> "Réforme : " + (reforms().firstOrNull { it.id == p.itemId }?.title ?: p.itemId)
+            PolicyKind.FISCAL -> fr.president.engine.economy.FiscalService(ctx).taxes.firstOrNull { it.id == p.itemId }?.let { t ->
+                "Fiscalité : ${t.label} — ${t.options.getOrNull(p.newValue.toInt())?.label ?: ""}" } ?: p.itemId
             PolicyKind.LAW -> LawService(ctx).law(p.itemId)?.let { l -> "Loi : ${l.title} — ${l.options.getOrNull(p.newValue.toInt())?.label ?: ""}" } ?: p.itemId
             PolicyKind.TAX_RATE -> {
                 val def = budget.revenues.first { it.id == p.itemId }

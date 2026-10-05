@@ -26,6 +26,8 @@ class MarketCommands(private val ctx: SimulationContext) {
         val supportBlocker: String?,
         val summonBlocker: String?,
         val supportCost: Double,
+        /** Part du capital détenue par l'État. */
+        val stake: Double,
     )
 
     val available: Boolean get() = file != null
@@ -51,7 +53,7 @@ class MarketCommands(private val ctx: SimulationContext) {
             val st = market.companies[c.id]
             val price = st?.price ?: 1.0
             CompanyRow(c, f.sectors.firstOrNull { it.id == c.sector }?.label ?: c.sector, price - 1, c.capBillions * price,
-                st?.employees ?: c.employees, wait(st?.lastSupport), wait(lastSummon[c.id]) ?: agenda.blocker(SUMMON_AGENDA), supportCost(c))
+                st?.employees ?: c.employees, wait(st?.lastSupport), wait(lastSummon[c.id]) ?: agenda.blocker(SUMMON_AGENDA), supportCost(c), stake(c))
         }.sortedByDescending { it.capBillions }
     }
 
@@ -87,6 +89,42 @@ class MarketCommands(private val ctx: SimulationContext) {
 
     private val lastSummon get() = ctx.state.market.summons
 
+    fun stake(c: CompanyDef): Double = market.stakes[c.id] ?: c.stateStake
+
+    private fun value(c: CompanyDef) = c.capBillions * (market.companies[c.id]?.price ?: 1.0)
+
+    /** Nationaliser : l'État rachète le capital qu'il ne détient pas, avec une prime. */
+    fun nationalize(companyId: String): Result<String> = runCatching {
+        val c = file!!.companies.first { it.id == companyId }
+        val stake = stake(c)
+        require(stake < 1.0) { "Déjà entièrement publique." }
+        val cost = value(c) * (1 - stake) * NATIONALIZATION_PREMIUM
+        market.stakes[c.id] = 1.0
+        ctx.effects.trigger(EffectSpec("budget.oneOff", cost), null, emptyMap(), "market:${c.id}")
+        ctx.effects.trigger(EffectSpec("economy.businessConfidence", -NATIONALIZATION_CONFIDENCE), null, emptyMap(), "market:${c.id}")
+        ctx.effects.trigger(EffectSpec("opinion.group.low_income", NATIONALIZATION_OPINION), null, emptyMap(), "market:${c.id}")
+        ctx.effects.trigger(EffectSpec("opinion.group.high_income", -NATIONALIZATION_OPINION), null, emptyMap(), "market:${c.id}")
+        JournalService(ctx).add("Économie", "Nationalisation de ${c.name}", Tone.NEUTRAL)
+        ctx.notifications.news(fr.president.engine.notifications.NotificationCategory.ECONOMY, "L'État nationalise ${c.name}", null)
+        "${c.name} nationalisée pour ${fr.president.engine.util.Formatting.billions(cost)}."
+    }
+
+    /** Céder une partie (ou la totalité) de la participation de l'État. */
+    fun privatize(companyId: String, share: Double): Result<String> = runCatching {
+        val c = file!!.companies.first { it.id == companyId }
+        val stake = stake(c)
+        require(stake > 0.0) { "L'État ne détient rien." }
+        val sold = minOf(share, stake)
+        val revenue = value(c) * sold * PRIVATIZATION_DISCOUNT
+        market.stakes[c.id] = stake - sold
+        ctx.effects.trigger(EffectSpec("budget.oneOff", -revenue), null, emptyMap(), "market:${c.id}")
+        ctx.effects.trigger(EffectSpec("economy.businessConfidence", NATIONALIZATION_CONFIDENCE / 2), null, emptyMap(), "market:${c.id}")
+        ctx.effects.trigger(EffectSpec("opinion.group.civil_servants", -NATIONALIZATION_OPINION), null, emptyMap(), "market:${c.id}")
+        JournalService(ctx).add("Économie", "Privatisation : ${Math.round(sold * 100)} % de ${c.name}", Tone.NEUTRAL)
+        ctx.notifications.news(fr.president.engine.notifications.NotificationCategory.ECONOMY, "L'État cède ${Math.round(sold * 100)} % de ${c.name}", null)
+        "${Math.round(sold * 100)} % de ${c.name} cédés pour ${fr.president.engine.util.Formatting.billions(revenue)}."
+    }
+
     private fun supportCost(c: CompanyDef) = (c.capBillions * SUPPORT_SHARE).coerceIn(MIN_SUPPORT, MAX_SUPPORT)
 
     private fun wait(last: WorldTime?): String? {
@@ -96,6 +134,10 @@ class MarketCommands(private val ctx: SimulationContext) {
 
     private companion object {
         const val MONTH = 30
+        const val NATIONALIZATION_PREMIUM = 1.25
+        const val PRIVATIZATION_DISCOUNT = 0.95
+        const val NATIONALIZATION_CONFIDENCE = 0.02
+        const val NATIONALIZATION_OPINION = 0.008
         const val POPULATION_ACTIVE = 31_000_000.0
         const val COOLDOWN = 120.0
         const val SUPPORT_SHARE = 0.005

@@ -22,7 +22,7 @@ class EconomyState(
     var debtBillions: Double,
     var averageDebtRate: Double,
     var marketRate: Double,
-    val riskFreeRate: Double,
+    var riskFreeRate: Double,
     var consumerConfidence: Double,
     var businessConfidence: Double,
     var averageNetMonthlyWage: Double,
@@ -40,6 +40,11 @@ class EconomyState(
     /** Dépenses exceptionnelles accumulées (milliards) depuis le dernier pas mensuel. */
     var pendingOneOffBillions: Double = 0.0
     var oneOffThisYearBillions: Double = 0.0
+    /** Recettes ajoutées ou retirées par les dispositifs fiscaux détaillés (Md€ par an, aux prix de départ). */
+    var fiscalAdjustmentBillions: Double = 0.0
+    /** Gestion de la dette : vitesse de refinancement (court terme > 1) et surcoût de la stratégie. */
+    var debtRolloverFactor: Double = 1.0
+    var debtRateOffset: Double = 0.0
     val impulses: MutableList<GrowthImpulse> = mutableListOf()
 
     var revenueBillions: Double = 0.0

@@ -4,7 +4,7 @@ import fr.president.engine.time.WorldTime
 import kotlinx.serialization.Serializable
 
 @Serializable
-enum class PolicyKind { TAX_RATE, SPENDING, REFORM, LAW }
+enum class PolicyKind { TAX_RATE, SPENDING, REFORM, LAW, FISCAL }
 
 @Serializable
 enum class PolicyStatus { PENDING_VOTE, ADOPTED, REJECTED, FORCED, PENDING_CENSURE }

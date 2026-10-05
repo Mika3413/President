@@ -22,6 +22,7 @@ object BudgetCalculator {
             item.amount = item.referenceAmount * effectiveRatio * TaxBaseIndex.of(item.base, economy)
             revenue += item.amount
         }
+        revenue += economy.fiscalAdjustmentBillions * TaxBaseIndex.of(fr.president.engine.data.TaxBase.GDP, economy)
         var spending = 0.0
         for (item in budget.spending.values) {
             item.amount = item.referenceAmount * item.policyFactor * indexFactor(item.indexation, economy)
