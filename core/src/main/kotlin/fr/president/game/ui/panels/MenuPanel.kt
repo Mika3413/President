@@ -23,6 +23,7 @@ class MenuPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel
         Entry("⌂", "Gouvernement", "Ministres, Assemblée, Sénat, réformes.", Theme.catGovernment, PanelId.GOVERNMENT),
         Entry("€", "Économie", "Impôts, dépenses, services publics.", Theme.catEconomy, PanelId.ECONOMY),
         Entry("☎", "Diplomatie", "Accords, sanctions, ultimatums.", Theme.catDiplomacy, PanelId.DIPLOMACY),
+        Entry("✎", "Académie", "Apprendre à jouer en profondeur : 8 modules guidés.", Theme.catHelp, PanelId.ACADEMY),
         Entry("◷", "Agenda", "Votre semaine : déplacements, sommets, visites, entretiens.", Theme.catStats, PanelId.AGENDA),
         Entry("★", "Union européenne", "Textes au Conseil, votes, alliés à Bruxelles.", Theme.catDiplomacy, PanelId.EU) { if (session.state.eu.current?.francePosition == fr.president.engine.diplomacy.EuVote.ABSTAIN) 1 else 0 },
         Entry("⚔", "Armées", "Unités, logistique, conflits, opérations.", Theme.catArmy, PanelId.ARMY),

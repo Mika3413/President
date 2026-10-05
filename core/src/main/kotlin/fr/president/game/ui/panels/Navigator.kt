@@ -16,6 +16,8 @@ interface Navigator {
     fun prepareProposal(country: String, clauseType: String, params: Map<String, Double>)
     /** Taille du texte ou palette changée : reconstruire l'interface. */
     fun applyDisplaySettings() {}
+    /** Ferme le panneau ouvert (retour à la carte). */
+    fun closePanels() {}
 }
 
-enum class PanelId { SELECTION, MENU, DECISIONS, STATS, PRESS, GOVERNMENT, ECONOMY, DIPLOMACY, ARMY, CRISIS, EU, AGENDA, INBOX, NOTIFICATIONS, ELECTIONS, SETTINGS, HELP }
+enum class PanelId { SELECTION, MENU, DECISIONS, STATS, PRESS, GOVERNMENT, ECONOMY, DIPLOMACY, ARMY, CRISIS, EU, AGENDA, ACADEMY, INBOX, NOTIFICATIONS, ELECTIONS, SETTINGS, HELP }

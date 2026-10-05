@@ -39,7 +39,12 @@ class NewGameFactory(private val db: GameDatabase) {
         require(countryId in db.snapshot.playableCountries) { "$countryId n'est pas jouable dans ce snapshot" }
         val country = db.country(countryId)
         val pace = db.config.pace(options.paceId)
-        val start = WorldTime.parse(db.snapshot.startDate)
+        val snapshotStart = WorldTime.parse(db.snapshot.startDate)
+        // En temps réel, le calendrier du jeu part de l'heure de Paris du moment (s'il est postérieur aux données).
+        val start = if (pace.worldHoursPerRealHour <= REAL_TIME_RATE) {
+            val paris = java.time.Instant.ofEpochMilli(options.nowRealUtcMillis).atZone(java.time.ZoneId.of("Europe/Paris")).toLocalDateTime()
+            WorldTime.fromDateTime(paris.withNano(0)).takeIf { it > snapshotStart } ?: snapshotStart
+        } else snapshotStart
         val rng = GameRandom(options.seed)
 
         val president = CharacterGenerator(db).generate(
@@ -214,6 +219,7 @@ class NewGameFactory(private val db: GameDatabase) {
     }
 
     private companion object {
+        const val REAL_TIME_RATE = 1.0
         const val PRESIDENT_ID = "chr-president"
         val PRESIDENT_AGES = 42..62
         const val DEFAULT_TERM_YEARS = 5

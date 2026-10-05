@@ -21,4 +21,8 @@ class PlayerState(
     var tourStep: Int = -1,
     /** Scénario de départ choisi. */
     var scenario: String? = null,
+    /** Académie : module en cours, étape, modules terminés. */
+    var academyModule: String? = null,
+    var academyStep: Int = 0,
+    val academyDone: MutableSet<String> = mutableSetOf(),
 )

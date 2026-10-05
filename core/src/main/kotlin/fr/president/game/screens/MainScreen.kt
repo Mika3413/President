@@ -72,6 +72,7 @@ class MainScreen(
         private set
     private val hints = fr.president.game.ui.Hints(ui).also { ui.hints = it }
     private val tour by lazy { fr.president.game.ui.hud.GuidedTour(ui, session, this) }
+    val academy by lazy { fr.president.game.ui.hud.AcademyCoach(ui, session, this, this) }
     private var lod = Lod.FRANCE
     private var sinceRefresh = 0f
     /** Rafraîchissement automatique (et non suite à une action du joueur). */
@@ -110,6 +111,7 @@ class MainScreen(
         PanelId.CRISIS to fr.president.game.ui.panels.CrisisPanel(ui, this) { closePanel() },
         PanelId.EU to fr.president.game.ui.panels.EuPanel(ui, this) { closePanel() },
         PanelId.AGENDA to fr.president.game.ui.panels.AgendaPanel(ui, this) { closePanel() },
+        PanelId.ACADEMY to fr.president.game.ui.panels.AcademyPanel(ui, this, { academy }) { closePanel() },
         PanelId.GOVERNMENT to GovernmentPanel(ui, this) { closePanel() },
         PanelId.ECONOMY to EconomyPanel(ui, this) { closePanel() },
         PanelId.DIPLOMACY to diplomacyPanel,
@@ -163,6 +165,7 @@ class MainScreen(
         stage.addActor(panelLayer)
         overlayTable = Table().apply { setFillParent(true); top().padTop(TOAST_TOP) }
         overlayTable.add(tour.card).padBottom(6f).row()
+        overlayTable.add(academy.card).padBottom(6f).row()
         overlayTable.add(targetingBanner).padBottom(6f).row()
         targetingBanner.isVisible = false
         overlayTable.add(toasts.root)
@@ -170,6 +173,7 @@ class MainScreen(
         stage.addActor(overlayTable)
         stage.addActor(briefing.root)
         stage.addActor(tour.highlight)
+        stage.addActor(academy.highlight)
         stage.addActor(quickOrders.root)
         stage.addActor(hints.bubble)
         // La grille des couches passe au-dessus de tout (tutoriel compris) quand elle est ouverte.
@@ -225,6 +229,7 @@ class MainScreen(
         sinceRefresh += delta
         if (sinceRefresh >= REFRESH_SECONDS && !Gdx.input.isTouched) { periodic = true; refresh(); periodic = false }
         tour.update()
+        academy.update()
         stage.act(delta)
         stage.draw()
     }
@@ -320,6 +325,8 @@ class MainScreen(
             p.root.addAction(com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn(PANEL_FADE_SECONDS, com.badlogic.gdx.math.Interpolation.fade))
         }
     }
+
+    override fun closePanels() = closePanel()
 
     private fun closePanel() {
         currentPanel = null
@@ -425,10 +432,12 @@ class MainScreen(
             overlayTable.bottom().padTop(0f).padBottom(BOTTOM_OVERLAY)
             overlayTable.add(toasts.root).padBottom(6f).row()
             overlayTable.add(targetingBanner).padBottom(6f).row()
-            overlayTable.add(tour.card)
+            overlayTable.add(tour.card).row()
+            overlayTable.add(academy.card)
         } else {
             overlayTable.top().padBottom(0f).padTop(TOAST_TOP)
             overlayTable.add(tour.card).padBottom(6f).row()
+            overlayTable.add(academy.card).padBottom(6f).row()
             overlayTable.add(targetingBanner).padBottom(6f).row()
             overlayTable.add(toasts.root)
         }

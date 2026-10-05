@@ -68,7 +68,8 @@ class GameController(
         val detail = listOfNotNull(fr.president.engine.util.Formatting.date(s.time),
             "popularité ${fr.president.engine.util.Formatting.wholePercent(s.opinion.nationalApproval)}", scenario,
             s.player.gameOver?.let { "mandat terminé" }).joinToString(" · ")
-        return SaveRepository.SlotMeta(president, detail, savedAt)
+        val title = if (saves.activeSlot == "academie") "Entraînement · $president" else president
+        return SaveRepository.SlotMeta(title, detail, savedAt)
     }
 
     fun onPause() {

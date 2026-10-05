@@ -91,7 +91,8 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
             onNewGame = { Gdx.app.postRunnable { safely("nouvelle partie") { showNewGame(null) } } },
             slots = saves.slots().map { TitleScreen.SlotEntry(it.id, it.meta.title.ifBlank { "Partie" }, it.meta.detail, it.id == saves.activeSlot) },
             onLoad = { id -> Gdx.app.postRunnable { safely("reprise de la partie") { saves.activeSlot = id; resumeSave() } } },
-            onDelete = { id -> Gdx.app.postRunnable { safely("accueil") { saves.delete(id); showTitle() } } }))
+            onDelete = { id -> Gdx.app.postRunnable { safely("accueil") { saves.delete(id); showTitle() } } },
+            onLearn = { Gdx.app.postRunnable { safely("académie") { startAcademy() } } }))
     }
 
     private fun resumeSave() {
@@ -138,6 +139,20 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
         Thread(null, work, "president-preparation", WORKER_STACK_BYTES).apply { isDaemon = true }.start()
     }
 
+    /** Ouvrir l'Académie dès l'arrivée sur la carte (partie d'entraînement). */
+    private var openAcademy = false
+
+    /** « Apprendre à jouer » : une partie d'entraînement à part, qui ne touche pas aux vraies parties. */
+    private fun startAcademy() {
+        openAcademy = true
+        saves.activeSlot = ACADEMY_SLOT
+        if (saves.exists()) { resumeSave(); return }
+        prepareSession("académie", "Ouverture de l'Académie", resumed = false) {
+            GameSession.newGame(db, NewGameOptions(db.config.defaultPace, platform.nowUtcMillis(), platform.nowUtcMillis(), "Emmanuel", "Macrin", false), platform::nowUtcMillis)
+                .also { it.state.player.tourStep = -1 }
+        }
+    }
+
     private fun showSession(c: GameController, report: Simulator.Report, resumed: Boolean) {
         val session = c.session
         controller = c
@@ -157,7 +172,10 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
             }
         }
         switchTo(screen)
-        if (resumed) screen.showAbsence(report)
+        if (openAcademy) {
+            openAcademy = false
+            screen.open(fr.president.game.ui.panels.PanelId.ACADEMY, null)
+        } else if (resumed) screen.showAbsence(report)
     }
 
     /**
@@ -232,6 +250,7 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
     val mainScreen: MainScreen? get() = screen as? MainScreen
 
     private companion object {
+        const val ACADEMY_SLOT = "academie"
         const val TAG = "President"
         /** Pile large : le fil de préparation ne doit jamais manquer de place, même sur Android. */
         const val WORKER_STACK_BYTES = 16L * 1024 * 1024

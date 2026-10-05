@@ -35,6 +35,12 @@
       "label": "Très long",
       "worldHoursPerRealHour": 6.0,
       "description": "1 heure réelle = 6 heures de jeu. Un mandat dure environ 10 mois réels."
+    },
+    {
+      "id": "temps_reel",
+      "label": "Temps réel",
+      "worldHoursPerRealHour": 1.0,
+      "description": "1 heure réelle = 1 heure de jeu : le calendrier du jeu avance avec le vôtre. Un mandat dure 5 vrais ans, comme pour un vrai président."
     }
   ],
   "defaultPace": "normal",
