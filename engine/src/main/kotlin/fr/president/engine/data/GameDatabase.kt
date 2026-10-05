@@ -65,6 +65,7 @@ class GameDatabase(
     val intel: fr.president.engine.military.IntelFile? = null,
     val unrest: fr.president.engine.politics.UnrestFile? = null,
     val consequences: fr.president.engine.consequences.ConsequenceFile? = null,
+    val worldEvents: fr.president.engine.ai.WorldEventsFile? = null,
     val un: fr.president.engine.diplomacy.UnFile? = null,
 ) {
     val alliances: List<AllianceDef> get() = snapshot.alliances

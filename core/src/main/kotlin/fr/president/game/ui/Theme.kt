@@ -64,6 +64,7 @@ object Theme {
     val highlight = Color.valueOf("ffd166")
     val rail = Color.valueOf("c77dff")
     val motorway = Color.valueOf("f4a261")
+    val river = Color.valueOf("4f9fd8")
 
     /** Couleurs des grands domaines (barre d'actions, en-têtes de panneaux). */
     val catGovernment = Color.valueOf("3f72c4")

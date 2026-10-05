@@ -214,6 +214,16 @@ class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
         into.add(ui.label("Économie : croissance ${Formatting.signedPercent(economy.realGrowth)}, chômage ${Formatting.percent(economy.unemployment)}", "muted", wrap = true)).padTop(4f).row()
         val geo = session.military.geo
         if (geo.atWar(player, id)) into.add(ui.label("⚔ Nous sommes en guerre avec ce pays.", "bold", Theme.bad)).padTop(4f).row()
+        // Ce qui s'y passe : les dernières nouvelles du pays (journal du monde).
+        val newsOf = session.state.world.entries.filter { id in it.countries }.takeLast(3).asReversed()
+        if (newsOf.isNotEmpty()) {
+            into.add(ui.label("Actualité", "title", Theme.catDiplomacy)).padTop(GAP).row()
+            newsOf.forEach { n ->
+                into.add(ui.label("${Formatting.date(n.time)} · ${n.headline}", "small", when (n.tone) {
+                    fr.president.engine.readout.Tone.GOOD -> Theme.good; fr.president.engine.readout.Tone.BAD -> Theme.bad; else -> Theme.text }, wrap = true)).growX().row()
+            }
+            into.add(ui.button("Tout le journal du monde →", "flat") { nav.open(PanelId.WORLD, id) }).left().row()
+        }
 
         into.add(ui.label("Coopérer", "title", Theme.catDiplomacy)).padTop(GAP).row()
         val friendly = Table().apply { defaults().growX().uniformX().pad(2f) }

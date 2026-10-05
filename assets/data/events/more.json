@@ -1,0 +1,2212 @@
+{
+ "events": [
+  {
+   "id": "coast_erosion_storm",
+   "category": "DISASTER",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.00012,
+   "cooldownDays": 30,
+   "urgency": "IMPORTANT",
+   "headline": "Tempête {departmentIn} : la mer engloutit des maisons du littoral",
+   "notificationText": "Des habitations menacées de s'effondrer.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "coast_erosion_storm",
+    "sender": "PREFECT",
+    "responseDays": 4,
+    "defaultOption": "relocate",
+    "options": [
+     {
+      "id": "relocate",
+      "label": "Indemniser et organiser le recul",
+      "hint": "Coût : 150 M€ ; solution durable",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.15
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.02
+       },
+       {
+        "target": "quality.environment",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "dikes",
+      "label": "Construire des digues",
+      "hint": "Coût : 250 M€ ; répit de quelques décennies",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.25
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.03
+       },
+       {
+        "target": "quality.environment",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "none",
+      "label": "Laisser les assurances jouer",
+      "hint": "Aucun coût ; colère locale",
+      "effects": [
+       {
+        "target": "scope.approval",
+        "amount": -0.04
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "conditions": [
+    {
+     "variable": "scope.coastal",
+     "min": 1
+    }
+   ],
+   "scopeCooldownDays": 720
+  },
+  {
+   "id": "avalanche_resort",
+   "category": "DISASTER",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.00012,
+   "cooldownDays": 30,
+   "urgency": "IMPORTANT",
+   "headline": "Avalanche meurtrière dans une station {departmentIn}",
+   "notificationText": "Des skieurs ensevelis hors-piste.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "avalanche_resort",
+    "sender": "PREFECT",
+    "responseDays": 4,
+    "defaultOption": "secours",
+    "options": [
+     {
+      "id": "secours",
+      "label": "Renforcer les secours en montagne",
+      "hint": "Coût : 30 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.03
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.02
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "close",
+      "label": "Fermer les zones à risque",
+      "hint": "Sécurité ; saison amputée",
+      "effects": [
+       {
+        "target": "sector.tourism",
+        "amount": -0.002
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.01
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "none",
+      "label": "Laisser les stations gérer",
+      "hint": "Aucun coût",
+      "effects": [
+       {
+        "target": "scope.approval",
+        "amount": -0.02
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "conditions": [
+    {
+     "variable": "scope.mountain",
+     "min": 1
+    },
+    {
+     "variable": "season.month",
+     "max": 4
+    }
+   ],
+   "scopeCooldownDays": 720
+  },
+  {
+   "id": "border_traffic_jam",
+   "category": "TERRITORY",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.00012,
+   "cooldownDays": 30,
+   "urgency": "IMPORTANT",
+   "headline": "Contrôles aux frontières : des kilomètres de bouchons {departmentIn}",
+   "notificationText": "Les frontaliers excédés.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "border_traffic_jam",
+    "sender": "PREFECT",
+    "responseDays": 4,
+    "defaultOption": "agents",
+    "options": [
+     {
+      "id": "ease",
+      "label": "Alléger les contrôles",
+      "hint": "Fluidité ; moins de sécurité",
+      "effects": [
+       {
+        "target": "scope.approval",
+        "amount": 0.02
+       },
+       {
+        "target": "quality.security",
+        "amount": -0.002
+       },
+       {
+        "target": "demography.immigration",
+        "amount": 0.01
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "agents",
+      "label": "Maintenir avec plus d'agents",
+      "hint": "Coût : 20 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.02
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.01
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "harden",
+      "label": "Durcir les contrôles",
+      "hint": "Fermeté ; économie locale pénalisée",
+      "effects": [
+       {
+        "target": "scope.approval",
+        "amount": -0.03
+       },
+       {
+        "target": "scope.unemployment",
+        "amount": 0.002
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "conditions": [
+    {
+     "variable": "scope.border",
+     "min": 1
+    }
+   ],
+   "scopeCooldownDays": 720
+  },
+  {
+   "id": "nuclear_plant_leak",
+   "category": "ENERGY",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.00012,
+   "cooldownDays": 30,
+   "urgency": "IMPORTANT",
+   "headline": "Incident à la centrale nucléaire {departmentOf}",
+   "notificationText": "Une fuite radioactive mineure inquiète les riverains.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "nuclear_plant_leak",
+    "sender": "PREFECT",
+    "responseDays": 4,
+    "defaultOption": "monitor",
+    "options": [
+     {
+      "id": "shutdown",
+      "label": "Arrêter le réacteur pour inspection",
+      "hint": "Sécurité ; électricité plus chère",
+      "effects": [
+       {
+        "target": "energy.capacity.new_nuclear",
+        "amount": -900
+       },
+       {
+        "target": "energy.capacity.new_nuclear",
+        "amount": 900,
+        "delayDays": 120
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.02
+       },
+       {
+        "target": "economy.inflation",
+        "amount": 0.0003
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "monitor",
+      "label": "Poursuivre sous surveillance renforcée",
+      "hint": "Aucun coût ; inquiétude",
+      "effects": [
+       {
+        "target": "scope.approval",
+        "amount": -0.01
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "communicate",
+      "label": "Tout publier en transparence",
+      "hint": "Confiance ; débat national",
+      "effects": [
+       {
+        "target": "scope.approval",
+        "amount": 0.01
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "conditions": [
+    {
+     "variable": "scope.nuclear",
+     "min": 1
+    }
+   ],
+   "scopeCooldownDays": 720
+  },
+  {
+   "id": "wine_hail",
+   "category": "DISASTER",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.00012,
+   "cooldownDays": 30,
+   "urgency": "IMPORTANT",
+   "headline": "Grêle dévastatrice sur les vignes {departmentOf}",
+   "notificationText": "Des récoltes anéanties en dix minutes.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "wine_hail",
+    "sender": "PREFECT",
+    "responseDays": 4,
+    "defaultOption": "fund",
+    "options": [
+     {
+      "id": "fund",
+      "label": "Fonds d'urgence pour les vignerons",
+      "hint": "Coût : 80 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.08
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.03
+       },
+       {
+        "target": "opinion.group.rural",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "loans",
+      "label": "Prêts à taux zéro",
+      "hint": "Coût : 20 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.02
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.01
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "none",
+      "label": "Laisser les assurances jouer",
+      "hint": "Aucun coût ; faillites",
+      "effects": [
+       {
+        "target": "scope.approval",
+        "amount": -0.03
+       },
+       {
+        "target": "scope.unemployment",
+        "amount": 0.001
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "conditions": [
+    {
+     "variable": "scope.wine",
+     "min": 1
+    },
+    {
+     "variable": "season.month",
+     "min": 4,
+     "max": 9
+    }
+   ],
+   "scopeCooldownDays": 720
+  },
+  {
+   "id": "medical_desert_doctors",
+   "category": "TERRITORY",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.00018,
+   "cooldownDays": 30,
+   "urgency": "IMPORTANT",
+   "headline": "Désert médical {departmentIn} : le dernier médecin du canton part à la retraite",
+   "notificationText": "Des milliers d'habitants sans médecin traitant.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "medical_desert_doctors",
+    "sender": "DEPARTMENT_PRESIDENT",
+    "responseDays": 4,
+    "defaultOption": "center",
+    "options": [
+     {
+      "id": "oblige",
+      "label": "Obliger les jeunes médecins à s'y installer",
+      "hint": "Efficace ; colère des médecins",
+      "effects": [
+       {
+        "target": "scope.healthAccess",
+        "amount": 0.06
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.03
+       },
+       {
+        "target": "opinion.group.self_employed",
+        "amount": -0.003
+       },
+       {
+        "target": "actor.union_reformist",
+        "amount": -0.05
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "center",
+      "label": "Centre de santé avec médecins salariés",
+      "hint": "Coût : 15 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.015
+       },
+       {
+        "target": "scope.healthAccess",
+        "amount": 0.04
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.02
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "tele",
+      "label": "Miser sur la télémédecine",
+      "hint": "Coût : 3 M€ ; solution partielle",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.003
+       },
+       {
+        "target": "scope.healthAccess",
+        "amount": 0.015
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "conditions": [
+    {
+     "variable": "scope.healthAccess",
+     "max": 0.95
+    }
+   ],
+   "scopeCooldownDays": 720
+  },
+  {
+   "id": "drug_violence",
+   "category": "SECURITY",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.00018,
+   "cooldownDays": 30,
+   "urgency": "IMPORTANT",
+   "headline": "Fusillade liée au trafic de drogue {departmentIn}",
+   "notificationText": "Un adolescent tué par une balle perdue.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "drug_violence",
+    "sender": "PREFECT",
+    "responseDays": 4,
+    "defaultOption": "police",
+    "options": [
+     {
+      "id": "police",
+      "label": "Opération policière massive",
+      "hint": "Coût : 20 M€ ; effet rapide",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.02
+       },
+       {
+        "target": "scope.crime",
+        "amount": -0.06
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.02
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": 0.003
+       },
+       {
+        "target": "chain.urban_riots",
+        "amount": 0.15,
+        "delayDays": 7
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "prevention",
+      "label": "Plan prévention, éducateurs, emplois",
+      "hint": "Coût : 40 M€ ; effet lent",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.04
+       },
+       {
+        "target": "scope.crime",
+        "amount": -0.03,
+        "days": 365
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.01
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "army",
+      "label": "Envoyer l'armée",
+      "hint": "Spectaculaire ; libertés en question",
+      "effects": [
+       {
+        "target": "scope.crime",
+        "amount": -0.07
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.01
+       },
+       {
+        "target": "liberty",
+        "amount": -2
+       },
+       {
+        "target": "actor.ngo_rights",
+        "amount": -0.2
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": -0.004
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "conditions": [
+    {
+     "variable": "scope.crime",
+     "min": 1.1
+    },
+    {
+     "variable": "scope.urbanShare",
+     "min": 0.6
+    }
+   ],
+   "scopeCooldownDays": 720
+  },
+  {
+   "id": "factory_relocation",
+   "category": "ECONOMY",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.00018,
+   "cooldownDays": 30,
+   "urgency": "IMPORTANT",
+   "headline": "Délocalisation : l'usine {departmentOf} part en Europe de l'Est",
+   "notificationText": "800 emplois menacés.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "factory_relocation",
+    "sender": "PREFECT",
+    "responseDays": 4,
+    "defaultOption": "buyer",
+    "options": [
+     {
+      "id": "buyer",
+      "label": "Chercher un repreneur avec aides publiques",
+      "hint": "Coût : 60 M€ ; succès incertain",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.06
+       },
+       {
+        "target": "scope.unemployment",
+        "amount": -0.002
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.02
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "nationalize",
+      "label": "Nationaliser temporairement",
+      "hint": "Coût : 200 M€ ; emplois sauvés",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.2
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.04
+       },
+       {
+        "target": "economy.businessConfidence",
+        "amount": -0.005
+       },
+       {
+        "target": "actor.employers_big",
+        "amount": -0.1
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "support",
+      "label": "Accompagner les salariés (formation, primes)",
+      "hint": "Coût : 20 M€ ; usine perdue",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.02
+       },
+       {
+        "target": "scope.unemployment",
+        "amount": 0.004
+       },
+       {
+        "target": "scope.industry",
+        "amount": -0.005
+       },
+       {
+        "target": "scope.approval",
+        "amount": -0.03
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "conditions": [
+    {
+     "variable": "scope.industryShare",
+     "min": 0.14
+    }
+   ],
+   "scopeCooldownDays": 720
+  },
+  {
+   "id": "tourism_overcrowding",
+   "category": "TERRITORY",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.00012,
+   "cooldownDays": 30,
+   "urgency": "IMPORTANT",
+   "headline": "Surtourisme {departmentIn} : les habitants n'en peuvent plus",
+   "notificationText": "Plages et villages pris d'assaut.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "tourism_overcrowding",
+    "sender": "PREFECT",
+    "responseDays": 4,
+    "defaultOption": "limit",
+    "options": [
+     {
+      "id": "limit",
+      "label": "Limiter les locations touristiques",
+      "hint": "Logements libérés ; secteur mécontent",
+      "effects": [
+       {
+        "target": "scope.approval",
+        "amount": 0.03
+       },
+       {
+        "target": "sector.tourism",
+        "amount": -0.001
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "tax",
+      "label": "Taxe de séjour renforcée",
+      "hint": "Recettes ; touristes un peu moins nombreux",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": -0.02
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.015
+       },
+       {
+        "target": "sector.tourism",
+        "amount": -0.0005
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "none",
+      "label": "Ne rien changer",
+      "hint": "Économie touristique préservée",
+      "effects": [
+       {
+        "target": "scope.approval",
+        "amount": -0.02
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "conditions": [
+    {
+     "variable": "scope.tourist",
+     "min": 1
+    },
+    {
+     "variable": "season.month",
+     "min": 6,
+     "max": 9
+    }
+   ],
+   "scopeCooldownDays": 720
+  },
+  {
+   "id": "regional_identity",
+   "category": "POLITICS",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.00012,
+   "cooldownDays": 30,
+   "urgency": "IMPORTANT",
+   "headline": "Revendications autonomistes {departmentIn}",
+   "notificationText": "Les élus réclament plus de pouvoirs.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "regional_identity",
+    "sender": "REGION_PRESIDENT",
+    "responseDays": 4,
+    "defaultOption": "language",
+    "options": [
+     {
+      "id": "negotiate",
+      "label": "Ouvrir des négociations sur l'autonomie",
+      "hint": "Apaisement ; critiques des jacobins",
+      "effects": [
+       {
+        "target": "scope.approval",
+        "amount": 0.05
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": -0.002
+       },
+       {
+        "target": "government.parliamentSupport",
+        "amount": -0.01
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "language",
+      "label": "Reconnaître la langue, sans autonomie",
+      "hint": "Compromis",
+      "effects": [
+       {
+        "target": "scope.approval",
+        "amount": 0.02
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "refuse",
+      "label": "Refuser fermement",
+      "hint": "Unité affirmée ; tensions locales",
+      "effects": [
+       {
+        "target": "scope.approval",
+        "amount": -0.05
+       },
+       {
+        "target": "chain.corsica_tensions",
+        "amount": 0.2,
+        "delayDays": 30
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "conditions": [
+    {
+     "variable": "scope.regionalLanguage",
+     "min": 1
+    }
+   ],
+   "scopeCooldownDays": 720
+  },
+  {
+   "id": "overseas_water_cuts",
+   "category": "TERRITORY",
+   "scope": "DEPARTMENT",
+   "baseDailyProbability": 0.00024,
+   "cooldownDays": 30,
+   "urgency": "IMPORTANT",
+   "headline": "Coupures d'eau à répétition {departmentIn}",
+   "notificationText": "Des familles privées d'eau courante plusieurs jours par semaine.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "overseas_water_cuts",
+    "sender": "PREFECT",
+    "responseDays": 4,
+    "defaultOption": "plan",
+    "options": [
+     {
+      "id": "plan",
+      "label": "Plan d'urgence de l'État",
+      "hint": "Coût : 120 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.12
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.05
+       },
+       {
+        "target": "scope.healthAccess",
+        "amount": 0.02
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "takeover",
+      "label": "Reprendre la gestion de l'eau",
+      "hint": "Coût : 60 M€ ; élus locaux vexés",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.06
+       },
+       {
+        "target": "scope.approval",
+        "amount": 0.03
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "local",
+      "label": "Laisser les collectivités agir",
+      "hint": "Aucun coût ; colère",
+      "effects": [
+       {
+        "target": "scope.approval",
+        "amount": -0.05
+       },
+       {
+        "target": "chain.cost_of_living_overseas",
+        "amount": 0.3,
+        "delayDays": 20
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ]
+   },
+   "conditions": [
+    {
+     "variable": "scope.overseas",
+     "min": 1
+    }
+   ],
+   "scopeCooldownDays": 720
+  },
+  {
+   "id": "ai_cheating_bac",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0007,
+   "cooldownDays": 720,
+   "urgency": "IMPORTANT",
+   "headline": "Bac : des milliers de copies rédigées par l'intelligence artificielle",
+   "notificationText": "Le diplôme perd de sa valeur.",
+   "modifiers": [
+    {
+     "variable": "season.month",
+     "from": 6,
+     "to": 7,
+     "factorAtFrom": 3.0,
+     "factorAtTo": 3.0
+    }
+   ],
+   "immediateEffects": [],
+   "message": {
+    "template": "ai_cheating_bac",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "reform",
+    "options": [
+     {
+      "id": "retake",
+      "label": "Faire repasser les épreuves",
+      "hint": "Coût : 100 M€ ; colère des élèves",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.1
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": -0.005
+       },
+       {
+        "target": "quality.education",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "reform",
+      "label": "Réformer le bac vers plus d'oral",
+      "hint": "Coût : 50 M€ ; réforme de fond",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.05
+       },
+       {
+        "target": "quality.education",
+        "amount": 0.004
+       },
+       {
+        "target": "opinion.group.adults",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "minimize",
+      "label": "Minimiser l'affaire",
+      "hint": "Aucun coût ; diplôme dévalorisé",
+      "effects": [
+       {
+        "target": "quality.education",
+        "amount": -0.005
+       },
+       {
+        "target": "opinion.group.adults",
+        "amount": -0.003
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "education"
+   }
+  },
+  {
+   "id": "heat_schools",
+   "category": "DISASTER",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0007,
+   "cooldownDays": 720,
+   "urgency": "IMPORTANT",
+   "headline": "Canicule : des écoles transformées en fournaises",
+   "notificationText": "Les parents gardent leurs enfants à la maison.",
+   "modifiers": [
+    {
+     "variable": "season.month",
+     "from": 6,
+     "to": 8,
+     "factorAtFrom": 3.0,
+     "factorAtTo": 3.0
+    }
+   ],
+   "immediateEffects": [],
+   "message": {
+    "template": "heat_schools",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "plan",
+    "options": [
+     {
+      "id": "plan",
+      "label": "Plan de rénovation thermique des écoles",
+      "hint": "Coût : 2 Md€ sur plusieurs années",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 2.0
+       },
+       {
+        "target": "quality.education",
+        "amount": 0.006
+       },
+       {
+        "target": "opinion.group.adults",
+        "amount": 0.004
+       },
+       {
+        "target": "sector.construction",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "close",
+      "label": "Fermer pendant les pics de chaleur",
+      "hint": "Aucun coût ; parents désorganisés",
+      "effects": [
+       {
+        "target": "opinion.group.adults",
+        "amount": -0.004
+       },
+       {
+        "target": "economy.output",
+        "amount": -0.0005
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "fans",
+      "label": "Acheter des ventilateurs",
+      "hint": "Coût : 50 M€ ; pansement",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.05
+       },
+       {
+        "target": "opinion.group.adults",
+        "amount": -0.001
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "education"
+   },
+   "conditions": [
+    {
+     "variable": "season.month",
+     "min": 5,
+     "max": 9
+    }
+   ]
+  },
+  {
+   "id": "train_chaos",
+   "category": "TERRITORY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0007,
+   "cooldownDays": 720,
+   "urgency": "IMPORTANT",
+   "headline": "Chaos ferroviaire : un été de trains annulés",
+   "notificationText": "Pannes, grèves, retards : les vacances gâchées.",
+   "modifiers": [
+    {
+     "variable": "quality.transport",
+     "from": 0.4,
+     "to": 0.7,
+     "factorAtFrom": 2.5,
+     "factorAtTo": 0.5
+    }
+   ],
+   "immediateEffects": [],
+   "message": {
+    "template": "train_chaos",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "invest",
+    "options": [
+     {
+      "id": "invest",
+      "label": "Plan d'investissement dans le rail",
+      "hint": "Coût : 3 Md€ ; effets dans plusieurs années",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 3.0
+       },
+       {
+        "target": "quality.transport",
+        "amount": 0.01,
+        "days": 730
+       },
+       {
+        "target": "opinion.group.middle_income",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "refund",
+      "label": "Indemniser les voyageurs",
+      "hint": "Coût : 200 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.2
+       },
+       {
+        "target": "opinion.group.middle_income",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "ceo",
+      "label": "Changer la direction de la SNCF",
+      "hint": "Aucun coût ; geste symbolique",
+      "effects": [
+       {
+        "target": "opinion.national",
+        "amount": 0.001
+       },
+       {
+        "target": "quality.transport",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "transport"
+   }
+  },
+  {
+   "id": "bank_scam_wave",
+   "category": "SECURITY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0007,
+   "cooldownDays": 720,
+   "urgency": "IMPORTANT",
+   "headline": "Arnaques bancaires : des milliers de retraités dépouillés",
+   "notificationText": "Faux conseillers, SMS piégés : l'épargne envolée.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "bank_scam_wave",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "banks",
+    "options": [
+     {
+      "id": "banks",
+      "label": "Obliger les banques à rembourser",
+      "hint": "Victimes protégées ; banques furieuses",
+      "effects": [
+       {
+        "target": "opinion.group.retirees",
+        "amount": 0.006
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": 0.004
+       },
+       {
+        "target": "sector.banking",
+        "amount": -0.002
+       },
+       {
+        "target": "actor.banking_lobby",
+        "amount": -0.15
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "parquet",
+      "label": "Créer un parquet spécialisé",
+      "hint": "Coût : 30 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.03
+       },
+       {
+        "target": "quality.justice",
+        "amount": 0.003
+       },
+       {
+        "target": "opinion.group.retirees",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "campaign",
+      "label": "Campagne de prévention",
+      "hint": "Coût : 5 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.005
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "interior"
+   }
+  },
+  {
+   "id": "social_media_harassment",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0007,
+   "cooldownDays": 720,
+   "urgency": "IMPORTANT",
+   "headline": "Harcèlement en ligne : une adolescente met fin à ses jours",
+   "notificationText": "Le pays bouleversé.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "social_media_harassment",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "sanction",
+    "options": [
+     {
+      "id": "ban",
+      "label": "Interdire les réseaux aux moins de 15 ans",
+      "hint": "Protection ; débat sur les libertés",
+      "effects": [
+       {
+        "target": "opinion.group.adults",
+        "amount": 0.006
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": -0.004
+       },
+       {
+        "target": "liberty",
+        "amount": -1
+       },
+       {
+        "target": "actor.tech_lobby",
+        "amount": -0.2
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "sanction",
+      "label": "Amendes lourdes pour les plateformes",
+      "hint": "Bruxelles doit suivre",
+      "effects": [
+       {
+        "target": "opinion.group.adults",
+        "amount": 0.004
+       },
+       {
+        "target": "actor.tech_lobby",
+        "amount": -0.15
+       },
+       {
+        "target": "alliance.EU.NEGOTIATION_GOODWILL",
+        "amount": 0.005
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "education",
+      "label": "Plan d'éducation au numérique",
+      "hint": "Coût : 40 M€ ; effet lent",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.04
+       },
+       {
+        "target": "quality.education",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "education"
+   }
+  },
+  {
+   "id": "pension_fund_scandal",
+   "category": "ECONOMY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0007,
+   "cooldownDays": 720,
+   "urgency": "IMPORTANT",
+   "headline": "Un fonds de retraite complémentaire au bord de la faillite",
+   "notificationText": "Des centaines de milliers de pensions menacées.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "pension_fund_scandal",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "small",
+    "options": [
+     {
+      "id": "bailout",
+      "label": "Renflouer le fonds",
+      "hint": "Coût : 4 Md€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 4.0
+       },
+       {
+        "target": "opinion.group.retirees",
+        "amount": 0.008
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "small",
+      "label": "Garantir les petites pensions",
+      "hint": "Coût : 1,2 Md€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 1.2
+       },
+       {
+        "target": "opinion.group.retirees",
+        "amount": 0.003
+       },
+       {
+        "target": "opinion.group.low_income",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "none",
+      "label": "Laisser faire",
+      "hint": "Aucun coût ; colère des retraités",
+      "effects": [
+       {
+        "target": "opinion.group.retirees",
+        "amount": -0.012
+       },
+       {
+        "target": "unrest.pensions",
+        "amount": 0.5
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "economy"
+   },
+   "conditions": [
+    {
+     "variable": "economy.growth",
+     "max": 0.01
+    }
+   ]
+  },
+  {
+   "id": "housing_crash_builders",
+   "category": "ECONOMY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0007,
+   "cooldownDays": 720,
+   "urgency": "IMPORTANT",
+   "headline": "Le bâtiment s'effondre : chantiers à l'arrêt, faillites en série",
+   "notificationText": "100 000 emplois menacés.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "housing_crash_builders",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "ptz",
+    "options": [
+     {
+      "id": "relaunch",
+      "label": "Plan de relance du logement",
+      "hint": "Coût : 5 Md€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 5.0
+       },
+       {
+        "target": "sector.construction",
+        "amount": 0.01
+       },
+       {
+        "target": "economy.unemployment",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "ptz",
+      "label": "Prêt à taux zéro élargi",
+      "hint": "Coût : 1,5 Md€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 1.5
+       },
+       {
+        "target": "sector.construction",
+        "amount": 0.004
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "none",
+      "label": "Laisser le marché se purger",
+      "hint": "Aucun coût ; faillites",
+      "effects": [
+       {
+        "target": "sector.construction",
+        "amount": -0.006
+       },
+       {
+        "target": "economy.unemployment",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "economy"
+   },
+   "conditions": [
+    {
+     "variable": "society.housePrices",
+     "max": 0.95
+    }
+   ]
+  },
+  {
+   "id": "rent_explosion",
+   "category": "TERRITORY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0007,
+   "cooldownDays": 720,
+   "urgency": "IMPORTANT",
+   "headline": "Loyers : les étudiants dorment dans leur voiture",
+   "notificationText": "La crise du logement étudiant fait scandale.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "rent_explosion",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "build",
+    "options": [
+     {
+      "id": "build",
+      "label": "Construire 50 000 logements étudiants",
+      "hint": "Coût : 3 Md€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 3.0
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": 0.008
+       },
+       {
+        "target": "sector.construction",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "cap",
+      "label": "Encadrer les loyers dans les villes universitaires",
+      "hint": "Aucun coût ; propriétaires mécontents",
+      "effects": [
+       {
+        "target": "opinion.group.young",
+        "amount": 0.005
+       },
+       {
+        "target": "opinion.group.high_income",
+        "amount": -0.003
+       },
+       {
+        "target": "sector.construction",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "aid",
+      "label": "Augmenter les aides au logement",
+      "hint": "Coût : 800 M€ ; loyers tirés vers le haut",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.8
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "labour"
+   },
+   "conditions": [
+    {
+     "variable": "society.realRent",
+     "min": 1.06
+    }
+   ]
+  },
+  {
+   "id": "baby_bust",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0007,
+   "cooldownDays": 1460,
+   "urgency": "IMPORTANT",
+   "headline": "Natalité : la France fait de moins en moins d'enfants",
+   "notificationText": "Le plus bas niveau depuis la guerre.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "baby_bust",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "leave",
+    "options": [
+     {
+      "id": "family",
+      "label": "Grand plan famille (crèches, allocations)",
+      "hint": "Coût : 4 Md€ par an",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 4.0
+       },
+       {
+        "target": "opinion.group.adults",
+        "amount": 0.006
+       },
+       {
+        "target": "actor.church",
+        "amount": 0.1
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "leave",
+      "label": "Congé parental mieux payé",
+      "hint": "Coût : 1,5 Md€ par an",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 1.5
+       },
+       {
+        "target": "opinion.group.adults",
+        "amount": 0.004
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "none",
+      "label": "Ne rien faire",
+      "hint": "Aucun coût",
+      "effects": [
+       {
+        "target": "opinion.group.adults",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "labour"
+   },
+   "conditions": [
+    {
+     "variable": "society.fertility",
+     "max": 1.55
+    }
+   ]
+  },
+  {
+   "id": "undeclared_work_raid",
+   "category": "ECONOMY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0007,
+   "cooldownDays": 720,
+   "urgency": "IMPORTANT",
+   "headline": "Travail au noir : un vaste réseau démantelé dans le BTP",
+   "notificationText": "Des milliers de travailleurs non déclarés.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "undeclared_work_raid",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "controls",
+    "options": [
+     {
+      "id": "controls",
+      "label": "Multiplier les contrôles",
+      "hint": "Coût : 100 M€ ; recettes récupérées",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": -0.4
+       },
+       {
+        "target": "actor.employers_small",
+        "amount": -0.05
+       },
+       {
+        "target": "quality.justice",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "charges",
+      "label": "Alléger les charges sur les bas salaires",
+      "hint": "Coût : 2 Md€ ; travail déclaré plus intéressant",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 2.0
+       },
+       {
+        "target": "economy.unemployment",
+        "amount": -0.001
+       },
+       {
+        "target": "actor.employers_small",
+        "amount": 0.1
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "contractors",
+      "label": "Responsabiliser les donneurs d'ordre",
+      "hint": "Aucun coût ; patronat mécontent",
+      "effects": [
+       {
+        "target": "actor.employers_big",
+        "amount": -0.1
+       },
+       {
+        "target": "budget.oneOff",
+        "amount": -0.2
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "labour"
+   },
+   "conditions": [
+    {
+     "variable": "society.informal",
+     "min": 0.115
+    }
+   ]
+  },
+  {
+   "id": "savings_record",
+   "category": "ECONOMY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0007,
+   "cooldownDays": 720,
+   "urgency": "IMPORTANT",
+   "headline": "Épargne record : 6 000 milliards dorment sur les comptes",
+   "notificationText": "Les Français épargnent au lieu de consommer.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "savings_record",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "reassure",
+    "options": [
+     {
+      "id": "loan",
+      "label": "Grand emprunt national pour l'industrie",
+      "hint": "Investissement ; dette en plus",
+      "effects": [
+       {
+        "target": "economy.potentialGrowth",
+        "amount": 0.0005
+       },
+       {
+        "target": "sector.industry",
+        "amount": 0.004
+       },
+       {
+        "target": "budget.oneOff",
+        "amount": 1.0
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "tax",
+      "label": "Taxer l'épargne qui dort",
+      "hint": "Recettes ; colère des épargnants",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": -2.0
+       },
+       {
+        "target": "opinion.group.retirees",
+        "amount": -0.006
+       },
+       {
+        "target": "opinion.group.middle_income",
+        "amount": -0.004
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "reassure",
+      "label": "Rassurer : visibilité fiscale et emploi",
+      "hint": "Aucun coût",
+      "effects": [
+       {
+        "target": "economy.consumerConfidence",
+        "amount": 0.01
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "economy"
+   },
+   "conditions": [
+    {
+     "variable": "society.savingsRate",
+     "min": 0.19
+    }
+   ]
+  },
+  {
+   "id": "life_expectancy_report",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0007,
+   "cooldownDays": 720,
+   "urgency": "IMPORTANT",
+   "headline": "Rapport choc : l'espérance de vie recule dans les territoires pauvres",
+   "notificationText": "Dix ans d'écart entre riches et pauvres.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "life_expectancy_report",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "plan",
+    "options": [
+     {
+      "id": "plan",
+      "label": "Plan de santé publique ciblé",
+      "hint": "Coût : 1,5 Md€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 1.5
+       },
+       {
+        "target": "quality.health",
+        "amount": 0.006
+       },
+       {
+        "target": "opinion.group.low_income",
+        "amount": 0.004
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "prevention",
+      "label": "Mieux rembourser la prévention",
+      "hint": "Coût : 500 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.5
+       },
+       {
+        "target": "quality.health",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "report",
+      "label": "Commander un nouveau rapport",
+      "hint": "Aucun coût ; immobilisme dénoncé",
+      "effects": [
+       {
+        "target": "opinion.group.low_income",
+        "amount": -0.003
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "health"
+   },
+   "conditions": [
+    {
+     "variable": "society.lifeExpectancy",
+     "max": 82.6
+    }
+   ]
+  },
+  {
+   "id": "world_crisis_fallout",
+   "category": "ECONOMY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0007,
+   "cooldownDays": 720,
+   "urgency": "IMPORTANT",
+   "headline": "La crise mondiale frappe nos exportateurs",
+   "notificationText": "Commandes annulées, usines au ralenti.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "world_crisis_fallout",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "partial",
+    "options": [
+     {
+      "id": "export",
+      "label": "Plan de soutien à l'export",
+      "hint": "Coût : 1 Md€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 1.0
+       },
+       {
+        "target": "sector.industry",
+        "amount": 0.003
+       },
+       {
+        "target": "sector.aerospace",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "partial",
+      "label": "Chômage partiel massif",
+      "hint": "Coût : 3 Md€ ; emplois préservés",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 3.0
+       },
+       {
+        "target": "economy.unemployment",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "wait",
+      "label": "Attendre la reprise",
+      "hint": "Aucun coût",
+      "effects": [
+       {
+        "target": "economy.unemployment",
+        "amount": 0.002
+       },
+       {
+        "target": "opinion.group.private_employees",
+        "amount": -0.003
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "economy"
+   },
+   "conditions": [
+    {
+     "variable": "economy.growth",
+     "max": 0.005
+    }
+   ]
+  },
+  {
+   "id": "drone_threat",
+   "category": "SECURITY",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0007,
+   "cooldownDays": 720,
+   "urgency": "IMPORTANT",
+   "headline": "Des drones survolent des centrales nucléaires",
+   "notificationText": "Personne ne sait qui les pilote.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "drone_threat",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "jammers",
+    "options": [
+     {
+      "id": "jammers",
+      "label": "Brouilleurs et armes anti-drones",
+      "hint": "Coût : 400 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.4
+       },
+       {
+        "target": "quality.security",
+        "amount": 0.005
+       },
+       {
+        "target": "quality.defense",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "watch",
+      "label": "Renforcer la surveillance aérienne",
+      "hint": "Coût : 100 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.1
+       },
+       {
+        "target": "quality.defense",
+        "amount": 0.002
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "minimize",
+      "label": "Minimiser publiquement",
+      "hint": "Aucun coût ; risque",
+      "effects": [
+       {
+        "target": "quality.security",
+        "amount": -0.003
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "armed_forces"
+   }
+  },
+  {
+   "id": "olympic_legacy",
+   "category": "POLITICS",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.0007,
+   "cooldownDays": 1460,
+   "urgency": "IMPORTANT",
+   "headline": "Équipements sportifs : les clubs amateurs à l'agonie",
+   "notificationText": "Les licenciés affluent, les installations manquent.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "olympic_legacy",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "clubs",
+    "options": [
+     {
+      "id": "plan",
+      "label": "Plan 5 000 équipements sportifs",
+      "hint": "Coût : 1 Md€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 1.0
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": 0.005
+       },
+       {
+        "target": "quality.health",
+        "amount": 0.002
+       },
+       {
+        "target": "sector.construction",
+        "amount": 0.001
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "clubs",
+      "label": "Aide directe aux clubs",
+      "hint": "Coût : 200 M€",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.2
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": 0.003
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "none",
+      "label": "Laisser les communes gérer",
+      "hint": "Aucun coût",
+      "effects": [
+       {
+        "target": "opinion.group.young",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "education"
+   }
+  },
+  {
+   "id": "heritage_fire",
+   "category": "DISASTER",
+   "scope": "NATIONAL",
+   "baseDailyProbability": 0.00028000000000000003,
+   "cooldownDays": 3650,
+   "urgency": "IMPORTANT",
+   "headline": "Incendie d'un monument historique",
+   "notificationText": "Une partie du patrimoine national part en fumée.",
+   "modifiers": [],
+   "immediateEffects": [],
+   "message": {
+    "template": "heritage_fire",
+    "sender": "MINISTER",
+    "responseDays": 4,
+    "defaultOption": "identical",
+    "options": [
+     {
+      "id": "identical",
+      "label": "Reconstruire à l'identique en cinq ans",
+      "hint": "Coût : 800 M€ ; fierté nationale",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.8
+       },
+       {
+        "target": "opinion.national",
+        "amount": 0.006
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": 0.004
+       }
+      ],
+      "outcome": "ACCEPTED"
+     },
+     {
+      "id": "contest",
+      "label": "Concours d'architecture contemporaine",
+      "hint": "Coût : 600 M€ ; débat passionné",
+      "effects": [
+       {
+        "target": "budget.oneOff",
+        "amount": 0.6
+       },
+       {
+        "target": "opinion.group.young",
+        "amount": 0.003
+       },
+       {
+        "target": "opinion.group.seniors",
+        "amount": -0.004
+       }
+      ],
+      "outcome": "PARTIAL"
+     },
+     {
+      "id": "experts",
+      "label": "Laisser le temps aux experts",
+      "hint": "Aucun coût immédiat",
+      "effects": [
+       {
+        "target": "opinion.national",
+        "amount": -0.002
+       }
+      ],
+      "outcome": "REFUSED"
+     }
+    ],
+    "ministry": "education"
+   }
+  }
+ ]
+}

@@ -100,7 +100,7 @@ class LocalActionList(
         if (categories.isNotEmpty()) {
             val chips = HorizontalGroup().apply { wrap(); left(); rowLeft(); space(4f); wrapSpace(4f) }
             chips.addActor(filterButton("Tout (${actions.count { it.blocker == null }})", null))
-            categories.forEach { c ->
+            categories.filter { c -> actions.any { it.def.category == c.id } }.forEach { c ->
                 val n = actions.count { it.def.category == c.id && it.blocker == null }
                 chips.addActor(filterButton("${c.icon} ${c.label}" + if (n > 0) " ($n)" else "", c.id))
             }

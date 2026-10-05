@@ -1,0 +1,1578 @@
+{
+ "_doc": "La vie des autres pays -> assets/data/diplomacy/world_events.json.",
+ "events": [
+  {
+   "id": "snap_election",
+   "category": "politique",
+   "headline": "{A} : élections anticipées",
+   "detail": "Affaibli dans les sondages, le pouvoir {de_A} convoque les électeurs avant l'heure.",
+   "chance": 0.05,
+   "effects": [
+    {
+     "target": "A.approval",
+     "amount": 0.05
+    },
+    {
+     "target": "A.confidence",
+     "amount": -0.01
+    }
+   ],
+   "conditions": [
+    {
+     "var": "approval",
+     "max": 0.35
+    }
+   ],
+   "bilateral": false,
+   "france": "",
+   "tone": "NEUTRAL",
+   "major": false
+  },
+  {
+   "id": "government_collapse",
+   "category": "politique",
+   "headline": "{A} : le gouvernement tombe",
+   "detail": "Une motion de censure renverse le gouvernement {de_A} ; le pays cherche une majorité.",
+   "chance": 0.04,
+   "effects": [
+    {
+     "target": "A.approval",
+     "amount": -0.04
+    },
+    {
+     "target": "A.confidence",
+     "amount": -0.02
+    },
+    {
+     "target": "A.output",
+     "amount": -0.002
+    }
+   ],
+   "conditions": [
+    {
+     "var": "approval",
+     "max": 0.38
+    }
+   ],
+   "bilateral": false,
+   "france": "",
+   "tone": "BAD",
+   "major": false
+  },
+  {
+   "id": "coalition_deal",
+   "category": "politique",
+   "headline": "{A} : accord de coalition",
+   "detail": "Après des semaines de négociations, une coalition se forme {en_A}.",
+   "chance": 0.03,
+   "effects": [
+    {
+     "target": "A.approval",
+     "amount": 0.03
+    },
+    {
+     "target": "A.confidence",
+     "amount": 0.01
+    }
+   ],
+   "conditions": [
+    {
+     "var": "approval",
+     "min": 0.3,
+     "max": 0.55
+    }
+   ],
+   "bilateral": false,
+   "france": "",
+   "tone": "NEUTRAL",
+   "major": false
+  },
+  {
+   "id": "corruption_scandal",
+   "category": "politique",
+   "headline": "Scandale de corruption {en_A}",
+   "detail": "Des proches du pouvoir {de_A} sont mis en cause ; la presse se déchaîne.",
+   "chance": 0.04,
+   "effects": [
+    {
+     "target": "A.approval",
+     "amount": -0.06
+    }
+   ],
+   "conditions": [],
+   "bilateral": false,
+   "france": "",
+   "tone": "BAD",
+   "major": false
+  },
+  {
+   "id": "minister_resigns",
+   "category": "politique",
+   "headline": "{A} : démission fracassante d'un ministre",
+   "detail": "Le ministre claque la porte en dénonçant la ligne du gouvernement.",
+   "chance": 0.04,
+   "effects": [
+    {
+     "target": "A.approval",
+     "amount": -0.02
+    }
+   ],
+   "conditions": [],
+   "bilateral": false,
+   "france": "",
+   "tone": "NEUTRAL",
+   "major": false
+  },
+  {
+   "id": "populist_surge",
+   "category": "politique",
+   "headline": "{A} : poussée populiste dans les sondages",
+   "detail": "Un parti antisystème caracole en tête des intentions de vote {en_A}.",
+   "chance": 0.04,
+   "effects": [
+    {
+     "target": "A.confidence",
+     "amount": -0.01
+    },
+    {
+     "target": "memory.{A}.DISAGREEMENT",
+     "amount": -0.01
+    }
+   ],
+   "conditions": [
+    {
+     "var": "unemployment",
+     "min": 0.08
+    }
+   ],
+   "bilateral": false,
+   "france": "Les relations avec Paris pourraient se tendre si ce parti l'emporte.",
+   "tone": "NEUTRAL",
+   "major": false
+  },
+  {
+   "id": "referendum_abroad",
+   "category": "politique",
+   "headline": "{A} : référendum historique",
+   "detail": "Les électeurs {de_A} sont appelés à trancher une question qui divise le pays.",
+   "chance": 0.015,
+   "effects": [
+    {
+     "target": "A.approval",
+     "amount": -0.02
+    }
+   ],
+   "conditions": [],
+   "bilateral": false,
+   "france": "",
+   "tone": "NEUTRAL",
+   "major": false
+  },
+  {
+   "id": "constitutional_crisis",
+   "category": "politique",
+   "headline": "{A} : crise constitutionnelle",
+   "detail": "Le pouvoir {de_A} s'affronte avec la Cour suprême ; l'opposition parle de dérive.",
+   "chance": 0.015,
+   "effects": [
+    {
+     "target": "A.approval",
+     "amount": -0.04
+    },
+    {
+     "target": "A.confidence",
+     "amount": -0.02
+    },
+    {
+     "target": "memory.{A}.DISAGREEMENT",
+     "amount": -0.01
+    }
+   ],
+   "conditions": [
+    {
+     "var": "aggressiveness",
+     "min": 0.6
+    }
+   ],
+   "bilateral": false,
+   "france": "Les capitales européennes s'inquiètent de l'état de droit.",
+   "tone": "BAD",
+   "major": false
+  },
+  {
+   "id": "leader_health",
+   "category": "politique",
+   "headline": "{A} : rumeurs sur la santé du dirigeant",
+   "detail": "Absent depuis des semaines, le chef {de_A} alimente les spéculations.",
+   "chance": 0.01,
+   "effects": [
+    {
+     "target": "A.approval",
+     "amount": -0.02
+    },
+    {
+     "target": "A.confidence",
+     "amount": -0.01
+    }
+   ],
+   "conditions": [],
+   "bilateral": false,
+   "france": "",
+   "tone": "NEUTRAL",
+   "major": false
+  },
+  {
+   "id": "mass_protests",
+   "category": "société",
+   "headline": "{A} : manifestations massives contre le pouvoir",
+   "detail": "Des centaines de milliers de personnes défilent dans les rues {de_A}.",
+   "chance": 0.05,
+   "effects": [
+    {
+     "target": "A.approval",
+     "amount": -0.05
+    },
+    {
+     "target": "A.output",
+     "amount": -0.002
+    }
+   ],
+   "conditions": [
+    {
+     "var": "approval",
+     "max": 0.35
+    }
+   ],
+   "bilateral": false,
+   "france": "",
+   "tone": "BAD",
+   "major": false
+  },
+  {
+   "id": "coup_attempt",
+   "category": "politique",
+   "headline": "{A} : tentative de coup d'État",
+   "detail": "Des militaires tentent de s'emparer du pouvoir {en_A}.",
+   "chance": 0.006,
+   "effects": [
+    {
+     "target": "A.approval",
+     "amount": -0.1
+    },
+    {
+     "target": "A.output",
+     "amount": -0.01
+    },
+    {
+     "target": "A.confidence",
+     "amount": -0.06
+    },
+    {
+     "target": "A.leader",
+     "amount": 1
+    }
+   ],
+   "conditions": [
+    {
+     "var": "approval",
+     "max": 0.25
+    },
+    {
+     "var": "eu",
+     "max": 0
+    }
+   ],
+   "bilateral": false,
+   "france": "Paris doit choisir : condamner, attendre, ou parler aux nouveaux maîtres du pays.",
+   "tone": "BAD",
+   "major": true
+  },
+  {
+   "id": "leader_landslide",
+   "category": "politique",
+   "headline": "{A} : le dirigeant au sommet de sa popularité",
+   "detail": "Une série de succès porte le chef {de_A} à des records dans les sondages.",
+   "chance": 0.03,
+   "effects": [
+    {
+     "target": "A.approval",
+     "amount": 0.04
+    },
+    {
+     "target": "A.confidence",
+     "amount": 0.01
+    }
+   ],
+   "conditions": [
+    {
+     "var": "approval",
+     "min": 0.55
+    }
+   ],
+   "bilateral": false,
+   "france": "",
+   "tone": "GOOD",
+   "major": false
+  },
+  {
+   "id": "opposition_jailed",
+   "category": "politique",
+   "headline": "{A} : le chef de l'opposition arrêté",
+   "detail": "Le principal opposant {de_A} est placé en détention ; ses partisans crient au procès politique.",
+   "chance": 0.02,
+   "effects": [
+    {
+     "target": "A.approval",
+     "amount": -0.02
+    },
+    {
+     "target": "memory.{A}.DISAGREEMENT",
+     "amount": -0.02
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": -0.002
+    }
+   ],
+   "conditions": [
+    {
+     "var": "aggressiveness",
+     "min": 0.6
+    },
+    {
+     "var": "eu",
+     "max": 0
+    }
+   ],
+   "bilateral": false,
+   "france": "Les ONG demandent à la France de réagir.",
+   "tone": "BAD",
+   "major": false
+  },
+  {
+   "id": "recession_abroad",
+   "category": "économie",
+   "headline": "{A} : entrée en récession",
+   "detail": "Deux trimestres de recul : l'économie {de_A} se contracte.",
+   "chance": 0.08,
+   "effects": [
+    {
+     "target": "A.confidence",
+     "amount": -0.03
+    },
+    {
+     "target": "A.unemployment",
+     "amount": 0.003
+    },
+    {
+     "target": "sector.industry",
+     "amount": -0.002
+    },
+    {
+     "target": "sector.luxury",
+     "amount": -0.002
+    }
+   ],
+   "conditions": [
+    {
+     "var": "growth",
+     "max": 0.0
+    }
+   ],
+   "bilateral": false,
+   "france": "Nos exportateurs vendent moins {en_A}.",
+   "tone": "BAD",
+   "major": false
+  },
+  {
+   "id": "boom_abroad",
+   "category": "économie",
+   "headline": "Croissance record {en_A}",
+   "detail": "L'économie {de_A} tourne à plein régime ; les entreprises françaises en profitent.",
+   "chance": 0.06,
+   "effects": [
+    {
+     "target": "A.confidence",
+     "amount": 0.02
+    },
+    {
+     "target": "sector.luxury",
+     "amount": 0.002
+    },
+    {
+     "target": "sector.aerospace",
+     "amount": 0.001
+    }
+   ],
+   "conditions": [
+    {
+     "var": "growth",
+     "min": 0.025
+    }
+   ],
+   "bilateral": false,
+   "france": "Davantage de commandes pour nos exportateurs.",
+   "tone": "GOOD",
+   "major": false
+  },
+  {
+   "id": "inflation_spike_abroad",
+   "category": "économie",
+   "headline": "{A} : l'inflation s'emballe",
+   "detail": "Les prix flambent {en_A} ; la banque centrale relève ses taux en urgence.",
+   "chance": 0.06,
+   "effects": [
+    {
+     "target": "A.approval",
+     "amount": -0.03
+    },
+    {
+     "target": "A.confidence",
+     "amount": -0.02
+    },
+    {
+     "target": "A.output",
+     "amount": -0.002
+    }
+   ],
+   "conditions": [
+    {
+     "var": "inflation",
+     "min": 0.05
+    }
+   ],
+   "bilateral": false,
+   "france": "",
+   "tone": "BAD",
+   "major": false
+  },
+  {
+   "id": "debt_scare",
+   "category": "économie",
+   "headline": "{A} : les marchés doutent de la dette",
+   "detail": "Les taux d'emprunt {de_A} s'envolent ; les agences menacent de dégrader sa note.",
+   "chance": 0.05,
+   "effects": [
+    {
+     "target": "A.confidence",
+     "amount": -0.03
+    },
+    {
+     "target": "A.output",
+     "amount": -0.003
+    },
+    {
+     "target": "sector.banking",
+     "amount": -0.002
+    }
+   ],
+   "conditions": [
+    {
+     "var": "debt",
+     "min": 1.1
+    }
+   ],
+   "bilateral": false,
+   "france": "Contagion possible : les banques françaises sont exposées.",
+   "tone": "BAD",
+   "major": false
+  },
+  {
+   "id": "currency_crash",
+   "category": "économie",
+   "headline": "{A} : effondrement de la monnaie",
+   "detail": "La devise {de_A} perd un quart de sa valeur en quelques jours.",
+   "chance": 0.02,
+   "effects": [
+    {
+     "target": "A.inflation",
+     "amount": 0.02
+    },
+    {
+     "target": "A.approval",
+     "amount": -0.05
+    },
+    {
+     "target": "A.confidence",
+     "amount": -0.04
+    }
+   ],
+   "conditions": [
+    {
+     "var": "eu",
+     "max": 0
+    },
+    {
+     "var": "inflation",
+     "min": 0.04
+    }
+   ],
+   "bilateral": false,
+   "france": "",
+   "tone": "BAD",
+   "major": false
+  },
+  {
+   "id": "big_strike_abroad",
+   "category": "société",
+   "headline": "{A} : grève générale",
+   "detail": "Les syndicats {de_A} paralysent les transports et l'industrie.",
+   "chance": 0.04,
+   "effects": [
+    {
+     "target": "A.output",
+     "amount": -0.003
+    },
+    {
+     "target": "A.approval",
+     "amount": -0.02
+    }
+   ],
+   "conditions": [
+    {
+     "var": "unemployment",
+     "min": 0.06
+    }
+   ],
+   "bilateral": false,
+   "france": "",
+   "tone": "NEUTRAL",
+   "major": false
+  },
+  {
+   "id": "tax_reform_abroad",
+   "category": "économie",
+   "headline": "{A} : baisse de l'impôt sur les sociétés",
+   "detail": "Pour attirer les investisseurs, {le_A} taille dans l'impôt des entreprises.",
+   "chance": 0.02,
+   "effects": [
+    {
+     "target": "A.confidence",
+     "amount": 0.02
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.002
+    }
+   ],
+   "conditions": [],
+   "bilateral": false,
+   "france": "Concurrence fiscale : certaines entreprises françaises sont tentées de s'y installer.",
+   "tone": "NEUTRAL",
+   "major": false
+  },
+  {
+   "id": "industrial_plan_abroad",
+   "category": "économie",
+   "headline": "{A} : plan industriel géant",
+   "detail": "Des centaines de milliards de subventions pour relocaliser usines et batteries.",
+   "chance": 0.015,
+   "effects": [
+    {
+     "target": "A.confidence",
+     "amount": 0.02
+    },
+    {
+     "target": "A.output",
+     "amount": 0.003
+    },
+    {
+     "target": "sector.industry",
+     "amount": -0.003
+    }
+   ],
+   "conditions": [
+    {
+     "var": "gdp",
+     "min": 1500
+    }
+   ],
+   "bilateral": false,
+   "france": "Nos industriels redoutent une fuite des investissements.",
+   "tone": "NEUTRAL",
+   "major": false
+  },
+  {
+   "id": "bank_failure_abroad",
+   "category": "économie",
+   "headline": "{A} : faillite d'une grande banque",
+   "detail": "Une banque majeure {de_A} s'effondre ; l'État intervient en catastrophe.",
+   "chance": 0.01,
+   "effects": [
+    {
+     "target": "A.confidence",
+     "amount": -0.05
+    },
+    {
+     "target": "A.output",
+     "amount": -0.005
+    },
+    {
+     "target": "sector.banking",
+     "amount": -0.005
+    }
+   ],
+   "conditions": [],
+   "bilateral": false,
+   "france": "La Bourse de Paris chute par contagion.",
+   "tone": "BAD",
+   "major": true
+  },
+  {
+   "id": "tech_breakthrough",
+   "category": "économie",
+   "headline": "{A} : percée technologique",
+   "detail": "Un groupe {de_A} dévoile une innovation qui bouscule son secteur.",
+   "chance": 0.02,
+   "effects": [
+    {
+     "target": "A.confidence",
+     "amount": 0.02
+    },
+    {
+     "target": "sector.tech",
+     "amount": -0.001
+    }
+   ],
+   "conditions": [
+    {
+     "var": "gdp",
+     "min": 1000
+    }
+   ],
+   "bilateral": false,
+   "france": "",
+   "tone": "GOOD",
+   "major": false
+  },
+  {
+   "id": "oil_output_cut",
+   "category": "économie",
+   "headline": "{A} : baisse de la production de pétrole",
+   "detail": "Pour soutenir les prix, {le_A} ferme les vannes.",
+   "chance": 0.05,
+   "effects": [
+    {
+     "target": "commodity.oil",
+     "amount": 0.08
+    },
+    {
+     "target": "A.output",
+     "amount": 0.002
+    }
+   ],
+   "conditions": [
+    {
+     "var": "producer_oil",
+     "min": 0.05
+    }
+   ],
+   "bilateral": false,
+   "france": "Le plein va coûter plus cher en France.",
+   "tone": "BAD",
+   "major": false
+  },
+  {
+   "id": "oil_output_rise",
+   "category": "économie",
+   "headline": "{A} : hausse de la production de pétrole",
+   "detail": "Pour gagner des parts de marché, la production repart à la hausse ; le baril recule.",
+   "chance": 0.04,
+   "effects": [
+    {
+     "target": "commodity.oil",
+     "amount": -0.07
+    }
+   ],
+   "conditions": [
+    {
+     "var": "producer_oil",
+     "min": 0.05
+    }
+   ],
+   "bilateral": false,
+   "france": "Bonne nouvelle pour le prix de l'essence.",
+   "tone": "GOOD",
+   "major": false
+  },
+  {
+   "id": "gas_cut",
+   "category": "économie",
+   "headline": "{A} : livraisons de gaz réduites",
+   "detail": "Officiellement pour maintenance, les livraisons de gaz {de_A} baissent fortement.",
+   "chance": 0.03,
+   "effects": [
+    {
+     "target": "commodity.gas",
+     "amount": 0.12
+    },
+    {
+     "target": "memory.{A}.DISAGREEMENT",
+     "amount": -0.01
+    }
+   ],
+   "conditions": [
+    {
+     "var": "producer_gas",
+     "min": 0.05
+    },
+    {
+     "var": "relationFrance",
+     "max": 0.45
+    }
+   ],
+   "bilateral": false,
+   "france": "Les factures de gaz montent en Europe.",
+   "tone": "BAD",
+   "major": false
+  },
+  {
+   "id": "harvest_failure",
+   "category": "économie",
+   "headline": "{A} : récolte catastrophique",
+   "detail": "Sécheresse et maladies : la récolte de blé {de_A} s'effondre.",
+   "chance": 0.03,
+   "effects": [
+    {
+     "target": "commodity.wheat",
+     "amount": 0.08
+    },
+    {
+     "target": "A.approval",
+     "amount": -0.02
+    }
+   ],
+   "conditions": [
+    {
+     "var": "producer_wheat",
+     "min": 0.05
+    }
+   ],
+   "bilateral": false,
+   "france": "Le prix du pain pourrait monter ; nos céréaliers vendent plus cher.",
+   "tone": "NEUTRAL",
+   "major": false
+  },
+  {
+   "id": "bumper_harvest",
+   "category": "économie",
+   "headline": "{A} : récolte record",
+   "detail": "Les silos {de_A} débordent ; les cours du blé reculent.",
+   "chance": 0.03,
+   "effects": [
+    {
+     "target": "commodity.wheat",
+     "amount": -0.06
+    },
+    {
+     "target": "sector.agrifood",
+     "amount": -0.001
+    }
+   ],
+   "conditions": [
+    {
+     "var": "producer_wheat",
+     "min": 0.05
+    }
+   ],
+   "bilateral": false,
+   "france": "Nos agriculteurs vendent moins cher.",
+   "tone": "NEUTRAL",
+   "major": false
+  },
+  {
+   "id": "mine_strike",
+   "category": "économie",
+   "headline": "{A} : grève dans les mines",
+   "detail": "Les mineurs {de_A} cessent le travail ; le cuivre et le lithium s'envolent.",
+   "chance": 0.02,
+   "effects": [
+    {
+     "target": "commodity.copper",
+     "amount": 0.08
+    },
+    {
+     "target": "commodity.lithium",
+     "amount": 0.06
+    }
+   ],
+   "conditions": [
+    {
+     "var": "producer_copper",
+     "min": 0.05
+    }
+   ],
+   "bilateral": false,
+   "france": "",
+   "tone": "NEUTRAL",
+   "major": false
+  },
+  {
+   "id": "gold_rush",
+   "category": "économie",
+   "headline": "Ruée vers l'or après des tensions {en_A}",
+   "detail": "Les investisseurs se réfugient dans l'or.",
+   "chance": 0.02,
+   "effects": [
+    {
+     "target": "commodity.gold",
+     "amount": 0.05
+    }
+   ],
+   "conditions": [
+    {
+     "var": "atWar",
+     "min": 1
+    }
+   ],
+   "bilateral": false,
+   "france": "",
+   "tone": "NEUTRAL",
+   "major": false
+  },
+  {
+   "id": "earthquake_abroad",
+   "category": "catastrophe",
+   "headline": "Séisme meurtrier {en_A}",
+   "detail": "Un violent tremblement de terre fait de nombreuses victimes {en_A}.",
+   "chance": 0.01,
+   "effects": [
+    {
+     "target": "A.output",
+     "amount": -0.004
+    },
+    {
+     "target": "A.approval",
+     "amount": 0.02
+    }
+   ],
+   "conditions": [
+    {
+     "var": "seismic",
+     "min": 1
+    }
+   ],
+   "bilateral": false,
+   "france": "Un geste de solidarité serait apprécié : envoyez la sécurité civile (Décider → International).",
+   "tone": "BAD",
+   "major": true
+  },
+  {
+   "id": "floods_abroad",
+   "category": "catastrophe",
+   "headline": "Inondations historiques {en_A}",
+   "detail": "Des régions entières {de_A} sont sous les eaux.",
+   "chance": 0.025,
+   "effects": [
+    {
+     "target": "A.output",
+     "amount": -0.002
+    },
+    {
+     "target": "A.approval",
+     "amount": -0.01
+    }
+   ],
+   "conditions": [],
+   "bilateral": false,
+   "france": "",
+   "tone": "BAD",
+   "major": false
+  },
+  {
+   "id": "wildfires_abroad",
+   "category": "catastrophe",
+   "headline": "Méga-feux {en_A}",
+   "detail": "Des incendies géants ravagent les forêts {de_A}.",
+   "chance": 0.02,
+   "effects": [
+    {
+     "target": "A.output",
+     "amount": -0.001
+    }
+   ],
+   "conditions": [
+    {
+     "var": "hot",
+     "min": 1
+    }
+   ],
+   "bilateral": false,
+   "france": "",
+   "tone": "BAD",
+   "major": false
+  },
+  {
+   "id": "epidemic_abroad",
+   "category": "catastrophe",
+   "headline": "Épidémie {en_A}",
+   "detail": "Un virus se propage {en_A} ; l'OMS surveille la situation.",
+   "chance": 0.008,
+   "effects": [
+    {
+     "target": "A.output",
+     "amount": -0.003
+    },
+    {
+     "target": "A.approval",
+     "amount": -0.02
+    },
+    {
+     "target": "sector.tourism",
+     "amount": -0.002
+    }
+   ],
+   "conditions": [],
+   "bilateral": false,
+   "france": "Le ministère de la Santé renforce la surveillance aux frontières.",
+   "tone": "BAD",
+   "major": false
+  },
+  {
+   "id": "terror_abroad",
+   "category": "société",
+   "headline": "Attentat {en_A}",
+   "detail": "Une attaque terroriste endeuille {le_A}.",
+   "chance": 0.012,
+   "effects": [
+    {
+     "target": "A.approval",
+     "amount": 0.02
+    },
+    {
+     "target": "A.confidence",
+     "amount": -0.01
+    },
+    {
+     "target": "memory.{A}.CRISIS_SOLIDARITY",
+     "amount": 0.0
+    }
+   ],
+   "conditions": [],
+   "bilateral": false,
+   "france": "Un message de solidarité de l'Élysée est attendu.",
+   "tone": "BAD",
+   "major": false
+  },
+  {
+   "id": "migrant_wave",
+   "category": "société",
+   "headline": "{A} : afflux de migrants à ses frontières",
+   "detail": "Des milliers de personnes se pressent aux frontières {de_A}.",
+   "chance": 0.03,
+   "effects": [
+    {
+     "target": "A.approval",
+     "amount": -0.02
+    },
+    {
+     "target": "demography.immigration",
+     "amount": 0.01
+    }
+   ],
+   "conditions": [
+    {
+     "var": "neighborEurope",
+     "min": 1
+    }
+   ],
+   "bilateral": false,
+   "france": "Une partie de ces arrivées pourrait gagner la France.",
+   "tone": "NEUTRAL",
+   "major": false
+  },
+  {
+   "id": "riots_abroad",
+   "category": "société",
+   "headline": "{A} : émeutes dans les grandes villes",
+   "detail": "Les quartiers populaires {de_A} s'embrasent après une bavure.",
+   "chance": 0.02,
+   "effects": [
+    {
+     "target": "A.approval",
+     "amount": -0.03
+    },
+    {
+     "target": "A.output",
+     "amount": -0.001
+    }
+   ],
+   "conditions": [
+    {
+     "var": "unemployment",
+     "min": 0.08
+    }
+   ],
+   "bilateral": false,
+   "france": "",
+   "tone": "BAD",
+   "major": false
+  },
+  {
+   "id": "sport_win_abroad",
+   "category": "société",
+   "headline": "{A} : victoire dans une grande compétition",
+   "detail": "Liesse populaire {en_A} après une victoire sportive.",
+   "chance": 0.02,
+   "effects": [
+    {
+     "target": "A.approval",
+     "amount": 0.02
+    }
+   ],
+   "conditions": [],
+   "bilateral": false,
+   "france": "",
+   "tone": "GOOD",
+   "major": false
+  },
+  {
+   "id": "record_tourism",
+   "category": "société",
+   "headline": "Afflux record de touristes {en_A}",
+   "detail": "Des touristes qui auraient pu venir en France choisissent ce pays.",
+   "chance": 0.02,
+   "effects": [
+    {
+     "target": "A.output",
+     "amount": 0.001
+    },
+    {
+     "target": "sector.tourism",
+     "amount": -0.001
+    }
+   ],
+   "conditions": [
+    {
+     "var": "tourist",
+     "min": 1
+    }
+   ],
+   "bilateral": false,
+   "france": "",
+   "tone": "NEUTRAL",
+   "major": false
+  },
+  {
+   "id": "brain_drain",
+   "category": "société",
+   "headline": "{A} : les jeunes diplômés s'en vont",
+   "detail": "Faute d'emplois, les jeunes {de_A} partent à l'étranger, souvent en France.",
+   "chance": 0.02,
+   "effects": [
+    {
+     "target": "A.approval",
+     "amount": -0.01
+    },
+    {
+     "target": "economy.potentialGrowth",
+     "amount": 0.0001
+    }
+   ],
+   "conditions": [
+    {
+     "var": "unemployment",
+     "min": 0.1
+    }
+   ],
+   "bilateral": false,
+   "france": "",
+   "tone": "NEUTRAL",
+   "major": false
+  },
+  {
+   "id": "trade_deal",
+   "category": "diplomatie",
+   "headline": "Accord commercial entre {A} et {B}",
+   "detail": "Les droits de douane tombent entre {le_A} et {le_B}.",
+   "chance": 0.25,
+   "effects": [
+    {
+     "target": "AB.AGREEMENT_SIGNED",
+     "amount": 0.04
+    },
+    {
+     "target": "A.output",
+     "amount": 0.001
+    },
+    {
+     "target": "B.output",
+     "amount": 0.001
+    }
+   ],
+   "conditions": [
+    {
+     "var": "pairRelation",
+     "min": 0.5
+    }
+   ],
+   "bilateral": true,
+   "france": "",
+   "tone": "GOOD",
+   "major": false
+  },
+  {
+   "id": "diplomatic_spat",
+   "category": "diplomatie",
+   "headline": "Crise diplomatique entre {A} et {B}",
+   "detail": "Ambassadeurs rappelés, déclarations hostiles : le ton monte entre {le_A} et {le_B}.",
+   "chance": 0.3,
+   "effects": [
+    {
+     "target": "AB.DISAGREEMENT",
+     "amount": -0.05
+    }
+   ],
+   "conditions": [
+    {
+     "var": "pairRelation",
+     "max": 0.45
+    }
+   ],
+   "bilateral": true,
+   "france": "",
+   "tone": "BAD",
+   "major": false
+  },
+  {
+   "id": "state_visit",
+   "category": "diplomatie",
+   "headline": "Visite d'État : le dirigeant {de_A} reçu {en_B}",
+   "detail": "Le dirigeant {de_A} est reçu en grande pompe {en_B}.",
+   "chance": 0.3,
+   "effects": [
+    {
+     "target": "AB.NEGOTIATION_GOODWILL",
+     "amount": 0.04
+    },
+    {
+     "target": "A.approval",
+     "amount": 0.01
+    }
+   ],
+   "conditions": [
+    {
+     "var": "pairRelation",
+     "min": 0.45
+    }
+   ],
+   "bilateral": true,
+   "france": "",
+   "tone": "GOOD",
+   "major": false
+  },
+  {
+   "id": "trade_war",
+   "category": "diplomatie",
+   "headline": "Guerre commerciale entre {A} et {B}",
+   "detail": "Taxes à 25 % de part et d'autre : {le_A} et {le_B} s'affrontent sur le commerce.",
+   "chance": 0.12,
+   "effects": [
+    {
+     "target": "AB.SANCTION",
+     "amount": -0.06
+    },
+    {
+     "target": "A.output",
+     "amount": -0.003
+    },
+    {
+     "target": "B.output",
+     "amount": -0.003
+    },
+    {
+     "target": "A.confidence",
+     "amount": -0.02
+    },
+    {
+     "target": "B.confidence",
+     "amount": -0.02
+    }
+   ],
+   "conditions": [
+    {
+     "var": "pairRelation",
+     "max": 0.4
+    },
+    {
+     "var": "gdp",
+     "min": 1000
+    },
+    {
+     "var": "otherGdp",
+     "min": 1000
+    }
+   ],
+   "bilateral": true,
+   "france": "Les entreprises françaises pourraient y gagner des marchés… ou être prises entre deux feux.",
+   "tone": "BAD",
+   "major": true
+  },
+  {
+   "id": "sanctions_abroad",
+   "category": "diplomatie",
+   "headline": "{A} : sanctions contre {le_B}",
+   "detail": "Gel des avoirs et embargo : {le_A} frappe {le_B} au portefeuille.",
+   "chance": 0.1,
+   "effects": [
+    {
+     "target": "AB.SANCTION",
+     "amount": -0.08
+    },
+    {
+     "target": "B.output",
+     "amount": -0.004
+    },
+    {
+     "target": "B.approval",
+     "amount": 0.02
+    }
+   ],
+   "conditions": [
+    {
+     "var": "pairRelation",
+     "max": 0.3
+    }
+   ],
+   "bilateral": true,
+   "france": "",
+   "tone": "BAD",
+   "major": false
+  },
+  {
+   "id": "border_incident",
+   "category": "conflit",
+   "headline": "Incident à la frontière entre {A} et {B}",
+   "detail": "Des tirs ont été échangés ; chaque camp accuse l'autre.",
+   "chance": 0.08,
+   "effects": [
+    {
+     "target": "AB.THREAT",
+     "amount": -0.08
+    },
+    {
+     "target": "A.approval",
+     "amount": 0.01
+    },
+    {
+     "target": "B.approval",
+     "amount": 0.01
+    }
+   ],
+   "conditions": [
+    {
+     "var": "pairRelation",
+     "max": 0.3
+    },
+    {
+     "var": "aggressiveness",
+     "min": 0.55
+    },
+    {
+     "var": "neighbors",
+     "min": 1
+    }
+   ],
+   "bilateral": true,
+   "france": "Risque d'escalade : l'ONU pourrait être saisie.",
+   "tone": "BAD",
+   "major": true
+  },
+  {
+   "id": "spy_scandal",
+   "category": "diplomatie",
+   "headline": "Affaire d'espionnage entre {A} et {B}",
+   "detail": "Des diplomates {de_A} sont expulsés {de_B} pour espionnage.",
+   "chance": 0.15,
+   "effects": [
+    {
+     "target": "AB.DISAGREEMENT",
+     "amount": -0.05
+    }
+   ],
+   "conditions": [
+    {
+     "var": "pairRelation",
+     "max": 0.5
+    }
+   ],
+   "bilateral": true,
+   "france": "",
+   "tone": "NEUTRAL",
+   "major": false
+  },
+  {
+   "id": "arms_deal_abroad",
+   "category": "diplomatie",
+   "headline": "{A} : contrat d'armement avec {le_B}",
+   "detail": "Gros contrat d'armement : avions et blindés {de_A} pour {le_B}.",
+   "chance": 0.12,
+   "effects": [
+    {
+     "target": "AB.MILITARY_SUPPORT",
+     "amount": 0.05
+    },
+    {
+     "target": "A.output",
+     "amount": 0.001
+    },
+    {
+     "target": "sector.aerospace",
+     "amount": -0.001
+    }
+   ],
+   "conditions": [
+    {
+     "var": "pairRelation",
+     "min": 0.5
+    },
+    {
+     "var": "arms",
+     "min": 1
+    }
+   ],
+   "bilateral": true,
+   "france": "Un marché perdu pour l'industrie française de défense.",
+   "tone": "NEUTRAL",
+   "major": false
+  },
+  {
+   "id": "aid_abroad",
+   "category": "diplomatie",
+   "headline": "{A} : aide d'urgence pour {le_B}",
+   "detail": "Aide financière et humanitaire {de_A} pour {le_B}.",
+   "chance": 0.15,
+   "effects": [
+    {
+     "target": "AB.AID",
+     "amount": 0.05
+    },
+    {
+     "target": "B.approval",
+     "amount": 0.01
+    }
+   ],
+   "conditions": [
+    {
+     "var": "pairRelation",
+     "min": 0.45
+    },
+    {
+     "var": "richer",
+     "min": 1
+    }
+   ],
+   "bilateral": true,
+   "france": "",
+   "tone": "GOOD",
+   "major": false
+  },
+  {
+   "id": "summit_failure",
+   "category": "diplomatie",
+   "headline": "Échec du sommet entre {A} et {B}",
+   "detail": "Les deux dirigeants se quittent sans accord, sur un constat de désaccord.",
+   "chance": 0.15,
+   "effects": [
+    {
+     "target": "AB.DISAGREEMENT",
+     "amount": -0.03
+    },
+    {
+     "target": "A.approval",
+     "amount": -0.01
+    }
+   ],
+   "conditions": [
+    {
+     "var": "pairRelation",
+     "min": 0.3,
+     "max": 0.6
+    }
+   ],
+   "bilateral": true,
+   "france": "",
+   "tone": "NEUTRAL",
+   "major": false
+  },
+  {
+   "id": "energy_pact",
+   "category": "diplomatie",
+   "headline": "Pacte énergétique entre {A} et {B}",
+   "detail": "Gaz, pétrole ou électricité : {le_A} et {le_B} sécurisent leurs approvisionnements.",
+   "chance": 0.12,
+   "effects": [
+    {
+     "target": "AB.AGREEMENT_SIGNED",
+     "amount": 0.05
+    },
+    {
+     "target": "commodity.gas",
+     "amount": -0.02
+    }
+   ],
+   "conditions": [
+    {
+     "var": "pairRelation",
+     "min": 0.5
+    }
+   ],
+   "bilateral": true,
+   "france": "",
+   "tone": "GOOD",
+   "major": false
+  },
+  {
+   "id": "migration_dispute",
+   "category": "diplomatie",
+   "headline": "Migrants : dispute entre {A} et {B}",
+   "detail": "Chacun accuse l'autre de laisser passer les migrants.",
+   "chance": 0.1,
+   "effects": [
+    {
+     "target": "AB.DISAGREEMENT",
+     "amount": -0.04
+    }
+   ],
+   "conditions": [
+    {
+     "var": "neighbors",
+     "min": 1
+    }
+   ],
+   "bilateral": true,
+   "france": "",
+   "tone": "NEUTRAL",
+   "major": false
+  },
+  {
+   "id": "hostage_crisis",
+   "category": "conflit",
+   "headline": "Ressortissants {de_A} retenus {en_B}",
+   "detail": "Plusieurs citoyens {de_A} sont détenus {en_B} ; une crise s'ouvre.",
+   "chance": 0.05,
+   "effects": [
+    {
+     "target": "AB.THREAT",
+     "amount": -0.06
+    },
+    {
+     "target": "A.approval",
+     "amount": -0.01
+    }
+   ],
+   "conditions": [
+    {
+     "var": "pairRelation",
+     "max": 0.35
+    }
+   ],
+   "bilateral": true,
+   "france": "",
+   "tone": "BAD",
+   "major": false
+  },
+  {
+   "id": "cyber_attack_abroad",
+   "category": "conflit",
+   "headline": "Cyberattaque massive contre {le_B}",
+   "detail": "Les services {de_B} accusent {le_A} d'avoir paralysé hôpitaux et administrations.",
+   "chance": 0.08,
+   "effects": [
+    {
+     "target": "AB.THREAT",
+     "amount": -0.07
+    },
+    {
+     "target": "B.output",
+     "amount": -0.002
+    }
+   ],
+   "conditions": [
+    {
+     "var": "pairRelation",
+     "max": 0.35
+    },
+    {
+     "var": "aggressiveness",
+     "min": 0.5
+    }
+   ],
+   "bilateral": true,
+   "france": "",
+   "tone": "BAD",
+   "major": false
+  },
+  {
+   "id": "reconciliation",
+   "category": "diplomatie",
+   "headline": "Réconciliation historique entre {A} et {B}",
+   "detail": "Après des années de brouille, les deux pays tournent la page.",
+   "chance": 0.06,
+   "effects": [
+    {
+     "target": "AB.AGREEMENT_SIGNED",
+     "amount": 0.08
+    },
+    {
+     "target": "A.approval",
+     "amount": 0.02
+    },
+    {
+     "target": "B.approval",
+     "amount": 0.02
+    }
+   ],
+   "conditions": [
+    {
+     "var": "pairRelation",
+     "min": 0.2,
+     "max": 0.45
+    },
+    {
+     "var": "openness",
+     "min": 0.55
+    }
+   ],
+   "bilateral": true,
+   "france": "",
+   "tone": "GOOD",
+   "major": false
+  },
+  {
+   "id": "military_exercise",
+   "category": "conflit",
+   "headline": "Grandes manœuvres {de_A} près de {le_B}",
+   "detail": "Des dizaines de milliers de soldats {de_A} manœuvrent aux portes {de_B}.",
+   "chance": 0.08,
+   "effects": [
+    {
+     "target": "AB.THREAT",
+     "amount": -0.05
+    },
+    {
+     "target": "B.confidence",
+     "amount": -0.01
+    }
+   ],
+   "conditions": [
+    {
+     "var": "pairRelation",
+     "max": 0.35
+    },
+    {
+     "var": "aggressiveness",
+     "min": 0.6
+    },
+    {
+     "var": "military",
+     "min": 20
+    }
+   ],
+   "bilateral": true,
+   "france": "L'OTAN et l'UE suivent la situation de près.",
+   "tone": "BAD",
+   "major": false
+  }
+ ]
+}

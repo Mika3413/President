@@ -47,6 +47,7 @@ class DataLoader(private val source: DataSource) {
             intel = files.intel?.let { read(it) },
             unrest = files.unrest?.let { read(it) },
             consequences = files.consequences?.let { read(it) },
+            worldEvents = files.worldEvents?.let { read(it) },
             un = files.un?.let { read(it) },
         )
         DataValidator.validate(db)

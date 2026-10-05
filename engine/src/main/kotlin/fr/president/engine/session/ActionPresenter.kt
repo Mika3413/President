@@ -38,8 +38,8 @@ class ActionPresenter(private val ctx: SimulationContext) {
         ActionView(def, blocker, summarize(def), costText(def), durationText(def), forecast(def), locked)
 
     /** Vrai si toutes les conditions de la décision sont remplies. */
-    fun unlocked(def: LocalActionDef): Boolean = def.requires.all { c ->
-        val v = ctx.variables.resolve(c.variable) ?: return@all false
+    fun unlocked(def: LocalActionDef, scope: fr.president.engine.events.ScopeRef? = null): Boolean = def.requires.all { c ->
+        val v = ctx.variables.resolve(c.variable, scope) ?: return@all false
         (c.min == null || v >= c.min) && (c.max == null || v <= c.max) && (c.oneOf.isEmpty() || v in c.oneOf)
     }
 

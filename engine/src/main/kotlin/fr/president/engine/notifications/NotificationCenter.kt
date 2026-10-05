@@ -14,7 +14,9 @@ class NotificationCenter(private val ctx: SimulationContext) {
         focusId: String? = null,
         /** Faux pour les simples avis (courrier reçu) : le journal garde les faits, pas les annonces. */
         journal: Boolean = true,
+        world: Boolean = true,
     ): GameNotification {
+        if (world) toWorld(category, title, body, focusId)
         val state = ctx.state.notifications
         val n = GameNotification(ctx.state.nextId++, category, urgency, title, body, ctx.now, focusId)
         state.feed.add(n)
@@ -31,10 +33,28 @@ class NotificationCenter(private val ctx: SimulationContext) {
     }
 
     /** Ajoute une brève au fil d'actualité (sans notification). */
-    fun news(category: NotificationCategory, headline: String, focusId: String? = null) {
+    fun news(category: NotificationCategory, headline: String, focusId: String? = null, world: Boolean = true) {
         val news = ctx.state.events.news
         news.add(NewsEntry(ctx.now, category, headline, focusId))
         trim(news, ctx.db.config.simulation.notificationFeedSize)
+        if (world) toWorld(category, headline, "", focusId)
+    }
+
+    /** Ce qui concerne un pays étranger rejoint aussi le journal du monde. */
+    private fun toWorld(category: NotificationCategory, headline: String, body: String, focusId: String?) {
+        val country = focusId?.takeIf { it != ctx.state.player.countryId && it in ctx.state.countries } ?: return
+        // Ce qui nous concerne directement (propositions, réponses à nos démarches) n'est pas une nouvelle du monde.
+        if (ABOUT_US.containsMatchIn(headline)) return
+        val kind = when (category) {
+            NotificationCategory.MILITARY -> "conflit"
+            NotificationCategory.ECONOMY, NotificationCategory.ENERGY -> "économie"
+            else -> "diplomatie"
+        }
+        ctx.state.world.add(fr.president.engine.ai.WorldEntry(ctx.now, listOf(country), kind, headline, body))
+    }
+
+    private companion object {
+        val ABOUT_US = Regex("\\b(vous|votre|vos|nous|notre|nos|France|français|française)\\b", RegexOption.IGNORE_CASE)
     }
 
     /** Vide la file des notifications destinées au système. */

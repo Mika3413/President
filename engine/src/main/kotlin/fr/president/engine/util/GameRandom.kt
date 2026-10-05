@@ -51,6 +51,12 @@ class GameRandom(private var state: Long) {
     }
 
     /** Crée un générateur indépendant (pour un sous-système) sans perturber la séquence principale. */
+    fun <T> shuffled(items: List<T>): List<T> {
+        val out = items.toMutableList()
+        for (i in out.size - 1 downTo 1) { val j = nextInt(i + 1); val t = out[i]; out[i] = out[j]; out[j] = t }
+        return out
+    }
+
     fun fork(): GameRandom = GameRandom(nextLong())
 
     private companion object {

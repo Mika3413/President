@@ -25,21 +25,16 @@ class WelcomeMessage(private val ctx: SimulationContext) {
         )
     }
 
-    /** Messages de prise en main, distribués progressivement. */
-    fun scheduleTutorial() {
-        ctx.db.help.tutorial.forEachIndexed { i, t ->
-            ctx.scheduler.schedule(fr.president.engine.simulation.ScheduledAction.Tutorial(ctx.now.plusHours(t.delayHours.toLong()), i))
-        }
-    }
+    /**
+     * Les fiches de prise en main ne passent plus par la messagerie (réservée à ce qui arrive dans
+     * le monde) : elles sont dans l'Aide, l'Académie et la visite guidée. Les anciennes parties
+     * peuvent encore en avoir programmé ou reçu : on les ignore et on les retire.
+     */
+    @Suppress("UNUSED_PARAMETER")
+    fun tutorial(index: Int) = purgeTutorials()
 
-    fun tutorial(index: Int) {
-        val t = ctx.db.help.tutorial.getOrNull(index) ?: return
-        val honorific = DialogueContextBuilder(ctx).build().variables["honorific"] ?: ""
-        ctx.state.inbox.messages += InboxMessage(
-            id = ctx.state.newId("msg"), senderId = null, senderLabel = TUTORIAL_SENDER,
-            subject = t.subject, body = t.body.replace("Monsieur le Président", honorific),
-            time = ctx.now, category = NotificationCategory.GOVERNMENT, origin = MessageOrigin.INFO, originId = null,
-        )
+    fun purgeTutorials() {
+        ctx.state.inbox.messages.removeAll { it.senderLabel == TUTORIAL_SENDER && it.origin == MessageOrigin.INFO && !it.awaitingAnswer }
     }
 
     private companion object {

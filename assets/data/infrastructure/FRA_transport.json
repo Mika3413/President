@@ -217,6 +217,7 @@
    "cityIds": [
     "paris",
     "dijon",
+    "macon",
     "lyon"
    ]
   },
@@ -245,11 +246,12 @@
   {
    "id": "lgv_atlantique",
    "kind": "RAIL_HIGH_SPEED",
-   "name": "LGV Atlantique / Sud Europe Atlantique",
+   "name": "LGV Atlantique et Sud Europe Atlantique",
    "cityIds": [
     "paris",
     "tours",
     "poitiers",
+    "angouleme",
     "bordeaux"
    ]
   },
@@ -260,6 +262,7 @@
    "cityIds": [
     "paris",
     "le_mans",
+    "laval",
     "rennes"
    ]
   },
@@ -269,7 +272,7 @@
    "name": "LGV Nord",
    "cityIds": [
     "paris",
-    "amiens",
+    "arras",
     "lille",
     "calais"
    ]
@@ -292,51 +295,113 @@
    "cityIds": [
     "dijon",
     "besancon",
+    "belfort",
     "mulhouse"
+   ]
+  },
+  {
+   "id": "lgv_interconnexion",
+   "kind": "RAIL_HIGH_SPEED",
+   "name": "Interconnexion Île-de-France",
+   "cityIds": [
+    "lille",
+    "creil",
+    "saint_denis",
+    "meaux",
+    "melun",
+    "paris"
    ]
   },
   {
    "id": "a1",
    "kind": "MOTORWAY",
-   "name": "A1",
+   "name": "A1 Paris-Lille",
    "cityIds": [
     "paris",
-    "amiens",
+    "saint_denis",
+    "compiegne",
+    "arras",
     "lille"
+   ]
+  },
+  {
+   "id": "a2",
+   "kind": "MOTORWAY",
+   "name": "A2 vers Bruxelles",
+   "cityIds": [
+    "arras",
+    "cambrai",
+    "valenciennes"
+   ]
+  },
+  {
+   "id": "a4",
+   "kind": "MOTORWAY",
+   "name": "A4 Paris-Strasbourg",
+   "cityIds": [
+    "paris",
+    "meaux",
+    "reims",
+    "verdun",
+    "metz",
+    "strasbourg"
+   ]
+  },
+  {
+   "id": "a5",
+   "kind": "MOTORWAY",
+   "name": "A5 Paris-Troyes-Langres",
+   "cityIds": [
+    "paris",
+    "melun",
+    "troyes",
+    "chaumont"
    ]
   },
   {
    "id": "a6_a7",
    "kind": "MOTORWAY",
-   "name": "A6 / A7",
+   "name": "A6 et A7 (autoroute du Soleil)",
    "cityIds": [
     "paris",
-    "dijon",
+    "evry",
+    "auxerre",
+    "beaune",
+    "chalon",
+    "macon",
+    "villefranche",
     "lyon",
+    "vienne",
     "valence",
+    "montelimar",
+    "orange",
     "avignon",
-    "aix",
+    "salon",
     "marseille"
    ]
   },
   {
    "id": "a8",
    "kind": "MOTORWAY",
-   "name": "A8",
+   "name": "A8 La Provençale",
    "cityIds": [
     "aix",
-    "toulon",
-    "nice"
+    "frejus",
+    "cannes",
+    "antibes",
+    "nice",
+    "menton"
    ]
   },
   {
    "id": "a9",
    "kind": "MOTORWAY",
-   "name": "A9",
+   "name": "A9 La Languedocienne",
    "cityIds": [
-    "avignon",
+    "orange",
     "nimes",
     "montpellier",
+    "beziers",
     "narbonne",
     "perpignan"
    ]
@@ -344,42 +409,26 @@
   {
    "id": "a10",
    "kind": "MOTORWAY",
-   "name": "A10",
+   "name": "A10 L'Aquitaine",
    "cityIds": [
     "paris",
     "orleans",
+    "blois",
     "tours",
+    "chatellerault",
     "poitiers",
+    "niort",
+    "saintes",
     "bordeaux"
-   ]
-  },
-  {
-   "id": "a61_a62",
-   "kind": "MOTORWAY",
-   "name": "A62 / A61",
-   "cityIds": [
-    "bordeaux",
-    "toulouse",
-    "narbonne"
-   ]
-  },
-  {
-   "id": "a4",
-   "kind": "MOTORWAY",
-   "name": "A4",
-   "cityIds": [
-    "paris",
-    "reims",
-    "metz",
-    "strasbourg"
    ]
   },
   {
    "id": "a11",
    "kind": "MOTORWAY",
-   "name": "A11",
+   "name": "A11 L'Océane",
    "cityIds": [
     "paris",
+    "chartres",
     "le_mans",
     "angers",
     "nantes"
@@ -388,119 +437,519 @@
   {
    "id": "a13_a84",
    "kind": "MOTORWAY",
-   "name": "A13 / A84",
+   "name": "A13 et A84 (autoroute de Normandie)",
    "cityIds": [
     "paris",
+    "versailles",
+    "mantes",
     "rouen",
+    "lisieux",
     "caen",
     "rennes"
    ]
   },
   {
-   "id": "a43",
-   "kind": "MOTORWAY",
-   "name": "A43",
-   "cityIds": [
-    "lyon",
-    "chambery"
-   ]
-  },
-  {
-   "id": "a75",
-   "kind": "MOTORWAY",
-   "name": "A75",
-   "cityIds": [
-    "clermont",
-    "montpellier"
-   ]
-  },
-  {
-   "id": "a71",
-   "kind": "MOTORWAY",
-   "name": "A71",
-   "cityIds": [
-    "orleans",
-    "bourges",
-    "clermont"
-   ]
-  },
-  {
-   "id": "a20",
-   "kind": "MOTORWAY",
-   "name": "A20",
-   "cityIds": [
-    "orleans",
-    "limoges",
-    "brive",
-    "toulouse"
-   ]
-  },
-  {
-   "id": "a31",
-   "kind": "MOTORWAY",
-   "name": "A31",
-   "cityIds": [
-    "dijon",
-    "nancy",
-    "metz"
-   ]
-  },
-  {
-   "id": "a63",
-   "kind": "MOTORWAY",
-   "name": "A63",
-   "cityIds": [
-    "bordeaux",
-    "bayonne"
-   ]
-  },
-  {
-   "id": "a64",
-   "kind": "MOTORWAY",
-   "name": "A64",
-   "cityIds": [
-    "bayonne",
-    "pau",
-    "toulouse"
-   ]
-  },
-  {
    "id": "a16",
    "kind": "MOTORWAY",
-   "name": "A16",
+   "name": "A16 L'Européenne",
    "cityIds": [
     "paris",
+    "beauvais",
     "amiens",
+    "abbeville",
+    "boulogne_sur_mer",
     "calais",
     "dunkerque"
    ]
   },
   {
-   "id": "a41",
+   "id": "a20",
    "kind": "MOTORWAY",
-   "name": "A41",
+   "name": "A20 L'Occitane",
    "cityIds": [
+    "vierzon",
+    "chateauroux",
+    "limoges",
+    "brive",
+    "cahors",
+    "montauban",
+    "toulouse"
+   ]
+  },
+  {
+   "id": "a25",
+   "kind": "MOTORWAY",
+   "name": "A25 Lille-Dunkerque",
+   "cityIds": [
+    "lille",
+    "dunkerque"
+   ]
+  },
+  {
+   "id": "a26",
+   "kind": "MOTORWAY",
+   "name": "A26 Autoroute des Anglais",
+   "cityIds": [
+    "calais",
+    "arras",
+    "saint_quentin",
+    "laon",
+    "reims",
+    "chalons",
+    "troyes"
+   ]
+  },
+  {
+   "id": "a28",
+   "kind": "MOTORWAY",
+   "name": "A28 Rouen-Tours",
+   "cityIds": [
+    "abbeville",
+    "rouen",
+    "alencon",
+    "le_mans",
+    "tours"
+   ]
+  },
+  {
+   "id": "a29",
+   "kind": "MOTORWAY",
+   "name": "A29 Le Havre-Saint-Quentin",
+   "cityIds": [
+    "le_havre",
+    "amiens",
+    "saint_quentin"
+   ]
+  },
+  {
+   "id": "a31",
+   "kind": "MOTORWAY",
+   "name": "A31 Beaune-Luxembourg",
+   "cityIds": [
+    "beaune",
+    "dijon",
+    "nancy",
+    "metz",
+    "thionville"
+   ]
+  },
+  {
+   "id": "a35",
+   "kind": "MOTORWAY",
+   "name": "A35 Alsace",
+   "cityIds": [
+    "haguenau",
+    "strasbourg",
+    "colmar",
+    "mulhouse"
+   ]
+  },
+  {
+   "id": "a36",
+   "kind": "MOTORWAY",
+   "name": "A36 La Comtoise",
+   "cityIds": [
+    "beaune",
+    "dole",
+    "besancon",
+    "belfort",
+    "mulhouse"
+   ]
+  },
+  {
+   "id": "a39",
+   "kind": "MOTORWAY",
+   "name": "A39 Dijon-Bourg",
+   "cityIds": [
+    "dijon",
+    "dole",
+    "lons",
+    "bourg_en_bresse"
+   ]
+  },
+  {
+   "id": "a40",
+   "kind": "MOTORWAY",
+   "name": "A40 Autoroute des Titans",
+   "cityIds": [
+    "macon",
+    "bourg_en_bresse",
+    "annecy"
+   ]
+  },
+  {
+   "id": "a41_a43",
+   "kind": "MOTORWAY",
+   "name": "A41 et A43 (Alpes)",
+   "cityIds": [
+    "lyon",
+    "bourgoin",
     "chambery",
     "annecy"
    ]
   },
   {
-   "id": "a48",
+   "id": "a430",
    "kind": "MOTORWAY",
-   "name": "A48",
+   "name": "A430 Tarentaise",
    "cityIds": [
-    "lyon",
-    "grenoble"
+    "chambery",
+    "albertville"
    ]
   },
   {
-   "id": "a72",
+   "id": "a48_a49",
    "kind": "MOTORWAY",
-   "name": "A72",
+   "name": "A48 et A49 (Grenoble)",
    "cityIds": [
     "lyon",
-    "saint_etienne",
+    "grenoble",
+    "valence"
+   ]
+  },
+  {
+   "id": "a50_a57",
+   "kind": "MOTORWAY",
+   "name": "A50 et A57 (Var)",
+   "cityIds": [
+    "marseille",
+    "toulon",
+    "frejus"
+   ]
+  },
+  {
+   "id": "a51",
+   "kind": "MOTORWAY",
+   "name": "A51 Val de Durance",
+   "cityIds": [
+    "aix",
+    "manosque",
+    "gap"
+   ]
+  },
+  {
+   "id": "a54_a55",
+   "kind": "MOTORWAY",
+   "name": "A54 et A55 (Camargue, étang de Berre)",
+   "cityIds": [
+    "nimes",
+    "arles",
+    "salon",
+    "martigues",
+    "fos"
+   ]
+  },
+  {
+   "id": "a61_a62",
+   "kind": "MOTORWAY",
+   "name": "A61 et A62 (autoroute des Deux Mers)",
+   "cityIds": [
+    "bordeaux",
+    "marmande",
+    "agen",
+    "montauban",
+    "toulouse",
+    "carcassonne",
+    "narbonne"
+   ]
+  },
+  {
+   "id": "a63",
+   "kind": "MOTORWAY",
+   "name": "A63 Côte basque",
+   "cityIds": [
+    "bordeaux",
+    "dax",
+    "bayonne",
+    "biarritz"
+   ]
+  },
+  {
+   "id": "a64",
+   "kind": "MOTORWAY",
+   "name": "A64 La Pyrénéenne",
+   "cityIds": [
+    "biarritz",
+    "bayonne",
+    "pau",
+    "tarbes",
+    "saint_gaudens",
+    "toulouse"
+   ]
+  },
+  {
+   "id": "a65",
+   "kind": "MOTORWAY",
+   "name": "A65 Gascogne",
+   "cityIds": [
+    "bordeaux",
+    "mont_de_marsan",
+    "pau"
+   ]
+  },
+  {
+   "id": "a66",
+   "kind": "MOTORWAY",
+   "name": "A66 Ariège",
+   "cityIds": [
+    "toulouse",
+    "pamiers",
+    "foix"
+   ]
+  },
+  {
+   "id": "a68",
+   "kind": "MOTORWAY",
+   "name": "A68 Toulouse-Albi",
+   "cityIds": [
+    "toulouse",
+    "albi"
+   ]
+  },
+  {
+   "id": "a71",
+   "kind": "MOTORWAY",
+   "name": "A71 L'Arverne",
+   "cityIds": [
+    "orleans",
+    "vierzon",
+    "bourges",
+    "montlucon",
     "clermont"
+   ]
+  },
+  {
+   "id": "a72_a47",
+   "kind": "MOTORWAY",
+   "name": "A72 et A47 (Forez)",
+   "cityIds": [
+    "clermont",
+    "thiers",
+    "saint_etienne",
+    "lyon"
+   ]
+  },
+  {
+   "id": "a75",
+   "kind": "MOTORWAY",
+   "name": "A75 La Méridienne",
+   "cityIds": [
+    "clermont",
+    "millau",
+    "beziers"
+   ]
+  },
+  {
+   "id": "a77",
+   "kind": "MOTORWAY",
+   "name": "A77 Paris-Nevers",
+   "cityIds": [
+    "paris",
+    "montargis",
+    "nevers"
+   ]
+  },
+  {
+   "id": "a81",
+   "kind": "MOTORWAY",
+   "name": "A81 Le Mans-Rennes",
+   "cityIds": [
+    "le_mans",
+    "laval",
+    "rennes"
+   ]
+  },
+  {
+   "id": "a83",
+   "kind": "MOTORWAY",
+   "name": "A83 Nantes-Niort",
+   "cityIds": [
+    "nantes",
+    "niort"
+   ]
+  },
+  {
+   "id": "a85",
+   "kind": "MOTORWAY",
+   "name": "A85 Angers-Vierzon",
+   "cityIds": [
+    "angers",
+    "saumur",
+    "tours",
+    "vierzon"
+   ]
+  },
+  {
+   "id": "a87",
+   "kind": "MOTORWAY",
+   "name": "A87 Angers-Les Sables",
+   "cityIds": [
+    "angers",
+    "cholet",
+    "la_roche_sur_yon",
+    "les_sables"
+   ]
+  },
+  {
+   "id": "a89",
+   "kind": "MOTORWAY",
+   "name": "A89 La Transeuropéenne",
+   "cityIds": [
+    "bordeaux",
+    "libourne",
+    "perigueux",
+    "brive",
+    "tulle",
+    "clermont",
+    "thiers",
+    "roanne",
+    "lyon"
+   ]
+  },
+  {
+   "id": "n12",
+   "kind": "MOTORWAY",
+   "name": "N12 Rennes-Brest (voie express)",
+   "cityIds": [
+    "rennes",
+    "saint_brieuc",
+    "morlaix",
+    "brest"
+   ]
+  },
+  {
+   "id": "n165",
+   "kind": "MOTORWAY",
+   "name": "N165 Nantes-Brest (voie express)",
+   "cityIds": [
+    "nantes",
+    "vannes",
+    "lorient",
+    "quimper",
+    "brest"
+   ]
+  },
+  {
+   "id": "n137",
+   "kind": "MOTORWAY",
+   "name": "N137 Rennes-Saint-Malo",
+   "cityIds": [
+    "rennes",
+    "saint_malo"
+   ]
+  },
+  {
+   "id": "a10_a837",
+   "kind": "MOTORWAY",
+   "name": "A837 La Rochelle-Rochefort-Saintes",
+   "cityIds": [
+    "la_rochelle",
+    "rochefort",
+    "saintes"
+   ]
+  },
+  {
+   "id": "seine",
+   "kind": "RIVER",
+   "name": "La Seine",
+   "cityIds": [
+    "troyes",
+    "melun",
+    "evry",
+    "paris",
+    "argenteuil",
+    "mantes",
+    "vernon",
+    "rouen",
+    "le_havre"
+   ]
+  },
+  {
+   "id": "loire",
+   "kind": "RIVER",
+   "name": "La Loire",
+   "cityIds": [
+    "le_puy",
+    "roanne",
+    "nevers",
+    "orleans",
+    "blois",
+    "tours",
+    "saumur",
+    "angers",
+    "nantes",
+    "saint_nazaire"
+   ]
+  },
+  {
+   "id": "rhone",
+   "kind": "RIVER",
+   "name": "Le Rhône",
+   "cityIds": [
+    "lyon",
+    "vienne",
+    "valence",
+    "montelimar",
+    "orange",
+    "avignon",
+    "arles"
+   ]
+  },
+  {
+   "id": "garonne",
+   "kind": "RIVER",
+   "name": "La Garonne",
+   "cityIds": [
+    "saint_gaudens",
+    "toulouse",
+    "agen",
+    "marmande",
+    "bordeaux"
+   ]
+  },
+  {
+   "id": "rhin",
+   "kind": "RIVER",
+   "name": "Le Rhin",
+   "cityIds": [
+    "mulhouse",
+    "colmar",
+    "strasbourg",
+    "haguenau"
+   ]
+  },
+  {
+   "id": "moselle",
+   "kind": "RIVER",
+   "name": "La Moselle",
+   "cityIds": [
+    "epinal",
+    "nancy",
+    "metz",
+    "thionville"
+   ]
+  },
+  {
+   "id": "marne",
+   "kind": "RIVER",
+   "name": "La Marne",
+   "cityIds": [
+    "chaumont",
+    "saint_dizier",
+    "chalons",
+    "epernay",
+    "meaux",
+    "paris"
+   ]
+  },
+  {
+   "id": "dordogne",
+   "kind": "RIVER",
+   "name": "La Dordogne",
+   "cityIds": [
+    "bergerac",
+    "libourne",
+    "bordeaux"
    ]
   }
  ]

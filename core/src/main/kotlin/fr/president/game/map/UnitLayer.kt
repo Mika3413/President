@@ -48,7 +48,8 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
         shapes.set(ShapeRenderer.ShapeType.Filled)
         val preview = session.military.preview
         for (u in visible.filter { it.countryId == player && it.path.isNotEmpty() }) {
-            var prev = project(camera, zones.zone(u.zoneId).lon, zones.zone(u.zoneId).lat) ?: continue
+            val here = worldPosition(session, u)
+            var prev = projectWorld(camera, here[0], here[1])
             val attacking = u.order == fr.president.engine.military.UnitOrder.ATTACK
             shapes.color = if (u.id == selectedUnit) Theme.highlight else if (attacking) ATTACK_PATH else PATH
             var before = prev
@@ -90,7 +91,24 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
         // Glissement des pions : la position affichée rejoint la zone réelle en quelques dixièmes de seconde.
         val follow = 1f - Math.exp((-delta * GLIDE_SPEED).toDouble()).toFloat()
         val alive = HashSet<String>()
-        for ((zoneId, units) in visible.groupBy { it.zoneId }) {
+        // Unités en marche : chacune avance à sa vraie place sur le trajet, entre deux zones.
+        val (moving, still) = visible.partition { it.path.isNotEmpty() && !it.inCombat }
+        for (u in moving) {
+            alive += u.id
+            val target = worldPosition(session, u)
+            val pos = displayed.getOrPut(u.id) { target.copyOf() }
+            pos[0] += (target[0] - pos[0]) * follow
+            pos[1] += (target[1] - pos[1]) * follow
+            val p = projectWorld(camera, pos[0], pos[1])
+            val domain = session.db.unitTypes[u.type]?.domain ?: Domain.LAND
+            // Traînée derrière le pion : il avance.
+            val back = projectWorld(camera, zonesX(session, u.zoneId), zonesY(session, u.zoneId))
+            shapes.color = TRAIL
+            shapes.rectLine(back.x, back.y, p.x, p.y, PATH_WIDTH * 2)
+            drawCounter(shapes, u, domain, p.x, p.y, colorOf(session, u), u.id == selectedUnit)
+            counters += Counter(listOf(u.id), p.x, p.y)
+        }
+        for ((zoneId, units) in still.groupBy { it.zoneId }) {
             val z = zones.zones[zoneId] ?: continue
             val base = project(camera, z.lon, z.lat) ?: continue
             val tx = GeoProjection.x(z.lon)
@@ -182,6 +200,25 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
         }
     }
 
+    /** Position réelle d'une unité (coordonnées monde) : entre sa zone et la suivante, selon le chemin parcouru. */
+    private fun worldPosition(session: GameSession, u: UnitState): FloatArray {
+        val zones = session.db.zones
+        val from = zones.zones[u.zoneId] ?: return floatArrayOf(0f, 0f)
+        val fx = GeoProjection.x(from.lon); val fy = GeoProjection.y(from.lat)
+        val next = u.path.firstOrNull()?.let { zones.zones[it] } ?: return floatArrayOf(fx, fy)
+        if (u.inCombat) return floatArrayOf(fx, fy)
+        val leg = zones.distanceKm(u.zoneId, next.id).coerceAtLeast(1.0)
+        // Entre deux pas horaires, on prolonge le mouvement au prorata de l'heure écoulée : le pion avance en continu.
+        val sinceHour = Math.floorMod(session.state.time.seconds, 3600L) / 3600.0
+        val speed = (session.db.unitTypes[u.type]?.speedKmPerDay ?: 0.0) / 24.0 * (if (u.fuel < 0.05) 0.2 else 1.0)
+        val t = ((u.legProgressKm + speed * sinceHour) / leg).coerceIn(0.0, 1.0).toFloat()
+        val nx = GeoProjection.x(next.lon); val ny = GeoProjection.y(next.lat)
+        return floatArrayOf(fx + (nx - fx) * t, fy + (ny - fy) * t)
+    }
+
+    private fun zonesX(session: GameSession, id: String) = session.db.zones.zones[id]?.let { GeoProjection.x(it.lon) } ?: 0f
+    private fun zonesY(session: GameSession, id: String) = session.db.zones.zones[id]?.let { GeoProjection.y(it.lat) } ?: 0f
+
     private fun projectWorld(camera: OrthographicCamera, x: Float, y: Float): Vector3 {
         tmp.set(x, y, 0f)
         camera.project(tmp)
@@ -199,6 +236,7 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
     private companion object {
         val PATH: Color = Color.valueOf("4c9be8cc")
         val ATTACK_PATH: Color = Color.valueOf("ff6b5ee6")
+        val TRAIL: Color = Color.valueOf("ffffff55")
         const val ARROW = 9f
         const val SWORD = 4f
         val NEUTRAL: Color = Color.valueOf("8a8f98")

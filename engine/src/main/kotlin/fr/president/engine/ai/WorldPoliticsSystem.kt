@@ -25,24 +25,32 @@ class WorldPoliticsSystem : SimulationSystem {
         for (country in foreign) {
             val due = country.nextLeadershipChange
             if (due == null) {
-                country.nextLeadershipChange = ctx.now.plusDays(ctx.rng.nextDouble(MIN_TERM_DAYS, MAX_TERM_DAYS))
+                country.nextLeadershipChange = ctx.now.plusDays(ctx.rng.nextDouble(K.MIN_TERM_DAYS, K.MAX_TERM_DAYS))
                 continue
             }
             if (ctx.now >= due) leadership(ctx, country.id)
         }
-        repeat(INTERACTIONS_PER_MONTH) { interaction(ctx, foreign.map { it.id }) }
+        repeat(K.INTERACTIONS_PER_MONTH) { interaction(ctx, foreign.map { it.id }) }
     }
 
     private fun leadership(ctx: SimulationContext, id: String) {
         val country = ctx.state.countries.getValue(id)
-        country.nextLeadershipChange = ctx.now.plusDays(ctx.rng.nextDouble(MIN_TERM_DAYS, MAX_TERM_DAYS))
+        country.nextLeadershipChange = ctx.now.plusDays(ctx.rng.nextDouble(K.MIN_TERM_DAYS, K.MAX_TERM_DAYS))
         if (Geopolitics(ctx).isAtWar(id)) return
-        val reelected = ctx.rng.chance(country.leaderApproval.coerceIn(MIN_REELECTION, MAX_REELECTION))
+        val reelected = ctx.rng.chance(country.leaderApproval.coerceIn(K.MIN_REELECTION, K.MAX_REELECTION))
         val name = ctx.db.country(id).definition.name
         if (reelected) {
             ctx.notifications.news(NotificationCategory.DIPLOMACY, "$name : le chef du gouvernement est reconduit", id)
             return
         }
+        newLeader(ctx, id)
+    }
+
+    companion object {
+        /** Alternance à la tête d'un pays étranger (élection perdue, coup d'État...). */
+        fun newLeader(ctx: SimulationContext, id: String, announce: Boolean = true) {
+        val country = ctx.state.countries.getValue(id)
+        val name = ctx.db.country(id).definition.name
         val def = ctx.db.country(id).definition
         val old = ctx.state.characters[country.leaderId]
         old?.let { it.role = CharacterRole.FORMER; it.active = false }
@@ -55,15 +63,17 @@ class WorldPoliticsSystem : SimulationSystem {
         )
         ctx.state.characters[leader.id] = leader
         country.leaderId = leader.id
-        country.leaderApproval = NEW_LEADER_APPROVAL
+        country.leaderApproval = K.NEW_LEADER_APPROVAL
         // Une partie des contentieux personnels s'efface avec l'alternance.
         ctx.state.diplomacy.relations.filterKeys { it.startsWith("$id>") }.values.forEach { r ->
-            r.memories.replaceAll { m -> if (m.kind in PERSONAL_KINDS) m.copy(weight = m.weight * RESET_FACTOR) else m }
+            r.memories.replaceAll { m -> if (m.kind in K.PERSONAL_KINDS) m.copy(weight = m.weight * K.RESET_FACTOR) else m }
         }
-        val important = def.strategic.militaryBudgetBillions > IMPORTANT_BUDGET || id in NEIGHBOURS
+        val important = def.strategic.militaryBudgetBillions > K.IMPORTANT_BUDGET || id in K.NEIGHBOURS
         val text = "${leader.fullName} prend la tête du gouvernement (${def.institutions.headOfGovernment(leader.female)})."
-        if (important) ctx.notifications.post(NotificationCategory.DIPLOMACY, Urgency.IMPORTANT, "$name : nouveau dirigeant", text, id)
+        if (!announce) ctx.state.world.add(WorldEntry(ctx.now, listOf(id), "politique", "$name : $text"))
+        else if (important) ctx.notifications.post(NotificationCategory.DIPLOMACY, Urgency.IMPORTANT, "$name : nouveau dirigeant", text, id)
         else ctx.notifications.news(NotificationCategory.DIPLOMACY, "$name : $text", id)
+        }
     }
 
     private fun interaction(ctx: SimulationContext, countries: List<String>) {
@@ -76,12 +86,12 @@ class WorldPoliticsSystem : SimulationSystem {
         val openness = (la.trait(Traits.OPENNESS) + lb.trait(Traits.OPENNESS)) / 2
         val (na, nb) = ctx.db.country(a).definition.name to ctx.db.country(b).definition.name
         when {
-            ctx.rng.chance(TENSION_CHANCE * tension) -> {
-                remember(ctx, a, b, "DISAGREEMENT", -INTERACTION_WEIGHT, "différend bilatéral")
+            ctx.rng.chance(K.TENSION_CHANCE * tension) -> {
+                remember(ctx, a, b, "DISAGREEMENT", -K.INTERACTION_WEIGHT, "différend bilatéral")
                 ctx.notifications.news(NotificationCategory.DIPLOMACY, "Regain de tensions entre $na et $nb", a)
             }
-            ctx.rng.chance(COOPERATION_CHANCE * openness) -> {
-                remember(ctx, a, b, "AGREEMENT_SIGNED", INTERACTION_WEIGHT, "accord bilatéral")
+            ctx.rng.chance(K.COOPERATION_CHANCE * openness) -> {
+                remember(ctx, a, b, "AGREEMENT_SIGNED", K.INTERACTION_WEIGHT, "accord bilatéral")
                 ctx.notifications.news(NotificationCategory.DIPLOMACY, "$na et $nb signent un accord de coopération", a)
             }
         }
@@ -92,7 +102,7 @@ class WorldPoliticsSystem : SimulationSystem {
         ctx.state.diplomacy.relation(b, a).memories += DiplomaticMemory(kind, w, ctx.now, detail)
     }
 
-    private companion object {
+    private object K {
         const val MIN_TERM_DAYS = 365.0
         const val MAX_TERM_DAYS = 1825.0
         const val MIN_REELECTION = 0.2

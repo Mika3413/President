@@ -75,8 +75,32 @@ class OverlayRenderer(
             }
         }
         drawAreaLabels(camera, lod, layer, state)
+        drawNetworkLabels(camera, lod)
         units.labels(batch, session)
         batch.end()
+    }
+
+    /** Numéros d'autoroutes et noms des fleuves, au milieu de leur plus long tronçon visible. */
+    private fun drawNetworkLabels(camera: OrthographicCamera, lod: Lod) {
+        if (lod < Lod.REGION) return
+        for (n in data.networks) {
+            if (n.kind == "RAIL_HIGH_SPEED" && lod < Lod.LOCAL) continue
+            var best = -1f; var bx = 0f; var by = 0f
+            for (i in 0 until n.points.size - 2 step 2) {
+                val a = toScreen(camera, n.points[i], n.points[i + 1]) ?: continue
+                val b = toScreen(camera, n.points[i + 2], n.points[i + 3]) ?: continue
+                val len = (b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y)
+                if (len > best) { best = len; bx = (a.x + b.x) / 2; by = (a.y + b.y) / 2 }
+            }
+            if (best < MIN_SEGMENT_PX * MIN_SEGMENT_PX) continue
+            val text = when (n.kind) {
+                "MOTORWAY" -> n.name.substringBefore(' ')
+                "RAIL_HIGH_SPEED" -> "LGV"
+                else -> n.name
+            }
+            val color = when (n.kind) { "RIVER" -> Theme.river; "MOTORWAY" -> Theme.motorway; else -> Theme.rail }
+            label(text, bx, by, smallFont, color)
+        }
     }
 
     private fun visible(m: MapMarker, lod: Lod, layer: ThematicLayer): Boolean = when (m.kind) {
@@ -84,7 +108,7 @@ class OverlayRenderer(
             Lod.WORLD -> false
             Lod.EUROPE -> m.rank == 1 && m.id == CAPITAL
             Lod.FRANCE -> m.rank == 1
-            Lod.REGION -> m.rank <= 2
+            Lod.REGION -> m.rank <= 3
             Lod.LOCAL -> true
         }
         // Villes étrangères : capitales vues de loin, grandes villes à l'échelle de l'Europe.
@@ -231,6 +255,7 @@ class OverlayRenderer(
     }
 
     private companion object {
+        const val MIN_SEGMENT_PX = 60f
         const val CAPITAL = "paris"
         const val SEGMENTS = 16
         const val CITY_MAJOR = 4.5f

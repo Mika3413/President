@@ -17,9 +17,18 @@ class LocalActionCommands(private val ctx: SimulationContext) {
     val definitions: List<LocalActionDef> get() = ctx.playerData.localActions?.actions.orEmpty()
     val categories: List<fr.president.engine.territory.ActionCategory> get() = ctx.playerData.localActions?.categories.orEmpty()
 
-    fun actionsFor(departmentCode: String): List<ActionPresenter.ActionView> = definitions.map { def ->
-        presenter.view(def, blocker(departmentCode, def))
+    /**
+     * Actions possibles dans un département. Celles qui dépendent de la géographie (littoral,
+     * montagne, frontière...) n'apparaissent que là où elles ont un sens ; celles qui dépendent
+     * de la situation (délinquance, désert médical...) sont montrées verrouillées avec leur condition.
+     */
+    fun actionsFor(departmentCode: String): List<ActionPresenter.ActionView> = definitions.mapNotNull { def ->
+        val open = presenter.unlocked(def, scope(departmentCode))
+        if (!open && def.requiresText.isEmpty()) return@mapNotNull null
+        presenter.view(def, blocker(departmentCode, def), locked = !open)
     }
+
+    private fun scope(code: String) = fr.president.engine.events.ScopeRef(fr.president.engine.events.EventScope.DEPARTMENT, code)
 
     fun perform(departmentCode: String, actionId: String): Result<String> = runCatching {
         val def = definitions.first { it.id == actionId }
@@ -57,6 +66,7 @@ class LocalActionCommands(private val ctx: SimulationContext) {
 
     private fun blocker(code: String, def: LocalActionDef): String? {
         if (ctx.state.player.gameOver != null) return "La partie est terminée."
+        if (!presenter.unlocked(def, scope(code))) return def.requiresText.ifEmpty { "Pas possible dans ce département." }
         val running = ctx.state.projects.any { it.locationId == code && it.kind == kind(def.id) && it.status == ProjectStatus.IN_PROGRESS }
         if (running) return "Chantier déjà en cours ici."
         presenter.wait(key(code, def.id), def.cooldownDays)?.let { return "Possible à nouveau ici dans $it." }

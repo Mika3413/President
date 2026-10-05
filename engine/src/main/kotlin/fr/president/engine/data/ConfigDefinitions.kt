@@ -66,6 +66,8 @@ data class GlobalDataFiles(
     val un: String? = null,
     /** Conséquences en chaîne à seuils (facultatif). */
     val consequences: String? = null,
+    /** La vie des autres pays (facultatif). */
+    val worldEvents: String? = null,
 )
 
 /** Multiplicateurs de fréquence : l'outil d'équilibrage du rythme des événements. */

@@ -201,11 +201,28 @@ class VariableResolver(private val ctx: SimulationContext) {
             "industryShare" -> d.industryShare
             "agricultureShare" -> d.agricultureShare
             "pollution" -> d.pollution
+            "coastal" -> if (d.code in COASTAL || d.code.length == 3) 1.0 else 0.0
+            "mountain" -> if (d.code in MOUNTAIN) 1.0 else 0.0
+            "border" -> if (d.code in BORDER) 1.0 else 0.0
+            "wine" -> if (d.code in WINE) 1.0 else 0.0
+            "tourist" -> if (d.code in TOURIST_DEPTS) 1.0 else 0.0
+            "regionalLanguage" -> if (d.code in REGIONAL_LANGUAGE) 1.0 else 0.0
+            "nuclear" -> infraIn(d.code, "NUCLEAR_PLANT")
+            "port" -> infraIn(d.code, "PORT")
+            "airport" -> infraIn(d.code, "AIRPORT")
             else -> null
         }
     }
 
+    private fun infraIn(code: String, type: String) = if (ctx.catalog.items.values.any { it.department == code && it.type == type }) 1.0 else 0.0
+
     private companion object {
+        val COASTAL = setOf("06", "11", "13", "14", "17", "2A", "2B", "22", "29", "30", "33", "34", "35", "40", "44", "50", "56", "59", "62", "64", "66", "76", "80", "83", "85")
+        val MOUNTAIN = setOf("01", "04", "05", "06", "09", "12", "15", "19", "25", "26", "38", "39", "43", "48", "63", "64", "65", "66", "68", "73", "74", "88", "90", "2A", "2B")
+        val BORDER = setOf("01", "02", "04", "05", "06", "08", "09", "25", "31", "39", "54", "55", "57", "59", "64", "65", "66", "67", "68", "73", "74", "90", "973")
+        val WINE = setOf("11", "13", "16", "17", "21", "24", "30", "33", "34", "37", "41", "44", "47", "49", "51", "67", "68", "69", "71", "84")
+        val TOURIST_DEPTS = setOf("06", "13", "17", "29", "2A", "2B", "30", "33", "34", "56", "64", "66", "73", "74", "75", "83", "84", "85")
+        val REGIONAL_LANGUAGE = setOf("22", "29", "35", "56", "64", "66", "67", "68", "2A", "2B")
         val NEARBY = setOf("DEU", "ESP", "ITA", "GBR", "BEL", "NLD", "CHE", "PRT", "AUT", "POL", "SWE", "NOR", "GRC", "ROU", "UKR", "RUS", "BLR", "TUR", "DZA", "MAR", "TUN")
         const val MILLION = 1_000_000.0
         val MEDITERRANEAN_REGIONS = setOf("93", "94", "76")

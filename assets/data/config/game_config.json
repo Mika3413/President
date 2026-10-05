@@ -69,7 +69,8 @@
       "events/local.json",
       "events/national.json",
       "events/summits.json",
-      "events/extra.json"
+      "events/extra.json",
+      "events/more.json"
     ],
     "dialogue": [
       "dialogue/fr/territory.json",
@@ -83,6 +84,7 @@
       "dialogue/fr/national.json",
       "dialogue/fr/summits.json",
       "dialogue/fr/extra.json",
+      "dialogue/fr/more.json",
       "dialogue/fr/responses.json"
     ],
     "names": {
@@ -121,6 +123,7 @@
     "intel": "military/intel.json",
     "unrest": "config/unrest.json",
     "consequences": "config/consequences.json",
+    "worldEvents": "diplomacy/world_events.json",
     "un": "diplomacy/un.json"
   }
 }

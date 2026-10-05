@@ -67,6 +67,11 @@ class GameSession(
         parliament.ensure()
         fr.president.engine.elections.LocalElectionService(context).ensure()
         senate.ensure()
+        fr.president.engine.setup.WelcomeMessage(context).purgeTutorials()
+        // Villes ajoutées depuis la création de la partie : elles prennent vie.
+        context.playerData.territory?.cities?.forEach { c ->
+            if (c.id !in state.territory.cities) state.territory.cities[c.id] = fr.president.engine.territory.CityState(c.id, c.department, c.population)
+        }
     }
 
     val isGameOver: Boolean get() = state.player.gameOver != null

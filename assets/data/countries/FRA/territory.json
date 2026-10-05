@@ -2130,6 +2130,1526 @@
    "population": 71000,
    "urbanAreaPopulation": 100000,
    "rank": 3
+  },
+  {
+   "id": "bourg_en_bresse",
+   "name": "Bourg-en-Bresse",
+   "department": "01",
+   "lon": 5.226,
+   "lat": 46.205,
+   "population": 41000,
+   "urbanAreaPopulation": 125000,
+   "rank": 3
+  },
+  {
+   "id": "saint_quentin",
+   "name": "Saint-Quentin",
+   "department": "02",
+   "lon": 3.287,
+   "lat": 49.848,
+   "population": 53000,
+   "urbanAreaPopulation": 110000,
+   "rank": 3
+  },
+  {
+   "id": "laon",
+   "name": "Laon",
+   "department": "02",
+   "lon": 3.624,
+   "lat": 49.564,
+   "population": 25000,
+   "urbanAreaPopulation": 50000,
+   "rank": 4
+  },
+  {
+   "id": "montlucon",
+   "name": "Montluçon",
+   "department": "03",
+   "lon": 2.603,
+   "lat": 46.34,
+   "population": 34000,
+   "urbanAreaPopulation": 80000,
+   "rank": 3
+  },
+  {
+   "id": "moulins",
+   "name": "Moulins",
+   "department": "03",
+   "lon": 3.333,
+   "lat": 46.566,
+   "population": 19000,
+   "urbanAreaPopulation": 60000,
+   "rank": 4
+  },
+  {
+   "id": "vichy",
+   "name": "Vichy",
+   "department": "03",
+   "lon": 3.426,
+   "lat": 46.128,
+   "population": 25000,
+   "urbanAreaPopulation": 80000,
+   "rank": 4
+  },
+  {
+   "id": "digne",
+   "name": "Digne-les-Bains",
+   "department": "04",
+   "lon": 6.236,
+   "lat": 44.092,
+   "population": 16000,
+   "urbanAreaPopulation": 30000,
+   "rank": 4
+  },
+  {
+   "id": "manosque",
+   "name": "Manosque",
+   "department": "04",
+   "lon": 5.786,
+   "lat": 43.829,
+   "population": 22000,
+   "urbanAreaPopulation": 50000,
+   "rank": 4
+  },
+  {
+   "id": "gap",
+   "name": "Gap",
+   "department": "05",
+   "lon": 6.079,
+   "lat": 44.559,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "briancon",
+   "name": "Briançon",
+   "department": "05",
+   "lon": 6.643,
+   "lat": 44.897,
+   "population": 11000,
+   "urbanAreaPopulation": 20000,
+   "rank": 4
+  },
+  {
+   "id": "privas",
+   "name": "Privas",
+   "department": "07",
+   "lon": 4.599,
+   "lat": 44.735,
+   "population": 8000,
+   "urbanAreaPopulation": 20000,
+   "rank": 4
+  },
+  {
+   "id": "annonay",
+   "name": "Annonay",
+   "department": "07",
+   "lon": 4.671,
+   "lat": 45.24,
+   "population": 16000,
+   "urbanAreaPopulation": 30000,
+   "rank": 4
+  },
+  {
+   "id": "charleville",
+   "name": "Charleville-Mézières",
+   "department": "08",
+   "lon": 4.721,
+   "lat": 49.773,
+   "population": 46000,
+   "urbanAreaPopulation": 100000,
+   "rank": 3
+  },
+  {
+   "id": "sedan",
+   "name": "Sedan",
+   "department": "08",
+   "lon": 4.938,
+   "lat": 49.702,
+   "population": 16000,
+   "urbanAreaPopulation": 30000,
+   "rank": 4
+  },
+  {
+   "id": "foix",
+   "name": "Foix",
+   "department": "09",
+   "lon": 1.607,
+   "lat": 42.965,
+   "population": 9000,
+   "urbanAreaPopulation": 20000,
+   "rank": 4
+  },
+  {
+   "id": "pamiers",
+   "name": "Pamiers",
+   "department": "09",
+   "lon": 1.611,
+   "lat": 43.116,
+   "population": 15000,
+   "urbanAreaPopulation": 25000,
+   "rank": 4
+  },
+  {
+   "id": "rodez",
+   "name": "Rodez",
+   "department": "12",
+   "lon": 2.575,
+   "lat": 44.35,
+   "population": 25000,
+   "urbanAreaPopulation": 85000,
+   "rank": 3
+  },
+  {
+   "id": "millau",
+   "name": "Millau",
+   "department": "12",
+   "lon": 3.078,
+   "lat": 44.098,
+   "population": 22000,
+   "urbanAreaPopulation": 30000,
+   "rank": 4
+  },
+  {
+   "id": "aurillac",
+   "name": "Aurillac",
+   "department": "15",
+   "lon": 2.445,
+   "lat": 44.926,
+   "population": 26000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "angouleme",
+   "name": "Angoulême",
+   "department": "16",
+   "lon": 0.156,
+   "lat": 45.648,
+   "population": 42000,
+   "urbanAreaPopulation": 180000,
+   "rank": 3
+  },
+  {
+   "id": "cognac",
+   "name": "Cognac",
+   "department": "16",
+   "lon": -0.329,
+   "lat": 45.696,
+   "population": 18000,
+   "urbanAreaPopulation": 40000,
+   "rank": 4
+  },
+  {
+   "id": "saint_brieuc",
+   "name": "Saint-Brieuc",
+   "department": "22",
+   "lon": -2.765,
+   "lat": 48.514,
+   "population": 44000,
+   "urbanAreaPopulation": 150000,
+   "rank": 3
+  },
+  {
+   "id": "lannion",
+   "name": "Lannion",
+   "department": "22",
+   "lon": -3.459,
+   "lat": 48.732,
+   "population": 20000,
+   "urbanAreaPopulation": 40000,
+   "rank": 4
+  },
+  {
+   "id": "gueret",
+   "name": "Guéret",
+   "department": "23",
+   "lon": 1.871,
+   "lat": 46.171,
+   "population": 13000,
+   "urbanAreaPopulation": 25000,
+   "rank": 4
+  },
+  {
+   "id": "perigueux",
+   "name": "Périgueux",
+   "department": "24",
+   "lon": 0.722,
+   "lat": 45.184,
+   "population": 30000,
+   "urbanAreaPopulation": 100000,
+   "rank": 3
+  },
+  {
+   "id": "bergerac",
+   "name": "Bergerac",
+   "department": "24",
+   "lon": 0.483,
+   "lat": 44.853,
+   "population": 27000,
+   "urbanAreaPopulation": 55000,
+   "rank": 4
+  },
+  {
+   "id": "sarlat",
+   "name": "Sarlat-la-Canéda",
+   "department": "24",
+   "lon": 1.216,
+   "lat": 44.89,
+   "population": 9000,
+   "urbanAreaPopulation": 15000,
+   "rank": 4
+  },
+  {
+   "id": "evreux",
+   "name": "Évreux",
+   "department": "27",
+   "lon": 1.151,
+   "lat": 49.027,
+   "population": 47000,
+   "urbanAreaPopulation": 110000,
+   "rank": 3
+  },
+  {
+   "id": "vernon",
+   "name": "Vernon",
+   "department": "27",
+   "lon": 1.484,
+   "lat": 49.093,
+   "population": 24000,
+   "urbanAreaPopulation": 40000,
+   "rank": 4
+  },
+  {
+   "id": "chartres",
+   "name": "Chartres",
+   "department": "28",
+   "lon": 1.489,
+   "lat": 48.446,
+   "population": 39000,
+   "urbanAreaPopulation": 140000,
+   "rank": 3
+  },
+  {
+   "id": "dreux",
+   "name": "Dreux",
+   "department": "28",
+   "lon": 1.366,
+   "lat": 48.737,
+   "population": 31000,
+   "urbanAreaPopulation": 60000,
+   "rank": 4
+  },
+  {
+   "id": "auch",
+   "name": "Auch",
+   "department": "32",
+   "lon": 0.585,
+   "lat": 43.646,
+   "population": 22000,
+   "urbanAreaPopulation": 40000,
+   "rank": 4
+  },
+  {
+   "id": "chateauroux",
+   "name": "Châteauroux",
+   "department": "36",
+   "lon": 1.691,
+   "lat": 46.811,
+   "population": 43000,
+   "urbanAreaPopulation": 90000,
+   "rank": 3
+  },
+  {
+   "id": "lons",
+   "name": "Lons-le-Saunier",
+   "department": "39",
+   "lon": 5.554,
+   "lat": 46.675,
+   "population": 17000,
+   "urbanAreaPopulation": 40000,
+   "rank": 4
+  },
+  {
+   "id": "dole",
+   "name": "Dole",
+   "department": "39",
+   "lon": 5.49,
+   "lat": 47.092,
+   "population": 24000,
+   "urbanAreaPopulation": 50000,
+   "rank": 4
+  },
+  {
+   "id": "mont_de_marsan",
+   "name": "Mont-de-Marsan",
+   "department": "40",
+   "lon": -0.5,
+   "lat": 43.893,
+   "population": 30000,
+   "urbanAreaPopulation": 55000,
+   "rank": 3
+  },
+  {
+   "id": "dax",
+   "name": "Dax",
+   "department": "40",
+   "lon": -1.053,
+   "lat": 43.71,
+   "population": 21000,
+   "urbanAreaPopulation": 55000,
+   "rank": 4
+  },
+  {
+   "id": "blois",
+   "name": "Blois",
+   "department": "41",
+   "lon": 1.335,
+   "lat": 47.586,
+   "population": 46000,
+   "urbanAreaPopulation": 120000,
+   "rank": 3
+  },
+  {
+   "id": "le_puy",
+   "name": "Le Puy-en-Velay",
+   "department": "43",
+   "lon": 3.885,
+   "lat": 45.043,
+   "population": 19000,
+   "urbanAreaPopulation": 60000,
+   "rank": 4
+  },
+  {
+   "id": "cahors",
+   "name": "Cahors",
+   "department": "46",
+   "lon": 1.441,
+   "lat": 44.448,
+   "population": 20000,
+   "urbanAreaPopulation": 40000,
+   "rank": 4
+  },
+  {
+   "id": "figeac",
+   "name": "Figeac",
+   "department": "46",
+   "lon": 2.031,
+   "lat": 44.609,
+   "population": 10000,
+   "urbanAreaPopulation": 20000,
+   "rank": 4
+  },
+  {
+   "id": "agen",
+   "name": "Agen",
+   "department": "47",
+   "lon": 0.616,
+   "lat": 44.203,
+   "population": 33000,
+   "urbanAreaPopulation": 110000,
+   "rank": 3
+  },
+  {
+   "id": "marmande",
+   "name": "Marmande",
+   "department": "47",
+   "lon": 0.165,
+   "lat": 44.5,
+   "population": 18000,
+   "urbanAreaPopulation": 30000,
+   "rank": 4
+  },
+  {
+   "id": "mende",
+   "name": "Mende",
+   "department": "48",
+   "lon": 3.5,
+   "lat": 44.518,
+   "population": 12000,
+   "urbanAreaPopulation": 20000,
+   "rank": 4
+  },
+  {
+   "id": "chaumont",
+   "name": "Chaumont",
+   "department": "52",
+   "lon": 5.139,
+   "lat": 48.111,
+   "population": 22000,
+   "urbanAreaPopulation": 40000,
+   "rank": 4
+  },
+  {
+   "id": "saint_dizier",
+   "name": "Saint-Dizier",
+   "department": "52",
+   "lon": 4.95,
+   "lat": 48.638,
+   "population": 23000,
+   "urbanAreaPopulation": 40000,
+   "rank": 4
+  },
+  {
+   "id": "laval",
+   "name": "Laval",
+   "department": "53",
+   "lon": -0.77,
+   "lat": 48.073,
+   "population": 50000,
+   "urbanAreaPopulation": 110000,
+   "rank": 3
+  },
+  {
+   "id": "bar_le_duc",
+   "name": "Bar-le-Duc",
+   "department": "55",
+   "lon": 5.16,
+   "lat": 48.772,
+   "population": 15000,
+   "urbanAreaPopulation": 30000,
+   "rank": 4
+  },
+  {
+   "id": "verdun",
+   "name": "Verdun",
+   "department": "55",
+   "lon": 5.383,
+   "lat": 49.16,
+   "population": 17000,
+   "urbanAreaPopulation": 30000,
+   "rank": 4
+  },
+  {
+   "id": "nevers",
+   "name": "Nevers",
+   "department": "58",
+   "lon": 3.159,
+   "lat": 46.99,
+   "population": 33000,
+   "urbanAreaPopulation": 100000,
+   "rank": 3
+  },
+  {
+   "id": "beauvais",
+   "name": "Beauvais",
+   "department": "60",
+   "lon": 2.081,
+   "lat": 49.43,
+   "population": 56000,
+   "urbanAreaPopulation": 110000,
+   "rank": 3
+  },
+  {
+   "id": "compiegne",
+   "name": "Compiègne",
+   "department": "60",
+   "lon": 2.826,
+   "lat": 49.418,
+   "population": 40000,
+   "urbanAreaPopulation": 90000,
+   "rank": 3
+  },
+  {
+   "id": "creil",
+   "name": "Creil",
+   "department": "60",
+   "lon": 2.476,
+   "lat": 49.259,
+   "population": 36000,
+   "urbanAreaPopulation": 100000,
+   "rank": 4
+  },
+  {
+   "id": "alencon",
+   "name": "Alençon",
+   "department": "61",
+   "lon": 0.093,
+   "lat": 48.432,
+   "population": 26000,
+   "urbanAreaPopulation": 60000,
+   "rank": 4
+  },
+  {
+   "id": "flers",
+   "name": "Flers",
+   "department": "61",
+   "lon": -0.57,
+   "lat": 48.749,
+   "population": 15000,
+   "urbanAreaPopulation": 30000,
+   "rank": 4
+  },
+  {
+   "id": "tarbes",
+   "name": "Tarbes",
+   "department": "65",
+   "lon": 0.078,
+   "lat": 43.233,
+   "population": 42000,
+   "urbanAreaPopulation": 115000,
+   "rank": 3
+  },
+  {
+   "id": "lourdes",
+   "name": "Lourdes",
+   "department": "65",
+   "lon": -0.047,
+   "lat": 43.095,
+   "population": 13000,
+   "urbanAreaPopulation": 20000,
+   "rank": 4
+  },
+  {
+   "id": "vesoul",
+   "name": "Vesoul",
+   "department": "70",
+   "lon": 6.155,
+   "lat": 47.622,
+   "population": 15000,
+   "urbanAreaPopulation": 35000,
+   "rank": 4
+  },
+  {
+   "id": "macon",
+   "name": "Mâcon",
+   "department": "71",
+   "lon": 4.832,
+   "lat": 46.307,
+   "population": 34000,
+   "urbanAreaPopulation": 90000,
+   "rank": 3
+  },
+  {
+   "id": "chalon",
+   "name": "Chalon-sur-Saône",
+   "department": "71",
+   "lon": 4.853,
+   "lat": 46.781,
+   "population": 45000,
+   "urbanAreaPopulation": 130000,
+   "rank": 3
+  },
+  {
+   "id": "le_creusot",
+   "name": "Le Creusot",
+   "department": "71",
+   "lon": 4.424,
+   "lat": 46.807,
+   "population": 21000,
+   "urbanAreaPopulation": 50000,
+   "rank": 4
+  },
+  {
+   "id": "melun",
+   "name": "Melun",
+   "department": "77",
+   "lon": 2.655,
+   "lat": 48.54,
+   "population": 41000,
+   "urbanAreaPopulation": 130000,
+   "rank": 3
+  },
+  {
+   "id": "meaux",
+   "name": "Meaux",
+   "department": "77",
+   "lon": 2.878,
+   "lat": 48.96,
+   "population": 55000,
+   "urbanAreaPopulation": 90000,
+   "rank": 3
+  },
+  {
+   "id": "fontainebleau",
+   "name": "Fontainebleau",
+   "department": "77",
+   "lon": 2.701,
+   "lat": 48.405,
+   "population": 15000,
+   "urbanAreaPopulation": 40000,
+   "rank": 4
+  },
+  {
+   "id": "versailles",
+   "name": "Versailles",
+   "department": "78",
+   "lon": 2.13,
+   "lat": 48.805,
+   "population": 85000,
+   "urbanAreaPopulation": 400000,
+   "rank": 3
+  },
+  {
+   "id": "mantes",
+   "name": "Mantes-la-Jolie",
+   "department": "78",
+   "lon": 1.717,
+   "lat": 48.991,
+   "population": 44000,
+   "urbanAreaPopulation": 90000,
+   "rank": 4
+  },
+  {
+   "id": "niort",
+   "name": "Niort",
+   "department": "79",
+   "lon": -0.465,
+   "lat": 46.324,
+   "population": 59000,
+   "urbanAreaPopulation": 150000,
+   "rank": 3
+  },
+  {
+   "id": "albi",
+   "name": "Albi",
+   "department": "81",
+   "lon": 2.148,
+   "lat": 43.928,
+   "population": 49000,
+   "urbanAreaPopulation": 100000,
+   "rank": 3
+  },
+  {
+   "id": "castres",
+   "name": "Castres",
+   "department": "81",
+   "lon": 2.24,
+   "lat": 43.606,
+   "population": 42000,
+   "urbanAreaPopulation": 60000,
+   "rank": 4
+  },
+  {
+   "id": "montauban",
+   "name": "Montauban",
+   "department": "82",
+   "lon": 1.355,
+   "lat": 44.018,
+   "population": 61000,
+   "urbanAreaPopulation": 110000,
+   "rank": 3
+  },
+  {
+   "id": "la_roche_sur_yon",
+   "name": "La Roche-sur-Yon",
+   "department": "85",
+   "lon": -1.427,
+   "lat": 46.67,
+   "population": 55000,
+   "urbanAreaPopulation": 115000,
+   "rank": 3
+  },
+  {
+   "id": "les_sables",
+   "name": "Les Sables-d'Olonne",
+   "department": "85",
+   "lon": -1.783,
+   "lat": 46.497,
+   "population": 45000,
+   "urbanAreaPopulation": 60000,
+   "rank": 4
+  },
+  {
+   "id": "epinal",
+   "name": "Épinal",
+   "department": "88",
+   "lon": 6.45,
+   "lat": 48.173,
+   "population": 32000,
+   "urbanAreaPopulation": 80000,
+   "rank": 3
+  },
+  {
+   "id": "saint_die",
+   "name": "Saint-Dié-des-Vosges",
+   "department": "88",
+   "lon": 6.95,
+   "lat": 48.285,
+   "population": 20000,
+   "urbanAreaPopulation": 40000,
+   "rank": 4
+  },
+  {
+   "id": "auxerre",
+   "name": "Auxerre",
+   "department": "89",
+   "lon": 3.567,
+   "lat": 47.798,
+   "population": 35000,
+   "urbanAreaPopulation": 90000,
+   "rank": 3
+  },
+  {
+   "id": "sens",
+   "name": "Sens",
+   "department": "89",
+   "lon": 3.284,
+   "lat": 48.197,
+   "population": 27000,
+   "urbanAreaPopulation": 60000,
+   "rank": 4
+  },
+  {
+   "id": "belfort",
+   "name": "Belfort",
+   "department": "90",
+   "lon": 6.863,
+   "lat": 47.64,
+   "population": 47000,
+   "urbanAreaPopulation": 100000,
+   "rank": 3
+  },
+  {
+   "id": "evry",
+   "name": "Évry-Courcouronnes",
+   "department": "91",
+   "lon": 2.441,
+   "lat": 48.629,
+   "population": 67000,
+   "urbanAreaPopulation": 200000,
+   "rank": 3
+  },
+  {
+   "id": "massy",
+   "name": "Massy",
+   "department": "91",
+   "lon": 2.274,
+   "lat": 48.73,
+   "population": 50000,
+   "urbanAreaPopulation": 100000,
+   "rank": 4
+  },
+  {
+   "id": "nanterre",
+   "name": "Nanterre",
+   "department": "92",
+   "lon": 2.206,
+   "lat": 48.892,
+   "population": 96000,
+   "urbanAreaPopulation": 300000,
+   "rank": 3
+  },
+  {
+   "id": "boulogne_billancourt",
+   "name": "Boulogne-Billancourt",
+   "department": "92",
+   "lon": 2.24,
+   "lat": 48.835,
+   "population": 120000,
+   "urbanAreaPopulation": 300000,
+   "rank": 3
+  },
+  {
+   "id": "saint_denis",
+   "name": "Saint-Denis",
+   "department": "93",
+   "lon": 2.358,
+   "lat": 48.936,
+   "population": 113000,
+   "urbanAreaPopulation": 300000,
+   "rank": 3
+  },
+  {
+   "id": "montreuil",
+   "name": "Montreuil",
+   "department": "93",
+   "lon": 2.441,
+   "lat": 48.861,
+   "population": 111000,
+   "urbanAreaPopulation": 300000,
+   "rank": 3
+  },
+  {
+   "id": "bobigny",
+   "name": "Bobigny",
+   "department": "93",
+   "lon": 2.44,
+   "lat": 48.91,
+   "population": 55000,
+   "urbanAreaPopulation": 300000,
+   "rank": 4
+  },
+  {
+   "id": "creteil",
+   "name": "Créteil",
+   "department": "94",
+   "lon": 2.455,
+   "lat": 48.79,
+   "population": 92000,
+   "urbanAreaPopulation": 300000,
+   "rank": 3
+  },
+  {
+   "id": "vitry",
+   "name": "Vitry-sur-Seine",
+   "department": "94",
+   "lon": 2.392,
+   "lat": 48.787,
+   "population": 95000,
+   "urbanAreaPopulation": 300000,
+   "rank": 4
+  },
+  {
+   "id": "cergy",
+   "name": "Cergy",
+   "department": "95",
+   "lon": 2.066,
+   "lat": 49.036,
+   "population": 66000,
+   "urbanAreaPopulation": 200000,
+   "rank": 3
+  },
+  {
+   "id": "argenteuil",
+   "name": "Argenteuil",
+   "department": "95",
+   "lon": 2.247,
+   "lat": 48.947,
+   "population": 111000,
+   "urbanAreaPopulation": 300000,
+   "rank": 3
+  },
+  {
+   "id": "arras",
+   "name": "Arras",
+   "department": "62",
+   "lon": 2.781,
+   "lat": 50.291,
+   "population": 41000,
+   "urbanAreaPopulation": 125000,
+   "rank": 3
+  },
+  {
+   "id": "lens",
+   "name": "Lens",
+   "department": "62",
+   "lon": 2.832,
+   "lat": 50.432,
+   "population": 31000,
+   "urbanAreaPopulation": 500000,
+   "rank": 3
+  },
+  {
+   "id": "boulogne_sur_mer",
+   "name": "Boulogne-sur-Mer",
+   "department": "62",
+   "lon": 1.614,
+   "lat": 50.726,
+   "population": 41000,
+   "urbanAreaPopulation": 90000,
+   "rank": 4
+  },
+  {
+   "id": "valenciennes",
+   "name": "Valenciennes",
+   "department": "59",
+   "lon": 3.523,
+   "lat": 50.358,
+   "population": 43000,
+   "urbanAreaPopulation": 350000,
+   "rank": 3
+  },
+  {
+   "id": "roubaix",
+   "name": "Roubaix",
+   "department": "59",
+   "lon": 3.174,
+   "lat": 50.69,
+   "population": 98000,
+   "urbanAreaPopulation": 500000,
+   "rank": 3
+  },
+  {
+   "id": "tourcoing",
+   "name": "Tourcoing",
+   "department": "59",
+   "lon": 3.161,
+   "lat": 50.723,
+   "population": 98000,
+   "urbanAreaPopulation": 500000,
+   "rank": 4
+  },
+  {
+   "id": "maubeuge",
+   "name": "Maubeuge",
+   "department": "59",
+   "lon": 3.973,
+   "lat": 50.278,
+   "population": 29000,
+   "urbanAreaPopulation": 100000,
+   "rank": 4
+  },
+  {
+   "id": "cambrai",
+   "name": "Cambrai",
+   "department": "59",
+   "lon": 3.235,
+   "lat": 50.176,
+   "population": 32000,
+   "urbanAreaPopulation": 60000,
+   "rank": 4
+  },
+  {
+   "id": "abbeville",
+   "name": "Abbeville",
+   "department": "80",
+   "lon": 1.833,
+   "lat": 50.105,
+   "population": 23000,
+   "urbanAreaPopulation": 40000,
+   "rank": 4
+  },
+  {
+   "id": "chalons",
+   "name": "Châlons-en-Champagne",
+   "department": "51",
+   "lon": 4.363,
+   "lat": 48.957,
+   "population": 44000,
+   "urbanAreaPopulation": 80000,
+   "rank": 3
+  },
+  {
+   "id": "epernay",
+   "name": "Épernay",
+   "department": "51",
+   "lon": 3.956,
+   "lat": 49.04,
+   "population": 22000,
+   "urbanAreaPopulation": 40000,
+   "rank": 4
+  },
+  {
+   "id": "thionville",
+   "name": "Thionville",
+   "department": "57",
+   "lon": 6.168,
+   "lat": 49.358,
+   "population": 41000,
+   "urbanAreaPopulation": 140000,
+   "rank": 3
+  },
+  {
+   "id": "forbach",
+   "name": "Forbach",
+   "department": "57",
+   "lon": 6.9,
+   "lat": 49.188,
+   "population": 21000,
+   "urbanAreaPopulation": 80000,
+   "rank": 4
+  },
+  {
+   "id": "colmar",
+   "name": "Colmar",
+   "department": "68",
+   "lon": 7.358,
+   "lat": 48.079,
+   "population": 68000,
+   "urbanAreaPopulation": 130000,
+   "rank": 3
+  },
+  {
+   "id": "haguenau",
+   "name": "Haguenau",
+   "department": "67",
+   "lon": 7.79,
+   "lat": 48.816,
+   "population": 35000,
+   "urbanAreaPopulation": 60000,
+   "rank": 4
+  },
+  {
+   "id": "saint_malo",
+   "name": "Saint-Malo",
+   "department": "35",
+   "lon": -2.008,
+   "lat": 48.649,
+   "population": 46000,
+   "urbanAreaPopulation": 90000,
+   "rank": 3
+  },
+  {
+   "id": "vannes",
+   "name": "Vannes",
+   "department": "56",
+   "lon": -2.76,
+   "lat": 47.658,
+   "population": 54000,
+   "urbanAreaPopulation": 150000,
+   "rank": 3
+  },
+  {
+   "id": "quimper",
+   "name": "Quimper",
+   "department": "29",
+   "lon": -4.097,
+   "lat": 47.996,
+   "population": 63000,
+   "urbanAreaPopulation": 125000,
+   "rank": 3
+  },
+  {
+   "id": "morlaix",
+   "name": "Morlaix",
+   "department": "29",
+   "lon": -3.828,
+   "lat": 48.578,
+   "population": 15000,
+   "urbanAreaPopulation": 30000,
+   "rank": 4
+  },
+  {
+   "id": "cholet",
+   "name": "Cholet",
+   "department": "49",
+   "lon": -0.879,
+   "lat": 47.06,
+   "population": 54000,
+   "urbanAreaPopulation": 80000,
+   "rank": 4
+  },
+  {
+   "id": "saumur",
+   "name": "Saumur",
+   "department": "49",
+   "lon": -0.077,
+   "lat": 47.26,
+   "population": 26000,
+   "urbanAreaPopulation": 40000,
+   "rank": 4
+  },
+  {
+   "id": "chatellerault",
+   "name": "Châtellerault",
+   "department": "86",
+   "lon": 0.546,
+   "lat": 46.817,
+   "population": 31000,
+   "urbanAreaPopulation": 50000,
+   "rank": 4
+  },
+  {
+   "id": "rochefort",
+   "name": "Rochefort",
+   "department": "17",
+   "lon": -0.959,
+   "lat": 45.937,
+   "population": 24000,
+   "urbanAreaPopulation": 40000,
+   "rank": 4
+  },
+  {
+   "id": "saintes",
+   "name": "Saintes",
+   "department": "17",
+   "lon": -0.633,
+   "lat": 45.746,
+   "population": 25000,
+   "urbanAreaPopulation": 50000,
+   "rank": 4
+  },
+  {
+   "id": "arcachon",
+   "name": "Arcachon",
+   "department": "33",
+   "lon": -1.168,
+   "lat": 44.658,
+   "population": 11000,
+   "urbanAreaPopulation": 60000,
+   "rank": 4
+  },
+  {
+   "id": "libourne",
+   "name": "Libourne",
+   "department": "33",
+   "lon": -0.243,
+   "lat": 44.915,
+   "population": 25000,
+   "urbanAreaPopulation": 60000,
+   "rank": 4
+  },
+  {
+   "id": "biarritz",
+   "name": "Biarritz",
+   "department": "64",
+   "lon": -1.559,
+   "lat": 43.483,
+   "population": 25000,
+   "urbanAreaPopulation": 300000,
+   "rank": 4
+  },
+  {
+   "id": "beziers",
+   "name": "Béziers",
+   "department": "34",
+   "lon": 3.215,
+   "lat": 43.344,
+   "population": 79000,
+   "urbanAreaPopulation": 170000,
+   "rank": 3
+  },
+  {
+   "id": "sete",
+   "name": "Sète",
+   "department": "34",
+   "lon": 3.697,
+   "lat": 43.403,
+   "population": 44000,
+   "urbanAreaPopulation": 90000,
+   "rank": 4
+  },
+  {
+   "id": "carcassonne",
+   "name": "Carcassonne",
+   "department": "11",
+   "lon": 2.353,
+   "lat": 43.213,
+   "population": 46000,
+   "urbanAreaPopulation": 100000,
+   "rank": 3
+  },
+  {
+   "id": "ales",
+   "name": "Alès",
+   "department": "30",
+   "lon": 4.081,
+   "lat": 44.126,
+   "population": 43000,
+   "urbanAreaPopulation": 90000,
+   "rank": 4
+  },
+  {
+   "id": "arles",
+   "name": "Arles",
+   "department": "13",
+   "lon": 4.631,
+   "lat": 43.677,
+   "population": 52000,
+   "urbanAreaPopulation": 80000,
+   "rank": 3
+  },
+  {
+   "id": "salon",
+   "name": "Salon-de-Provence",
+   "department": "13",
+   "lon": 5.097,
+   "lat": 43.64,
+   "population": 46000,
+   "urbanAreaPopulation": 80000,
+   "rank": 4
+  },
+  {
+   "id": "martigues",
+   "name": "Martigues",
+   "department": "13",
+   "lon": 5.054,
+   "lat": 43.405,
+   "population": 49000,
+   "urbanAreaPopulation": 80000,
+   "rank": 4
+  },
+  {
+   "id": "fos",
+   "name": "Fos-sur-Mer",
+   "department": "13",
+   "lon": 4.944,
+   "lat": 43.438,
+   "population": 16000,
+   "urbanAreaPopulation": 80000,
+   "rank": 4
+  },
+  {
+   "id": "cannes",
+   "name": "Cannes",
+   "department": "06",
+   "lon": 7.017,
+   "lat": 43.552,
+   "population": 74000,
+   "urbanAreaPopulation": 400000,
+   "rank": 3
+  },
+  {
+   "id": "antibes",
+   "name": "Antibes",
+   "department": "06",
+   "lon": 7.125,
+   "lat": 43.581,
+   "population": 73000,
+   "urbanAreaPopulation": 400000,
+   "rank": 4
+  },
+  {
+   "id": "menton",
+   "name": "Menton",
+   "department": "06",
+   "lon": 7.497,
+   "lat": 43.775,
+   "population": 30000,
+   "urbanAreaPopulation": 70000,
+   "rank": 4
+  },
+  {
+   "id": "frejus",
+   "name": "Fréjus",
+   "department": "83",
+   "lon": 6.737,
+   "lat": 43.433,
+   "population": 54000,
+   "urbanAreaPopulation": 100000,
+   "rank": 4
+  },
+  {
+   "id": "draguignan",
+   "name": "Draguignan",
+   "department": "83",
+   "lon": 6.464,
+   "lat": 43.537,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 4
+  },
+  {
+   "id": "hyeres",
+   "name": "Hyères",
+   "department": "83",
+   "lon": 6.128,
+   "lat": 43.12,
+   "population": 50000,
+   "urbanAreaPopulation": 600000,
+   "rank": 4
+  },
+  {
+   "id": "carpentras",
+   "name": "Carpentras",
+   "department": "84",
+   "lon": 5.048,
+   "lat": 44.055,
+   "population": 29000,
+   "urbanAreaPopulation": 60000,
+   "rank": 4
+  },
+  {
+   "id": "orange",
+   "name": "Orange",
+   "department": "84",
+   "lon": 4.808,
+   "lat": 44.138,
+   "population": 29000,
+   "urbanAreaPopulation": 50000,
+   "rank": 4
+  },
+  {
+   "id": "montelimar",
+   "name": "Montélimar",
+   "department": "26",
+   "lon": 4.75,
+   "lat": 44.558,
+   "population": 40000,
+   "urbanAreaPopulation": 70000,
+   "rank": 4
+  },
+  {
+   "id": "vienne",
+   "name": "Vienne",
+   "department": "38",
+   "lon": 4.874,
+   "lat": 45.525,
+   "population": 30000,
+   "urbanAreaPopulation": 70000,
+   "rank": 4
+  },
+  {
+   "id": "bourgoin",
+   "name": "Bourgoin-Jallieu",
+   "department": "38",
+   "lon": 5.274,
+   "lat": 45.586,
+   "population": 29000,
+   "urbanAreaPopulation": 60000,
+   "rank": 4
+  },
+  {
+   "id": "villeurbanne",
+   "name": "Villeurbanne",
+   "department": "69",
+   "lon": 4.88,
+   "lat": 45.771,
+   "population": 155000,
+   "urbanAreaPopulation": 2300000,
+   "rank": 3
+  },
+  {
+   "id": "villefranche",
+   "name": "Villefranche-sur-Saône",
+   "department": "69",
+   "lon": 4.718,
+   "lat": 45.99,
+   "population": 37000,
+   "urbanAreaPopulation": 70000,
+   "rank": 4
+  },
+  {
+   "id": "roanne",
+   "name": "Roanne",
+   "department": "42",
+   "lon": 4.068,
+   "lat": 46.036,
+   "population": 34000,
+   "urbanAreaPopulation": 100000,
+   "rank": 4
+  },
+  {
+   "id": "thonon",
+   "name": "Thonon-les-Bains",
+   "department": "74",
+   "lon": 6.479,
+   "lat": 46.371,
+   "population": 35000,
+   "urbanAreaPopulation": 80000,
+   "rank": 4
+  },
+  {
+   "id": "chamonix",
+   "name": "Chamonix-Mont-Blanc",
+   "department": "74",
+   "lon": 6.869,
+   "lat": 45.924,
+   "population": 9000,
+   "urbanAreaPopulation": 15000,
+   "rank": 4
+  },
+  {
+   "id": "albertville",
+   "name": "Albertville",
+   "department": "73",
+   "lon": 6.392,
+   "lat": 45.676,
+   "population": 19000,
+   "urbanAreaPopulation": 40000,
+   "rank": 4
+  },
+  {
+   "id": "porto_vecchio",
+   "name": "Porto-Vecchio",
+   "department": "2A",
+   "lon": 9.279,
+   "lat": 41.591,
+   "population": 12000,
+   "urbanAreaPopulation": 20000,
+   "rank": 4
+  },
+  {
+   "id": "corte",
+   "name": "Corte",
+   "department": "2B",
+   "lon": 9.15,
+   "lat": 42.306,
+   "population": 7000,
+   "urbanAreaPopulation": 10000,
+   "rank": 4
+  },
+  {
+   "id": "calvi",
+   "name": "Calvi",
+   "department": "2B",
+   "lon": 8.757,
+   "lat": 42.567,
+   "population": 6000,
+   "urbanAreaPopulation": 10000,
+   "rank": 4
+  },
+  {
+   "id": "dieppe",
+   "name": "Dieppe",
+   "department": "76",
+   "lon": 1.078,
+   "lat": 49.922,
+   "population": 29000,
+   "urbanAreaPopulation": 50000,
+   "rank": 4
+  },
+  {
+   "id": "lisieux",
+   "name": "Lisieux",
+   "department": "14",
+   "lon": 0.226,
+   "lat": 49.146,
+   "population": 20000,
+   "urbanAreaPopulation": 40000,
+   "rank": 4
+  },
+  {
+   "id": "saint_lo",
+   "name": "Saint-Lô",
+   "department": "50",
+   "lon": -1.09,
+   "lat": 49.116,
+   "population": 19000,
+   "urbanAreaPopulation": 40000,
+   "rank": 4
+  },
+  {
+   "id": "vierzon",
+   "name": "Vierzon",
+   "department": "18",
+   "lon": 2.068,
+   "lat": 47.222,
+   "population": 26000,
+   "urbanAreaPopulation": 40000,
+   "rank": 4
+  },
+  {
+   "id": "montargis",
+   "name": "Montargis",
+   "department": "45",
+   "lon": 2.733,
+   "lat": 47.997,
+   "population": 14000,
+   "urbanAreaPopulation": 60000,
+   "rank": 4
+  },
+  {
+   "id": "beaune",
+   "name": "Beaune",
+   "department": "21",
+   "lon": 4.84,
+   "lat": 47.024,
+   "population": 20000,
+   "urbanAreaPopulation": 30000,
+   "rank": 4
+  },
+  {
+   "id": "thiers",
+   "name": "Thiers",
+   "department": "63",
+   "lon": 3.548,
+   "lat": 45.857,
+   "population": 11000,
+   "urbanAreaPopulation": 20000,
+   "rank": 4
+  },
+  {
+   "id": "tulle",
+   "name": "Tulle",
+   "department": "19",
+   "lon": 1.77,
+   "lat": 45.267,
+   "population": 15000,
+   "urbanAreaPopulation": 30000,
+   "rank": 4
+  },
+  {
+   "id": "saint_gaudens",
+   "name": "Saint-Gaudens",
+   "department": "31",
+   "lon": 0.723,
+   "lat": 43.108,
+   "population": 11000,
+   "urbanAreaPopulation": 20000,
+   "rank": 4
   }
  ]
 }

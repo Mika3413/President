@@ -34,4 +34,25 @@ class LocalActionsTest {
         s.advanceToNow()
         assertTrue(s.state.territory.departments.getValue("34").healthAccess > health + 0.1)
     }
+
+    @Test
+    fun actionsFitTheTerritory() {
+        val s = TestData.newSession()
+        fun ids(code: String) = s.localActions.actionsFor(code).map { it.def.id }.toSet()
+        assertTrue("coast_protection" in ids("29") && "coast_protection" !in ids("15"), "le littoral seulement sur les côtes")
+        assertTrue("ski_transition" in ids("73") && "ski_transition" !in ids("75"), "la montagne seulement en montagne")
+        assertTrue("border_police" in ids("67") && "border_police" !in ids("45"))
+        assertTrue("epr_reactor" in ids(s.context.catalog.items.values.first { it.type == "NUCLEAR_PLANT" }.department))
+        assertTrue(ids("75").size >= 40, "beaucoup d'actions possibles partout : ${ids("75").size}")
+        // Une action liée à la situation est montrée verrouillée, avec sa condition.
+        val locked = s.localActions.actionsFor("75").firstOrNull { it.def.id == "factory_visit" }
+        assertTrue(locked == null || locked.blocker != null)
+        // Toutes les actions disponibles s'exécutent sans erreur.
+        for (code in listOf("29", "73", "67", "93", "971")) {
+            s.localActions.actionsFor(code).filter { it.blocker == null }.forEach { v ->
+                val r = s.localActions.perform(code, v.def.id)
+                assertTrue(r.isSuccess || r.exceptionOrNull()?.message?.contains("Possible") == true, "${v.def.id} $code : ${r.exceptionOrNull()?.message}")
+            }
+        }
+    }
 }

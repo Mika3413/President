@@ -115,7 +115,6 @@ class NewGameFactory(private val db: GameDatabase) {
         fr.president.engine.elections.LocalElectionService(ctx).ensure()
         fr.president.engine.government.SenateService(ctx).ensure()
         WelcomeMessage(ctx).send()
-        WelcomeMessage(ctx).scheduleTutorial()
         state.player.tourStep = 0
         // Le parcours du président : réseaux et image au début du mandat.
         options.careerId?.let { id -> country.careers.firstOrNull { it.id == id } }?.let { career ->

@@ -52,6 +52,9 @@ class DiplomacyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
             val euText = session.eu.current()?.second?.title
             into.add(ui.colorButton("★ Union européenne" + (euText?.let { " — au Conseil : $it" } ?: ""), Theme.catDiplomacy) { nav.open(PanelId.EU) }
                 .also { it.label.setWrap(true) }).growX().padBottom(GAP).row()
+            val latest = session.state.world.entries.lastOrNull()
+            into.add(ui.colorButton("◎ Journal du monde" + (latest?.let { " — ${it.headline}" } ?: ""), Theme.catDiplomacy) { nav.open(PanelId.WORLD) }
+                .also { it.label.setWrap(true) }).growX().padBottom(GAP).row()
             into.add(ui.label("Choisissez un pays pour consulter vos relations et négocier (ou touchez-le sur la carte).", "muted", wrap = true)).row()
             val list = Table().apply { defaults().growX().uniformX().pad(2f) }
             session.diplomacy.foreignCountries().forEachIndexed { i, c ->

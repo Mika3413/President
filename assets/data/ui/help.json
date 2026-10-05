@@ -298,6 +298,10 @@
   {
    "term": "Préfet",
    "definition": "Représentant de l'État dans chaque département : il fait remonter au gouvernement les tensions du terrain."
+  },
+  {
+   "term": "Journal du monde",
+   "definition": "Ce qui se passe dans les autres pays et entre eux (élections, crises, accords, guerres, catastrophes). Menu « ☰ Plus », écran Diplomatie ou fiche d'un pays."
   }
  ]
 }

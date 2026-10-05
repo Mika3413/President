@@ -92,16 +92,18 @@ class MapRenderer(private val data: MapData, private val playerCountryId: String
 
     private fun drawNetworks(lod: Lod, layer: ThematicLayer, pixel: Float) {
         val emphasized = layer == ThematicLayer.TRANSPORT
-        for (n in data.networks) {
+        // Fleuves d'abord (dessous), puis autoroutes, puis LGV.
+        for (n in data.networks.sortedBy { when (it.kind) { "RIVER" -> 0; "MOTORWAY" -> 1; else -> 2 } }) {
             val rail = n.kind == "RAIL_HIGH_SPEED"
+            val river = n.kind == "RIVER"
             val visible = when {
+                river -> lod >= Lod.FRANCE
                 emphasized -> lod >= Lod.FRANCE
-                rail -> lod >= Lod.REGION
                 else -> lod >= Lod.REGION
             }
             if (!visible) continue
-            shapes.color = if (rail) Theme.rail else Theme.motorway
-            val width = pixel * if (emphasized) EMPHASIZED_NETWORK_PX else NETWORK_PX
+            shapes.color = if (river) Theme.river else if (rail) Theme.rail else Theme.motorway
+            val width = pixel * if (river) RIVER_PX else if (emphasized) EMPHASIZED_NETWORK_PX else NETWORK_PX
             for (i in 0 until n.points.size - 2 step 2) {
                 shapes.rectLine(n.points[i], n.points[i + 1], n.points[i + 2], n.points[i + 3], width)
             }
@@ -165,6 +167,7 @@ class MapRenderer(private val data: MapData, private val playerCountryId: String
         const val SELECTION_PULSE_WIDTH = 0.6f
         const val REGION_BORDER_PX = 1.8f
         const val NETWORK_PX = 1.5f
+        const val RIVER_PX = 1.8f
         const val EMPHASIZED_NETWORK_PX = 3f
         const val SELECTION_PX = 3f
         const val HALF_CELL = 0.5

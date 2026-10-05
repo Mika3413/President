@@ -1,188 +1,2521 @@
 {
   "_doc": "Actions directes du président sur un département (fiche du département). Cibles « local.<champ> » = département choisi. Voir LocalActionCommands.",
   "categories": [
-    { "id": "services", "label": "Services publics", "icon": "✚" },
-    { "id": "jobs", "label": "Emploi", "icon": "⚒" },
-    { "id": "security", "label": "Sécurité", "icon": "⚑" },
-    { "id": "living", "label": "Cadre de vie", "icon": "♻" },
-    { "id": "presence", "label": "Présence", "icon": "☀" }
+    {
+      "id": "services",
+      "label": "Services publics",
+      "icon": "✚"
+    },
+    {
+      "id": "jobs",
+      "label": "Emploi et industrie",
+      "icon": "⚒"
+    },
+    {
+      "id": "security",
+      "label": "Sécurité",
+      "icon": "⚑"
+    },
+    {
+      "id": "transport",
+      "label": "Transports",
+      "icon": "⇄"
+    },
+    {
+      "id": "social",
+      "label": "Solidarité et logement",
+      "icon": "◐"
+    },
+    {
+      "id": "rural",
+      "label": "Campagnes",
+      "icon": "❦"
+    },
+    {
+      "id": "nature",
+      "label": "Nature, mer, montagne",
+      "icon": "❀"
+    },
+    {
+      "id": "culture",
+      "label": "Culture et sport",
+      "icon": "✪"
+    },
+    {
+      "id": "living",
+      "label": "Cadre de vie",
+      "icon": "♻"
+    },
+    {
+      "id": "presence",
+      "label": "Présence",
+      "icon": "☀"
+    }
   ],
   "actions": [
     {
-      "id": "visit", "label": "Visite présidentielle", "icon": "☀", "category": "presence",
+      "id": "visit",
+      "label": "Visite présidentielle",
+      "icon": "☀",
+      "category": "presence",
       "description": "Vous vous rendez sur place : poignées de main, annonces, couverture médiatique.",
-      "cooldownDays": 120, "globalCooldownDays": 7,
+      "cooldownDays": 120,
+      "globalCooldownDays": 7,
       "immediate": [
-        { "target": "local.approval", "amount": 0.04 },
-        { "target": "opinion.national", "amount": 0.001 }
+        {
+          "target": "local.approval",
+          "amount": 0.04
+        },
+        {
+          "target": "opinion.national",
+          "amount": 0.001
+        }
       ]
     },
     {
-      "id": "health_center", "label": "Maison de santé", "icon": "⚕", "category": "services",
+      "id": "health_center",
+      "label": "Maison de santé",
+      "icon": "⚕",
+      "category": "services",
       "description": "Regrouper médecins et infirmiers dans un centre de proximité. Rapide et peu coûteux.",
-      "costBillions": 0.02, "durationDays": 120, "cooldownDays": 365,
+      "costBillions": 0.02,
+      "durationDays": 120,
+      "cooldownDays": 365,
       "onCompletion": [
-        { "target": "local.healthAccess", "amount": 0.05 },
-        { "target": "local.approval", "amount": 0.015 }
+        {
+          "target": "local.healthAccess",
+          "amount": 0.05
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.015
+        }
       ]
     },
     {
-      "id": "hospital", "label": "Construire un hôpital", "icon": "✚", "category": "services",
+      "id": "hospital",
+      "label": "Construire un hôpital",
+      "icon": "✚",
+      "category": "services",
       "description": "Un grand hôpital moderne : chantier long et coûteux, mais un vrai changement pour les habitants.",
-      "costBillions": 0.3, "durationDays": 540, "cooldownDays": 1460,
-      "immediate": [ { "target": "local.approval", "amount": 0.01 } ],
-      "onCompletion": [
-        { "target": "local.healthAccess", "amount": 0.15 },
-        { "target": "local.approval", "amount": 0.04 },
-        { "target": "local.unemployment", "amount": -0.001 },
-        { "target": "opinion.national", "amount": 0.002 }
-      ]
-    },
-    {
-      "id": "school", "label": "Ouvrir un lycée", "icon": "★", "category": "services",
-      "description": "Un nouveau lycée : des classes moins chargées et des familles satisfaites.",
-      "costBillions": 0.06, "durationDays": 365, "cooldownDays": 1095,
-      "onCompletion": [
-        { "target": "local.approval", "amount": 0.025 },
-        { "target": "local.unemployment", "amount": -0.001 },
-        { "target": "opinion.national", "amount": 0.001 }
-      ]
-    },
-    {
-      "id": "police", "label": "Renforts de police", "icon": "⚑", "category": "security",
-      "description": "Plus de policiers et de gendarmes sur le terrain, un commissariat rénové.",
-      "costBillions": 0.05, "durationDays": 90, "cooldownDays": 365,
-      "onCompletion": [
-        { "target": "local.crime", "amount": -0.1 },
-        { "target": "local.approval", "amount": 0.015 }
-      ]
-    },
-    {
-      "id": "jobs_plan", "label": "Plan emploi local", "icon": "€", "category": "jobs",
-      "description": "Formations, aides à l'embauche et accompagnement des chômeurs du territoire.",
-      "costBillions": 0.08, "durationDays": 60, "cooldownDays": 365,
-      "immediate": [ { "target": "local.approval", "amount": 0.01 } ],
-      "onCompletion": [
-        { "target": "local.unemployment", "amount": -0.003, "days": 365 },
-        { "target": "local.approval", "amount": 0.01 }
-      ]
-    },
-    {
-      "id": "factory", "label": "Attirer une usine", "icon": "⚒", "category": "jobs",
-      "description": "Subventions et terrain offert pour qu'un industriel s'installe. Des emplois, mais plus de pollution.",
-      "costBillions": 0.25, "durationDays": 365, "cooldownDays": 1095,
-      "immediate": [ { "target": "local.approval", "amount": 0.01 } ],
-      "onCompletion": [
-        { "target": "local.unemployment", "amount": -0.006, "days": 180 },
-        { "target": "local.industry", "amount": 0.01 },
-        { "target": "local.pollution", "amount": 0.04 },
-        { "target": "local.approval", "amount": 0.03 },
-        { "target": "opinion.national", "amount": 0.001 }
-      ]
-    },
-    {
-      "id": "green_energy", "label": "Parc solaire et éolien", "icon": "⚡", "category": "living",
-      "description": "Produire une électricité propre sur le territoire. Air plus pur, quelques emplois.",
-      "costBillions": 0.2, "durationDays": 450, "cooldownDays": 1095,
-      "onCompletion": [
-        { "target": "local.pollution", "amount": -0.06 },
-        { "target": "local.unemployment", "amount": -0.001 },
-        { "target": "local.approval", "amount": 0.01 }
-      ]
-    },
-    {
-      "id": "transport", "label": "Ligne de tram ou de train", "icon": "▶", "category": "living",
-      "description": "Désenclaver le territoire : moins de voitures, plus d'accès à l'emploi.",
-      "costBillions": 0.4, "durationDays": 900, "cooldownDays": 1825,
-      "onCompletion": [
-        { "target": "local.approval", "amount": 0.04 },
-        { "target": "local.pollution", "amount": -0.04 },
-        { "target": "local.unemployment", "amount": -0.002 },
-        { "target": "opinion.national", "amount": 0.001 }
-      ]
-    },
-    {
-      "id": "housing", "label": "Logements sociaux", "icon": "⌂", "category": "living",
-      "description": "Construire des logements abordables pour les familles et les jeunes actifs.",
-      "costBillions": 0.15, "durationDays": 540, "cooldownDays": 1095,
-      "onCompletion": [
-        { "target": "local.approval", "amount": 0.03 },
-        { "target": "local.unemployment", "amount": -0.001 }
-      ]
-    },
-    {
-      "id": "doctors", "label": "Attirer des médecins", "icon": "⚕", "category": "services",
-      "description": "Bourses d'installation et logement offert aux jeunes médecins : contre les déserts médicaux.",
-      "costBillions": 0.01, "durationDays": 180, "cooldownDays": 730,
-      "onCompletion": [
-        { "target": "local.healthAccess", "amount": 0.04 },
-        { "target": "local.approval", "amount": 0.015 }
-      ]
-    },
-    {
-      "id": "gendarmerie", "label": "Brigade de gendarmerie", "icon": "✪", "category": "security",
-      "description": "Rouvrir une brigade dans les communes rurales : présence et réactivité.",
-      "costBillions": 0.015, "durationDays": 120, "cooldownDays": 730,
-      "onCompletion": [
-        { "target": "local.crime", "amount": -0.05 },
-        { "target": "local.approval", "amount": 0.01 }
-      ]
-    },
-    {
-      "id": "training", "label": "Centre de formation", "icon": "✎", "category": "jobs",
-      "description": "Former les chômeurs aux métiers qui recrutent dans le bassin d'emploi.",
-      "costBillions": 0.03, "durationDays": 240, "cooldownDays": 730,
-      "onCompletion": [
-        { "target": "local.unemployment", "amount": -0.003 },
-        { "target": "local.approval", "amount": 0.01 }
-      ]
-    },
-    {
-      "id": "free_zone", "label": "Zone franche", "icon": "◆", "category": "jobs",
-      "description": "Exonérations fiscales pour les entreprises qui s'installent : des emplois, mais un manque à gagner.",
-      "costBillions": 0.12, "durationDays": 365, "cooldownDays": 1825,
-      "onCompletion": [
-        { "target": "local.unemployment", "amount": -0.004 },
-        { "target": "local.industry", "amount": 0.008 },
-        { "target": "local.approval", "amount": 0.015 }
-      ]
-    },
-    {
-      "id": "fiber", "label": "Fibre et réseau mobile", "icon": "◎", "category": "jobs",
-      "description": "Raccorder les dernières zones blanches : télétravail, commerces et services en ligne.",
-      "costBillions": 0.05, "durationDays": 365, "cooldownDays": 1825,
-      "onCompletion": [
-        { "target": "local.approval", "amount": 0.02 },
-        { "target": "local.unemployment", "amount": -0.001 }
-      ]
-    },
-    {
-      "id": "cleanup", "label": "Dépolluer un site industriel", "icon": "♻", "category": "living",
-      "description": "Assainir les sols et les rivières d'une friche : plus sain, et des terrains réutilisables.",
-      "costBillions": 0.08, "durationDays": 540, "cooldownDays": 1460,
-      "onCompletion": [
-        { "target": "local.pollution", "amount": -0.08 },
-        { "target": "local.approval", "amount": 0.015 }
-      ]
-    },
-    {
-      "id": "university", "label": "Antenne universitaire", "icon": "★", "category": "services",
-      "description": "Des étudiants qui restent au pays, des laboratoires qui attirent des entreprises.",
-      "costBillions": 0.2, "durationDays": 730, "cooldownDays": 3650,
-      "onCompletion": [
-        { "target": "local.approval", "amount": 0.025 },
-        { "target": "local.unemployment", "amount": -0.002 },
-        { "target": "local.industry", "amount": 0.003 }
-      ]
-    },
-    {
-      "id": "factory_rescue", "label": "Sauver une usine menacée", "icon": "⚒", "category": "jobs",
-      "description": "L'État entre au capital pour éviter une fermeture. Cher, mais les emplois sont préservés.",
-      "costBillions": 0.15, "cooldownDays": 1095,
+      "costBillions": 0.3,
+      "durationDays": 540,
+      "cooldownDays": 1460,
       "immediate": [
-        { "target": "local.approval", "amount": 0.03 },
-        { "target": "local.unemployment", "amount": -0.002 },
-        { "target": "local.industry", "amount": 0.004 }
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        }
+      ],
+      "onCompletion": [
+        {
+          "target": "local.healthAccess",
+          "amount": 0.15
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.04
+        },
+        {
+          "target": "local.unemployment",
+          "amount": -0.001
+        },
+        {
+          "target": "opinion.national",
+          "amount": 0.002
+        }
+      ]
+    },
+    {
+      "id": "school",
+      "label": "Ouvrir un lycée",
+      "icon": "★",
+      "category": "services",
+      "description": "Un nouveau lycée : des classes moins chargées et des familles satisfaites.",
+      "costBillions": 0.06,
+      "durationDays": 365,
+      "cooldownDays": 1095,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.025
+        },
+        {
+          "target": "local.unemployment",
+          "amount": -0.001
+        },
+        {
+          "target": "opinion.national",
+          "amount": 0.001
+        }
+      ]
+    },
+    {
+      "id": "police",
+      "label": "Renforts de police",
+      "icon": "⚑",
+      "category": "security",
+      "description": "Plus de policiers et de gendarmes sur le terrain, un commissariat rénové.",
+      "costBillions": 0.05,
+      "durationDays": 90,
+      "cooldownDays": 365,
+      "onCompletion": [
+        {
+          "target": "local.crime",
+          "amount": -0.1
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "jobs_plan",
+      "label": "Plan emploi local",
+      "icon": "€",
+      "category": "jobs",
+      "description": "Formations, aides à l'embauche et accompagnement des chômeurs du territoire.",
+      "costBillions": 0.08,
+      "durationDays": 60,
+      "cooldownDays": 365,
+      "immediate": [
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        }
+      ],
+      "onCompletion": [
+        {
+          "target": "local.unemployment",
+          "amount": -0.003,
+          "days": 365
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "factory",
+      "label": "Attirer une usine",
+      "icon": "⚒",
+      "category": "jobs",
+      "description": "Subventions et terrain offert pour qu'un industriel s'installe. Des emplois, mais plus de pollution.",
+      "costBillions": 0.25,
+      "durationDays": 365,
+      "cooldownDays": 1095,
+      "immediate": [
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        }
+      ],
+      "onCompletion": [
+        {
+          "target": "local.unemployment",
+          "amount": -0.006,
+          "days": 180
+        },
+        {
+          "target": "local.industry",
+          "amount": 0.01
+        },
+        {
+          "target": "local.pollution",
+          "amount": 0.04
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.03
+        },
+        {
+          "target": "opinion.national",
+          "amount": 0.001
+        }
+      ]
+    },
+    {
+      "id": "green_energy",
+      "label": "Parc solaire et éolien",
+      "icon": "⚡",
+      "category": "living",
+      "description": "Produire une électricité propre sur le territoire. Air plus pur, quelques emplois.",
+      "costBillions": 0.2,
+      "durationDays": 450,
+      "cooldownDays": 1095,
+      "onCompletion": [
+        {
+          "target": "local.pollution",
+          "amount": -0.06
+        },
+        {
+          "target": "local.unemployment",
+          "amount": -0.001
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "transport",
+      "label": "Ligne de tram ou de train",
+      "icon": "▶",
+      "category": "living",
+      "description": "Désenclaver le territoire : moins de voitures, plus d'accès à l'emploi.",
+      "costBillions": 0.4,
+      "durationDays": 900,
+      "cooldownDays": 1825,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.04
+        },
+        {
+          "target": "local.pollution",
+          "amount": -0.04
+        },
+        {
+          "target": "local.unemployment",
+          "amount": -0.002
+        },
+        {
+          "target": "opinion.national",
+          "amount": 0.001
+        }
+      ]
+    },
+    {
+      "id": "housing",
+      "label": "Logements sociaux",
+      "icon": "⌂",
+      "category": "living",
+      "description": "Construire des logements abordables pour les familles et les jeunes actifs.",
+      "costBillions": 0.15,
+      "durationDays": 540,
+      "cooldownDays": 1095,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.03
+        },
+        {
+          "target": "local.unemployment",
+          "amount": -0.001
+        }
+      ]
+    },
+    {
+      "id": "doctors",
+      "label": "Attirer des médecins",
+      "icon": "⚕",
+      "category": "services",
+      "description": "Bourses d'installation et logement offert aux jeunes médecins : contre les déserts médicaux.",
+      "costBillions": 0.01,
+      "durationDays": 180,
+      "cooldownDays": 730,
+      "onCompletion": [
+        {
+          "target": "local.healthAccess",
+          "amount": 0.04
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "gendarmerie",
+      "label": "Brigade de gendarmerie",
+      "icon": "✪",
+      "category": "security",
+      "description": "Rouvrir une brigade dans les communes rurales : présence et réactivité.",
+      "costBillions": 0.015,
+      "durationDays": 120,
+      "cooldownDays": 730,
+      "onCompletion": [
+        {
+          "target": "local.crime",
+          "amount": -0.05
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "training",
+      "label": "Centre de formation",
+      "icon": "✎",
+      "category": "jobs",
+      "description": "Former les chômeurs aux métiers qui recrutent dans le bassin d'emploi.",
+      "costBillions": 0.03,
+      "durationDays": 240,
+      "cooldownDays": 730,
+      "onCompletion": [
+        {
+          "target": "local.unemployment",
+          "amount": -0.003
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "free_zone",
+      "label": "Zone franche",
+      "icon": "◆",
+      "category": "jobs",
+      "description": "Exonérations fiscales pour les entreprises qui s'installent : des emplois, mais un manque à gagner.",
+      "costBillions": 0.12,
+      "durationDays": 365,
+      "cooldownDays": 1825,
+      "onCompletion": [
+        {
+          "target": "local.unemployment",
+          "amount": -0.004
+        },
+        {
+          "target": "local.industry",
+          "amount": 0.008
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "fiber",
+      "label": "Fibre et réseau mobile",
+      "icon": "◎",
+      "category": "jobs",
+      "description": "Raccorder les dernières zones blanches : télétravail, commerces et services en ligne.",
+      "costBillions": 0.05,
+      "durationDays": 365,
+      "cooldownDays": 1825,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.02
+        },
+        {
+          "target": "local.unemployment",
+          "amount": -0.001
+        }
+      ]
+    },
+    {
+      "id": "cleanup",
+      "label": "Dépolluer un site industriel",
+      "icon": "♻",
+      "category": "living",
+      "description": "Assainir les sols et les rivières d'une friche : plus sain, et des terrains réutilisables.",
+      "costBillions": 0.08,
+      "durationDays": 540,
+      "cooldownDays": 1460,
+      "onCompletion": [
+        {
+          "target": "local.pollution",
+          "amount": -0.08
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "university",
+      "label": "Antenne universitaire",
+      "icon": "★",
+      "category": "services",
+      "description": "Des étudiants qui restent au pays, des laboratoires qui attirent des entreprises.",
+      "costBillions": 0.2,
+      "durationDays": 730,
+      "cooldownDays": 3650,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.025
+        },
+        {
+          "target": "local.unemployment",
+          "amount": -0.002
+        },
+        {
+          "target": "local.industry",
+          "amount": 0.003
+        }
+      ]
+    },
+    {
+      "id": "factory_rescue",
+      "label": "Sauver une usine menacée",
+      "icon": "⚒",
+      "category": "jobs",
+      "description": "L'État entre au capital pour éviter une fermeture. Cher, mais les emplois sont préservés.",
+      "costBillions": 0.15,
+      "cooldownDays": 1095,
+      "immediate": [
+        {
+          "target": "local.approval",
+          "amount": 0.03
+        },
+        {
+          "target": "local.unemployment",
+          "amount": -0.002
+        },
+        {
+          "target": "local.industry",
+          "amount": 0.004
+        }
+      ]
+    },
+    {
+      "id": "motorway_widening",
+      "label": "Élargir l'autoroute (2 × 3 voies)",
+      "icon": "⇄",
+      "category": "transport",
+      "description": "Moins de bouchons et d'accidents, des chantiers pour le BTP ; plus de trafic et de pollution à terme.",
+      "cooldownDays": 1825,
+      "costBillions": 0.35,
+      "durationDays": 720,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.02
+        },
+        {
+          "target": "local.unemployment",
+          "amount": -0.001
+        },
+        {
+          "target": "local.pollution",
+          "amount": 0.02
+        },
+        {
+          "target": "sector.construction",
+          "amount": 0.002
+        },
+        {
+          "target": "opinion.group.rural",
+          "amount": 0.002
+        },
+        {
+          "target": "actor.ngo_environment",
+          "amount": -0.1
+        }
+      ]
+    },
+    {
+      "id": "bypass",
+      "label": "Construire une rocade de contournement",
+      "icon": "⇄",
+      "category": "transport",
+      "description": "Les camions ne traversent plus le centre-ville : moins de bruit et de pollution en ville.",
+      "cooldownDays": 1825,
+      "costBillions": 0.12,
+      "durationDays": 540,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.025
+        },
+        {
+          "target": "local.pollution",
+          "amount": -0.01
+        },
+        {
+          "target": "sector.construction",
+          "amount": 0.001
+        }
+      ]
+    },
+    {
+      "id": "tram",
+      "label": "Créer une ligne de tramway",
+      "icon": "⇄",
+      "category": "transport",
+      "description": "Un tramway structure la ville : moins de voitures, quartiers désenclavés, commerces dynamisés.",
+      "cooldownDays": 3650,
+      "costBillions": 0.3,
+      "durationDays": 900,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.03
+        },
+        {
+          "target": "local.pollution",
+          "amount": -0.05
+        },
+        {
+          "target": "local.unemployment",
+          "amount": -0.001
+        },
+        {
+          "target": "opinion.group.urban",
+          "amount": 0.003
+        },
+        {
+          "target": "opinion.group.young",
+          "amount": 0.002
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.urbanShare",
+          "min": 0.65
+        }
+      ]
+    },
+    {
+      "id": "rer_metro",
+      "label": "RER métropolitain (trains du quotidien)",
+      "icon": "⇄",
+      "category": "transport",
+      "description": "Des trains toutes les quinze minutes entre la métropole et sa périphérie : un vrai changement de vie.",
+      "cooldownDays": 3650,
+      "costBillions": 0.6,
+      "durationDays": 1460,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.04
+        },
+        {
+          "target": "local.unemployment",
+          "amount": -0.002
+        },
+        {
+          "target": "local.pollution",
+          "amount": -0.04
+        },
+        {
+          "target": "opinion.group.middle_income",
+          "amount": 0.003
+        },
+        {
+          "target": "quality.transport",
+          "amount": 0.004
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.populationMillions",
+          "min": 0.9
+        }
+      ]
+    },
+    {
+      "id": "small_line",
+      "label": "Rouvrir une petite ligne de train",
+      "icon": "⇄",
+      "category": "transport",
+      "description": "La gare rouvre : les villages ne sont plus coupés du monde.",
+      "cooldownDays": 1825,
+      "costBillions": 0.08,
+      "durationDays": 540,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.03
+        },
+        {
+          "target": "local.pollution",
+          "amount": -0.01
+        },
+        {
+          "target": "opinion.group.rural",
+          "amount": 0.004
+        },
+        {
+          "target": "quality.transport",
+          "amount": 0.002
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.urbanShare",
+          "max": 0.55
+        }
+      ]
+    },
+    {
+      "id": "airport_extension",
+      "label": "Agrandir l'aéroport",
+      "icon": "✈",
+      "category": "transport",
+      "description": "Plus de lignes, de touristes et d'emplois ; plus de bruit pour les riverains.",
+      "cooldownDays": 3650,
+      "costBillions": 0.25,
+      "durationDays": 720,
+      "onCompletion": [
+        {
+          "target": "local.unemployment",
+          "amount": -0.003
+        },
+        {
+          "target": "local.pollution",
+          "amount": 0.04
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        },
+        {
+          "target": "sector.tourism",
+          "amount": 0.002
+        },
+        {
+          "target": "actor.ngo_environment",
+          "amount": -0.15
+        },
+        {
+          "target": "chain.airport_noise",
+          "amount": 0.3
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.airport",
+          "min": 1
+        }
+      ]
+    },
+    {
+      "id": "port_modernize",
+      "label": "Moderniser le port",
+      "icon": "⚓",
+      "category": "transport",
+      "description": "Des quais pour les plus grands porte-conteneurs : le port reprend des parts à Anvers et Rotterdam.",
+      "cooldownDays": 3650,
+      "costBillions": 0.3,
+      "durationDays": 720,
+      "onCompletion": [
+        {
+          "target": "local.unemployment",
+          "amount": -0.003
+        },
+        {
+          "target": "local.industry",
+          "amount": 0.006
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.015
+        },
+        {
+          "target": "sector.transport",
+          "amount": 0.002
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.port",
+          "min": 1
+        }
+      ]
+    },
+    {
+      "id": "bike_plan",
+      "label": "Plan vélo : pistes cyclables",
+      "icon": "♻",
+      "category": "transport",
+      "description": "Des pistes sûres et continues : les citadins adorent, une partie des automobilistes râle.",
+      "cooldownDays": 1095,
+      "costBillions": 0.02,
+      "durationDays": 240,
+      "onCompletion": [
+        {
+          "target": "local.pollution",
+          "amount": -0.015
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.008
+        },
+        {
+          "target": "opinion.group.young",
+          "amount": 0.002
+        },
+        {
+          "target": "opinion.group.rural",
+          "amount": -0.001
+        }
+      ]
+    },
+    {
+      "id": "free_transport_youth",
+      "label": "Transports gratuits pour les jeunes",
+      "icon": "⇄",
+      "category": "transport",
+      "description": "Bus et trains régionaux gratuits pour les moins de 26 ans.",
+      "cooldownDays": 730,
+      "costBillions": 0.04,
+      "immediate": [
+        {
+          "target": "local.approval",
+          "amount": 0.02
+        },
+        {
+          "target": "opinion.group.young",
+          "amount": 0.003
+        },
+        {
+          "target": "local.pollution",
+          "amount": -0.005
+        }
+      ]
+    },
+    {
+      "id": "speed_cameras",
+      "label": "Radars et sécurité routière",
+      "icon": "⚠",
+      "category": "transport",
+      "description": "Moins de morts sur les routes ; les automobilistes y voient une pompe à fric.",
+      "cooldownDays": 730,
+      "immediate": [
+        {
+          "target": "local.approval",
+          "amount": -0.015
+        },
+        {
+          "target": "opinion.group.rural",
+          "amount": -0.002
+        },
+        {
+          "target": "budget.oneOff",
+          "amount": -0.01
+        }
+      ]
+    },
+    {
+      "id": "save_maternity",
+      "label": "Sauver la maternité menacée",
+      "icon": "✚",
+      "category": "services",
+      "description": "La maternité devait fermer faute de médecins : vous la maintenez avec des renforts.",
+      "cooldownDays": 1095,
+      "costBillions": 0.03,
+      "immediate": [
+        {
+          "target": "local.healthAccess",
+          "amount": 0.03
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.03
+        },
+        {
+          "target": "opinion.group.rural",
+          "amount": 0.002
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.urbanShare",
+          "max": 0.55
+        }
+      ]
+    },
+    {
+      "id": "samu_helicopter",
+      "label": "Hélicoptère du SAMU",
+      "icon": "✚",
+      "category": "services",
+      "description": "Un hélicoptère médicalisé basé sur place : l'hôpital à vingt minutes de partout.",
+      "cooldownDays": 1460,
+      "costBillions": 0.01,
+      "durationDays": 90,
+      "onCompletion": [
+        {
+          "target": "local.healthAccess",
+          "amount": 0.03
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.urbanShare",
+          "max": 0.65
+        }
+      ]
+    },
+    {
+      "id": "telemedicine",
+      "label": "Cabines de télémédecine",
+      "icon": "✚",
+      "category": "services",
+      "description": "Consulter un médecin à distance depuis la pharmacie ou la mairie.",
+      "cooldownDays": 730,
+      "costBillions": 0.005,
+      "durationDays": 120,
+      "onCompletion": [
+        {
+          "target": "local.healthAccess",
+          "amount": 0.02
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "nursing_home",
+      "label": "Construire un EHPAD public",
+      "icon": "✚",
+      "category": "services",
+      "description": "Des places en maison de retraite à prix modéré, et des emplois d'aides-soignants.",
+      "cooldownDays": 1825,
+      "costBillions": 0.05,
+      "durationDays": 540,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.02
+        },
+        {
+          "target": "local.unemployment",
+          "amount": -0.001
+        },
+        {
+          "target": "opinion.group.seniors",
+          "amount": 0.002
+        },
+        {
+          "target": "opinion.group.retirees",
+          "amount": 0.002
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.seniorShare",
+          "min": 0.22
+        }
+      ],
+      "requiresText": "Réservé aux départements où les seniors sont nombreux (plus de 22 %)."
+    },
+    {
+      "id": "france_services",
+      "label": "Maisons France Services",
+      "icon": "✚",
+      "category": "services",
+      "description": "Un guichet unique pour la CAF, les impôts, la retraite ou le permis : l'État revient au village.",
+      "cooldownDays": 730,
+      "costBillions": 0.004,
+      "durationDays": 90,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.015
+        },
+        {
+          "target": "opinion.group.rural",
+          "amount": 0.002
+        },
+        {
+          "target": "opinion.group.seniors",
+          "amount": 0.001
+        }
+      ]
+    },
+    {
+      "id": "post_offices",
+      "label": "Maintenir les bureaux de poste",
+      "icon": "✉",
+      "category": "services",
+      "description": "Vous imposez à La Poste de garder ses bureaux ruraux ouverts.",
+      "cooldownDays": 1095,
+      "costBillions": 0.003,
+      "immediate": [
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        },
+        {
+          "target": "opinion.group.rural",
+          "amount": 0.001
+        }
+      ]
+    },
+    {
+      "id": "high_school",
+      "label": "Construire un lycée",
+      "icon": "✎",
+      "category": "services",
+      "description": "Les lycéens ne font plus une heure de car matin et soir.",
+      "cooldownDays": 1825,
+      "costBillions": 0.08,
+      "durationDays": 730,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.02
+        },
+        {
+          "target": "local.unemployment",
+          "amount": -0.001
+        },
+        {
+          "target": "opinion.group.young",
+          "amount": 0.002
+        },
+        {
+          "target": "opinion.group.adults",
+          "amount": 0.001
+        }
+      ]
+    },
+    {
+      "id": "small_classes",
+      "label": "Dédoubler les classes de CP et de CE1",
+      "icon": "✎",
+      "category": "services",
+      "description": "Douze élèves par classe dans les quartiers modestes : la lecture progresse.",
+      "cooldownDays": 1460,
+      "costBillions": 0.02,
+      "durationDays": 365,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.015
+        },
+        {
+          "target": "quality.education",
+          "amount": 0.001
+        },
+        {
+          "target": "opinion.group.low_income",
+          "amount": 0.002
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.incomeIndex",
+          "max": 0.97
+        }
+      ],
+      "requiresText": "Réservé aux départements aux revenus modestes."
+    },
+    {
+      "id": "medical_school",
+      "label": "Ouvrir une faculté de médecine",
+      "icon": "✚",
+      "category": "services",
+      "description": "Former les médecins sur place : ils s'installent souvent là où ils ont étudié.",
+      "cooldownDays": 3650,
+      "costBillions": 0.12,
+      "durationDays": 1095,
+      "onCompletion": [
+        {
+          "target": "local.healthAccess",
+          "amount": 0.06
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.02
+        },
+        {
+          "target": "local.unemployment",
+          "amount": -0.001
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.healthAccess",
+          "max": 0.95
+        }
+      ],
+      "requiresText": "Pour les départements où l'accès aux soins est difficile."
+    },
+    {
+      "id": "mental_health",
+      "label": "Centre de santé mentale",
+      "icon": "✚",
+      "category": "services",
+      "description": "Psychiatres et psychologues accessibles : moins de drames, moins d'urgences saturées.",
+      "cooldownDays": 1460,
+      "costBillions": 0.02,
+      "durationDays": 365,
+      "onCompletion": [
+        {
+          "target": "local.healthAccess",
+          "amount": 0.02
+        },
+        {
+          "target": "local.crime",
+          "amount": -0.01
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.008
+        }
+      ]
+    },
+    {
+      "id": "disability_plan",
+      "label": "Plan handicap et accessibilité",
+      "icon": "✚",
+      "category": "services",
+      "description": "Écoles, transports et administrations accessibles à tous.",
+      "cooldownDays": 1460,
+      "costBillions": 0.03,
+      "durationDays": 365,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        },
+        {
+          "target": "opinion.group.inactive",
+          "amount": 0.002
+        }
+      ]
+    },
+    {
+      "id": "cctv",
+      "label": "Vidéoprotection",
+      "icon": "◉",
+      "category": "security",
+      "description": "Des caméras dans les rues : délinquance en baisse, débat sur les libertés.",
+      "cooldownDays": 1095,
+      "costBillions": 0.01,
+      "durationDays": 120,
+      "onCompletion": [
+        {
+          "target": "local.crime",
+          "amount": -0.03
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.005
+        },
+        {
+          "target": "opinion.group.seniors",
+          "amount": 0.002
+        },
+        {
+          "target": "opinion.group.young",
+          "amount": -0.001
+        },
+        {
+          "target": "actor.ngo_rights",
+          "amount": -0.05
+        }
+      ]
+    },
+    {
+      "id": "drug_raid",
+      "label": "Opération « place nette » contre les trafics",
+      "icon": "⚑",
+      "category": "security",
+      "description": "Descentes massives dans les points de deal : effet spectaculaire, risque de tensions.",
+      "cooldownDays": 365,
+      "costBillions": 0.005,
+      "immediate": [
+        {
+          "target": "local.crime",
+          "amount": -0.05
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.02
+        },
+        {
+          "target": "opinion.group.seniors",
+          "amount": 0.002
+        },
+        {
+          "target": "chain.urban_riots",
+          "amount": 0.15
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.crime",
+          "min": 1.15
+        }
+      ],
+      "requiresText": "Seulement là où la délinquance dépasse nettement la moyenne."
+    },
+    {
+      "id": "prison",
+      "label": "Construire une prison",
+      "icon": "⊘",
+      "category": "security",
+      "description": "Des places de prison en plus : les peines sont exécutées, mais personne ne veut d'une prison à côté de chez soi.",
+      "cooldownDays": 3650,
+      "costBillions": 0.25,
+      "durationDays": 1095,
+      "onCompletion": [
+        {
+          "target": "local.crime",
+          "amount": -0.04
+        },
+        {
+          "target": "local.approval",
+          "amount": -0.01
+        },
+        {
+          "target": "local.unemployment",
+          "amount": -0.001
+        },
+        {
+          "target": "quality.justice",
+          "amount": 0.003
+        }
+      ]
+    },
+    {
+      "id": "local_court",
+      "label": "Rouvrir un tribunal de proximité",
+      "icon": "⚖",
+      "category": "security",
+      "description": "La justice au plus près : les délais d'audience fondent.",
+      "cooldownDays": 1825,
+      "costBillions": 0.03,
+      "durationDays": 365,
+      "onCompletion": [
+        {
+          "target": "local.crime",
+          "amount": -0.02
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.015
+        },
+        {
+          "target": "quality.justice",
+          "amount": 0.001
+        }
+      ]
+    },
+    {
+      "id": "border_police",
+      "label": "Renforcer la police aux frontières",
+      "icon": "⚑",
+      "category": "security",
+      "description": "Plus de contrôles aux frontières : trafics et passages illégaux reculent.",
+      "cooldownDays": 1095,
+      "costBillions": 0.02,
+      "durationDays": 90,
+      "onCompletion": [
+        {
+          "target": "local.crime",
+          "amount": -0.02
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        },
+        {
+          "target": "demography.immigration",
+          "amount": -0.01
+        },
+        {
+          "target": "opinion.group.seniors",
+          "amount": 0.001
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.border",
+          "min": 1
+        }
+      ]
+    },
+    {
+      "id": "youth_workers",
+      "label": "Éducateurs de rue et maisons de quartier",
+      "icon": "⚑",
+      "category": "security",
+      "description": "La prévention plutôt que la répression : moins de jeunes basculent.",
+      "cooldownDays": 1095,
+      "costBillions": 0.02,
+      "durationDays": 365,
+      "onCompletion": [
+        {
+          "target": "local.crime",
+          "amount": -0.03
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        },
+        {
+          "target": "opinion.group.young",
+          "amount": 0.002
+        }
+      ]
+    },
+    {
+      "id": "cyber_center",
+      "label": "Centre régional de cybersécurité",
+      "icon": "◉",
+      "category": "security",
+      "description": "Protéger hôpitaux et collectivités contre les rançongiciels.",
+      "cooldownDays": 1825,
+      "costBillions": 0.04,
+      "durationDays": 365,
+      "onCompletion": [
+        {
+          "target": "local.unemployment",
+          "amount": -0.001
+        },
+        {
+          "target": "quality.security",
+          "amount": 0.001
+        },
+        {
+          "target": "sector.tech",
+          "amount": 0.001
+        }
+      ]
+    },
+    {
+      "id": "firefighters",
+      "label": "Renforcer les pompiers et les Canadair",
+      "icon": "⚠",
+      "category": "security",
+      "description": "Plus d'hommes et d'avions contre les feux de forêt.",
+      "cooldownDays": 1460,
+      "costBillions": 0.06,
+      "durationDays": 365,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.02
+        },
+        {
+          "target": "quality.environment",
+          "amount": 0.001
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.mediterranean",
+          "min": 1
+        }
+      ]
+    },
+    {
+      "id": "gigafactory",
+      "label": "Gigafactory de batteries",
+      "icon": "⚒",
+      "category": "jobs",
+      "description": "Une usine géante de batteries : des milliers d'emplois, une région qui renaît, mais une usine qui pollue.",
+      "cooldownDays": 3650,
+      "costBillions": 1.0,
+      "durationDays": 900,
+      "globalCooldownDays": 730,
+      "immediate": [
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        }
+      ],
+      "onCompletion": [
+        {
+          "target": "local.unemployment",
+          "amount": -0.01
+        },
+        {
+          "target": "local.industry",
+          "amount": 0.02
+        },
+        {
+          "target": "local.pollution",
+          "amount": 0.03
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.04
+        },
+        {
+          "target": "sector.industry",
+          "amount": 0.004
+        },
+        {
+          "target": "economy.potentialGrowth",
+          "amount": 0.0002
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.industryShare",
+          "min": 0.15
+        }
+      ],
+      "requiresText": "Réservé aux bassins industriels.",
+      "confirm": true
+    },
+    {
+      "id": "data_center",
+      "label": "Data center géant",
+      "icon": "⚒",
+      "category": "jobs",
+      "description": "Les géants du numérique s'installent : investissements, mais une grosse consommation d'électricité et d'eau.",
+      "cooldownDays": 3650,
+      "costBillions": 0.3,
+      "durationDays": 540,
+      "onCompletion": [
+        {
+          "target": "local.unemployment",
+          "amount": -0.002
+        },
+        {
+          "target": "sector.tech",
+          "amount": 0.003
+        },
+        {
+          "target": "local.pollution",
+          "amount": 0.01
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "startup_campus",
+      "label": "Campus de start-up",
+      "icon": "⚒",
+      "category": "jobs",
+      "description": "Un incubateur, des locaux, des investisseurs : les jeunes diplômés restent au pays.",
+      "cooldownDays": 1825,
+      "costBillions": 0.06,
+      "durationDays": 365,
+      "onCompletion": [
+        {
+          "target": "local.unemployment",
+          "amount": -0.002
+        },
+        {
+          "target": "opinion.group.young",
+          "amount": 0.002
+        },
+        {
+          "target": "sector.tech",
+          "amount": 0.001
+        }
+      ]
+    },
+    {
+      "id": "craft_school",
+      "label": "École d'artisanat et d'apprentissage",
+      "icon": "⚒",
+      "category": "jobs",
+      "description": "Former plombiers, électriciens, boulangers : les métiers qui recrutent.",
+      "cooldownDays": 1460,
+      "costBillions": 0.02,
+      "durationDays": 365,
+      "onCompletion": [
+        {
+          "target": "local.unemployment",
+          "amount": -0.002
+        },
+        {
+          "target": "opinion.group.young",
+          "amount": 0.002
+        },
+        {
+          "target": "opinion.group.self_employed",
+          "amount": 0.001
+        }
+      ]
+    },
+    {
+      "id": "relocate_agency",
+      "label": "Délocaliser une administration ici",
+      "icon": "⚒",
+      "category": "jobs",
+      "description": "Un service de l'État quitte Paris pour s'installer ici : des centaines d'emplois, des fonctionnaires mécontents de déménager.",
+      "cooldownDays": 3650,
+      "costBillions": 0.05,
+      "durationDays": 540,
+      "globalCooldownDays": 365,
+      "onCompletion": [
+        {
+          "target": "local.unemployment",
+          "amount": -0.002
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.03
+        },
+        {
+          "target": "opinion.group.civil_servants",
+          "amount": -0.002
+        }
+      ]
+    },
+    {
+      "id": "arms_plant",
+      "label": "Usine d'armement (économie de guerre)",
+      "icon": "⚔",
+      "category": "jobs",
+      "description": "Obus et missiles produits en France : emplois, souveraineté, stocks reconstitués.",
+      "cooldownDays": 3650,
+      "costBillions": 0.4,
+      "durationDays": 720,
+      "globalCooldownDays": 730,
+      "onCompletion": [
+        {
+          "target": "local.unemployment",
+          "amount": -0.004
+        },
+        {
+          "target": "local.industry",
+          "amount": 0.01
+        },
+        {
+          "target": "sector.aerospace",
+          "amount": 0.003
+        },
+        {
+          "target": "military.ammoStock",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "epr_reactor",
+      "label": "Nouveau réacteur nucléaire (EPR)",
+      "icon": "☢",
+      "category": "jobs",
+      "description": "Deux réacteurs de nouvelle génération : électricité décarbonée pour soixante ans, chantier géant.",
+      "cooldownDays": 7300,
+      "costBillions": 8.0,
+      "durationDays": 3650,
+      "globalCooldownDays": 3650,
+      "immediate": [
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        },
+        {
+          "target": "local.unemployment",
+          "amount": -0.003
+        },
+        {
+          "target": "actor.ngo_environment",
+          "amount": -0.3
+        },
+        {
+          "target": "actor.nuclear_lobby",
+          "amount": 0.3
+        }
+      ],
+      "onCompletion": [
+        {
+          "target": "energy.capacity.new_nuclear",
+          "amount": 3300
+        },
+        {
+          "target": "local.unemployment",
+          "amount": -0.003
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.02
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.nuclear",
+          "min": 1
+        }
+      ],
+      "confirm": true
+    },
+    {
+      "id": "offshore_wind",
+      "label": "Parc éolien en mer",
+      "icon": "⚡",
+      "category": "jobs",
+      "description": "Cinquante éoliennes au large : électricité verte, mais les pêcheurs et les riverains protestent.",
+      "cooldownDays": 3650,
+      "costBillions": 1.5,
+      "durationDays": 1095,
+      "globalCooldownDays": 730,
+      "onCompletion": [
+        {
+          "target": "energy.capacity.wind",
+          "amount": 500
+        },
+        {
+          "target": "local.unemployment",
+          "amount": -0.002
+        },
+        {
+          "target": "local.pollution",
+          "amount": -0.02
+        },
+        {
+          "target": "opinion.group.self_employed",
+          "amount": -0.002
+        },
+        {
+          "target": "local.approval",
+          "amount": -0.005
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.coastal",
+          "min": 1
+        }
+      ]
+    },
+    {
+      "id": "solar_farm",
+      "label": "Centrale solaire",
+      "icon": "☀",
+      "category": "jobs",
+      "description": "Des panneaux sur d'anciennes friches et des parkings.",
+      "cooldownDays": 1825,
+      "costBillions": 0.1,
+      "durationDays": 365,
+      "onCompletion": [
+        {
+          "target": "energy.capacity.solar",
+          "amount": 300
+        },
+        {
+          "target": "local.pollution",
+          "amount": -0.01
+        },
+        {
+          "target": "local.unemployment",
+          "amount": -0.001
+        }
+      ]
+    },
+    {
+      "id": "methanizer",
+      "label": "Méthaniseurs agricoles",
+      "icon": "♻",
+      "category": "jobs",
+      "description": "Transformer les déchets agricoles en gaz : un revenu de plus pour les éleveurs.",
+      "cooldownDays": 1460,
+      "costBillions": 0.02,
+      "durationDays": 365,
+      "onCompletion": [
+        {
+          "target": "local.pollution",
+          "amount": -0.01
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.005
+        },
+        {
+          "target": "opinion.group.rural",
+          "amount": 0.002
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.urbanShare",
+          "max": 0.55
+        }
+      ]
+    },
+    {
+      "id": "wasteland",
+      "label": "Dépolluer une friche industrielle",
+      "icon": "♻",
+      "category": "jobs",
+      "description": "L'ancienne usine devient un parc d'activités.",
+      "cooldownDays": 1825,
+      "costBillions": 0.06,
+      "durationDays": 540,
+      "onCompletion": [
+        {
+          "target": "local.pollution",
+          "amount": -0.03
+        },
+        {
+          "target": "local.industry",
+          "amount": 0.002
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.industryShare",
+          "min": 0.15
+        }
+      ],
+      "requiresText": "Réservé aux bassins industriels."
+    },
+    {
+      "id": "factory_visit",
+      "label": "Rencontrer les salariés d'une usine menacée",
+      "icon": "☀",
+      "category": "jobs",
+      "description": "Vous venez écouter les ouvriers : un geste qui compte, et une promesse qu'on vous rappellera.",
+      "cooldownDays": 365,
+      "immediate": [
+        {
+          "target": "local.approval",
+          "amount": 0.02
+        },
+        {
+          "target": "opinion.group.private_employees",
+          "amount": 0.002
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.unemployment",
+          "min": 0.09
+        }
+      ],
+      "requiresText": "Là où le chômage dépasse 9 %."
+    },
+    {
+      "id": "farm_emergency",
+      "label": "Aide d'urgence aux agriculteurs",
+      "icon": "❦",
+      "category": "rural",
+      "description": "Une enveloppe pour les exploitations en difficulté après une mauvaise année.",
+      "cooldownDays": 730,
+      "costBillions": 0.03,
+      "immediate": [
+        {
+          "target": "local.approval",
+          "amount": 0.02
+        },
+        {
+          "target": "opinion.group.rural",
+          "amount": 0.003
+        },
+        {
+          "target": "quality.agriculture",
+          "amount": 0.001
+        },
+        {
+          "target": "actor.farmers_union",
+          "amount": 0.1
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.urbanShare",
+          "max": 0.55
+        }
+      ]
+    },
+    {
+      "id": "water_reserve",
+      "label": "Réserves d'eau agricoles (« bassines »)",
+      "icon": "❦",
+      "category": "rural",
+      "description": "Stocker l'eau l'hiver pour irriguer l'été : les agriculteurs applaudissent, les écologistes manifestent.",
+      "cooldownDays": 1460,
+      "costBillions": 0.02,
+      "durationDays": 365,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.005
+        },
+        {
+          "target": "opinion.group.rural",
+          "amount": 0.003
+        },
+        {
+          "target": "opinion.group.young",
+          "amount": -0.002
+        },
+        {
+          "target": "actor.farmers_union",
+          "amount": 0.1
+        },
+        {
+          "target": "actor.ngo_environment",
+          "amount": -0.2
+        },
+        {
+          "target": "chain.city_demonstration",
+          "amount": 0.2
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.urbanShare",
+          "max": 0.55
+        }
+      ]
+    },
+    {
+      "id": "local_canteens",
+      "label": "Cantines bio et locales",
+      "icon": "❦",
+      "category": "rural",
+      "description": "Les cantines achètent aux producteurs du coin.",
+      "cooldownDays": 1095,
+      "costBillions": 0.01,
+      "durationDays": 180,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        },
+        {
+          "target": "sector.agrifood",
+          "amount": 0.001
+        },
+        {
+          "target": "opinion.group.adults",
+          "amount": 0.001
+        }
+      ]
+    },
+    {
+      "id": "wolf_plan",
+      "label": "Plan loup : autoriser les tirs",
+      "icon": "❦",
+      "category": "rural",
+      "description": "Les éleveurs pourront abattre les loups qui attaquent leurs troupeaux.",
+      "cooldownDays": 730,
+      "immediate": [
+        {
+          "target": "opinion.group.rural",
+          "amount": 0.004
+        },
+        {
+          "target": "quality.environment",
+          "amount": -0.002
+        },
+        {
+          "target": "actor.ngo_environment",
+          "amount": -0.15
+        },
+        {
+          "target": "actor.hunters",
+          "amount": 0.15
+        },
+        {
+          "target": "actor.farmers_union",
+          "amount": 0.1
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.mountain",
+          "min": 1
+        }
+      ]
+    },
+    {
+      "id": "vineyard_aid",
+      "label": "Plan d'aide aux viticulteurs",
+      "icon": "❦",
+      "category": "rural",
+      "description": "Arrachage aidé, distillation, promotion à l'export : la filière respire.",
+      "cooldownDays": 1095,
+      "costBillions": 0.05,
+      "immediate": [
+        {
+          "target": "local.approval",
+          "amount": 0.02
+        },
+        {
+          "target": "opinion.group.rural",
+          "amount": 0.003
+        },
+        {
+          "target": "sector.agrifood",
+          "amount": 0.001
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.wine",
+          "min": 1
+        }
+      ]
+    },
+    {
+      "id": "village_shops",
+      "label": "Rouvrir des commerces de village",
+      "icon": "❦",
+      "category": "rural",
+      "description": "Épicerie, café, boulangerie : le village revit.",
+      "cooldownDays": 1095,
+      "costBillions": 0.01,
+      "durationDays": 180,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.015
+        },
+        {
+          "target": "opinion.group.rural",
+          "amount": 0.002
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.urbanShare",
+          "max": 0.55
+        }
+      ]
+    },
+    {
+      "id": "coast_protection",
+      "label": "Protéger le littoral contre l'érosion",
+      "icon": "❀",
+      "category": "nature",
+      "description": "Digues, enrochements, recul organisé : la mer grignote moins les côtes.",
+      "cooldownDays": 1825,
+      "costBillions": 0.06,
+      "durationDays": 540,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.02
+        },
+        {
+          "target": "quality.environment",
+          "amount": 0.001
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.coastal",
+          "min": 1
+        }
+      ]
+    },
+    {
+      "id": "ski_transition",
+      "label": "Reconvertir les stations de ski",
+      "icon": "❀",
+      "category": "nature",
+      "description": "Moins de neige : VTT, randonnée, thermalisme, pour faire vivre la montagne toute l'année.",
+      "cooldownDays": 1825,
+      "costBillions": 0.08,
+      "durationDays": 720,
+      "onCompletion": [
+        {
+          "target": "local.unemployment",
+          "amount": -0.001
+        },
+        {
+          "target": "sector.tourism",
+          "amount": 0.001
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.mountain",
+          "min": 1
+        }
+      ]
+    },
+    {
+      "id": "national_park",
+      "label": "Créer un parc national",
+      "icon": "❀",
+      "category": "nature",
+      "description": "Protéger un territoire exceptionnel : tourisme vert, mais des contraintes pour les habitants.",
+      "cooldownDays": 7300,
+      "costBillions": 0.02,
+      "durationDays": 365,
+      "onCompletion": [
+        {
+          "target": "local.pollution",
+          "amount": -0.02
+        },
+        {
+          "target": "sector.tourism",
+          "amount": 0.001
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.005
+        },
+        {
+          "target": "opinion.group.rural",
+          "amount": -0.001
+        },
+        {
+          "target": "actor.ngo_environment",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "river_cleanup",
+      "label": "Dépolluer la rivière",
+      "icon": "❀",
+      "category": "nature",
+      "description": "Stations d'épuration modernisées : on peut de nouveau s'y baigner.",
+      "cooldownDays": 1825,
+      "costBillions": 0.04,
+      "durationDays": 540,
+      "onCompletion": [
+        {
+          "target": "local.pollution",
+          "amount": -0.04
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "dikes",
+      "label": "Renforcer les digues contre les crues",
+      "icon": "❀",
+      "category": "nature",
+      "description": "Des digues rehaussées et des zones d'expansion des crues.",
+      "cooldownDays": 1825,
+      "costBillions": 0.08,
+      "durationDays": 540,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.015
+        },
+        {
+          "target": "quality.environment",
+          "amount": 0.001
+        }
+      ]
+    },
+    {
+      "id": "reforestation",
+      "label": "Replanter la forêt",
+      "icon": "❀",
+      "category": "nature",
+      "description": "Un million d'arbres adaptés au climat qui vient.",
+      "cooldownDays": 1825,
+      "costBillions": 0.03,
+      "durationDays": 720,
+      "onCompletion": [
+        {
+          "target": "local.pollution",
+          "amount": -0.02
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "festival",
+      "label": "Soutenir un grand festival",
+      "icon": "✪",
+      "category": "culture",
+      "description": "Musique, théâtre ou cinéma : des touristes, de la fierté locale.",
+      "cooldownDays": 365,
+      "costBillions": 0.005,
+      "immediate": [
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        },
+        {
+          "target": "sector.tourism",
+          "amount": 0.0005
+        },
+        {
+          "target": "opinion.group.young",
+          "amount": 0.001
+        }
+      ]
+    },
+    {
+      "id": "museum",
+      "label": "Ouvrir une antenne d'un grand musée",
+      "icon": "✪",
+      "category": "culture",
+      "description": "Les chefs-d'œuvre nationaux exposés hors de Paris.",
+      "cooldownDays": 3650,
+      "costBillions": 0.08,
+      "durationDays": 900,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.02
+        },
+        {
+          "target": "sector.tourism",
+          "amount": 0.001
+        },
+        {
+          "target": "local.unemployment",
+          "amount": -0.0005
+        }
+      ]
+    },
+    {
+      "id": "heritage",
+      "label": "Restaurer le patrimoine (cathédrale, château)",
+      "icon": "✪",
+      "category": "culture",
+      "description": "Un monument sauvé de la ruine : fierté et touristes.",
+      "cooldownDays": 1825,
+      "costBillions": 0.03,
+      "durationDays": 540,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.015
+        },
+        {
+          "target": "sector.tourism",
+          "amount": 0.0005
+        },
+        {
+          "target": "opinion.group.seniors",
+          "amount": 0.001
+        }
+      ]
+    },
+    {
+      "id": "stadium",
+      "label": "Construire une salle de sport et un stade",
+      "icon": "✪",
+      "category": "culture",
+      "description": "Des équipements sportifs pour les clubs et les écoles.",
+      "cooldownDays": 1825,
+      "costBillions": 0.05,
+      "durationDays": 540,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.015
+        },
+        {
+          "target": "opinion.group.young",
+          "amount": 0.002
+        }
+      ]
+    },
+    {
+      "id": "pools",
+      "label": "Rénover les piscines",
+      "icon": "✪",
+      "category": "culture",
+      "description": "Apprendre à nager, se rafraîchir l'été : les piscines fermées rouvrent.",
+      "cooldownDays": 1460,
+      "costBillions": 0.02,
+      "durationDays": 365,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        },
+        {
+          "target": "opinion.group.adults",
+          "amount": 0.001
+        }
+      ]
+    },
+    {
+      "id": "libraries",
+      "label": "Médiathèques ouvertes le dimanche",
+      "icon": "✪",
+      "category": "culture",
+      "description": "Des lieux de culture et de calme ouverts quand les gens sont libres.",
+      "cooldownDays": 1095,
+      "costBillions": 0.003,
+      "immediate": [
+        {
+          "target": "local.approval",
+          "amount": 0.005
+        },
+        {
+          "target": "opinion.group.young",
+          "amount": 0.001
+        }
+      ]
+    },
+    {
+      "id": "regional_language",
+      "label": "Soutenir la langue régionale",
+      "icon": "✪",
+      "category": "culture",
+      "description": "Écoles bilingues, signalétique, médias : une identité reconnue.",
+      "cooldownDays": 1460,
+      "costBillions": 0.002,
+      "immediate": [
+        {
+          "target": "local.approval",
+          "amount": 0.015
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.regionalLanguage",
+          "min": 1
+        }
+      ]
+    },
+    {
+      "id": "tour_de_france",
+      "label": "Accueillir une étape du Tour de France",
+      "icon": "✪",
+      "category": "culture",
+      "description": "Des millions de téléspectateurs découvrent le département.",
+      "cooldownDays": 365,
+      "costBillions": 0.002,
+      "globalCooldownDays": 30,
+      "immediate": [
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        },
+        {
+          "target": "sector.tourism",
+          "amount": 0.0003
+        }
+      ]
+    },
+    {
+      "id": "social_housing",
+      "label": "Construire des logements sociaux",
+      "icon": "◐",
+      "category": "social",
+      "description": "Des logements abordables pour les familles modestes et les jeunes.",
+      "cooldownDays": 1460,
+      "costBillions": 0.1,
+      "durationDays": 720,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": 0.02
+        },
+        {
+          "target": "opinion.group.low_income",
+          "amount": 0.002
+        },
+        {
+          "target": "local.unemployment",
+          "amount": -0.001
+        },
+        {
+          "target": "sector.construction",
+          "amount": 0.001
+        }
+      ]
+    },
+    {
+      "id": "urban_renewal",
+      "label": "Rénovation urbaine des quartiers",
+      "icon": "◐",
+      "category": "social",
+      "description": "Démolir les barres, reconstruire, désenclaver : les quartiers changent de visage.",
+      "cooldownDays": 3650,
+      "costBillions": 0.2,
+      "durationDays": 1095,
+      "onCompletion": [
+        {
+          "target": "local.crime",
+          "amount": -0.04
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.025
+        },
+        {
+          "target": "opinion.group.low_income",
+          "amount": 0.002
+        },
+        {
+          "target": "sector.construction",
+          "amount": 0.002
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.urbanShare",
+          "min": 0.65
+        }
+      ]
+    },
+    {
+      "id": "shelter",
+      "label": "Centre d'hébergement d'urgence",
+      "icon": "◐",
+      "category": "social",
+      "description": "Des lits pour les sans-abri ; certains riverains protestent.",
+      "cooldownDays": 730,
+      "costBillions": 0.01,
+      "durationDays": 90,
+      "onCompletion": [
+        {
+          "target": "local.crime",
+          "amount": -0.005
+        },
+        {
+          "target": "local.approval",
+          "amount": -0.003
+        },
+        {
+          "target": "opinion.group.low_income",
+          "amount": 0.001
+        },
+        {
+          "target": "actor.church",
+          "amount": 0.05
+        }
+      ]
+    },
+    {
+      "id": "food_aid",
+      "label": "Aide alimentaire d'urgence",
+      "icon": "◐",
+      "category": "social",
+      "description": "Un soutien aux banques alimentaires débordées.",
+      "cooldownDays": 365,
+      "costBillions": 0.005,
+      "immediate": [
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        },
+        {
+          "target": "opinion.group.low_income",
+          "amount": 0.002
+        },
+        {
+          "target": "actor.church",
+          "amount": 0.05
+        }
+      ]
+    },
+    {
+      "id": "insulation",
+      "label": "Rénovation énergétique des logements",
+      "icon": "◐",
+      "category": "social",
+      "description": "Isoler les passoires thermiques : factures en baisse, artisans au travail.",
+      "cooldownDays": 1095,
+      "costBillions": 0.06,
+      "durationDays": 365,
+      "onCompletion": [
+        {
+          "target": "local.pollution",
+          "amount": -0.01
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        },
+        {
+          "target": "sector.construction",
+          "amount": 0.001
+        },
+        {
+          "target": "opinion.group.low_income",
+          "amount": 0.001
+        }
+      ]
+    },
+    {
+      "id": "migrant_center",
+      "label": "Ouvrir un centre d'accueil de demandeurs d'asile",
+      "icon": "◐",
+      "category": "social",
+      "description": "Répartir l'accueil sur le territoire : humanité saluée par les associations, colère d'une partie des habitants.",
+      "cooldownDays": 1095,
+      "costBillions": 0.02,
+      "durationDays": 120,
+      "onCompletion": [
+        {
+          "target": "local.approval",
+          "amount": -0.02
+        },
+        {
+          "target": "local.crime",
+          "amount": 0.005
+        },
+        {
+          "target": "actor.ngo_rights",
+          "amount": 0.1
+        },
+        {
+          "target": "opinion.group.seniors",
+          "amount": -0.001
+        }
+      ]
+    },
+    {
+      "id": "town_debate",
+      "label": "Grand débat avec les habitants",
+      "icon": "☀",
+      "category": "presence",
+      "description": "Trois heures de questions sans filtre, en direct.",
+      "cooldownDays": 365,
+      "globalCooldownDays": 14,
+      "immediate": [
+        {
+          "target": "local.approval",
+          "amount": 0.02
+        },
+        {
+          "target": "opinion.national",
+          "amount": 0.001
+        }
+      ]
+    },
+    {
+      "id": "hospital_visit",
+      "label": "Visite d'un hôpital",
+      "icon": "☀",
+      "category": "presence",
+      "description": "Vous passez une nuit aux urgences avec les soignants.",
+      "cooldownDays": 180,
+      "globalCooldownDays": 7,
+      "immediate": [
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        },
+        {
+          "target": "opinion.group.seniors",
+          "amount": 0.001
+        }
+      ]
+    },
+    {
+      "id": "mayors_elysee",
+      "label": "Recevoir les maires du département à l'Élysée",
+      "icon": "☀",
+      "category": "presence",
+      "description": "Les élus locaux reçus et écoutés : ils s'en souviendront.",
+      "cooldownDays": 365,
+      "globalCooldownDays": 7,
+      "immediate": [
+        {
+          "target": "local.approval",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "commemoration",
+      "label": "Cérémonie de commémoration",
+      "icon": "☀",
+      "category": "presence",
+      "description": "Un hommage à l'histoire locale : résistants, soldats, victimes.",
+      "cooldownDays": 365,
+      "globalCooldownDays": 14,
+      "immediate": [
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        },
+        {
+          "target": "opinion.group.seniors",
+          "amount": 0.002
+        }
+      ]
+    },
+    {
+      "id": "overseas_water",
+      "label": "Plan eau potable outre-mer",
+      "icon": "✚",
+      "category": "services",
+      "description": "Des canalisations neuves : fini les coupures d'eau à répétition.",
+      "cooldownDays": 1825,
+      "costBillions": 0.1,
+      "durationDays": 540,
+      "onCompletion": [
+        {
+          "target": "local.healthAccess",
+          "amount": 0.04
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.03
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.overseas",
+          "min": 1
+        }
+      ]
+    },
+    {
+      "id": "overseas_prices",
+      "label": "Bouclier qualité-prix contre la vie chère",
+      "icon": "◐",
+      "category": "social",
+      "description": "Des prix plafonnés sur les produits de première nécessité.",
+      "cooldownDays": 730,
+      "costBillions": 0.02,
+      "immediate": [
+        {
+          "target": "local.approval",
+          "amount": 0.03
+        },
+        {
+          "target": "opinion.group.low_income",
+          "amount": 0.001
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.overseas",
+          "min": 1
+        }
+      ]
+    },
+    {
+      "id": "overseas_security",
+      "label": "Renforts de gendarmerie outre-mer",
+      "icon": "⚑",
+      "category": "security",
+      "description": "Escadrons de gendarmerie et lutte contre les trafics.",
+      "cooldownDays": 730,
+      "costBillions": 0.02,
+      "durationDays": 60,
+      "onCompletion": [
+        {
+          "target": "local.crime",
+          "amount": -0.05
+        },
+        {
+          "target": "local.approval",
+          "amount": 0.01
+        }
+      ],
+      "requires": [
+        {
+          "variable": "scope.overseas",
+          "min": 1
+        }
       ]
     }
   ]
