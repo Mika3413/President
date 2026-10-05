@@ -68,6 +68,7 @@ class OfficePanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pan
             AdvisorReadout.Target.GOVERNMENT -> nav.open(PanelId.LEGISLATION, "parliament")
             AdvisorReadout.Target.ELECTIONS -> nav.open(PanelId.ELECTIONS)
             AdvisorReadout.Target.ECONOMY -> nav.open(PanelId.ECONOMY)
+            AdvisorReadout.Target.INBOX -> nav.open(PanelId.INBOX)
             else -> nav.open(PanelId.DECISIONS)
         }
     }

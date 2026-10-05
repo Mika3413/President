@@ -52,7 +52,7 @@ class ConsequenceReadout(private val ctx: SimulationContext) {
         if (biggest < 1e-6) null else r to (Math.log(1e-5 / biggest) / Math.log(0.85)).toInt().coerceIn(1, 60)
     }
 
-    private fun cleanHeadline(h: String) = h.replace(Regex("\\{[^}]*\\}"), "…").trim()
+    private fun cleanHeadline(h: String) = h.replace(Regex("\\{[^\\}]*\\}"), "…").trim()
 
     companion object {
         private const val MIN_FACTOR = 1.1

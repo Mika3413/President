@@ -37,8 +37,8 @@ class OfficeReadout(private val ctx: SimulationContext) {
             items += (60 + (a.severity * 10).toInt()) to Item(r.icon, r.label, "${ConsequenceReadout(ctx).row(r, a).value}. ${r.fix.replaceFirstChar { it.uppercase() }}",
                 if (a.severity >= 1) Tone.BAD else Tone.WARNING, AdvisorReadout.Target.CONSEQUENCES)
         }
-        consequences.nearThreshold(IMMINENT).firstOrNull()?.let { (r, _) ->
-            items += 55 to Item("◷", "Bientôt : ${r.label.replaceFirstChar { it.lowercase() }}", ConsequenceReadout(ctx).row(r, null).let { "${it.value} — ${it.threshold}." },
+        consequences.nearThreshold().firstOrNull()?.let { (r, gap) ->
+            items += (if (gap < IMMINENT) 55 else 25) to Item("◷", (if (gap < IMMINENT) "Bientôt : " else "À surveiller : ") + r.label, ConsequenceReadout(ctx).row(r, null).let { "${it.value} — ${it.threshold}." },
                 Tone.WARNING, AdvisorReadout.Target.CONSEQUENCES)
         }
         ctx.state.unrest.movements.maxByOrNull { it.crowd }?.let { m ->
@@ -59,6 +59,13 @@ class OfficeReadout(private val ctx: SimulationContext) {
         }
         hotspots().firstOrNull()?.takeIf { it.score > HOT }?.let { h ->
             items += 35 to Item("⚑", "Préfet : alerte ${h.name}", h.reasons.joinToString(" ; ").replaceFirstChar { it.uppercase() } + ".", Tone.WARNING, AdvisorReadout.Target.DEPARTMENT, h.code)
+        }
+        ctx.state.inbox.messages.count { it.awaitingAnswer }.takeIf { it > 0 }?.let { n ->
+            items += 48 to Item("✉", if (n == 1) "Un courrier attend votre réponse" else "$n courriers attendent votre réponse",
+                "Sans réponse avant l'échéance, vos services appliqueront l'option par défaut.", Tone.WARNING, AdvisorReadout.Target.INBOX)
+        }
+        ctx.state.agenda.entries.filter { it.end > ctx.now && ctx.now.daysUntil(it.start) < 2 }.minByOrNull { it.start }?.let { a ->
+            items += 20 to Item("◷", "Agenda : ${a.label}", (if (a.start <= ctx.now) "En cours" else "Le ${Formatting.date(a.start)}") + if (a.place.isNotEmpty()) " · ${a.place}." else ".", Tone.NEUTRAL)
         }
         val days = ctx.now.daysUntil(ctx.state.elections.nextElection)
         if (days < ELECTION_SOON) items += 30 to Item("✔", "Présidentielle dans ${days.toInt()} jours", "Chaque décision compte double désormais.", Tone.WARNING, AdvisorReadout.Target.ELECTIONS)
@@ -95,8 +102,8 @@ class OfficeReadout(private val ctx: SimulationContext) {
             val worst = vars.mapNotNull { v -> worstRule(v) }.maxByOrNull { it.second }
             val tone = indicators.maxOfOrNull { it.tone.ordinal }?.let { Tone.entries[it] } ?: Tone.NEUTRAL
             val advice = when {
-                worst != null && worst.second >= 1 -> "« La situation est grave : ${worst.first.label.lowercase()}. Il faut ${worst.first.fix} »"
-                worst != null -> "« Je dois vous alerter : ${worst.first.label.lowercase()}. ${worst.first.why} »"
+                worst != null && worst.second >= 1 -> "« La situation est grave : ${worst.first.label}. Il faut ${worst.first.fix} »"
+                worst != null -> "« Je dois vous alerter : ${worst.first.label}. ${worst.first.why} »"
                 tone == Tone.WARNING -> "« Plusieurs voyants passent à l'orange, il faudra agir avant qu'ils ne virent au rouge. »"
                 else -> "« Rien d'alarmant dans mon domaine pour l'instant. »"
             }
