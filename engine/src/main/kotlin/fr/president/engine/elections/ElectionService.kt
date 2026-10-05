@@ -54,6 +54,14 @@ class ElectionService(private val ctx: SimulationContext) {
         val simulator = ElectionSimulator(ctx)
         val incumbentId = ctx.state.player.presidentId
         if (round == FIRST_ROUND) {
+            // Limite constitutionnelle des mandats : le président sortant ne peut pas se représenter.
+            val limit = fr.president.engine.government.LawService(ctx).flag("termLimit")?.toInt() ?: 0
+            if (limit > 0 && ctx.state.player.termNumber >= limit) {
+                ctx.state.player.gameOver = GameOver(ctx.now, if (limit == 1) "Votre mandat unique s'achève : la Constitution vous interdit de vous représenter."
+                    else "Après $limit mandats, la Constitution vous interdit de vous représenter. Votre présidence s'achève.")
+                ctx.notifications.post(NotificationCategory.ELECTIONS, Urgency.URGENT, "Fin de votre présidence", ctx.state.player.gameOver!!.reason)
+                return
+            }
             val result = simulator.simulate(state.candidates, def.pollNoise / 2)
             state.pendingFirstRound = result
             val qualified = topTwo(result)
@@ -87,7 +95,8 @@ class ElectionService(private val ctx: SimulationContext) {
             val player = ctx.state.player
             player.termNumber++
             player.termStart = ctx.now
-            state.nextElection = ctx.now.plusYears(def.termYears)
+            val laws = fr.president.engine.government.LawService(ctx)
+            state.nextElection = ctx.now.plusYears(laws.flag("termYears")?.toInt() ?: def.termYears)
             ctx.state.opinion.honeymoon = ctx.playerData.socialGroups!!.honeymoonBonus * REELECTION_HONEYMOON
             val president = ctx.state.characters.getValue(player.presidentId)
             ctx.notifications.post(NotificationCategory.ELECTIONS, Urgency.URGENT, if (president.female) "Vous êtes réélue !" else "Vous êtes réélu !",

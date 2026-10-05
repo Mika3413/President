@@ -68,6 +68,7 @@ class DataLoader(private val source: DataSource) {
             agenda = def.agenda?.let { read(it) },
             sectors = def.sectors?.let { read(it) },
             careers = def.careers?.let { read<fr.president.engine.politics.CareersFile>(it).careers }.orEmpty(),
+            laws = def.laws?.let { read(it) },
         )
     }
 

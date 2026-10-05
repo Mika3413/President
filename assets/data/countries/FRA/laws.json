@@ -1,0 +1,1836 @@
+{
+ "_doc": "Lois de société, justice, travail, libertés et Constitution. Généré par tools/datagen/laws_fr.py.",
+ "baseline": {
+  "liberty": 78,
+  "press": 72,
+  "rule": 82
+ },
+ "referendumDays": 30,
+ "categories": [
+  {
+   "id": "societe",
+   "label": "Société",
+   "icon": "♥",
+   "description": "Mœurs, famille, laïcité, fin de vie."
+  },
+  {
+   "id": "justice",
+   "label": "Justice et sécurité",
+   "icon": "⚖",
+   "description": "Peines, police, armes, prisons."
+  },
+  {
+   "id": "travail",
+   "label": "Travail et social",
+   "icon": "⚒",
+   "description": "Durée du travail, salaire minimum, grève, dimanche."
+  },
+  {
+   "id": "libertes",
+   "label": "Libertés et médias",
+   "icon": "▤",
+   "description": "Presse, internet, surveillance, manifestations."
+  },
+  {
+   "id": "institutions",
+   "label": "Constitution et institutions",
+   "icon": "⌂",
+   "description": "Mandat, régime, référendum, mode de scrutin."
+  }
+ ],
+ "laws": [
+  {
+   "id": "end_of_life",
+   "category": "societe",
+   "title": "Fin de vie",
+   "description": "Accompagner les malades en fin de vie.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "palliative",
+     "label": "Soins palliatifs, sédation profonde",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "assisted",
+     "label": "Aide à mourir encadrée",
+     "description": "Pour les malades incurables, avec l'avis de médecins.",
+     "difficulty": 0.04,
+     "effects": [
+      {
+       "target": "opinion.group.young",
+       "amount": 0.008
+      },
+      {
+       "target": "opinion.group.urban",
+       "amount": 0.008
+      },
+      {
+       "target": "opinion.group.seniors",
+       "amount": -0.006
+      }
+     ],
+     "liberty": 2,
+     "appeal": 0.12
+    }
+   ]
+  },
+  {
+   "id": "cannabis",
+   "category": "societe",
+   "title": "Cannabis",
+   "description": "Le cannabis est interdit ; la consommation reste répandue.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "forbidden",
+     "label": "Interdit, amende forfaitaire",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "decriminalized",
+     "label": "Dépénalisé (usage personnel)",
+     "description": "Plus de poursuites pour usage ; trafic toujours réprimé.",
+     "difficulty": 0.06,
+     "effects": [
+      {
+       "target": "opinion.group.young",
+       "amount": 0.012
+      },
+      {
+       "target": "opinion.group.seniors",
+       "amount": -0.012
+      },
+      {
+       "target": "quality.justice",
+       "amount": 0.004
+      }
+     ],
+     "liberty": 2,
+     "appeal": -0.02
+    },
+    {
+     "id": "legal",
+     "label": "Légal et encadré par l'État",
+     "description": "Vente contrôlée, taxée ; le trafic perd des revenus.",
+     "difficulty": 0.12,
+     "effects": [
+      {
+       "target": "opinion.group.young",
+       "amount": 0.018
+      },
+      {
+       "target": "opinion.group.seniors",
+       "amount": -0.02
+      },
+      {
+       "target": "opinion.group.rural",
+       "amount": -0.008
+      }
+     ],
+     "longTerm": [
+      {
+       "target": "budget.oneOff",
+       "amount": -1.0,
+       "days": 365,
+       "delayDays": 180
+      },
+      {
+       "target": "quality.security",
+       "amount": 0.004,
+       "delayDays": 180
+      }
+     ],
+     "events": {
+      "urban_riots": 0.9
+     },
+     "liberty": 3,
+     "appeal": -0.08
+    }
+   ]
+  },
+  {
+   "id": "secularism",
+   "category": "societe",
+   "title": "Laïcité et signes religieux",
+   "description": "Les signes religieux sont interdits à l'école publique.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "school",
+     "label": "Interdits à l'école publique",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "public_space",
+     "label": "Interdits dans tout l'espace public",
+     "description": "Y compris la rue et l'université.",
+     "difficulty": 0.12,
+     "effects": [
+      {
+       "target": "opinion.group.seniors",
+       "amount": 0.012
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": -0.012
+      },
+      {
+       "target": "opinion.group.urban",
+       "amount": -0.01
+      },
+      {
+       "target": "alliance.EU.DISAGREEMENT",
+       "amount": -0.01
+      }
+     ],
+     "events": {
+      "urban_riots": 1.2,
+      "city_demonstration": 1.2
+     },
+     "liberty": -6,
+     "rule": -3,
+     "appeal": 0.04
+    },
+    {
+     "id": "relaxed",
+     "label": "Assouplissement (accompagnatrices scolaires)",
+     "description": "Les mères accompagnatrices peuvent porter un signe religieux.",
+     "difficulty": 0.06,
+     "effects": [
+      {
+       "target": "opinion.group.urban",
+       "amount": 0.006
+      },
+      {
+       "target": "opinion.group.seniors",
+       "amount": -0.012
+      }
+     ],
+     "liberty": 2,
+     "appeal": -0.1
+    }
+   ]
+  },
+  {
+   "id": "surrogacy",
+   "category": "societe",
+   "title": "Gestation pour autrui",
+   "description": "La GPA est interdite en France.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "forbidden",
+     "label": "Interdite",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "ethical",
+     "label": "Autorisée, encadrée et non rémunérée",
+     "description": "Sur le modèle britannique.",
+     "difficulty": 0.1,
+     "effects": [
+      {
+       "target": "opinion.group.young",
+       "amount": 0.006
+      },
+      {
+       "target": "opinion.group.seniors",
+       "amount": -0.012
+      },
+      {
+       "target": "opinion.group.rural",
+       "amount": -0.008
+      }
+     ],
+     "liberty": 1,
+     "appeal": -0.12
+    }
+   ]
+  },
+  {
+   "id": "nationality",
+   "category": "societe",
+   "title": "Droit du sol",
+   "description": "Un enfant né en France de parents étrangers peut devenir français à sa majorité.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "current",
+     "label": "Droit du sol à la majorité",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "restricted",
+     "label": "Droit du sol restreint",
+     "description": "Il faut avoir un parent en situation régulière et en faire la demande.",
+     "difficulty": 0.08,
+     "effects": [
+      {
+       "target": "opinion.group.seniors",
+       "amount": 0.01
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": -0.008
+      },
+      {
+       "target": "demography.immigration",
+       "amount": -0.03
+      }
+     ],
+     "liberty": -1,
+     "appeal": 0.08
+    },
+    {
+     "id": "abolished",
+     "label": "Suppression du droit du sol",
+     "description": "Réforme constitutionnelle très contestée.",
+     "difficulty": 0.18,
+     "effects": [
+      {
+       "target": "opinion.group.seniors",
+       "amount": 0.012
+      },
+      {
+       "target": "opinion.group.urban",
+       "amount": -0.015
+      },
+      {
+       "target": "alliance.EU.DISAGREEMENT",
+       "amount": -0.008
+      }
+     ],
+     "events": {
+      "urban_riots": 1.25
+     },
+     "liberty": -3,
+     "rule": -3
+    }
+   ]
+  },
+  {
+   "id": "family_reunification",
+   "category": "societe",
+   "title": "Regroupement familial",
+   "description": "Les étrangers réguliers peuvent faire venir leur famille sous conditions.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "current",
+     "label": "Sous conditions de ressources et de logement",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "strict",
+     "label": "Conditions durcies (langue, revenus)",
+     "description": "Délais et exigences renforcés.",
+     "difficulty": 0.06,
+     "effects": [
+      {
+       "target": "opinion.group.seniors",
+       "amount": 0.008
+      },
+      {
+       "target": "demography.immigration",
+       "amount": -0.04
+      }
+     ],
+     "liberty": -1,
+     "appeal": 0.1
+    },
+    {
+     "id": "suspended",
+     "label": "Suspendu pour cinq ans",
+     "description": "Contraire aux engagements européens.",
+     "difficulty": 0.16,
+     "effects": [
+      {
+       "target": "opinion.group.seniors",
+       "amount": 0.01
+      },
+      {
+       "target": "demography.immigration",
+       "amount": -0.08
+      },
+      {
+       "target": "alliance.EU.DISAGREEMENT",
+       "amount": -0.02
+      }
+     ],
+     "liberty": -3,
+     "rule": -4,
+     "appeal": 0.02
+    }
+   ]
+  },
+  {
+   "id": "social_media_minors",
+   "category": "societe",
+   "title": "Réseaux sociaux et mineurs",
+   "description": "Les mineurs accèdent librement aux réseaux sociaux.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "free",
+     "label": "Accès libre",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "under15",
+     "label": "Interdits avant 15 ans (vérification d'âge)",
+     "description": "Les plateformes doivent vérifier l'âge.",
+     "difficulty": 0.03,
+     "effects": [
+      {
+       "target": "opinion.group.adults",
+       "amount": 0.012
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": -0.008
+      },
+      {
+       "target": "memory.USA.DISAGREEMENT",
+       "amount": -0.01
+      }
+     ],
+     "liberty": -1,
+     "appeal": 0.2
+    }
+   ]
+  },
+  {
+   "id": "bullfighting",
+   "category": "societe",
+   "title": "Corrida",
+   "description": "La corrida est autorisée là où existe une tradition locale.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "tradition",
+     "label": "Autorisée par tradition locale",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "banned",
+     "label": "Interdite",
+     "description": "Les régions taurines protestent.",
+     "difficulty": 0.05,
+     "effects": [
+      {
+       "target": "opinion.group.urban",
+       "amount": 0.006
+      },
+      {
+       "target": "opinion.group.rural",
+       "amount": -0.006
+      }
+     ],
+     "appeal": 0.1
+    }
+   ]
+  },
+  {
+   "id": "hunting",
+   "category": "societe",
+   "title": "Chasse",
+   "description": "La chasse est autorisée tous les jours de la saison.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "current",
+     "label": "Tous les jours",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "sunday_ban",
+     "label": "Interdite le dimanche",
+     "description": "Pour les promeneurs ; les chasseurs sont furieux.",
+     "difficulty": 0.06,
+     "effects": [
+      {
+       "target": "opinion.group.urban",
+       "amount": 0.006
+      },
+      {
+       "target": "opinion.group.rural",
+       "amount": -0.014
+      }
+     ],
+     "appeal": 0.08
+    }
+   ]
+  },
+  {
+   "id": "death_penalty",
+   "category": "justice",
+   "title": "Peine de mort",
+   "description": "Abolie en 1981, interdite par la Constitution et les traités européens.",
+   "constitutional": true,
+   "options": [
+    {
+     "id": "abolished",
+     "label": "Abolie",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "terrorism",
+     "label": "Rétablie pour les crimes terroristes",
+     "description": "Rupture avec la Convention européenne des droits de l'homme.",
+     "difficulty": 0.3,
+     "effects": [
+      {
+       "target": "opinion.group.seniors",
+       "amount": 0.01
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": -0.015
+      },
+      {
+       "target": "alliance.EU.DISAGREEMENT",
+       "amount": -0.06
+      },
+      {
+       "target": "quality.justice",
+       "amount": -0.01
+      }
+     ],
+     "liberty": -6,
+     "rule": -15,
+     "appeal": -0.05
+    }
+   ]
+  },
+  {
+   "id": "minimum_sentences",
+   "category": "justice",
+   "title": "Peines planchers",
+   "description": "Les juges fixent librement la peine dans la limite du maximum.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "free",
+     "label": "Liberté du juge",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "floors",
+     "label": "Peines planchers pour les récidivistes",
+     "description": "Plus de détenus, prisons surpeuplées.",
+     "difficulty": 0.06,
+     "effects": [
+      {
+       "target": "opinion.group.seniors",
+       "amount": 0.012
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": -0.006
+      }
+     ],
+     "longTerm": [
+      {
+       "target": "quality.security",
+       "amount": 0.006,
+       "delayDays": 180
+      },
+      {
+       "target": "budget.oneOff",
+       "amount": 0.4,
+       "days": 365
+      }
+     ],
+     "events": {
+      "prison_overcrowding": 1.5,
+      "court_backlog": 1.2
+     },
+     "rule": -2,
+     "appeal": 0.15
+    }
+   ]
+  },
+  {
+   "id": "juvenile_justice",
+   "category": "justice",
+   "title": "Justice des mineurs",
+   "description": "Les mineurs bénéficient d'une excuse de minorité.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "current",
+     "label": "Excuse de minorité",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "16_adult",
+     "label": "Jugés comme des majeurs dès 16 ans pour les crimes",
+     "description": "Comparution immédiate possible.",
+     "difficulty": 0.08,
+     "effects": [
+      {
+       "target": "opinion.group.seniors",
+       "amount": 0.012
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": -0.012
+      }
+     ],
+     "longTerm": [
+      {
+       "target": "quality.security",
+       "amount": 0.004,
+       "delayDays": 180
+      }
+     ],
+     "rule": -3,
+     "appeal": 0.12
+    }
+   ]
+  },
+  {
+   "id": "life_sentence",
+   "category": "justice",
+   "title": "Perpétuité réelle",
+   "description": "La perpétuité réelle est réservée à de rares crimes.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "rare",
+     "label": "Exceptionnelle",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "extended",
+     "label": "Étendue aux crimes terroristes et aux meurtres de policiers",
+     "description": "Message de fermeté.",
+     "difficulty": 0.05,
+     "effects": [
+      {
+       "target": "opinion.group.seniors",
+       "amount": 0.01
+      },
+      {
+       "target": "quality.security",
+       "amount": 0.003
+      }
+     ],
+     "rule": -1,
+     "appeal": 0.15
+    }
+   ]
+  },
+  {
+   "id": "firearms",
+   "category": "justice",
+   "title": "Port d'armes",
+   "description": "Le port d'armes est strictement réservé à quelques professions.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "strict",
+     "label": "Strictement encadré",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "relaxed",
+     "label": "Assoupli pour la légitime défense",
+     "description": "Les armes se multiplient dans les foyers.",
+     "difficulty": 0.14,
+     "effects": [
+      {
+       "target": "opinion.group.rural",
+       "amount": 0.006
+      },
+      {
+       "target": "opinion.group.urban",
+       "amount": -0.012
+      },
+      {
+       "target": "quality.security",
+       "amount": -0.01,
+       "delayDays": 120
+      }
+     ],
+     "events": {
+      "terror_attack": 1.1,
+      "local_violence_school": 1.3
+     },
+     "appeal": -0.15
+    }
+   ]
+  },
+  {
+   "id": "police_cameras",
+   "category": "justice",
+   "title": "Caméras-piétons et contrôle des forces de l'ordre",
+   "description": "Les caméras-piétons sont facultatives.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "optional",
+     "label": "Facultatives",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "mandatory",
+     "label": "Obligatoires et enregistrement systématique",
+     "description": "Moins de bavures, plus de preuves.",
+     "difficulty": 0.03,
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.15
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": 0.008
+      }
+     ],
+     "events": {
+      "police_incident": 0.6,
+      "urban_riots": 0.85
+     },
+     "rule": 2,
+     "appeal": 0.12
+    }
+   ]
+  },
+  {
+   "id": "national_service",
+   "category": "justice",
+   "title": "Service militaire",
+   "description": "Le service militaire est suspendu depuis 1997.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "suspended",
+     "label": "Suspendu",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "voluntary",
+     "label": "Service volontaire rémunéré",
+     "description": "Quelques dizaines de milliers de jeunes par an.",
+     "difficulty": 0.03,
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 0.6,
+       "days": 365
+      },
+      {
+       "target": "military.readiness",
+       "amount": 0.01,
+       "delayDays": 120
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": 0.004
+      }
+     ],
+     "appeal": 0.1
+    },
+    {
+     "id": "mandatory",
+     "label": "Service obligatoire de six mois",
+     "description": "Coûteux ; la jeunesse proteste.",
+     "difficulty": 0.12,
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 3.0,
+       "days": 365
+      },
+      {
+       "target": "military.readiness",
+       "amount": 0.03,
+       "delayDays": 365
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": -0.02
+      },
+      {
+       "target": "opinion.group.seniors",
+       "amount": 0.012
+      }
+     ],
+     "events": {
+      "student_protest": 1.5
+     },
+     "liberty": -1,
+     "appeal": 0.02
+    }
+   ]
+  },
+  {
+   "id": "work_week",
+   "category": "travail",
+   "title": "Durée légale du travail",
+   "description": "35 heures par semaine, heures supplémentaires majorées.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "35h",
+     "label": "35 heures",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "39h",
+     "label": "39 heures",
+     "description": "Plus de production, salariés mécontents.",
+     "difficulty": 0.1,
+     "effects": [
+      {
+       "target": "opinion.group.private_employees",
+       "amount": -0.02
+      },
+      {
+       "target": "opinion.group.civil_servants",
+       "amount": -0.015
+      },
+      {
+       "target": "economy.businessConfidence",
+       "amount": 0.02
+      }
+     ],
+     "longTerm": [
+      {
+       "target": "economy.potentialGrowth",
+       "amount": 0.0015,
+       "days": 365
+      }
+     ],
+     "events": {
+      "national_strike": 1.4
+     },
+     "appeal": -0.15
+    },
+    {
+     "id": "32h",
+     "label": "32 heures (semaine de quatre jours)",
+     "description": "Plus de temps libre ; coût pour les entreprises.",
+     "difficulty": 0.12,
+     "effects": [
+      {
+       "target": "opinion.group.private_employees",
+       "amount": 0.015
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": 0.012
+      },
+      {
+       "target": "economy.businessConfidence",
+       "amount": -0.03
+      }
+     ],
+     "longTerm": [
+      {
+       "target": "economy.potentialGrowth",
+       "amount": -0.0015,
+       "days": 365
+      }
+     ],
+     "appeal": 0.05
+    }
+   ]
+  },
+  {
+   "id": "minimum_wage",
+   "category": "travail",
+   "title": "Salaire minimum",
+   "description": "Le SMIC est revalorisé selon l'inflation.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "indexed",
+     "label": "Indexé sur l'inflation",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "boost",
+     "label": "Coup de pouce de 10 %",
+     "description": "Pouvoir d'achat en hausse ; certains emplois menacés.",
+     "difficulty": 0.06,
+     "effects": [
+      {
+       "target": "opinion.group.low_income",
+       "amount": 0.025
+      },
+      {
+       "target": "economy.businessConfidence",
+       "amount": -0.02
+      },
+      {
+       "target": "economy.inflation",
+       "amount": 0.003,
+       "days": 180
+      }
+     ],
+     "longTerm": [
+      {
+       "target": "economy.naturalUnemployment",
+       "amount": 0.002,
+       "days": 365
+      }
+     ],
+     "appeal": 0.25
+    },
+    {
+     "id": "regional",
+     "label": "SMIC régional modulé",
+     "description": "Plus bas là où la vie coûte moins cher.",
+     "difficulty": 0.12,
+     "effects": [
+      {
+       "target": "opinion.group.low_income",
+       "amount": -0.02
+      },
+      {
+       "target": "opinion.group.rural",
+       "amount": -0.012
+      },
+      {
+       "target": "economy.businessConfidence",
+       "amount": 0.015
+      }
+     ],
+     "events": {
+      "national_strike": 1.3
+     },
+     "appeal": -0.25
+    }
+   ]
+  },
+  {
+   "id": "sunday_work",
+   "category": "travail",
+   "title": "Travail le dimanche",
+   "description": "Autorisé dans les zones touristiques et quelques commerces.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "limited",
+     "label": "Limité (zones touristiques)",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "free",
+     "label": "Libre avec majoration",
+     "description": "Les commerces ouvrent le dimanche partout.",
+     "difficulty": 0.05,
+     "effects": [
+      {
+       "target": "sector.retail",
+       "amount": 0.02
+      },
+      {
+       "target": "opinion.group.private_employees",
+       "amount": -0.008
+      },
+      {
+       "target": "opinion.group.self_employed",
+       "amount": 0.006
+      }
+     ],
+     "appeal": -0.02
+    }
+   ]
+  },
+  {
+   "id": "strike_service",
+   "category": "travail",
+   "title": "Service minimum",
+   "description": "Un service minimum existe dans les transports, sans réquisition.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "current",
+     "label": "Prévisibilité (déclaration 48 h avant)",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "guaranteed",
+     "label": "Service minimum garanti (transports, écoles)",
+     "description": "Réquisitions possibles ; syndicats furieux.",
+     "difficulty": 0.08,
+     "effects": [
+      {
+       "target": "opinion.group.self_employed",
+       "amount": 0.01
+      },
+      {
+       "target": "opinion.group.civil_servants",
+       "amount": -0.015
+      }
+     ],
+     "events": {
+      "rail_strike": 0.6,
+      "national_strike": 0.85
+     },
+     "liberty": -2,
+     "appeal": 0.15
+    }
+   ]
+  },
+  {
+   "id": "unemployment_rules",
+   "category": "travail",
+   "title": "Assurance chômage",
+   "description": "Six mois travaillés pour ouvrir des droits.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "current",
+     "label": "Règles actuelles",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "strict",
+     "label": "Durcies (douze mois, dégressivité)",
+     "description": "Économies, retour à l'emploi plus rapide, colère syndicale.",
+     "difficulty": 0.06,
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": -2.0,
+       "days": 365
+      },
+      {
+       "target": "opinion.group.low_income",
+       "amount": -0.015
+      },
+      {
+       "target": "opinion.group.inactive",
+       "amount": -0.015
+      }
+     ],
+     "longTerm": [
+      {
+       "target": "economy.naturalUnemployment",
+       "amount": -0.002,
+       "days": 365
+      }
+     ],
+     "appeal": -0.05
+    },
+    {
+     "id": "generous",
+     "label": "Assouplies (quatre mois)",
+     "description": "Protection accrue, coût élevé.",
+     "difficulty": 0.04,
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": 2.5,
+       "days": 365
+      },
+      {
+       "target": "opinion.group.low_income",
+       "amount": 0.012
+      }
+     ],
+     "appeal": 0.1
+    }
+   ]
+  },
+  {
+   "id": "mass_surveillance",
+   "category": "libertes",
+   "title": "Renseignement et surveillance",
+   "description": "Algorithmes de surveillance encadrés par une autorité indépendante.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "framed",
+     "label": "Encadrée par une autorité indépendante",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "extended",
+     "label": "Surveillance algorithmique étendue",
+     "description": "Plus d'attentats déjoués ; libertés réduites.",
+     "difficulty": 0.08,
+     "effects": [
+      {
+       "target": "opinion.group.seniors",
+       "amount": 0.008
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": -0.01
+      }
+     ],
+     "events": {
+      "terror_attack": 0.75,
+      "cyber_espionage": 0.85
+     },
+     "liberty": -6,
+     "press": -3,
+     "rule": -3,
+     "appeal": 0.02
+    },
+    {
+     "id": "restricted",
+     "label": "Contrôle renforcé du juge",
+     "description": "Libertés protégées ; les services se plaignent.",
+     "difficulty": 0.05,
+     "effects": [
+      {
+       "target": "opinion.group.young",
+       "amount": 0.006
+      }
+     ],
+     "events": {
+      "terror_attack": 1.15
+     },
+     "liberty": 3,
+     "rule": 2
+    }
+   ]
+  },
+  {
+   "id": "facial_recognition",
+   "category": "libertes",
+   "title": "Reconnaissance faciale",
+   "description": "Interdite dans l'espace public.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "banned",
+     "label": "Interdite",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "events",
+     "label": "Autorisée lors des grands événements",
+     "description": "Expérimentation encadrée.",
+     "difficulty": 0.05,
+     "effects": [
+      {
+       "target": "quality.security",
+       "amount": 0.004
+      }
+     ],
+     "events": {
+      "terror_attack": 0.9
+     },
+     "liberty": -3,
+     "appeal": 0.05
+    },
+    {
+     "id": "general",
+     "label": "Généralisée",
+     "description": "Sécurité accrue ; Bruxelles proteste.",
+     "difficulty": 0.14,
+     "effects": [
+      {
+       "target": "quality.security",
+       "amount": 0.01
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": -0.012
+      },
+      {
+       "target": "alliance.EU.DISAGREEMENT",
+       "amount": -0.015
+      }
+     ],
+     "events": {
+      "terror_attack": 0.8,
+      "urban_riots": 0.9
+     },
+     "liberty": -10,
+     "rule": -4,
+     "appeal": -0.08
+    }
+   ]
+  },
+  {
+   "id": "press_sources",
+   "category": "libertes",
+   "title": "Secret des sources",
+   "description": "Le secret des sources des journalistes est protégé, avec des exceptions.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "current",
+     "label": "Protégé avec exceptions",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "strong",
+     "label": "Protection renforcée",
+     "description": "Les journalistes enquêtent plus librement.",
+     "difficulty": 0.04,
+     "effects": [
+      {
+       "target": "opinion.group.urban",
+       "amount": 0.004
+      }
+     ],
+     "events": {
+      "president_scandal": 1.2,
+      "minister_scandal": 1.2
+     },
+     "press": 6,
+     "rule": 2,
+     "appeal": 0.08
+    },
+    {
+     "id": "weakened",
+     "label": "Affaibli (sécurité nationale)",
+     "description": "Les sources se taisent ; la presse s'indigne.",
+     "difficulty": 0.1,
+     "effects": [
+      {
+       "target": "alliance.EU.DISAGREEMENT",
+       "amount": -0.01
+      }
+     ],
+     "events": {
+      "president_scandal": 0.7,
+      "minister_scandal": 0.7,
+      "defense_leak": 0.6
+     },
+     "press": -10,
+     "rule": -3,
+     "appeal": -0.12
+    }
+   ]
+  },
+  {
+   "id": "public_broadcasting",
+   "category": "libertes",
+   "title": "Audiovisuel public",
+   "description": "France Télévisions et Radio France, financés par l'impôt.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "current",
+     "label": "Public et indépendant",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "merged",
+     "label": "Fusionné en une holding",
+     "description": "Économies d'échelle ; inquiétude des rédactions.",
+     "difficulty": 0.06,
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": -0.3,
+       "days": 365
+      }
+     ],
+     "press": -2
+    },
+    {
+     "id": "privatized",
+     "label": "Privatisation partielle",
+     "description": "Recettes pour l'État, moins de pluralisme.",
+     "difficulty": 0.14,
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": -3.0
+      },
+      {
+       "target": "opinion.group.seniors",
+       "amount": -0.01
+      }
+     ],
+     "press": -6,
+     "appeal": -0.1
+    }
+   ]
+  },
+  {
+   "id": "disinformation",
+   "category": "libertes",
+   "title": "Fausses informations",
+   "description": "Un juge peut faire retirer une fausse information en période électorale.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "electoral",
+     "label": "Retrait par le juge en période électorale",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "permanent",
+     "label": "Retrait administratif permanent",
+     "description": "Efficace contre les manipulations ; risque de censure.",
+     "difficulty": 0.1,
+     "effects": [
+      {
+       "target": "memory.USA.DISAGREEMENT",
+       "amount": -0.01
+      }
+     ],
+     "events": {
+      "deepfake_president": 0.6,
+      "foreign_interference": 0.7
+     },
+     "liberty": -4,
+     "press": -6,
+     "appeal": 0.02
+    }
+   ]
+  },
+  {
+   "id": "internet_control",
+   "category": "libertes",
+   "title": "Internet",
+   "description": "Internet est libre, sous le contrôle du juge.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "free",
+     "label": "Libre, contrôle du juge",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "blocking",
+     "label": "Blocage administratif des sites",
+     "description": "Contre le terrorisme et la haine en ligne.",
+     "difficulty": 0.08,
+     "events": {
+      "terror_attack": 0.95
+     },
+     "liberty": -4,
+     "press": -4,
+     "appeal": 0.05
+    },
+    {
+     "id": "filtered",
+     "label": "Filtrage généralisé des réseaux",
+     "description": "Un internet sous contrôle, à la chinoise.",
+     "difficulty": 0.25,
+     "effects": [
+      {
+       "target": "opinion.group.young",
+       "amount": -0.025
+      },
+      {
+       "target": "alliance.EU.DISAGREEMENT",
+       "amount": -0.04
+      },
+      {
+       "target": "sector.tech",
+       "amount": -0.03
+      }
+     ],
+     "events": {
+      "student_protest": 1.5
+     },
+     "liberty": -12,
+     "press": -15,
+     "rule": -6,
+     "appeal": -0.3
+    }
+   ]
+  },
+  {
+   "id": "right_to_protest",
+   "category": "libertes",
+   "title": "Droit de manifester",
+   "description": "Les manifestations se déclarent ; le préfet peut les interdire.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "current",
+     "label": "Déclaration préalable",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "restricted",
+     "label": "Interdictions préventives et fichage",
+     "description": "Moins de casseurs ; les syndicats crient à l'atteinte aux libertés.",
+     "difficulty": 0.1,
+     "effects": [
+      {
+       "target": "opinion.group.young",
+       "amount": -0.01
+      },
+      {
+       "target": "opinion.group.civil_servants",
+       "amount": -0.008
+      }
+     ],
+     "events": {
+      "fuel_protest_hardens": 0.8,
+      "urban_riots": 0.9,
+      "city_demonstration": 0.85
+     },
+     "liberty": -6,
+     "rule": -2,
+     "appeal": -0.05
+    }
+   ]
+  },
+  {
+   "id": "lobbying",
+   "category": "libertes",
+   "title": "Lobbying et transparence",
+   "description": "Les représentants d'intérêts s'inscrivent sur un registre.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "register",
+     "label": "Registre déclaratif",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "strict",
+     "label": "Agenda public des décideurs, cadeaux interdits",
+     "description": "Transparence accrue ; les lobbies grincent.",
+     "difficulty": 0.05,
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": 0.004
+      },
+      {
+       "target": "economy.businessConfidence",
+       "amount": -0.004
+      }
+     ],
+     "events": {
+      "minister_scandal": 0.8,
+      "president_scandal": 0.85
+     },
+     "rule": 3,
+     "appeal": 0.2
+    }
+   ]
+  },
+  {
+   "id": "term_length",
+   "category": "institutions",
+   "title": "Durée du mandat présidentiel",
+   "description": "Cinq ans depuis 2000 (quinquennat).",
+   "constitutional": true,
+   "options": [
+    {
+     "id": "five",
+     "label": "Cinq ans",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0,
+     "flags": {
+      "termYears": 5
+     }
+    },
+    {
+     "id": "seven",
+     "label": "Sept ans, non renouvelable",
+     "description": "Retour au septennat, mandat unique.",
+     "difficulty": 0.15,
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": -0.006
+      }
+     ],
+     "flags": {
+      "termYears": 7,
+      "termLimit": 1
+     },
+     "appeal": -0.15
+    }
+   ]
+  },
+  {
+   "id": "term_limit",
+   "category": "institutions",
+   "title": "Limite des mandats",
+   "description": "Pas plus de deux mandats consécutifs.",
+   "constitutional": true,
+   "options": [
+    {
+     "id": "two",
+     "label": "Deux mandats consécutifs",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0,
+     "flags": {
+      "termLimit": 2
+     }
+    },
+    {
+     "id": "unlimited",
+     "label": "Pas de limite",
+     "description": "Vous pourriez rester au pouvoir... et on vous le reprochera.",
+     "difficulty": 0.22,
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": -0.02
+      },
+      {
+       "target": "president.popularity",
+       "amount": -0.02
+      },
+      {
+       "target": "alliance.EU.DISAGREEMENT",
+       "amount": -0.01
+      }
+     ],
+     "rule": -6,
+     "flags": {
+      "termLimit": 0
+     },
+     "appeal": -0.3
+    }
+   ]
+  },
+  {
+   "id": "article_49_3",
+   "category": "institutions",
+   "title": "Article 49.3",
+   "description": "Le gouvernement peut faire adopter un texte sans vote, au risque d'une censure.",
+   "constitutional": true,
+   "options": [
+    {
+     "id": "kept",
+     "label": "Maintenu",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0,
+     "flags": {
+      "forcePass": 1
+     }
+    },
+    {
+     "id": "limited",
+     "label": "Limité aux budgets",
+     "description": "Le gouvernement ne peut plus forcer les autres textes.",
+     "difficulty": 0.05,
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": 0.008
+      },
+      {
+       "target": "government.parliamentSupport",
+       "amount": 0.01
+      }
+     ],
+     "rule": 2,
+     "flags": {
+      "forcePass": 0
+     },
+     "appeal": 0.25
+    }
+   ]
+  },
+  {
+   "id": "regime",
+   "category": "institutions",
+   "title": "Régime politique",
+   "description": "Ve République : un président fort, un gouvernement responsable devant l'Assemblée.",
+   "constitutional": true,
+   "options": [
+    {
+     "id": "semi",
+     "label": "Semi-présidentiel",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0,
+     "flags": {
+      "censure": 1
+     }
+    },
+    {
+     "id": "presidential",
+     "label": "Présidentiel (pas de censure ni de dissolution)",
+     "description": "Le président gouverne seul ; l'Assemblée vote les lois.",
+     "difficulty": 0.2,
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": -0.01
+      },
+      {
+       "target": "government.parliamentSupport",
+       "amount": -0.03
+      }
+     ],
+     "rule": -2,
+     "flags": {
+      "censure": 0
+     },
+     "appeal": -0.1
+    },
+    {
+     "id": "parliamentary",
+     "label": "Parlementaire (VIe République)",
+     "description": "Le Premier ministre gouverne, le président arbitre.",
+     "difficulty": 0.2,
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": 0.01
+      },
+      {
+       "target": "government.parliamentSupport",
+       "amount": 0.03
+      },
+      {
+       "target": "president.popularity",
+       "amount": -0.02
+      }
+     ],
+     "rule": 3,
+     "flags": {
+      "censure": 1
+     },
+     "appeal": 0.05
+    }
+   ]
+  },
+  {
+   "id": "citizen_referendum",
+   "category": "institutions",
+   "title": "Référendum d'initiative citoyenne",
+   "description": "Le référendum d'initiative partagée existe mais n'a jamais abouti.",
+   "constitutional": true,
+   "options": [
+    {
+     "id": "shared",
+     "label": "Initiative partagée (quasi inaccessible)",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "ric",
+     "label": "Référendum d'initiative citoyenne",
+     "description": "Avec 700 000 signatures, les citoyens peuvent proposer une loi.",
+     "difficulty": 0.12,
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": 0.015
+      },
+      {
+       "target": "opinion.group.low_income",
+       "amount": 0.01
+      },
+      {
+       "target": "government.parliamentSupport",
+       "amount": -0.02
+      }
+     ],
+     "events": {
+      "fuel_protest_hardens": 0.7,
+      "national_strike": 0.9
+     },
+     "liberty": 3,
+     "appeal": 0.3
+    }
+   ]
+  },
+  {
+   "id": "proportional",
+   "category": "institutions",
+   "title": "Mode de scrutin législatif",
+   "description": "Scrutin majoritaire à deux tours par circonscription.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "majority",
+     "label": "Majoritaire à deux tours",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "mixed",
+     "label": "Dose de proportionnelle (20 %)",
+     "description": "Assemblée plus représentative, majorités plus fragiles.",
+     "difficulty": 0.08,
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": 0.006
+      },
+      {
+       "target": "government.parliamentSupport",
+       "amount": -0.02
+      }
+     ],
+     "rule": 1,
+     "appeal": 0.2
+    },
+    {
+     "id": "full",
+     "label": "Proportionnelle intégrale",
+     "description": "Coalitions obligatoires.",
+     "difficulty": 0.14,
+     "effects": [
+      {
+       "target": "opinion.national",
+       "amount": 0.008
+      },
+      {
+       "target": "government.parliamentSupport",
+       "amount": -0.05
+      }
+     ],
+     "rule": 1,
+     "appeal": 0.12
+    }
+   ]
+  },
+  {
+   "id": "voting_age",
+   "category": "institutions",
+   "title": "Droit de vote",
+   "description": "Vote à 18 ans, non obligatoire.",
+   "constitutional": true,
+   "options": [
+    {
+     "id": "current",
+     "label": "18 ans, facultatif",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "sixteen",
+     "label": "Vote à 16 ans",
+     "description": "La jeunesse entre dans les urnes.",
+     "difficulty": 0.1,
+     "effects": [
+      {
+       "target": "opinion.group.young",
+       "amount": 0.015
+      },
+      {
+       "target": "opinion.group.seniors",
+       "amount": -0.006
+      }
+     ],
+     "liberty": 1,
+     "appeal": -0.15
+    },
+    {
+     "id": "mandatory",
+     "label": "Vote obligatoire (amende)",
+     "description": "Participation record.",
+     "difficulty": 0.12,
+     "effects": [
+      {
+       "target": "opinion.group.young",
+       "amount": -0.01
+      }
+     ],
+     "appeal": -0.1
+    }
+   ]
+  },
+  {
+   "id": "senate",
+   "category": "institutions",
+   "title": "Sénat",
+   "description": "Seconde chambre élue au suffrage indirect.",
+   "constitutional": true,
+   "options": [
+    {
+     "id": "current",
+     "label": "Maintenu tel quel",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "merged_cese",
+     "label": "Fusionné avec le CESE",
+     "description": "Moins de parlementaires, réforme de fond.",
+     "difficulty": 0.18,
+     "effects": [
+      {
+       "target": "budget.oneOff",
+       "amount": -0.2,
+       "days": 365
+      },
+      {
+       "target": "opinion.national",
+       "amount": 0.006
+      },
+      {
+       "target": "opinion.group.rural",
+       "amount": -0.008
+      }
+     ],
+     "appeal": 0.15
+    }
+   ]
+  },
+  {
+   "id": "dual_mandate",
+   "category": "institutions",
+   "title": "Cumul des mandats",
+   "description": "Un parlementaire ne peut pas être maire.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "banned",
+     "label": "Interdit",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "allowed",
+     "label": "Rétabli pour les maires de petites communes",
+     "description": "Ancrage local ; soupçons de conflits d'intérêts.",
+     "difficulty": 0.05,
+     "effects": [
+      {
+       "target": "opinion.group.rural",
+       "amount": 0.008
+      },
+      {
+       "target": "government.parliamentSupport",
+       "amount": 0.02
+      },
+      {
+       "target": "opinion.national",
+       "amount": -0.004
+      }
+     ],
+     "rule": -1,
+     "appeal": -0.05
+    }
+   ]
+  }
+ ]
+}

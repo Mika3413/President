@@ -49,6 +49,7 @@ object Systems {
         GovernmentSystem(),
         fr.president.engine.government.CabinetSystem(),
         fr.president.engine.diplomacy.EuSystem(),
+        fr.president.engine.government.LawSystem(),
         MilitarySystem(),
         fr.president.engine.stats.StatsSystem(),
         fr.president.engine.media.MediaSystem(),

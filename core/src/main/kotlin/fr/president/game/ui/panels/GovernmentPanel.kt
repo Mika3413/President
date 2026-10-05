@@ -69,6 +69,7 @@ class GovernmentPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) :
     }
 
     private fun reforms(into: Table) {
+        into.add(ui.colorButton("⚖ Lois de société et Constitution ▶", Theme.catGovernment) { nav.open(PanelId.LAWS) }).growX().padBottom(GAP).row()
         into.add(ui.label("Une réforme est votée par le Parlement après un mois ; les plus difficiles exigent une majorité plus large. " +
             "Vous pouvez aussi la soumettre directement aux Français par référendum : le vote portera autant sur vous que sur le texte.", "muted", wrap = true)).growX().padBottom(GAP).row()
         into.add(fr.president.game.ui.widgets.IndicatorView(ui, session.national.parliament(), expanded)).growX().padBottom(GAP).row()

@@ -44,6 +44,7 @@ class GameSession(
     val agenda = AgendaService(context)
     val market = MarketCommands(context)
     val eu = fr.president.engine.diplomacy.EuService(context)
+    val laws = fr.president.engine.government.LawService(context)
     val characters = CharacterReadout(context)
     val military = MilitaryCommands(context)
     val militaryReadouts = fr.president.engine.readout.MilitaryReadouts(context)

@@ -53,6 +53,10 @@ class PolicyService(private val ctx: SimulationContext) {
         submit(PolicyKind.REFORM, id, 0.0, 1.0, ctx.playerData.reforms!!.voteDelayDays)
     }
 
+    /** Dépôt d'une loi du catalogue (option visée = nouvelle valeur). */
+    fun submitLaw(lawId: String, current: Int, option: Int): PolicyProposal =
+        submit(PolicyKind.LAW, lawId, current.toDouble(), option.toDouble(), ctx.playerData.reforms?.voteDelayDays ?: LAW_DELAY_DAYS)
+
     /** Valeur visée par une mesure déjà en attente sur le même poste, s'il y en a une. */
     fun pendingValue(itemId: String): Double? = ctx.state.policy.proposals
         .lastOrNull { it.itemId == itemId && it.status == PolicyStatus.PENDING_VOTE }?.newValue
@@ -74,7 +78,14 @@ class PolicyService(private val ctx: SimulationContext) {
         val p = gov.parliament
         val support = ctx.state.government.parliamentSupport + proposal.supportBonus + ctx.rng.nextGaussian() * p.voteNoise
         proposal.supportAtVote = support
-        val difficulty = if (proposal.kind == PolicyKind.REFORM) reforms().firstOrNull { it.id == proposal.itemId }?.difficulty ?: 0.0 else 0.0
+        val difficulty = when (proposal.kind) {
+            PolicyKind.REFORM -> reforms().firstOrNull { it.id == proposal.itemId }?.difficulty ?: 0.0
+            PolicyKind.LAW -> LawService(ctx).law(proposal.itemId)?.let { l ->
+                // Une réforme constitutionnelle exige la majorité des trois cinquièmes au Congrès.
+                (l.options.getOrNull(proposal.newValue.toInt())?.difficulty ?: 0.0) + if (l.constitutional) CONSTITUTIONAL_EXTRA else 0.0
+            } ?: 0.0
+            else -> 0.0
+        }
         if (support >= p.passThreshold + difficulty) {
             proposal.status = PolicyStatus.ADOPTED
             apply(proposal)
@@ -91,6 +102,9 @@ class PolicyService(private val ctx: SimulationContext) {
     /** Adoption sans vote (procédure d'exception) : coûteuse en popularité et en soutien parlementaire. */
     fun forcePass(proposalId: String) {
         val proposal = ctx.state.policy.proposals.firstOrNull { it.id == proposalId } ?: return
+        // 49.3 supprimé par la Constitution, ou réforme constitutionnelle (jamais sans vote).
+        if (LawService(ctx).flag("forcePass") == 0.0) return
+        if (proposal.kind == PolicyKind.LAW && LawService(ctx).law(proposal.itemId)?.constitutional == true) return
         if (proposal.status != PolicyStatus.REJECTED && proposal.status != PolicyStatus.PENDING_VOTE) return
         val p = gov.parliament
         ctx.state.opinion.groups.values.forEach { it.shock -= p.forcePassApprovalCost }
@@ -98,7 +112,8 @@ class PolicyService(private val ctx: SimulationContext) {
         val parliament = ParliamentService(ctx)
         val censure = parliament.legislative
         // Sans majorité solide, l'engagement de responsabilité expose le gouvernement à la censure.
-        if (censure != null && parliament.isActive && ctx.state.government.parliamentSupport < censure.censureThreshold + CENSURE_MARGIN) {
+        val censurePossible = LawService(ctx).flag("censure") != 0.0
+        if (censure != null && censurePossible && parliament.isActive && ctx.state.government.parliamentSupport < censure.censureThreshold + CENSURE_MARGIN) {
             proposal.status = PolicyStatus.PENDING_CENSURE
             ctx.notifications.post(NotificationCategory.POLITICS, Urgency.IMPORTANT, "Responsabilité du gouvernement engagée",
                 "${label(proposal)}. Le texte sera adopté sauf si une motion de censure est votée.")
@@ -127,6 +142,10 @@ class PolicyService(private val ctx: SimulationContext) {
             applyReform(proposal.itemId, scale = proposal.effectScale)
             return
         }
+        if (proposal.kind == PolicyKind.LAW) {
+            LawService(ctx).enact(proposal.itemId, proposal.newValue.toInt(), proposal.effectScale)
+            return
+        }
         val economy = ctx.state.playerCountry.economy
         val params = ctx.db.economyParameters
         val revenueBefore = economy.revenueBillions
@@ -136,7 +155,7 @@ class PolicyService(private val ctx: SimulationContext) {
         when (proposal.kind) {
             PolicyKind.TAX_RATE -> economy.budget!!.revenues.getValue(proposal.itemId).rate = proposal.newValue
             PolicyKind.SPENDING -> economy.budget!!.spending.getValue(proposal.itemId).policyFactor = proposal.newValue
-            PolicyKind.REFORM -> Unit
+            PolicyKind.REFORM, PolicyKind.LAW -> Unit
         }
         BudgetCalculator.recompute(economy)
         // Impulsion budgétaire : moins de demande quand l'État prélève plus ou dépense moins.
@@ -165,6 +184,7 @@ class PolicyService(private val ctx: SimulationContext) {
         val budget = ctx.playerData.economy.budget!!
         return when (p.kind) {
             PolicyKind.REFORM -> "Réforme : " + (reforms().firstOrNull { it.id == p.itemId }?.title ?: p.itemId)
+            PolicyKind.LAW -> LawService(ctx).law(p.itemId)?.let { l -> "Loi : ${l.title} — ${l.options.getOrNull(p.newValue.toInt())?.label ?: ""}" } ?: p.itemId
             PolicyKind.TAX_RATE -> {
                 val def = budget.revenues.first { it.id == p.itemId }
                 "${def.label} : ${Formatting.amount(p.oldValue)} → ${Formatting.amount(p.newValue)} ${def.rateLabel}"
@@ -176,10 +196,13 @@ class PolicyService(private val ctx: SimulationContext) {
         }
     }
 
-    private companion object {
-        const val MIN_SPENDING_FACTOR = 0.5
-        const val MAX_SPENDING_FACTOR = 1.6
+    companion object {
+        private const val MIN_SPENDING_FACTOR = 0.5
+        private const val MAX_SPENDING_FACTOR = 1.6
         /** Marge au-dessus du seuil de censure en deçà de laquelle l'opposition tente sa chance. */
-        const val CENSURE_MARGIN = 0.05
+        private const val CENSURE_MARGIN = 0.05
+        private const val LAW_DELAY_DAYS = 30
+        /** Majorité renforcée du Congrès pour réviser la Constitution. */
+        const val CONSTITUTIONAL_EXTRA = 0.08
     }
 }

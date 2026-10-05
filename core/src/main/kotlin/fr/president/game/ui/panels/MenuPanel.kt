@@ -20,6 +20,7 @@ class MenuPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel
         Entry("★", "Décider", "Plans, décrets, déplacements, décisions de crise.", Theme.highlightDark, PanelId.DECISIONS),
         Entry("⚠", "Crises et risques", "Risques à 30 jours, prévention, confinement, couvre-feu, ORSEC...", Theme.warning, PanelId.CRISIS) { session.risks.unattended().size },
         Entry("▲", "Bilan", "Courbes, causes, groupes sociaux, pays, journal.", Theme.catStats, PanelId.STATS),
+        Entry("⚖", "Lois et Constitution", "Société, justice, travail, libertés, mandat, référendum.", Theme.catGovernment, PanelId.LAWS),
         Entry("⌂", "Gouvernement", "Ministres, Assemblée, Sénat, réformes.", Theme.catGovernment, PanelId.GOVERNMENT),
         Entry("€", "Économie", "Impôts, dépenses, services publics.", Theme.catEconomy, PanelId.ECONOMY),
         Entry("☎", "Diplomatie", "Accords, sanctions, ultimatums.", Theme.catDiplomacy, PanelId.DIPLOMACY),

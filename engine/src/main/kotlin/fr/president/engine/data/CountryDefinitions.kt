@@ -42,6 +42,8 @@ data class CountryDefinition(
     val sectors: String? = null,
     /** Parcours possibles du président (facultatif). */
     val careers: String? = null,
+    /** Catalogue des lois (facultatif). */
+    val laws: String? = null,
     val demography: fr.president.engine.government.DemographyDef? = null,
 )
 

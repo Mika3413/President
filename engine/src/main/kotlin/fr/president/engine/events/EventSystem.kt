@@ -39,6 +39,8 @@ class EventSystem : SimulationSystem {
         }
         // Prévention et mesures de crise en vigueur.
         p *= fr.president.engine.crisis.MeasureSystem.probabilityFactor(ctx, def, scope)
+        // Lois en vigueur (surveillance, service minimum, caméras-piétons...).
+        p *= fr.president.engine.government.LawService(ctx).eventFactor(def.id)
         return p.coerceIn(0.0, MAX_DAILY_PROBABILITY)
     }
 
