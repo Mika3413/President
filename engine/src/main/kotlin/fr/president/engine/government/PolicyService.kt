@@ -234,8 +234,8 @@ class PolicyService(private val ctx: SimulationContext) {
     }
 
     companion object {
-        private const val MIN_SPENDING_FACTOR = 0.5
-        private const val MAX_SPENDING_FACTOR = 1.6
+        private const val MIN_SPENDING_FACTOR = 0.2
+        private const val MAX_SPENDING_FACTOR = 2.5
         /** Marge au-dessus du seuil de censure en deçà de laquelle l'opposition tente sa chance. */
         private const val CENSURE_MARGIN = 0.05
         private const val LAW_DELAY_DAYS = 30

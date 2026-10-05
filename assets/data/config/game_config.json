@@ -120,6 +120,7 @@
     "defense": "military/defense.json",
     "intel": "military/intel.json",
     "unrest": "config/unrest.json",
+    "consequences": "config/consequences.json",
     "un": "diplomacy/un.json"
   }
 }

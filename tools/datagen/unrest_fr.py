@@ -37,7 +37,7 @@ CAUSES = [
      ["young"], ["union_militant"], 80,
      ("Revalorisation des bourses et repas à 1 €", [e("budget.oneOff", 1.5), e(G + "young", 0.02)]),
      {}),
-    ("labour", "Contre la loi Travail", "« Loi Travail, non merci ! »", ["labour_code", "unemployment_insurance"], ["work_week", "strike_service", "sunday_work", "unemployment_rules"], [],
+    ("labour", "Contre la loi Travail", "« Loi Travail, non merci ! »", ["labour_code", "unemployment_insurance", "france_travail"], ["work_week", "strike_service", "sunday_work", "unemployment_rules", "collective_bargaining", "rsa_conditions"], [],
      ["private_employees", "young", "low_income"], ["union_militant", "union_public"], 200,
      ("Retirer les mesures les plus contestées", [e("economy.businessConfidence", -0.008), e(G + "private_employees", 0.015)]),
      {"transport": -0.03}),

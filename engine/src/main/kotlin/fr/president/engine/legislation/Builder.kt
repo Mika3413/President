@@ -102,7 +102,7 @@ class BuilderModel(private val ctx: SimulationContext) {
 
     fun formatValue(action: BuilderAction, target: BuilderTarget, v: Double): String = when (action.model) {
         MeasureModel.BAN -> if (v >= 0.5) "interdit" else "autorisé"
-        MeasureModel.RECRUIT -> "${Formatting.integer(v.toLong())} ${action.unit}"
+        MeasureModel.RECRUIT, MeasureModel.JOB_CUTS -> "${Formatting.integer(v.toLong())} ${action.unit}"
         MeasureModel.SUBSIDY -> Formatting.billions(v) + " par an"
         MeasureModel.BONUS -> "${Formatting.integer(v.toLong())} € par mois"
         else -> "${Formatting.amount(v)} ${unit(action, target)}".trim()
@@ -116,6 +116,7 @@ class BuilderModel(private val ctx: SimulationContext) {
             MeasureModel.BAN -> "${a.verb} ${t.label}"
             MeasureModel.OBLIGATION -> "${a.verb} ${t.label} à ${t.obligation?.label ?: ""} pendant ${Formatting.amount(v)} ${unit(a, t)}"
             MeasureModel.RECRUIT -> "${a.verb} ${Formatting.integer(v.toLong())} ${t.short.lowercase()}"
+            MeasureModel.JOB_CUTS -> "${a.verb} ${Formatting.integer(v.toLong())} postes de ${t.short.lowercase()}"
             MeasureModel.PRICE_CAP -> "${a.verb} ${t.label} à ${Formatting.amount(v)} % par an"
             MeasureModel.SUBSIDY -> "${a.verb} ${t.label} (${Formatting.billions(v)} par an)"
             MeasureModel.BONUS -> "${a.verb} ${t.label} : ${Formatting.integer(v.toLong())} € par mois"
@@ -158,6 +159,7 @@ class BuilderModel(private val ctx: SimulationContext) {
             MeasureModel.OBLIGATION -> obligation(out, t, cfg, v)
             MeasureModel.RECRUIT -> recruit(out, t, v, zone)
             MeasureModel.PAY_RAISE -> payRaise(out, t, v)
+            MeasureModel.JOB_CUTS -> jobCuts(out, t, v, zone)
         }
         if (temporary) out.lines += "Mesure temporaire : elle s'arrêtera d'elle-même au bout de ${cfg.durationYears} an${if (cfg.durationYears > 1) "s" else ""}."
         if (cfg.phaseIn) out.lines += "Montée en charge sur trois ans : effets plus lents, réactions plus modérées."
@@ -351,6 +353,31 @@ class BuilderModel(private val ctx: SimulationContext) {
         out.lines += "Des métiers plus attractifs : moins de postes vacants."
     }
 
+    /**
+     * Suppressions de postes : l'économie est réelle mais le service se dégrade plus vite qu'il ne
+     * s'est construit (les meilleurs partent, les restants s'épuisent), les agents et leurs
+     * syndicats se mobilisent, et au-delà d'un quart des effectifs le service s'effondre.
+     */
+    private fun jobCuts(out: Impact, t: BuilderTarget, posts: Double, zone: Double) {
+        val share = (posts / t.count.coerceAtLeast(1.0)).coerceIn(0.0, 1.0)
+        // Départs non remplacés, indemnités : un quart de l'économie est perdu la première année.
+        val savings = posts * t.salary / 1e9 * 0.85
+        out.spending = -savings
+        out.people = posts
+        val collapse = if (share > 0.25) 1 + (share - 0.25) * 4 else 1.0
+        t.quality?.let { q -> out.add(out.quality, q, -t.qualityWeight * share * RECRUIT_QUALITY * JOB_CUT_HIT * collapse * (if (zone < 1) 1.3 else 1.0)) }
+        out.add(out.economy, "economy.unemployment", posts / WORKFORCE * 0.7)
+        out.add(out.economy, "economy.householdConfidence", -share * 0.05)
+        t.groups.forEach { (g, w) -> out.add(out.groups, g, -(0.03 * share * 10).coerceAtMost(0.08) * w) }
+        out.add(out.groups, "civil_servants", -(0.02 * share * 10).coerceAtMost(0.06))
+        t.actors.forEach { (id, w) -> out.add(out.actors, id, -(0.6 * share * 10).coerceAtMost(1.0) * w) }
+        out.events[t.event ?: "national_strike"] = (share * 3).coerceIn(0.05, 0.6)
+        out.lines += "Économie : ${Formatting.billions(savings)} par an (${Formatting.integer(t.salary.toLong())} € par poste, moins les indemnités)."
+        out.lines += "Effectifs : ${Formatting.integer(t.count.toLong())} aujourd'hui, −${Formatting.percent(share)}."
+        out.lines += "Le service se dégrade vite et se reconstruit lentement : il faudra des années pour recruter et former à nouveau."
+        if (share > 0.25) out.lines += "Au-delà d'un quart des effectifs, le service ne peut plus assurer ses missions de base."
+    }
+
     // ---- Outils -------------------------------------------------------------------------------
 
     private fun zoneShare(t: BuilderTarget, zone: String) = when (zone) {
@@ -417,6 +444,7 @@ class BuilderModel(private val ctx: SimulationContext) {
         private const val OBLIGATION_QUALITY = 0.012
         private const val RECRUIT_QUALITY = 1.5
         private const val PAY_QUALITY = 0.5
+        private const val JOB_CUT_HIT = 1.4
         private const val WORKFORCE = 31_000_000.0
     }
 }

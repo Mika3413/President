@@ -56,6 +56,13 @@
     "strike_service": {
      "guaranteed": -0.25
     },
+    "collective_bargaining": {
+     "company": -0.2,
+     "referendum": -0.35
+    },
+    "rsa_conditions": {
+     "sanctions": -0.15
+    },
     "unemployment_rules": {
      "strict": -0.2,
      "generous": 0.1
@@ -348,6 +355,13 @@
     },
     "sunday_work": {
      "free": 0.15
+    },
+    "collective_bargaining": {
+     "company": 0.2,
+     "referendum": 0.25
+    },
+    "rsa_conditions": {
+     "hours15": 0.05
     },
     "strike_service": {
      "guaranteed": 0.15

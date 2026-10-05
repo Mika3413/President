@@ -1,0 +1,2367 @@
+{
+ "_doc": "Conséquences en chaîne à seuils -> assets/data/config/consequences.json.",
+ "rules": [
+  {
+   "id": "security_collapse",
+   "label": "L'insécurité explose",
+   "icon": "⚠",
+   "category": "services",
+   "variable": "quality.security",
+   "scale": 0.08,
+   "why": "Moins de policiers et de gendarmes sur le terrain : les délits ne sont plus élucidés, les trafics s'installent, les quartiers difficiles échappent au contrôle.",
+   "onset": "Cambriolages, agressions et trafics augmentent partout ; les maires réclament des renforts.",
+   "fix": "remonter les crédits de la police, recruter des policiers et des gendarmes.",
+   "below": 0.38,
+   "severe": "Des zones de non-droit se multiplient",
+   "monthly": [
+    {
+     "target": "opinion.group.urban",
+     "amount": -0.004
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.004
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.002
+    },
+    {
+     "target": "president.popularity",
+     "amount": -0.003
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.002
+    },
+    {
+     "target": "sector.tourism",
+     "amount": -0.002
+    },
+    {
+     "target": "sector.retail",
+     "amount": -0.001
+    }
+   ],
+   "departments": [
+    {
+     "field": "crime",
+     "amount": 0.015,
+     "weight": "urban"
+    },
+    {
+     "field": "crime",
+     "amount": 0.01,
+     "weight": "poor"
+    },
+    {
+     "field": "approval",
+     "amount": -0.002,
+     "weight": "crime"
+    }
+   ],
+   "events": {
+    "urban_riots": 0.6,
+    "police_incident": 0.4,
+    "prison_escape": 0.3,
+    "stadium_violence": 0.4,
+    "local_violence_school": 0.3
+   },
+   "unrest": {
+    "police": 0.04,
+    "anger": 0.02
+   }
+  },
+  {
+   "id": "health_collapse",
+   "label": "Hôpitaux à bout de souffle",
+   "icon": "✚",
+   "category": "services",
+   "variable": "quality.health",
+   "scale": 0.08,
+   "why": "Lits fermés, urgences saturées, soignants épuisés qui démissionnent : chaque départ alourdit la charge des autres.",
+   "onset": "Les urgences ferment la nuit dans plusieurs villes ; des malades attendent des heures sur des brancards.",
+   "fix": "augmenter les crédits de santé, recruter ou mieux payer les soignants.",
+   "below": 0.38,
+   "severe": "Le système de santé craque",
+   "monthly": [
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.005
+    },
+    {
+     "target": "opinion.group.retirees",
+     "amount": -0.004
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.003
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": -0.003
+    },
+    {
+     "target": "president.popularity",
+     "amount": -0.003
+    },
+    {
+     "target": "economy.output",
+     "amount": -0.0003
+    },
+    {
+     "target": "actor.union_public",
+     "amount": -0.05
+    }
+   ],
+   "departments": [
+    {
+     "field": "healthAccess",
+     "amount": -0.01,
+     "weight": "rural"
+    },
+    {
+     "field": "healthAccess",
+     "amount": -0.005,
+     "weight": "all"
+    },
+    {
+     "field": "approval",
+     "amount": -0.002,
+     "weight": "rural"
+    }
+   ],
+   "events": {
+    "hospital_overload": 0.8,
+    "medical_desert": 0.6,
+    "ehpad_scandal": 0.4,
+    "doctor_strike": 0.5,
+    "drug_shortage": 0.3,
+    "hospital_maternity": 0.4
+   }
+  },
+  {
+   "id": "education_collapse",
+   "label": "L'école décroche",
+   "icon": "✎",
+   "category": "services",
+   "variable": "quality.education",
+   "scale": 0.08,
+   "why": "Classes sans professeur, remplaçants introuvables, élèves qui décrochent : le niveau baisse et, à terme, la croissance avec lui.",
+   "onset": "Des milliers d'heures de cours ne sont plus assurées ; les parents s'inquiètent.",
+   "fix": "augmenter les crédits de l'éducation, recruter des enseignants, revaloriser leur salaire.",
+   "below": 0.4,
+   "severe": "Une génération sacrifiée",
+   "monthly": [
+    {
+     "target": "opinion.group.adults",
+     "amount": -0.004
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": -0.003
+    },
+    {
+     "target": "opinion.group.middle_income",
+     "amount": -0.002
+    },
+    {
+     "target": "economy.potentialGrowth",
+     "amount": -5e-05,
+     "cap": 0.002
+    },
+    {
+     "target": "actor.union_public",
+     "amount": -0.05
+    }
+   ],
+   "departments": [
+    {
+     "field": "approval",
+     "amount": -0.001,
+     "weight": "poor"
+    }
+   ],
+   "events": {
+    "teacher_shortage": 0.8,
+    "teachers_strike": 0.5,
+    "local_violence_school": 0.4,
+    "student_protest": 0.3
+   },
+   "unrest": {
+    "students": 0.03,
+    "public_services": 0.02
+   }
+  },
+  {
+   "id": "justice_collapse",
+   "label": "La justice ne suit plus",
+   "icon": "⚖",
+   "category": "services",
+   "variable": "quality.justice",
+   "scale": 0.07,
+   "why": "Tribunaux engorgés, prisons surpeuplées : les procès traînent des années, les peines ne sont plus exécutées, les entreprises n'osent plus se fier aux contrats.",
+   "onset": "Des affaires sont classées faute de moyens ; des détenus sont libérés faute de place.",
+   "fix": "renforcer les crédits de la justice, construire des places de prison, recruter des magistrats.",
+   "below": 0.32,
+   "severe": "Le sentiment d'impunité s'installe",
+   "monthly": [
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.003
+    },
+    {
+     "target": "opinion.group.middle_income",
+     "amount": -0.002
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.002
+    },
+    {
+     "target": "quality.security",
+     "amount": -0.002
+    }
+   ],
+   "departments": [
+    {
+     "field": "crime",
+     "amount": 0.008,
+     "weight": "all"
+    }
+   ],
+   "events": {
+    "court_backlog": 0.8,
+    "prison_overcrowding": 0.6,
+    "prison_escape": 0.5
+   }
+  },
+  {
+   "id": "transport_collapse",
+   "label": "Routes et trains à l'abandon",
+   "icon": "⇄",
+   "category": "services",
+   "variable": "quality.transport",
+   "scale": 0.08,
+   "why": "Sans entretien, les ponts se fissurent, les lignes ferment, les trains sont en retard : les campagnes s'isolent et l'économie ralentit.",
+   "onset": "Des ponts sont fermés à la circulation, des petites lignes de train supprimées.",
+   "fix": "remonter les crédits des transports et l'entretien des infrastructures.",
+   "below": 0.42,
+   "severe": "Le pays se fragmente",
+   "monthly": [
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.004
+    },
+    {
+     "target": "opinion.group.private_employees",
+     "amount": -0.002
+    },
+    {
+     "target": "economy.output",
+     "amount": -0.0003
+    },
+    {
+     "target": "sector.transport",
+     "amount": -0.002
+    },
+    {
+     "target": "sector.tourism",
+     "amount": -0.001
+    }
+   ],
+   "departments": [
+    {
+     "field": "approval",
+     "amount": -0.003,
+     "weight": "rural"
+    },
+    {
+     "field": "unemployment",
+     "amount": 0.0002,
+     "weight": "rural"
+    }
+   ],
+   "events": {
+    "bridge_repair": 0.7,
+    "rail_line": 0.5,
+    "rail_strike": 0.3,
+    "public_transport_strike_local": 0.3
+   }
+  },
+  {
+   "id": "environment_collapse",
+   "label": "L'environnement se dégrade",
+   "icon": "❀",
+   "category": "services",
+   "variable": "quality.environment",
+   "scale": 0.08,
+   "why": "Moins de contrôles et d'investissements : pollution de l'air et des rivières, sécheresses mal gérées, forêts non entretenues.",
+   "onset": "Pics de pollution à répétition ; Bruxelles rappelle la France à l'ordre.",
+   "fix": "remonter les crédits de l'écologie, la taxe carbone ou les normes.",
+   "below": 0.36,
+   "severe": "La France condamnée pour inaction climatique",
+   "monthly": [
+    {
+     "target": "opinion.group.young",
+     "amount": -0.004
+    },
+    {
+     "target": "opinion.group.urban",
+     "amount": -0.002
+    },
+    {
+     "target": "alliance.EU.DISAGREEMENT",
+     "amount": -0.01
+    },
+    {
+     "target": "actor.ngo_environment",
+     "amount": -0.08
+    },
+    {
+     "target": "quality.health",
+     "amount": -0.001
+    }
+   ],
+   "departments": [
+    {
+     "field": "pollution",
+     "amount": 0.01,
+     "weight": "urban"
+    },
+    {
+     "field": "healthAccess",
+     "amount": -0.002,
+     "weight": "urban"
+    }
+   ],
+   "events": {
+    "wildfire": 0.4,
+    "drought": 0.3,
+    "water_crisis": 0.4,
+    "heatwave": 0.2
+   },
+   "unrest": {
+    "ecology": 0.04
+   }
+  },
+  {
+   "id": "agriculture_collapse",
+   "label": "Les fermes ferment",
+   "icon": "❦",
+   "category": "services",
+   "variable": "quality.agriculture",
+   "scale": 0.08,
+   "why": "Sans soutien, les exploitations les plus fragiles disparaissent ; la France importe davantage et les campagnes se vident.",
+   "onset": "Des centaines d'exploitations font faillite ; la colère monte dans les campagnes.",
+   "fix": "rétablir les aides agricoles, les prix minimums ou les protections commerciales.",
+   "below": 0.36,
+   "severe": "La souveraineté alimentaire menacée",
+   "monthly": [
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.005
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": -0.002
+    },
+    {
+     "target": "actor.farmers_union",
+     "amount": -0.1
+    },
+    {
+     "target": "sector.agrifood",
+     "amount": -0.003
+    }
+   ],
+   "departments": [
+    {
+     "field": "approval",
+     "amount": -0.003,
+     "weight": "rural"
+    },
+    {
+     "field": "unemployment",
+     "amount": 0.0003,
+     "weight": "rural"
+    }
+   ],
+   "events": {
+    "farmers_protest": 0.7,
+    "farmers_local": 0.6,
+    "wine_crisis": 0.3
+   },
+   "unrest": {
+    "farmers": 0.06
+   }
+  },
+  {
+   "id": "defense_collapse",
+   "label": "Une armée échantillonnaire",
+   "icon": "⚔",
+   "category": "services",
+   "variable": "quality.defense",
+   "scale": 0.07,
+   "why": "Matériel non entretenu, munitions qui manquent, militaires qui partent : l'armée ne peut plus tenir ses engagements, les alliés doutent.",
+   "onset": "Des avions restent cloués au sol faute de pièces ; l'OTAN s'inquiète.",
+   "fix": "remonter le budget des armées, acheter du matériel, reconstituer les stocks.",
+   "below": 0.45,
+   "severe": "La France n'a plus les moyens de se défendre",
+   "monthly": [
+    {
+     "target": "military.readiness",
+     "amount": -0.004
+    },
+    {
+     "target": "alliance.NATO.DISAGREEMENT",
+     "amount": -0.01
+    },
+    {
+     "target": "unrest.armyLoyalty",
+     "amount": -0.004
+    },
+    {
+     "target": "actor.defense_lobby",
+     "amount": -0.08
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.002
+    }
+   ],
+   "events": {
+    "military_accident": 0.5,
+    "defense_leak": 0.3,
+    "hybrid_sabotage": 0.3
+   }
+  },
+  {
+   "id": "social_collapse",
+   "label": "La pauvreté gagne",
+   "icon": "◐",
+   "category": "services",
+   "variable": "quality.social",
+   "scale": 0.08,
+   "why": "Aides réduites, accompagnement absent : les plus fragiles basculent dans la pauvreté, les quartiers et les campagnes pauvres décrochent.",
+   "onset": "Les associations caritatives sont débordées ; les files d'attente s'allongent aux distributions alimentaires.",
+   "fix": "remonter les crédits de solidarité, les minima sociaux et les aides au logement.",
+   "below": 0.45,
+   "severe": "Explosion de la grande pauvreté",
+   "monthly": [
+    {
+     "target": "opinion.group.low_income",
+     "amount": -0.006
+    },
+    {
+     "target": "opinion.group.inactive",
+     "amount": -0.004
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.002
+    },
+    {
+     "target": "actor.church",
+     "amount": -0.05
+    },
+    {
+     "target": "actor.ngo_rights",
+     "amount": -0.05
+    },
+    {
+     "target": "quality.health",
+     "amount": -0.001
+    }
+   ],
+   "departments": [
+    {
+     "field": "crime",
+     "amount": 0.008,
+     "weight": "poor"
+    },
+    {
+     "field": "approval",
+     "amount": -0.003,
+     "weight": "poor"
+    }
+   ],
+   "events": {
+    "urban_riots": 0.4,
+    "housing_shortage": 0.4,
+    "child_protection": 0.3
+   },
+   "unrest": {
+    "cost_of_living": 0.05,
+    "anger": 0.02
+   }
+  },
+  {
+   "id": "cut_police",
+   "label": "Commissariats en sous-effectif",
+   "icon": "⚠",
+   "category": "budget",
+   "variable": "spending.police",
+   "scale": 0.15,
+   "why": "Des commissariats ferment la nuit, les patrouilles se raréfient ; les syndicats de police dénoncent l'abandon.",
+   "onset": "Les policiers manifestent devant les préfectures ; des commissariats réduisent leurs horaires.",
+   "fix": "rétablir les crédits de la police.",
+   "below": 0.85,
+   "severe": "Commissariats en sous-effectif : la situation devient intenable",
+   "monthly": [
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.003
+    },
+    {
+     "target": "opinion.group.urban",
+     "amount": -0.002
+    },
+    {
+     "target": "quality.security",
+     "amount": -0.004
+    },
+    {
+     "target": "unrest.armyLoyalty",
+     "amount": -0.001
+    }
+   ],
+   "departments": [
+    {
+     "field": "crime",
+     "amount": 0.01,
+     "weight": "crime"
+    },
+    {
+     "field": "crime",
+     "amount": 0.006,
+     "weight": "all"
+    }
+   ],
+   "events": {
+    "police_incident": 0.5,
+    "urban_riots": 0.3,
+    "prison_escape": 0.2
+   },
+   "unrest": {
+    "police": 0.08
+   }
+  },
+  {
+   "id": "cut_health",
+   "label": "L'hôpital en grève",
+   "icon": "✚",
+   "category": "budget",
+   "variable": "spending.health",
+   "scale": 0.1,
+   "why": "Moins d'argent pour l'hôpital : postes gelés, lits fermés, soignants en colère.",
+   "onset": "Grève dans les hôpitaux ; les urgences ne fonctionnent plus qu'en service minimum.",
+   "fix": "rétablir les crédits de la santé.",
+   "below": 0.9,
+   "severe": "L'hôpital en grève : la situation devient intenable",
+   "monthly": [
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.004
+    },
+    {
+     "target": "opinion.group.retirees",
+     "amount": -0.003
+    },
+    {
+     "target": "quality.health",
+     "amount": -0.004
+    },
+    {
+     "target": "actor.union_public",
+     "amount": -0.08
+    },
+    {
+     "target": "actor.pharma_lobby",
+     "amount": -0.05
+    }
+   ],
+   "departments": [
+    {
+     "field": "healthAccess",
+     "amount": -0.006,
+     "weight": "rural"
+    }
+   ],
+   "events": {
+    "doctor_strike": 0.6,
+    "hospital_overload": 0.5,
+    "drug_shortage": 0.3
+   },
+   "unrest": {
+    "public_services": 0.06
+   }
+  },
+  {
+   "id": "cut_education",
+   "label": "Profs dans la rue",
+   "icon": "✎",
+   "category": "budget",
+   "variable": "spending.education",
+   "scale": 0.1,
+   "why": "Classes fermées, postes supprimés : enseignants et parents se mobilisent ensemble.",
+   "onset": "Grève massive dans l'Éducation nationale ; des écoles occupées par les parents.",
+   "fix": "rétablir les crédits de l'éducation.",
+   "below": 0.9,
+   "severe": "Profs dans la rue : la situation devient intenable",
+   "monthly": [
+    {
+     "target": "opinion.group.adults",
+     "amount": -0.004
+    },
+    {
+     "target": "opinion.group.civil_servants",
+     "amount": -0.004
+    },
+    {
+     "target": "quality.education",
+     "amount": -0.004
+    },
+    {
+     "target": "actor.union_public",
+     "amount": -0.1
+    }
+   ],
+   "events": {
+    "teachers_strike": 0.7,
+    "teacher_shortage": 0.5,
+    "student_protest": 0.3
+   },
+   "unrest": {
+    "public_services": 0.06,
+    "students": 0.03
+   }
+  },
+  {
+   "id": "cut_justice",
+   "label": "Tribunaux paralysés",
+   "icon": "⚖",
+   "category": "budget",
+   "variable": "spending.justice",
+   "scale": 0.15,
+   "why": "Greffiers et magistrats en sous-nombre : les audiences sont renvoyées, les prisons débordent.",
+   "onset": "Les avocats et les magistrats protestent ; des audiences sont annulées faute de greffiers.",
+   "fix": "rétablir les crédits de la justice.",
+   "below": 0.85,
+   "severe": "Tribunaux paralysés : la situation devient intenable",
+   "monthly": [
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.002
+    },
+    {
+     "target": "quality.justice",
+     "amount": -0.004
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.001
+    }
+   ],
+   "departments": [
+    {
+     "field": "crime",
+     "amount": 0.004,
+     "weight": "all"
+    }
+   ],
+   "events": {
+    "court_backlog": 0.7,
+    "prison_overcrowding": 0.5
+   }
+  },
+  {
+   "id": "cut_defense",
+   "label": "Colère dans les casernes",
+   "icon": "⚔",
+   "category": "budget",
+   "variable": "spending.defense",
+   "scale": 0.15,
+   "why": "Programmes d'armement annulés, régiments dissous : les militaires se sentent trahis, les industriels licencient, les alliés s'inquiètent.",
+   "onset": "Des généraux expriment publiquement leur inquiétude ; l'OTAN demande des explications.",
+   "fix": "rétablir le budget des armées.",
+   "below": 0.85,
+   "severe": "Colère dans les casernes : la situation devient intenable",
+   "monthly": [
+    {
+     "target": "military.readiness",
+     "amount": -0.004
+    },
+    {
+     "target": "unrest.armyLoyalty",
+     "amount": -0.006
+    },
+    {
+     "target": "alliance.NATO.DISAGREEMENT",
+     "amount": -0.015
+    },
+    {
+     "target": "actor.defense_lobby",
+     "amount": -0.12
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.002
+    }
+   ],
+   "departments": [
+    {
+     "field": "unemployment",
+     "amount": 0.0002,
+     "weight": "rural"
+    }
+   ],
+   "events": {
+    "military_accident": 0.3,
+    "defense_leak": 0.2
+   }
+  },
+  {
+   "id": "cut_pensions",
+   "label": "Les retraités appauvris",
+   "icon": "◷",
+   "category": "budget",
+   "variable": "spending.pensions",
+   "scale": 0.05,
+   "why": "Des pensions qui baissent, c'est une promesse rompue : les retraités votent, et ils votent beaucoup.",
+   "onset": "Les retraités descendent dans la rue ; les associations crient à la trahison.",
+   "fix": "rétablir les pensions.",
+   "below": 0.95,
+   "severe": "Les retraités appauvris : la situation devient intenable",
+   "monthly": [
+    {
+     "target": "opinion.group.retirees",
+     "amount": -0.008
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.006
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.002
+    },
+    {
+     "target": "president.popularity",
+     "amount": -0.003
+    }
+   ],
+   "departments": [
+    {
+     "field": "approval",
+     "amount": -0.003,
+     "weight": "rural"
+    }
+   ],
+   "events": {
+    "pension_deficit": 0.2
+   },
+   "unrest": {
+    "pensions": 0.1
+   }
+  },
+  {
+   "id": "cut_unemployment_benefits",
+   "label": "Chômeurs sans filet",
+   "icon": "◐",
+   "category": "budget",
+   "variable": "spending.unemployment_benefits",
+   "scale": 0.15,
+   "why": "Moins d'indemnités : certains reprennent un emploi plus vite, d'autres basculent dans la pauvreté.",
+   "onset": "Les syndicats dénoncent une « chasse aux chômeurs ».",
+   "fix": "rétablir l'assurance chômage.",
+   "below": 0.8,
+   "severe": "Chômeurs sans filet : la situation devient intenable",
+   "monthly": [
+    {
+     "target": "opinion.group.low_income",
+     "amount": -0.004
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": -0.002
+    },
+    {
+     "target": "quality.social",
+     "amount": -0.003
+    },
+    {
+     "target": "actor.union_militant",
+     "amount": -0.1
+    },
+    {
+     "target": "actor.union_reformist",
+     "amount": -0.06
+    }
+   ],
+   "departments": [
+    {
+     "field": "crime",
+     "amount": 0.005,
+     "weight": "unemployed"
+    },
+    {
+     "field": "approval",
+     "amount": -0.002,
+     "weight": "unemployed"
+    }
+   ],
+   "events": {
+    "urban_riots": 0.2
+   },
+   "unrest": {
+    "labour": 0.06
+   }
+  },
+  {
+   "id": "cut_local_authorities",
+   "label": "Les maires étranglés",
+   "icon": "⌂",
+   "category": "budget",
+   "variable": "spending.local_authorities",
+   "scale": 0.15,
+   "why": "Moins de dotations : les communes ferment des écoles, des piscines, repoussent les travaux ; les entreprises du bâtiment perdent des chantiers.",
+   "onset": "Les maires menacent de rendre leur écharpe ; les chantiers communaux s'arrêtent.",
+   "fix": "rétablir les dotations aux collectivités.",
+   "below": 0.85,
+   "severe": "Les maires étranglés : la situation devient intenable",
+   "monthly": [
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.004
+    },
+    {
+     "target": "quality.transport",
+     "amount": -0.002
+    },
+    {
+     "target": "quality.social",
+     "amount": -0.002
+    },
+    {
+     "target": "sector.construction",
+     "amount": -0.003
+    }
+   ],
+   "departments": [
+    {
+     "field": "approval",
+     "amount": -0.003,
+     "weight": "rural"
+    },
+    {
+     "field": "approval",
+     "amount": -0.001,
+     "weight": "all"
+    }
+   ],
+   "events": {
+    "post_office_closure": 0.5,
+    "school_renovation": 0.3,
+    "bridge_repair": 0.3
+   },
+   "unrest": {
+    "public_services": 0.04
+   }
+  },
+  {
+   "id": "cut_state_operations",
+   "label": "L'administration à l'arrêt",
+   "icon": "⚙",
+   "category": "budget",
+   "variable": "spending.state_operations",
+   "scale": 0.15,
+   "why": "Moins d'agents dans les préfectures et les services fiscaux : titres de séjour, permis, contrôles fiscaux, tout prend des mois ; la fraude progresse.",
+   "onset": "Files d'attente dans les préfectures ; les entreprises attendent leurs autorisations.",
+   "fix": "rétablir les moyens de l'administration.",
+   "below": 0.8,
+   "severe": "L'administration à l'arrêt : la situation devient intenable",
+   "monthly": [
+    {
+     "target": "opinion.group.civil_servants",
+     "amount": -0.005
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.002
+    },
+    {
+     "target": "quality.justice",
+     "amount": -0.002
+    },
+    {
+     "target": "actor.union_public",
+     "amount": -0.1
+    }
+   ],
+   "events": {
+    "national_strike": 0.2,
+    "court_backlog": 0.2
+   },
+   "unrest": {
+    "public_services": 0.05
+   }
+  },
+  {
+   "id": "cut_agriculture",
+   "label": "Les paysans abandonnés",
+   "icon": "❦",
+   "category": "budget",
+   "variable": "spending.agriculture",
+   "scale": 0.15,
+   "why": "Les aides agricoles représentent souvent tout le revenu d'une exploitation : les couper, c'est condamner les plus petites.",
+   "onset": "Les tracteurs bloquent les préfectures.",
+   "fix": "rétablir les aides agricoles.",
+   "below": 0.8,
+   "severe": "Les paysans abandonnés : la situation devient intenable",
+   "monthly": [
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.004
+    },
+    {
+     "target": "actor.farmers_union",
+     "amount": -0.15
+    },
+    {
+     "target": "quality.agriculture",
+     "amount": -0.004
+    },
+    {
+     "target": "sector.agrifood",
+     "amount": -0.002
+    }
+   ],
+   "departments": [
+    {
+     "field": "approval",
+     "amount": -0.003,
+     "weight": "rural"
+    }
+   ],
+   "events": {
+    "farmers_protest": 0.7
+   },
+   "unrest": {
+    "farmers": 0.1
+   }
+  },
+  {
+   "id": "cut_ecology",
+   "label": "La transition à l'arrêt",
+   "icon": "❀",
+   "category": "budget",
+   "variable": "spending.ecology",
+   "scale": 0.15,
+   "why": "Rénovation des logements, transports propres, protection de la nature : tout ralentit, et la France manquera ses objectifs européens.",
+   "onset": "Les ONG et la jeunesse dénoncent un renoncement climatique.",
+   "fix": "rétablir les crédits de l'écologie.",
+   "below": 0.75,
+   "severe": "La transition à l'arrêt : la situation devient intenable",
+   "monthly": [
+    {
+     "target": "opinion.group.young",
+     "amount": -0.004
+    },
+    {
+     "target": "quality.environment",
+     "amount": -0.004
+    },
+    {
+     "target": "alliance.EU.DISAGREEMENT",
+     "amount": -0.01
+    },
+    {
+     "target": "actor.ngo_environment",
+     "amount": -0.15
+    }
+   ],
+   "departments": [
+    {
+     "field": "pollution",
+     "amount": 0.004,
+     "weight": "urban"
+    }
+   ],
+   "events": {
+    "drought": 0.1
+   },
+   "unrest": {
+    "ecology": 0.06
+   }
+  },
+  {
+   "id": "cut_transport",
+   "label": "Petites lignes fermées",
+   "icon": "⇄",
+   "category": "budget",
+   "variable": "spending.transport",
+   "scale": 0.15,
+   "why": "Moins d'investissement : trains supprimés, routes non entretenues, les campagnes se sentent abandonnées.",
+   "onset": "Les cheminots se mettent en grève ; les élus ruraux protestent.",
+   "fix": "rétablir les crédits des transports.",
+   "below": 0.85,
+   "severe": "Petites lignes fermées : la situation devient intenable",
+   "monthly": [
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.004
+    },
+    {
+     "target": "quality.transport",
+     "amount": -0.004
+    },
+    {
+     "target": "sector.transport",
+     "amount": -0.002
+    }
+   ],
+   "departments": [
+    {
+     "field": "approval",
+     "amount": -0.003,
+     "weight": "rural"
+    }
+   ],
+   "events": {
+    "rail_strike": 0.4,
+    "bridge_repair": 0.3
+   },
+   "unrest": {
+    "public_services": 0.03
+   }
+  },
+  {
+   "id": "cut_solidarity",
+   "label": "Minima sociaux rognés",
+   "icon": "◐",
+   "category": "budget",
+   "variable": "spending.solidarity",
+   "scale": 0.15,
+   "why": "Les plus pauvres n'ont aucune réserve : chaque euro en moins se voit dans l'assiette, le loyer impayé, l'enfant mal soigné.",
+   "onset": "Les associations caritatives tirent la sonnette d'alarme.",
+   "fix": "rétablir les crédits de solidarité.",
+   "below": 0.85,
+   "severe": "Minima sociaux rognés : la situation devient intenable",
+   "monthly": [
+    {
+     "target": "opinion.group.low_income",
+     "amount": -0.006
+    },
+    {
+     "target": "opinion.group.inactive",
+     "amount": -0.005
+    },
+    {
+     "target": "quality.social",
+     "amount": -0.004
+    },
+    {
+     "target": "actor.church",
+     "amount": -0.08
+    },
+    {
+     "target": "actor.ngo_rights",
+     "amount": -0.1
+    }
+   ],
+   "departments": [
+    {
+     "field": "crime",
+     "amount": 0.006,
+     "weight": "poor"
+    },
+    {
+     "field": "approval",
+     "amount": -0.003,
+     "weight": "poor"
+    }
+   ],
+   "events": {
+    "urban_riots": 0.3,
+    "child_protection": 0.2
+   },
+   "unrest": {
+    "cost_of_living": 0.06
+   }
+  },
+  {
+   "id": "state_bloat",
+   "label": "Dépense publique hors de contrôle",
+   "icon": "€",
+   "category": "budget",
+   "variable": "derived.servicesFunding",
+   "scale": 0.3,
+   "why": "Des crédits qui gonflent bien plus vite que les besoins : gaspillages, hausse des prix, la Cour des comptes et Bruxelles s'alarment.",
+   "onset": "La Cour des comptes publie un rapport cinglant sur les dérives de la dépense.",
+   "fix": "ramener les crédits vers des niveaux soutenables ou financer par l'impôt.",
+   "above": 1.4,
+   "monthly": [
+    {
+     "target": "economy.inflation",
+     "amount": 0.0005,
+     "cap": 0.01
+    },
+    {
+     "target": "alliance.EU.DISAGREEMENT",
+     "amount": -0.01
+    },
+    {
+     "target": "opinion.group.high_income",
+     "amount": -0.002
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.001
+    }
+   ],
+   "events": {
+    "rating_downgrade": 0.3
+   }
+  },
+  {
+   "id": "work_does_not_pay",
+   "label": "Le travail ne paie plus",
+   "icon": "⚖",
+   "category": "social",
+   "variable": "derived.rsaToSmic",
+   "scale": 0.2,
+   "why": "Quand le RSA approche le SMIC, reprendre un emploi ne rapporte presque rien : une partie des bénéficiaires reste chez elle, les salariés modestes se sentent floués, les employeurs ne trouvent plus personne.",
+   "onset": "Les petites entreprises peinent à recruter ; « pourquoi travailler ? » fait la une.",
+   "fix": "ramener le RSA nettement sous le SMIC, ou augmenter le SMIC et la prime d'activité.",
+   "above": 0.8,
+   "severe": "Pénurie de main-d'œuvre et colère des travailleurs modestes",
+   "monthly": [
+    {
+     "target": "economy.unemployment",
+     "amount": 0.0006,
+     "cap": 0.012
+    },
+    {
+     "target": "economy.naturalUnemployment",
+     "amount": 0.0003,
+     "cap": 0.008
+    },
+    {
+     "target": "opinion.group.private_employees",
+     "amount": -0.004
+    },
+    {
+     "target": "opinion.group.middle_income",
+     "amount": -0.003
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": -0.004
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": 0.002
+    },
+    {
+     "target": "actor.employers_small",
+     "amount": -0.15
+    },
+    {
+     "target": "actor.employers_big",
+     "amount": -0.06
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.002
+    },
+    {
+     "target": "sector.retail",
+     "amount": -0.002
+    },
+    {
+     "target": "sector.construction",
+     "amount": -0.002
+    },
+    {
+     "target": "sector.tourism",
+     "amount": -0.002
+    },
+    {
+     "target": "demography.immigration",
+     "amount": 0.01,
+     "cap": 0.3
+    }
+   ],
+   "departments": [
+    {
+     "field": "unemployment",
+     "amount": 0.0004,
+     "weight": "poor"
+    }
+   ],
+   "events": {
+    "delivery_strike": 0.2
+   }
+  },
+  {
+   "id": "extreme_poverty",
+   "label": "Grande pauvreté",
+   "icon": "◐",
+   "category": "social",
+   "variable": "derived.rsaToSmic",
+   "scale": 0.1,
+   "why": "Sans revenu minimum décent, les plus fragiles basculent : expulsions, sans-abri, petite délinquance de survie, santé qui se dégrade.",
+   "onset": "Les maraudes signalent une hausse brutale du nombre de sans-abri.",
+   "fix": "relever le RSA au-dessus du seuil de survie.",
+   "below": 0.3,
+   "severe": "Des campements de sans-abri dans toutes les grandes villes",
+   "monthly": [
+    {
+     "target": "opinion.group.low_income",
+     "amount": -0.008
+    },
+    {
+     "target": "opinion.group.inactive",
+     "amount": -0.008
+    },
+    {
+     "target": "opinion.group.urban",
+     "amount": -0.002
+    },
+    {
+     "target": "quality.health",
+     "amount": -0.002
+    },
+    {
+     "target": "quality.social",
+     "amount": -0.004
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.002
+    },
+    {
+     "target": "actor.church",
+     "amount": -0.15
+    },
+    {
+     "target": "actor.ngo_rights",
+     "amount": -0.2
+    }
+   ],
+   "departments": [
+    {
+     "field": "crime",
+     "amount": 0.012,
+     "weight": "poor"
+    },
+    {
+     "field": "approval",
+     "amount": -0.004,
+     "weight": "poor"
+    },
+    {
+     "field": "healthAccess",
+     "amount": -0.004,
+     "weight": "poor"
+    }
+   ],
+   "events": {
+    "urban_riots": 0.6,
+    "housing_shortage": 0.5,
+    "child_protection": 0.4
+   },
+   "unrest": {
+    "cost_of_living": 0.08,
+    "anger": 0.04
+   }
+  },
+  {
+   "id": "smic_too_high",
+   "label": "Un SMIC trop cher pour les petites entreprises",
+   "icon": "€",
+   "category": "social",
+   "variable": "lever.param:smic_boost",
+   "scale": 8.0,
+   "why": "Une hausse du SMIC bien plus rapide que la productivité : les petits commerces et l'artisanat embauchent moins, le travail au noir progresse, les prix montent.",
+   "onset": "Les artisans et commerçants annoncent des gels d'embauche.",
+   "fix": "modérer la hausse du SMIC ou alléger les cotisations sur les bas salaires.",
+   "above": 12.0,
+   "monthly": [
+    {
+     "target": "economy.unemployment",
+     "amount": 0.0005,
+     "cap": 0.01
+    },
+    {
+     "target": "economy.inflation",
+     "amount": 0.0004,
+     "cap": 0.008
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": -0.004
+    },
+    {
+     "target": "actor.employers_small",
+     "amount": -0.15
+    },
+    {
+     "target": "sector.retail",
+     "amount": -0.002
+    },
+    {
+     "target": "sector.tourism",
+     "amount": -0.002
+    }
+   ],
+   "departments": [
+    {
+     "field": "unemployment",
+     "amount": 0.0003,
+     "weight": "poor"
+    }
+   ],
+   "events": {
+    "bankruptcy": 0.4
+   }
+  },
+  {
+   "id": "late_retirement",
+   "label": "Travailler jusqu'à l'épuisement",
+   "icon": "◷",
+   "category": "social",
+   "variable": "lever.param:pension_age",
+   "scale": 1.0,
+   "why": "Un âge de départ très tardif : les métiers pénibles ne tiennent pas, les seniors au chômage attendent des années une retraite qui recule.",
+   "onset": "Les syndicats dénoncent les « morts avant la retraite ».",
+   "fix": "rabaisser l'âge légal ou prévoir des départs anticipés pour les métiers pénibles.",
+   "above": 66.0,
+   "monthly": [
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.006
+    },
+    {
+     "target": "opinion.group.private_employees",
+     "amount": -0.004
+    },
+    {
+     "target": "economy.unemployment",
+     "amount": 0.0002,
+     "cap": 0.004
+    },
+    {
+     "target": "actor.union_militant",
+     "amount": -0.1
+    },
+    {
+     "target": "actor.union_reformist",
+     "amount": -0.08
+    }
+   ],
+   "unrest": {
+    "pensions": 0.08
+   }
+  },
+  {
+   "id": "early_retirement",
+   "label": "Le trou des retraites",
+   "icon": "◷",
+   "category": "social",
+   "variable": "lever.param:pension_age",
+   "scale": 1.0,
+   "why": "Partir tôt coûte cher : moins de cotisants, plus de pensionnés, et Bruxelles s'inquiète de la soutenabilité du système.",
+   "onset": "Le Conseil d'orientation des retraites annonce un déficit qui se creuse.",
+   "fix": "relever l'âge, la durée de cotisation, ou augmenter les cotisations.",
+   "below": 62.0,
+   "monthly": [
+    {
+     "target": "alliance.EU.DISAGREEMENT",
+     "amount": -0.008
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.001
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": -0.002
+    }
+   ],
+   "events": {
+    "pension_deficit": 0.6,
+    "rating_downgrade": 0.2
+   }
+  },
+  {
+   "id": "pension_freeze",
+   "label": "Pensions gelées",
+   "icon": "◷",
+   "category": "social",
+   "variable": "lever.param:pension_indexation",
+   "scale": 5.0,
+   "why": "Des pensions qui ne suivent plus les prix : chaque année, les retraités perdent du pouvoir d'achat.",
+   "onset": "Les retraités se sentent trahis.",
+   "fix": "réindexer les pensions sur l'inflation.",
+   "below": -3.0,
+   "monthly": [
+    {
+     "target": "opinion.group.retirees",
+     "amount": -0.006
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.004
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.001
+    }
+   ],
+   "unrest": {
+    "pensions": 0.06
+   }
+  },
+  {
+   "id": "housing_crisis",
+   "label": "Crise du logement",
+   "icon": "⌂",
+   "category": "social",
+   "variable": "lever.param:housing_aid",
+   "scale": 20.0,
+   "why": "Sans aides au logement, les loyers deviennent inaccessibles aux étudiants et aux familles modestes : impayés, expulsions, colocations forcées.",
+   "onset": "Les expulsions locatives atteignent un record.",
+   "fix": "rétablir les aides au logement.",
+   "below": 60.0,
+   "monthly": [
+    {
+     "target": "opinion.group.young",
+     "amount": -0.005
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": -0.005
+    },
+    {
+     "target": "quality.social",
+     "amount": -0.002
+    },
+    {
+     "target": "sector.construction",
+     "amount": -0.001
+    }
+   ],
+   "departments": [
+    {
+     "field": "approval",
+     "amount": -0.002,
+     "weight": "urban"
+    },
+    {
+     "field": "crime",
+     "amount": 0.003,
+     "weight": "poor"
+    }
+   ],
+   "events": {
+    "housing_shortage": 0.6
+   },
+   "unrest": {
+    "students": 0.04,
+    "cost_of_living": 0.04
+   }
+  },
+  {
+   "id": "family_squeeze",
+   "label": "Les familles se serrent la ceinture",
+   "icon": "◐",
+   "category": "social",
+   "variable": "lever.param:family_allowance",
+   "scale": 20.0,
+   "why": "Moins d'allocations familiales : les familles nombreuses et modestes perdent beaucoup, la natalité recule.",
+   "onset": "Les associations familiales dénoncent une politique « anti-familles ».",
+   "fix": "rétablir les allocations familiales.",
+   "below": 60.0,
+   "monthly": [
+    {
+     "target": "opinion.group.adults",
+     "amount": -0.004
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": -0.003
+    },
+    {
+     "target": "actor.church",
+     "amount": -0.08
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.001
+    }
+   ]
+  },
+  {
+   "id": "civil_service_squeeze",
+   "label": "Fonctionnaires déclassés",
+   "icon": "⚙",
+   "category": "social",
+   "variable": "lever.param:civil_service_index",
+   "scale": 4.0,
+   "why": "Un point d'indice qui recule : les fonctionnaires perdent du pouvoir d'achat, les vocations s'effondrent, les concours ne font plus le plein.",
+   "onset": "Les syndicats de fonctionnaires appellent à la grève.",
+   "fix": "revaloriser le point d'indice.",
+   "below": -3.0,
+   "monthly": [
+    {
+     "target": "opinion.group.civil_servants",
+     "amount": -0.006
+    },
+    {
+     "target": "actor.union_public",
+     "amount": -0.15
+    },
+    {
+     "target": "quality.education",
+     "amount": -0.002
+    },
+    {
+     "target": "quality.health",
+     "amount": -0.002
+    },
+    {
+     "target": "quality.security",
+     "amount": -0.001
+    }
+   ],
+   "events": {
+    "teachers_strike": 0.5,
+    "national_strike": 0.3,
+    "teacher_shortage": 0.4
+   },
+   "unrest": {
+    "public_services": 0.08
+   }
+  },
+  {
+   "id": "tax_exodus",
+   "label": "Ras-le-bol fiscal et exil",
+   "icon": "€",
+   "category": "economy",
+   "variable": "tax.households",
+   "scale": 0.04,
+   "why": "Au-delà d'un certain niveau, chaque hausse d'impôt rapporte de moins en moins : les plus aisés partent, d'autres travaillent moins ou fraudent, la classe moyenne gronde.",
+   "onset": "Des contribuables aisés annoncent leur départ à l'étranger ; « trop d'impôt tue l'impôt » fait la une.",
+   "fix": "baisser les prélèvements sur les ménages ou mieux cibler les hausses.",
+   "above": 0.4,
+   "severe": "Fuite des capitaux et révolte fiscale",
+   "monthly": [
+    {
+     "target": "opinion.group.high_income",
+     "amount": -0.006
+    },
+    {
+     "target": "opinion.group.middle_income",
+     "amount": -0.005
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": -0.004
+    },
+    {
+     "target": "budget.oneOff",
+     "amount": 0.3
+    },
+    {
+     "target": "economy.potentialGrowth",
+     "amount": -4e-05,
+     "cap": 0.0015
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.002
+    },
+    {
+     "target": "sector.luxury",
+     "amount": -0.002
+    },
+    {
+     "target": "sector.banking",
+     "amount": -0.002
+    }
+   ],
+   "events": {
+    "tax_leak": 0.3,
+    "fuel_tax_protest": 0.4
+   },
+   "unrest": {
+    "cost_of_living": 0.05,
+    "anger": 0.03
+   }
+  },
+  {
+   "id": "business_flight",
+   "label": "Les entreprises s'en vont",
+   "icon": "⚙",
+   "category": "economy",
+   "variable": "tax.businesses",
+   "scale": 0.03,
+   "why": "Des prélèvements sur les entreprises bien au-dessus des voisins : les usines s'installent ailleurs, les sièges sociaux déménagent, l'emploi suit.",
+   "onset": "Un grand groupe annonce le transfert de son siège à l'étranger.",
+   "fix": "alléger l'impôt sur les sociétés ou les cotisations patronales.",
+   "above": 0.2,
+   "severe": "Vague de délocalisations",
+   "monthly": [
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.004
+    },
+    {
+     "target": "economy.unemployment",
+     "amount": 0.0004,
+     "cap": 0.01
+    },
+    {
+     "target": "economy.potentialGrowth",
+     "amount": -4e-05,
+     "cap": 0.0015
+    },
+    {
+     "target": "sector.industry",
+     "amount": -0.003
+    },
+    {
+     "target": "sector.tech",
+     "amount": -0.003
+    },
+    {
+     "target": "actor.employers_big",
+     "amount": -0.15
+    },
+    {
+     "target": "actor.employers_small",
+     "amount": -0.08
+    },
+    {
+     "target": "budget.oneOff",
+     "amount": 0.2
+    }
+   ],
+   "departments": [
+    {
+     "field": "unemployment",
+     "amount": 0.0004,
+     "weight": "all"
+    },
+    {
+     "field": "industry",
+     "amount": -0.001,
+     "weight": "all"
+    }
+   ],
+   "events": {
+    "factory_closure": 0.6,
+    "strategic_acquisition": 0.3,
+    "ai_exodus": 0.3
+   }
+  },
+  {
+   "id": "excessive_deficit",
+   "label": "Bruxelles hausse le ton",
+   "icon": "€",
+   "category": "economy",
+   "variable": "economy.deficitRatio",
+   "scale": 0.02,
+   "why": "Un déficit au-dessus de 3 % viole les règles européennes ; au-delà de 6 %, la Commission ouvre une procédure et les marchés exigent des taux plus élevés.",
+   "onset": "La Commission européenne menace la France d'une procédure pour déficit excessif.",
+   "fix": "réduire le déficit : économies, hausses d'impôts ciblées ou croissance.",
+   "above": 0.06,
+   "severe": "Procédure pour déficit excessif",
+   "monthly": [
+    {
+     "target": "alliance.EU.DISAGREEMENT",
+     "amount": -0.012
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.002
+    },
+    {
+     "target": "budget.oneOff",
+     "amount": 0.4
+    }
+   ],
+   "events": {
+    "eu_deficit_procedure": 0.8,
+    "rating_downgrade": 0.5
+   }
+  },
+  {
+   "id": "debt_crisis",
+   "label": "Crise de la dette",
+   "icon": "€",
+   "category": "economy",
+   "variable": "economy.debtRatio",
+   "scale": 0.15,
+   "why": "Une dette qui dépasse largement 130 % du PIB : les prêteurs doutent, les taux d'intérêt montent, la charge de la dette dévore le budget.",
+   "onset": "Les taux d'emprunt de la France s'envolent ; les agences de notation menacent.",
+   "fix": "dégager un excédent primaire, rassurer les marchés, demander l'aide européenne en dernier recours.",
+   "above": 1.3,
+   "severe": "La France au bord du défaut",
+   "monthly": [
+    {
+     "target": "budget.oneOff",
+     "amount": 1.2
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.003
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.004
+    },
+    {
+     "target": "sector.banking",
+     "amount": -0.004
+    },
+    {
+     "target": "alliance.EU.DISAGREEMENT",
+     "amount": -0.01
+    },
+    {
+     "target": "president.popularity",
+     "amount": -0.002
+    }
+   ],
+   "events": {
+    "rating_downgrade": 0.8,
+    "bank_fragility": 0.6,
+    "bank_run": 0.3
+   }
+  },
+  {
+   "id": "high_inflation",
+   "label": "Les prix flambent",
+   "icon": "▲",
+   "category": "economy",
+   "variable": "economy.inflation",
+   "scale": 0.03,
+   "why": "Une inflation forte ronge les salaires et l'épargne : les plus modestes et les retraités trinquent, la colère monte.",
+   "onset": "Les prix de l'alimentation et de l'énergie s'envolent.",
+   "fix": "freiner la dépense, plafonner certains prix, laisser la BCE remonter ses taux.",
+   "above": 0.045,
+   "severe": "Spirale inflationniste",
+   "monthly": [
+    {
+     "target": "opinion.group.low_income",
+     "amount": -0.006
+    },
+    {
+     "target": "opinion.group.retirees",
+     "amount": -0.005
+    },
+    {
+     "target": "opinion.group.middle_income",
+     "amount": -0.003
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.004
+    },
+    {
+     "target": "president.popularity",
+     "amount": -0.003
+    }
+   ],
+   "events": {
+    "fuel_tax_protest": 0.5,
+    "energy_bills_local": 0.4
+   },
+   "unrest": {
+    "cost_of_living": 0.08
+   }
+  },
+  {
+   "id": "deflation",
+   "label": "Les prix baissent",
+   "icon": "▼",
+   "category": "economy",
+   "variable": "economy.inflation",
+   "scale": 0.01,
+   "why": "Quand les prix baissent, on attend pour acheter, les entreprises réduisent leurs marges et l'investissement, et la dette pèse plus lourd.",
+   "onset": "Les commerces bradent sans parvenir à relancer les ventes.",
+   "fix": "relancer la demande (dépense, baisse d'impôts ciblée).",
+   "below": -0.005,
+   "monthly": [
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.003
+    },
+    {
+     "target": "economy.output",
+     "amount": -0.0004
+    },
+    {
+     "target": "sector.retail",
+     "amount": -0.002
+    }
+   ]
+  },
+  {
+   "id": "mass_unemployment",
+   "label": "Chômage de masse",
+   "icon": "◐",
+   "category": "economy",
+   "variable": "economy.unemployment",
+   "scale": 0.03,
+   "why": "Un chômage durablement élevé appauvrit les familles, nourrit la délinquance dans les zones sinistrées, coûte en indemnités et en recettes perdues.",
+   "onset": "Le chômage dépasse 10 % ; des bassins d'emploi entiers sont sinistrés.",
+   "fix": "relancer l'activité, former les chômeurs, baisser le coût du travail.",
+   "above": 0.1,
+   "severe": "Le pays s'enfonce dans le chômage",
+   "monthly": [
+    {
+     "target": "opinion.group.young",
+     "amount": -0.005
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": -0.005
+    },
+    {
+     "target": "opinion.group.private_employees",
+     "amount": -0.003
+    },
+    {
+     "target": "president.popularity",
+     "amount": -0.004
+    },
+    {
+     "target": "budget.oneOff",
+     "amount": 0.3
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.003
+    }
+   ],
+   "departments": [
+    {
+     "field": "crime",
+     "amount": 0.006,
+     "weight": "unemployed"
+    },
+    {
+     "field": "approval",
+     "amount": -0.003,
+     "weight": "unemployed"
+    }
+   ],
+   "events": {
+    "urban_riots": 0.4,
+    "factory_closure": 0.3,
+    "youth_movement": 0.3
+   },
+   "unrest": {
+    "labour": 0.05,
+    "anger": 0.03
+   }
+  },
+  {
+   "id": "recession",
+   "label": "Récession",
+   "icon": "▼",
+   "category": "economy",
+   "variable": "economy.growth",
+   "scale": 0.015,
+   "why": "Quand l'activité recule, les faillites se multiplient, l'emploi suit, les recettes fiscales baissent et le déficit se creuse.",
+   "onset": "Le PIB recule ; les faillites d'entreprises augmentent.",
+   "fix": "soutenir l'activité (investissement public, crédit, baisse de charges ciblée).",
+   "below": -0.015,
+   "severe": "Dépression économique",
+   "monthly": [
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.004
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.003
+    },
+    {
+     "target": "economy.unemployment",
+     "amount": 0.0006,
+     "cap": 0.015
+    },
+    {
+     "target": "sector.construction",
+     "amount": -0.003
+    },
+    {
+     "target": "sector.industry",
+     "amount": -0.002
+    },
+    {
+     "target": "president.popularity",
+     "amount": -0.003
+    }
+   ],
+   "departments": [
+    {
+     "field": "unemployment",
+     "amount": 0.0004,
+     "weight": "unemployed"
+    }
+   ],
+   "events": {
+    "bankruptcy": 0.6,
+    "factory_closure": 0.5
+   }
+  },
+  {
+   "id": "energy_shock",
+   "label": "Factures d'énergie insupportables",
+   "icon": "⚡",
+   "category": "economy",
+   "variable": "energy.priceIndex",
+   "scale": 0.3,
+   "why": "Une énergie très chère étrangle les ménages modestes et les industries gourmandes en énergie, qui ralentissent ou ferment.",
+   "onset": "Les factures d'électricité et de gaz explosent ; des usines s'arrêtent.",
+   "fix": "bouclier tarifaire, sobriété, production nationale (nucléaire, renouvelables).",
+   "above": 1.4,
+   "severe": "Usines à l'arrêt, ménages dans le froid",
+   "monthly": [
+    {
+     "target": "opinion.group.low_income",
+     "amount": -0.005
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.004
+    },
+    {
+     "target": "sector.industry",
+     "amount": -0.004
+    },
+    {
+     "target": "economy.inflation",
+     "amount": 0.0005,
+     "cap": 0.01
+    },
+    {
+     "target": "economy.consumerConfidence",
+     "amount": -0.003
+    }
+   ],
+   "departments": [
+    {
+     "field": "industry",
+     "amount": -0.001,
+     "weight": "all"
+    },
+    {
+     "field": "approval",
+     "amount": -0.002,
+     "weight": "rural"
+    }
+   ],
+   "events": {
+    "energy_bills_local": 0.6,
+    "fuel_tax_protest": 0.4
+   },
+   "unrest": {
+    "cost_of_living": 0.06
+   }
+  },
+  {
+   "id": "authoritarian_drift",
+   "label": "Dérive autoritaire",
+   "icon": "⊘",
+   "category": "institutions",
+   "variable": "laws.liberty",
+   "scale": 10.0,
+   "why": "Des libertés qui reculent fortement : la jeunesse et les villes se mobilisent, les partenaires européens condamnent, les ONG saisissent les tribunaux.",
+   "onset": "Les ONG et l'opposition dénoncent une « dérive autoritaire ».",
+   "fix": "rétablir les libertés publiques, abroger les lois les plus restrictives.",
+   "below": 60.0,
+   "severe": "La France pointée du doigt par l'Europe",
+   "monthly": [
+    {
+     "target": "opinion.group.young",
+     "amount": -0.005
+    },
+    {
+     "target": "opinion.group.urban",
+     "amount": -0.003
+    },
+    {
+     "target": "actor.ngo_rights",
+     "amount": -0.2
+    },
+    {
+     "target": "alliance.EU.CONDEMNATION",
+     "amount": -0.015
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.001
+    }
+   ],
+   "events": {
+    "youth_movement": 0.5,
+    "student_protest": 0.4,
+    "campus_occupation": 0.3
+   },
+   "unrest": {
+    "society": 0.06,
+    "students": 0.04
+   }
+  },
+  {
+   "id": "press_muzzled",
+   "label": "Presse muselée",
+   "icon": "⊘",
+   "category": "institutions",
+   "variable": "laws.press",
+   "scale": 10.0,
+   "why": "Quand la presse n'est plus libre, les scandales éclatent plus tard et plus fort, la confiance s'effondre, l'étranger s'inquiète.",
+   "onset": "Reporters sans frontières fait chuter la France dans son classement.",
+   "fix": "rétablir la liberté de la presse.",
+   "below": 55.0,
+   "monthly": [
+    {
+     "target": "opinion.group.urban",
+     "amount": -0.003
+    },
+    {
+     "target": "opinion.group.high_income",
+     "amount": -0.002
+    },
+    {
+     "target": "actor.ngo_rights",
+     "amount": -0.15
+    },
+    {
+     "target": "alliance.EU.DISAGREEMENT",
+     "amount": -0.01
+    }
+   ],
+   "events": {
+    "president_scandal": 0.3,
+    "deepfake_president": 0.2
+   }
+  },
+  {
+   "id": "full_powers",
+   "label": "Pleins pouvoirs (article 16)",
+   "icon": "⚠",
+   "category": "institutions",
+   "variable": "derived.article16",
+   "scale": 1.0,
+   "why": "Gouverner sans Parlement est légal en cas de péril grave, mais chaque jour passé sous l'article 16 inquiète : l'opposition parle de coup d'État, l'Europe s'alarme.",
+   "onset": "Le président gouverne seul ; l'opposition saisit le Conseil constitutionnel pour faire constater la fin du péril.",
+   "fix": "mettre fin à la crise pour que l'article 16 s'achève.",
+   "above": 0.5,
+   "maxSeverity": 1.0,
+   "monthly": [
+    {
+     "target": "president.popularity",
+     "amount": -0.01
+    },
+    {
+     "target": "alliance.EU.DISAGREEMENT",
+     "amount": -0.02
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": -0.006
+    },
+    {
+     "target": "opinion.group.urban",
+     "amount": -0.004
+    },
+    {
+     "target": "actor.ngo_rights",
+     "amount": -0.3
+    },
+    {
+     "target": "government.parliamentSupport",
+     "amount": -0.01
+    }
+   ],
+   "unrest": {
+    "society": 0.3
+   }
+  },
+  {
+   "id": "no_majority",
+   "label": "Majorité introuvable",
+   "icon": "⚖",
+   "category": "institutions",
+   "variable": "government.parliamentSupport",
+   "scale": 0.08,
+   "why": "Sans majorité solide, chaque texte devient une bataille, les frondeurs se multiplient et le gouvernement vit sous la menace d'une censure.",
+   "onset": "Des députés de la majorité votent contre le gouvernement.",
+   "fix": "négocier avec les groupes, remanier, dissoudre (risqué).",
+   "below": 0.4,
+   "monthly": [
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.001
+    },
+    {
+     "target": "president.popularity",
+     "amount": -0.002
+    }
+   ],
+   "events": {
+    "majority_rebels": 0.8,
+    "group_split": 0.5
+   }
+  },
+  {
+   "id": "mass_rejection",
+   "label": "Rejet massif du président",
+   "icon": "⚑",
+   "category": "institutions",
+   "variable": "opinion.national",
+   "scale": 0.08,
+   "why": "Quand trois Français sur quatre rejettent le président, la moindre étincelle peut embraser le pays ; la majorité se fissure, l'armée observe.",
+   "onset": "Les sondages s'effondrent ; on parle de « crise de régime ».",
+   "fix": "remanier, céder sur une réforme contestée, parler au pays.",
+   "below": 0.25,
+   "severe": "Crise de régime",
+   "monthly": [
+    {
+     "target": "government.parliamentSupport",
+     "amount": -0.006
+    },
+    {
+     "target": "unrest.armyLoyalty",
+     "amount": -0.003
+    }
+   ],
+   "events": {
+    "majority_rebels": 0.5,
+    "group_split": 0.3
+   },
+   "unrest": {
+    "anger": 0.08
+   }
+  },
+  {
+   "id": "war_weariness",
+   "label": "Lassitude de la guerre",
+   "icon": "⚔",
+   "category": "institutions",
+   "variable": "military.warWeariness",
+   "scale": 0.25,
+   "why": "Une guerre qui dure et qui tue use la patience du pays : on réclame la paix, les mères manifestent.",
+   "onset": "Les cortèges pour la paix grossissent.",
+   "fix": "négocier la paix ou obtenir une victoire rapide.",
+   "above": 0.5,
+   "monthly": [
+    {
+     "target": "president.popularity",
+     "amount": -0.006
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": -0.004
+    },
+    {
+     "target": "opinion.group.adults",
+     "amount": -0.003
+    }
+   ],
+   "unrest": {
+    "war": 0.1
+   }
+  },
+  {
+   "id": "migration_pressure",
+   "label": "Tensions migratoires",
+   "icon": "⇄",
+   "category": "institutions",
+   "variable": "demography.immigration",
+   "scale": 0.3,
+   "why": "Des arrivées bien plus nombreuses que les capacités d'accueil : centres saturés, campements, tensions locales exploitées politiquement.",
+   "onset": "Les centres d'accueil sont saturés ; des campements apparaissent.",
+   "fix": "renforcer l'accueil et l'intégration, ou durcir les règles d'entrée.",
+   "above": 1.4,
+   "monthly": [
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.004
+    },
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.003
+    },
+    {
+     "target": "quality.social",
+     "amount": -0.002
+    },
+    {
+     "target": "sector.construction",
+     "amount": 0.001
+    },
+    {
+     "target": "economy.potentialGrowth",
+     "amount": 2e-05,
+     "cap": 0.0008
+    }
+   ],
+   "departments": [
+    {
+     "field": "approval",
+     "amount": -0.002,
+     "weight": "poor"
+    }
+   ],
+   "events": {
+    "migrant_reception": 0.6,
+    "refugee_crisis": 0.3
+   },
+   "unrest": {
+    "immigration": 0.06
+   }
+  },
+  {
+   "id": "labour_shortage",
+   "label": "Pénurie de bras",
+   "icon": "⇄",
+   "category": "institutions",
+   "variable": "demography.immigration",
+   "scale": 0.2,
+   "why": "Fermer la porte à l'immigration de travail : le bâtiment, l'hôtellerie, l'agriculture et les hôpitaux ne trouvent plus de personnel.",
+   "onset": "Les restaurateurs et les agriculteurs ne trouvent plus de saisonniers.",
+   "fix": "rouvrir des voies d'immigration de travail ciblées.",
+   "below": 0.6,
+   "monthly": [
+    {
+     "target": "sector.construction",
+     "amount": -0.003
+    },
+    {
+     "target": "sector.tourism",
+     "amount": -0.003
+    },
+    {
+     "target": "sector.agrifood",
+     "amount": -0.002
+    },
+    {
+     "target": "quality.health",
+     "amount": -0.002
+    },
+    {
+     "target": "economy.potentialGrowth",
+     "amount": -3e-05,
+     "cap": 0.001
+    },
+    {
+     "target": "actor.employers_small",
+     "amount": -0.1
+    },
+    {
+     "target": "actor.farmers_union",
+     "amount": -0.06
+    }
+   ]
+  },
+  {
+   "id": "intel_blind",
+   "label": "Services de renseignement aveugles",
+   "icon": "◉",
+   "category": "security",
+   "variable": "intel.capacity",
+   "scale": 0.1,
+   "why": "Moins d'agents et de moyens techniques : les complots ne sont plus détectés, les ingérences étrangères prospèrent.",
+   "onset": "Un rapport parlementaire alerte sur l'affaiblissement du renseignement.",
+   "fix": "renforcer les services de renseignement.",
+   "below": 0.35,
+   "severe": "Le pays à découvert face aux menaces",
+   "monthly": [
+    {
+     "target": "quality.security",
+     "amount": -0.002
+    }
+   ],
+   "events": {
+    "terror_attack": 0.6,
+    "cyberattack": 0.5,
+    "foreign_interference": 0.5,
+    "cyber_espionage": 0.4,
+    "hybrid_sabotage": 0.4
+   }
+  },
+  {
+   "id": "street_violence",
+   "label": "Le pays s'embrase",
+   "icon": "⚠",
+   "category": "security",
+   "variable": "unrest.phase",
+   "scale": 1.0,
+   "why": "Des émeutes qui durent font fuir touristes et investisseurs, ferment les commerces et usent les forces de l'ordre.",
+   "onset": "Les images des émeutes font le tour du monde.",
+   "fix": "apaiser : dialogue, concession, ou rétablir l'ordre sans excès.",
+   "above": 2.5,
+   "maxSeverity": 2.0,
+   "monthly": [
+    {
+     "target": "sector.tourism",
+     "amount": -0.006
+    },
+    {
+     "target": "sector.retail",
+     "amount": -0.003
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.003
+    },
+    {
+     "target": "quality.security",
+     "amount": -0.003
+    },
+    {
+     "target": "budget.oneOff",
+     "amount": 0.3
+    }
+   ],
+   "departments": [
+    {
+     "field": "approval",
+     "amount": -0.002,
+     "weight": "urban"
+    }
+   ]
+  },
+  {
+   "id": "army_distrust",
+   "label": "L'armée prend ses distances",
+   "icon": "⚔",
+   "category": "security",
+   "variable": "unrest.armyLoyalty",
+   "scale": 0.15,
+   "why": "Une armée qui doute de son chef obéit moins vite ; les rumeurs de complot circulent.",
+   "onset": "Des tribunes de militaires critiquent le pouvoir.",
+   "fix": "rétablir la confiance : budget des armées, respect de l'institution, reconnaissance.",
+   "below": 0.5,
+   "monthly": [
+    {
+     "target": "military.readiness",
+     "amount": -0.003
+    },
+    {
+     "target": "president.popularity",
+     "amount": -0.002
+    }
+   ]
+  }
+ ]
+}

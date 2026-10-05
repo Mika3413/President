@@ -121,6 +121,7 @@ object LeverCards {
             "${c.session.context.playerData.sectors?.sectors?.firstOrNull { it.id == k }?.label?.lowercase() ?: k} ${if (v > 0) "▲" else "▼"}" }, "small", Theme.textMuted, wrap = true)).growX().row()
         (if (full) p.lines else p.lines.take(2)).forEach { box.add(ui.label("· $it", "small", wrap = true)).growX().row() }
         if (p.liberty <= -1) box.add(ui.label("Libertés publiques : ${Math.round(p.liberty)} points", "small", Theme.warning)).left().row()
+        p.warnings.take(if (full) 6 else 2).forEach { box.add(ui.label(it, "small", Theme.bad, wrap = true)).growX().padTop(1f).row() }
         if (p.events.isNotEmpty()) box.add(ui.label("Risque de mobilisation : grèves, manifestations ou blocages", "small", Theme.warning, wrap = true)).growX().row()
         if (p.censure > 0.01) box.add(ui.label("⚖ Risque de censure : ${Math.round(p.censure * 100)} % — ${p.censureReason}", "small", if (p.censure > 0.3) Theme.bad else Theme.warning, wrap = true)).growX().row()
         if (mode == Mode.LAW || mode == null) {

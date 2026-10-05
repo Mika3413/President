@@ -449,6 +449,46 @@
    "summary": "Immigration +25 %, croissance potentielle accrue."
   },
   {
+   "id": "france_travail",
+   "title": "Création de France Travail",
+   "category": "Travail",
+   "description": "Pôle emploi, missions locales et Cap emploi fusionnent en un guichet unique ; chaque allocataire du RSA est inscrit et accompagné.",
+   "difficulty": 0.02,
+   "immediateEffects": [
+    {
+     "target": "opinion.group.inactive",
+     "amount": -0.01
+    },
+    {
+     "target": "opinion.group.civil_servants",
+     "amount": -0.01
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": 0.01
+    },
+    {
+     "target": "budget.oneOff",
+     "amount": 1.0,
+     "days": 365
+    }
+   ],
+   "longTermEffects": [
+    {
+     "target": "economy.naturalUnemployment",
+     "amount": -0.002,
+     "days": 1095
+    },
+    {
+     "target": "spending.unemployment_benefits",
+     "amount": -0.02,
+     "days": 730
+    }
+   ],
+   "exclusiveWith": [],
+   "summary": "Un guichet unique pour l'emploi : chômage structurel −0,2 point à terme."
+  },
+  {
    "id": "nuclear_program",
    "title": "Programme de six nouveaux réacteurs EPR2",
    "category": "Énergie",

@@ -56,6 +56,8 @@ class Preview {
     var appeal = 0.0
     var liberty = 0.0
     val events = mutableMapOf<String, Double>()
+    /** Seuils de conséquences franchis (« Commissariats en sous-effectif — forte »). */
+    val warnings = mutableListOf<String>()
     val balance: Double get() = revenue - spending
 
     fun add(other: Preview) {
@@ -66,6 +68,7 @@ class Preview {
         other.events.forEach { (k, v) -> events[k] = maxOf(events[k] ?: 0.0, v) }
         liberty += other.liberty
         appeal += other.appeal
+        other.warnings.forEach { if (it !in warnings) warnings += it }
     }
 }
 
@@ -238,6 +241,9 @@ class LeverService(private val ctx: SimulationContext) {
             }
             id.startsWith("param:") -> file?.parameters?.firstOrNull { it.id == key }?.let { d -> previewParam(p, d, from, to) }
             id.startsWith("m:") -> measureLever(id)?.measure?.let { cfg -> previewMeasure(p, cfg, from, to) }
+        }
+        fr.president.engine.consequences.ConsequenceService(ctx).crossings(id, to).forEach { c ->
+            p.warnings += "${c.rule.icon} ${c.rule.label} (${fr.president.engine.consequences.ConsequenceService.severityLabel(c.severity)}${if (c.later) ", à terme" else ""}) : ${c.rule.why}"
         }
         return p
     }
@@ -447,8 +453,8 @@ class LeverService(private val ctx: SimulationContext) {
     }
 
     companion object {
-        const val MIN_SPENDING = 0.5
-        const val MAX_SPENDING = 1.6
+        const val MIN_SPENDING = 0.2
+        const val MAX_SPENDING = 2.5
         const val SPENDING_STEP = 0.01
         private const val OPINION_PER_BILLION = 0.0015
         private const val SPENDING_QUALITY = 0.15

@@ -34,6 +34,11 @@
    "delayHours": 60,
    "subject": "L'élection, seul juge",
    "body": "Votre mandat dure cinq ans. Les Français voteront selon votre bilan : emploi, prix, pouvoir d'achat, services publics, sécurité, guerres, scandales, et vos promesses de campagne.\n\nChaque catégorie de la population vous juge différemment : la couche « Opinion » de la carte et les sondages de l'onglet « Élections » vous montrent où vous en êtes. Perdre l'élection met fin à votre présidence."
+  },
+  {
+   "delayHours": 96,
+   "subject": "Tout a des conséquences",
+   "body": "Chaque décision a un coût, un gain, des gagnants et des perdants — l'aperçu vous les montre avant de signer. Mais certaines conséquences n'apparaissent qu'au-delà d'un seuil :\n• Couper fort dans un budget (police, hôpital, école...) provoque tout de suite grèves et colère, puis, à terme, la dégradation du service : criminalité qui monte sur la carte, urgences saturées, classes sans professeur.\n• Un RSA trop proche du SMIC : reprendre un emploi ne paie plus, le chômage monte, les petites entreprises ne recrutent plus. Un RSA trop bas : grande pauvreté, sans-abri, émeutes.\n• Trop d'impôts : exil fiscal, délocalisations, et passé un certain taux la recette baisse (courbe de Laffer).\n• Déficit, dette, inflation, chômage, libertés, rejet du président : chacun a son seuil.\nQuand un seuil est franchi, une alerte explique pourquoi et comment en sortir. L'aperçu d'un réglage prévient en rouge s'il ferait franchir un seuil. Le Bilan, onglet « Conséquences », liste ce qui frappe le pays et ce qui menace. Quand la cause disparaît, les dégâts se réparent lentement.\nEn cas d'insurrection ou d'invasion, l'article 16 vous donne les pleins pouvoirs trois mois : vos projets de loi s'appliquent sans vote, mais les libertés reculent et l'Europe s'alarme."
   }
  ],
  "glossary": [
@@ -264,6 +269,18 @@
   {
    "term": "Mesure sur mesure",
    "definition": "Une règle que vous composez vous-même : action, cible, valeur, conditions. Même règle sur la même cible : la nouvelle valeur remplace l'ancienne."
+  },
+  {
+   "term": "Seuil de conséquence",
+   "definition": "Niveau au-delà duquel un chiffre (service public, RSA, impôts, dette, libertés...) déclenche chaque mois des réactions en chaîne : opinion, économie, carte, grèves, émeutes."
+  },
+  {
+   "term": "Courbe de Laffer",
+   "definition": "Au-delà d'un certain taux, augmenter un impôt fait baisser sa recette : les contribuables partent, fraudent ou travaillent moins."
+  },
+  {
+   "term": "Article 16",
+   "definition": "Pleins pouvoirs du président quand les institutions ou le territoire sont gravement menacés : les textes s'appliquent sans vote du Parlement, pour une durée limitée."
   }
  ]
 }

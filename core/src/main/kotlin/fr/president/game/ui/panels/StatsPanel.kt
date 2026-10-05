@@ -28,12 +28,13 @@ class StatsPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pane
     private var journalKind: String? = null
     private var openGroup: String? = null
 
-    private enum class Tab(val label: String) { CURVES("Courbes"), GROUPS("Groupes"), COUNTRIES("Pays"), JOURNAL("Journal"), LEGACY("Héritage") }
+    private enum class Tab(val label: String) { CURVES("Courbes"), CONSEQUENCES("Conséquences"), GROUPS("Groupes"), COUNTRIES("Pays"), JOURNAL("Journal"), LEGACY("Héritage") }
     private enum class CountrySort(val label: String) { GDP("Économie"), RELATION("Relation"), ARMY("Armée") }
 
     /** Argument : une clé de courbe (« approval »...) ou un onglet (« groups », « countries », « journal »). */
     override fun applyArgument(argument: String) {
         when (argument) {
+            "consequences" -> tab = Tab.CONSEQUENCES
             "groups" -> tab = Tab.GROUPS
             "countries" -> tab = Tab.COUNTRIES
             "journal" -> tab = Tab.JOURNAL
@@ -48,10 +49,45 @@ class StatsPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pane
         into.add(bar).growX().left().padBottom(GAP).row()
         when (tab) {
             Tab.CURVES -> curves(into)
+            Tab.CONSEQUENCES -> consequences(into)
             Tab.GROUPS -> groups(into)
             Tab.COUNTRIES -> countries(into)
             Tab.JOURNAL -> journal(into)
             Tab.LEGACY -> legacy(into)
+        }
+    }
+
+    /** Conséquences en chaîne : ce qui frappe le pays en ce moment, pourquoi, et ce qui menace. */
+    private fun consequences(into: Table) {
+        val service = fr.president.engine.consequences.ConsequenceService(session.context)
+        into.add(ui.label("Quand un chiffre dépasse un seuil (service public à bout, RSA trop proche du SMIC, impôts trop lourds, dette, libertés...), le pays réagit chaque mois : opinion, économie, carte, grèves, émeutes. Plus on s'éloigne du seuil, plus c'est grave. Quand la cause disparaît, les dégâts se réparent lentement.", "muted", wrap = true)).growX().padBottom(GAP).row()
+        val active = service.active()
+        into.add(ui.label(if (active.isEmpty()) "Aucune conséquence en cours." else "En cours (${active.size})", "bold")).left().padBottom(2f).row()
+        active.forEach { (r, a) ->
+            val color = when { a.severity >= 2 -> Theme.bad; a.severity >= 1 -> Theme.warning; else -> Theme.highlight }
+            val card = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(6f, 8f, 6f, 8f); defaults().left() }
+            val head = Table()
+            head.add(ui.label("${r.icon} ${r.label}", "bold", wrap = true)).growX().minWidth(0f)
+            head.add(ui.label(fr.president.engine.consequences.ConsequenceService.severityLabel(a.severity), "small", color)).right().padLeft(6f)
+            card.add(head).growX().row()
+            val bar = Table()
+            bar.add(Table().apply { setBackground(ui.skin.fill(color)) })
+                .width(Value.percentWidth((a.severity / r.maxSeverity).toFloat().coerceIn(MIN_BAR, 1f), bar)).height(BAR).left().expandX()
+            card.add(bar).growX().height(BAR).padTop(2f).row()
+            card.add(ui.label("Depuis le ${Formatting.date(a.since)}", "muted")).left().row()
+            card.add(ui.label("Pourquoi : ${r.why}", "small", wrap = true)).growX().padTop(2f).row()
+            if (r.fix.isNotEmpty()) card.add(ui.label("Pour en sortir : ${r.fix}", "small", Theme.good, wrap = true)).growX().padTop(2f).row()
+            into.add(card).growX().padBottom(GAP).row()
+        }
+        val near = service.nearThreshold()
+        if (near.isNotEmpty()) {
+            into.add(ui.label("Proches du seuil", "bold")).left().padTop(GAP).padBottom(2f).row()
+            near.take(MAX_NEAR).forEach { (r, gap) ->
+                val row = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(4f, 8f, 4f, 8f); defaults().left() }
+                row.add(ui.label("${r.icon} ${r.label}", "small", Theme.warning, wrap = true)).growX().minWidth(0f)
+                row.add(ui.label(if (gap < 0.15) "imminent" else "proche", "small", Theme.textMuted)).right().padLeft(6f)
+                into.add(row).growX().padBottom(2f).row()
+            }
         }
     }
 
@@ -220,6 +256,7 @@ class StatsPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pane
 
     private companion object {
         const val CHART = 60f
+        const val MAX_NEAR = 8
         const val BAR = 5f
         const val MIN_BAR = 0.02f
         const val MIN_SCALE = 0.5

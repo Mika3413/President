@@ -167,13 +167,16 @@
    "slogan": "« Loi Travail, non merci ! »",
    "reforms": [
     "labour_code",
-    "unemployment_insurance"
+    "unemployment_insurance",
+    "france_travail"
    ],
    "laws": [
     "work_week",
     "strike_service",
     "sunday_work",
-    "unemployment_rules"
+    "unemployment_rules",
+    "collective_bargaining",
+    "rsa_conditions"
    ],
    "events": [],
    "groups": [

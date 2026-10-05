@@ -962,6 +962,179 @@
    ]
   },
   {
+   "id": "collective_bargaining",
+   "category": "travail",
+   "title": "Accords d'entreprise",
+   "description": "Les accords de branche priment sur ceux de l'entreprise pour l'essentiel.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "branch",
+     "label": "Primauté des accords de branche",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "company",
+     "label": "Primauté des accords d'entreprise",
+     "description": "Temps de travail, primes, organisation : négociés au plus près de l'entreprise.",
+     "difficulty": 0.06,
+     "effects": [
+      {
+       "target": "opinion.group.private_employees",
+       "amount": -0.012
+      },
+      {
+       "target": "opinion.group.self_employed",
+       "amount": 0.012
+      },
+      {
+       "target": "economy.businessConfidence",
+       "amount": 0.015
+      }
+     ],
+     "longTerm": [
+      {
+       "target": "economy.naturalUnemployment",
+       "amount": -0.0015,
+       "days": 730
+      }
+     ],
+     "events": {
+      "national_strike": 1.15
+     },
+     "appeal": -0.05
+    },
+    {
+     "id": "referendum",
+     "label": "Référendum d'entreprise à l'initiative de l'employeur",
+     "description": "L'employeur peut contourner les syndicats en consultant les salariés.",
+     "difficulty": 0.1,
+     "effects": [
+      {
+       "target": "opinion.group.private_employees",
+       "amount": -0.018
+      },
+      {
+       "target": "opinion.group.self_employed",
+       "amount": 0.015
+      },
+      {
+       "target": "economy.businessConfidence",
+       "amount": 0.02
+      }
+     ],
+     "longTerm": [
+      {
+       "target": "economy.naturalUnemployment",
+       "amount": -0.002,
+       "days": 730
+      }
+     ],
+     "events": {
+      "national_strike": 1.3
+     },
+     "appeal": -0.1
+    }
+   ]
+  },
+  {
+   "id": "rsa_conditions",
+   "category": "travail",
+   "title": "Conditions du RSA",
+   "description": "Le RSA est versé sans contrepartie d'activité.",
+   "constitutional": false,
+   "options": [
+    {
+     "id": "none",
+     "label": "Sans contrepartie",
+     "description": "La situation actuelle.",
+     "difficulty": 0.0
+    },
+    {
+     "id": "hours15",
+     "label": "15 heures d'activité par semaine",
+     "description": "Formation, stage ou bénévolat obligatoires ; accompagnement renforcé.",
+     "difficulty": 0.05,
+     "effects": [
+      {
+       "target": "opinion.group.inactive",
+       "amount": -0.015
+      },
+      {
+       "target": "opinion.group.self_employed",
+       "amount": 0.012
+      },
+      {
+       "target": "opinion.group.seniors",
+       "amount": 0.006
+      },
+      {
+       "target": "budget.oneOff",
+       "amount": 0.8,
+       "days": 365
+      }
+     ],
+     "longTerm": [
+      {
+       "target": "economy.naturalUnemployment",
+       "amount": -0.002,
+       "days": 730
+      },
+      {
+       "target": "spending.solidarity",
+       "amount": -0.01,
+       "days": 730
+      }
+     ],
+     "appeal": 0.2
+    },
+    {
+     "id": "sanctions",
+     "label": "Suspension en cas de refus de deux offres d'emploi",
+     "description": "Plus de sorties vers l'emploi, plus de grande pauvreté.",
+     "difficulty": 0.08,
+     "effects": [
+      {
+       "target": "opinion.group.inactive",
+       "amount": -0.03
+      },
+      {
+       "target": "opinion.group.low_income",
+       "amount": -0.015
+      },
+      {
+       "target": "opinion.group.self_employed",
+       "amount": 0.015
+      },
+      {
+       "target": "opinion.group.seniors",
+       "amount": 0.008
+      }
+     ],
+     "longTerm": [
+      {
+       "target": "economy.naturalUnemployment",
+       "amount": -0.003,
+       "days": 730
+      },
+      {
+       "target": "spending.solidarity",
+       "amount": -0.03,
+       "days": 730
+      },
+      {
+       "target": "quality.social",
+       "amount": -0.02,
+       "days": 730
+      }
+     ],
+     "liberty": -1,
+     "appeal": 0.15
+    }
+   ]
+  },
+  {
    "id": "sunday_work",
    "category": "travail",
    "title": "Travail le dimanche",

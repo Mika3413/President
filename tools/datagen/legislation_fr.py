@@ -51,15 +51,51 @@ PARAMETERS = [
      "decreeLimit": 10, "links": [{"reform": "minimum_wage", "above": 0.0}]},
     {"id": "rsa_amount", "channel": "BUDGET", "domain": "solidarite", "label": "Montant du RSA (personne seule)",
      "description": "Revenu de solidarité active versé à 1,9 million de foyers. Une partie du budget « Solidarité ».",
-     "unit": "€/mois", "format": "number", "decimals": 0, "reference": 646, "min": 400, "max": 1000, "step": 5, "per": 50,
+     "unit": "€/mois", "format": "number", "decimals": 0, "reference": 646, "min": 0, "max": 3000, "step": 5, "per": 50,
      "costPerUnit": 1.9e6 * 12 / 1e9, "spendingItem": "solidarity",
      "up": [e(G + "low_income", 0.008), e(G + "inactive", 0.012), e(G + "self_employed", -0.003), e("economy.naturalUnemployment", 0.0003, 365)],
-     "down": [e(G + "low_income", 0.008), e(G + "inactive", 0.012), e(G + "self_employed", -0.002)]},
+     "down": [e(G + "low_income", -0.008), e(G + "inactive", -0.012), e(G + "self_employed", 0.002)]},
+    {"id": "apprentice_aid", "channel": "BUDGET", "domain": "solidarite", "label": "Aide à l'embauche d'un apprenti",
+     "description": "Versée à l'employeur pour chaque apprenti la première année. 850 000 apprentis aujourd'hui.",
+     "unit": "€", "format": "number", "decimals": 0, "reference": 5000, "min": 0, "max": 15000, "step": 500, "per": 1000,
+     "costPerUnit": 850_000 / 1e9,
+     "up": [e(G + "young", 0.004), e(G + "self_employed", 0.002), e("economy.unemployment", -0.0006, 365), e("economy.potentialGrowth", 0.0001, 730)],
+     "down": [e(G + "young", -0.004), e(G + "self_employed", -0.002), e("economy.unemployment", 0.0006, 365), e("economy.potentialGrowth", -0.0001, 730)]},
+    {"id": "pension_indexation", "channel": "BUDGET", "domain": "solidarite", "label": "Revalorisation des pensions (au-delà de l'inflation)",
+     "description": "Hausse ou gel des retraites par rapport aux prix, cumulée depuis le début du mandat. Un point coûte environ 4 Md€ par an.",
+     "unit": "%", "format": "number", "decimals": 1, "reference": 0, "min": -15, "max": 20, "step": 0.5, "per": 1,
+     "costPerUnit": 4.1, "spendingItem": "pensions",
+     "up": [e(G + "retirees", 0.007), e(G + "seniors", 0.005), e(G + "young", -0.001)],
+     "down": [e(G + "retirees", -0.009), e(G + "seniors", -0.007)]},
+    {"id": "housing_aid", "channel": "BUDGET", "domain": "solidarite", "label": "Aides au logement (APL)",
+     "description": "Montant des APL par rapport à aujourd'hui (100 %). 16 Md€ pour 5,8 millions de foyers ; une hausse se retrouve en partie dans les loyers.",
+     "unit": "%", "format": "number", "decimals": 0, "reference": 100, "min": 0, "max": 250, "step": 5, "per": 10,
+     "costPerUnit": 0.16, "spendingItem": "solidarity",
+     "up": [e(G + "young", 0.004), e(G + "low_income", 0.004), e(G + "urban", 0.002), e("economy.inflation", 0.0002, 365), e("sector.construction", 0.002)],
+     "down": [e(G + "young", -0.005), e(G + "low_income", -0.005), e(G + "urban", -0.002)]},
+    {"id": "family_allowance", "channel": "BUDGET", "domain": "solidarite", "label": "Allocations familiales",
+     "description": "Montant des allocations familiales par rapport à aujourd'hui (100 %). 13 Md€ par an.",
+     "unit": "%", "format": "number", "decimals": 0, "reference": 100, "min": 0, "max": 250, "step": 5, "per": 10,
+     "costPerUnit": 0.13, "spendingItem": "solidarity",
+     "up": [e(G + "adults", 0.004), e(G + "middle_income", 0.002)],
+     "down": [e(G + "adults", -0.005), e(G + "middle_income", -0.003)]},
+    {"id": "activity_bonus", "channel": "BUDGET", "domain": "solidarite", "label": "Prime d'activité",
+     "description": "Complément de revenu des travailleurs modestes, par rapport à aujourd'hui (100 %). 10 Md€ par an ; elle rend le travail plus payant que le RSA.",
+     "unit": "%", "format": "number", "decimals": 0, "reference": 100, "min": 0, "max": 250, "step": 5, "per": 10,
+     "costPerUnit": 0.1, "spendingItem": "solidarity",
+     "up": [e(G + "low_income", 0.004), e(G + "private_employees", 0.002), e("economy.unemployment", -0.0003, 365)],
+     "down": [e(G + "low_income", -0.005), e(G + "private_employees", -0.002), e("economy.unemployment", 0.0003, 365)]},
+    {"id": "civil_service_index", "channel": "BUDGET", "domain": "solidarite", "label": "Point d'indice des fonctionnaires",
+     "description": "Hausse ou gel des salaires de 5,7 millions d'agents publics, cumulée depuis le début du mandat. Un point coûte environ 2,2 Md€ par an.",
+     "unit": "%", "format": "number", "decimals": 1, "reference": 0, "min": -10, "max": 30, "step": 0.5, "per": 1,
+     "costPerUnit": 2.2,
+     "up": [e(G + "civil_servants", 0.008), e("quality.education", 0.002, 365), e("quality.health", 0.002, 365), e("economy.inflation", 0.0002, 365)],
+     "down": [e(G + "civil_servants", -0.012), e("quality.education", -0.003, 365), e("quality.health", -0.003, 365)]},
     {"id": "speed_limit", "channel": "DECREE", "domain": "securite", "label": "Vitesse maximale sur les routes secondaires",
      "description": "Limitation sur les routes à double sens sans séparateur. Plus vite : moins de colère rurale, plus de morts.",
      "unit": "km/h", "format": "number", "decimals": 0, "reference": 80, "min": 70, "max": 100, "step": 10, "per": 10,
      "up": [e(G + "rural", 0.012), e(G + "urban", -0.002), e("quality.security", -0.006), e("quality.environment", -0.003)],
-     "down": [e(G + "rural", 0.012), e("quality.security", -0.006), e("quality.environment", -0.003)], "decreeLimit": 10},
+     "down": [e(G + "rural", -0.012), e("quality.security", 0.006), e("quality.environment", 0.003)], "decreeLimit": 10},
 ]
 for p in PARAMETERS:
     for l in p.get("links", []):
@@ -147,7 +183,7 @@ target("athletes", "profession", "les sportifs professionnels", "Sportifs profes
 target("executives", "profession", "les cadres", "Cadres", count=5_400_000, income=62_000, mobility=0.08,
        groups={"high_income": 0.5, "private_employees": 0.4, "urban": 0.2}, idf=0.38, sigma=0.5)
 target("civil_servants", "profession", "les fonctionnaires", "Fonctionnaires", count=5_700_000, income=31_000, mobility=0.03,
-       groups={"civil_servants": 1.0}, actors={"union_public": 1.0}, public=True, salary=47_000, event="national_strike")
+       groups={"civil_servants": 1.0}, actors={"union_public": 1.0}, salary=47_000, event="national_strike")
 # Groupes de la population
 target("top1", "group", "les 1 % les plus riches", "1 % les plus riches", count=400_000, income=330_000, mobility=0.45,
        groups={"high_income": 0.6}, actors={"employers_big": 0.4}, sigma=0.9, idf=0.5, richTax=True)
@@ -237,30 +273,32 @@ target("cash_large", "practice", "les paiements en espèces au-delà de 500 €"
 
 ACTIONS = [
     # id, verbe, modèle, catégories, unité, min, max, pas, défaut, voie, conditions, condition requise sur la cible, phrase
-    ("surtax", "Taxer", "SURTAX", ["profession", "group"], "%", 0.5, 30, 0.5, 5, "BUDGET", ["threshold", "zone", "exempt", "duration", "phaseIn"], None,
+    ("surtax", "Taxer", "SURTAX", ["profession", "group"], "%", 0.5, 90, 0.5, 5, "BUDGET", ["threshold", "zone", "exempt", "duration", "phaseIn"], None,
      "surtaxe de {value} sur les revenus"),
-    ("tax_cut", "Baisser l'impôt de", "TAX_CUT", ["profession", "group"], "%", 1, 50, 1, 10, "BUDGET", ["threshold", "zone", "duration", "phaseIn"], None,
+    ("tax_cut", "Baisser l'impôt de", "TAX_CUT", ["profession", "group"], "%", 1, 100, 1, 10, "BUDGET", ["threshold", "zone", "duration", "phaseIn"], None,
      "baisse de {value} de leur impôt sur le revenu"),
-    ("bonus", "Verser une prime à", "BONUS", ["profession", "group"], "€/mois", 10, 1000, 10, 100, "BUDGET", ["below", "zone", "duration"], None,
+    ("bonus", "Verser une prime à", "BONUS", ["profession", "group"], "€/mois", 10, 3000, 10, 100, "BUDGET", ["below", "zone", "duration"], None,
      "prime de {value}"),
-    ("turnover_tax", "Taxer", "TURNOVER_TAX", ["company", "product"], "%", 0.5, 40, 0.5, 5, "BUDGET", ["duration", "phaseIn"], None,
+    ("turnover_tax", "Taxer", "TURNOVER_TAX", ["company", "product"], "%", 0.5, 90, 0.5, 5, "BUDGET", ["duration", "phaseIn"], None,
      "taxe de {value} sur les {baseLabel}"),
-    ("subsidy", "Subventionner", "SUBSIDY", ["company", "product", "profession"], "Md€/an", 0.1, 10, 0.1, 1, "BUDGET", ["duration"], None,
+    ("subsidy", "Subventionner", "SUBSIDY", ["company", "product", "profession"], "Md€/an", 0.1, 50, 0.1, 1, "BUDGET", ["duration"], None,
      "aide de {value}"),
     ("price_cap", "Plafonner la hausse des prix de", "PRICE_CAP", ["product"], "%/an", -5, 10, 0.5, 1, "LAW", ["duration", "zone"], "normalIncrease",
      "hausse limitée à {value}"),
     ("ban", "Interdire", "BAN", ["practice"], "", 0, 1, 1, 1, "LAW", ["phaseIn"], "ban", ""),
     ("oblige", "Obliger", "OBLIGATION", ["profession"], "ans", 1, 5, 1, 2, "LAW", ["phaseIn"], "obligation", "{obligation} pendant {value}"),
-    ("recruit", "Recruter", "RECRUIT", ["profession"], "postes", 500, 60_000, 500, 5000, "BUDGET", ["zone", "phaseIn"], "public",
+    ("recruit", "Recruter", "RECRUIT", ["profession"], "postes", 500, 300_000, 500, 5000, "BUDGET", ["zone", "phaseIn"], "public",
      "{value} de plus"),
-    ("pay_raise", "Augmenter les salaires de", "PAY_RAISE", ["profession"], "%", 1, 30, 1, 5, "BUDGET", ["phaseIn"], "public",
+    ("pay_raise", "Augmenter les salaires de", "PAY_RAISE", ["profession"], "%", 1, 100, 1, 5, "BUDGET", ["phaseIn"], "public",
      "hausse de {value} des salaires"),
+    ("job_cuts", "Supprimer", "JOB_CUTS", ["profession"], "postes", 500, 300_000, 500, 5000, "BUDGET", ["zone", "phaseIn"], "public",
+     "{value} en moins"),
 ]
 
 # Libellé des boutons de l'étape « Que voulez-vous faire ? ».
 BUTTONS = {"surtax": "Taxer des revenus", "tax_cut": "Baisser l'impôt", "bonus": "Verser une prime", "turnover_tax": "Taxer des entreprises ou des produits",
            "subsidy": "Subventionner", "price_cap": "Plafonner des prix", "ban": "Interdire", "oblige": "Obliger", "recruit": "Recruter",
-           "pay_raise": "Augmenter des salaires"}
+           "pay_raise": "Augmenter des salaires", "job_cuts": "Supprimer des postes"}
 
 THRESHOLDS = [0, 30_000, 50_000, 80_000, 120_000, 180_000, 250_000, 500_000]
 BELOW = [0, 15_000, 20_000, 30_000, 50_000]
@@ -291,7 +329,7 @@ for t in TARGETS:
 for p in PARAMETERS:
     for fx in p.get("up", []) + p.get("down", []):
         if fx["target"].startswith(G): assert fx["target"][len(G):] in groups, fx
-    assert p.get("spendingItem") is None or p["spendingItem"] in {"solidarity"}
+    assert p.get("spendingItem") is None or p["spendingItem"] in {"solidarity", "pensions"}
 
 out = {
     "_doc": "Législation unifiée : réglages chiffrés, incidence, constructeur de mesures. Généré par tools/datagen/legislation_fr.py.",

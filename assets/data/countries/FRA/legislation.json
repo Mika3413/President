@@ -161,8 +161,8 @@
    "format": "number",
    "decimals": 0,
    "reference": 646,
-   "min": 400,
-   "max": 1000,
+   "min": 0,
+   "max": 3000,
    "step": 5,
    "per": 50,
    "costPerUnit": 0.0228,
@@ -189,15 +189,303 @@
    "down": [
     {
      "target": "opinion.group.low_income",
-     "amount": 0.008
+     "amount": -0.008
     },
     {
      "target": "opinion.group.inactive",
-     "amount": 0.012
+     "amount": -0.012
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": 0.002
+    }
+   ]
+  },
+  {
+   "id": "apprentice_aid",
+   "channel": "BUDGET",
+   "domain": "solidarite",
+   "label": "Aide à l'embauche d'un apprenti",
+   "description": "Versée à l'employeur pour chaque apprenti la première année. 850 000 apprentis aujourd'hui.",
+   "unit": "€",
+   "format": "number",
+   "decimals": 0,
+   "reference": 5000,
+   "min": 0,
+   "max": 15000,
+   "step": 500,
+   "per": 1000,
+   "costPerUnit": 0.00085,
+   "up": [
+    {
+     "target": "opinion.group.young",
+     "amount": 0.004
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": 0.002
+    },
+    {
+     "target": "economy.unemployment",
+     "amount": -0.0006,
+     "days": 365
+    },
+    {
+     "target": "economy.potentialGrowth",
+     "amount": 0.0001,
+     "days": 730
+    }
+   ],
+   "down": [
+    {
+     "target": "opinion.group.young",
+     "amount": -0.004
     },
     {
      "target": "opinion.group.self_employed",
      "amount": -0.002
+    },
+    {
+     "target": "economy.unemployment",
+     "amount": 0.0006,
+     "days": 365
+    },
+    {
+     "target": "economy.potentialGrowth",
+     "amount": -0.0001,
+     "days": 730
+    }
+   ]
+  },
+  {
+   "id": "pension_indexation",
+   "channel": "BUDGET",
+   "domain": "solidarite",
+   "label": "Revalorisation des pensions (au-delà de l'inflation)",
+   "description": "Hausse ou gel des retraites par rapport aux prix, cumulée depuis le début du mandat. Un point coûte environ 4 Md€ par an.",
+   "unit": "%",
+   "format": "number",
+   "decimals": 1,
+   "reference": 0,
+   "min": -15,
+   "max": 20,
+   "step": 0.5,
+   "per": 1,
+   "costPerUnit": 4.1,
+   "spendingItem": "pensions",
+   "up": [
+    {
+     "target": "opinion.group.retirees",
+     "amount": 0.007
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.005
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": -0.001
+    }
+   ],
+   "down": [
+    {
+     "target": "opinion.group.retirees",
+     "amount": -0.009
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.007
+    }
+   ]
+  },
+  {
+   "id": "housing_aid",
+   "channel": "BUDGET",
+   "domain": "solidarite",
+   "label": "Aides au logement (APL)",
+   "description": "Montant des APL par rapport à aujourd'hui (100 %). 16 Md€ pour 5,8 millions de foyers ; une hausse se retrouve en partie dans les loyers.",
+   "unit": "%",
+   "format": "number",
+   "decimals": 0,
+   "reference": 100,
+   "min": 0,
+   "max": 250,
+   "step": 5,
+   "per": 10,
+   "costPerUnit": 0.16,
+   "spendingItem": "solidarity",
+   "up": [
+    {
+     "target": "opinion.group.young",
+     "amount": 0.004
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": 0.004
+    },
+    {
+     "target": "opinion.group.urban",
+     "amount": 0.002
+    },
+    {
+     "target": "economy.inflation",
+     "amount": 0.0002,
+     "days": 365
+    },
+    {
+     "target": "sector.construction",
+     "amount": 0.002
+    }
+   ],
+   "down": [
+    {
+     "target": "opinion.group.young",
+     "amount": -0.005
+    },
+    {
+     "target": "opinion.group.low_income",
+     "amount": -0.005
+    },
+    {
+     "target": "opinion.group.urban",
+     "amount": -0.002
+    }
+   ]
+  },
+  {
+   "id": "family_allowance",
+   "channel": "BUDGET",
+   "domain": "solidarite",
+   "label": "Allocations familiales",
+   "description": "Montant des allocations familiales par rapport à aujourd'hui (100 %). 13 Md€ par an.",
+   "unit": "%",
+   "format": "number",
+   "decimals": 0,
+   "reference": 100,
+   "min": 0,
+   "max": 250,
+   "step": 5,
+   "per": 10,
+   "costPerUnit": 0.13,
+   "spendingItem": "solidarity",
+   "up": [
+    {
+     "target": "opinion.group.adults",
+     "amount": 0.004
+    },
+    {
+     "target": "opinion.group.middle_income",
+     "amount": 0.002
+    }
+   ],
+   "down": [
+    {
+     "target": "opinion.group.adults",
+     "amount": -0.005
+    },
+    {
+     "target": "opinion.group.middle_income",
+     "amount": -0.003
+    }
+   ]
+  },
+  {
+   "id": "activity_bonus",
+   "channel": "BUDGET",
+   "domain": "solidarite",
+   "label": "Prime d'activité",
+   "description": "Complément de revenu des travailleurs modestes, par rapport à aujourd'hui (100 %). 10 Md€ par an ; elle rend le travail plus payant que le RSA.",
+   "unit": "%",
+   "format": "number",
+   "decimals": 0,
+   "reference": 100,
+   "min": 0,
+   "max": 250,
+   "step": 5,
+   "per": 10,
+   "costPerUnit": 0.1,
+   "spendingItem": "solidarity",
+   "up": [
+    {
+     "target": "opinion.group.low_income",
+     "amount": 0.004
+    },
+    {
+     "target": "opinion.group.private_employees",
+     "amount": 0.002
+    },
+    {
+     "target": "economy.unemployment",
+     "amount": -0.0003,
+     "days": 365
+    }
+   ],
+   "down": [
+    {
+     "target": "opinion.group.low_income",
+     "amount": -0.005
+    },
+    {
+     "target": "opinion.group.private_employees",
+     "amount": -0.002
+    },
+    {
+     "target": "economy.unemployment",
+     "amount": 0.0003,
+     "days": 365
+    }
+   ]
+  },
+  {
+   "id": "civil_service_index",
+   "channel": "BUDGET",
+   "domain": "solidarite",
+   "label": "Point d'indice des fonctionnaires",
+   "description": "Hausse ou gel des salaires de 5,7 millions d'agents publics, cumulée depuis le début du mandat. Un point coûte environ 2,2 Md€ par an.",
+   "unit": "%",
+   "format": "number",
+   "decimals": 1,
+   "reference": 0,
+   "min": -10,
+   "max": 30,
+   "step": 0.5,
+   "per": 1,
+   "costPerUnit": 2.2,
+   "up": [
+    {
+     "target": "opinion.group.civil_servants",
+     "amount": 0.008
+    },
+    {
+     "target": "quality.education",
+     "amount": 0.002,
+     "days": 365
+    },
+    {
+     "target": "quality.health",
+     "amount": 0.002,
+     "days": 365
+    },
+    {
+     "target": "economy.inflation",
+     "amount": 0.0002,
+     "days": 365
+    }
+   ],
+   "down": [
+    {
+     "target": "opinion.group.civil_servants",
+     "amount": -0.012
+    },
+    {
+     "target": "quality.education",
+     "amount": -0.003,
+     "days": 365
+    },
+    {
+     "target": "quality.health",
+     "amount": -0.003,
+     "days": 365
     }
    ]
   },
@@ -236,15 +524,15 @@
    "down": [
     {
      "target": "opinion.group.rural",
-     "amount": 0.012
+     "amount": -0.012
     },
     {
      "target": "quality.security",
-     "amount": -0.006
+     "amount": 0.006
     },
     {
      "target": "quality.environment",
-     "amount": -0.003
+     "amount": 0.003
     }
    ],
    "decreeLimit": 10
@@ -827,7 +1115,6 @@
     "actors": {
      "union_public": 1.0
     },
-    "public": true,
     "salary": 47000,
     "event": "national_strike"
    },
@@ -1748,7 +2035,7 @@
     ],
     "unit": "%",
     "min": 0.5,
-    "max": 30,
+    "max": 90,
     "step": 0.5,
     "default": 5,
     "channel": "BUDGET",
@@ -1772,7 +2059,7 @@
     ],
     "unit": "%",
     "min": 1,
-    "max": 50,
+    "max": 100,
     "step": 1,
     "default": 10,
     "channel": "BUDGET",
@@ -1795,7 +2082,7 @@
     ],
     "unit": "€/mois",
     "min": 10,
-    "max": 1000,
+    "max": 3000,
     "step": 10,
     "default": 100,
     "channel": "BUDGET",
@@ -1817,7 +2104,7 @@
     ],
     "unit": "%",
     "min": 0.5,
-    "max": 40,
+    "max": 90,
     "step": 0.5,
     "default": 5,
     "channel": "BUDGET",
@@ -1839,7 +2126,7 @@
     ],
     "unit": "Md€/an",
     "min": 0.1,
-    "max": 10,
+    "max": 50,
     "step": 0.1,
     "default": 1,
     "channel": "BUDGET",
@@ -1919,7 +2206,7 @@
     ],
     "unit": "postes",
     "min": 500,
-    "max": 60000,
+    "max": 300000,
     "step": 500,
     "default": 5000,
     "channel": "BUDGET",
@@ -1940,7 +2227,7 @@
     ],
     "unit": "%",
     "min": 1,
-    "max": 30,
+    "max": 100,
     "step": 1,
     "default": 5,
     "channel": "BUDGET",
@@ -1949,6 +2236,27 @@
     ],
     "requires": "public",
     "phrase": "hausse de {value} des salaires"
+   },
+   {
+    "id": "job_cuts",
+    "verb": "Supprimer",
+    "button": "Supprimer des postes",
+    "model": "JOB_CUTS",
+    "categories": [
+     "profession"
+    ],
+    "unit": "postes",
+    "min": 500,
+    "max": 300000,
+    "step": 500,
+    "default": 5000,
+    "channel": "BUDGET",
+    "conditions": [
+     "zone",
+     "phaseIn"
+    ],
+    "requires": "public",
+    "phrase": "{value} en moins"
    }
   ],
   "categories": [

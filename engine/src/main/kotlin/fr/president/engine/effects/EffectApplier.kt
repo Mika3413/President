@@ -214,6 +214,14 @@ class EffectApplier(private val ctx: SimulationContext) {
                 side.filter { it != state.player.countryId }.forEach { apply("memory.$it.${parts[2]}", delta) }
             }
             "abroad" -> parts.getOrNull(2)?.let { field -> abroad(parts[1], field, parts.getOrNull(3), delta) }
+            "actor" -> state.actors.actors[parts[1]]?.let { it.goodwill += delta }
+            "unrest" -> when (parts[1]) {
+                "armyLoyalty" -> if (state.unrest.armyLoyalty >= 0) state.unrest.armyLoyalty = (state.unrest.armyLoyalty + delta).clamp01()
+                else -> if (delta > 0) fr.president.engine.politics.UnrestService(ctx).let { s -> s.cause(parts[1])?.let { s.spark(it, delta) } }
+            }
+            "intel" -> if (parts[1] == "capacity" && state.intel.capacity >= 0) state.intel.capacity = (state.intel.capacity + delta).clamp01()
+            "liberty" -> state.legislation.libertyOffset += delta
+            "power" -> if (parts[1] == "article16" && delta > 0) fr.president.engine.legislation.LegislationService(ctx).startArticle16(delta)
             "operation" -> if (delta > 0) parts.getOrNull(2)?.let { country ->
                 when (parts[1]) {
                     "cyber" -> fr.president.engine.military.OperationsService(ctx).riposteCyber(country)

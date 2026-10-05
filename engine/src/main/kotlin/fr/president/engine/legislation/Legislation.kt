@@ -178,6 +178,15 @@ class LegislationService(private val ctx: SimulationContext) {
     fun depositLaw(referendum: Boolean = false): Result<PolicyProposal> = runCatching {
         (if (referendum) referendumBlocker() else lawDepositBlocker())?.let { error(it) }
         val changes = state.lawDraft.changes.map { LeverChange(it.lever, levers.current(it.lever), it.to, measure = it.measure) }
+        if (!referendum && article16Active()) {
+            // Pleins pouvoirs : le texte s'applique tout de suite, sans Parlement ni Conseil constitutionnel.
+            val p = PolicyProposal(ctx.state.newId("pol"), PolicyKind.LAW_BILL, "bill", 0.0, 0.0, ctx.now, ctx.now, status = PolicyStatus.ADOPTED, title = lawName())
+            p.changes += changes
+            state.lawDraft = LawDraft()
+            enactBill(p, BillStatus.ARTICLE_16)
+            ctx.state.opinion.groups.values.forEach { it.shock -= ARTICLE16_LAW_COST }
+            return@runCatching p
+        }
         val p = createBill(PolicyKind.LAW_BILL, lawName(), changes, ctx.playerData.reforms?.voteDelayDays ?: LAW_DAYS, referendum)
         state.lawDraft = LawDraft()
         p
@@ -277,7 +286,7 @@ class LegislationService(private val ctx: SimulationContext) {
         val censured = mutableListOf<String>()
         val previews = p.changes.associate { it.lever to previewOf(it) }
         // Le peuple souverain n'est pas censuré : pas de contrôle pour une loi référendaire.
-        if (status != BillStatus.REFERENDUM) for (c in p.changes) {
+        if (status != BillStatus.REFERENDUM && status != BillStatus.ARTICLE_16) for (c in p.changes) {
             val risk = previews[c.lever]?.censure ?: 0.0
             if (risk > 0 && ctx.rng.chance(risk)) { c.censured = true; censured += (levers.lever(c.lever)?.label ?: c.lever) + " — " + (previews[c.lever]?.censureReason ?: "") }
         }
@@ -363,7 +372,28 @@ class LegislationService(private val ctx: SimulationContext) {
 
     // ---- Chaque jour ------------------------------------------------------------------------
 
+    fun article16Active(): Boolean = state.article16Until?.let { it > ctx.now } == true
+
+    /** Déclenche les pleins pouvoirs pour [days] jours. */
+    fun startArticle16(days: Double) {
+        state.article16Until = ctx.now.plusDays(days)
+        state.libertyOffset -= ARTICLE16_LIBERTY
+        JournalService(ctx).add("Article 16", "Le président exerce les pleins pouvoirs pendant ${days.toInt()} jours.", Tone.BAD)
+        ctx.notifications.post(NotificationCategory.POLITICS, Urgency.URGENT, "Article 16 : pleins pouvoirs",
+            "Jusqu'au ${Formatting.date(state.article16Until!!)}, vos projets de loi s'appliquent sans vote. Les libertés reculent, l'opposition crie au coup d'État.")
+    }
+
+    private fun article16Expiry() {
+        val until = state.article16Until ?: return
+        if (until > ctx.now) return
+        state.article16Until = null
+        state.libertyOffset += ARTICLE16_LIBERTY
+        ctx.notifications.post(NotificationCategory.POLITICS, Urgency.IMPORTANT, "Fin des pleins pouvoirs",
+            "Le Parlement retrouve ses droits. Les textes adoptés pendant l'article 16 restent en vigueur ; on vous en demandera compte.")
+    }
+
     fun daily() {
+        article16Expiry()
         annualBudget()
         expireMeasures()
         contests()
@@ -455,6 +485,8 @@ class LegislationService(private val ctx: SimulationContext) {
     }
 
     companion object {
+        const val ARTICLE16_LIBERTY = 15.0
+        const val ARTICLE16_LAW_COST = 0.004
         val BILLS = setOf(PolicyKind.BUDGET_BILL, PolicyKind.LAW_BILL)
         val OPEN = setOf(PolicyStatus.PENDING_VOTE, PolicyStatus.PENDING_CENSURE, PolicyStatus.PENDING_REFERENDUM)
         const val EPS = 1e-6

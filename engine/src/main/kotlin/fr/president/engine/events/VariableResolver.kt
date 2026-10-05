@@ -27,6 +27,21 @@ class VariableResolver(private val ctx: SimulationContext) {
             "military" -> military(parts.getOrNull(1))
             // « measure.lockdown » : 1 si la mesure est en vigueur (n'importe où).
             "measure" -> if (ctx.state.measures.active.any { it.id == parts.getOrNull(1) }) 1.0 else 0.0
+            "derived" -> derived(parts.getOrNull(1))
+            "lever" -> fr.president.engine.legislation.LeverService(ctx).let { l -> key.removePrefix("lever.").takeIf { l.lever(it) != null }?.let { l.current(it) } }
+            "spending" -> ctx.state.playerCountry.economy.budget?.spending?.get(parts.getOrNull(1))?.policyFactor
+            "funding" -> parts.getOrNull(1)?.let { BudgetCalculator.realFundingRatio(ctx.state.playerCountry.economy, it) }
+            "demography" -> if (parts.getOrNull(1) == "immigration") ctx.state.demography.immigrationFactor else null
+            "laws" -> fr.president.engine.government.LawService(ctx).indices().let { i ->
+                when (parts.getOrNull(1)) { "liberty" -> i.liberty; "press" -> i.press; "rule" -> i.rule; else -> null }
+            }
+            "unrest" -> when (parts.getOrNull(1)) {
+                "phase" -> ctx.state.unrest.movements.maxOfOrNull { it.phase.ordinal + 1.0 } ?: 0.0
+                "crowd" -> ctx.state.unrest.movements.sumOf { it.crowd }
+                "armyLoyalty" -> ctx.state.unrest.armyLoyalty.takeIf { it >= 0 } ?: (ctx.db.unrest?.armyLoyalty ?: 0.8)
+                else -> null
+            }
+            "intel" -> if (parts.getOrNull(1) == "capacity") ctx.state.intel.capacity.takeIf { it >= 0 } else null
             "season" -> if (parts.getOrNull(1) == "month") ctx.now.month.toDouble() else null
             "scope" -> scoped(parts.getOrNull(1), scope)
             "president" -> ctx.state.characters[ctx.state.player.presidentId]?.let { p ->
@@ -38,6 +53,34 @@ class VariableResolver(private val ctx: SimulationContext) {
             }
             else -> null
         }
+    }
+
+    /** Grandeurs calculées qui servent aux seuils de conséquences et aux conditions des décisions. */
+    private fun derived(field: String?): Double? = when (field) {
+        // Nation en danger : insurrection en cours ou territoire national occupé.
+        "nationInDanger" -> {
+            val geo = fr.president.engine.military.Geopolitics(ctx)
+            val insurrection = ctx.state.unrest.movements.any { it.phase == fr.president.engine.politics.MovementPhase.INSURRECTION }
+            val invaded = ctx.state.military.occupied.any { (zone, _) -> geo.ownerOf(zone) == ctx.state.player.countryId }
+            if (insurrection || invaded) 1.0 else 0.0
+        }
+        "invaded" -> {
+            val geo = fr.president.engine.military.Geopolitics(ctx)
+            if (ctx.state.military.occupied.any { (zone, _) -> geo.ownerOf(zone) == ctx.state.player.countryId }) 1.0 else 0.0
+        }
+        "article16" -> if (fr.president.engine.legislation.LegislationService(ctx).article16Active()) 1.0 else 0.0
+        // RSA rapporté au SMIC net : au-delà de ~85 %, reprendre un emploi ne rapporte presque plus rien.
+        "rsaToSmic" -> {
+            val l = fr.president.engine.legislation.LeverService(ctx)
+            val rsa = l.lever("param:rsa_amount")?.let { l.current(it.id) } ?: return null
+            val boost = l.lever("param:smic_boost")?.let { l.current(it.id) } ?: 0.0
+            rsa / (fr.president.engine.consequences.ConsequenceService.SMIC_NET * (1 + boost / 100))
+        }
+        // Baisse moyenne des crédits des services (1 = budget de départ, 0,7 = −30 %).
+        "servicesFunding" -> ctx.state.playerCountry.economy.budget?.spending?.values?.filter { it.domain != null && it.domain != "pensions" }
+            ?.takeIf { it.isNotEmpty() }?.let { items -> items.sumOf { it.policyFactor } / items.size }
+        "policeFunding" -> ctx.state.playerCountry.economy.budget?.spending?.get("police")?.policyFactor
+        else -> null
     }
 
     private fun economy(field: String?): Double? {

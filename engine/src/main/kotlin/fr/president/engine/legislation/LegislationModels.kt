@@ -117,7 +117,7 @@ data class BuilderTarget(
 )
 
 @Serializable
-enum class MeasureModel { SURTAX, TAX_CUT, BONUS, TURNOVER_TAX, SUBSIDY, PRICE_CAP, BAN, OBLIGATION, RECRUIT, PAY_RAISE }
+enum class MeasureModel { SURTAX, TAX_CUT, BONUS, TURNOVER_TAX, SUBSIDY, PRICE_CAP, BAN, OBLIGATION, RECRUIT, PAY_RAISE, JOB_CUTS }
 
 @Serializable
 data class BuilderAction(
@@ -193,7 +193,7 @@ class LeverChange(
 class LawDraft(var name: String? = null, val changes: MutableList<LeverChange> = mutableListOf())
 
 @Serializable
-enum class BillStatus(val label: String) { ADOPTED("Adoptée"), FORCED("Adoptée sans vote (49.3)"), REFERENDUM("Adoptée par référendum"), REJECTED("Rejetée"), DECREE("Décret"), ABROGATED("Abrogée") }
+enum class BillStatus(val label: String) { ADOPTED("Adoptée"), FORCED("Adoptée sans vote (49.3)"), REFERENDUM("Adoptée par référendum"), REJECTED("Rejetée"), DECREE("Décret"), ABROGATED("Abrogée"), ARTICLE_16("Imposée (article 16)") }
 
 /** Texte entré en vigueur (ou rejeté) : l'historique législatif du mandat. */
 @Serializable
@@ -234,4 +234,6 @@ class LegislationState(
     val lastDecree: MutableMap<String, WorldTime> = mutableMapOf(),
     /** Points d'indice de libertés retirés ou ajoutés par les mesures du constructeur. */
     var libertyOffset: Double = 0.0,
+    /** Pleins pouvoirs (article 16) jusqu'à cette date : les projets de loi s'appliquent sans vote. */
+    var article16Until: WorldTime? = null,
 )

@@ -19,7 +19,7 @@ class MenuPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel
     private val entries = listOf(
         Entry("★", "Décider", "Plans, décrets, déplacements, décisions de crise.", Theme.highlightDark, PanelId.DECISIONS),
         Entry("⚠", "Crises et risques", "Risques à 30 jours, prévention, confinement, couvre-feu, ORSEC...", Theme.warning, PanelId.CRISIS) { session.risks.unattended().size },
-        Entry("▲", "Bilan", "Courbes, causes, groupes sociaux, pays, journal.", Theme.catStats, PanelId.STATS),
+        Entry("▲", "Bilan", "Courbes, causes, conséquences en chaîne, groupes sociaux, pays, journal.", Theme.catStats, PanelId.STATS),
         Entry("⚖", "Lois et budget", "Budget annuel, projets de loi, mesures sur mesure, décrets, textes votés.", Theme.catGovernment, PanelId.LEGISLATION) { session.legislation.pendingBills().size },
         Entry("⚖", "Lois et Constitution", "Société, justice, travail, libertés, mandat, référendum.", Theme.catGovernment, PanelId.LAWS),
         Entry("⚒", "Société civile", "Syndicats, patronat, cultes, lobbies, associations.", Theme.catElections, PanelId.ACTORS) { session.actors.rows().count { it.satisfaction < 0.3 } },

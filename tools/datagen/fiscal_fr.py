@@ -50,6 +50,9 @@ tax("patrimoine", "wealth", "Impôt sur la fortune financière (ISF)", "Taux ann
     "%", 0.0, 0.0, 3.0, 0.1, [(0, 0), (0.5, 2.5), (1.0, 4.0), (1.5, 4.6), (2.0, 4.5), (3.0, 3.6)], 1.0,
     [e(G + "high_income", -0.03), e(G + "low_income", 0.012), e("economy.businessConfidence", -0.015), e("economy.potentialGrowth", -0.0003, 1460)],
     [0.0, 1.0, 0.0], {"reform": "wealth_tax", "above": 0.3}, decimals=1)
+tax("patrimoine", "real_estate_wealth", "Impôt sur la fortune immobilière (IFI)", "Taux marginal maximal sur le patrimoine immobilier au-delà de 1,3 M€ (0 % : IFI supprimé).",
+    "%", 1.5, 0.0, 3.0, 0.1, [(0, -2.2), (0.75, -1.1), (1.5, 0), (2.25, 0.8), (3.0, 1.2)], 0.5,
+    [e(G + "high_income", -0.008), e(G + "seniors", -0.004), e(G + "low_income", 0.004)], [1.5, 1.5, 0.0], decimals=1)
 tax("patrimoine", "flat_tax", "Prélèvement forfaitaire sur le capital", "Taux unique sur les dividendes, intérêts et plus-values (flat tax).",
     "%", 30.0, 20.0, 50.0, 1.0, [(20, -4), (25, -2), (30, 0), (35, 2), (40, 3.2), (45, 3.6), (50, 3.4)], 5.0,
     [e(G + "high_income", -0.015), e("economy.businessConfidence", -0.008)], [30.0, 35.0, 42.0, 25.0], decimals=0)
@@ -102,6 +105,10 @@ tax("entreprises", "windfall", "Taxe sur les superprofits", "Taux sur les béné
 tax("entreprises", "digital_tax", "Taxe sur les services numériques", "Taux sur le chiffre d'affaires des grandes plateformes réalisé en France.",
     "%", 3.0, 0.0, 10.0, 0.5, [(0, -0.7), (3, 0), (6, 0.7), (10, 1.0)], 3.0,
     [e("sector.tech", -0.008), e("memory.USA.DISAGREEMENT", -0.02)], [3.0, 6.0, 0.0], decimals=1)
+
+tax("revenus", "tv_licence", "Contribution à l'audiovisuel public", "Ancienne redevance, supprimée en 2022 : l'audiovisuel public est financé par une part de TVA (0 € : supprimée).",
+    "€/an", 0.0, 0.0, 200.0, 1.0, [(0, 0), (138, 3.2), (200, 4.4)], 50.0,
+    [e(G + "low_income", -0.006), e(G + "seniors", -0.004), e(G + "middle_income", -0.003)], [0.0], decimals=0)
 
 # Consommation
 tax("consommation", "restaurant_vat", "TVA dans la restauration", "Taux réduit sur les repas au restaurant.",

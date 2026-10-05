@@ -56,6 +56,7 @@ object Systems {
         fr.president.engine.legislation.LegislationSystem(),
         fr.president.engine.politics.ActorSystem(),
         fr.president.engine.politics.UnrestSystem(),
+        fr.president.engine.consequences.ConsequenceSystem(),
         MilitarySystem(),
         fr.president.engine.military.DefenseSystem(),
         fr.president.engine.military.IntelSystem(),

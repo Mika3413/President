@@ -18,7 +18,7 @@ object BudgetCalculator {
         for (item in budget.revenues.values) {
             val rateRatio = item.rate / item.referenceRate
             // Une partie de la hausse de taux est perdue en changements de comportement.
-            val effectiveRatio = Math.pow(rateRatio, 1.0 - item.behaviouralLoss)
+            val effectiveRatio = behaviour(rateRatio, item.behaviouralLoss)
             item.amount = item.referenceAmount * effectiveRatio * TaxBaseIndex.of(item.base, economy)
             revenue += item.amount
         }
@@ -35,7 +35,18 @@ object BudgetCalculator {
 
     /** Recette d'un impôt à un taux donné (comportements et assiette compris). */
     fun taxAmount(item: RevenueItemState, rate: Double, economy: EconomyState): Double =
-        item.referenceAmount * Math.pow(rate / item.referenceRate, 1.0 - item.behaviouralLoss) * TaxBaseIndex.of(item.base, economy)
+        item.referenceAmount * behaviour(rate / item.referenceRate, item.behaviouralLoss) * TaxBaseIndex.of(item.base, economy)
+
+    /**
+     * Rendement d'un impôt selon son taux rapporté au taux de départ. Les comportements rognent une
+     * partie de chaque hausse ; au-delà, l'assiette fond (exil, fraude, activité réduite) : passé un
+     * certain niveau, augmenter le taux fait baisser la recette (courbe de Laffer).
+     */
+    fun behaviour(ratio: Double, loss: Double): Double {
+        if (ratio <= 0) return 0.0
+        val base = Math.pow(ratio, 1.0 - loss)
+        return if (ratio <= 1) base else base / (1 + 2 * loss * (ratio - 1) * (ratio - 1))
+    }
 
     /** Dépense d'un poste pour un multiplicateur donné (indexation comprise). */
     fun spendingAmount(item: SpendingItemState, factor: Double, economy: EconomyState): Double =

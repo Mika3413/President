@@ -355,6 +355,54 @@ action("international", "refugee_reception", "Plan d'accueil des réfugiés", "�
        immediate=[e("alliance.EU.NEGOTIATION_GOODWILL", 0.02), g("urban", 0.01), g("rural", -0.02),
                   e("demography.immigration", 0.1, 180)])
 
+# --- Ajouts : grands programmes et actes présidentiels -------------------------------------------
+action("economy", "france_2030", "France 2030", "★",
+       "54 Md€ sur cinq ans pour les technologies d'avenir : petits réacteurs, hydrogène, batteries, santé, spatial, semi-conducteurs.",
+       cost=54, duration=1825, cooldown=1825,
+       immediate=[e("economy.businessConfidence", 0.015), g("self_employed", 0.01)],
+       completion=[e("economy.potentialGrowth", 0.002), e("sector.tech", 0.03), e("sector.energy", 0.02), e("sector.aerospace", 0.02),
+                   e("sector.health", 0.02), e("economy.unemployment", -0.002, 365)])
+action("economy", "france_relance", "France Relance", "▲",
+       "100 Md€ en deux ans : rénovation des bâtiments, industrie, emploi des jeunes, en partie financés par l'Europe.",
+       cost=100, duration=730, cooldown=1825,
+       requires=[cond("economy.growth", max=0.005)], requires_text="si la croissance s'essouffle (moins de 0,5 %)",
+       immediate=[e("economy.output", 0.012, 730), e("economy.businessConfidence", 0.03), g("self_employed", 0.02),
+                  e("alliance.EU.NEGOTIATION_GOODWILL", 0.02)],
+       completion=[e("economy.unemployment", -0.006, 365), e("quality.environment", 0.01), e("sector.construction", 0.03)])
+action("social", "apprenticeship_plan", "Grand plan pour l'apprentissage", "✎",
+       "Aides aux employeurs, centres de formation, campagne nationale : objectif un million d'apprentis.",
+       cost=4, duration=365, cooldown=1095,
+       immediate=[g("young", 0.02), g("self_employed", 0.01)],
+       completion=[e("economy.unemployment", -0.003, 365), e("economy.potentialGrowth", 0.0005), e("quality.education", 0.01)])
+action("institutions", "article_16", "Recourir à l'article 16 (pleins pouvoirs)", "⚠",
+       "Quand la Nation est menacée : vous gouvernez seul pendant trois mois, vos textes s'appliquent sans vote. Les libertés reculent, l'Europe s'alarme.",
+       cooldown=1095, confirm=True,
+       requires=[cond("derived.nationInDanger", min=1)], requires_text="seulement en cas d'insurrection ou d'invasion du territoire",
+       immediate=[e("power.article16", 90), e("opinion.national", -0.02), e("alliance.EU.DISAGREEMENT", -0.05), g("young", -0.03)])
+action("institutions", "pardon", "Grâce présidentielle", "✔",
+       "Gracier une condamnée dont le cas émeut le pays : un geste d'humanité, une entorse à la justice pour d'autres.",
+       cooldown=730,
+       immediate=[g("young", 0.006), g("urban", 0.004), g("seniors", -0.004), e("quality.justice", -0.002)])
+action("communication", "national_tribute", "Hommage national et entrée au Panthéon", "★",
+       "Une grande figure entre au Panthéon : un moment d'unité nationale.",
+       cooldown=730,
+       immediate=[e("opinion.national", 0.004), e("president.popularity", 0.01)])
+action("international", "recognize_palestine", "Reconnaître l'État de Palestine", "⚐",
+       "Un acte diplomatique majeur : salué dans le monde arabe et par une partie de l'opinion, critiqué par Washington.",
+       cooldown=36500, confirm=True,
+       immediate=[e("memory.EGY.AID", 0.06), e("memory.SAU.AID", 0.05), e("memory.DZA.AID", 0.06), e("memory.MAR.AID", 0.04),
+                  e("memory.TUN.AID", 0.05), e("memory.TUR.AID", 0.04), e("memory.USA.DISAGREEMENT", -0.04), g("urban", 0.01), g("young", 0.01), g("seniors", -0.004)])
+action("defense", "ukraine_aid", "Aide militaire à l'Ukraine", "⚔",
+       "Canons CAESAR, missiles, munitions et formation : 3 Md€ pour aider l'Ukraine à se défendre.",
+       cost=3, cooldown=365,
+       requires=[cond("military.nearbyWar", min=1)], requires_text="si une guerre est en cours en Europe",
+       immediate=[e("memory.UKR.MILITARY_SUPPORT", 0.15), e("memory.RUS.THREAT", -0.08), e("military.ammoStock", -0.05),
+                  e("alliance.EU.EU_PARTNERSHIP", 0.02), e("sector.aerospace", 0.01), g("seniors", -0.004)])
+action("defense", "european_defense", "Initiative pour une défense européenne", "★",
+       "Achats communs d'armement, état-major européen, fonds de défense : vers l'autonomie stratégique.",
+       cost=1, cooldown=1095,
+       immediate=[e("alliance.EU.EU_PARTNERSHIP", 0.03), e("memory.USA.DISAGREEMENT", -0.01), e("sector.aerospace", 0.015)])
+
 out = {
     "_doc": "Décisions nationales du président (panneau « Décider »). Généré par tools/datagen/national_actions_fr.py.",
     "categories": [{"id": i, "label": l, "icon": ic, "description": d} for i, l, ic, d in CATEGORIES],

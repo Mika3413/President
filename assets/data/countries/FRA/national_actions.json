@@ -1543,6 +1543,333 @@
      "days": 180
     }
    ]
+  },
+  {
+   "id": "france_2030",
+   "label": "France 2030",
+   "icon": "★",
+   "category": "economy",
+   "description": "54 Md€ sur cinq ans pour les technologies d'avenir : petits réacteurs, hydrogène, batteries, santé, spatial, semi-conducteurs.",
+   "costBillions": 54,
+   "durationDays": 1825,
+   "cooldownDays": 1825,
+   "immediate": [
+    {
+     "target": "economy.businessConfidence",
+     "amount": 0.015
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": 0.01
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "economy.potentialGrowth",
+     "amount": 0.002
+    },
+    {
+     "target": "sector.tech",
+     "amount": 0.03
+    },
+    {
+     "target": "sector.energy",
+     "amount": 0.02
+    },
+    {
+     "target": "sector.aerospace",
+     "amount": 0.02
+    },
+    {
+     "target": "sector.health",
+     "amount": 0.02
+    },
+    {
+     "target": "economy.unemployment",
+     "amount": -0.002,
+     "days": 365
+    }
+   ]
+  },
+  {
+   "id": "france_relance",
+   "label": "France Relance",
+   "icon": "▲",
+   "category": "economy",
+   "description": "100 Md€ en deux ans : rénovation des bâtiments, industrie, emploi des jeunes, en partie financés par l'Europe.",
+   "requires": [
+    {
+     "variable": "economy.growth",
+     "max": 0.005
+    }
+   ],
+   "requiresText": "si la croissance s'essouffle (moins de 0,5 %)",
+   "costBillions": 100,
+   "durationDays": 730,
+   "cooldownDays": 1825,
+   "immediate": [
+    {
+     "target": "economy.output",
+     "amount": 0.012,
+     "days": 730
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": 0.03
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": 0.02
+    },
+    {
+     "target": "alliance.EU.NEGOTIATION_GOODWILL",
+     "amount": 0.02
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "economy.unemployment",
+     "amount": -0.006,
+     "days": 365
+    },
+    {
+     "target": "quality.environment",
+     "amount": 0.01
+    },
+    {
+     "target": "sector.construction",
+     "amount": 0.03
+    }
+   ]
+  },
+  {
+   "id": "apprenticeship_plan",
+   "label": "Grand plan pour l'apprentissage",
+   "icon": "✎",
+   "category": "social",
+   "description": "Aides aux employeurs, centres de formation, campagne nationale : objectif un million d'apprentis.",
+   "costBillions": 4,
+   "durationDays": 365,
+   "cooldownDays": 1095,
+   "immediate": [
+    {
+     "target": "opinion.group.young",
+     "amount": 0.02
+    },
+    {
+     "target": "opinion.group.self_employed",
+     "amount": 0.01
+    }
+   ],
+   "onCompletion": [
+    {
+     "target": "economy.unemployment",
+     "amount": -0.003,
+     "days": 365
+    },
+    {
+     "target": "economy.potentialGrowth",
+     "amount": 0.0005
+    },
+    {
+     "target": "quality.education",
+     "amount": 0.01
+    }
+   ]
+  },
+  {
+   "id": "article_16",
+   "label": "Recourir à l'article 16 (pleins pouvoirs)",
+   "icon": "⚠",
+   "category": "institutions",
+   "description": "Quand la Nation est menacée : vous gouvernez seul pendant trois mois, vos textes s'appliquent sans vote. Les libertés reculent, l'Europe s'alarme.",
+   "requires": [
+    {
+     "variable": "derived.nationInDanger",
+     "min": 1
+    }
+   ],
+   "requiresText": "seulement en cas d'insurrection ou d'invasion du territoire",
+   "confirm": true,
+   "cooldownDays": 1095,
+   "immediate": [
+    {
+     "target": "power.article16",
+     "amount": 90
+    },
+    {
+     "target": "opinion.national",
+     "amount": -0.02
+    },
+    {
+     "target": "alliance.EU.DISAGREEMENT",
+     "amount": -0.05
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": -0.03
+    }
+   ]
+  },
+  {
+   "id": "pardon",
+   "label": "Grâce présidentielle",
+   "icon": "✔",
+   "category": "institutions",
+   "description": "Gracier une condamnée dont le cas émeut le pays : un geste d'humanité, une entorse à la justice pour d'autres.",
+   "cooldownDays": 730,
+   "immediate": [
+    {
+     "target": "opinion.group.young",
+     "amount": 0.006
+    },
+    {
+     "target": "opinion.group.urban",
+     "amount": 0.004
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.004
+    },
+    {
+     "target": "quality.justice",
+     "amount": -0.002
+    }
+   ]
+  },
+  {
+   "id": "national_tribute",
+   "label": "Hommage national et entrée au Panthéon",
+   "icon": "★",
+   "category": "communication",
+   "description": "Une grande figure entre au Panthéon : un moment d'unité nationale.",
+   "cooldownDays": 730,
+   "immediate": [
+    {
+     "target": "opinion.national",
+     "amount": 0.004
+    },
+    {
+     "target": "president.popularity",
+     "amount": 0.01
+    }
+   ]
+  },
+  {
+   "id": "recognize_palestine",
+   "label": "Reconnaître l'État de Palestine",
+   "icon": "⚐",
+   "category": "international",
+   "description": "Un acte diplomatique majeur : salué dans le monde arabe et par une partie de l'opinion, critiqué par Washington.",
+   "confirm": true,
+   "cooldownDays": 36500,
+   "immediate": [
+    {
+     "target": "memory.EGY.AID",
+     "amount": 0.06
+    },
+    {
+     "target": "memory.SAU.AID",
+     "amount": 0.05
+    },
+    {
+     "target": "memory.DZA.AID",
+     "amount": 0.06
+    },
+    {
+     "target": "memory.MAR.AID",
+     "amount": 0.04
+    },
+    {
+     "target": "memory.TUN.AID",
+     "amount": 0.05
+    },
+    {
+     "target": "memory.TUR.AID",
+     "amount": 0.04
+    },
+    {
+     "target": "memory.USA.DISAGREEMENT",
+     "amount": -0.04
+    },
+    {
+     "target": "opinion.group.urban",
+     "amount": 0.01
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": 0.01
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.004
+    }
+   ]
+  },
+  {
+   "id": "ukraine_aid",
+   "label": "Aide militaire à l'Ukraine",
+   "icon": "⚔",
+   "category": "defense",
+   "description": "Canons CAESAR, missiles, munitions et formation : 3 Md€ pour aider l'Ukraine à se défendre.",
+   "requires": [
+    {
+     "variable": "military.nearbyWar",
+     "min": 1
+    }
+   ],
+   "requiresText": "si une guerre est en cours en Europe",
+   "costBillions": 3,
+   "cooldownDays": 365,
+   "immediate": [
+    {
+     "target": "memory.UKR.MILITARY_SUPPORT",
+     "amount": 0.15
+    },
+    {
+     "target": "memory.RUS.THREAT",
+     "amount": -0.08
+    },
+    {
+     "target": "military.ammoStock",
+     "amount": -0.05
+    },
+    {
+     "target": "alliance.EU.EU_PARTNERSHIP",
+     "amount": 0.02
+    },
+    {
+     "target": "sector.aerospace",
+     "amount": 0.01
+    },
+    {
+     "target": "opinion.group.seniors",
+     "amount": -0.004
+    }
+   ]
+  },
+  {
+   "id": "european_defense",
+   "label": "Initiative pour une défense européenne",
+   "icon": "★",
+   "category": "defense",
+   "description": "Achats communs d'armement, état-major européen, fonds de défense : vers l'autonomie stratégique.",
+   "costBillions": 1,
+   "cooldownDays": 1095,
+   "immediate": [
+    {
+     "target": "alliance.EU.EU_PARTNERSHIP",
+     "amount": 0.03
+    },
+    {
+     "target": "memory.USA.DISAGREEMENT",
+     "amount": -0.01
+    },
+    {
+     "target": "sector.aerospace",
+     "amount": 0.015
+    }
+   ]
   }
  ]
 }

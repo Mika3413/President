@@ -26,7 +26,7 @@ class NationalActionsTest {
                     "alliance" -> p[1] in alliances
                     "memory" -> p[1] in s.state.countries
                     "quality" -> p[1] in s.state.playerCountry.services
-                    "economy", "budget", "government", "military", "demography", "energy", "president", "war" -> true
+                    "economy", "budget", "government", "military", "demography", "energy", "president", "war", "power", "actor", "liberty", "sector" -> true
                     else -> false
                 }
                 assertTrue(ok, "${def.id} : cible invalide ${spec.target}")

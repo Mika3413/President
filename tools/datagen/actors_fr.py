@@ -36,7 +36,7 @@ KINDS = [("union", "Syndicats", "⚒"), ("employers", "Patronat", "€"), ("reli
 # --- Syndicats ----------------------------------------------------------------------------------
 actor("union_militant", "Grand syndicat contestataire", "union", "⚒", 0.75, 0.35, ["private_employees", "low_income"],
       "Premier syndicat historique, puissant dans l'industrie, l'énergie et les transports. Il sait bloquer le pays.",
-      laws={"work_week": {"39h": -0.25, "32h": 0.15}, "minimum_wage": {"regional": -0.3}, "strike_service": {"guaranteed": -0.25},
+      laws={"work_week": {"39h": -0.25, "32h": 0.15}, "minimum_wage": {"regional": -0.3}, "strike_service": {"guaranteed": -0.25}, "collective_bargaining": {"company": -0.2, "referendum": -0.35}, "rsa_conditions": {"sanctions": -0.15},
             "unemployment_rules": {"strict": -0.2, "generous": 0.1}, "right_to_protest": {"restricted": -0.25}},
       reforms={"pension_age_65": -0.3, "pension_age_62": 0.25, "labour_code": -0.2, "minimum_wage": 0.25, "unemployment_insurance": -0.15},
       conditions={"unemployment": -3.0, "purchasingPower": 2.0},
@@ -71,7 +71,7 @@ actor("farmers_union", "Syndicat agricole majoritaire", "union", "♣", 0.6, 0.4
 # --- Patronat -----------------------------------------------------------------------------------
 actor("employers_big", "Patronat des grandes entreprises", "employers", "€", 0.8, 0.55, ["high_income", "self_employed"],
       "Les grandes entreprises et leurs fédérations : investissement, emploi, influence.",
-      laws={"work_week": {"39h": 0.25, "32h": -0.35}, "minimum_wage": {"regional": 0.15}, "sunday_work": {"free": 0.15},
+      laws={"work_week": {"39h": 0.25, "32h": -0.35}, "minimum_wage": {"regional": 0.15}, "sunday_work": {"free": 0.15}, "collective_bargaining": {"company": 0.2, "referendum": 0.25}, "rsa_conditions": {"hours15": 0.05},
             "strike_service": {"guaranteed": 0.15}, "unemployment_rules": {"strict": 0.15, "generous": -0.15}, "lobbying": {"strict": -0.1}},
       reforms={"pension_age_65": 0.2, "labour_code": 0.25, "wealth_tax": -0.3, "carbon_tax": -0.1, "minimum_wage": -0.2},
       conditions={"businessConfidence": 2.0, "businessTaxes": -2.0},

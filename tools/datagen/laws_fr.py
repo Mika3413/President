@@ -176,6 +176,24 @@ law("travail", "minimum_wage", "SMIC national ou régional", "Un SMIC unique dan
     opt("regional", "SMIC régional modulé", "Plus bas là où la vie coûte moins cher.", 0.12,
         [e(G + "low_income", -0.02), e(G + "rural", -0.012), e("economy.businessConfidence", 0.015)], events={"national_strike": 1.3}, appeal=-0.25),
 ])
+law("travail", "collective_bargaining", "Accords d'entreprise", "Les accords de branche priment sur ceux de l'entreprise pour l'essentiel.", [
+    opt("branch", "Primauté des accords de branche", "La situation actuelle."),
+    opt("company", "Primauté des accords d'entreprise", "Temps de travail, primes, organisation : négociés au plus près de l'entreprise.", 0.06,
+        [e(G + "private_employees", -0.012), e(G + "self_employed", 0.012), e("economy.businessConfidence", 0.015)],
+        [e("economy.naturalUnemployment", -0.0015, 730)], events={"national_strike": 1.15}, appeal=-0.05),
+    opt("referendum", "Référendum d'entreprise à l'initiative de l'employeur", "L'employeur peut contourner les syndicats en consultant les salariés.", 0.1,
+        [e(G + "private_employees", -0.018), e(G + "self_employed", 0.015), e("economy.businessConfidence", 0.02)],
+        [e("economy.naturalUnemployment", -0.002, 730)], events={"national_strike": 1.3}, appeal=-0.1),
+])
+law("travail", "rsa_conditions", "Conditions du RSA", "Le RSA est versé sans contrepartie d'activité.", [
+    opt("none", "Sans contrepartie", "La situation actuelle."),
+    opt("hours15", "15 heures d'activité par semaine", "Formation, stage ou bénévolat obligatoires ; accompagnement renforcé.", 0.05,
+        [e(G + "inactive", -0.015), e(G + "self_employed", 0.012), e(G + "seniors", 0.006), e("budget.oneOff", 0.8, 365)],
+        [e("economy.naturalUnemployment", -0.002, 730), e("spending.solidarity", -0.01, 730)], appeal=0.2),
+    opt("sanctions", "Suspension en cas de refus de deux offres d'emploi", "Plus de sorties vers l'emploi, plus de grande pauvreté.", 0.08,
+        [e(G + "inactive", -0.03), e(G + "low_income", -0.015), e(G + "self_employed", 0.015), e(G + "seniors", 0.008)],
+        [e("economy.naturalUnemployment", -0.003, 730), e("spending.solidarity", -0.03, 730), e("quality.social", -0.02, 730)], liberty=-1, appeal=0.15),
+])
 law("travail", "sunday_work", "Travail le dimanche", "Autorisé dans les zones touristiques et quelques commerces.", [
     opt("limited", "Limité (zones touristiques)", "La situation actuelle."),
     opt("free", "Libre avec majoration", "Les commerces ouvrent le dimanche partout.", 0.05,
@@ -296,7 +314,7 @@ law("institutions", "dual_mandate", "Cumul des mandats", "Un parlementaire ne pe
 ])
 
 # --- Vérifications -------------------------------------------------------------------------------
-TARGETS = re.compile(r"^(budget\.oneOff|economy\.(output|consumerConfidence|businessConfidence|inflation|naturalUnemployment|potentialGrowth)|opinion\.national"
+TARGETS = re.compile(r"^(budget\.oneOff|spending\.[a-z_]+|economy\.(output|consumerConfidence|businessConfidence|inflation|naturalUnemployment|potentialGrowth)|opinion\.national"
                      r"|opinion\.group\.\w+|quality\.\w+|military\.readiness|government\.parliamentSupport|president\.popularity"
                      r"|alliance\.(EU|NATO)\.[A-Z_]+|memory\.[A-Z]{3}\.[A-Z_]+|demography\.immigration|sector\.\w+)$")
 groups = {g["id"] for g in json.load(open(os.path.join(ROOT, "countries", "FRA", "social_groups.json")))["groups"]}
