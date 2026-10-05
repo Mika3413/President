@@ -1,0 +1,1193 @@
+{
+ "_doc": "Acteurs organisés de la société. Généré par tools/datagen/actors_fr.py.",
+ "kinds": [
+  {
+   "id": "union",
+   "label": "Syndicats",
+   "icon": "⚒",
+   "description": ""
+  },
+  {
+   "id": "employers",
+   "label": "Patronat",
+   "icon": "€",
+   "description": ""
+  },
+  {
+   "id": "religion",
+   "label": "Cultes",
+   "icon": "✚",
+   "description": ""
+  },
+  {
+   "id": "lobby",
+   "label": "Lobbies",
+   "icon": "◆",
+   "description": ""
+  },
+  {
+   "id": "ngo",
+   "label": "Associations",
+   "icon": "♣",
+   "description": ""
+  }
+ ],
+ "actors": [
+  {
+   "id": "union_militant",
+   "label": "Grand syndicat contestataire",
+   "kind": "union",
+   "icon": "⚒",
+   "influence": 0.75,
+   "satisfaction": 0.35,
+   "groups": [
+    "private_employees",
+    "low_income"
+   ],
+   "description": "Premier syndicat historique, puissant dans l'industrie, l'énergie et les transports. Il sait bloquer le pays.",
+   "laws": {
+    "work_week": {
+     "39h": -0.25,
+     "32h": 0.15
+    },
+    "minimum_wage": {
+     "boost": 0.2,
+     "regional": -0.3
+    },
+    "strike_service": {
+     "guaranteed": -0.25
+    },
+    "unemployment_rules": {
+     "strict": -0.2,
+     "generous": 0.1
+    },
+    "right_to_protest": {
+     "restricted": -0.25
+    }
+   },
+   "reforms": {
+    "pension_age_65": -0.3,
+    "pension_age_62": 0.25,
+    "labour_code": -0.2,
+    "minimum_wage": 0.15,
+    "unemployment_insurance": -0.15
+   },
+   "conditions": {
+    "unemployment": -3.0,
+    "purchasingPower": 2.0
+   },
+   "demands": [
+    {
+     "id": "wages",
+     "label": "Hausse générale des salaires dans la fonction publique et les entreprises publiques",
+     "costBillions": 4.0,
+     "effects": [
+      {
+       "target": "opinion.group.civil_servants",
+       "amount": 0.02
+      },
+      {
+       "target": "opinion.group.low_income",
+       "amount": 0.01
+      },
+      {
+       "target": "economy.inflation",
+       "amount": 0.002,
+       "days": 180
+      }
+     ],
+     "opposed": [
+      "employers_big"
+     ]
+    },
+    {
+     "id": "energy_prices",
+     "label": "Blocage des prix de l'énergie",
+     "costBillions": 3.0,
+     "effects": [
+      {
+       "target": "opinion.group.low_income",
+       "amount": 0.015
+      },
+      {
+       "target": "economy.inflation",
+       "amount": -0.003,
+       "days": 180
+      }
+     ],
+     "opposed": []
+    }
+   ],
+   "mobilize": [
+    "national_strike",
+    "rail_strike",
+    "strike_spreads"
+   ]
+  },
+  {
+   "id": "union_reformist",
+   "label": "Syndicat réformiste",
+   "kind": "union",
+   "icon": "⚒",
+   "influence": 0.65,
+   "satisfaction": 0.5,
+   "groups": [
+    "private_employees",
+    "middle_income"
+   ],
+   "description": "Premier syndicat par le nombre d'adhérents, partisan de la négociation.",
+   "laws": {
+    "work_week": {
+     "39h": -0.2,
+     "32h": 0.05
+    },
+    "minimum_wage": {
+     "boost": 0.1,
+     "regional": -0.2
+    },
+    "end_of_life": {
+     "assisted": 0.05
+    }
+   },
+   "reforms": {
+    "pension_age_65": -0.2,
+    "labour_code": -0.05,
+    "unemployment_insurance": -0.1
+   },
+   "conditions": {
+    "unemployment": -2.0
+   },
+   "demands": [
+    {
+     "id": "training",
+     "label": "Grand plan de formation des salariés",
+     "costBillions": 1.5,
+     "effects": [
+      {
+       "target": "economy.naturalUnemployment",
+       "amount": -0.001,
+       "days": 365
+      },
+      {
+       "target": "opinion.group.private_employees",
+       "amount": 0.01
+      }
+     ],
+     "opposed": []
+    },
+    {
+     "id": "arduousness",
+     "label": "Prise en compte de la pénibilité pour la retraite",
+     "costBillions": 1.0,
+     "effects": [
+      {
+       "target": "opinion.group.private_employees",
+       "amount": 0.012
+      }
+     ],
+     "opposed": [
+      "employers_big"
+     ]
+    }
+   ],
+   "mobilize": [
+    "national_strike"
+   ]
+  },
+  {
+   "id": "union_public",
+   "label": "Syndicats de la fonction publique",
+   "kind": "union",
+   "icon": "⚒",
+   "influence": 0.55,
+   "satisfaction": 0.4,
+   "groups": [
+    "civil_servants"
+   ],
+   "description": "Enseignants, soignants, agents : ils tiennent les services publics.",
+   "laws": {
+    "strike_service": {
+     "guaranteed": -0.25
+    },
+    "work_week": {
+     "39h": -0.25
+    }
+   },
+   "reforms": {
+    "teachers_plan": 0.2,
+    "hospital_plan": 0.2
+   },
+   "conditions": {
+    "spending": 2.0
+   },
+   "demands": [
+    {
+     "id": "index_point",
+     "label": "Dégel du point d'indice",
+     "costBillions": 3.5,
+     "effects": [
+      {
+       "target": "opinion.group.civil_servants",
+       "amount": 0.03
+      }
+     ],
+     "opposed": [
+      "employers_big"
+     ]
+    },
+    {
+     "id": "staff",
+     "label": "Recrutements dans l'école et l'hôpital",
+     "costBillions": 2.5,
+     "effects": [
+      {
+       "target": "quality.education",
+       "amount": 0.006
+      },
+      {
+       "target": "quality.health",
+       "amount": 0.006
+      }
+     ],
+     "opposed": []
+    }
+   ],
+   "mobilize": [
+    "teachers_strike",
+    "doctor_strike"
+   ]
+  },
+  {
+   "id": "farmers_union",
+   "label": "Syndicat agricole majoritaire",
+   "kind": "union",
+   "icon": "♣",
+   "influence": 0.6,
+   "satisfaction": 0.4,
+   "groups": [
+    "rural"
+   ],
+   "description": "La voix des exploitants agricoles, capables de bloquer routes et préfectures.",
+   "laws": {
+    "hunting": {
+     "sunday_ban": -0.2
+    }
+   },
+   "reforms": {
+    "carbon_tax": -0.2
+   },
+   "conditions": {
+    "agriculture": 3.0
+   },
+   "demands": [
+    {
+     "id": "simplify",
+     "label": "Moins de normes et de contrôles",
+     "costBillions": 0.2,
+     "effects": [
+      {
+       "target": "quality.agriculture",
+       "amount": 0.006
+      },
+      {
+       "target": "quality.environment",
+       "amount": -0.004
+      },
+      {
+       "target": "opinion.group.rural",
+       "amount": 0.012
+      }
+     ],
+     "opposed": [
+      "ngo_environment"
+     ]
+    },
+    {
+     "id": "prices",
+     "label": "Prix plancher garantis pour les produits agricoles",
+     "costBillions": 1.0,
+     "effects": [
+      {
+       "target": "opinion.group.rural",
+       "amount": 0.015
+      },
+      {
+       "target": "economy.inflation",
+       "amount": 0.001,
+       "days": 180
+      }
+     ],
+     "opposed": [
+      "retail_lobby"
+     ]
+    }
+   ],
+   "mobilize": [
+    "farmers_protest",
+    "farmers_local"
+   ]
+  },
+  {
+   "id": "employers_big",
+   "label": "Patronat des grandes entreprises",
+   "kind": "employers",
+   "icon": "€",
+   "influence": 0.8,
+   "satisfaction": 0.55,
+   "groups": [
+    "high_income",
+    "self_employed"
+   ],
+   "description": "Les grandes entreprises et leurs fédérations : investissement, emploi, influence.",
+   "laws": {
+    "work_week": {
+     "39h": 0.25,
+     "32h": -0.35
+    },
+    "minimum_wage": {
+     "boost": -0.2,
+     "regional": 0.15
+    },
+    "sunday_work": {
+     "free": 0.15
+    },
+    "strike_service": {
+     "guaranteed": 0.15
+    },
+    "unemployment_rules": {
+     "strict": 0.15,
+     "generous": -0.15
+    },
+    "lobbying": {
+     "strict": -0.1
+    }
+   },
+   "reforms": {
+    "pension_age_65": 0.2,
+    "labour_code": 0.25,
+    "wealth_tax": -0.3,
+    "carbon_tax": -0.1
+   },
+   "conditions": {
+    "businessConfidence": 2.0,
+    "businessTaxes": -2.0
+   },
+   "demands": [
+    {
+     "id": "production_taxes",
+     "label": "Baisse des impôts de production",
+     "costBillions": 6.0,
+     "effects": [
+      {
+       "target": "economy.businessConfidence",
+       "amount": 0.03
+      },
+      {
+       "target": "sector.industry",
+       "amount": 0.02
+      }
+     ],
+     "opposed": [
+      "union_militant"
+     ]
+    },
+    {
+     "id": "simplification",
+     "label": "Choc de simplification administrative",
+     "costBillions": 0.2,
+     "effects": [
+      {
+       "target": "economy.businessConfidence",
+       "amount": 0.015
+      }
+     ],
+     "opposed": []
+    }
+   ],
+   "mobilize": []
+  },
+  {
+   "id": "employers_small",
+   "label": "Patronat des PME et artisans",
+   "kind": "employers",
+   "icon": "€",
+   "influence": 0.55,
+   "satisfaction": 0.45,
+   "groups": [
+    "self_employed"
+   ],
+   "description": "Commerçants, artisans, petites entreprises : le tissu économique local.",
+   "laws": {
+    "minimum_wage": {
+     "boost": -0.25
+    },
+    "sunday_work": {
+     "free": 0.1
+    },
+    "work_week": {
+     "32h": -0.3
+    }
+   },
+   "reforms": {
+    "labour_code": 0.15
+   },
+   "conditions": {
+    "consumerConfidence": 2.0
+   },
+   "demands": [
+    {
+     "id": "charges",
+     "label": "Baisse des charges sur les bas salaires",
+     "costBillions": 3.0,
+     "effects": [
+      {
+       "target": "opinion.group.self_employed",
+       "amount": 0.02
+      },
+      {
+       "target": "economy.unemployment",
+       "amount": -0.002
+      }
+     ],
+     "opposed": []
+    }
+   ],
+   "mobilize": []
+  },
+  {
+   "id": "church",
+   "label": "Église catholique",
+   "kind": "religion",
+   "icon": "✚",
+   "influence": 0.45,
+   "satisfaction": 0.55,
+   "groups": [
+    "seniors",
+    "rural"
+   ],
+   "description": "Premier culte de France, attentif aux questions de société et de fin de vie.",
+   "laws": {
+    "end_of_life": {
+     "assisted": -0.35
+    },
+    "surrogacy": {
+     "ethical": -0.3
+    },
+    "cannabis": {
+     "legal": -0.15
+    },
+    "death_penalty": {
+     "terrorism": -0.2
+    }
+   },
+   "reforms": {},
+   "conditions": {},
+   "demands": [
+    {
+     "id": "heritage",
+     "label": "Plan pour les églises et le patrimoine religieux",
+     "costBillions": 0.3,
+     "effects": [
+      {
+       "target": "opinion.group.seniors",
+       "amount": 0.006
+      },
+      {
+       "target": "opinion.group.rural",
+       "amount": 0.004
+      }
+     ],
+     "opposed": [
+      "secular"
+     ]
+    }
+   ],
+   "mobilize": [
+    "city_demonstration"
+   ]
+  },
+  {
+   "id": "muslim_council",
+   "label": "Culte musulman",
+   "kind": "religion",
+   "icon": "✚",
+   "influence": 0.4,
+   "satisfaction": 0.45,
+   "groups": [
+    "urban",
+    "young"
+   ],
+   "description": "Représentation du deuxième culte de France, sensible aux débats sur la laïcité.",
+   "laws": {
+    "secularism": {
+     "public_space": -0.4,
+     "relaxed": 0.2
+    },
+    "nationality": {
+     "abolished": -0.3,
+     "restricted": -0.15
+    },
+    "family_reunification": {
+     "suspended": -0.25
+    },
+    "facial_recognition": {
+     "general": -0.1
+    }
+   },
+   "reforms": {},
+   "conditions": {},
+   "demands": [
+    {
+     "id": "imams",
+     "label": "Formation des imams en France",
+     "costBillions": 0.05,
+     "effects": [
+      {
+       "target": "quality.security",
+       "amount": 0.003
+      }
+     ],
+     "opposed": []
+    }
+   ],
+   "mobilize": [
+    "city_demonstration",
+    "urban_riots"
+   ]
+  },
+  {
+   "id": "jewish_council",
+   "label": "Communautés juives",
+   "kind": "religion",
+   "icon": "✚",
+   "influence": 0.35,
+   "satisfaction": 0.55,
+   "groups": [
+    "urban"
+   ],
+   "description": "Institutions représentatives des Français de confession juive, attentives à la sécurité.",
+   "laws": {
+    "secularism": {
+     "public_space": -0.15
+    },
+    "mass_surveillance": {
+     "extended": 0.05
+    }
+   },
+   "reforms": {},
+   "conditions": {
+    "security": 3.0
+   },
+   "demands": [
+    {
+     "id": "protection",
+     "label": "Protection renforcée des lieux de culte et des écoles",
+     "costBillions": 0.15,
+     "effects": [
+      {
+       "target": "quality.security",
+       "amount": 0.003
+      }
+     ],
+     "opposed": []
+    }
+   ],
+   "mobilize": []
+  },
+  {
+   "id": "protestants",
+   "label": "Fédération protestante",
+   "kind": "religion",
+   "icon": "✚",
+   "influence": 0.25,
+   "satisfaction": 0.55,
+   "groups": [
+    "adults"
+   ],
+   "description": "Les Églises protestantes, engagées sur l'accueil des réfugiés.",
+   "laws": {
+    "family_reunification": {
+     "suspended": -0.25,
+     "strict": -0.1
+    },
+    "end_of_life": {
+     "assisted": -0.1
+    }
+   },
+   "reforms": {},
+   "conditions": {},
+   "demands": [
+    {
+     "id": "refugees",
+     "label": "Accueil digne des réfugiés",
+     "costBillions": 0.4,
+     "effects": [
+      {
+       "target": "demography.immigration",
+       "amount": 0.02
+      },
+      {
+       "target": "opinion.group.urban",
+       "amount": 0.004
+      }
+     ],
+     "opposed": []
+    }
+   ],
+   "mobilize": []
+  },
+  {
+   "id": "secular",
+   "label": "Mouvement laïque",
+   "kind": "religion",
+   "icon": "⚖",
+   "influence": 0.35,
+   "satisfaction": 0.5,
+   "groups": [
+    "civil_servants",
+    "urban"
+   ],
+   "description": "Associations de défense de la laïcité et de l'école publique.",
+   "laws": {
+    "secularism": {
+     "public_space": 0.15,
+     "relaxed": -0.3
+    },
+    "end_of_life": {
+     "assisted": 0.2
+    },
+    "surrogacy": {
+     "ethical": 0.05
+    }
+   },
+   "reforms": {},
+   "conditions": {},
+   "demands": [
+    {
+     "id": "school",
+     "label": "Moyens pour l'école publique",
+     "costBillions": 1.0,
+     "effects": [
+      {
+       "target": "quality.education",
+       "amount": 0.006
+      }
+     ],
+     "opposed": [
+      "church"
+     ]
+    }
+   ],
+   "mobilize": []
+  },
+  {
+   "id": "oil_lobby",
+   "label": "Industrie pétrolière",
+   "kind": "lobby",
+   "icon": "⛁",
+   "influence": 0.5,
+   "satisfaction": 0.5,
+   "groups": [
+    "high_income"
+   ],
+   "description": "Raffineurs et distributeurs de carburant.",
+   "laws": {},
+   "reforms": {
+    "carbon_tax": -0.3,
+    "renewables_plan": -0.1
+   },
+   "conditions": {
+    "energy": 1.0
+   },
+   "demands": [
+    {
+     "id": "fuel_tax",
+     "label": "Gel de la taxe sur les carburants",
+     "costBillions": 2.0,
+     "effects": [
+      {
+       "target": "opinion.group.rural",
+       "amount": 0.012
+      },
+      {
+       "target": "quality.environment",
+       "amount": -0.004
+      }
+     ],
+     "opposed": [
+      "ngo_environment"
+     ]
+    }
+   ],
+   "mobilize": [
+    "fuel_blockade"
+   ]
+  },
+  {
+   "id": "pharma_lobby",
+   "label": "Industrie pharmaceutique",
+   "kind": "lobby",
+   "icon": "✚",
+   "influence": 0.45,
+   "satisfaction": 0.5,
+   "groups": [
+    "high_income"
+   ],
+   "description": "Laboratoires et fabricants de médicaments.",
+   "laws": {},
+   "reforms": {},
+   "conditions": {},
+   "demands": [
+    {
+     "id": "prices",
+     "label": "Revalorisation du prix des médicaments",
+     "costBillions": 1.0,
+     "effects": [
+      {
+       "target": "sector.health",
+       "amount": 0.02
+      },
+      {
+       "target": "budget.oneOff",
+       "amount": 0.5
+      }
+     ],
+     "opposed": [
+      "union_public"
+     ]
+    }
+   ],
+   "mobilize": []
+  },
+  {
+   "id": "agrifood_lobby",
+   "label": "Industrie agroalimentaire",
+   "kind": "lobby",
+   "icon": "♣",
+   "influence": 0.45,
+   "satisfaction": 0.5,
+   "groups": [
+    "rural"
+   ],
+   "description": "Grands groupes de l'alimentation et de la boisson.",
+   "laws": {
+    "sunday_work": {
+     "free": 0.05
+    }
+   },
+   "reforms": {},
+   "conditions": {},
+   "demands": [
+    {
+     "id": "labels",
+     "label": "Assouplir l'étiquetage nutritionnel",
+     "costBillions": 0.0,
+     "effects": [
+      {
+       "target": "sector.agrifood",
+       "amount": 0.01
+      },
+      {
+       "target": "quality.health",
+       "amount": -0.003
+      }
+     ],
+     "opposed": [
+      "ngo_consumers"
+     ]
+    }
+   ],
+   "mobilize": []
+  },
+  {
+   "id": "tech_lobby",
+   "label": "Géants du numérique",
+   "kind": "lobby",
+   "icon": "◎",
+   "influence": 0.55,
+   "satisfaction": 0.5,
+   "groups": [
+    "young",
+    "high_income"
+   ],
+   "description": "Plateformes et grandes entreprises du numérique.",
+   "laws": {
+    "social_media_minors": {
+     "under15": -0.3
+    },
+    "internet_control": {
+     "blocking": -0.2,
+     "filtered": -0.5
+    },
+    "disinformation": {
+     "permanent": -0.2
+    }
+   },
+   "reforms": {},
+   "conditions": {},
+   "demands": [
+    {
+     "id": "data",
+     "label": "Assouplir les règles sur les données",
+     "costBillions": 0.0,
+     "effects": [
+      {
+       "target": "sector.tech",
+       "amount": 0.02
+      }
+     ],
+     "opposed": [
+      "ngo_consumers"
+     ]
+    }
+   ],
+   "mobilize": []
+  },
+  {
+   "id": "nuclear_lobby",
+   "label": "Filière nucléaire",
+   "kind": "lobby",
+   "icon": "☢",
+   "influence": 0.5,
+   "satisfaction": 0.55,
+   "groups": [
+    "civil_servants"
+   ],
+   "description": "Exploitant, constructeurs et sous-traitants des centrales.",
+   "laws": {},
+   "reforms": {
+    "nuclear_program": 0.3,
+    "renewables_plan": -0.05
+   },
+   "conditions": {},
+   "demands": [
+    {
+     "id": "epr",
+     "label": "Commande de nouveaux réacteurs",
+     "costBillions": 4.0,
+     "effects": [
+      {
+       "target": "sector.energy",
+       "amount": 0.03
+      },
+      {
+       "target": "sector.industry",
+       "amount": 0.01
+      }
+     ],
+     "opposed": [
+      "ngo_environment"
+     ]
+    }
+   ],
+   "mobilize": []
+  },
+  {
+   "id": "defense_lobby",
+   "label": "Industrie de défense",
+   "kind": "lobby",
+   "icon": "⚔",
+   "influence": 0.5,
+   "satisfaction": 0.55,
+   "groups": [
+    "high_income"
+   ],
+   "description": "Constructeurs d'avions, de navires et de blindés.",
+   "laws": {},
+   "reforms": {
+    "defense_programming": 0.3
+   },
+   "conditions": {},
+   "demands": [
+    {
+     "id": "orders",
+     "label": "Commandes pluriannuelles garanties",
+     "costBillions": 3.0,
+     "effects": [
+      {
+       "target": "sector.aerospace",
+       "amount": 0.03
+      },
+      {
+       "target": "military.readiness",
+       "amount": 0.01
+      }
+     ],
+     "opposed": []
+    }
+   ],
+   "mobilize": []
+  },
+  {
+   "id": "banking_lobby",
+   "label": "Banques et assurances",
+   "kind": "lobby",
+   "icon": "€",
+   "influence": 0.55,
+   "satisfaction": 0.55,
+   "groups": [
+    "high_income"
+   ],
+   "description": "Les grandes banques et compagnies d'assurance.",
+   "laws": {},
+   "reforms": {
+    "wealth_tax": -0.2
+   },
+   "conditions": {
+    "businessConfidence": 1.0
+   },
+   "demands": [
+    {
+     "id": "rules",
+     "label": "Assouplir les règles prudentielles",
+     "costBillions": 0.0,
+     "effects": [
+      {
+       "target": "sector.banking",
+       "amount": 0.02
+      },
+      {
+       "target": "economy.businessConfidence",
+       "amount": 0.005
+      }
+     ],
+     "opposed": [
+      "ngo_consumers"
+     ]
+    }
+   ],
+   "mobilize": []
+  },
+  {
+   "id": "retail_lobby",
+   "label": "Grande distribution",
+   "kind": "lobby",
+   "icon": "▣",
+   "influence": 0.45,
+   "satisfaction": 0.5,
+   "groups": [
+    "middle_income"
+   ],
+   "description": "Hypermarchés et enseignes nationales.",
+   "laws": {
+    "sunday_work": {
+     "free": 0.25
+    }
+   },
+   "reforms": {},
+   "conditions": {},
+   "demands": [
+    {
+     "id": "negotiations",
+     "label": "Liberté dans les négociations avec les producteurs",
+     "costBillions": 0.0,
+     "effects": [
+      {
+       "target": "sector.retail",
+       "amount": 0.015
+      },
+      {
+       "target": "opinion.group.rural",
+       "amount": -0.008
+      }
+     ],
+     "opposed": [
+      "farmers_union"
+     ]
+    }
+   ],
+   "mobilize": []
+  },
+  {
+   "id": "hunters",
+   "label": "Chasseurs",
+   "kind": "lobby",
+   "icon": "♣",
+   "influence": 0.35,
+   "satisfaction": 0.55,
+   "groups": [
+    "rural"
+   ],
+   "description": "Un million de pratiquants, très présents dans les campagnes.",
+   "laws": {
+    "hunting": {
+     "sunday_ban": -0.4
+    },
+    "firearms": {
+     "relaxed": 0.1
+    }
+   },
+   "reforms": {},
+   "conditions": {},
+   "demands": [
+    {
+     "id": "species",
+     "label": "Élargir la liste des espèces chassables",
+     "costBillions": 0.0,
+     "effects": [
+      {
+       "target": "opinion.group.rural",
+       "amount": 0.006
+      },
+      {
+       "target": "quality.environment",
+       "amount": -0.003
+      }
+     ],
+     "opposed": [
+      "ngo_environment"
+     ]
+    }
+   ],
+   "mobilize": []
+  },
+  {
+   "id": "ngo_environment",
+   "label": "Associations écologistes",
+   "kind": "ngo",
+   "icon": "♣",
+   "influence": 0.5,
+   "satisfaction": 0.35,
+   "groups": [
+    "young",
+    "urban"
+   ],
+   "description": "Grandes ONG environnementales, influentes chez les jeunes.",
+   "laws": {},
+   "reforms": {
+    "carbon_tax": 0.25,
+    "renewables_plan": 0.3,
+    "nuclear_program": -0.15
+   },
+   "conditions": {
+    "environment": 3.0
+   },
+   "demands": [
+    {
+     "id": "climate",
+     "label": "Loi climat ambitieuse",
+     "costBillions": 2.0,
+     "effects": [
+      {
+       "target": "quality.environment",
+       "amount": 0.012
+      },
+      {
+       "target": "opinion.group.young",
+       "amount": 0.012
+      },
+      {
+       "target": "economy.businessConfidence",
+       "amount": -0.01
+      }
+     ],
+     "opposed": [
+      "oil_lobby",
+      "farmers_union"
+     ]
+    }
+   ],
+   "mobilize": [
+    "city_demonstration"
+   ]
+  },
+  {
+   "id": "ngo_rights",
+   "label": "Défense des droits de l'homme",
+   "kind": "ngo",
+   "icon": "⚖",
+   "influence": 0.4,
+   "satisfaction": 0.5,
+   "groups": [
+    "urban",
+    "young"
+   ],
+   "description": "Associations de défense des libertés publiques.",
+   "laws": {
+    "mass_surveillance": {
+     "extended": -0.3,
+     "restricted": 0.2
+    },
+    "facial_recognition": {
+     "general": -0.4,
+     "events": -0.1
+    },
+    "death_penalty": {
+     "terrorism": -0.5
+    },
+    "right_to_protest": {
+     "restricted": -0.3
+    },
+    "internet_control": {
+     "filtered": -0.4,
+     "blocking": -0.15
+    },
+    "press_sources": {
+     "strong": 0.2,
+     "weakened": -0.3
+    },
+    "police_cameras": {
+     "mandatory": 0.15
+    }
+   },
+   "reforms": {},
+   "conditions": {},
+   "demands": [
+    {
+     "id": "prisons",
+     "label": "Fin de la surpopulation carcérale",
+     "costBillions": 0.8,
+     "effects": [
+      {
+       "target": "quality.justice",
+       "amount": 0.006
+      }
+     ],
+     "opposed": []
+    }
+   ],
+   "mobilize": [
+    "city_demonstration"
+   ]
+  },
+  {
+   "id": "ngo_consumers",
+   "label": "Associations de consommateurs",
+   "kind": "ngo",
+   "icon": "▣",
+   "influence": 0.35,
+   "satisfaction": 0.5,
+   "groups": [
+    "middle_income",
+    "low_income"
+   ],
+   "description": "Défense des consommateurs et des usagers.",
+   "laws": {},
+   "reforms": {},
+   "conditions": {
+    "purchasingPower": 2.0
+   },
+   "demands": [
+    {
+     "id": "prices",
+     "label": "Encadrement des prix des produits de première nécessité",
+     "costBillions": 0.5,
+     "effects": [
+      {
+       "target": "opinion.group.low_income",
+       "amount": 0.012
+      },
+      {
+       "target": "sector.retail",
+       "amount": -0.01
+      }
+     ],
+     "opposed": [
+      "retail_lobby"
+     ]
+    }
+   ],
+   "mobilize": []
+  }
+ ]
+}

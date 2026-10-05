@@ -22,6 +22,7 @@
  "sectors": "countries/FRA/sectors.json",
  "careers": "countries/FRA/careers.json",
  "laws": "countries/FRA/laws.json",
+ "actors": "countries/FRA/actors.json",
  "institutions": {
   "headOfStateTitle": "Président de la République",
   "headOfGovernmentTitle": "Premier ministre",

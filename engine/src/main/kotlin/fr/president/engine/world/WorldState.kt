@@ -77,6 +77,7 @@ class WorldState(
     val market: fr.president.engine.economy.MarketState = fr.president.engine.economy.MarketState(),
     val eu: fr.president.engine.diplomacy.EuState = fr.president.engine.diplomacy.EuState(),
     val laws: fr.president.engine.government.LawState = fr.president.engine.government.LawState(),
+    val actors: fr.president.engine.politics.ActorsState = fr.president.engine.politics.ActorsState(),
 ) {
     val playerCountry: CountryState get() = countries.getValue(player.countryId)
 

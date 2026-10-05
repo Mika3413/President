@@ -42,7 +42,12 @@ class EffectApplier(private val ctx: SimulationContext) {
         }
         if (!ctx.rng.chance(spec.amount.coerceIn(0.0, 1.0))) return
         // La suite garde le même territoire (ou pays) que l'épisode précédent quand c'est possible.
-        val scopeId = scope?.id?.takeIf { scope.type == def.scope }
+        // Sans territoire hérité, une suite locale (manifestation, émeutes...) éclate dans une grande ville ou un département.
+        val scopeId = scope?.id?.takeIf { scope.type == def.scope } ?: when (def.scope) {
+            EventScope.CITY -> ctx.playerData.territory?.cities?.filter { it.rank <= def.maxCityRank }?.takeIf { it.isNotEmpty() }?.let { ctx.rng.pick(it).id }
+            EventScope.DEPARTMENT -> ctx.state.territory.departments.keys.filter { it.length < 3 }.takeIf { it.isNotEmpty() }?.let { ctx.rng.pick(it) }
+            else -> null
+        }
         if (scopeId == null && def.scope != EventScope.NATIONAL) {
             ctx.log("effects", "Suite $eventId ignorée : territoire incompatible ($source)")
             return

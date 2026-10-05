@@ -44,6 +44,8 @@ data class CountryDefinition(
     val careers: String? = null,
     /** Catalogue des lois (facultatif). */
     val laws: String? = null,
+    /** Acteurs organisés : syndicats, patronat, cultes, lobbies (facultatif). */
+    val actors: String? = null,
     val demography: fr.president.engine.government.DemographyDef? = null,
 )
 
