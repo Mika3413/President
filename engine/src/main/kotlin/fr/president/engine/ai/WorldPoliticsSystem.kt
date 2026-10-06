@@ -84,7 +84,7 @@ class WorldPoliticsSystem : SimulationSystem {
         val lb = ctx.state.characters[ctx.state.countries.getValue(b).leaderId] ?: return
         val tension = (la.trait(Traits.AGGRESSIVENESS) + lb.trait(Traits.AGGRESSIVENESS)) / 2
         val openness = (la.trait(Traits.OPENNESS) + lb.trait(Traits.OPENNESS)) / 2
-        val (na, nb) = ctx.db.country(a).definition.name to ctx.db.country(b).definition.name
+        val (na, nb) = fr.president.engine.data.CountryNames(ctx.db.country(a).definition).the to fr.president.engine.data.CountryNames(ctx.db.country(b).definition).the
         when {
             ctx.rng.chance(K.TENSION_CHANCE * tension) -> {
                 remember(ctx, a, b, "DISAGREEMENT", -K.INTERACTION_WEIGHT, "différend bilatéral")
@@ -92,7 +92,7 @@ class WorldPoliticsSystem : SimulationSystem {
             }
             ctx.rng.chance(K.COOPERATION_CHANCE * openness) -> {
                 remember(ctx, a, b, "AGREEMENT_SIGNED", K.INTERACTION_WEIGHT, "accord bilatéral")
-                ctx.notifications.news(NotificationCategory.DIPLOMACY, "$na et $nb signent un accord de coopération", a)
+                ctx.notifications.news(NotificationCategory.DIPLOMACY, "${na.replaceFirstChar { it.uppercase() }} et $nb signent un accord de coopération", a)
             }
         }
     }
