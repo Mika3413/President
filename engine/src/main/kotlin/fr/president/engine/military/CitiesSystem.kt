@@ -1,5 +1,9 @@
 package fr.president.engine.military
 
+import fr.president.engine.data.theCountry
+import fr.president.engine.data.ofCountry
+import fr.president.engine.data.toCountry
+
 import fr.president.engine.data.WorldCityDef
 import fr.president.engine.notifications.NotificationCategory
 import fr.president.engine.notifications.Urgency
@@ -48,8 +52,8 @@ class CitiesSystem : SimulationSystem {
             before == player || city.country == player -> {
                 ctx.effects.trigger(fr.president.engine.effects.EffectSpec("opinion.national", if (city.capital) -CAPITAL_GAIN else -CITY_GAIN), null, emptyMap(), "city")
                 ctx.notifications.post(NotificationCategory.MILITARY, Urgency.URGENT, "${city.name} est tombée",
-                    "Les forces de ${name(holder)} contrôlent désormais $what.", city.id, journal = false)
-                journal.add("Guerre", "Perte de ${city.name} au profit de ${name(holder)}", Tone.BAD)
+                    "Les forces ${ctx.db.ofCountry(holder)} contrôlent désormais $what.", city.id, journal = false)
+                journal.add("Guerre", "Perte de ${city.name} au profit ${ctx.db.ofCountry(holder)}", Tone.BAD)
             }
             holder == city.country -> ctx.notifications.news(NotificationCategory.MILITARY, "${name(city.country)} reprend ${city.name}", city.id)
             else -> ctx.notifications.news(NotificationCategory.MILITARY, "${name(holder)} s'empare de ${city.name}", city.id)

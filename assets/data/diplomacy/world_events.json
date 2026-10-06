@@ -1083,7 +1083,7 @@
   {
    "id": "trade_deal",
    "category": "diplomatie",
-   "headline": "Accord commercial entre {A} et {B}",
+   "headline": "Accord commercial entre {le_A} et {le_B}",
    "detail": "Les droits de douane tombent entre {le_A} et {le_B}.",
    "chance": 0.25,
    "effects": [
@@ -1114,7 +1114,7 @@
   {
    "id": "diplomatic_spat",
    "category": "diplomatie",
-   "headline": "Crise diplomatique entre {A} et {B}",
+   "headline": "Crise diplomatique entre {le_A} et {le_B}",
    "detail": "Ambassadeurs rappelés, déclarations hostiles : le ton monte entre {le_A} et {le_B}.",
    "chance": 0.3,
    "effects": [
@@ -1164,7 +1164,7 @@
   {
    "id": "trade_war",
    "category": "diplomatie",
-   "headline": "Guerre commerciale entre {A} et {B}",
+   "headline": "Guerre commerciale entre {le_A} et {le_B}",
    "detail": "Taxes à 25 % de part et d'autre : {le_A} et {le_B} s'affrontent sur le commerce.",
    "chance": 0.12,
    "effects": [
@@ -1242,7 +1242,7 @@
   {
    "id": "border_incident",
    "category": "conflit",
-   "headline": "Incident à la frontière entre {A} et {B}",
+   "headline": "Incident à la frontière entre {le_A} et {le_B}",
    "detail": "Des tirs ont été échangés ; chaque camp accuse l'autre.",
    "chance": 0.08,
    "effects": [
@@ -1281,7 +1281,7 @@
   {
    "id": "spy_scandal",
    "category": "diplomatie",
-   "headline": "Affaire d'espionnage entre {A} et {B}",
+   "headline": "Affaire d'espionnage entre {le_A} et {le_B}",
    "detail": "Des diplomates {de_A} sont expulsés {de_B} pour espionnage.",
    "chance": 0.15,
    "effects": [
@@ -1370,7 +1370,7 @@
   {
    "id": "summit_failure",
    "category": "diplomatie",
-   "headline": "Échec du sommet entre {A} et {B}",
+   "headline": "Échec du sommet entre {le_A} et {le_B}",
    "detail": "Les deux dirigeants se quittent sans accord, sur un constat de désaccord.",
    "chance": 0.15,
    "effects": [
@@ -1398,7 +1398,7 @@
   {
    "id": "energy_pact",
    "category": "diplomatie",
-   "headline": "Pacte énergétique entre {A} et {B}",
+   "headline": "Pacte énergétique entre {le_A} et {le_B}",
    "detail": "Gaz, pétrole ou électricité : {le_A} et {le_B} sécurisent leurs approvisionnements.",
    "chance": 0.12,
    "effects": [
@@ -1425,7 +1425,7 @@
   {
    "id": "migration_dispute",
    "category": "diplomatie",
-   "headline": "Migrants : dispute entre {A} et {B}",
+   "headline": "Migrants : dispute entre {le_A} et {le_B}",
    "detail": "Chacun accuse l'autre de laisser passer les migrants.",
    "chance": 0.1,
    "effects": [
@@ -1506,7 +1506,7 @@
   {
    "id": "reconciliation",
    "category": "diplomatie",
-   "headline": "Réconciliation historique entre {A} et {B}",
+   "headline": "Réconciliation historique entre {le_A} et {le_B}",
    "detail": "Après des années de brouille, les deux pays tournent la page.",
    "chance": 0.06,
    "effects": [

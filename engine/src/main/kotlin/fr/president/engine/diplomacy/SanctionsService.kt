@@ -1,5 +1,9 @@
 package fr.president.engine.diplomacy
 
+import fr.president.engine.data.theCountry
+import fr.president.engine.data.ofCountry
+import fr.president.engine.data.toCountry
+
 import fr.president.engine.notifications.NotificationCategory
 import fr.president.engine.notifications.Urgency
 import fr.president.engine.simulation.SimulationContext
@@ -34,7 +38,7 @@ class SanctionsService(private val ctx: SimulationContext) {
             if (towardsPlayer - towardsTarget > FOLLOW_GAP && ctx.rng.chance(FOLLOW_CHANCE)) impose(c, target, announce = false)
         }
         val count = ctx.state.diplomacy.sanctions.count { it.target == target }
-        ctx.notifications.post(NotificationCategory.DIPLOMACY, Urgency.INFO, "Sanctions contre ${name(target)}", "$count pays appliquent désormais des sanctions.")
+        ctx.notifications.post(NotificationCategory.DIPLOMACY, Urgency.INFO, "Sanctions contre ${ctx.db.theCountry(target)}", "$count pays appliquent désormais des sanctions.")
     }
 
     /** Effet annuel sur la croissance d'un pays (négatif) dû aux sanctions qu'il subit ou impose. */

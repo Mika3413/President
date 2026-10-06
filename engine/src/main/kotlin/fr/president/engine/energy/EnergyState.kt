@@ -16,4 +16,6 @@ class EnergyState(
     val referenceDemandTWh: Double = demandTWh,
     /** Capacités ajoutées par les grands programmes (MW par parc agrégé). */
     val extraCapacityMW: MutableMap<String, Double> = mutableMapOf(),
+    /** Dernière alerte sur les livraisons d'électricité non honorées. */
+    var deliveryAlertAt: fr.president.engine.time.WorldTime? = null,
 )

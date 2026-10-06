@@ -148,7 +148,8 @@ class TradeSystem : SimulationSystem {
             energy += c.energyWeight * (s.effective / c.basePrice - 1)
             s.history += s.price
             if (s.history.size > HISTORY) s.history.removeAt(0)
-            if (change > ALERT) ctx.notifications.post(NotificationCategory.ECONOMY, Urgency.IMPORTANT, "Flambée du cours : ${c.label.lowercase()}",
+            // Un rebond depuis un cours bas reste une simple information ; au-dessus de la normale, c'est une alerte.
+            if (change > ALERT) ctx.notifications.post(NotificationCategory.ECONOMY, if (s.effective > c.basePrice * HIGH_PRICE) Urgency.IMPORTANT else Urgency.INFO, "Flambée du cours : ${c.label.lowercase()}",
                 "Le prix payé par la France bondit de ${Math.round(change * 100)} % ce mois-ci. Contrats à long terme et stocks stratégiques peuvent amortir le choc (panneau « Commerce »).", null)
         }
         t.energyFactor = (1 + energy).coerceIn(MIN_ENERGY_FACTOR, MAX_ENERGY_FACTOR)
@@ -267,6 +268,7 @@ class TradeSystem : SimulationSystem {
         private const val MAX_PRICE = 3.5
         private const val HISTORY = 120
         private const val ALERT = 0.15
+        private const val HIGH_PRICE = 1.3
         private const val MIN_ENERGY_FACTOR = 0.7
         private const val MAX_ENERGY_FACTOR = 2.0
         private const val WIN_SHOCK = 0.04

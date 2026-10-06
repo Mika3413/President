@@ -138,7 +138,13 @@ class IntelSystem : SimulationSystem {
             if (next > LEAK_LEVEL && ctx.rng.chance(LEAK_CHANCE * next * (1.5 - s.capacity))) {
                 s.foreignSpying[c] = next - LEAK_RELIEF
                 val event = if (ctx.rng.chance(0.5)) "cyber_espionage" else "defense_leak"
-                if (ctx.db.events.any { it.id == event }) ctx.scheduler.schedule(ScheduledAction.EventLaunch(ctx.now.plusHours(2), event, c))
+                val def = ctx.db.events.firstOrNull { it.id == event }
+                // Le délai propre à l'événement s'applique aussi ici : pas de fuite tous les trois mois.
+                val recent = ctx.state.events.lastFired[event]?.let { it.daysUntil(ctx.now) < (def?.cooldownDays ?: 0.0) } ?: false
+                if (def != null && !recent) {
+                    ctx.state.events.lastFired[event] = ctx.now
+                    ctx.scheduler.schedule(ScheduledAction.EventLaunch(ctx.now.plusHours(2), event, c))
+                }
             }
         }
         if (s.surveillance) ctx.state.playerCountry.economy.pendingOneOffBillions += SURVEILLANCE_COST

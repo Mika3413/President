@@ -1,5 +1,9 @@
 package fr.president.engine.diplomacy
 
+import fr.president.engine.data.theCountry
+import fr.president.engine.data.ofCountry
+import fr.president.engine.data.toCountry
+
 import fr.president.engine.inbox.InboxMessage
 import fr.president.engine.inbox.MessageOption
 import fr.president.engine.inbox.MessageOrigin
@@ -53,7 +57,7 @@ class UltimatumService(private val ctx: SimulationContext) {
     private fun comply(country: String, demander: String, demand: Demand) {
         when (demand) {
             Demand.END_WAR -> geo.ongoingWars().filter { country in it.participants }.forEach {
-                WarService(ctx).peace(it, keepOccupied = false, outcome = "${name(country)} met fin à la guerre sous la pression de ${name(demander)}.")
+                WarService(ctx).peace(it, keepOccupied = false, outcome = "${name(country)} met fin à la guerre sous la pression ${ctx.db.ofCountry(demander)}.")
             }
             Demand.WITHDRAW -> {
                 ctx.state.military.occupied.filter { it.value == country }.keys.forEach { ctx.state.military.occupied.remove(it) }

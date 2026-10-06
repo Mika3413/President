@@ -14,6 +14,11 @@ class Toasts(private val ui: Ui, private val onFocus: (String) -> Unit) {
     val root = VerticalGroup().apply { space(4f); top() }
     /** Un panneau est ouvert : bandeaux réduits au titre, pour ne pas cacher ce qu'on lit. */
     var compact = false
+        set(value) {
+            // À l'ouverture d'un panneau, les grands bandeaux déjà affichés s'effacent : ils masqueraient la lecture.
+            if (value && !field) clear()
+            field = value
+        }
 
     fun clear() = root.clearChildren()
 

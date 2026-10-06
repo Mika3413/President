@@ -33,7 +33,12 @@ class DialogueContextBuilder(private val ctx: SimulationContext) {
 
     fun sender(character: Character?, title: String): DialogueContextBuilder {
         variables["senderTitle"] = title
-        if (character == null) return this
+        if (character == null) {
+            // Poste vacant : le courrier part du cabinet, qui assure l'intérim.
+            variables["sender"] = "Le directeur de cabinet, par intérim"
+            variables["senderLast"] = "le cabinet"
+            return this
+        }
         senderId = character.id
         variables["sender"] = character.fullName
         variables["senderLast"] = character.lastName

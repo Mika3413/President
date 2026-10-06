@@ -28,7 +28,7 @@ class AgreementSystem : SimulationSystem {
                 agreement.active = false
                 partners.forEach { service.remember(it, "AGREEMENT_RESPECTED", "accord mené à son terme") }
                 ctx.notifications.post(NotificationCategory.DIPLOMACY, Urgency.INFO, "Accord arrivé à échéance",
-                    "L'accord avec ${partners.joinToString { ctx.db.country(it).definition.name }} a pris fin. Il peut être renégocié.")
+                    "L'accord avec ${partners.joinToString { fr.president.engine.data.CountryNames(ctx.db.country(it).definition).the }} a pris fin. Il peut être renégocié.")
                 continue
             }
             val monthsSinceSigning = ctx.now.monthIndex - agreement.signedAt.monthIndex
@@ -42,16 +42,22 @@ class AgreementSystem : SimulationSystem {
 
     /** Si la production ne suffit plus à honorer les contrats, les partenaires s'en souviennent. */
     private fun checkDeliveries(ctx: SimulationContext, service: DiplomacyService) {
-        if (ctx.state.energy.committedExportTWh <= 0 || ctx.state.energy.margin >= 0) return
+        if (ctx.state.energy.committedExportTWh <= 0 || ctx.state.energy.margin >= 0) { ctx.state.energy.deliveryAlertAt = null; return }
         val receivers = ctx.state.diplomacy.agreements.filter { a -> a.active && a.clauses.any { it.type == ClauseValuator.ELECTRICITY && it.giver == ctx.state.player.countryId } }
             .flatMap { it.parties }.filter { it != ctx.state.player.countryId }.distinct()
         receivers.forEach { service.remember(it, "DELIVERY_SHORTFALL", "livraisons d'électricité") }
-        ctx.notifications.post(NotificationCategory.ENERGY, Urgency.URGENT, "Livraisons d'électricité compromises",
-            "La production nationale ne permet plus d'honorer nos contrats d'exportation. Nos partenaires s'inquiètent.")
+        // Une alerte au début de la pénurie, puis un rappel par trimestre : pas une sirène tous les mois.
+        val last = ctx.state.energy.deliveryAlertAt
+        if (last == null || last.daysUntil(ctx.now) >= ALERT_DAYS) {
+            ctx.state.energy.deliveryAlertAt = ctx.now
+            ctx.notifications.post(NotificationCategory.ENERGY, if (last == null) Urgency.URGENT else Urgency.IMPORTANT, "Livraisons d'électricité compromises",
+                "La production nationale ne permet plus d'honorer nos contrats d'exportation (${receivers.size} partenaire(s)). Produisez plus, consommez moins, ou renégociez ces contrats.")
+        }
     }
 
     private companion object {
         const val MONTHS = 12.0
+        const val ALERT_DAYS = 90.0
     }
 }
 

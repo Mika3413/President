@@ -6,6 +6,14 @@ import java.util.Locale
 
 /** Mise en forme des nombres à la française (moteur et interface). */
 object Formatting {
+    private val CONTRACTION = Regex("(?<![A-Za-zÀ-ÿ])(de|à) (Le|Les) (?=[A-ZÀ-Ý])")
+
+    /** Contracte les noms de lieux à article : « de Le Mans » → « du Mans », « à Les Abymes » → « aux Abymes ». */
+    fun contract(text: String): String = CONTRACTION.replace(text) { m ->
+        val plural = m.groupValues[2] == "Les"
+        when (m.groupValues[1]) { "de" -> if (plural) "des " else "du "; else -> if (plural) "aux " else "au " }
+    }
+
     private val symbols = DecimalFormatSymbols(Locale.FRENCH).apply { groupingSeparator = ' ' }
     private val integer = DecimalFormat("#,##0", symbols)
     private val oneDecimal = DecimalFormat("#,##0.0", symbols)

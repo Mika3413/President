@@ -56,7 +56,7 @@ class ActionBar(ui: Ui, private val session: GameSession, open: (PanelId) -> Uni
         val pending = session.state.inbox.messages.count { it.awaitingAnswer }
         inbox.setText(label(INBOX) + if (pending > 0) " ● $pending" else "")
         val unread = session.state.notifications.unreadCount
-        more.setText(label(MORE) + if (unread > 0) " ● $unread" else "")
+        more.setText(label(MORE) + if (unread > 0) " ● ${if (unread > 99) "99+" else unread}" else "")
     }
 
     private companion object {

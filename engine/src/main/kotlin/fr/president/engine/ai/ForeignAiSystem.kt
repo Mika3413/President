@@ -63,7 +63,8 @@ class ForeignAiSystem : SimulationSystem {
         val need = if (ctx.db.country(country.id).definition.strategic.electricityInterconnected) electricityNeed(ctx, country) else 0.0
         val geo = fr.president.engine.military.Geopolitics(ctx)
         when {
-            geo.isAtWar(country.id) && !geo.isAtWar(player) && relation > AID_RELATION && !geo.atWar(country.id, player) -> {
+            geo.isAtWar(country.id) && !geo.isAtWar(player) && relation > AID_RELATION && !geo.atWar(country.id, player) &&
+                !hasAgreement(ctx, country.id, "MILITARY_AID") -> {
                 ctx.log("ai", "${country.id} en guerre demande une aide militaire à la France")
                 DiplomacyService(ctx).aiPropose(
                     country.id,
@@ -126,8 +127,11 @@ class ForeignAiSystem : SimulationSystem {
     private fun recentlyRebuffed(ctx: SimulationContext, id: String): Boolean {
         val cooldown = ctx.db.diplomacy.evaluation.aiProposalCooldownDays
         return ctx.state.diplomacy.proposals.any {
-            it.from == id && (it.status == ProposalStatus.REFUSED || it.status == ProposalStatus.EXPIRED) &&
-                it.createdAt.daysUntil(ctx.now) < cooldown
+            it.from == id && it.createdAt.daysUntil(ctx.now) < when (it.status) {
+                ProposalStatus.REFUSED, ProposalStatus.EXPIRED -> cooldown.toDouble()
+                // Même acceptée, une proposition n'est pas suivie d'une autre le mois suivant : la messagerie ne doit pas crouler.
+                else -> ACCEPTED_COOLDOWN
+            }
         }
     }
 
@@ -138,6 +142,7 @@ class ForeignAiSystem : SimulationSystem {
     private fun Double.roundTo(step: Double) = (this / step).roundToInt() * step
 
     private companion object {
+        const val ACCEPTED_COOLDOWN = 240.0
         const val MIN_INTERVAL_FACTOR = 0.5
         const val MAX_INTERVAL_FACTOR = 1.5
         const val BASE_APPROVAL = 0.45

@@ -1,5 +1,9 @@
 package fr.president.engine.diplomacy
 
+import fr.president.engine.data.theCountry
+import fr.president.engine.data.ofCountry
+import fr.president.engine.data.toCountry
+
 import fr.president.engine.dialogue.DialogueContextBuilder
 import fr.president.engine.effects.EffectSpec
 import fr.president.engine.events.InteractionOutcome
@@ -83,7 +87,7 @@ class DiplomacyService(private val ctx: SimulationContext) {
                 OPTION_NEGOTIATE -> InteractionOutcome.PARTIAL
                 else -> InteractionOutcome.REFUSED
             }
-            ctx.memory.record(leader, "diplomacy", outcome, "l'accord envisagé (${mainClauseLabel(proposal)})")
+            ctx.memory.record(leader, "diplomacy", outcome, (if (outcome == InteractionOutcome.ACCEPTED) "l'accord conclu" else "l'accord envisagé") + " (${mainClauseLabel(proposal)})")
         }
         when (optionId) {
             OPTION_ACCEPT -> {
@@ -124,7 +128,7 @@ class DiplomacyService(private val ctx: SimulationContext) {
         applyOneOffClauses(agreement)
         ctx.notifications.post(
             NotificationCategory.DIPLOMACY, Urgency.IMPORTANT,
-            "Accord signé avec ${ctx.db.country(other).definition.name}",
+            "Accord signé avec ${ctx.db.theCountry(other)}",
             describer.describeAll(proposal.clauses, proposal.from, proposal.to, proposal.durationYears), other,
         )
     }
@@ -198,7 +202,7 @@ class DiplomacyService(private val ctx: SimulationContext) {
             "response:countered" -> "${def.name} formule une contre-proposition"
             else -> "Le gouvernement ${def.adjective} vous fait une proposition"
         }
-        ctx.notifications.post(NotificationCategory.DIPLOMACY, if (withOptions) Urgency.URGENT else Urgency.IMPORTANT, title,
+        ctx.notifications.post(NotificationCategory.DIPLOMACY, if (withOptions) Urgency.IMPORTANT else Urgency.INFO, title,
             "Consultez votre messagerie pour le détail.", foreign)
     }
 

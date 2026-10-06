@@ -118,6 +118,8 @@ class UnrestSystem : SimulationSystem {
         m.peak = maxOf(m.peak, m.crowd)
         m.momentum *= if (m.conceded) CONCEDED_DECAY else MOMENTUM_DECAY
         m.momentum += m.heat * HEAT_MOMENTUM
+        // Lassitude : au-delà de deux mois, les cortèges s'usent même si la colère demeure.
+        if (m.startedAt.daysUntil(ctx.now) > FATIGUE_DAYS) m.momentum *= FATIGUE
         val banned = if (restriction < 1.0) BAN_RADICALIZATION else 0.0
         m.radicalization = (m.radicalization + RADICAL_ANGER * anger + RADICAL_HEAT * m.heat + banned - RADICAL_COOLING).coerceIn(0.0, 1.0)
         m.heat *= HEAT_DECAY
@@ -233,6 +235,8 @@ class UnrestSystem : SimulationSystem {
         private const val REVOLUTION_CHANCE = 0.08
         private const val MIN_DAYS = 7.0
         private const val END_CROWD = 15.0
+        private const val FATIGUE_DAYS = 60.0
+        private const val FATIGUE = 0.985
         private const val MAX_PAST = 12
         private const val REFERENCE_CROWD = 500.0
         private const val POPULARITY_DRAIN = 0.0004
@@ -486,7 +490,7 @@ class UnrestService(private val ctx: SimulationContext) {
         private const val NEUTRAL_APPROVAL = 0.5
         private const val RELAUNCH = 0.5
         const val MAX_MOVEMENTS = 2
-        private const val SPAWN_COOLDOWN = 90.0
+        private const val SPAWN_COOLDOWN = 180.0
         private const val START_SHARE = 0.3
         private const val MIN_START = 0.5
         private const val MAX_START = 1.5

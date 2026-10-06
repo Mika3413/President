@@ -1,5 +1,9 @@
 package fr.president.engine.military
 
+import fr.president.engine.data.theCountry
+import fr.president.engine.data.ofCountry
+import fr.president.engine.data.toCountry
+
 import fr.president.engine.data.Domain
 import fr.president.engine.effects.EffectSpec
 import fr.president.engine.notifications.NotificationCategory
@@ -124,7 +128,7 @@ class OperationsService(private val ctx: SimulationContext) {
             ctx.effects.trigger(EffectSpec("opinion.national", -0.004), null, emptyMap(), "op:strike")
             ctx.effects.trigger(EffectSpec("alliance.EU.DISAGREEMENT", -0.01), null, emptyMap(), "op:strike")
         }
-        val text = "Frappes sur les forces de $name : ${hit.size} unité(s) touchée(s)" + if (collateral) ", mais des victimes civiles sont signalées." else "."
+        val text = "Frappes sur les forces ${ctx.db.ofCountry(country)} : ${hit.size} unité(s) touchée(s)" + if (collateral) ", mais des victimes civiles sont signalées." else "."
         report("Frappes de missiles : $name", text, target, if (collateral) Tone.WARNING else Tone.GOOD)
         text
     }
@@ -148,8 +152,8 @@ class OperationsService(private val ctx: SimulationContext) {
             ctx.effects.trigger(EffectSpec("memory.$country.DISAGREEMENT", -0.06), null, emptyMap(), "op:cyber")
             ctx.effects.trigger(EffectSpec("alliance.EU.DISAGREEMENT", -0.01), null, emptyMap(), "op:cyber")
         }
-        val text = if (detected) "Cyberattaque contre $name : réussie, mais nos services ont été démasqués. Crise diplomatique."
-        else "Cyberattaque contre $name : réseaux électriques et logistique perturbés."
+        val text = if (detected) "Cyberattaque contre ${ctx.db.theCountry(country)} : réussie, mais nos services ont été démasqués. Crise diplomatique."
+        else "Cyberattaque contre ${ctx.db.theCountry(country)} : réseaux électriques et logistique perturbés."
         report("Cyberattaque : $name", text, null, if (detected) Tone.WARNING else Tone.GOOD)
         text
     }
@@ -181,8 +185,8 @@ class OperationsService(private val ctx: SimulationContext) {
                 JournalService(ctx).add("Opération", "$by frappe nos forces (${hit.size} unité(s) touchée(s))", Tone.BAD)
             }
             enemy in geo.coBelligerents(player) || geo.allied(player, enemy) ->
-                ctx.notifications.news(NotificationCategory.MILITARY, "$by frappe les forces de ${countryName(enemy)}", target)
-            else -> ctx.notifications.news(NotificationCategory.MILITARY, "Frappes de $by contre ${countryName(enemy)}", target)
+                ctx.notifications.news(NotificationCategory.MILITARY, "$by frappe les forces ${ctx.db.ofCountry(enemy)}", target)
+            else -> ctx.notifications.news(NotificationCategory.MILITARY, "Frappes de $by contre ${ctx.db.theCountry(enemy)}", target)
         }
         return true
     }
@@ -194,9 +198,9 @@ class OperationsService(private val ctx: SimulationContext) {
         units.filter { it.countryId == enemy && !it.destroyed }.forEach { it.readiness = (it.readiness - CYBER_READINESS).coerceAtLeast(0.0) }
         mark("$CYBER_KEY$actor|$enemy")
         if (enemy == player) {
-            ctx.notifications.post(NotificationCategory.SECURITY, Urgency.IMPORTANT, "Cyberattaque de ${countryName(actor)}",
+            ctx.notifications.post(NotificationCategory.SECURITY, Urgency.IMPORTANT, "Cyberattaque ${ctx.db.ofCountry(actor)}",
                 "Réseaux de l'armée et de l'énergie perturbés.", null, journal = false)
-            JournalService(ctx).add("Opération", "Cyberattaque de ${countryName(actor)} contre la France", Tone.BAD)
+            JournalService(ctx).add("Opération", "Cyberattaque ${ctx.db.ofCountry(actor)} contre la France", Tone.BAD)
         }
         return true
     }

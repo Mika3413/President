@@ -431,7 +431,7 @@ add(event("cyber_espionage", "DIPLOMACY", "Cyberespionnage : nos services accuse
  ministry="interior", scope="FOREIGN_COUNTRY", scope_cooldown=500, conditions=[{"variable": "scope.relation", "max": 0.55}]))
 
 add(event("strategic_acquisition", "ECONOMY", "Un groupe étranger veut racheter un fleuron industriel français", "Le rachat concerne une entreprise stratégique.",
- 0.0008, 300, "IMPORTANT",
+ 0.0008, 600, "IMPORTANT",
  letter("strategic_acquisition",
   [V("Rachat d'une entreprise stratégique"), V("Souveraineté industrielle : une offre de rachat {foreignOf}"), V("Contrôle des investissements étrangers")],
   [V("Un groupe {{industriel|financier}} lié {foreignTo} a déposé une offre sur une entreprise française de haute technologie."),

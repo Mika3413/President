@@ -1,5 +1,9 @@
 package fr.president.engine.diplomacy
 
+import fr.president.engine.data.theCountry
+import fr.president.engine.data.ofCountry
+import fr.president.engine.data.toCountry
+
 import fr.president.engine.military.Geopolitics
 import fr.president.engine.military.MilitarySetup
 import fr.president.engine.military.WarService
@@ -15,7 +19,7 @@ class AgreementEnactment(private val ctx: SimulationContext) {
             when (c.type) {
                 "CEASEFIRE" -> geo.warBetween(a, b)?.let { WarService(ctx).ceasefire(it, (c.params["days"] ?: DEFAULT_DAYS).toInt()) }
                 "PEACE_TREATY" -> geo.warBetween(a, b)?.let {
-                    WarService(ctx).peace(it, (c.params["keepOccupied"] ?: 0.0) >= 1, "Traité de paix entre ${name(a)} et ${name(b)}.")
+                    WarService(ctx).peace(it, (c.params["keepOccupied"] ?: 0.0) >= 1, "Traité de paix entre ${ctx.db.theCountry(a)} et ${ctx.db.theCountry(b)}.")
                 }
                 "PRISONER_EXCHANGE" -> ctx.state.opinion.groups.values.forEach { it.shock += PRISONER_OPINION }
                 "MILITARY_AID" -> militaryAid(c.giver, other(agreement, c.giver), c.params["amountBillions"] ?: 0.0)

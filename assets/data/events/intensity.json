@@ -203,7 +203,7 @@
   "hybrid_cyber": [
    "Cyberattaque ciblée : nos services soupçonnent {foreignThe}",
    "Cyberattaque massive : nos services soupçonnent {foreignThe}",
-   "Cyberattaque d'ampleur nationale attribuée à {foreignThe}",
+   "Cyberattaque d'ampleur nationale attribuée {foreignTo}",
    "Cyberattaque sans précédent : {foreignThe} mis en cause"
   ],
   "hybrid_sabotage": [

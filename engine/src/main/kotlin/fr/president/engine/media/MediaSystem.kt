@@ -74,8 +74,8 @@ class MediaSystem : SimulationSystem {
             list += Story(if (up) "unemployment_up" else "unemployment_down", MOVE, mapOf("value" to Formatting.percent(e.unemployment), "before" to Formatting.percent(unemploymentBefore)),
                 !up, economic = true, social = true, subtitle = "Le taux de chômage s'établit à ${Formatting.percent(e.unemployment)}.")
         }
-        if (e.realGrowth < WEAK_GROWTH) list += Story("growth_weak", ECONOMY, mapOf("value" to Formatting.signedPercent(e.realGrowth)), false, economic = true, subtitle = "Croissance sur un an : ${Formatting.signedPercent(e.realGrowth)}.")
-        if (e.realGrowth > STRONG_GROWTH) list += Story("growth_strong", ECONOMY, mapOf("value" to Formatting.signedPercent(e.realGrowth)), true, economic = true, subtitle = "Croissance sur un an : ${Formatting.signedPercent(e.realGrowth)}.")
+        if (e.realGrowth < WEAK_GROWTH) list += Story("growth_weak", ECONOMY, mapOf("value" to Formatting.signedPercent(e.realGrowth)), false, economic = true, subtitle = "Investissement et consommation patinent ; les économistes redoutent une hausse du chômage.")
+        if (e.realGrowth > STRONG_GROWTH) list += Story("growth_strong", ECONOMY, mapOf("value" to Formatting.signedPercent(e.realGrowth)), true, economic = true, subtitle = "Embauches et recettes fiscales en profitent ; la majorité savoure.")
         if (e.deficitRatio > HIGH_DEFICIT) list += Story("deficit_high", ECONOMY_LOW, mapOf("value" to Formatting.percent(e.deficitRatio)), false, economic = true, subtitle = "Bruxelles demande moins de 3 % de déficit.")
         if (e.debtRatio > HIGH_DEBT) list += Story("debt_high", ECONOMY_LOW, mapOf("value" to Formatting.wholePercent(e.debtRatio)), false, economic = true, subtitle = "La charge de la dette pèse sur le budget.")
         if (e.inflation > HIGH_INFLATION) list += Story("inflation_high", INFLATION, mapOf("value" to Formatting.percent(e.inflation)), false, economic = true, social = true, subtitle = "Les prix ont augmenté de ${Formatting.percent(e.inflation)} en un an.")

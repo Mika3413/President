@@ -49,3 +49,9 @@ class CountryNames(private val def: CountryDefinition) {
         )
     }
 }
+
+/** Raccourcis : « la Russie », « de la Russie », « à la Russie » à partir d'un code pays (le code lui-même s'il est inconnu). */
+fun GameDatabase.theCountry(id: String): String = countries[id]?.let { CountryNames(it.definition).the } ?: id
+fun GameDatabase.ofCountry(id: String): String = countries[id]?.let { CountryNames(it.definition).of } ?: "de $id"
+fun GameDatabase.toCountry(id: String): String = countries[id]?.let { CountryNames(it.definition).to } ?: "à $id"
+fun String.capitalized(): String = replaceFirstChar { it.uppercase() }

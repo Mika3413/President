@@ -1,5 +1,9 @@
 package fr.president.engine.readout
 
+import fr.president.engine.data.theCountry
+import fr.president.engine.data.ofCountry
+import fr.president.engine.data.toCountry
+
 import fr.president.engine.military.Geopolitics
 import fr.president.engine.military.Intelligence
 import fr.president.engine.military.UnitState
@@ -74,7 +78,7 @@ class MilitaryReadouts(private val ctx: SimulationContext) {
             val name = ctx.db.country(c).definition.name
             name to "pertes ${Formatting.integer((w.casualties[c] ?: 0).toLong())} · ${scales.describe("weariness", w.weariness[c] ?: 0.0).label.lowercase()} · ${held(c)} zone(s) tenues"
         }
-        val title = "${w.attackers.joinToString { ctx.db.country(it).definition.name }} contre ${w.defenders.joinToString { ctx.db.country(it).definition.name }}"
+        val title = "${w.attackers.joinToString { ctx.db.country(it).definition.name }} contre ${w.defenders.joinToString { ctx.db.theCountry(it) }}"
         val tone = when { w.status == WarStatus.ENDED -> Tone.NEUTRAL; ours != War.NONE -> Tone.BAD; else -> Tone.WARNING }
         return Indicator(title, status, tone, w.outcome.ifBlank { w.cause }, details)
     }

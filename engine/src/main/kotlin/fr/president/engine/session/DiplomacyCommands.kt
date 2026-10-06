@@ -1,5 +1,9 @@
 package fr.president.engine.session
 
+import fr.president.engine.data.theCountry
+import fr.president.engine.data.ofCountry
+import fr.president.engine.data.toCountry
+
 import fr.president.engine.diplomacy.Agreement
 import fr.president.engine.diplomacy.Clause
 import fr.president.engine.diplomacy.DiplomacyService
@@ -58,7 +62,7 @@ class DiplomacyCommands(private val ctx: SimulationContext) {
         fr.president.engine.diplomacy.UltimatumService(ctx).send(player, target, demand)
 
     fun declareWar(target: String) =
-        fr.president.engine.military.WarService(ctx).declare(player, target, "La France déclare la guerre à ${ctx.db.country(target).definition.name}.")
+        fr.president.engine.military.WarService(ctx).declare(player, target, "La France déclare la guerre ${ctx.db.toCountry(target)}.")
 
     fun joinWar(warId: String, defenderSide: Boolean) {
         val war = ctx.state.military.wars.firstOrNull { it.id == warId } ?: return

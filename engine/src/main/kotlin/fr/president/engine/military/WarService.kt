@@ -1,5 +1,9 @@
 package fr.president.engine.military
 
+import fr.president.engine.data.theCountry
+import fr.president.engine.data.ofCountry
+import fr.president.engine.data.toCountry
+
 import fr.president.engine.diplomacy.DiplomacyService
 import fr.president.engine.diplomacy.RelationCalculator
 import fr.president.engine.effects.EffectSpec
@@ -31,12 +35,12 @@ class WarService(private val ctx: SimulationContext) {
         ctx.state.countries.keys.filter { it != attacker }.forEach { observer ->
             val weight = if (observer == defender) AGGRESSION_VICTIM else AGGRESSION_WITNESS
             ctx.state.diplomacy.relation(observer, attacker).memories +=
-                fr.president.engine.diplomacy.DiplomaticMemory("WAR", weight, ctx.now, "agression contre ${name(defender)}")
+                fr.president.engine.diplomacy.DiplomaticMemory("WAR", weight, ctx.now, "agression contre ${ctx.db.theCountry(defender)}")
         }
         val involvesPlayer = attacker == player || defender == player
         if (attacker == player) ctx.state.player.warsThisTerm++
         ctx.notifications.post(NotificationCategory.MILITARY, Urgency.URGENT,
-            "Guerre : ${name(attacker)} contre ${name(defender)}", cause, defender)
+            "Guerre : ${name(attacker)} contre ${ctx.db.theCountry(defender)}", cause, defender)
         ctx.notifications.news(NotificationCategory.MILITARY, "${the(attacker).cap()} entre en guerre contre ${the(defender)}", defender)
         if (involvesPlayer) {
             val rally = if (defender == player) DEFENSIVE_RALLY else OFFENSIVE_COST
@@ -82,7 +86,7 @@ class WarService(private val ctx: SimulationContext) {
             subject = "Appel à la défense ${fr.president.engine.data.CountryNames(ctx.db.country(defender).definition).of}", body = text, time = ctx.now,
             category = NotificationCategory.MILITARY, origin = MessageOrigin.ALLIANCE_CALL, originId = war.id,
             options = listOf(
-                MessageOption(JOIN, "Entrer en guerre aux côtés de ${name(defender)}", "Nos forces pourront combattre"),
+                MessageOption(JOIN, "Entrer en guerre aux côtés ${ctx.db.ofCountry(defender)}", "Nos forces pourront combattre"),
                 MessageOption(SUPPORT, "Soutien sans combat", "Aide et sanctions, sans engagement de troupes"),
                 MessageOption(DECLINE, "Rester à l'écart", "Notre parole sera mise en doute"),
             ),
@@ -126,7 +130,7 @@ class WarService(private val ctx: SimulationContext) {
         war.ceasefireUntil = ctx.now.plusDays(days.toLong())
         haltOffensives(war)
         ctx.notifications.post(NotificationCategory.MILITARY, Urgency.IMPORTANT, "Cessez-le-feu",
-            "Les combats cessent pour $days jours entre ${war.attackers.joinToString { name(it) }} et ${war.defenders.joinToString { name(it) }}.")
+            "Les combats cessent pour $days jours entre ${war.attackers.joinToString { ctx.db.theCountry(it) }} et ${war.defenders.joinToString { ctx.db.theCountry(it) }}.")
     }
 
     /** Traité de paix : les zones occupées sont annexées ([keepOccupied]) ou restituées. */

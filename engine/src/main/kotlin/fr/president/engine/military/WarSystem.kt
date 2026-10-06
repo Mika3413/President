@@ -1,5 +1,9 @@
 package fr.president.engine.military
 
+import fr.president.engine.data.theCountry
+import fr.president.engine.data.ofCountry
+import fr.president.engine.data.toCountry
+
 import fr.president.engine.diplomacy.Clause
 import fr.president.engine.diplomacy.DiplomacyService
 import fr.president.engine.diplomacy.ProposalStatus
@@ -106,7 +110,7 @@ class WarSystem : SimulationSystem {
                     val annex = winning || enemyGains
                     val terms = if (annex) "avec cession des territoires occupés" else "sur la base des frontières d'avant-guerre"
                     WarService(ctx).peace(war, keepOccupied = annex,
-                        outcome = "Traité de paix entre ${ctx.db.country(country).definition.name} et ${ctx.db.country(enemy).definition.name}, $terms.")
+                        outcome = "Traité de paix entre ${ctx.db.theCountry(country)} et ${ctx.db.theCountry(enemy)}, $terms.")
                     return
                 }
             }

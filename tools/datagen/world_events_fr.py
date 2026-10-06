@@ -141,39 +141,39 @@ ev("brain_drain", "société", "{A} : les jeunes diplômés s'en vont", "Faute d
 # ---------------------------------------------------------------------------------------------
 # Entre pays
 # ---------------------------------------------------------------------------------------------
-ev("trade_deal", "diplomatie", "Accord commercial entre {A} et {B}", "Les droits de douane tombent entre {le_A} et {le_B}.",
+ev("trade_deal", "diplomatie", "Accord commercial entre {le_A} et {le_B}", "Les droits de douane tombent entre {le_A} et {le_B}.",
    0.25, [e("AB.AGREEMENT_SIGNED", 0.04), e("A.output", 0.001), e("B.output", 0.001)], [c("pairRelation", mn=0.5)], bilateral=True, tone="GOOD")
-ev("diplomatic_spat", "diplomatie", "Crise diplomatique entre {A} et {B}", "Ambassadeurs rappelés, déclarations hostiles : le ton monte entre {le_A} et {le_B}.",
+ev("diplomatic_spat", "diplomatie", "Crise diplomatique entre {le_A} et {le_B}", "Ambassadeurs rappelés, déclarations hostiles : le ton monte entre {le_A} et {le_B}.",
    0.3, [e("AB.DISAGREEMENT", -0.05)], [c("pairRelation", mx=0.45)], bilateral=True, tone="BAD")
 ev("state_visit", "diplomatie", "Visite d'État : le dirigeant {de_A} reçu {en_B}", "Le dirigeant {de_A} est reçu en grande pompe {en_B}.",
    0.3, [e("AB.NEGOTIATION_GOODWILL", 0.04), e("A.approval", 0.01)], [c("pairRelation", mn=0.45)], bilateral=True, tone="GOOD")
-ev("trade_war", "diplomatie", "Guerre commerciale entre {A} et {B}", "Taxes à 25 % de part et d'autre : {le_A} et {le_B} s'affrontent sur le commerce.",
+ev("trade_war", "diplomatie", "Guerre commerciale entre {le_A} et {le_B}", "Taxes à 25 % de part et d'autre : {le_A} et {le_B} s'affrontent sur le commerce.",
    0.12, [e("AB.SANCTION", -0.06), e("A.output", -0.003), e("B.output", -0.003), e("A.confidence", -0.02), e("B.confidence", -0.02)],
    [c("pairRelation", mx=0.4), c("gdp", mn=1000), c("otherGdp", mn=1000)], bilateral=True, tone="BAD", major=True,
    france="Les entreprises françaises pourraient y gagner des marchés… ou être prises entre deux feux.")
 ev("sanctions_abroad", "diplomatie", "{A} : sanctions contre {le_B}", "Gel des avoirs et embargo : {le_A} frappe {le_B} au portefeuille.",
    0.1, [e("AB.SANCTION", -0.08), e("B.output", -0.004), e("B.approval", 0.02)], [c("pairRelation", mx=0.3)], bilateral=True, tone="BAD")
-ev("border_incident", "conflit", "Incident à la frontière entre {A} et {B}", "Des tirs ont été échangés ; chaque camp accuse l'autre.",
+ev("border_incident", "conflit", "Incident à la frontière entre {le_A} et {le_B}", "Des tirs ont été échangés ; chaque camp accuse l'autre.",
    0.08, [e("AB.THREAT", -0.08), e("A.approval", 0.01), e("B.approval", 0.01)], [c("pairRelation", mx=0.3), c("aggressiveness", mn=0.55), c("neighbors", mn=1)],
    bilateral=True, tone="BAD", major=True, france="Risque d'escalade : l'ONU pourrait être saisie.")
-ev("spy_scandal", "diplomatie", "Affaire d'espionnage entre {A} et {B}", "Des diplomates {de_A} sont expulsés {de_B} pour espionnage.",
+ev("spy_scandal", "diplomatie", "Affaire d'espionnage entre {le_A} et {le_B}", "Des diplomates {de_A} sont expulsés {de_B} pour espionnage.",
    0.15, [e("AB.DISAGREEMENT", -0.05)], [c("pairRelation", mx=0.5)], bilateral=True)
 ev("arms_deal_abroad", "diplomatie", "{A} : contrat d'armement avec {le_B}", "Gros contrat d'armement : avions et blindés {de_A} pour {le_B}.",
    0.12, [e("AB.MILITARY_SUPPORT", 0.05), e("A.output", 0.001), e("sector.aerospace", -0.001)], [c("pairRelation", mn=0.5), c("arms", mn=1)],
    bilateral=True, france="Un marché perdu pour l'industrie française de défense.")
 ev("aid_abroad", "diplomatie", "{A} : aide d'urgence pour {le_B}", "Aide financière et humanitaire {de_A} pour {le_B}.",
    0.15, [e("AB.AID", 0.05), e("B.approval", 0.01)], [c("pairRelation", mn=0.45), c("richer", mn=1)], bilateral=True, tone="GOOD")
-ev("summit_failure", "diplomatie", "Échec du sommet entre {A} et {B}", "Les deux dirigeants se quittent sans accord, sur un constat de désaccord.",
+ev("summit_failure", "diplomatie", "Échec du sommet entre {le_A} et {le_B}", "Les deux dirigeants se quittent sans accord, sur un constat de désaccord.",
    0.15, [e("AB.DISAGREEMENT", -0.03), e("A.approval", -0.01)], [c("pairRelation", 0.3, 0.6)], bilateral=True)
-ev("energy_pact", "diplomatie", "Pacte énergétique entre {A} et {B}", "Gaz, pétrole ou électricité : {le_A} et {le_B} sécurisent leurs approvisionnements.",
+ev("energy_pact", "diplomatie", "Pacte énergétique entre {le_A} et {le_B}", "Gaz, pétrole ou électricité : {le_A} et {le_B} sécurisent leurs approvisionnements.",
    0.12, [e("AB.AGREEMENT_SIGNED", 0.05), e("commodity.gas", -0.02)], [c("pairRelation", mn=0.5)], bilateral=True, tone="GOOD")
-ev("migration_dispute", "diplomatie", "Migrants : dispute entre {A} et {B}", "Chacun accuse l'autre de laisser passer les migrants.",
+ev("migration_dispute", "diplomatie", "Migrants : dispute entre {le_A} et {le_B}", "Chacun accuse l'autre de laisser passer les migrants.",
    0.1, [e("AB.DISAGREEMENT", -0.04)], [c("neighbors", mn=1)], bilateral=True)
 ev("hostage_crisis", "conflit", "Ressortissants {de_A} retenus {en_B}", "Plusieurs citoyens {de_A} sont détenus {en_B} ; une crise s'ouvre.",
    0.05, [e("AB.THREAT", -0.06), e("A.approval", -0.01)], [c("pairRelation", mx=0.35)], bilateral=True, tone="BAD")
 ev("cyber_attack_abroad", "conflit", "Cyberattaque massive contre {le_B}", "Les services {de_B} accusent {le_A} d'avoir paralysé hôpitaux et administrations.",
    0.08, [e("AB.THREAT", -0.07), e("B.output", -0.002)], [c("pairRelation", mx=0.35), c("aggressiveness", mn=0.5)], bilateral=True, tone="BAD")
-ev("reconciliation", "diplomatie", "Réconciliation historique entre {A} et {B}", "Après des années de brouille, les deux pays tournent la page.",
+ev("reconciliation", "diplomatie", "Réconciliation historique entre {le_A} et {le_B}", "Après des années de brouille, les deux pays tournent la page.",
    0.06, [e("AB.AGREEMENT_SIGNED", 0.08), e("A.approval", 0.02), e("B.approval", 0.02)], [c("pairRelation", 0.2, 0.45), c("openness", mn=0.55)],
    bilateral=True, tone="GOOD")
 ev("military_exercise", "conflit", "Grandes manœuvres {de_A} près de {le_B}", "Des dizaines de milliers de soldats {de_A} manœuvrent aux portes {de_B}.",

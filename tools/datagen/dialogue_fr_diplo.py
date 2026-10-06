@@ -21,7 +21,7 @@ D_INTRO = voiced({
 
 D_MEMORY = [
  V("À la suite de notre coopération récente, je souhaite aller plus loin.", when=["history:cooperated"]),
- V("Notre accord sur {lastTopic} fonctionne bien ; c'est une base solide pour la suite.", when=["history:cooperated", "history:topic"]),
+ V("Notre coopération autour de {lastTopic} fonctionne bien ; c'est une base solide pour la suite.", when=["history:cooperated", "history:topic"]),
  V("Vous aviez accepté {lastTopic} en {lastDate} ; mon gouvernement ne l'a pas oublié.", when=["history:cooperated", "history:topic"]),
  V("Nos échanges passés n'ont pas toujours abouti, mais je crois en une nouvelle étape.", when=["history:refused"]),
  V("Vous aviez décliné {lastTopic}. Je reviens vers vous avec une offre {{différente|mieux équilibrée}}.", when=["history:refused", "history:topic"]),

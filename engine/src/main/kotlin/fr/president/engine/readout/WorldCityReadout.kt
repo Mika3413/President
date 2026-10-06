@@ -1,5 +1,9 @@
 package fr.president.engine.readout
 
+import fr.president.engine.data.theCountry
+import fr.president.engine.data.ofCountry
+import fr.president.engine.data.toCountry
+
 import fr.president.engine.diplomacy.RelationCalculator
 import fr.president.engine.military.Geopolitics
 import fr.president.engine.military.Intelligence
@@ -26,18 +30,18 @@ class WorldCityReadout(private val ctx: SimulationContext) {
         val visible = Intelligence(ctx).visibleUnits(player).filter { it.zoneId == zone && !it.destroyed }
         val occupied = holder != city.country
         val control = Indicator(
-            "Contrôle", if (occupied) "Occupée par ${name(holder)}" else name(holder),
+            "Contrôle", if (occupied) "Occupée par ${ctx.db.theCountry(holder)}" else name(holder),
             when {
                 holder == player -> Tone.GOOD
                 geo.atWar(player, holder) -> Tone.BAD
                 occupied -> Tone.WARNING
                 else -> Tone.NEUTRAL
             },
-            if (occupied) "La ville appartient à ${name(city.country)}." else "",
+            if (occupied) "La ville appartient ${ctx.db.toCountry(city.country)}." else "",
         )
         val relation = if (holder != player && holder in ctx.state.countries) {
             val score = RelationCalculator(ctx).score(holder, player)
-            Indicator("Relation avec ${name(holder)}", "${Math.round(score * PERCENT)} / 100", if (score > GOOD) Tone.GOOD else if (score < BAD) Tone.BAD else Tone.NEUTRAL)
+            Indicator("Relation avec ${ctx.db.theCountry(holder)}", "${Math.round(score * PERCENT)} / 100", if (score > GOOD) Tone.GOOD else if (score < BAD) Tone.BAD else Tone.NEUTRAL)
         } else null
         val garrison = Indicator("Troupes repérées", if (visible.isEmpty()) "Aucune connue" else "${visible.size} unité(s)",
             if (visible.any { geo.atWar(player, it.countryId) }) Tone.WARNING else Tone.NEUTRAL,

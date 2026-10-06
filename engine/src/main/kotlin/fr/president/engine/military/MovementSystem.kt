@@ -1,5 +1,9 @@
 package fr.president.engine.military
 
+import fr.president.engine.data.theCountry
+import fr.president.engine.data.ofCountry
+import fr.president.engine.data.toCountry
+
 import fr.president.engine.data.Domain
 import fr.president.engine.notifications.NotificationCategory
 import fr.president.engine.notifications.Urgency
@@ -113,7 +117,7 @@ class Capture(private val ctx: SimulationContext, private val geo: Geopolitics) 
         when {
             owner == player && by != player -> {
                 ctx.notifications.post(NotificationCategory.MILITARY, Urgency.URGENT, "Territoire national envahi",
-                    "Les forces de ${ctx.db.country(by).definition.name} ont pris le contrôle d'une zone ($place).", zoneId)
+                    "Les forces ${ctx.db.ofCountry(by)} ont pris le contrôle d'une zone ($place).", zoneId)
                 zone.department?.let { ctx.effects.apply("dept.$it.approval", INVASION_SHOCK) }
                 ctx.state.opinion.groups.values.forEach { it.shock += RALLY_ON_INVASION }
             }
@@ -123,7 +127,7 @@ class Capture(private val ctx: SimulationContext, private val geo: Geopolitics) 
                     if (isCapital) "La capitale est tombée." else "Le front a bougé.", zoneId)
             isCapital -> ctx.notifications.post(NotificationCategory.MILITARY, Urgency.IMPORTANT,
                 "${ctx.db.country(owner).definition.name} : la capitale est tombée",
-                "Les forces de ${ctx.db.country(by).definition.name} contrôlent ${capital?.name}.", zoneId)
+                "Les forces ${ctx.db.ofCountry(by)} contrôlent ${capital?.name}.", zoneId)
         }
     }
 

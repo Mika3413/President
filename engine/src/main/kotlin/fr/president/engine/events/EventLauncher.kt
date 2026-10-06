@@ -182,6 +182,6 @@ class EventLauncher(private val ctx: SimulationContext) {
         private const val MINOR = 0.6
         private val VAR = Regex("""\{([a-zA-Z_]+)\}""")
         fun substitute(text: String, vars: Map<String, String>): String =
-            VAR.replace(text) { vars[it.groupValues[1]] ?: it.value }
+            fr.president.engine.util.Formatting.contract(VAR.replace(text) { vars[it.groupValues[1]] ?: it.value })
     }
 }

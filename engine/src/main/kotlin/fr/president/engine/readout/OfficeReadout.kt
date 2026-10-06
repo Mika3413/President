@@ -81,6 +81,12 @@ class OfficeReadout(private val ctx: SimulationContext) {
                     "${w.participants.size} pays engagés" + (if (allies > 0) ", dont $allies de nos alliés" else "") +
                         ". Énergie, marchés et opinion vont en subir les effets ; nos alliés attendent un geste.", Tone.BAD, AdvisorReadout.Target.COUNTRY, w.defenders.first())
             }
+        val gov = ctx.state.government
+        ctx.playerData.government!!.ministries.filter { if (it.isPrimeMinister) gov.primeMinisterId == null else it.id !in gov.ministers }.let { vacant ->
+            if (vacant.isNotEmpty()) items += 47 to Item("⌂", if (vacant.size == 1) "Poste vacant : ${vacant[0].title}" else "${vacant.size} postes du gouvernement vacants",
+                (if (vacant.size == 1) "L'intérim est assuré par le cabinet" else "Intérim : ${vacant.joinToString(", ") { it.shortTitle }}") +
+                    ". Ses dossiers avancent moins bien : nommez un successeur.", Tone.WARNING, AdvisorReadout.Target.GOVERNMENT)
+        }
         if (items.isEmpty()) items += 0 to Item("★", "Rien d'urgent ce matin", "Le pays est calme : c'est le moment de lancer une réforme ou de préparer l'avenir.", Tone.GOOD)
         return items.sortedByDescending { it.first }.take(MAX_ITEMS).map { it.second }
     }

@@ -16,7 +16,7 @@ class SenderResolver(private val ctx: SimulationContext) {
         return when (role) {
             SenderRole.MAYOR -> {
                 val city = scope?.id?.let { territory.cities[it] }
-                sender(city?.mayorId) { f -> "${titles.mayor(f)} de ${cityName(city?.id)}" }
+                sender(city?.mayorId) { f -> fr.president.engine.util.Formatting.contract("${titles.mayor(f)} de ${cityName(city?.id)}") }
             }
             SenderRole.PREFECT -> sender(dept?.let { territory.regions[it.region]?.prefectId }) { f -> "${titles.prefect(f)} (${regionName(dept?.region)})" }
             SenderRole.REGION_PRESIDENT -> sender(dept?.let { territory.regions[it.region]?.presidentId }) { f -> "${titles.regionPresident(f)} (${regionName(dept?.region)})" }

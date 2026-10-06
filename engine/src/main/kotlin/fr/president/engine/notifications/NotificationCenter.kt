@@ -22,7 +22,8 @@ class NotificationCenter(private val ctx: SimulationContext) {
         val n = GameNotification(ctx.state.nextId++, category, urgency, title, body, ctx.now, focusId)
         state.feed.add(n)
         trim(state.feed, ctx.db.config.simulation.notificationFeedSize)
-        state.unreadCount++
+        // Le compteur ne retient que ce qui mérite l'attention : les simples infos n'affolent pas la pastille.
+        if (urgency != Urgency.INFO) state.unreadCount++
         if (state.settings.shouldPush(n)) state.pendingPlatform.add(n)
         ctx.log("notification", "[${category.name}/${urgency.name}] $title")
         // Tout ce qui est important ou urgent entre dans le journal du mandat.

@@ -121,7 +121,7 @@ class MessageComposer(private val ctx: SimulationContext) {
             val options = ctx.db.lexicon.words[match.groupValues[1]]
             options?.let { rng.pick(it) } ?: match.groupValues[1]
         }
-        return result.replaceFirstChar { it.uppercaseChar() }
+        return fr.president.engine.util.Formatting.contract(result).replaceFirstChar { it.uppercaseChar() }
     }
 
 

@@ -1666,7 +1666,7 @@
    "category": "ECONOMY",
    "scope": "FOREIGN_COUNTRY",
    "baseDailyProbability": 0.0008,
-   "cooldownDays": 300,
+   "cooldownDays": 600,
    "urgency": "IMPORTANT",
    "headline": "Un groupe étranger veut racheter un fleuron industriel français",
    "notificationText": "Le rachat concerne une entreprise stratégique.",
