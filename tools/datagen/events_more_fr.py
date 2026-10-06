@@ -35,6 +35,14 @@ EVENTS, TEMPLATES = [], []
 
 def event(id, category, headline, text, prob, cooldown, urgency, subjects, context, problem, request, sender, default, options,
           ministry=None, scope="NATIONAL", modifiers=(), conditions=(), days=4, scope_cooldown=0, immediate=()):
+    options = list(options)
+    # Une quatrième voie, toujours possible : y aller soi-même (territoire) ou consulter (national).
+    if scope == "DEPARTMENT":
+        options.append(opt("visit", "Vous rendre sur place", "Geste fort ; une journée d'agenda",
+                           [E("scope.approval", 0.02), E("opinion.national", 0.001)], "PARTIAL"))
+    else:
+        options.append(opt("consult", "Lancer une concertation avant de trancher", "Apaisement ; décision repoussée",
+                           [E("government.parliamentSupport", 0.005), E("opinion.national", -0.001)], "POSTPONED"))
     m = {"template": id, "sender": sender, "responseDays": days, "defaultOption": default, "options": options}
     if ministry: m["ministry"] = ministry
     ev = {"id": id, "category": category, "scope": scope, "baseDailyProbability": prob, "cooldownDays": cooldown, "urgency": urgency,
