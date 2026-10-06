@@ -81,7 +81,8 @@ object LeverCards {
                 row.add(ui.button("++", "flat") { set(target + big) }.also { it.isDisabled = target >= lever.max })
                 if (changed) row.add(ui.button("↻", "flat") { set(current) })
                 card.add(row).left().padTop(3f).row()
-                card.add(ui.label("De ${s.levers.format(lever, lever.min)} à ${s.levers.format(lever, lever.max)}", "small", Theme.textMuted)).left().row()
+                fun bound(v: Double) = s.levers.format(lever, v).removePrefix("budget ")
+                card.add(ui.label("De ${bound(lever.min)} à ${bound(lever.max)}", "small", Theme.textMuted)).left().row()
             } else {
                 // Un choix par ligne, en pleine largeur : lisible même avec des libellés longs.
                 lever.options.forEachIndexed { i, label ->

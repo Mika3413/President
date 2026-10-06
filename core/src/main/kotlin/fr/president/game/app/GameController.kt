@@ -85,6 +85,12 @@ class GameController(
         return advance()
     }
 
+    /** Le bilan d'absence a tout résumé : les alertes accumulées sont considérées comme vues. */
+    fun markAllSeen() {
+        freshNotifications.clear()
+        lastSeenNotification = session.state.notifications.feed.lastOrNull()?.id ?: lastSeenNotification
+    }
+
     private fun collectNotifications() {
         val feed = session.state.notifications.feed
         feed.filter { it.id > lastSeenNotification }.forEach { freshNotifications.addLast(it) }

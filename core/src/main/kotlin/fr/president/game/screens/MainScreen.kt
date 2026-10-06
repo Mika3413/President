@@ -234,6 +234,7 @@ class MainScreen(
             onGameOver()
             return
         }
+        toasts.compact = currentPanel != null
         while (controller.freshNotifications.isNotEmpty()) toasts.show(controller.freshNotifications.removeFirst())
         camera.update()
         lod = LodPolicy.of(camera.viewportWidth * camera.zoom)
@@ -403,6 +404,9 @@ class MainScreen(
     /** Bilan affiché au retour du joueur après une absence. */
     fun showAbsence(report: Simulator.Report) {
         if (report.days < MIN_ABSENCE_DAYS) return
+        // Le bilan d'absence résume déjà ce qui s'est passé : pas de pluie de bandeaux en plus.
+        controller.markAllSeen()
+        toasts.clear()
         briefing.show(session.briefing.since(report.from), session.media.headline()?.headline)
     }
 

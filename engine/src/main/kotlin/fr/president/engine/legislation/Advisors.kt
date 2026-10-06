@@ -64,7 +64,8 @@ class Advisors(private val ctx: SimulationContext) {
     /** Ministère compétent pour un levier : crédits d'un poste, réglage social, mesure ciblée... */
     private fun domainMinistry(leverId: String, p: Preview): String? {
         val gov = ctx.playerData.government ?: return null
-        fun byDomain(d: String?) = d?.let { dom -> gov.ministries.firstOrNull { it.domain == dom }?.id }
+        // Les retraites relèvent du ministre du Travail et des Solidarités.
+        fun byDomain(d: String?) = d?.let { dom -> gov.ministries.firstOrNull { it.domain == (if (dom == "pensions") "social" else dom) }?.id }
         val key = leverId.substringAfter(':')
         return when {
             leverId.startsWith("spend:") -> byDomain(ctx.state.playerCountry.economy.budget?.spending?.get(key)?.domain)

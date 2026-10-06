@@ -213,7 +213,12 @@ class LeverService(private val ctx: SimulationContext) {
         }
         l.measure?.let { cfg -> builder.action(cfg.action)?.let { a -> builder.target(cfg.target)?.let { t -> return builder.formatValue(a, t, v) } } }
         val text = if (l.decimals == 0) Formatting.integer(Math.round(v)) else String.format(java.util.Locale.FRENCH, "%.${l.decimals}f", v)
-        return "$text ${l.unit}".trim()
+        return when {
+            // « 20,0 % » plutôt que « 20,0 % (taux normal) », « indice 100 » plutôt que « 100 indice ».
+            l.unit.startsWith("%") -> "$text %"
+            l.unit.startsWith("indice") -> "indice $text"
+            else -> "$text ${l.unit}".trim()
+        }
     }
 
     // ---- Aperçu ----------------------------------------------------------------------------

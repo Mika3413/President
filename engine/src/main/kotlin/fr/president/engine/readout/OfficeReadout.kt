@@ -72,6 +72,15 @@ class OfficeReadout(private val ctx: SimulationContext) {
         if (fr.president.engine.military.Geopolitics(ctx).isAtWar(ctx.state.player.countryId)) {
             items += 70 to Item("⚔", "La France est en guerre", "Lassitude de l'opinion : ${Formatting.wholePercent(ctx.state.military.warWeariness)}.", Tone.BAD)
         }
+        // Les guerres dans le monde : nos alliés, nos approvisionnements, notre sécurité sont en jeu.
+        fr.president.engine.military.Geopolitics(ctx).activeWars().filter { ctx.state.player.countryId !in it.participants }
+            .maxByOrNull { it.participants.size }?.let { w ->
+                fun the(c: String) = fr.president.engine.data.CountryNames(ctx.db.country(c).definition).the
+                val allies = w.participants.count { p -> ctx.db.alliances.any { it.id in setOf("EU", "NATO") && p in it.members && ctx.state.player.countryId in it.members } }
+                items += 62 to Item("⚔", "Guerre : ${the(w.attackers.first())} contre ${the(w.defenders.first())}",
+                    "${w.participants.size} pays engagés" + (if (allies > 0) ", dont $allies de nos alliés" else "") +
+                        ". Énergie, marchés et opinion vont en subir les effets ; nos alliés attendent un geste.", Tone.BAD, AdvisorReadout.Target.COUNTRY, w.defenders.first())
+            }
         if (items.isEmpty()) items += 0 to Item("★", "Rien d'urgent ce matin", "Le pays est calme : c'est le moment de lancer une réforme ou de préparer l'avenir.", Tone.GOOD)
         return items.sortedByDescending { it.first }.take(MAX_ITEMS).map { it.second }
     }

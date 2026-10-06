@@ -14,7 +14,8 @@ class NotificationCenter(private val ctx: SimulationContext) {
         focusId: String? = null,
         /** Faux pour les simples avis (courrier reçu) : le journal garde les faits, pas les annonces. */
         journal: Boolean = true,
-        world: Boolean = true,
+        /** Les alertes concernent surtout la France : seules les nouvelles militaires du monde rejoignent le journal. */
+        world: Boolean = category == NotificationCategory.MILITARY,
     ): GameNotification {
         if (world) toWorld(category, title, body, focusId)
         val state = ctx.state.notifications
@@ -44,16 +45,21 @@ class NotificationCenter(private val ctx: SimulationContext) {
     private fun toWorld(category: NotificationCategory, headline: String, body: String, focusId: String?) {
         val country = focusId?.takeIf { it != ctx.state.player.countryId && it in ctx.state.countries } ?: return
         // Ce qui nous concerne directement (propositions, réponses à nos démarches) n'est pas une nouvelle du monde.
-        if (ABOUT_US.containsMatchIn(headline)) return
+        if (ABOUT_US.containsMatchIn(headline) || ABOUT_US.containsMatchIn(body) || headline.startsWith("Réponse automatique")) return
         val kind = when (category) {
-            NotificationCategory.MILITARY -> "conflit"
+            NotificationCategory.MILITARY, NotificationCategory.SECURITY -> "conflit"
             NotificationCategory.ECONOMY, NotificationCategory.ENERGY -> "économie"
+            NotificationCategory.DISASTER -> "catastrophe"
+            NotificationCategory.POLITICS, NotificationCategory.ELECTIONS -> "politique"
             else -> "diplomatie"
         }
+        // Une même nouvelle annoncée deux fois (alerte et brève) n'apparaît qu'une fois.
+        if (ctx.state.world.entries.takeLast(DEDUP_WINDOW).any { it.headline == headline && country in it.countries }) return
         ctx.state.world.add(fr.president.engine.ai.WorldEntry(ctx.now, listOf(country), kind, headline, body))
     }
 
     private companion object {
+        const val DEDUP_WINDOW = 12
         val ABOUT_US = Regex("\\b(vous|votre|vos|nous|notre|nos|France|français|française)\\b", RegexOption.IGNORE_CASE)
     }
 

@@ -73,32 +73,33 @@ class WorldJournal(val entries: MutableList<WorldEntry> = mutableListOf()) {
  */
 class WorldLifeSystem : SimulationSystem {
     override val name = "world-life"
-    override val cadence = Cadence.MONTHLY
+    // Chaque jour, une petite part des chances mensuelles : les nouvelles tombent au fil du mois.
+    override val cadence = Cadence.DAILY
 
     override fun run(ctx: SimulationContext) {
         val file = ctx.db.worldEvents ?: return
         val life = WorldLife(ctx)
         val player = ctx.state.player.countryId
         val foreign = ctx.state.countries.keys.filter { it != player }
+        if (foreign.size < 2) return
         for (a in foreign) {
-            var count = 0
-            for (def in ctx.rng.shuffled(file.events.filter { !it.bilateral })) {
-                if (count >= MAX_PER_COUNTRY) break
-                if (life.eligible(def, a, null) && ctx.rng.chance(def.chance)) { life.happen(def, a, null); count++ }
+            for (def in file.events) {
+                if (def.bilateral || !ctx.rng.chance(def.chance / DAYS_PER_MONTH)) continue
+                if (life.eligible(def, a, null)) life.happen(def, a, null)
             }
         }
         for (def in file.events.filter { it.bilateral }) {
-            if (!ctx.rng.chance(def.chance)) continue
-            repeat(PAIR_TRIES) {
+            if (!ctx.rng.chance(def.chance / DAYS_PER_MONTH)) continue
+            for (attempt in 0 until PAIR_TRIES) {
                 val a = ctx.rng.pick(foreign)
                 val b = ctx.rng.pick(foreign - a)
-                if (life.eligible(def, a, b)) { life.happen(def, a, b); return@repeat }
+                if (life.eligible(def, a, b)) { life.happen(def, a, b); break }
             }
         }
     }
 
     private companion object {
-        const val MAX_PER_COUNTRY = 2
+        const val DAYS_PER_MONTH = 30.0
         const val PAIR_TRIES = 12
     }
 }

@@ -37,7 +37,7 @@ class WarService(private val ctx: SimulationContext) {
         if (attacker == player) ctx.state.player.warsThisTerm++
         ctx.notifications.post(NotificationCategory.MILITARY, Urgency.URGENT,
             "Guerre : ${name(attacker)} contre ${name(defender)}", cause, defender)
-        ctx.notifications.news(NotificationCategory.MILITARY, "${name(attacker)} entre en guerre contre ${name(defender)}", defender)
+        ctx.notifications.news(NotificationCategory.MILITARY, "${the(attacker).cap()} entre en guerre contre ${the(defender)}", defender)
         if (involvesPlayer) {
             val rally = if (defender == player) DEFENSIVE_RALLY else OFFENSIVE_COST
             ctx.state.opinion.groups.values.forEach { it.shock += rally }
@@ -79,7 +79,7 @@ class WarService(private val ctx: SimulationContext) {
             "Entrer en guerre engagera nos forces ; refuser entamera durablement notre crédibilité auprès de nos alliés."
         ctx.state.inbox.messages += InboxMessage(
             id = ctx.state.newId("msg"), senderId = null, senderLabel = "Conseil de défense",
-            subject = "Appel à la défense de ${name(defender)}", body = text, time = ctx.now,
+            subject = "Appel à la défense ${fr.president.engine.data.CountryNames(ctx.db.country(defender).definition).of}", body = text, time = ctx.now,
             category = NotificationCategory.MILITARY, origin = MessageOrigin.ALLIANCE_CALL, originId = war.id,
             options = listOf(
                 MessageOption(JOIN, "Entrer en guerre aux côtés de ${name(defender)}", "Nos forces pourront combattre"),
@@ -110,9 +110,11 @@ class WarService(private val ctx: SimulationContext) {
         val enemies = if (defenderSide) war.attackers else war.defenders
         enemies.forEach { breakAgreements(country, it) }
         economicShock(country)
-        ctx.notifications.post(NotificationCategory.MILITARY, Urgency.URGENT,
-            "${name(country)} entre en guerre",
-            "${name(country)} rejoint ${if (defenderSide) "les défenseurs" else "les assaillants"} contre ${enemies.joinToString { name(it) }}.", country)
+        val text = "${the(country).cap()} rejoint ${if (defenderSide) "les défenseurs" else "les assaillants"} contre ${enemies.joinToString { the(it) }}."
+        // Une alerte quand cela nous concerne ; sinon une brève (une coalition entière n'inonde pas l'écran).
+        if (country == player || player in enemies || player in war.participants) {
+            ctx.notifications.post(NotificationCategory.MILITARY, Urgency.URGENT, "${name(country)} entre en guerre", text, country)
+        } else ctx.notifications.news(NotificationCategory.MILITARY, "${name(country)} entre en guerre : $text", country)
         if (country == player) {
             ctx.state.opinion.groups.values.forEach { it.shock += JOIN_COST }
             ctx.state.player.warsThisTerm++
@@ -166,6 +168,8 @@ class WarService(private val ctx: SimulationContext) {
     }
 
     private fun name(c: String) = ctx.db.country(c).definition.name
+    private fun the(c: String) = fr.president.engine.data.CountryNames(ctx.db.country(c).definition).the
+    private fun String.cap() = replaceFirstChar { it.uppercase() }
 
     companion object {
         const val JOIN = "join"

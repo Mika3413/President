@@ -71,7 +71,7 @@ class WorldPoliticsSystem : SimulationSystem {
         val important = def.strategic.militaryBudgetBillions > K.IMPORTANT_BUDGET || id in K.NEIGHBOURS
         val text = "${leader.fullName} prend la tête du gouvernement (${def.institutions.headOfGovernment(leader.female)})."
         if (!announce) ctx.state.world.add(WorldEntry(ctx.now, listOf(id), "politique", "$name : $text"))
-        else if (important) ctx.notifications.post(NotificationCategory.DIPLOMACY, Urgency.IMPORTANT, "$name : nouveau dirigeant", text, id)
+        else if (important) ctx.notifications.post(NotificationCategory.DIPLOMACY, Urgency.IMPORTANT, "$name : nouveau dirigeant", text, id, world = true)
         else ctx.notifications.news(NotificationCategory.DIPLOMACY, "$name : $text", id)
         }
     }

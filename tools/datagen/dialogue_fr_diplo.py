@@ -55,7 +55,7 @@ D_CLOSE = voiced({
 
 proposal = {"id": "diplomatic_proposal", "subject": [
   V("Proposition du gouvernement {foreignOf}"), V("{foreignCountry} : proposition d'accord"), V("Une offre {foreignOf}"),
-  V("{foreignCountry} souhaite conclure un accord"), V("Lettre de {sender} : une proposition"), V("{foreignCountry} vous tend la main", when=["relation:bad"]),
+  V("{ForeignThe} souhaite conclure un accord"), V("Lettre de {sender} : une proposition"), V("{ForeignThe} vous tend la main", when=["relation:bad"]),
   V("Nouvelle proposition {foreignOf}", when=["history:refused"])], "sections": [
  sec("intro", D_INTRO),
  sec("memory", D_MEMORY, optional=True, chance=0.85),
@@ -88,11 +88,11 @@ proposal = {"id": "diplomatic_proposal", "subject": [
  sec("closing", D_CLOSE), sec("signature", SIGN)]}
 
 response = {"id": "diplomatic_response", "subject": [
-  V("Réponse {foreignOf} : accord", when=["response:accepted"]), V("{foreignCountry} accepte votre proposition", when=["response:accepted"]),
+  V("Réponse {foreignOf} : accord", when=["response:accepted"]), V("{ForeignThe} accepte votre proposition", when=["response:accepted"]),
   V("Bonne nouvelle {foreignOf}", when=["response:accepted"]), V("{sender} donne son accord", when=["response:accepted"]),
-  V("Réponse {foreignOf} : refus", when=["response:refused"]), V("{foreignCountry} décline votre proposition", when=["response:refused"]),
+  V("Réponse {foreignOf} : refus", when=["response:refused"]), V("{ForeignThe} décline votre proposition", when=["response:refused"]),
   V("{sender} ne donne pas suite", when=["response:refused"]), V("Fin de non-recevoir {foreignOf}", when=["response:refused", "relation:bad"]),
-  V("Contre-proposition {foreignOf}", when=["response:countered"]), V("{foreignCountry} propose d'amender l'accord", when=["response:countered"]),
+  V("Contre-proposition {foreignOf}", when=["response:countered"]), V("{ForeignThe} propose d'amender l'accord", when=["response:countered"]),
   V("{sender} répond par une contre-offre", when=["response:countered"])], "sections": [
  sec("intro", D_INTRO),
  sec("memory", D_MEMORY, optional=True, chance=0.5),
