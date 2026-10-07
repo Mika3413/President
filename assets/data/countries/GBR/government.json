@@ -1,0 +1,123 @@
+{
+ "ministries": [
+  {
+   "id": "pm",
+   "title": "Vice-Premier ministre",
+   "shortTitle": "Cabinet Office",
+   "isPrimeMinister": true
+  },
+  {
+   "id": "economy",
+   "title": "Chancelier de l'Échiquier",
+   "shortTitle": "Trésor"
+  },
+  {
+   "id": "interior",
+   "title": "Ministre de l'Intérieur (Home Secretary)",
+   "shortTitle": "Home Office",
+   "domain": "security"
+  },
+  {
+   "id": "armed_forces",
+   "title": "Ministre de la Défense",
+   "shortTitle": "Défense",
+   "domain": "defense"
+  },
+  {
+   "id": "foreign",
+   "title": "Ministre des Affaires étrangères",
+   "shortTitle": "Foreign Office"
+  },
+  {
+   "id": "health",
+   "title": "Ministre de la Santé (NHS)",
+   "shortTitle": "Santé",
+   "domain": "health"
+  },
+  {
+   "id": "education",
+   "title": "Ministre de l'Éducation",
+   "shortTitle": "Éducation",
+   "domain": "education"
+  },
+  {
+   "id": "labour",
+   "title": "Ministre du Travail et des Pensions",
+   "shortTitle": "Travail",
+   "domain": "social"
+  },
+  {
+   "id": "justice",
+   "title": "Lord Chancelier, ministre de la Justice",
+   "shortTitle": "Justice",
+   "domain": "justice"
+  },
+  {
+   "id": "ecology",
+   "title": "Ministre de l'Énergie et de la Neutralité carbone",
+   "shortTitle": "Énergie",
+   "domain": "environment"
+  },
+  {
+   "id": "transport",
+   "title": "Ministre des Transports",
+   "shortTitle": "Transports",
+   "domain": "transport"
+  },
+  {
+   "id": "agriculture",
+   "title": "Ministre de l'Environnement et de l'Agriculture",
+   "shortTitle": "Agriculture",
+   "domain": "agriculture"
+  }
+ ],
+ "maxHighPriorities": 3,
+ "candidatesPerMinistry": 3,
+ "effectivenessWeights": {
+  "competence": 0.4,
+  "management": 0.25,
+  "experience": 0.2,
+  "loyalty": 0.15,
+  "highPriorityBonus": 0.12,
+  "lowPriorityPenalty": 0.1
+ },
+ "parliament": {
+  "baseSupport": 0.53,
+  "approvalWeight": 0.5,
+  "primeMinisterDistanceWeight": 0.4,
+  "openingBonus": 0.12,
+  "voteNoise": 0.05,
+  "passThreshold": 0.5,
+  "forcePassApprovalCost": 0.03,
+  "forcePassSupportCost": 0.04,
+  "taxVoteDelayDays": 14,
+  "spendingVoteDelayDays": 10
+ },
+ "localTitles": {
+  "prefect": "Délégué du gouvernement",
+  "regionPresident": "Maire métropolitain",
+  "departmentPresident": "Président du conseil de comté",
+  "mayor": "Maire",
+  "prefectFemale": "Déléguée du gouvernement",
+  "regionPresidentFemale": "Maire métropolitaine",
+  "departmentPresidentFemale": "Présidente du conseil de comté"
+ },
+ "ministerDrift": {
+  "loyaltyApprovalWeight": 0.4,
+  "loyaltyAdjustmentMonthly": 0.08,
+  "resignationLoyaltyThreshold": 0.18,
+  "experienceGainMonthly": 0.004
+ },
+ "initialServiceQuality": {
+  "health": 0.45,
+  "education": 0.58,
+  "security": 0.52,
+  "justice": 0.45,
+  "transport": 0.48,
+  "environment": 0.55,
+  "agriculture": 0.5,
+  "defense": 0.62,
+  "social": 0.5,
+  "pensions": 0.55
+ }
+}

@@ -5,9 +5,9 @@
  "adjective": "américain",
  "language": "en",
  "namePool": "en",
- "detail": "LIGHT",
+ "detail": "FULL",
  "population": 340000000,
- "economy": "economy/USA_2026_10.json",
+ "economy": "economy/USA_FULL_2026_10.json",
  "institutions": {
   "headOfStateTitle": "Chef de l'État",
   "headOfGovernmentTitle": "Président des États-Unis",
@@ -70,9 +70,9 @@
   "militaryBudgetBillions": 850,
   "nuclear": true,
   "forces": {
-   "land": 0,
-   "air": 0,
-   "sea": 0
+   "land": 12,
+   "air": 10,
+   "sea": 6
   },
   "capital": {
    "name": "Washington",
@@ -84,5 +84,200 @@
    "wildfire",
    "storm"
   ]
- }
+ },
+ "capitalCityId": "usa_washington",
+ "territory": "countries/USA/territory.json",
+ "government": "countries/USA/government.json",
+ "socialGroups": "countries/FRA/social_groups.json",
+ "elections": "countries/USA/elections.json",
+ "energy": "infrastructure/USA_energy.json",
+ "transport": "infrastructure/USA_transport.json",
+ "military": "military/USA_2026_10.json",
+ "measures": "countries/FRA/measures.json",
+ "cabinet": "countries/FRA/cabinet.json",
+ "agenda": "countries/FRA/agenda.json",
+ "sectors": "countries/FRA/sectors.json",
+ "careers": "countries/FRA/careers.json",
+ "laws": "countries/FRA/laws.json",
+ "actors": "countries/FRA/actors.json",
+ "fiscal": "countries/FRA/fiscal.json",
+ "legislation": "countries/FRA/legislation.json",
+ "reforms": "countries/FRA/reforms.json",
+ "promises": "countries/FRA/promises.json",
+ "localActions": "countries/FRA/local_actions.json",
+ "nationalActions": "countries/FRA/national_actions.json",
+ "demography": {
+  "birthRate": 0.011,
+  "deathRate": 0.0095,
+  "netMigrationRate": 0.003,
+  "agingPerYear": 0.002
+ },
+ "geo": "USA",
+ "electionLabel": "Présidentielle",
+ "lexicon": [
+  [
+   "\\bFrance Travail\\b",
+   "agences pour l'emploi"
+  ],
+  [
+   "\\bBanque de France\\b",
+   "Réserve fédérale"
+  ],
+  [
+   "\\bAssemblée nationale\\b",
+   "Chambre des représentants"
+  ],
+  [
+   "\\bConseil constitutionnel\\b",
+   "Cour suprême"
+  ],
+  [
+   "\\bSNCF\\b",
+   "Amtrak"
+  ],
+  [
+   "\\bEDF\\b",
+   "les compagnies d'électricité"
+  ],
+  [
+   "\\bCAC 40\\b",
+   "Dow Jones"
+  ],
+  [
+   "\\bRSA\\b",
+   "bons alimentaires"
+  ],
+  [
+   "\\bSMIC\\b",
+   "salaire minimum"
+  ],
+  [
+   "\\bBercy\\b",
+   "le ministère des Finances"
+  ],
+  [
+   "\\bMatignon\\b",
+   "le gouvernement"
+  ],
+  [
+   "\\b(article |l'article )?49\\.3\\b",
+   "procédure d'urgence"
+  ],
+  [
+   "\\b[Aa]rticle 16\\b",
+   "pouvoirs d'exception"
+  ],
+  [
+   "\\bà l'Élysée\\b",
+   "à la Maison-Blanche"
+  ],
+  [
+   "\\bde l'Élysée\\b",
+   "de la Maison-Blanche"
+  ],
+  [
+   "\\bl'Élysée\\b",
+   "la Maison-Blanche"
+  ],
+  [
+   "\\bÉlysée\\b",
+   "Maison-Blanche"
+  ],
+  [
+   "\\bBureau du président\\b",
+   "Bureau du président"
+  ],
+  [
+   "\\b[Pp]résident de la République\\b",
+   "président"
+  ],
+  [
+   "\\bles Bleus\\b",
+   "l'équipe des États-Unis"
+  ],
+  [
+   "\\bLes Bleus\\b",
+   "L'équipe des États-Unis"
+  ],
+  [
+   "\\ble XV de France\\b",
+   "les Eagles"
+  ],
+  [
+   "\\bMarine nationale\\b",
+   "Marine"
+  ],
+  [
+   "\\bArmée de l'air et de l'espace\\b",
+   "Armée de l'air"
+  ],
+  [
+   "\\bDGSE\\b",
+   "le renseignement extérieur"
+  ],
+  [
+   "\\bDGSI\\b",
+   "le renseignement intérieur"
+  ],
+  [
+   "\\b[àa] Paris\\b",
+   "à Washington"
+  ],
+  [
+   "\\bde Paris\\b",
+   "de Washington"
+  ],
+  [
+   "\\bde la France\\b",
+   "des États-Unis"
+  ],
+  [
+   "\\bà la France\\b",
+   "aux États-Unis"
+  ],
+  [
+   "\\bÀ la France\\b",
+   "Aux États-Unis"
+  ],
+  [
+   "\\bLa France\\b",
+   "Les États-Unis"
+  ],
+  [
+   "\\bla France\\b",
+   "les États-Unis"
+  ],
+  [
+   "\\ben France\\b",
+   "aux États-Unis"
+  ],
+  [
+   "\\bEn France\\b",
+   "Aux États-Unis"
+  ],
+  [
+   "\\bFrance\\b",
+   "États-Unis"
+  ],
+  [
+   "\\bFrançaises\\b",
+   "Américaines"
+  ],
+  [
+   "\\bFrançais\\b",
+   "Américains"
+  ],
+  [
+   "\\bfrançaises\\b",
+   "américaines"
+  ],
+  [
+   "\\bfrançaise\\b",
+   "américaine"
+  ],
+  [
+   "\\bfrançais\\b",
+   "américain"
+  ]
+ ]
 }

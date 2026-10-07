@@ -201,17 +201,24 @@ class VariableResolver(private val ctx: SimulationContext) {
             "industryShare" -> d.industryShare
             "agricultureShare" -> d.agricultureShare
             "pollution" -> d.pollution
-            "coastal" -> if (d.code in COASTAL || d.code.length == 3) 1.0 else 0.0
-            "mountain" -> if (d.code in MOUNTAIN) 1.0 else 0.0
-            "border" -> if (d.code in BORDER) 1.0 else 0.0
-            "wine" -> if (d.code in WINE) 1.0 else 0.0
-            "tourist" -> if (d.code in TOURIST_DEPTS) 1.0 else 0.0
-            "regionalLanguage" -> if (d.code in REGIONAL_LANGUAGE) 1.0 else 0.0
+            "coastal" -> trait(d.code, "coastal", COASTAL) { it.length == 3 }
+            "mountain" -> trait(d.code, "mountain", MOUNTAIN)
+            "border" -> trait(d.code, "border", BORDER)
+            "wine" -> trait(d.code, "wine", WINE)
+            "tourist" -> trait(d.code, "tourist", TOURIST_DEPTS)
+            "regionalLanguage" -> trait(d.code, "regionalLanguage", REGIONAL_LANGUAGE)
             "nuclear" -> infraIn(d.code, "NUCLEAR_PLANT")
             "port" -> infraIn(d.code, "PORT")
             "airport" -> infraIn(d.code, "AIRPORT")
             else -> null
         }
+    }
+
+    /** Caractéristique d'un département : listes françaises, ou étiquettes des données ailleurs. */
+    private fun trait(code: String, tag: String, french: Set<String>, frenchRule: (String) -> Boolean = { false }): Double {
+        val def = ctx.playerData.territory?.departments?.firstOrNull { it.code == code }
+        val yes = if (ctx.playerData.id == FRANCE) code in french || frenchRule(code) else def?.tags?.contains(tag) == true
+        return if (yes) 1.0 else 0.0
     }
 
     private fun infraIn(code: String, type: String) = if (ctx.catalog.items.values.any { it.department == code && it.type == type }) 1.0 else 0.0
@@ -225,6 +232,7 @@ class VariableResolver(private val ctx: SimulationContext) {
         val REGIONAL_LANGUAGE = setOf("22", "29", "35", "56", "64", "66", "67", "68", "2A", "2B")
         val NEARBY = setOf("DEU", "ESP", "ITA", "GBR", "BEL", "NLD", "CHE", "PRT", "AUT", "POL", "SWE", "NOR", "GRC", "ROU", "UKR", "RUS", "BLR", "TUR", "DZA", "MAR", "TUN")
         const val MILLION = 1_000_000.0
+        const val FRANCE = "FRA"
         val MEDITERRANEAN_REGIONS = setOf("93", "94", "76")
         const val MW_PER_GW = 1000.0
     }

@@ -1,0 +1,986 @@
+{
+ "regions": [
+  {
+   "code": "E",
+   "name": "Allemagne de l'Est",
+   "capitalCityId": "deu_berlin",
+   "defaults": {
+    "unemployment": 0.041,
+    "incomeIndex": 1.002,
+    "urbanShare": 0.458,
+    "seniorShare": 0.215,
+    "politicalLeaning": 0.223
+   }
+  },
+  {
+   "code": "S",
+   "name": "Allemagne du Sud",
+   "capitalCityId": "deu_stuttgart",
+   "defaults": {
+    "unemployment": 0.039,
+    "incomeIndex": 1.034,
+    "urbanShare": 0.492,
+    "seniorShare": 0.225,
+    "politicalLeaning": 0.281
+   }
+  },
+  {
+   "code": "W",
+   "name": "Allemagne de l'Ouest",
+   "capitalCityId": "deu_francfort",
+   "defaults": {
+    "unemployment": 0.036,
+    "incomeIndex": 1.006,
+    "urbanShare": 0.511,
+    "seniorShare": 0.209,
+    "politicalLeaning": -0.013
+   }
+  },
+  {
+   "code": "N",
+   "name": "Allemagne du Nord",
+   "capitalCityId": "deu_hambourg",
+   "defaults": {
+    "unemployment": 0.044,
+    "incomeIndex": 0.963,
+    "urbanShare": 0.452,
+    "seniorShare": 0.236,
+    "politicalLeaning": -0.145
+   }
+  }
+ ],
+ "departments": [
+  {
+   "code": "SN",
+   "name": "Saxe",
+   "article": "la",
+   "region": "E",
+   "population": 4045000,
+   "tags": [
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.034,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.46,
+    "seniorShare": 0.18,
+    "politicalLeaning": 0.07,
+    "healthAccess": 0.99,
+    "crime": 0.98,
+    "industryShare": 0.27,
+    "agricultureShare": 0.032,
+    "pollution": 0.98
+   }
+  },
+  {
+   "code": "BY",
+   "name": "Bavière",
+   "article": "la",
+   "region": "S",
+   "population": 13225000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.031,
+    "incomeIndex": 1.02,
+    "urbanShare": 0.41,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.29,
+    "healthAccess": 0.96,
+    "crime": 0.95,
+    "industryShare": 0.21,
+    "agricultureShare": 0.054,
+    "pollution": 0.95
+   }
+  },
+  {
+   "code": "RP",
+   "name": "Rhénanie-Palatinat",
+   "article": "le",
+   "region": "W",
+   "population": 4145000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.031,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.32,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.08,
+    "healthAccess": 0.93,
+    "crime": 0.89,
+    "industryShare": 0.16,
+    "agricultureShare": 0.041,
+    "pollution": 0.89
+   }
+  },
+  {
+   "code": "SL",
+   "name": "Sarre",
+   "article": "la",
+   "region": "W",
+   "population": 987000,
+   "tags": [
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.032,
+    "incomeIndex": 1.04,
+    "urbanShare": 0.71,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.25,
+    "healthAccess": 1.08,
+    "crime": 1.13,
+    "industryShare": 0.16,
+    "agricultureShare": 0.026,
+    "pollution": 1.13
+   }
+  },
+  {
+   "code": "SH",
+   "name": "Schleswig-Holstein",
+   "article": "le",
+   "region": "N",
+   "population": 2961000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.043,
+    "incomeIndex": 0.92,
+    "urbanShare": 0.37,
+    "seniorShare": 0.21,
+    "politicalLeaning": -0.2,
+    "healthAccess": 0.95,
+    "crime": 0.92,
+    "industryShare": 0.11,
+    "agricultureShare": 0.046,
+    "pollution": 0.92
+   }
+  },
+  {
+   "code": "NI",
+   "name": "Basse-Saxe",
+   "article": "la",
+   "region": "N",
+   "population": 7994000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.048,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.42,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.17,
+    "healthAccess": 0.97,
+    "crime": 0.95,
+    "industryShare": 0.09,
+    "agricultureShare": 0.029,
+    "pollution": 0.95
+   }
+  },
+  {
+   "code": "NW",
+   "name": "Rhénanie-du-Nord-Westphalie",
+   "article": "la",
+   "region": "W",
+   "population": 17864000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.039,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.51,
+    "seniorShare": 0.19,
+    "politicalLeaning": 0.07,
+    "healthAccess": 1.0,
+    "crime": 1.01,
+    "industryShare": 0.17,
+    "agricultureShare": 0.033,
+    "pollution": 1.01
+   }
+  },
+  {
+   "code": "BW",
+   "name": "Bade-Wurtemberg",
+   "article": "le",
+   "region": "S",
+   "population": 11153000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.048,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.59,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.27,
+    "healthAccess": 1.04,
+    "crime": 1.05,
+    "industryShare": 0.27,
+    "agricultureShare": 0.05,
+    "pollution": 1.05
+   }
+  },
+  {
+   "code": "BB",
+   "name": "Brandebourg",
+   "article": "le",
+   "region": "E",
+   "population": 2566000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.048,
+    "incomeIndex": 1.18,
+    "urbanShare": 0.95,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.2,
+    "healthAccess": 1.18,
+    "crime": 1.27,
+    "industryShare": 0.1,
+    "agricultureShare": 0.022,
+    "pollution": 1.27
+   }
+  },
+  {
+   "code": "MV",
+   "name": "Mecklembourg-Poméranie-Occidentale",
+   "article": "la",
+   "region": "N",
+   "population": 1579000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.045,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.39,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.0,
+    "healthAccess": 0.95,
+    "crime": 0.93,
+    "industryShare": 0.26,
+    "agricultureShare": 0.038,
+    "pollution": 0.93
+   }
+  },
+  {
+   "code": "HB",
+   "name": "Brême",
+   "article": "la",
+   "region": "N",
+   "population": 690000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.035,
+    "incomeIndex": 0.92,
+    "urbanShare": 0.37,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.04,
+    "healthAccess": 0.95,
+    "crime": 0.92,
+    "industryShare": 0.12,
+    "agricultureShare": 0.033,
+    "pollution": 0.92
+   }
+  },
+  {
+   "code": "HH",
+   "name": "Hambourg",
+   "article": "l'",
+   "region": "N",
+   "population": 1875000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.033,
+    "incomeIndex": 1.09,
+    "urbanShare": 0.8,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.11,
+    "healthAccess": 1.12,
+    "crime": 1.18,
+    "industryShare": 0.17,
+    "agricultureShare": 0.017,
+    "pollution": 1.18
+   }
+  },
+  {
+   "code": "HE",
+   "name": "Hesse",
+   "article": "l'",
+   "region": "W",
+   "population": 6316000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.03,
+    "incomeIndex": 1.07,
+    "urbanShare": 0.61,
+    "seniorShare": 0.24,
+    "politicalLeaning": -0.27,
+    "healthAccess": 1.05,
+    "crime": 1.07,
+    "industryShare": 0.17,
+    "agricultureShare": 0.025,
+    "pollution": 1.07
+   }
+  },
+  {
+   "code": "TH",
+   "name": "Thuringe",
+   "article": "la",
+   "region": "E",
+   "population": 2072000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.034,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.37,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.37,
+    "healthAccess": 0.95,
+    "crime": 0.92,
+    "industryShare": 0.17,
+    "agricultureShare": 0.037,
+    "pollution": 0.92
+   }
+  },
+  {
+   "code": "ST",
+   "name": "Saxe-Anhalt",
+   "article": "le",
+   "region": "E",
+   "population": 2171000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.043,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.31,
+    "seniorShare": 0.26,
+    "politicalLeaning": 0.24,
+    "healthAccess": 0.93,
+    "crime": 0.89,
+    "industryShare": 0.09,
+    "agricultureShare": 0.043,
+    "pollution": 0.89
+   }
+  },
+  {
+   "code": "BE",
+   "name": "Berlin",
+   "article": "le",
+   "region": "E",
+   "population": 3849000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.048,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.26,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.31,
+    "healthAccess": 0.9,
+    "crime": 0.86,
+    "industryShare": 0.13,
+    "agricultureShare": 0.062,
+    "pollution": 0.86
+   }
+  }
+ ],
+ "cities": [
+  {
+   "id": "deu_berlin",
+   "name": "Berlin",
+   "department": "BB",
+   "lon": 13.4,
+   "lat": 52.524,
+   "population": 2384200,
+   "urbanAreaPopulation": 3406000,
+   "rank": 1
+  },
+  {
+   "id": "deu_stuttgart",
+   "name": "Stuttgart",
+   "department": "BW",
+   "lon": 9.2,
+   "lat": 48.78,
+   "population": 2061289,
+   "urbanAreaPopulation": 2944700,
+   "rank": 1
+  },
+  {
+   "id": "deu_francfort",
+   "name": "Francfort",
+   "department": "HE",
+   "lon": 8.675,
+   "lat": 50.1,
+   "population": 2026499,
+   "urbanAreaPopulation": 2895000,
+   "rank": 1
+  },
+  {
+   "id": "deu_mannheim",
+   "name": "Mannheim",
+   "department": "BW",
+   "lon": 8.47,
+   "lat": 49.5,
+   "population": 1653400,
+   "urbanAreaPopulation": 2362000,
+   "rank": 1
+  },
+  {
+   "id": "deu_hambourg",
+   "name": "Hambourg",
+   "department": "HH",
+   "lon": 9.998,
+   "lat": 53.552,
+   "population": 1229900,
+   "urbanAreaPopulation": 1757000,
+   "rank": 1
+  },
+  {
+   "id": "deu_essen",
+   "name": "Essen",
+   "department": "NW",
+   "lon": 7.017,
+   "lat": 51.45,
+   "population": 1219494,
+   "urbanAreaPopulation": 1742135,
+   "rank": 1
+  },
+  {
+   "id": "deu_duisbourg",
+   "name": "Duisbourg",
+   "department": "NW",
+   "lon": 6.75,
+   "lat": 51.43,
+   "population": 893729,
+   "urbanAreaPopulation": 1276757,
+   "rank": 1
+  },
+  {
+   "id": "deu_munich",
+   "name": "Munich",
+   "department": "BY",
+   "lon": 11.573,
+   "lat": 48.132,
+   "population": 892500,
+   "urbanAreaPopulation": 1275000,
+   "rank": 2
+  },
+  {
+   "id": "deu_dusseldorf",
+   "name": "Düsseldorf",
+   "department": "NW",
+   "lon": 6.78,
+   "lat": 51.22,
+   "population": 854000,
+   "urbanAreaPopulation": 1220000,
+   "rank": 2
+  },
+  {
+   "id": "deu_cologne",
+   "name": "Cologne",
+   "department": "NW",
+   "lon": 6.948,
+   "lat": 50.932,
+   "population": 702800,
+   "urbanAreaPopulation": 1004000,
+   "rank": 2
+  },
+  {
+   "id": "deu_wuppertal",
+   "name": "Wuppertal",
+   "department": "NW",
+   "lon": 7.17,
+   "lat": 51.25,
+   "population": 543567,
+   "urbanAreaPopulation": 776525,
+   "rank": 2
+  },
+  {
+   "id": "deu_sarrebruck",
+   "name": "Sarrebruck",
+   "department": "SL",
+   "lon": 6.97,
+   "lat": 49.25,
+   "population": 539000,
+   "urbanAreaPopulation": 770001,
+   "rank": 2
+  },
+  {
+   "id": "deu_nuremberg",
+   "name": "Nuremberg",
+   "department": "BY",
+   "lon": 11.08,
+   "lat": 49.45,
+   "population": 516112,
+   "urbanAreaPopulation": 737304,
+   "rank": 2
+  },
+  {
+   "id": "deu_breme",
+   "name": "Brême",
+   "department": "NI",
+   "lon": 8.8,
+   "lat": 53.08,
+   "population": 507436,
+   "urbanAreaPopulation": 724909,
+   "rank": 2
+  },
+  {
+   "id": "deu_hanovre",
+   "name": "Hanovre",
+   "department": "NI",
+   "lon": 9.717,
+   "lat": 52.367,
+   "population": 505742,
+   "urbanAreaPopulation": 722490,
+   "rank": 2
+  },
+  {
+   "id": "deu_bonn",
+   "name": "Bonn",
+   "department": "NW",
+   "lon": 7.08,
+   "lat": 50.72,
+   "population": 476380,
+   "urbanAreaPopulation": 680543,
+   "rank": 2
+  },
+  {
+   "id": "deu_dresde",
+   "name": "Dresde",
+   "department": "SN",
+   "lon": 13.75,
+   "lat": 51.05,
+   "population": 432260,
+   "urbanAreaPopulation": 617515,
+   "rank": 2
+  },
+  {
+   "id": "deu_wiesbaden",
+   "name": "Wiesbaden",
+   "department": "HE",
+   "lon": 8.25,
+   "lat": 50.08,
+   "population": 431988,
+   "urbanAreaPopulation": 617126,
+   "rank": 2
+  },
+  {
+   "id": "deu_dortmund",
+   "name": "Dortmund",
+   "department": "NW",
+   "lon": 7.45,
+   "lat": 51.53,
+   "population": 411923,
+   "urbanAreaPopulation": 588462,
+   "rank": 2
+  },
+  {
+   "id": "deu_leipzig",
+   "name": "Leipzig",
+   "department": "SN",
+   "lon": 12.41,
+   "lat": 51.335,
+   "population": 379770,
+   "urbanAreaPopulation": 542529,
+   "rank": 2
+  },
+  {
+   "id": "deu_heidelberg",
+   "name": "Heidelberg",
+   "department": "BW",
+   "lon": 8.7,
+   "lat": 49.42,
+   "population": 298613,
+   "urbanAreaPopulation": 426590,
+   "rank": 2
+  },
+  {
+   "id": "deu_karlsruhe",
+   "name": "Karlsruhe",
+   "department": "BW",
+   "lon": 8.4,
+   "lat": 49.0,
+   "population": 264240,
+   "urbanAreaPopulation": 377487,
+   "rank": 2
+  },
+  {
+   "id": "deu_augsbourg",
+   "name": "Augsbourg",
+   "department": "BY",
+   "lon": 10.9,
+   "lat": 48.35,
+   "population": 251292,
+   "urbanAreaPopulation": 358989,
+   "rank": 2
+  },
+  {
+   "id": "deu_bielefeld",
+   "name": "Bielefeld",
+   "department": "NW",
+   "lon": 8.53,
+   "lat": 52.03,
+   "population": 232334,
+   "urbanAreaPopulation": 331906,
+   "rank": 2
+  },
+  {
+   "id": "deu_coblence",
+   "name": "Coblence",
+   "department": "RP",
+   "lon": 7.6,
+   "lat": 50.35,
+   "population": 218843,
+   "urbanAreaPopulation": 312633,
+   "rank": 2
+  },
+  {
+   "id": "deu_chemnitz",
+   "name": "Chemnitz",
+   "department": "SN",
+   "lon": 12.92,
+   "lat": 50.83,
+   "population": 211850,
+   "urbanAreaPopulation": 302643,
+   "rank": 2
+  },
+  {
+   "id": "deu_cassel",
+   "name": "Cassel",
+   "department": "HE",
+   "lon": 9.5,
+   "lat": 51.3,
+   "population": 202946,
+   "urbanAreaPopulation": 289924,
+   "rank": 2
+  },
+  {
+   "id": "deu_munster",
+   "name": "Münster",
+   "department": "NW",
+   "lon": 7.62,
+   "lat": 51.97,
+   "population": 189128,
+   "urbanAreaPopulation": 270184,
+   "rank": 2
+  },
+  {
+   "id": "deu_kiel",
+   "name": "Kiel",
+   "department": "SH",
+   "lon": 10.13,
+   "lat": 54.33,
+   "population": 188598,
+   "urbanAreaPopulation": 269427,
+   "rank": 3
+  },
+  {
+   "id": "deu_fribourg_en_brisgau",
+   "name": "Fribourg-en-Brisgau",
+   "department": "BW",
+   "lon": 7.87,
+   "lat": 48.0,
+   "population": 178422,
+   "urbanAreaPopulation": 254889,
+   "rank": 3
+  },
+  {
+   "id": "deu_brunswick",
+   "name": "Brunswick",
+   "department": "NI",
+   "lon": 10.5,
+   "lat": 52.25,
+   "population": 171300,
+   "urbanAreaPopulation": 244715,
+   "rank": 3
+  },
+  {
+   "id": "deu_furth",
+   "name": "Fürth",
+   "department": "BY",
+   "lon": 11.0,
+   "lat": 49.47,
+   "population": 166490,
+   "urbanAreaPopulation": 237844,
+   "rank": 3
+  },
+  {
+   "id": "deu_lubeck",
+   "name": "Lübeck",
+   "department": "SH",
+   "lon": 10.67,
+   "lat": 53.87,
+   "population": 164773,
+   "urbanAreaPopulation": 235390,
+   "rank": 3
+  },
+  {
+   "id": "deu_osnabruck",
+   "name": "Osnabrück",
+   "department": "NI",
+   "lon": 8.05,
+   "lat": 52.28,
+   "population": 161887,
+   "urbanAreaPopulation": 231268,
+   "rank": 3
+  },
+  {
+   "id": "deu_magdebourg",
+   "name": "Magdebourg",
+   "department": "ST",
+   "lon": 11.62,
+   "lat": 52.13,
+   "population": 160878,
+   "urbanAreaPopulation": 229826,
+   "rank": 3
+  },
+  {
+   "id": "deu_potsdam",
+   "name": "Potsdam",
+   "department": "BB",
+   "lon": 13.07,
+   "lat": 52.4,
+   "population": 152666,
+   "urbanAreaPopulation": 218095,
+   "rank": 3
+  },
+  {
+   "id": "deu_erfurt",
+   "name": "Erfurt",
+   "department": "TH",
+   "lon": 11.03,
+   "lat": 50.97,
+   "population": 142277,
+   "urbanAreaPopulation": 203254,
+   "rank": 3
+  },
+  {
+   "id": "deu_rostock",
+   "name": "Rostock",
+   "department": "MV",
+   "lon": 12.15,
+   "lat": 54.07,
+   "population": 142156,
+   "urbanAreaPopulation": 203080,
+   "rank": 3
+  },
+  {
+   "id": "deu_mayence",
+   "name": "Mayence",
+   "department": "RP",
+   "lon": 8.273,
+   "lat": 49.982,
+   "population": 129497,
+   "urbanAreaPopulation": 184997,
+   "rank": 3
+  },
+  {
+   "id": "deu_ulm",
+   "name": "Ulm",
+   "department": "BY",
+   "lon": 10.0,
+   "lat": 48.4,
+   "population": 121068,
+   "urbanAreaPopulation": 172955,
+   "rank": 3
+  },
+  {
+   "id": "deu_wurtzbourg",
+   "name": "Wurtzbourg",
+   "department": "BY",
+   "lon": 9.95,
+   "lat": 49.8,
+   "population": 117992,
+   "urbanAreaPopulation": 168561,
+   "rank": 3
+  },
+  {
+   "id": "deu_oldenbourg",
+   "name": "Oldenbourg",
+   "department": "NI",
+   "lon": 8.22,
+   "lat": 53.13,
+   "population": 117220,
+   "urbanAreaPopulation": 167458,
+   "rank": 3
+  },
+  {
+   "id": "deu_ratisbonne",
+   "name": "Ratisbonne",
+   "department": "BY",
+   "lon": 12.12,
+   "lat": 49.02,
+   "population": 115051,
+   "urbanAreaPopulation": 164359,
+   "rank": 3
+  },
+  {
+   "id": "deu_ingolstadt",
+   "name": "Ingolstadt",
+   "department": "BY",
+   "lon": 11.45,
+   "lat": 48.77,
+   "population": 114327,
+   "urbanAreaPopulation": 163325,
+   "rank": 3
+  },
+  {
+   "id": "deu_gottingen",
+   "name": "Göttingen",
+   "department": "NI",
+   "lon": 9.92,
+   "lat": 51.52,
+   "population": 97593,
+   "urbanAreaPopulation": 139419,
+   "rank": 3
+  },
+  {
+   "id": "deu_bremerhaven",
+   "name": "Bremerhaven",
+   "department": "HB",
+   "lon": 8.58,
+   "lat": 53.55,
+   "population": 96425,
+   "urbanAreaPopulation": 137751,
+   "rank": 3
+  },
+  {
+   "id": "deu_cottbus",
+   "name": "Cottbus",
+   "department": "BB",
+   "lon": 14.33,
+   "lat": 51.77,
+   "population": 73546,
+   "urbanAreaPopulation": 105067,
+   "rank": 3
+  },
+  {
+   "id": "deu_iena",
+   "name": "Iéna",
+   "department": "TH",
+   "lon": 11.58,
+   "lat": 50.93,
+   "population": 73298,
+   "urbanAreaPopulation": 104712,
+   "rank": 3
+  },
+  {
+   "id": "deu_gera",
+   "name": "Gera",
+   "department": "TH",
+   "lon": 12.07,
+   "lat": 50.87,
+   "population": 73261,
+   "urbanAreaPopulation": 104659,
+   "rank": 3
+  },
+  {
+   "id": "deu_flensbourg",
+   "name": "Flensbourg",
+   "department": "SH",
+   "lon": 9.433,
+   "lat": 54.784,
+   "population": 68551,
+   "urbanAreaPopulation": 97930,
+   "rank": 3
+  },
+  {
+   "id": "deu_schwerin",
+   "name": "Schwerin",
+   "department": "MV",
+   "lon": 11.417,
+   "lat": 53.633,
+   "population": 67648,
+   "urbanAreaPopulation": 96641,
+   "rank": 3
+  },
+  {
+   "id": "deu_rosenheim",
+   "name": "Rosenheim",
+   "department": "BY",
+   "lon": 12.133,
+   "lat": 47.85,
+   "population": 64966,
+   "urbanAreaPopulation": 92809,
+   "rank": 3
+  },
+  {
+   "id": "deu_giessen",
+   "name": "Giessen",
+   "department": "HE",
+   "lon": 8.65,
+   "lat": 50.584,
+   "population": 57650,
+   "urbanAreaPopulation": 82358,
+   "rank": 3
+  },
+  {
+   "id": "deu_stralsund",
+   "name": "Stralsund",
+   "department": "MV",
+   "lon": 13.1,
+   "lat": 54.3,
+   "population": 42957,
+   "urbanAreaPopulation": 61368,
+   "rank": 3
+  },
+  {
+   "id": "deu_cobourg",
+   "name": "Cobourg",
+   "department": "BY",
+   "lon": 10.967,
+   "lat": 50.267,
+   "population": 42737,
+   "urbanAreaPopulation": 61054,
+   "rank": 3
+  },
+  {
+   "id": "deu_berlin_chef_lieu",
+   "name": "Berlin",
+   "department": "BE",
+   "lon": 13.385,
+   "lat": 52.49,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "deu_hof_sur_saale",
+   "name": "Hof-sur-Saale",
+   "department": "BY",
+   "lon": 11.917,
+   "lat": 50.317,
+   "population": 39307,
+   "urbanAreaPopulation": 56153,
+   "rank": 3
+  },
+  {
+   "id": "deu_emden",
+   "name": "Emden",
+   "department": "NI",
+   "lon": 7.217,
+   "lat": 53.367,
+   "population": 36068,
+   "urbanAreaPopulation": 51526,
+   "rank": 3
+  },
+  {
+   "id": "deu_passau",
+   "name": "Passau",
+   "department": "BY",
+   "lon": 13.441,
+   "lat": 48.575,
+   "population": 35392,
+   "urbanAreaPopulation": 50560,
+   "rank": 3
+  }
+ ]
+}

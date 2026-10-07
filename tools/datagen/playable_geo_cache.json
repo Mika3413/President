@@ -1,0 +1,7544 @@
+{
+"DEU": {
+"departments": [
+{
+"code": "SN",
+"name": "Saxe",
+"region": "E",
+"area": 2.3285,
+"lon": 12.997,
+"lat": 50.951
+},
+{
+"code": "BY",
+"name": "Bavière",
+"region": "S",
+"area": 8.5961,
+"lon": 10.676,
+"lat": 49.229
+},
+{
+"code": "RP",
+"name": "Rhénanie-Palatinat",
+"region": "W",
+"area": 2.5153,
+"lon": 7.376,
+"lat": 50.1
+},
+{
+"code": "SL",
+"name": "Sarre",
+"region": "W",
+"area": 0.3286,
+"lon": 7.056,
+"lat": 49.343
+},
+{
+"code": "SH",
+"name": "Schleswig-Holstein",
+"region": "N",
+"area": 2.1238,
+"lon": 10.057,
+"lat": 54.046
+},
+{
+"code": "NI",
+"name": "Basse-Saxe",
+"region": "N",
+"area": 6.3628,
+"lon": 9.471,
+"lat": 52.367
+},
+{
+"code": "NW",
+"name": "Rhénanie-du-Nord-Westphalie",
+"region": "W",
+"area": 4.4681,
+"lon": 7.941,
+"lat": 51.451
+},
+{
+"code": "BW",
+"name": "Bade-Wurtemberg",
+"region": "S",
+"area": 4.3996,
+"lon": 9.433,
+"lat": 48.838
+},
+{
+"code": "BB",
+"name": "Brandebourg",
+"region": "E",
+"area": 4.09,
+"lon": 12.939,
+"lat": 52.566
+},
+{
+"code": "MV",
+"name": "Mecklembourg-Poméranie-Occidentale",
+"region": "N",
+"area": 3.1571,
+"lon": 12.379,
+"lat": 53.786
+},
+{
+"code": "HB",
+"name": "Brême",
+"region": "N",
+"area": 0.0518,
+"lon": 8.753,
+"lat": 53.203
+},
+{
+"code": "HH",
+"name": "Hambourg",
+"region": "N",
+"area": 0.1049,
+"lon": 10.019,
+"lat": 53.559
+},
+{
+"code": "HE",
+"name": "Hesse",
+"region": "W",
+"area": 2.6682,
+"lon": 9.183,
+"lat": 50.659
+},
+{
+"code": "TH",
+"name": "Thuringe",
+"region": "E",
+"area": 2.053,
+"lon": 10.909,
+"lat": 50.808
+},
+{
+"code": "ST",
+"name": "Saxe-Anhalt",
+"region": "E",
+"area": 2.7045,
+"lon": 11.644,
+"lat": 52.049
+},
+{
+"code": "BE",
+"name": "Berlin",
+"region": "E",
+"area": 0.1177,
+"lon": 13.385,
+"lat": 52.49
+}
+],
+"regions": {
+"E": "Allemagne de l'Est",
+"S": "Allemagne du Sud",
+"W": "Allemagne de l'Ouest",
+"N": "Allemagne du Nord"
+},
+"cities": [
+{
+"name": "Berlin",
+"lon": 13.4,
+"lat": 52.524,
+"population": 3406000,
+"department": "BB",
+"capital": true
+},
+{
+"name": "Stuttgart",
+"lon": 9.2,
+"lat": 48.78,
+"population": 2944700,
+"department": "BW",
+"capital": false
+},
+{
+"name": "Francfort",
+"lon": 8.675,
+"lat": 50.1,
+"population": 2895000,
+"department": "HE",
+"capital": false
+},
+{
+"name": "Mannheim",
+"lon": 8.47,
+"lat": 49.5,
+"population": 2362000,
+"department": "BW",
+"capital": false
+},
+{
+"name": "Hambourg",
+"lon": 9.998,
+"lat": 53.552,
+"population": 1757000,
+"department": "HH",
+"capital": false
+},
+{
+"name": "Essen",
+"lon": 7.017,
+"lat": 51.45,
+"population": 1742135,
+"department": "NW",
+"capital": false
+},
+{
+"name": "Duisbourg",
+"lon": 6.75,
+"lat": 51.43,
+"population": 1276757,
+"department": "NW",
+"capital": false
+},
+{
+"name": "Munich",
+"lon": 11.573,
+"lat": 48.132,
+"population": 1275000,
+"department": "BY",
+"capital": false
+},
+{
+"name": "Düsseldorf",
+"lon": 6.78,
+"lat": 51.22,
+"population": 1220000,
+"department": "NW",
+"capital": false
+},
+{
+"name": "Cologne",
+"lon": 6.948,
+"lat": 50.932,
+"population": 1004000,
+"department": "NW",
+"capital": false
+},
+{
+"name": "Wuppertal",
+"lon": 7.17,
+"lat": 51.25,
+"population": 776525,
+"department": "NW",
+"capital": false
+},
+{
+"name": "Sarrebruck",
+"lon": 6.97,
+"lat": 49.25,
+"population": 770001,
+"department": "SL",
+"capital": false
+},
+{
+"name": "Nuremberg",
+"lon": 11.08,
+"lat": 49.45,
+"population": 737304,
+"department": "BY",
+"capital": false
+},
+{
+"name": "Brême",
+"lon": 8.8,
+"lat": 53.08,
+"population": 724909,
+"department": "NI",
+"capital": false
+},
+{
+"name": "Hanovre",
+"lon": 9.717,
+"lat": 52.367,
+"population": 722490,
+"department": "NI",
+"capital": false
+},
+{
+"name": "Bonn",
+"lon": 7.08,
+"lat": 50.72,
+"population": 680543,
+"department": "NW",
+"capital": false
+},
+{
+"name": "Dresde",
+"lon": 13.75,
+"lat": 51.05,
+"population": 617515,
+"department": "SN",
+"capital": false
+},
+{
+"name": "Wiesbaden",
+"lon": 8.25,
+"lat": 50.08,
+"population": 617126,
+"department": "HE",
+"capital": false
+},
+{
+"name": "Dortmund",
+"lon": 7.45,
+"lat": 51.53,
+"population": 588462,
+"department": "NW",
+"capital": false
+},
+{
+"name": "Leipzig",
+"lon": 12.41,
+"lat": 51.335,
+"population": 542529,
+"department": "SN",
+"capital": false
+},
+{
+"name": "Heidelberg",
+"lon": 8.7,
+"lat": 49.42,
+"population": 426590,
+"department": "BW",
+"capital": false
+},
+{
+"name": "Karlsruhe",
+"lon": 8.4,
+"lat": 49.0,
+"population": 377487,
+"department": "BW",
+"capital": false
+},
+{
+"name": "Augsbourg",
+"lon": 10.9,
+"lat": 48.35,
+"population": 358989,
+"department": "BY",
+"capital": false
+},
+{
+"name": "Bielefeld",
+"lon": 8.53,
+"lat": 52.03,
+"population": 331906,
+"department": "NW",
+"capital": false
+},
+{
+"name": "Coblence",
+"lon": 7.6,
+"lat": 50.35,
+"population": 312633,
+"department": "RP",
+"capital": false
+},
+{
+"name": "Chemnitz",
+"lon": 12.92,
+"lat": 50.83,
+"population": 302643,
+"department": "SN",
+"capital": false
+},
+{
+"name": "Cassel",
+"lon": 9.5,
+"lat": 51.3,
+"population": 289924,
+"department": "HE",
+"capital": false
+},
+{
+"name": "Münster",
+"lon": 7.62,
+"lat": 51.97,
+"population": 270184,
+"department": "NW",
+"capital": false
+},
+{
+"name": "Kiel",
+"lon": 10.13,
+"lat": 54.33,
+"population": 269427,
+"department": "SH",
+"capital": false
+},
+{
+"name": "Fribourg-en-Brisgau",
+"lon": 7.87,
+"lat": 48.0,
+"population": 254889,
+"department": "BW",
+"capital": false
+},
+{
+"name": "Brunswick",
+"lon": 10.5,
+"lat": 52.25,
+"population": 244715,
+"department": "NI",
+"capital": false
+},
+{
+"name": "Fürth",
+"lon": 11.0,
+"lat": 49.47,
+"population": 237844,
+"department": "BY",
+"capital": false
+},
+{
+"name": "Lübeck",
+"lon": 10.67,
+"lat": 53.87,
+"population": 235390,
+"department": "SH",
+"capital": false
+},
+{
+"name": "Osnabrück",
+"lon": 8.05,
+"lat": 52.28,
+"population": 231268,
+"department": "NI",
+"capital": false
+},
+{
+"name": "Magdebourg",
+"lon": 11.62,
+"lat": 52.13,
+"population": 229826,
+"department": "ST",
+"capital": false
+},
+{
+"name": "Potsdam",
+"lon": 13.07,
+"lat": 52.4,
+"population": 218095,
+"department": "BB",
+"capital": false
+},
+{
+"name": "Erfurt",
+"lon": 11.03,
+"lat": 50.97,
+"population": 203254,
+"department": "TH",
+"capital": false
+},
+{
+"name": "Rostock",
+"lon": 12.15,
+"lat": 54.07,
+"population": 203080,
+"department": "MV",
+"capital": false
+},
+{
+"name": "Mayence",
+"lon": 8.273,
+"lat": 49.982,
+"population": 184997,
+"department": "RP",
+"capital": false
+},
+{
+"name": "Ulm",
+"lon": 10.0,
+"lat": 48.4,
+"population": 172955,
+"department": "BY",
+"capital": false
+},
+{
+"name": "Wurtzbourg",
+"lon": 9.95,
+"lat": 49.8,
+"population": 168561,
+"department": "BY",
+"capital": false
+},
+{
+"name": "Oldenbourg",
+"lon": 8.22,
+"lat": 53.13,
+"population": 167458,
+"department": "NI",
+"capital": false
+},
+{
+"name": "Ratisbonne",
+"lon": 12.12,
+"lat": 49.02,
+"population": 164359,
+"department": "BY",
+"capital": false
+},
+{
+"name": "Ingolstadt",
+"lon": 11.45,
+"lat": 48.77,
+"population": 163325,
+"department": "BY",
+"capital": false
+},
+{
+"name": "Göttingen",
+"lon": 9.92,
+"lat": 51.52,
+"population": 139419,
+"department": "NI",
+"capital": false
+},
+{
+"name": "Bremerhaven",
+"lon": 8.58,
+"lat": 53.55,
+"population": 137751,
+"department": "HB",
+"capital": false
+},
+{
+"name": "Cottbus",
+"lon": 14.33,
+"lat": 51.77,
+"population": 105067,
+"department": "BB",
+"capital": false
+},
+{
+"name": "Iéna",
+"lon": 11.58,
+"lat": 50.93,
+"population": 104712,
+"department": "TH",
+"capital": false
+},
+{
+"name": "Gera",
+"lon": 12.07,
+"lat": 50.87,
+"population": 104659,
+"department": "TH",
+"capital": false
+},
+{
+"name": "Flensbourg",
+"lon": 9.433,
+"lat": 54.784,
+"population": 97930,
+"department": "SH",
+"capital": false
+},
+{
+"name": "Schwerin",
+"lon": 11.417,
+"lat": 53.633,
+"population": 96641,
+"department": "MV",
+"capital": false
+},
+{
+"name": "Rosenheim",
+"lon": 12.133,
+"lat": 47.85,
+"population": 92809,
+"department": "BY",
+"capital": false
+},
+{
+"name": "Giessen",
+"lon": 8.65,
+"lat": 50.584,
+"population": 82358,
+"department": "HE",
+"capital": false
+},
+{
+"name": "Stralsund",
+"lon": 13.1,
+"lat": 54.3,
+"population": 61368,
+"department": "MV",
+"capital": false
+},
+{
+"name": "Cobourg",
+"lon": 10.967,
+"lat": 50.267,
+"population": 61054,
+"department": "BY",
+"capital": false
+},
+{
+"name": "Hof-sur-Saale",
+"lon": 11.917,
+"lat": 50.317,
+"population": 56153,
+"department": "BY",
+"capital": false
+},
+{
+"name": "Emden",
+"lon": 7.217,
+"lat": 53.367,
+"population": 51526,
+"department": "NI",
+"capital": false
+},
+{
+"name": "Passau",
+"lon": 13.441,
+"lat": 48.575,
+"population": 50560,
+"department": "BY",
+"capital": false
+}
+]
+},
+"GBR": {
+"departments": [
+{
+"code": "DRY",
+"name": "Ville de Derry",
+"region": "NIR",
+"area": 0.0535,
+"lon": -7.229,
+"lat": 54.951
+},
+{
+"code": "STB",
+"name": "Strabane",
+"region": "NIR",
+"area": 0.121,
+"lon": -7.446,
+"lat": 54.756
+},
+{
+"code": "FER",
+"name": "Fermanagh",
+"region": "NIR",
+"area": 0.2605,
+"lon": -7.539,
+"lat": 54.315
+},
+{
+"code": "DGN",
+"name": "Dungannon and South Tyrone",
+"region": "NIR",
+"area": 0.1058,
+"lon": -6.923,
+"lat": 54.446
+},
+{
+"code": "ARM",
+"name": "Armagh",
+"region": "NIR",
+"area": 0.0914,
+"lon": -6.648,
+"lat": 54.305
+},
+{
+"code": "NYM",
+"name": "Newry and Mourne",
+"region": "NIR",
+"area": 0.1261,
+"lon": -6.311,
+"lat": 54.137
+},
+{
+"code": "FLN",
+"name": "Flintshire",
+"region": "WLS",
+"area": 0.061,
+"lon": -3.16,
+"lat": 53.22
+},
+{
+"code": "CHW",
+"name": "Cheshire West and Chester",
+"region": "NW",
+"area": 0.1264,
+"lon": -2.803,
+"lat": 53.184
+},
+{
+"code": "WRX",
+"name": "Wrexham",
+"region": "WLS",
+"area": 0.0877,
+"lon": -3.021,
+"lat": 52.938
+},
+{
+"code": "SHR",
+"name": "Shropshire",
+"region": "WM",
+"area": 0.4232,
+"lon": -2.808,
+"lat": 52.663
+},
+{
+"code": "POW",
+"name": "Powys",
+"region": "WLS",
+"area": 0.6708,
+"lon": -3.28,
+"lat": 52.34
+},
+{
+"code": "HEF",
+"name": "Herefordshire",
+"region": "WM",
+"area": 0.2797,
+"lon": -2.802,
+"lat": 52.108
+},
+{
+"code": "MON",
+"name": "Monmouthshire",
+"region": "WLS",
+"area": 0.1051,
+"lon": -2.855,
+"lat": 51.777
+},
+{
+"code": "GLS",
+"name": "Gloucestershire",
+"region": "SW",
+"area": 0.3447,
+"lon": -2.218,
+"lat": 51.812
+},
+{
+"code": "SCB",
+"name": "Scottish Borders",
+"region": "SCT",
+"area": 0.665,
+"lon": -2.709,
+"lat": 55.553
+},
+{
+"code": "NBL",
+"name": "Northumberland",
+"region": "NE",
+"area": 0.7198,
+"lon": -2.071,
+"lat": 55.308
+},
+{
+"code": "CMA",
+"name": "Cumbria",
+"region": "NW",
+"area": 0.9488,
+"lon": -2.905,
+"lat": 54.586
+},
+{
+"code": "DGY",
+"name": "Dumfries and Galloway",
+"region": "SCT",
+"area": 0.9007,
+"lon": -4.095,
+"lat": 55.009
+},
+{
+"code": "LMV",
+"name": "Limavady",
+"region": "NIR",
+"area": 0.0857,
+"lon": -6.961,
+"lat": 55.007
+},
+{
+"code": "CLR",
+"name": "Coleraine",
+"region": "NIR",
+"area": 0.0691,
+"lon": -6.661,
+"lat": 55.063
+},
+{
+"code": "MYL",
+"name": "Moyle",
+"region": "NIR",
+"area": 0.0704,
+"lon": -6.258,
+"lat": 55.135
+},
+{
+"code": "LRN",
+"name": "Larne",
+"region": "NIR",
+"area": 0.0486,
+"lon": -5.903,
+"lat": 54.879
+},
+{
+"code": "CKF",
+"name": "Carrickfergus",
+"region": "NIR",
+"area": 0.0114,
+"lon": -5.816,
+"lat": 54.736
+},
+{
+"code": "NTA",
+"name": "Newtownabbey",
+"region": "NIR",
+"area": 0.0195,
+"lon": -5.964,
+"lat": 54.723
+},
+{
+"code": "BFS",
+"name": "Belfast",
+"region": "NIR",
+"area": 0.0152,
+"lon": -5.941,
+"lat": 54.61
+},
+{
+"code": "NDN",
+"name": "North Down",
+"region": "NIR",
+"area": 0.0129,
+"lon": -5.72,
+"lat": 54.647
+},
+{
+"code": "ARD",
+"name": "Ards",
+"region": "NIR",
+"area": 0.0547,
+"lon": -5.598,
+"lat": 54.513
+},
+{
+"code": "DOW",
+"name": "Down",
+"region": "NIR",
+"area": 0.09,
+"lon": -5.809,
+"lat": 54.325
+},
+{
+"code": "CLK",
+"name": "Clackmannanshire",
+"region": "SCT",
+"area": 0.0228,
+"lon": -3.723,
+"lat": 56.141
+},
+{
+"code": "STG",
+"name": "Stirling",
+"region": "SCT",
+"area": 0.3315,
+"lon": -4.325,
+"lat": 56.245
+},
+{
+"code": "FAL",
+"name": "Falkirk",
+"region": "SCT",
+"area": 0.0378,
+"lon": -3.764,
+"lat": 55.991
+},
+{
+"code": "WLN",
+"name": "West Lothian",
+"region": "SCT",
+"area": 0.0599,
+"lon": -3.588,
+"lat": 55.883
+},
+{
+"code": "EDH",
+"name": "Édimbourg",
+"region": "SCT",
+"area": 0.0419,
+"lon": -3.306,
+"lat": 55.924
+},
+{
+"code": "MLN",
+"name": "Midlothian",
+"region": "SCT",
+"area": 0.0494,
+"lon": -3.084,
+"lat": 55.827
+},
+{
+"code": "ELN",
+"name": "East Lothian",
+"region": "SCT",
+"area": 0.1054,
+"lon": -2.666,
+"lat": 55.94
+},
+{
+"code": "NTY",
+"name": "North Tyneside",
+"region": "NE",
+"area": 0.0103,
+"lon": -1.497,
+"lat": 55.042
+},
+{
+"code": "STY",
+"name": "South Tyneside",
+"region": "NE",
+"area": 0.0113,
+"lon": -1.427,
+"lat": 54.955
+},
+{
+"code": "SND",
+"name": "Sunderland",
+"region": "NE",
+"area": 0.0198,
+"lon": -1.453,
+"lat": 54.864
+},
+{
+"code": "DUR",
+"name": "Durham",
+"region": "NE",
+"area": 0.3116,
+"lon": -1.775,
+"lat": 54.69
+},
+{
+"code": "HPL",
+"name": "Hartlepool",
+"region": "NE",
+"area": 0.0159,
+"lon": -1.233,
+"lat": 54.66
+},
+{
+"code": "RCC",
+"name": "Redcar et Cleveland",
+"region": "NE",
+"area": 0.0413,
+"lon": -1.077,
+"lat": 54.575
+},
+{
+"code": "NYK",
+"name": "Yorkshire du Nord",
+"region": "YH",
+"area": 1.0986,
+"lon": -1.361,
+"lat": 54.137
+},
+{
+"code": "ERY",
+"name": "Yorkshire de l'Est",
+"region": "YH",
+"area": 0.3342,
+"lon": -0.492,
+"lat": 53.829
+},
+{
+"code": "KHL",
+"name": "Kingston-upon-Hull",
+"region": "YH",
+"area": 0.0078,
+"lon": -0.364,
+"lat": 53.755
+},
+{
+"code": "NLN",
+"name": "Lincolnshire du Nord",
+"region": "YH",
+"area": 0.1172,
+"lon": -0.607,
+"lat": 53.578
+},
+{
+"code": "NEL",
+"name": "North East Lincolnshire",
+"region": "YH",
+"area": 0.024,
+"lon": -0.125,
+"lat": 53.537
+},
+{
+"code": "LIN",
+"name": "Lincolnshire",
+"region": "EM",
+"area": 0.798,
+"lon": -0.294,
+"lat": 53.148
+},
+{
+"code": "NFK",
+"name": "Norfolk",
+"region": "EE",
+"area": 0.7191,
+"lon": 0.894,
+"lat": 52.623
+},
+{
+"code": "SFK",
+"name": "Suffolk",
+"region": "EE",
+"area": 0.4951,
+"lon": 1.069,
+"lat": 52.236
+},
+{
+"code": "ESS",
+"name": "Essex",
+"region": "EE",
+"area": 0.4413,
+"lon": 0.635,
+"lat": 51.783
+},
+{
+"code": "SOS",
+"name": "Southend-on-Sea",
+"region": "EE",
+"area": 0.0057,
+"lon": 0.723,
+"lat": 51.546
+},
+{
+"code": "THR",
+"name": "Thurrock",
+"region": "EE",
+"area": 0.0199,
+"lon": 0.371,
+"lat": 51.495
+},
+{
+"code": "KEN",
+"name": "Kent",
+"region": "SE",
+"area": 0.4567,
+"lon": 0.66,
+"lat": 51.257
+},
+{
+"code": "MDW",
+"name": "Medway",
+"region": "SE",
+"area": 0.0254,
+"lon": 0.566,
+"lat": 51.409
+},
+{
+"code": "ESX",
+"name": "Sussex de l'Est",
+"region": "SE",
+"area": 0.2138,
+"lon": 0.265,
+"lat": 50.96
+},
+{
+"code": "BNH",
+"name": "Brighton et Hove",
+"region": "SE",
+"area": 0.0112,
+"lon": -0.128,
+"lat": 50.851
+},
+{
+"code": "WSX",
+"name": "Sussex de l'Ouest",
+"region": "SE",
+"area": 0.2521,
+"lon": -0.467,
+"lat": 50.949
+},
+{
+"code": "HAM",
+"name": "Hampshire",
+"region": "SE",
+"area": 0.4671,
+"lon": -1.337,
+"lat": 50.999
+},
+{
+"code": "POR",
+"name": "Portsmouth",
+"region": "SE",
+"area": 0.004,
+"lon": -1.05,
+"lat": 50.832
+},
+{
+"code": "STH",
+"name": "Southampton",
+"region": "SE",
+"area": 0.0073,
+"lon": -1.363,
+"lat": 50.908
+},
+{
+"code": "DOR",
+"name": "Dorset",
+"region": "SW",
+"area": 0.3265,
+"lon": -2.221,
+"lat": 50.809
+},
+{
+"code": "POL",
+"name": "Poole",
+"region": "SW",
+"area": 0.0052,
+"lon": -1.96,
+"lat": 50.731
+},
+{
+"code": "DEV",
+"name": "Devon",
+"region": "SW",
+"area": 0.839,
+"lon": -3.8,
+"lat": 50.712
+},
+{
+"code": "TOB",
+"name": "Torbay",
+"region": "SW",
+"area": 0.0136,
+"lon": -3.55,
+"lat": 50.441
+},
+{
+"code": "PLY",
+"name": "Plymouth",
+"region": "SW",
+"area": 0.0078,
+"lon": -4.124,
+"lat": 50.396
+},
+{
+"code": "CON",
+"name": "Cornouailles",
+"region": "SW",
+"area": 0.4453,
+"lon": -4.862,
+"lat": 50.351
+},
+{
+"code": "SOM",
+"name": "Somerset",
+"region": "SW",
+"area": 0.4411,
+"lon": -2.947,
+"lat": 51.119
+},
+{
+"code": "NSM",
+"name": "North Somerset",
+"region": "SW",
+"area": 0.0471,
+"lon": -2.807,
+"lat": 51.369
+},
+{
+"code": "BST",
+"name": "Bristol",
+"region": "SW",
+"area": 0.0158,
+"lon": -2.619,
+"lat": 51.458
+},
+{
+"code": "SGC",
+"name": "South Gloucestershire",
+"region": "SW",
+"area": 0.0716,
+"lon": -2.446,
+"lat": 51.549
+},
+{
+"code": "NWP",
+"name": "Newport",
+"region": "WLS",
+"area": 0.0225,
+"lon": -2.954,
+"lat": 51.578
+},
+{
+"code": "CRF",
+"name": "Cardiff",
+"region": "WLS",
+"area": 0.0141,
+"lon": -3.176,
+"lat": 51.492
+},
+{
+"code": "VGL",
+"name": "Vale of Glamorgan",
+"region": "WLS",
+"area": 0.0371,
+"lon": -3.357,
+"lat": 51.464
+},
+{
+"code": "BGE",
+"name": "Bridgend",
+"region": "WLS",
+"area": 0.0373,
+"lon": -3.617,
+"lat": 51.518
+},
+{
+"code": "NTL",
+"name": "Neath Port Talbot",
+"region": "WLS",
+"area": 0.0573,
+"lon": -3.738,
+"lat": 51.673
+},
+{
+"code": "SWA",
+"name": "Swansea",
+"region": "WLS",
+"area": 0.0477,
+"lon": -4.095,
+"lat": 51.615
+},
+{
+"code": "CMN",
+"name": "Carmarthenshire",
+"region": "WLS",
+"area": 0.3092,
+"lon": -4.236,
+"lat": 51.874
+},
+{
+"code": "PEM",
+"name": "Pembrokeshire",
+"region": "WLS",
+"area": 0.2029,
+"lon": -4.902,
+"lat": 51.841
+},
+{
+"code": "CGN",
+"name": "Ceredigion",
+"region": "WLS",
+"area": 0.246,
+"lon": -4.124,
+"lat": 52.237
+},
+{
+"code": "GWN",
+"name": "Gwynedd",
+"region": "WLS",
+"area": 0.3454,
+"lon": -4.085,
+"lat": 52.897
+},
+{
+"code": "CWY",
+"name": "Conwy",
+"region": "WLS",
+"area": 0.1519,
+"lon": -3.743,
+"lat": 53.134
+},
+{
+"code": "DEN",
+"name": "Denbighshire",
+"region": "WLS",
+"area": 0.1111,
+"lon": -3.367,
+"lat": 53.108
+},
+{
+"code": "WRL",
+"name": "Halton",
+"region": "NW",
+"area": 0.0226,
+"lon": -3.057,
+"lat": 53.347
+},
+{
+"code": "HAL",
+"name": "Halton",
+"region": "NW",
+"area": 0.0119,
+"lon": -2.723,
+"lat": 53.336
+},
+{
+"code": "KWL",
+"name": "Knowsley",
+"region": "NW",
+"area": 0.0186,
+"lon": -2.836,
+"lat": 53.405
+},
+{
+"code": "LIV",
+"name": "Liverpool",
+"region": "NW",
+"area": 0.015,
+"lon": -2.925,
+"lat": 53.409
+},
+{
+"code": "SFT",
+"name": "Sefton",
+"region": "NW",
+"area": 0.0185,
+"lon": -2.99,
+"lat": 53.584
+},
+{
+"code": "LAN",
+"name": "Lancashire",
+"region": "NW",
+"area": 0.3842,
+"lon": -2.621,
+"lat": 53.839
+},
+{
+"code": "BPL",
+"name": "Blackpool",
+"region": "NW",
+"area": 0.0141,
+"lon": -3.016,
+"lat": 53.841
+},
+{
+"code": "SAY",
+"name": "South Ayrshire",
+"region": "SCT",
+"area": 0.1777,
+"lon": -4.694,
+"lat": 55.271
+},
+{
+"code": "NAY",
+"name": "North Ayrshire",
+"region": "SCT",
+"area": 0.067,
+"lon": -4.697,
+"lat": 55.705
+},
+{
+"code": "IVC",
+"name": "Inverclyde",
+"region": "SCT",
+"area": 0.0247,
+"lon": -4.735,
+"lat": 55.893
+},
+{
+"code": "RFW",
+"name": "Renfrewshire",
+"region": "SCT",
+"area": 0.0388,
+"lon": -4.557,
+"lat": 55.849
+},
+{
+"code": "WDU",
+"name": "West Dunbartonshire",
+"region": "SCT",
+"area": 0.0287,
+"lon": -4.496,
+"lat": 55.985
+},
+{
+"code": "AGB",
+"name": "Argyll and Bute",
+"region": "SCT",
+"area": 1.0866,
+"lon": -5.471,
+"lat": 56.066
+},
+{
+"code": "HLD",
+"name": "Highland",
+"region": "SCT",
+"area": 3.8699,
+"lon": -5.01,
+"lat": 57.607
+},
+{
+"code": "MRY",
+"name": "Moray",
+"region": "SCT",
+"area": 0.3345,
+"lon": -3.358,
+"lat": 57.429
+},
+{
+"code": "ABD",
+"name": "Aberdeenshire",
+"region": "SCT",
+"area": 0.9434,
+"lon": -2.632,
+"lat": 57.245
+},
+{
+"code": "ABE",
+"name": "Aberdeen",
+"region": "SCT",
+"area": 0.0334,
+"lon": -2.195,
+"lat": 57.169
+},
+{
+"code": "ANS",
+"name": "Angus",
+"region": "SCT",
+"area": 0.3104,
+"lon": -2.915,
+"lat": 56.706
+},
+{
+"code": "DND",
+"name": "Dundee",
+"region": "SCT",
+"area": 0.0121,
+"lon": -2.949,
+"lat": 56.489
+},
+{
+"code": "PKN",
+"name": "Perth and Kinross",
+"region": "SCT",
+"area": 0.7938,
+"lon": -3.865,
+"lat": 56.514
+},
+{
+"code": "FIF",
+"name": "Fife",
+"region": "SCT",
+"area": 0.1916,
+"lon": -3.169,
+"lat": 56.232
+},
+{
+"code": "IOW",
+"name": "île de Wight",
+"region": "SE",
+"area": 0.0513,
+"lon": -1.252,
+"lat": 50.689
+},
+{
+"code": "AGY",
+"name": "Anglesey",
+"region": "WLS",
+"area": 0.096,
+"lon": -4.335,
+"lat": 53.261
+},
+{
+"code": "ELS",
+"name": "Hébrides extérieures",
+"region": "SCT",
+"area": 0.4321,
+"lon": -6.845,
+"lat": 57.906
+},
+{
+"code": "ORK",
+"name": "Orcades",
+"region": "SCT",
+"area": 0.1461,
+"lon": -3.01,
+"lat": 59.02
+},
+{
+"code": "ZET",
+"name": "Shetland",
+"region": "SCT",
+"area": 0.2131,
+"lon": -1.221,
+"lat": 60.399
+},
+{
+"code": "CAY",
+"name": "Caerphilly",
+"region": "WLS",
+"area": 0.0383,
+"lon": -3.164,
+"lat": 51.661
+},
+{
+"code": "RCT",
+"name": "Rhondda Cynon Taf",
+"region": "WLS",
+"area": 0.0571,
+"lon": -3.436,
+"lat": 51.642
+},
+{
+"code": "BGW",
+"name": "Blaenau Gwent",
+"region": "WLS",
+"area": 0.0125,
+"lon": -3.185,
+"lat": 51.761
+},
+{
+"code": "TOF",
+"name": "Torfaen",
+"region": "WLS",
+"area": 0.0172,
+"lon": -3.053,
+"lat": 51.701
+},
+{
+"code": "MTY",
+"name": "Merthyr Tydfil",
+"region": "WLS",
+"area": 0.0136,
+"lon": -3.362,
+"lat": 51.759
+},
+{
+"code": "NLK",
+"name": "North Lanarkshire",
+"region": "SCT",
+"area": 0.0689,
+"lon": -3.971,
+"lat": 55.901
+},
+{
+"code": "EDU",
+"name": "East Dunbartonshire",
+"region": "SCT",
+"area": 0.027,
+"lon": -4.202,
+"lat": 55.95
+},
+{
+"code": "GLG",
+"name": "Glasgow",
+"region": "SCT",
+"area": 0.0231,
+"lon": -4.241,
+"lat": 55.851
+},
+{
+"code": "ERW",
+"name": "East Renfrewshire",
+"region": "SCT",
+"area": 0.0214,
+"lon": -4.331,
+"lat": 55.758
+},
+{
+"code": "EAY",
+"name": "East Ayrshire",
+"region": "SCT",
+"area": 0.1825,
+"lon": -4.337,
+"lat": 55.449
+},
+{
+"code": "SLK",
+"name": "South Lanarkshire",
+"region": "SCT",
+"area": 0.2495,
+"lon": -3.869,
+"lat": 55.62
+},
+{
+"code": "MFT",
+"name": "Magherafelt",
+"region": "NIR",
+"area": 0.0786,
+"lon": -6.651,
+"lat": 54.802
+},
+{
+"code": "OMH",
+"name": "d'Omagh",
+"region": "NIR",
+"area": 0.1615,
+"lon": -7.284,
+"lat": 54.584
+},
+{
+"code": "CKT",
+"name": "Mid-Ulster",
+"region": "NIR",
+"area": 0.085,
+"lon": -6.696,
+"lat": 54.642
+},
+{
+"code": "CGV",
+"name": "Craigavon",
+"region": "NIR",
+"area": 0.053,
+"lon": -6.356,
+"lat": 54.498
+},
+{
+"code": "BNB",
+"name": "Banbridge",
+"region": "NIR",
+"area": 0.0638,
+"lon": -6.161,
+"lat": 54.338
+},
+{
+"code": "ANT",
+"name": "d'Antrim",
+"region": "NIR",
+"area": 0.0777,
+"lon": -6.293,
+"lat": 54.689
+},
+{
+"code": "LSB",
+"name": "Lisburn",
+"region": "NIR",
+"area": 0.0626,
+"lon": -6.062,
+"lat": 54.497
+},
+{
+"code": "BLY",
+"name": "Ballymoney",
+"region": "NIR",
+"area": 0.0582,
+"lon": -6.415,
+"lat": 55.032
+},
+{
+"code": "BLA",
+"name": "Ballymena",
+"region": "NIR",
+"area": 0.0903,
+"lon": -6.275,
+"lat": 54.887
+},
+{
+"code": "CSR",
+"name": "Castlereagh",
+"region": "NIR",
+"area": 0.013,
+"lon": -5.844,
+"lat": 54.552
+},
+{
+"code": "WND",
+"name": "Wandsworth",
+"region": "LDN",
+"area": 0.0048,
+"lon": -0.179,
+"lat": 51.454
+},
+{
+"code": "MRT",
+"name": "Merton",
+"region": "LDN",
+"area": 0.0048,
+"lon": -0.177,
+"lat": 51.401
+},
+{
+"code": "WSM",
+"name": "cité de Westminster",
+"region": "LDN",
+"area": 0.0023,
+"lon": -0.168,
+"lat": 51.512
+},
+{
+"code": "KEC",
+"name": "Kensington et Chelsea",
+"region": "LDN",
+"area": 0.0014,
+"lon": -0.187,
+"lat": 51.504
+},
+{
+"code": "HNS",
+"name": "Hounslow",
+"region": "LDN",
+"area": 0.0069,
+"lon": -0.345,
+"lat": 51.461
+},
+{
+"code": "EAL",
+"name": "londonien d'Ealing",
+"region": "LDN",
+"area": 0.007,
+"lon": -0.328,
+"lat": 51.521
+},
+{
+"code": "HMF",
+"name": "Hammersmith et Fulham",
+"region": "LDN",
+"area": 0.0019,
+"lon": -0.218,
+"lat": 51.5
+},
+{
+"code": "STT",
+"name": "Stockton-on-Tees",
+"region": "NE",
+"area": 0.0203,
+"lon": -1.341,
+"lat": 54.544
+},
+{
+"code": "DAL",
+"name": "Darlington",
+"region": "NE",
+"area": 0.024,
+"lon": -1.518,
+"lat": 54.529
+},
+{
+"code": "MDB",
+"name": "Middlesbrough",
+"region": "NE",
+"area": 0.0067,
+"lon": -1.245,
+"lat": 54.537
+},
+{
+"code": "RIC",
+"name": "Richmond upon Thames",
+"region": "LDN",
+"area": 0.0076,
+"lon": -0.302,
+"lat": 51.439
+},
+{
+"code": "TWH",
+"name": "Tower Hamlets",
+"region": "LDN",
+"area": 0.0029,
+"lon": -0.03,
+"lat": 51.508
+},
+{
+"code": "GAT",
+"name": "Gateshead",
+"region": "NE",
+"area": 0.0231,
+"lon": -1.695,
+"lat": 54.938
+},
+{
+"code": "NET",
+"name": "Newcastle upon Tyne",
+"region": "NE",
+"area": 0.0137,
+"lon": -1.647,
+"lat": 55.022
+},
+{
+"code": "YOR",
+"name": "York",
+"region": "YH",
+"area": 0.0413,
+"lon": -1.072,
+"lat": 53.963
+},
+{
+"code": "SHN",
+"name": "Merseyside",
+"region": "NW",
+"area": 0.0188,
+"lon": -2.702,
+"lat": 53.449
+},
+{
+"code": "ENF",
+"name": "londonien d'Enfield",
+"region": "LDN",
+"area": 0.0104,
+"lon": -0.041,
+"lat": 51.627
+},
+{
+"code": "HRT",
+"name": "Hertfordshire",
+"region": "EE",
+"area": 0.2129,
+"lon": -0.306,
+"lat": 51.83
+},
+{
+"code": "BNE",
+"name": "Barnet",
+"region": "LDN",
+"area": 0.0122,
+"lon": -0.185,
+"lat": 51.599
+},
+{
+"code": "WFT",
+"name": "Waltham Forest",
+"region": "LDN",
+"area": 0.0048,
+"lon": -0.018,
+"lat": 51.605
+},
+{
+"code": "RDB",
+"name": "Redbridge",
+"region": "LDN",
+"area": 0.0069,
+"lon": 0.078,
+"lat": 51.578
+},
+{
+"code": "HAV",
+"name": "londonien d'Havering",
+"region": "LDN",
+"area": 0.0156,
+"lon": 0.199,
+"lat": 51.558
+},
+{
+"code": "CAM",
+"name": "Cambridgeshire",
+"region": "EE",
+"area": 0.4035,
+"lon": 0.071,
+"lat": 52.325
+},
+{
+"code": "BEX",
+"name": "Bexley",
+"region": "LDN",
+"area": 0.0085,
+"lon": 0.138,
+"lat": 51.466
+},
+{
+"code": "STN",
+"name": "Sutton",
+"region": "LDN",
+"area": 0.0058,
+"lon": -0.168,
+"lat": 51.364
+},
+{
+"code": "MIK",
+"name": "Milton Keynes",
+"region": "SE",
+"area": 0.0443,
+"lon": -0.733,
+"lat": 52.069
+},
+{
+"code": "BKM",
+"name": "Buckinghamshire",
+"region": "SE",
+"area": 0.2028,
+"lon": -0.785,
+"lat": 51.747
+},
+{
+"code": "HIL",
+"name": "Hillingdon",
+"region": "LDN",
+"area": 0.0147,
+"lon": -0.412,
+"lat": 51.53
+},
+{
+"code": "BEN",
+"name": "Brent",
+"region": "LDN",
+"area": 0.0059,
+"lon": -0.26,
+"lat": 51.552
+},
+{
+"code": "LUT",
+"name": "Luton",
+"region": "EE",
+"area": 0.009,
+"lon": -0.408,
+"lat": 51.875
+},
+{
+"code": "HRW",
+"name": "Harrow",
+"region": "LDN",
+"area": 0.0071,
+"lon": -0.324,
+"lat": 51.581
+},
+{
+"code": "CBF",
+"name": "Central Bedfordshire",
+"region": "EE",
+"area": 0.0908,
+"lon": -0.422,
+"lat": 51.989
+},
+{
+"code": "BDF",
+"name": "Bedford",
+"region": "EE",
+"area": 0.057,
+"lon": -0.481,
+"lat": 52.207
+},
+{
+"code": "RUT",
+"name": "Rutland",
+"region": "EM",
+"area": 0.0539,
+"lon": -0.637,
+"lat": 52.656
+},
+{
+"code": "NTT",
+"name": "Nottinghamshire",
+"region": "EM",
+"area": 0.2903,
+"lon": -0.963,
+"lat": 53.155
+},
+{
+"code": "NTH",
+"name": "Northamptonshire",
+"region": "EM",
+"area": 0.3066,
+"lon": -0.87,
+"lat": 52.277
+},
+{
+"code": "CMD",
+"name": "Camden",
+"region": "LDN",
+"area": 0.0031,
+"lon": -0.131,
+"lat": 51.534
+},
+{
+"code": "ISL",
+"name": "londonien d’Islington",
+"region": "LDN",
+"area": 0.0015,
+"lon": -0.097,
+"lat": 51.545
+},
+{
+"code": "PTE",
+"name": "Peterborough",
+"region": "EE",
+"area": 0.0413,
+"lon": -0.256,
+"lat": 52.599
+},
+{
+"code": "LBH",
+"name": "Lambeth",
+"region": "LDN",
+"area": 0.0038,
+"lon": -0.106,
+"lat": 51.45
+},
+{
+"code": "SWK",
+"name": "Southwark",
+"region": "LDN",
+"area": 0.004,
+"lon": -0.067,
+"lat": 51.464
+},
+{
+"code": "DNC",
+"name": "Doncaster",
+"region": "YH",
+"area": 0.0871,
+"lon": -1.051,
+"lat": 53.545
+},
+{
+"code": "CRY",
+"name": "Croydon",
+"region": "LDN",
+"area": 0.0108,
+"lon": -0.107,
+"lat": 51.359
+},
+{
+"code": "LEW",
+"name": "Lewisham",
+"region": "LDN",
+"area": 0.0042,
+"lon": -0.009,
+"lat": 51.454
+},
+{
+"code": "HRY",
+"name": "Haringey",
+"region": "LDN",
+"area": 0.0038,
+"lon": -0.107,
+"lat": 51.586
+},
+{
+"code": "KTT",
+"name": "Kingston-upon-Thames",
+"region": "LDN",
+"area": 0.0052,
+"lon": -0.265,
+"lat": 51.402
+},
+{
+"code": "NWM",
+"name": "Newham",
+"region": "LDN",
+"area": 0.0053,
+"lon": 0.049,
+"lat": 51.534
+},
+{
+"code": "GRE",
+"name": "Greenwich",
+"region": "LDN",
+"area": 0.006,
+"lon": 0.032,
+"lat": 51.465
+},
+{
+"code": "HCK",
+"name": "Hackney",
+"region": "LDN",
+"area": 0.0025,
+"lon": -0.066,
+"lat": 51.544
+},
+{
+"code": "BDG",
+"name": "Barking et Dagenham",
+"region": "LDN",
+"area": 0.0055,
+"lon": 0.139,
+"lat": 51.551
+},
+{
+"code": "LEC",
+"name": "Leicestershire",
+"region": "EM",
+"area": 0.2816,
+"lon": -1.067,
+"lat": 52.687
+},
+{
+"code": "CHE",
+"name": "Cheshire East",
+"region": "NW",
+"area": 0.1513,
+"lon": -2.299,
+"lat": 53.188
+},
+{
+"code": "DBY",
+"name": "Derbyshire",
+"region": "EM",
+"area": 0.3567,
+"lon": -1.597,
+"lat": 53.122
+},
+{
+"code": "ROT",
+"name": "Rotherham",
+"region": "YH",
+"area": 0.0376,
+"lon": -1.276,
+"lat": 53.351
+},
+{
+"code": "SHF",
+"name": "Sheffield",
+"region": "YH",
+"area": 0.0512,
+"lon": -1.595,
+"lat": 53.386
+},
+{
+"code": "STE",
+"name": "Stoke-on-Trent",
+"region": "WM",
+"area": 0.0139,
+"lon": -2.175,
+"lat": 53.019
+},
+{
+"code": "TFW",
+"name": "Telford et Wrekin",
+"region": "WM",
+"area": 0.0392,
+"lon": -2.456,
+"lat": 52.729
+},
+{
+"code": "STS",
+"name": "Staffordshire",
+"region": "WM",
+"area": 0.3477,
+"lon": -2.054,
+"lat": 52.804
+},
+{
+"code": "BRY",
+"name": "Bromley",
+"region": "LDN",
+"area": 0.0202,
+"lon": 0.01,
+"lat": 51.401
+},
+{
+"code": "WOR",
+"name": "Worcestershire",
+"region": "WM",
+"area": 0.2349,
+"lon": -2.174,
+"lat": 52.217
+},
+{
+"code": "WAR",
+"name": "Warwickshire",
+"region": "WM",
+"area": 0.2588,
+"lon": -1.585,
+"lat": 52.289
+},
+{
+"code": "OXF",
+"name": "Oxfordshire",
+"region": "SE",
+"area": 0.3407,
+"lon": -1.264,
+"lat": 51.775
+},
+{
+"code": "WGN",
+"name": "Wigan",
+"region": "NW",
+"area": 0.0276,
+"lon": -2.617,
+"lat": 53.528
+},
+{
+"code": "SKP",
+"name": "Stockport",
+"region": "NW",
+"area": 0.0163,
+"lon": -2.122,
+"lat": 53.374
+},
+{
+"code": "WRT",
+"name": "Warrington",
+"region": "NW",
+"area": 0.0239,
+"lon": -2.569,
+"lat": 53.387
+},
+{
+"code": "WBK",
+"name": "West Berkshire",
+"region": "SE",
+"area": 0.0833,
+"lon": -1.328,
+"lat": 51.45
+},
+{
+"code": "WOK",
+"name": "Wokingham",
+"region": "SE",
+"area": 0.0248,
+"lon": -0.911,
+"lat": 51.447
+},
+{
+"code": "BRC",
+"name": "Bracknell Forest",
+"region": "SE",
+"area": 0.0147,
+"lon": -0.768,
+"lat": 51.391
+},
+{
+"code": "WNM",
+"name": "Windsor and Maidenhead",
+"region": "SE",
+"area": 0.0252,
+"lon": -0.692,
+"lat": 51.482
+},
+{
+"code": "SLG",
+"name": "Slough",
+"region": "SE",
+"area": 0.0067,
+"lon": -0.575,
+"lat": 51.495
+},
+{
+"code": "RDG",
+"name": "Reading",
+"region": "SE",
+"area": 0.0059,
+"lon": -1.033,
+"lat": 51.454
+},
+{
+"code": "SRY",
+"name": "Surrey",
+"region": "SE",
+"area": 0.2166,
+"lon": -0.379,
+"lat": 51.273
+},
+{
+"code": "BBD",
+"name": "Blackburn with Darwen",
+"region": "NW",
+"area": 0.019,
+"lon": -2.45,
+"lat": 53.692
+},
+{
+"code": "SWD",
+"name": "Swindon",
+"region": "SW",
+"area": 0.0331,
+"lon": -1.714,
+"lat": 51.567
+},
+{
+"code": "BAS",
+"name": "Bath and North East Somerset",
+"region": "SW",
+"area": 0.0399,
+"lon": -2.517,
+"lat": 51.345
+},
+{
+"code": "WIL",
+"name": "Wiltshire",
+"region": "SW",
+"area": 0.4096,
+"lon": -1.898,
+"lat": 51.327
+},
+{
+"code": "CLD",
+"name": "Calderdale",
+"region": "YH",
+"area": 0.0576,
+"lon": -2.016,
+"lat": 53.736
+},
+{
+"code": "KIR",
+"name": "Kirklees",
+"region": "YH",
+"area": 0.0588,
+"lon": -1.78,
+"lat": 53.614
+},
+{
+"code": "NGM",
+"name": "Nottingham",
+"region": "EM",
+"area": 0.011,
+"lon": -1.17,
+"lat": 52.939
+},
+{
+"code": "LCE",
+"name": "Leicester",
+"region": "EM",
+"area": 0.0087,
+"lon": -1.124,
+"lat": 52.623
+},
+{
+"code": "DER",
+"name": "Derby",
+"region": "EM",
+"area": 0.0102,
+"lon": -1.464,
+"lat": 52.894
+},
+{
+"code": "LDS",
+"name": "cité de Leeds",
+"region": "YH",
+"area": 0.075,
+"lon": -1.452,
+"lat": 53.844
+},
+{
+"code": "BRD",
+"name": "cité de Bradford",
+"region": "YH",
+"area": 0.0416,
+"lon": -1.826,
+"lat": 53.877
+},
+{
+"code": "WKF",
+"name": "cité de Wakefield",
+"region": "YH",
+"area": 0.0434,
+"lon": -1.408,
+"lat": 53.644
+},
+{
+"code": "BNS",
+"name": "Barnsley",
+"region": "YH",
+"area": 0.0464,
+"lon": -1.511,
+"lat": 53.533
+},
+{
+"code": "SLF",
+"name": "cité de Salford",
+"region": "NW",
+"area": 0.0174,
+"lon": -2.406,
+"lat": 53.489
+},
+{
+"code": "BOL",
+"name": "Bolton",
+"region": "NW",
+"area": 0.0156,
+"lon": -2.443,
+"lat": 53.584
+},
+{
+"code": "TRF",
+"name": "Trafford",
+"region": "NW",
+"area": 0.0105,
+"lon": -2.382,
+"lat": 53.408
+},
+{
+"code": "MAN",
+"name": "Manchester",
+"region": "NW",
+"area": 0.0165,
+"lon": -2.269,
+"lat": 53.437
+},
+{
+"code": "OLD",
+"name": "Oldham",
+"region": "NW",
+"area": 0.025,
+"lon": -2.045,
+"lat": 53.525
+},
+{
+"code": "RCH",
+"name": "Rochdale",
+"region": "NW",
+"area": 0.0259,
+"lon": -2.125,
+"lat": 53.639
+},
+{
+"code": "TAM",
+"name": "Tameside",
+"region": "NW",
+"area": 0.017,
+"lon": -2.094,
+"lat": 53.452
+},
+{
+"code": "BUR",
+"name": "Bury",
+"region": "NW",
+"area": 0.0133,
+"lon": -2.317,
+"lat": 53.608
+},
+{
+"code": "SOL",
+"name": "Solihull",
+"region": "WM",
+"area": 0.0192,
+"lon": -1.737,
+"lat": 52.403
+},
+{
+"code": "COV",
+"name": "Coventry",
+"region": "WM",
+"area": 0.0145,
+"lon": -1.533,
+"lat": 52.387
+},
+{
+"code": "BIR",
+"name": "Birmingham",
+"region": "WM",
+"area": 0.0362,
+"lon": -1.881,
+"lat": 52.475
+},
+{
+"code": "SAW",
+"name": "Sandwell",
+"region": "WM",
+"area": 0.0131,
+"lon": -2.009,
+"lat": 52.513
+},
+{
+"code": "DUD",
+"name": "Dudley",
+"region": "WM",
+"area": 0.012,
+"lon": -2.094,
+"lat": 52.493
+},
+{
+"code": "WLL",
+"name": "Walsall",
+"region": "WM",
+"area": 0.0128,
+"lon": -1.949,
+"lat": 52.601
+},
+{
+"code": "WLV",
+"name": "Wolverhampton",
+"region": "WM",
+"area": 0.0086,
+"lon": -2.117,
+"lat": 52.587
+}
+],
+"regions": {
+"NIR": "Irlande du Nord",
+"WLS": "Pays de Galles",
+"NW": "Nord-Ouest de l'Angleterre",
+"WM": "Midlands de l'Ouest",
+"SW": "Sud-Ouest de l'Angleterre",
+"SCT": "Écosse",
+"NE": "Nord-Est de l'Angleterre",
+"YH": "Yorkshire",
+"EM": "Midlands de l'Est",
+"EE": "Est de l'Angleterre",
+"SE": "Sud-Est de l'Angleterre",
+"LDN": "Grand Londres"
+},
+"cities": [
+{
+"name": "Londres",
+"lon": -0.119,
+"lat": 51.502,
+"population": 8567000,
+"department": "CMD",
+"capital": true
+},
+{
+"name": "Birmingham",
+"lon": -1.922,
+"lat": 52.477,
+"population": 2285000,
+"department": "BIR",
+"capital": false
+},
+{
+"name": "Manchester",
+"lon": -2.249,
+"lat": 53.475,
+"population": 2230000,
+"department": "MAN",
+"capital": false
+},
+{
+"name": "Leeds",
+"lon": -1.551,
+"lat": 53.79,
+"population": 1529000,
+"department": "LDS",
+"capital": false
+},
+{
+"name": "Sheffield",
+"lon": -1.5,
+"lat": 53.367,
+"population": 1292900,
+"department": "SHF",
+"capital": false
+},
+{
+"name": "Glasgow",
+"lon": -4.239,
+"lat": 55.862,
+"population": 1160000,
+"department": "GLG",
+"capital": false
+},
+{
+"name": "Newcastle upon Tyne",
+"lon": -1.612,
+"lat": 54.99,
+"population": 882000,
+"department": "NET",
+"capital": false
+},
+{
+"name": "Cardiff",
+"lon": -3.168,
+"lat": 51.483,
+"population": 861400,
+"department": "CRF",
+"capital": false
+},
+{
+"name": "Nottingham",
+"lon": -1.166,
+"lat": 52.941,
+"population": 825600,
+"department": "NTT",
+"capital": false
+},
+{
+"name": "Liverpool",
+"lon": -2.962,
+"lat": 53.405,
+"population": 811000,
+"department": "LIV",
+"capital": false
+},
+{
+"name": "Southend-on-Sea",
+"lon": 0.72,
+"lat": 51.55,
+"population": 618386,
+"department": "SOS",
+"capital": false
+},
+{
+"name": "Bristol",
+"lon": -2.583,
+"lat": 51.45,
+"population": 553528,
+"department": "BST",
+"capital": false
+},
+{
+"name": "Édimbourg",
+"lon": -3.219,
+"lat": 55.948,
+"population": 504966,
+"department": "EDH",
+"capital": false
+},
+{
+"name": "Brighton",
+"lon": -0.17,
+"lat": 50.83,
+"population": 503008,
+"department": "BNH",
+"capital": false
+},
+{
+"name": "Bradford",
+"lon": -1.754,
+"lat": 53.792,
+"population": 501700,
+"department": "BRD",
+"capital": false
+},
+{
+"name": "Leicester",
+"lon": -1.133,
+"lat": 52.63,
+"population": 457983,
+"department": "LEC",
+"capital": false
+},
+{
+"name": "Sunderland",
+"lon": -1.38,
+"lat": 54.903,
+"population": 452934,
+"department": "SND",
+"capital": false
+},
+{
+"name": "Belfast",
+"lon": -5.928,
+"lat": 54.594,
+"population": 450406,
+"department": "BFS",
+"capital": false
+},
+{
+"name": "Portsmouth",
+"lon": -1.08,
+"lat": 50.8,
+"population": 442252,
+"department": "POR",
+"capital": false
+},
+{
+"name": "Bournemouth",
+"lon": -1.9,
+"lat": 50.73,
+"population": 426945,
+"department": "POL",
+"capital": false
+},
+{
+"name": "Middlesbrough",
+"lon": -1.23,
+"lat": 54.58,
+"population": 416042,
+"department": "MDB",
+"capital": false
+},
+{
+"name": "Stoke-on-Trent",
+"lon": -2.18,
+"lat": 53.0,
+"population": 390801,
+"department": "STE",
+"capital": false
+},
+{
+"name": "Coventry",
+"lon": -1.503,
+"lat": 52.401,
+"population": 388271,
+"department": "COV",
+"capital": false
+},
+{
+"name": "Southampton",
+"lon": -1.4,
+"lat": 50.9,
+"population": 384417,
+"department": "STH",
+"capital": false
+},
+{
+"name": "Reading",
+"lon": -0.98,
+"lat": 51.47,
+"population": 369804,
+"department": "OXF",
+"capital": false
+},
+{
+"name": "Kingston-upon-Hull",
+"lon": -0.33,
+"lat": 53.75,
+"population": 302296,
+"department": "KHL",
+"capital": false
+},
+{
+"name": "Swansea",
+"lon": -3.95,
+"lat": 51.63,
+"population": 294339,
+"department": "SWA",
+"capital": false
+},
+{
+"name": "Blackpool",
+"lon": -3.05,
+"lat": 53.83,
+"population": 272792,
+"department": "BPL",
+"capital": false
+},
+{
+"name": "Plymouth",
+"lon": -4.16,
+"lat": 50.385,
+"population": 247297,
+"department": "PLY",
+"capital": false
+},
+{
+"name": "Luton",
+"lon": -0.42,
+"lat": 51.88,
+"population": 235958,
+"department": "LUT",
+"capital": false
+},
+{
+"name": "Oxford",
+"lon": -1.248,
+"lat": 51.752,
+"population": 192796,
+"department": "OXF",
+"capital": false
+},
+{
+"name": "Norwich",
+"lon": 1.3,
+"lat": 52.63,
+"population": 190756,
+"department": "NFK",
+"capital": false
+},
+{
+"name": "Aberdeen",
+"lon": -2.105,
+"lat": 57.145,
+"population": 189364,
+"department": "ABE",
+"capital": false
+},
+{
+"name": "York",
+"lon": -1.072,
+"lat": 53.951,
+"population": 158947,
+"department": "YOR",
+"capital": false
+},
+{
+"name": "Dundee",
+"lon": -3.0,
+"lat": 56.47,
+"population": 151592,
+"department": "DND",
+"capital": false
+},
+{
+"name": "Ipswich",
+"lon": 1.17,
+"lat": 52.07,
+"population": 143767,
+"department": "SFK",
+"capital": false
+},
+{
+"name": "Peterborough",
+"lon": -0.248,
+"lat": 52.567,
+"population": 140141,
+"department": "PTE",
+"capital": false
+},
+{
+"name": "Cambridge",
+"lon": 0.117,
+"lat": 52.2,
+"population": 128488,
+"department": "CAM",
+"capital": false
+},
+{
+"name": "Exeter",
+"lon": -3.53,
+"lat": 50.7,
+"population": 113118,
+"department": "DEV",
+"capital": false
+},
+{
+"name": "Bath",
+"lon": -2.35,
+"lat": 51.384,
+"population": 93238,
+"department": "BAS",
+"capital": false
+},
+{
+"name": "Chester",
+"lon": -2.903,
+"lat": 53.186,
+"population": 89531,
+"department": "CHW",
+"capital": false
+},
+{
+"name": "Londonderry/Derry",
+"lon": -7.333,
+"lat": 55.0,
+"population": 83652,
+"department": "DRY",
+"capital": false
+},
+{
+"name": "Greenock",
+"lon": -4.75,
+"lat": 55.933,
+"population": 74635,
+"department": "IVC",
+"capital": false
+},
+{
+"name": "Carlisle",
+"lon": -2.93,
+"lat": 54.88,
+"population": 72633,
+"department": "CMA",
+"capital": false
+},
+{
+"name": "Scarborough",
+"lon": -0.43,
+"lat": 54.28,
+"population": 70571,
+"department": "NYK",
+"capital": false
+},
+{
+"name": "Ayr",
+"lon": -4.617,
+"lat": 55.45,
+"population": 69042,
+"department": "SAY",
+"capital": false
+},
+{
+"name": "Inverness",
+"lon": -4.233,
+"lat": 57.467,
+"population": 45158,
+"department": "HLD",
+"capital": false
+},
+{
+"name": "Perth",
+"lon": -3.436,
+"lat": 56.393,
+"population": 39654,
+"department": "PKN",
+"capital": false
+},
+{
+"name": "Douvres",
+"lon": 1.3,
+"lat": 51.134,
+"population": 36384,
+"department": "KEN",
+"capital": false
+},
+{
+"name": "Dumfries",
+"lon": -3.55,
+"lat": 55.067,
+"population": 31044,
+"department": "DGY",
+"capital": false
+}
+]
+},
+"ITA": {
+"departments": [
+{
+"code": "AO",
+"name": "Aoste",
+"region": "VALLEE",
+"area": 0.3819,
+"lon": 7.369,
+"lat": 45.728
+},
+{
+"code": "VB",
+"name": "Verbano-Cusio-Ossola",
+"region": "PIEMON",
+"area": 0.2641,
+"lon": 8.313,
+"lat": 46.058
+},
+{
+"code": "VA",
+"name": "Varèse",
+"region": "LOMBAR",
+"area": 0.13,
+"lon": 8.786,
+"lat": 45.761
+},
+{
+"code": "CO",
+"name": "Côme",
+"region": "LOMBAR",
+"area": 0.1508,
+"lon": 9.13,
+"lat": 45.911
+},
+{
+"code": "SO",
+"name": "Sondrio",
+"region": "LOMBAR",
+"area": 0.3781,
+"lon": 9.94,
+"lat": 46.343
+},
+{
+"code": "BZ",
+"name": "Trentin-Haut-Adige",
+"region": "TRENTI",
+"area": 0.8694,
+"lon": 11.502,
+"lat": 46.691
+},
+{
+"code": "IM",
+"name": "Imperia",
+"region": "LIGURI",
+"area": 0.1382,
+"lon": 7.791,
+"lat": 44.005
+},
+{
+"code": "CN",
+"name": "Coni",
+"region": "PIEMON",
+"area": 0.7829,
+"lon": 7.731,
+"lat": 44.432
+},
+{
+"code": "TO",
+"name": "Turin",
+"region": "PIEMON",
+"area": 0.7977,
+"lon": 7.434,
+"lat": 45.156
+},
+{
+"code": "RN",
+"name": "Rimini",
+"region": "EMILIE",
+"area": 0.0968,
+"lon": 12.43,
+"lat": 43.896
+},
+{
+"code": "PU",
+"name": "Pesaro et Urbino",
+"region": "MARCHE",
+"area": 0.2899,
+"lon": 12.513,
+"lat": 43.725
+},
+{
+"code": "BL",
+"name": "Belluno",
+"region": "VENETI",
+"area": 0.4315,
+"lon": 12.178,
+"lat": 46.325
+},
+{
+"code": "UD",
+"name": "Udine",
+"region": "FRIOUL",
+"area": 0.5388,
+"lon": 13.121,
+"lat": 46.184
+},
+{
+"code": "GO",
+"name": "Gorizia",
+"region": "FRIOUL",
+"area": 0.0417,
+"lon": 13.498,
+"lat": 45.851
+},
+{
+"code": "TS",
+"name": "Trieste",
+"region": "FRIOUL",
+"area": 0.0203,
+"lon": 13.755,
+"lat": 45.675
+},
+{
+"code": "VE",
+"name": "Venise",
+"region": "VENETI",
+"area": 0.243,
+"lon": 12.463,
+"lat": 45.535
+},
+{
+"code": "PD",
+"name": "Padoue",
+"region": "VENETI",
+"area": 0.2376,
+"lon": 11.814,
+"lat": 45.397
+},
+{
+"code": "RO",
+"name": "Rovigo",
+"region": "VENETI",
+"area": 0.2056,
+"lon": 12.098,
+"lat": 44.979
+},
+{
+"code": "FE",
+"name": "Ferrare",
+"region": "EMILIE",
+"area": 0.3049,
+"lon": 11.889,
+"lat": 44.82
+},
+{
+"code": "RA",
+"name": "Ravenne",
+"region": "EMILIE",
+"area": 0.2101,
+"lon": 11.905,
+"lat": 44.332
+},
+{
+"code": "FC",
+"name": "Forlì-Cesena",
+"region": "EMILIE",
+"area": 0.2644,
+"lon": 11.987,
+"lat": 44.052
+},
+{
+"code": "AN",
+"name": "Ancône",
+"region": "MARCHE",
+"area": 0.224,
+"lon": 13.168,
+"lat": 43.472
+},
+{
+"code": "MC",
+"name": "Macerata",
+"region": "MARCHE",
+"area": 0.3073,
+"lon": 13.151,
+"lat": 43.131
+},
+{
+"code": "FM",
+"name": "Fermo",
+"region": "MARCHE",
+"area": 0.098,
+"lon": 13.497,
+"lat": 43.065
+},
+{
+"code": "AP",
+"name": "Ascoli Piceno",
+"region": "MARCHE",
+"area": 0.1314,
+"lon": 13.465,
+"lat": 42.834
+},
+{
+"code": "TE",
+"name": "Teramo",
+"region": "ABRUZZ",
+"area": 0.2186,
+"lon": 13.64,
+"lat": 42.677
+},
+{
+"code": "PE",
+"name": "Pescara",
+"region": "ABRUZZ",
+"area": 0.1337,
+"lon": 13.979,
+"lat": 42.317
+},
+{
+"code": "CH",
+"name": "Chieti",
+"region": "ABRUZZ",
+"area": 0.2809,
+"lon": 14.381,
+"lat": 42.02
+},
+{
+"code": "CB",
+"name": "Campobasso",
+"region": "MOLISE",
+"area": 0.3218,
+"lon": 14.809,
+"lat": 41.676
+},
+{
+"code": "FG",
+"name": "Foggia",
+"region": "POUILL",
+"area": 0.7474,
+"lon": 15.34,
+"lat": 41.491
+},
+{
+"code": "BT",
+"name": "Barletta-Andria-Trani",
+"region": "POUILL",
+"area": 0.1722,
+"lon": 16.158,
+"lat": 41.117
+},
+{
+"code": "BA",
+"name": "Bari",
+"region": "POUILL",
+"area": 0.4153,
+"lon": 16.754,
+"lat": 40.865
+},
+{
+"code": "BR",
+"name": "Brindisi",
+"region": "POUILL",
+"area": 0.1972,
+"lon": 17.605,
+"lat": 40.644
+},
+{
+"code": "LE",
+"name": "Lecce",
+"region": "POUILL",
+"area": 0.2936,
+"lon": 18.178,
+"lat": 40.127
+},
+{
+"code": "TA",
+"name": "Tarente",
+"region": "POUILL",
+"area": 0.2559,
+"lon": 17.129,
+"lat": 40.559
+},
+{
+"code": "MT",
+"name": "Matera",
+"region": "BASILI",
+"area": 0.3635,
+"lon": 16.485,
+"lat": 40.468
+},
+{
+"code": "CS",
+"name": "Cosenza",
+"region": "CALABR",
+"area": 0.7038,
+"lon": 16.346,
+"lat": 39.752
+},
+{
+"code": "KR",
+"name": "Crotone",
+"region": "CALABR",
+"area": 0.1811,
+"lon": 16.94,
+"lat": 39.175
+},
+{
+"code": "CZ",
+"name": "Catanzaro",
+"region": "CALABR",
+"area": 0.2455,
+"lon": 16.48,
+"lat": 38.854
+},
+{
+"code": "RC",
+"name": "Reggio de Calabre",
+"region": "CALABR",
+"area": 0.324,
+"lon": 16.138,
+"lat": 38.335
+},
+{
+"code": "VV",
+"name": "Vibo Valentia",
+"region": "CALABR",
+"area": 0.1196,
+"lon": 16.203,
+"lat": 38.624
+},
+{
+"code": "PZ",
+"name": "Potenza",
+"region": "BASILI",
+"area": 0.7054,
+"lon": 15.897,
+"lat": 40.402
+},
+{
+"code": "SA",
+"name": "Salerne",
+"region": "CAMPAN",
+"area": 0.5175,
+"lon": 15.247,
+"lat": 40.486
+},
+{
+"code": "NA",
+"name": "Naples",
+"region": "CAMPAN",
+"area": 0.1226,
+"lon": 14.367,
+"lat": 40.809
+},
+{
+"code": "CE",
+"name": "Caserte",
+"region": "CAMPAN",
+"area": 0.2855,
+"lon": 14.158,
+"lat": 41.271
+},
+{
+"code": "LT",
+"name": "Latina",
+"region": "LATIUM",
+"area": 0.2356,
+"lon": 13.248,
+"lat": 41.429
+},
+{
+"code": "RM",
+"name": "Rome",
+"region": "LATIUM",
+"area": 0.5813,
+"lon": 12.61,
+"lat": 41.931
+},
+{
+"code": "VT",
+"name": "Viterbe",
+"region": "LATIUM",
+"area": 0.3969,
+"lon": 11.993,
+"lat": 42.508
+},
+{
+"code": "GR",
+"name": "Grosseto",
+"region": "TOSCAN",
+"area": 0.491,
+"lon": 11.294,
+"lat": 42.74
+},
+{
+"code": "LI",
+"name": "Livourne",
+"region": "TOSCAN",
+"area": 0.1303,
+"lon": 10.538,
+"lat": 43.131
+},
+{
+"code": "PI",
+"name": "Pise",
+"region": "TOSCAN",
+"area": 0.2708,
+"lon": 10.703,
+"lat": 43.449
+},
+{
+"code": "LU",
+"name": "Lucques",
+"region": "TOSCAN",
+"area": 0.1974,
+"lon": 10.483,
+"lat": 43.998
+},
+{
+"code": "MS",
+"name": "Massa-Carrara",
+"region": "TOSCAN",
+"area": 0.1322,
+"lon": 9.975,
+"lat": 44.241
+},
+{
+"code": "SP",
+"name": "La Spezia",
+"region": "LIGURI",
+"area": 0.0933,
+"lon": 9.818,
+"lat": 44.183
+},
+{
+"code": "GE",
+"name": "Ligurie",
+"region": "LIGURI",
+"area": 0.2098,
+"lon": 9.041,
+"lat": 44.509
+},
+{
+"code": "SV",
+"name": "Savone",
+"region": "LIGURI",
+"area": 0.1776,
+"lon": 8.236,
+"lat": 44.308
+},
+{
+"code": "TP",
+"name": "Trapani",
+"region": "SICILE",
+"area": 0.2515,
+"lon": 12.698,
+"lat": 37.843
+},
+{
+"code": "ME",
+"name": "Messine",
+"region": "SICILE",
+"area": 0.3278,
+"lon": 14.877,
+"lat": 38.001
+},
+{
+"code": "PA",
+"name": "Palerme",
+"region": "SICILE",
+"area": 0.5202,
+"lon": 13.557,
+"lat": 37.86
+},
+{
+"code": "AG",
+"name": "Agrigente",
+"region": "SICILE",
+"area": 0.3045,
+"lon": 13.532,
+"lat": 37.481
+},
+{
+"code": "CL",
+"name": "Caltanissetta",
+"region": "SICILE",
+"area": 0.2127,
+"lon": 14.007,
+"lat": 37.428
+},
+{
+"code": "RG",
+"name": "Raguse",
+"region": "SICILE",
+"area": 0.1632,
+"lon": 14.765,
+"lat": 36.926
+},
+{
+"code": "SR",
+"name": "Syracuse",
+"region": "SICILE",
+"area": 0.2193,
+"lon": 15.03,
+"lat": 37.083
+},
+{
+"code": "CT",
+"name": "Catane",
+"region": "SICILE",
+"area": 0.3629,
+"lon": 14.756,
+"lat": 37.498
+},
+{
+"code": "CI",
+"name": "Carbonia-Iglesias",
+"region": "SARDAI",
+"area": 0.1558,
+"lon": 8.549,
+"lat": 39.198
+},
+{
+"code": "SS",
+"name": "Sassari",
+"region": "SARDAI",
+"area": 0.4598,
+"lon": 8.671,
+"lat": 40.643
+},
+{
+"code": "NU",
+"name": "Nuoro",
+"region": "SARDAI",
+"area": 0.4171,
+"lon": 9.253,
+"lat": 40.299
+},
+{
+"code": "OT",
+"name": "Olbia-Tempio",
+"region": "SARDAI",
+"area": 0.358,
+"lon": 9.364,
+"lat": 40.961
+},
+{
+"code": "OR",
+"name": "d'Oristano",
+"region": "SARDAI",
+"area": 0.3216,
+"lon": 8.647,
+"lat": 39.992
+},
+{
+"code": "VS",
+"name": "Medio Campidano",
+"region": "SARDAI",
+"area": 0.1611,
+"lon": 8.697,
+"lat": 39.584
+},
+{
+"code": "CA",
+"name": "Cagliari",
+"region": "SARDAI",
+"area": 0.4722,
+"lon": 9.117,
+"lat": 39.324
+},
+{
+"code": "OG",
+"name": "Ogliastra",
+"region": "SARDAI",
+"area": 0.197,
+"lon": 9.501,
+"lat": 39.88
+},
+{
+"code": "EN",
+"name": "Enna",
+"region": "SICILE",
+"area": 0.2608,
+"lon": 14.474,
+"lat": 37.596
+},
+{
+"code": "BN",
+"name": "Bénévent",
+"region": "CAMPAN",
+"area": 0.2227,
+"lon": 14.768,
+"lat": 41.26
+},
+{
+"code": "AT",
+"name": "Asti",
+"region": "PIEMON",
+"area": 0.1739,
+"lon": 8.197,
+"lat": 44.86
+},
+{
+"code": "BG",
+"name": "Bergame",
+"region": "LOMBAR",
+"area": 0.3165,
+"lon": 9.798,
+"lat": 45.767
+},
+{
+"code": "BS",
+"name": "Brescia",
+"region": "LOMBAR",
+"area": 0.5628,
+"lon": 10.383,
+"lat": 45.686
+},
+{
+"code": "CR",
+"name": "Crémone",
+"region": "LOMBAR",
+"area": 0.2037,
+"lon": 10.091,
+"lat": 45.22
+},
+{
+"code": "MN",
+"name": "Mantoue",
+"region": "LOMBAR",
+"area": 0.2645,
+"lon": 10.802,
+"lat": 45.122
+},
+{
+"code": "MI",
+"name": "Milan",
+"region": "LOMBAR",
+"area": 0.1781,
+"lon": 9.132,
+"lat": 45.481
+},
+{
+"code": "LC",
+"name": "Lecco",
+"region": "LOMBAR",
+"area": 0.0964,
+"lon": 9.388,
+"lat": 45.891
+},
+{
+"code": "MB",
+"name": "Monza et Brianza",
+"region": "LOMBAR",
+"area": 0.0466,
+"lon": 9.251,
+"lat": 45.648
+},
+{
+"code": "LO",
+"name": "Lodi",
+"region": "LOMBAR",
+"area": 0.0913,
+"lon": 9.573,
+"lat": 45.233
+},
+{
+"code": "SI",
+"name": "Sienne",
+"region": "TOSCAN",
+"area": 0.4209,
+"lon": 11.496,
+"lat": 43.169
+},
+{
+"code": "AR",
+"name": "Arezzo",
+"region": "TOSCAN",
+"area": 0.3583,
+"lon": 11.987,
+"lat": 43.519
+},
+{
+"code": "FI",
+"name": "Florence",
+"region": "TOSCAN",
+"area": 0.3963,
+"lon": 11.33,
+"lat": 43.904
+},
+{
+"code": "VC",
+"name": "Verceil",
+"region": "PIEMON",
+"area": 0.2398,
+"lon": 8.234,
+"lat": 45.491
+},
+{
+"code": "PV",
+"name": "Pavie",
+"region": "LOMBAR",
+"area": 0.3473,
+"lon": 9.018,
+"lat": 45.077
+},
+{
+"code": "RI",
+"name": "Rieti",
+"region": "LATIUM",
+"area": 0.2924,
+"lon": 13.027,
+"lat": 42.404
+},
+{
+"code": "NO",
+"name": "Novare",
+"region": "PIEMON",
+"area": 0.1528,
+"lon": 8.59,
+"lat": 45.566
+},
+{
+"code": "AL",
+"name": "Alexandrie",
+"region": "PIEMON",
+"area": 0.3976,
+"lon": 8.655,
+"lat": 44.768
+},
+{
+"code": "TN",
+"name": "Trentin",
+"region": "TRENTI",
+"area": 0.7131,
+"lon": 11.175,
+"lat": 46.085
+},
+{
+"code": "VI",
+"name": "Vicence",
+"region": "VENETI",
+"area": 0.317,
+"lon": 11.514,
+"lat": 45.712
+},
+{
+"code": "VR",
+"name": "Vérone",
+"region": "VENETI",
+"area": 0.3548,
+"lon": 11.016,
+"lat": 45.414
+},
+{
+"code": "TV",
+"name": "Trévise",
+"region": "VENETI",
+"area": 0.2907,
+"lon": 12.224,
+"lat": 45.784
+},
+{
+"code": "PC",
+"name": "Plaisance",
+"region": "EMILIE",
+"area": 0.2966,
+"lon": 9.564,
+"lat": 44.867
+},
+{
+"code": "PR",
+"name": "Parme",
+"region": "EMILIE",
+"area": 0.3955,
+"lon": 9.894,
+"lat": 44.595
+},
+{
+"code": "RE",
+"name": "Reggio d'Émilie",
+"region": "EMILIE",
+"area": 0.2622,
+"lon": 10.582,
+"lat": 44.64
+},
+{
+"code": "MO",
+"name": "Modène",
+"region": "EMILIE",
+"area": 0.3037,
+"lon": 10.884,
+"lat": 44.522
+},
+{
+"code": "BO",
+"name": "Bologne",
+"region": "EMILIE",
+"area": 0.4157,
+"lon": 11.264,
+"lat": 44.336
+},
+{
+"code": "PT",
+"name": "Pistoia",
+"region": "TOSCAN",
+"area": 0.107,
+"lon": 10.855,
+"lat": 44.008
+},
+{
+"code": "TR",
+"name": "Terni",
+"region": "OMBRIE",
+"area": 0.2327,
+"lon": 12.428,
+"lat": 42.611
+},
+{
+"code": "PG",
+"name": "Pérouse",
+"region": "OMBRIE",
+"area": 0.7039,
+"lon": 12.528,
+"lat": 43.088
+},
+{
+"code": "FR",
+"name": "Frosinone",
+"region": "LATIUM",
+"area": 0.3447,
+"lon": 13.565,
+"lat": 41.644
+},
+{
+"code": "AV",
+"name": "Avellino",
+"region": "CAMPAN",
+"area": 0.2949,
+"lon": 15.049,
+"lat": 41.031
+},
+{
+"code": "AQ",
+"name": "L'Aquila",
+"region": "ABRUZZ",
+"area": 0.5546,
+"lon": 13.512,
+"lat": 42.118
+},
+{
+"code": "PN",
+"name": "Pordenone",
+"region": "FRIOUL",
+"area": 0.2543,
+"lon": 12.662,
+"lat": 46.063
+},
+{
+"code": "IS",
+"name": "Isernia",
+"region": "MOLISE",
+"area": 0.1676,
+"lon": 14.21,
+"lat": 41.66
+},
+{
+"code": "BI",
+"name": "Biella",
+"region": "PIEMON",
+"area": 0.106,
+"lon": 8.102,
+"lat": 45.58
+},
+{
+"code": "PO",
+"name": "Prato",
+"region": "TOSCAN",
+"area": 0.0404,
+"lon": 11.096,
+"lat": 43.939
+}
+],
+"regions": {
+"VALLEE": "Vallée d'Aoste",
+"PIEMON": "Piémont",
+"LOMBAR": "Lombardie",
+"TRENTI": "Trentin-Haut-Adige",
+"LIGURI": "Ligurie",
+"EMILIE": "Émilie-Romagne",
+"MARCHE": "Marches",
+"VENETI": "Vénétie",
+"FRIOUL": "Frioul-Vénétie Julienne",
+"ABRUZZ": "Abruzzes",
+"MOLISE": "Molise",
+"POUILL": "Pouilles",
+"BASILI": "Basilicate",
+"CALABR": "Calabre",
+"CAMPAN": "Campanie",
+"LATIUM": "Latium",
+"TOSCAN": "Toscane",
+"SICILE": "Sicile",
+"SARDAI": "Sardaigne",
+"OMBRIE": "Ombrie"
+},
+"cities": [
+{
+"name": "Rome",
+"lon": 12.481,
+"lat": 41.898,
+"population": 3339000,
+"department": "RM",
+"capital": true
+},
+{
+"name": "Milan",
+"lon": 9.203,
+"lat": 45.472,
+"population": 2945000,
+"department": "MI",
+"capital": false
+},
+{
+"name": "Naples",
+"lon": 14.243,
+"lat": 40.842,
+"population": 2250000,
+"department": "NA",
+"capital": false
+},
+{
+"name": "Turin",
+"lon": 7.668,
+"lat": 45.072,
+"population": 1652000,
+"department": "TO",
+"capital": false
+},
+{
+"name": "Florence",
+"lon": 11.25,
+"lat": 43.78,
+"population": 1500000,
+"department": "FI",
+"capital": false
+},
+{
+"name": "Salerne",
+"lon": 14.77,
+"lat": 40.68,
+"population": 954265,
+"department": "SA",
+"capital": false
+},
+{
+"name": "Palerme",
+"lon": 13.348,
+"lat": 38.127,
+"population": 863000,
+"department": "PA",
+"capital": false
+},
+{
+"name": "Catane",
+"lon": 15.08,
+"lat": 37.5,
+"population": 674542,
+"department": "CT",
+"capital": false
+},
+{
+"name": "Gênes",
+"lon": 8.93,
+"lat": 44.41,
+"population": 647497,
+"department": "GE",
+"capital": false
+},
+{
+"name": "Bari",
+"lon": 16.873,
+"lat": 41.114,
+"population": 500577,
+"department": "BA",
+"capital": false
+},
+{
+"name": "Bologne",
+"lon": 11.34,
+"lat": 44.5,
+"population": 488172,
+"department": "BO",
+"capital": false
+},
+{
+"name": "Vérone",
+"lon": 10.99,
+"lat": 45.44,
+"population": 347459,
+"department": "VR",
+"capital": false
+},
+{
+"name": "Pescara",
+"lon": 14.219,
+"lat": 42.455,
+"population": 314789,
+"department": "PE",
+"capital": false
+},
+{
+"name": "Cagliari",
+"lon": 9.104,
+"lat": 39.222,
+"population": 291511,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Venise",
+"lon": 12.335,
+"lat": 45.439,
+"population": 270816,
+"department": "VE",
+"capital": false
+},
+{
+"name": "Messine",
+"lon": 15.55,
+"lat": 38.2,
+"population": 252026,
+"department": "ME",
+"capital": false
+},
+{
+"name": "Caserte",
+"lon": 14.337,
+"lat": 41.06,
+"population": 250000,
+"department": "CE",
+"capital": false
+},
+{
+"name": "Côme",
+"lon": 9.08,
+"lat": 45.81,
+"population": 250000,
+"department": "CO",
+"capital": false
+},
+{
+"name": "Trieste",
+"lon": 13.8,
+"lat": 45.65,
+"population": 216035,
+"department": "TS",
+"capital": false
+},
+{
+"name": "Pise",
+"lon": 10.4,
+"lat": 43.72,
+"population": 203336,
+"department": "PI",
+"capital": false
+},
+{
+"name": "Tarente",
+"lon": 17.23,
+"lat": 40.508,
+"population": 202033,
+"department": "TA",
+"capital": false
+},
+{
+"name": "Bergame",
+"lon": 9.67,
+"lat": 45.7,
+"population": 200000,
+"department": "BG",
+"capital": false
+},
+{
+"name": "Reggio de Calabre",
+"lon": 15.641,
+"lat": 38.115,
+"population": 180353,
+"department": "RC",
+"capital": false
+},
+{
+"name": "Trévise",
+"lon": 12.24,
+"lat": 45.67,
+"population": 177309,
+"department": "TV",
+"capital": false
+},
+{
+"name": "Modène",
+"lon": 10.92,
+"lat": 44.65,
+"population": 175502,
+"department": "MO",
+"capital": false
+},
+{
+"name": "Parme",
+"lon": 10.32,
+"lat": 44.81,
+"population": 166011,
+"department": "PR",
+"capital": false
+},
+{
+"name": "Lecce",
+"lon": 18.15,
+"lat": 40.36,
+"population": 162582,
+"department": "LE",
+"capital": false
+},
+{
+"name": "Livourne",
+"lon": 10.302,
+"lat": 43.551,
+"population": 156274,
+"department": "LI",
+"capital": false
+},
+{
+"name": "Foggia",
+"lon": 15.56,
+"lat": 41.46,
+"population": 155203,
+"department": "FG",
+"capital": false
+},
+{
+"name": "Pérouse",
+"lon": 12.39,
+"lat": 43.11,
+"population": 149125,
+"department": "PG",
+"capital": false
+},
+{
+"name": "Ravenne",
+"lon": 12.22,
+"lat": 44.42,
+"population": 134631,
+"department": "RA",
+"capital": false
+},
+{
+"name": "Ferrare",
+"lon": 11.61,
+"lat": 44.85,
+"population": 130992,
+"department": "FE",
+"capital": false
+},
+{
+"name": "Syracuse",
+"lon": 15.29,
+"lat": 37.07,
+"population": 123657,
+"department": "SR",
+"capital": false
+},
+{
+"name": "Sassari",
+"lon": 8.57,
+"lat": 40.73,
+"population": 120729,
+"department": "SS",
+"capital": false
+},
+{
+"name": "Udine",
+"lon": 13.24,
+"lat": 46.07,
+"population": 119009,
+"department": "UD",
+"capital": false
+},
+{
+"name": "Barletta",
+"lon": 16.27,
+"lat": 41.32,
+"population": 107830,
+"department": "BT",
+"capital": false
+},
+{
+"name": "Trente",
+"lon": 11.12,
+"lat": 46.08,
+"population": 107808,
+"department": "TN",
+"capital": false
+},
+{
+"name": "Brindisi",
+"lon": 17.93,
+"lat": 40.64,
+"population": 104437,
+"department": "BR",
+"capital": false
+},
+{
+"name": "Novare",
+"lon": 8.62,
+"lat": 45.45,
+"population": 100910,
+"department": "NO",
+"capital": false
+},
+{
+"name": "Ancône",
+"lon": 13.5,
+"lat": 43.6,
+"population": 100507,
+"department": "AN",
+"capital": false
+},
+{
+"name": "Bolzano",
+"lon": 11.36,
+"lat": 46.5,
+"population": 95895,
+"department": "BZ",
+"capital": false
+},
+{
+"name": "Catanzaro",
+"lon": 16.6,
+"lat": 38.9,
+"population": 95251,
+"department": "CZ",
+"capital": false
+},
+{
+"name": "Arezzo",
+"lon": 11.875,
+"lat": 43.462,
+"population": 91589,
+"department": "AR",
+"capital": false
+},
+{
+"name": "Marsala",
+"lon": 12.439,
+"lat": 37.805,
+"population": 77784,
+"department": "TP",
+"capital": false
+},
+{
+"name": "Asti",
+"lon": 8.21,
+"lat": 44.93,
+"population": 71276,
+"department": "AT",
+"capital": false
+},
+{
+"name": "Potenza",
+"lon": 15.799,
+"lat": 40.642,
+"population": 69060,
+"department": "PZ",
+"capital": false
+},
+{
+"name": "Raguse",
+"lon": 14.73,
+"lat": 36.93,
+"population": 68956,
+"department": "RG",
+"capital": false
+},
+{
+"name": "L'Aquila",
+"lon": 13.39,
+"lat": 42.35,
+"population": 68503,
+"department": "AQ",
+"capital": false
+},
+{
+"name": "Bénévent",
+"lon": 14.75,
+"lat": 41.134,
+"population": 61791,
+"department": "BN",
+"capital": false
+},
+{
+"name": "Civitavecchia",
+"lon": 11.8,
+"lat": 42.1,
+"population": 61316,
+"department": "RM",
+"capital": false
+},
+{
+"name": "Crotone",
+"lon": 17.123,
+"lat": 39.083,
+"population": 60010,
+"department": "KR",
+"capital": false
+},
+{
+"name": "Sienne",
+"lon": 11.35,
+"lat": 43.317,
+"population": 52625,
+"department": "SI",
+"capital": false
+},
+{
+"name": "Campobasso",
+"lon": 14.656,
+"lat": 41.563,
+"population": 50762,
+"department": "CB",
+"capital": false
+},
+{
+"name": "Olbia",
+"lon": 9.515,
+"lat": 40.914,
+"population": 45366,
+"department": "OT",
+"capital": false
+},
+{
+"name": "Aoste",
+"lon": 7.315,
+"lat": 45.737,
+"population": 34062,
+"department": "AO",
+"capital": false
+},
+{
+"name": "Vibo Valentia",
+"lon": 16.1,
+"lat": 38.667,
+"population": 33957,
+"department": "VV",
+"capital": false
+}
+]
+},
+"ESP": {
+"departments": [
+{
+"code": "CE",
+"name": "Ceuta",
+"region": "CEUTA",
+"area": 0.0043,
+"lon": -5.347,
+"lat": 35.893
+},
+{
+"code": "ML",
+"name": "Melilla",
+"region": "MELILL",
+"area": 0.0018,
+"lon": -2.939,
+"lat": 35.288
+},
+{
+"code": "NA",
+"name": "Navarre",
+"region": "NAVARR",
+"area": 1.1054,
+"lon": -1.657,
+"lat": 42.6
+},
+{
+"code": "SS",
+"name": "Guipuscoa",
+"region": "PAYS_B",
+"area": 0.2175,
+"lon": -2.13,
+"lat": 43.167
+},
+{
+"code": "HU",
+"name": "Huesca",
+"region": "ARAGON",
+"area": 1.6927,
+"lon": -0.025,
+"lat": 42.254
+},
+{
+"code": "L",
+"name": "Lérida",
+"region": "CATALO",
+"area": 1.3136,
+"lon": 0.993,
+"lat": 42.071
+},
+{
+"code": "GI",
+"name": "Gérone",
+"region": "CATALO",
+"area": 0.6378,
+"lon": 2.558,
+"lat": 42.177
+},
+{
+"code": "BA",
+"name": "Badajoz",
+"region": "ESTREM",
+"area": 2.2775,
+"lon": -5.947,
+"lat": 38.744
+},
+{
+"code": "CA",
+"name": "Cadix",
+"region": "ANDALO",
+"area": 0.7477,
+"lon": -5.7,
+"lat": 36.565
+},
+{
+"code": "OR",
+"name": "d'Ourense",
+"region": "GALICE",
+"area": 0.805,
+"lon": -7.513,
+"lat": 42.15
+},
+{
+"code": "CC",
+"name": "Cáceres",
+"region": "ESTREM",
+"area": 2.1127,
+"lon": -6.162,
+"lat": 39.794
+},
+{
+"code": "SA",
+"name": "Salamanque",
+"region": "CASTIL",
+"area": 1.3424,
+"lon": -6.114,
+"lat": 40.696
+},
+{
+"code": "ZA",
+"name": "Zamora",
+"region": "CASTIL",
+"area": 1.153,
+"lon": -6.097,
+"lat": 41.709
+},
+{
+"code": "PO",
+"name": "Pontevedra",
+"region": "GALICE",
+"area": 0.4833,
+"lon": -8.552,
+"lat": 42.419
+},
+{
+"code": "H",
+"name": "Huelva",
+"region": "ANDALO",
+"area": 1.0337,
+"lon": -6.789,
+"lat": 37.627
+},
+{
+"code": "B",
+"name": "Barcelone",
+"region": "CATALO",
+"area": 0.839,
+"lon": 1.935,
+"lat": 41.844
+},
+{
+"code": "T",
+"name": "Tarragone",
+"region": "CATALO",
+"area": 0.6715,
+"lon": 0.73,
+"lat": 41.057
+},
+{
+"code": "CS",
+"name": "Castellón",
+"region": "COMMUN",
+"area": 0.7079,
+"lon": -0.258,
+"lat": 40.347
+},
+{
+"code": "V",
+"name": "Valence",
+"region": "COMMUN",
+"area": 1.1258,
+"lon": -1.009,
+"lat": 39.447
+},
+{
+"code": "A",
+"name": "d'Alicante",
+"region": "COMMUN",
+"area": 0.5996,
+"lon": -0.576,
+"lat": 38.445
+},
+{
+"code": "MU",
+"name": "Murcie",
+"region": "REGION",
+"area": 1.159,
+"lon": -1.421,
+"lat": 38.045
+},
+{
+"code": "AL",
+"name": "d'Almería",
+"region": "ANDALO",
+"area": 0.8883,
+"lon": -2.331,
+"lat": 37.183
+},
+{
+"code": "GR",
+"name": "Grenade",
+"region": "ANDALO",
+"area": 1.2891,
+"lon": -3.141,
+"lat": 37.339
+},
+{
+"code": "MA",
+"name": "Málaga",
+"region": "ANDALO",
+"area": 0.7421,
+"lon": -4.853,
+"lat": 36.783
+},
+{
+"code": "SE",
+"name": "Séville",
+"region": "ANDALO",
+"area": 1.426,
+"lon": -5.672,
+"lat": 37.519
+},
+{
+"code": "C",
+"name": "Corogne",
+"region": "GALICE",
+"area": 0.8779,
+"lon": -8.526,
+"lat": 43.178
+},
+{
+"code": "LU",
+"name": "Lugo",
+"region": "GALICE",
+"area": 1.0881,
+"lon": -7.286,
+"lat": 43.133
+},
+{
+"code": "O",
+"name": "Asturies",
+"region": "ASTURI",
+"area": 1.1844,
+"lon": -6.051,
+"lat": 43.23
+},
+{
+"code": "S",
+"name": "Cantabrie",
+"region": "CANTAB",
+"area": 0.5911,
+"lon": -3.997,
+"lat": 43.167
+},
+{
+"code": "BI",
+"name": "Biscaye",
+"region": "PAYS_B",
+"area": 0.2452,
+"lon": -2.908,
+"lat": 43.243
+},
+{
+"code": "TF",
+"name": "Santa Cruz de Ténérife",
+"region": "CANARI",
+"area": 0.3115,
+"lon": -17.021,
+"lat": 28.314
+},
+{
+"code": "GC",
+"name": "Las Palmas",
+"region": "CANARI",
+"area": 0.3705,
+"lon": -14.567,
+"lat": 28.348
+},
+{
+"code": "PM",
+"name": "Îles Baléares",
+"region": "BALEAR",
+"area": 0.533,
+"lon": 2.891,
+"lat": 39.601
+},
+{
+"code": "Z",
+"name": "Saragosse",
+"region": "ARAGON",
+"area": 1.8707,
+"lon": -1.12,
+"lat": 41.726
+},
+{
+"code": "LO",
+"name": "La Rioja",
+"region": "LA_RIO",
+"area": 0.5819,
+"lon": -2.502,
+"lat": 42.252
+},
+{
+"code": "VI",
+"name": "Alava",
+"region": "PAYS_B",
+"area": 0.3505,
+"lon": -2.815,
+"lat": 42.834
+},
+{
+"code": "AB",
+"name": "d'Albacete",
+"region": "CASTIL",
+"area": 1.5477,
+"lon": -1.774,
+"lat": 38.709
+},
+{
+"code": "TE",
+"name": "Teruel",
+"region": "ARAGON",
+"area": 1.577,
+"lon": -0.788,
+"lat": 40.576
+},
+{
+"code": "CU",
+"name": "Cuenca",
+"region": "CASTIL",
+"area": 1.8076,
+"lon": -2.034,
+"lat": 40.011
+},
+{
+"code": "TO",
+"name": "Tolède",
+"region": "CASTIL",
+"area": 1.6149,
+"lon": -4.343,
+"lat": 39.883
+},
+{
+"code": "LE",
+"name": "León",
+"region": "CASTIL",
+"area": 1.7183,
+"lon": -5.939,
+"lat": 42.712
+},
+{
+"code": "SO",
+"name": "Soria",
+"region": "CASTIL",
+"area": 1.1092,
+"lon": -2.461,
+"lat": 41.608
+},
+{
+"code": "BU",
+"name": "Burgos",
+"region": "CASTIL",
+"area": 1.5859,
+"lon": -3.455,
+"lat": 42.583
+},
+{
+"code": "AV",
+"name": "d'Ávila",
+"region": "CASTIL",
+"area": 0.8611,
+"lon": -4.824,
+"lat": 40.498
+},
+{
+"code": "P",
+"name": "Palencia",
+"region": "CASTIL",
+"area": 0.8749,
+"lon": -4.431,
+"lat": 42.452
+},
+{
+"code": "CR",
+"name": "Ciudad Real",
+"region": "CASTIL",
+"area": 2.0495,
+"lon": -4.015,
+"lat": 38.894
+},
+{
+"code": "CO",
+"name": "Cordoue",
+"region": "ANDALO",
+"area": 1.4096,
+"lon": -4.923,
+"lat": 38.085
+},
+{
+"code": "GU",
+"name": "Guadalajara",
+"region": "CASTIL",
+"area": 1.3063,
+"lon": -2.665,
+"lat": 40.783
+},
+{
+"code": "J",
+"name": "Jaén",
+"region": "ANDALO",
+"area": 1.3955,
+"lon": -3.264,
+"lat": 38.214
+},
+{
+"code": "M",
+"name": "Communauté de Madrid",
+"region": "COMMUN",
+"area": 0.8499,
+"lon": -3.769,
+"lat": 40.436
+},
+{
+"code": "SG",
+"name": "Ségovie",
+"region": "CASTIL",
+"area": 0.74,
+"lon": -3.954,
+"lat": 41.145
+},
+{
+"code": "VA",
+"name": "Valladolid",
+"region": "CASTIL",
+"area": 0.8769,
+"lon": -4.918,
+"lat": 41.708
+}
+],
+"regions": {
+"CEUTA": "Ceuta",
+"MELILL": "Melilla",
+"NAVARR": "Navarre",
+"PAYS_B": "Pays basque",
+"ARAGON": "Aragon",
+"CATALO": "Catalogne",
+"ESTREM": "Estrémadure",
+"ANDALO": "Andalousie",
+"GALICE": "Galice",
+"CASTIL": "Castille-et-León",
+"COMMUN": "Communauté de Madrid",
+"REGION": "Région de Murcie",
+"ASTURI": "Asturies",
+"CANTAB": "Cantabrie",
+"CANARI": "Canaries",
+"BALEAR": "Baléares",
+"LA_RIO": "La Rioja"
+},
+"cities": [
+{
+"name": "Madrid",
+"lon": -3.685,
+"lat": 40.402,
+"population": 5567000,
+"department": "M",
+"capital": true
+},
+{
+"name": "Barcelone",
+"lon": 2.181,
+"lat": 41.385,
+"population": 4920000,
+"department": "B",
+"capital": false
+},
+{
+"name": "Séville",
+"lon": -5.98,
+"lat": 37.405,
+"population": 1212045,
+"department": "SE",
+"capital": false
+},
+{
+"name": "Bilbao",
+"lon": -2.93,
+"lat": 43.25,
+"population": 875552,
+"department": "BI",
+"capital": false
+},
+{
+"name": "Valence",
+"lon": -0.402,
+"lat": 39.487,
+"population": 808000,
+"department": "V",
+"capital": false
+},
+{
+"name": "Saragosse",
+"lon": -0.89,
+"lat": 41.65,
+"population": 649404,
+"department": "Z",
+"capital": false
+},
+{
+"name": "Malaga",
+"lon": -4.42,
+"lat": 36.72,
+"population": 550058,
+"department": "MA",
+"capital": false
+},
+{
+"name": "Murcie",
+"lon": -1.13,
+"lat": 37.98,
+"population": 406807,
+"department": "MU",
+"capital": false
+},
+{
+"name": "Grenade",
+"lon": -3.585,
+"lat": 37.165,
+"population": 388290,
+"department": "GR",
+"capital": false
+},
+{
+"name": "Vigo",
+"lon": -8.73,
+"lat": 42.22,
+"population": 378952,
+"department": "PO",
+"capital": false
+},
+{
+"name": "Las Palmas de Gran Canaria",
+"lon": -15.43,
+"lat": 28.1,
+"population": 378495,
+"department": "GC",
+"capital": false
+},
+{
+"name": "Palma de Majorque",
+"lon": 2.654,
+"lat": 39.574,
+"population": 375773,
+"department": "PM",
+"capital": false
+},
+{
+"name": "La Corogne",
+"lon": -8.42,
+"lat": 43.33,
+"population": 370610,
+"department": "C",
+"capital": false
+},
+{
+"name": "Saint-Sébastien",
+"lon": -1.98,
+"lat": 43.32,
+"population": 357468,
+"department": "SS",
+"capital": false
+},
+{
+"name": "Santa Cruz de Ténérife",
+"lon": -16.25,
+"lat": 28.47,
+"population": 336061,
+"department": "TF",
+"capital": false
+},
+{
+"name": "Gijón",
+"lon": -5.67,
+"lat": 43.53,
+"population": 335972,
+"department": "O",
+"capital": false
+},
+{
+"name": "Valladolid",
+"lon": -4.75,
+"lat": 41.65,
+"population": 322304,
+"department": "VA",
+"capital": false
+},
+{
+"name": "Cordoue",
+"lon": -4.77,
+"lat": 37.88,
+"population": 321376,
+"department": "CO",
+"capital": false
+},
+{
+"name": "Alicante",
+"lon": -0.484,
+"lat": 38.351,
+"population": 315863,
+"department": "A",
+"capital": false
+},
+{
+"name": "Cadix",
+"lon": -6.286,
+"lat": 36.525,
+"population": 283157,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Pampelune",
+"lon": -1.65,
+"lat": 42.82,
+"population": 274545,
+"department": "NA",
+"capital": false
+},
+{
+"name": "Oviedo",
+"lon": -5.83,
+"lat": 43.35,
+"population": 235651,
+"department": "O",
+"capital": false
+},
+{
+"name": "Vitoria-Gasteiz",
+"lon": -2.67,
+"lat": 42.85,
+"population": 224578,
+"department": "VI",
+"capital": false
+},
+{
+"name": "Santander",
+"lon": -3.8,
+"lat": 43.38,
+"population": 208763,
+"department": "S",
+"capital": false
+},
+{
+"name": "Carthagène",
+"lon": -0.98,
+"lat": 37.6,
+"population": 201274,
+"department": "MU",
+"capital": false
+},
+{
+"name": "Marbella",
+"lon": -4.883,
+"lat": 36.517,
+"population": 186131,
+"department": "MA",
+"capital": false
+},
+{
+"name": "Mataró",
+"lon": 2.45,
+"lat": 41.54,
+"population": 183293,
+"department": "B",
+"capital": false
+},
+{
+"name": "Castelló de la Plana",
+"lon": -0.05,
+"lat": 39.97,
+"population": 180610,
+"department": "CS",
+"capital": false
+},
+{
+"name": "Almería",
+"lon": -2.43,
+"lat": 36.83,
+"population": 179405,
+"department": "AL",
+"capital": false
+},
+{
+"name": "Burgos",
+"lon": -3.68,
+"lat": 42.35,
+"population": 170183,
+"department": "BU",
+"capital": false
+},
+{
+"name": "Salamanque",
+"lon": -5.67,
+"lat": 40.97,
+"population": 162353,
+"department": "SA",
+"capital": false
+},
+{
+"name": "Albacete",
+"lon": -1.87,
+"lat": 39.0,
+"population": 158094,
+"department": "AB",
+"capital": false
+},
+{
+"name": "Huelva",
+"lon": -6.93,
+"lat": 37.25,
+"population": 144174,
+"department": "H",
+"capital": false
+},
+{
+"name": "Logrogne",
+"lon": -2.43,
+"lat": 42.47,
+"population": 143698,
+"department": "LO",
+"capital": false
+},
+{
+"name": "Melilla",
+"lon": -2.95,
+"lat": 35.3,
+"population": 141308,
+"department": "ML",
+"capital": false
+},
+{
+"name": "Badajoz",
+"lon": -6.97,
+"lat": 38.88,
+"population": 140133,
+"department": "BA",
+"capital": false
+},
+{
+"name": "León",
+"lon": -5.57,
+"lat": 42.58,
+"population": 136227,
+"department": "LE",
+"capital": false
+},
+{
+"name": "Tarragone",
+"lon": 1.25,
+"lat": 41.12,
+"population": 126291,
+"department": "T",
+"capital": false
+},
+{
+"name": "Ourense",
+"lon": -7.87,
+"lat": 42.33,
+"population": 118107,
+"department": "OR",
+"capital": false
+},
+{
+"name": "Jaén",
+"lon": -3.8,
+"lat": 37.77,
+"population": 116400,
+"department": "J",
+"capital": false
+},
+{
+"name": "Algésiras",
+"lon": -5.453,
+"lat": 36.132,
+"population": 111027,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Saint-Jacques-de-Compostelle",
+"lon": -8.541,
+"lat": 42.883,
+"population": 92430,
+"department": "C",
+"capital": false
+},
+{
+"name": "Lorca",
+"lon": -1.699,
+"lat": 37.689,
+"population": 86119,
+"department": "MU",
+"capital": false
+},
+{
+"name": "Ceuta",
+"lon": -5.307,
+"lat": 35.889,
+"population": 78674,
+"department": "CE",
+"capital": false
+},
+{
+"name": "Tolède",
+"lon": -4.017,
+"lat": 39.867,
+"population": 74632,
+"department": "TO",
+"capital": false
+},
+{
+"name": "Guadalajara",
+"lon": -3.167,
+"lat": 40.634,
+"population": 72850,
+"department": "GU",
+"capital": false
+},
+{
+"name": "Linares",
+"lon": -3.633,
+"lat": 38.083,
+"population": 59761,
+"department": "J",
+"capital": false
+},
+{
+"name": "Mérida",
+"lon": -6.338,
+"lat": 38.912,
+"population": 52423,
+"department": "BA",
+"capital": false
+}
+]
+},
+"USA": {
+"departments": [
+{
+"code": "WA",
+"name": "Washington",
+"region": "PAC",
+"area": 20.7237,
+"lon": -122.654,
+"lat": 47.376
+},
+{
+"code": "ID",
+"name": "Idaho",
+"region": "MTN",
+"area": 24.4377,
+"lon": -114.383,
+"lat": 45.48
+},
+{
+"code": "MT",
+"name": "Montana",
+"region": "MTN",
+"area": 44.9189,
+"lon": -112.824,
+"lat": 45.928
+},
+{
+"code": "ND",
+"name": "Dakota du Nord",
+"region": "WNC",
+"area": 21.7954,
+"lon": -98.52,
+"lat": 47.423
+},
+{
+"code": "MN",
+"name": "Minnesota",
+"region": "WNC",
+"area": 26.278,
+"lon": -93.694,
+"lat": 46.805
+},
+{
+"code": "MI",
+"name": "Michigan",
+"region": "ENC",
+"area": 28.4886,
+"lon": -86.828,
+"lat": 45.29
+},
+{
+"code": "OH",
+"name": "Ohio",
+"region": "ENC",
+"area": 12.3145,
+"lon": -82.408,
+"lat": 39.706
+},
+{
+"code": "PA",
+"name": "Pennsylvanie",
+"region": "MA",
+"area": 12.7558,
+"lon": -76.702,
+"lat": 40.939
+},
+{
+"code": "NY",
+"name": "État de New York",
+"region": "MA",
+"area": 15.0938,
+"lon": -74.932,
+"lat": 42.848
+},
+{
+"code": "VT",
+"name": "Vermont",
+"region": "NE",
+"area": 2.7681,
+"lon": -72.807,
+"lat": 43.963
+},
+{
+"code": "NH",
+"name": "New Hampshire",
+"region": "NE",
+"area": 2.7092,
+"lon": -71.585,
+"lat": 43.701
+},
+{
+"code": "ME",
+"name": "Maine",
+"region": "NE",
+"area": 9.6547,
+"lon": -68.972,
+"lat": 44.615
+},
+{
+"code": "AZ",
+"name": "Arizona",
+"region": "MTN",
+"area": 28.9026,
+"lon": -112.833,
+"lat": 34.047
+},
+{
+"code": "CA",
+"name": "Californie",
+"region": "PAC",
+"area": 41.6468,
+"lon": -120.722,
+"lat": 36.716
+},
+{
+"code": "NM",
+"name": "Nouveau-Mexique",
+"region": "MTN",
+"area": 30.9085,
+"lon": -107.139,
+"lat": 32.785
+},
+{
+"code": "TX",
+"name": "Texas",
+"region": "WSC",
+"area": 65.1068,
+"lon": -98.326,
+"lat": 30.001
+},
+{
+"code": "AK",
+"name": "Alaska",
+"region": "PAC",
+"area": 278.9941,
+"lon": -151.804,
+"lat": 60.817
+},
+{
+"code": "LA",
+"name": "Louisiane",
+"region": "WSC",
+"area": 11.2844,
+"lon": -90.83,
+"lat": 30.104
+},
+{
+"code": "MS",
+"name": "Mississippi",
+"region": "ESC",
+"area": 11.9116,
+"lon": -90.161,
+"lat": 32.317
+},
+{
+"code": "AL",
+"name": "Alabama",
+"region": "ESC",
+"area": 12.8807,
+"lon": -86.823,
+"lat": 31.753
+},
+{
+"code": "FL",
+"name": "Floride",
+"region": "SA",
+"area": 13.4761,
+"lon": -83.119,
+"lat": 28.575
+},
+{
+"code": "GA",
+"name": "Géorgie",
+"region": "SA",
+"area": 14.6168,
+"lon": -82.74,
+"lat": 32.197
+},
+{
+"code": "SC",
+"name": "Caroline du Sud",
+"region": "SA",
+"area": 7.8151,
+"lon": -80.882,
+"lat": 33.389
+},
+{
+"code": "NC",
+"name": "Caroline du Nord",
+"region": "SA",
+"area": 12.659,
+"lon": -78.507,
+"lat": 35.501
+},
+{
+"code": "VA",
+"name": "Virginie",
+"region": "SA",
+"area": 10.5635,
+"lon": -78.358,
+"lat": 37.718
+},
+{
+"code": "DC",
+"name": "Washington",
+"region": "SA",
+"area": 0.0168,
+"lon": -77.033,
+"lat": 38.879
+},
+{
+"code": "MD",
+"name": "Maryland",
+"region": "SA",
+"area": 2.6384,
+"lon": -76.659,
+"lat": 38.855
+},
+{
+"code": "DE",
+"name": "Delaware",
+"region": "SA",
+"area": 0.5378,
+"lon": -75.371,
+"lat": 39.035
+},
+{
+"code": "NJ",
+"name": "New Jersey",
+"region": "MA",
+"area": 2.0714,
+"lon": -74.706,
+"lat": 40.003
+},
+{
+"code": "CT",
+"name": "Connecticut",
+"region": "NE",
+"area": 1.3726,
+"lon": -72.846,
+"lat": 41.361
+},
+{
+"code": "RI",
+"name": "Rhode Island",
+"region": "NE",
+"area": 0.2974,
+"lon": -71.44,
+"lat": 41.674
+},
+{
+"code": "MA",
+"name": "Massachusetts",
+"region": "NE",
+"area": 2.3005,
+"lon": -71.028,
+"lat": 42.147
+},
+{
+"code": "OR",
+"name": "Oregon",
+"region": "PAC",
+"area": 28.2408,
+"lon": -121.829,
+"lat": 44.681
+},
+{
+"code": "HI",
+"name": "Hawaï",
+"region": "PAC",
+"area": 1.4563,
+"lon": -156.379,
+"lat": 20.248
+},
+{
+"code": "UT",
+"name": "Utah",
+"region": "MTN",
+"area": 22.963,
+"lon": -111.421,
+"lat": 39.558
+},
+{
+"code": "WY",
+"name": "Wyoming",
+"region": "MTN",
+"area": 27.9885,
+"lon": -107.983,
+"lat": 43.17
+},
+{
+"code": "NV",
+"name": "Nevada",
+"region": "MTN",
+"area": 30.0135,
+"lon": -115.555,
+"lat": 37.858
+},
+{
+"code": "CO",
+"name": "Colorado",
+"region": "MTN",
+"area": 27.9981,
+"lon": -105.117,
+"lat": 39.165
+},
+{
+"code": "SD",
+"name": "Dakota du Sud",
+"region": "WNC",
+"area": 22.5316,
+"lon": -98.159,
+"lat": 43.669
+},
+{
+"code": "NE",
+"name": "Nebraska",
+"region": "WNC",
+"area": 21.6836,
+"lon": -97.898,
+"lat": 41.566
+},
+{
+"code": "KS",
+"name": "Kansas",
+"region": "WNC",
+"area": 21.9763,
+"lon": -97.126,
+"lat": 38.95
+},
+{
+"code": "OK",
+"name": "Oklahoma",
+"region": "WSC",
+"area": 17.9662,
+"lon": -97.37,
+"lat": 34.482
+},
+{
+"code": "IA",
+"name": "Iowa",
+"region": "WNC",
+"area": 15.8258,
+"lon": -94.247,
+"lat": 41.801
+},
+{
+"code": "MO",
+"name": "Missouri",
+"region": "WNC",
+"area": 18.609,
+"lon": -92.27,
+"lat": 38.59
+},
+{
+"code": "WI",
+"name": "Wisconsin",
+"region": "ENC",
+"area": 19.2184,
+"lon": -89.863,
+"lat": 45.19
+},
+{
+"code": "IL",
+"name": "Illinois",
+"region": "ENC",
+"area": 15.8698,
+"lon": -89.31,
+"lat": 39.356
+},
+{
+"code": "KY",
+"name": "Kentucky",
+"region": "ESC",
+"area": 10.656,
+"lon": -85.354,
+"lat": 37.8
+},
+{
+"code": "AR",
+"name": "Arkansas",
+"region": "WSC",
+"area": 13.567,
+"lon": -91.2,
+"lat": 34.895
+},
+{
+"code": "TN",
+"name": "Tennessee",
+"region": "ESC",
+"area": 10.9045,
+"lon": -85.336,
+"lat": 35.884
+},
+{
+"code": "WV",
+"name": "Virginie-Occidentale",
+"region": "SA",
+"area": 6.4922,
+"lon": -80.323,
+"lat": 38.719
+},
+{
+"code": "IN",
+"name": "Indiana",
+"region": "ENC",
+"area": 9.9389,
+"lon": -86.788,
+"lat": 38.835
+}
+],
+"regions": {
+"PAC": "Pacifique",
+"MTN": "Montagnes Rocheuses",
+"WNC": "Grandes Plaines",
+"ENC": "Grands Lacs",
+"MA": "Centre-Atlantique",
+"NE": "Nouvelle-Angleterre",
+"WSC": "Sud-Ouest",
+"ESC": "Sud-Est intérieur",
+"SA": "Atlantique Sud"
+},
+"cities": [
+{
+"name": "Los Angeles",
+"lon": -118.232,
+"lat": 34.049,
+"population": 12500000,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Chicago",
+"lon": -87.635,
+"lat": 41.848,
+"population": 8990000,
+"department": "IL",
+"capital": false
+},
+{
+"name": "Miami",
+"lon": -80.226,
+"lat": 25.79,
+"population": 5585000,
+"department": "FL",
+"capital": false
+},
+{
+"name": "Philadelphie",
+"lon": -75.18,
+"lat": 39.946,
+"population": 5492000,
+"department": "PA",
+"capital": false
+},
+{
+"name": "Dallas",
+"lon": -96.795,
+"lat": 32.772,
+"population": 4798000,
+"department": "TX",
+"capital": false
+},
+{
+"name": "Atlanta",
+"lon": -84.368,
+"lat": 33.739,
+"population": 4506000,
+"department": "GA",
+"capital": false
+},
+{
+"name": "Boston",
+"lon": -71.072,
+"lat": 42.332,
+"population": 4467000,
+"department": "MA",
+"capital": false
+},
+{
+"name": "Houston",
+"lon": -95.348,
+"lat": 29.741,
+"population": 4459000,
+"department": "TX",
+"capital": false
+},
+{
+"name": "Washington",
+"lon": -77.011,
+"lat": 38.901,
+"population": 4338000,
+"department": "DC",
+"capital": true
+},
+{
+"name": "Détroit",
+"lon": -83.051,
+"lat": 42.334,
+"population": 4101000,
+"department": "MI",
+"capital": false
+},
+{
+"name": "Phoenix",
+"lon": -112.067,
+"lat": 33.448,
+"population": 3551000,
+"department": "AZ",
+"capital": false
+},
+{
+"name": "Seattle",
+"lon": -122.315,
+"lat": 47.6,
+"population": 3074000,
+"department": "WA",
+"capital": false
+},
+{
+"name": "Irvine",
+"lon": -117.83,
+"lat": 33.68,
+"population": 3010232,
+"department": "CA",
+"capital": false
+},
+{
+"name": "San Diego",
+"lon": -117.151,
+"lat": 32.719,
+"population": 2916000,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Minneapolis",
+"lon": -93.254,
+"lat": 44.982,
+"population": 2616000,
+"department": "MN",
+"capital": false
+},
+{
+"name": "Tampa",
+"lon": -82.461,
+"lat": 27.949,
+"population": 2314000,
+"department": "FL",
+"capital": false
+},
+{
+"name": "Denver",
+"lon": -104.986,
+"lat": 39.741,
+"population": 2313000,
+"department": "CO",
+"capital": false
+},
+{
+"name": "Baltimore",
+"lon": -76.615,
+"lat": 39.282,
+"population": 2255000,
+"department": "MD",
+"capital": false
+},
+{
+"name": "Saint-Louis",
+"lon": -90.242,
+"lat": 38.637,
+"population": 2199000,
+"department": "MO",
+"capital": false
+},
+{
+"name": "Fort Lauderdale",
+"lon": -80.142,
+"lat": 26.136,
+"population": 2042042,
+"department": "FL",
+"capital": false
+},
+{
+"name": "Long Beach",
+"lon": -118.2,
+"lat": 33.777,
+"population": 2036134,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Cleveland",
+"lon": -81.697,
+"lat": 41.472,
+"population": 1890000,
+"department": "OH",
+"capital": false
+},
+{
+"name": "Portland",
+"lon": -122.682,
+"lat": 45.522,
+"population": 1875000,
+"department": "OR",
+"capital": false
+},
+{
+"name": "Pittsburgh",
+"lon": -80.002,
+"lat": 40.432,
+"population": 1838000,
+"department": "PA",
+"capital": false
+},
+{
+"name": "Las Vegas",
+"lon": -115.151,
+"lat": 36.165,
+"population": 1823000,
+"department": "NV",
+"capital": false
+},
+{
+"name": "San Bernardino",
+"lon": -117.302,
+"lat": 34.122,
+"population": 1745000,
+"department": "CA",
+"capital": false
+},
+{
+"name": "San José",
+"lon": -121.888,
+"lat": 37.331,
+"population": 1668000,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Cincinnati",
+"lon": -84.459,
+"lat": 39.164,
+"population": 1636000,
+"department": "OH",
+"capital": false
+},
+{
+"name": "Sacramento",
+"lon": -121.472,
+"lat": 38.577,
+"population": 1604000,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Oakland",
+"lon": -122.278,
+"lat": 37.805,
+"population": 1510271,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Virginia Beach",
+"lon": -75.98,
+"lat": 36.855,
+"population": 1491000,
+"department": "VA",
+"capital": false
+},
+{
+"name": "San Antonio",
+"lon": -98.493,
+"lat": 29.42,
+"population": 1473000,
+"department": "TX",
+"capital": false
+},
+{
+"name": "Kansas City",
+"lon": -94.606,
+"lat": 39.109,
+"population": 1469000,
+"department": "MO",
+"capital": false
+},
+{
+"name": "Fort Worth",
+"lon": -97.34,
+"lat": 32.74,
+"population": 1440454,
+"department": "TX",
+"capital": false
+},
+{
+"name": "Indianapolis",
+"lon": -86.172,
+"lat": 39.752,
+"population": 1436000,
+"department": "IN",
+"capital": false
+},
+{
+"name": "Milwaukee",
+"lon": -87.917,
+"lat": 43.03,
+"population": 1388000,
+"department": "WI",
+"capital": false
+},
+{
+"name": "Orlando",
+"lon": -81.382,
+"lat": 28.512,
+"population": 1350000,
+"department": "FL",
+"capital": false
+},
+{
+"name": "Providence",
+"lon": -71.417,
+"lat": 41.823,
+"population": 1277000,
+"department": "RI",
+"capital": false
+},
+{
+"name": "Columbus",
+"lon": -82.992,
+"lat": 39.982,
+"population": 1270000,
+"department": "OH",
+"capital": false
+},
+{
+"name": "West Palm Beach",
+"lon": -80.124,
+"lat": 26.745,
+"population": 1250000,
+"department": "FL",
+"capital": false
+},
+{
+"name": "Raleigh",
+"lon": -78.647,
+"lat": 35.773,
+"population": 1163515,
+"department": "NC",
+"capital": false
+},
+{
+"name": "Austin",
+"lon": -97.745,
+"lat": 30.269,
+"population": 1161000,
+"department": "TX",
+"capital": false
+},
+{
+"name": "Birmingham",
+"lon": -86.825,
+"lat": 33.53,
+"population": 1128047,
+"department": "AL",
+"capital": false
+},
+{
+"name": "Mesa",
+"lon": -111.821,
+"lat": 33.415,
+"population": 1085394,
+"department": "AZ",
+"capital": false
+},
+{
+"name": "Memphis",
+"lon": -90.029,
+"lat": 35.145,
+"population": 1081000,
+"department": "TN",
+"capital": false
+},
+{
+"name": "Norfolk",
+"lon": -76.28,
+"lat": 36.85,
+"population": 1047869,
+"department": "VA",
+"capital": false
+},
+{
+"name": "Bridgeport",
+"lon": -73.202,
+"lat": 41.182,
+"population": 1018000,
+"department": "CT",
+"capital": false
+},
+{
+"name": "Buffalo",
+"lon": -78.882,
+"lat": 42.882,
+"population": 1016000,
+"department": "NY",
+"capital": false
+},
+{
+"name": "Charlotte",
+"lon": -80.832,
+"lat": 35.207,
+"population": 995000,
+"department": "NC",
+"capital": false
+},
+{
+"name": "Jacksonville",
+"lon": -81.672,
+"lat": 30.332,
+"population": 988000,
+"department": "FL",
+"capital": false
+},
+{
+"name": "Salt Lake City",
+"lon": -111.932,
+"lat": 40.777,
+"population": 966000,
+"department": "UT",
+"capital": false
+},
+{
+"name": "Louisville",
+"lon": -85.751,
+"lat": 38.227,
+"population": 948000,
+"department": "KY",
+"capital": false
+},
+{
+"name": "Tulsa",
+"lon": -95.93,
+"lat": 36.12,
+"population": 946962,
+"department": "OK",
+"capital": false
+},
+{
+"name": "Hartford",
+"lon": -72.682,
+"lat": 41.772,
+"population": 913000,
+"department": "CT",
+"capital": false
+},
+{
+"name": "Richmond",
+"lon": -77.452,
+"lat": 37.552,
+"population": 912000,
+"department": "VA",
+"capital": false
+},
+{
+"name": "Albuquerque",
+"lon": -106.641,
+"lat": 35.105,
+"population": 898642,
+"department": "NM",
+"capital": false
+},
+{
+"name": "Omaha",
+"lon": -96.01,
+"lat": 41.24,
+"population": 877110,
+"department": "NE",
+"capital": false
+},
+{
+"name": "Nashville",
+"lon": -86.782,
+"lat": 36.172,
+"population": 877000,
+"department": "TN",
+"capital": false
+},
+{
+"name": "Albany",
+"lon": -73.758,
+"lat": 42.654,
+"population": 870716,
+"department": "NY",
+"capital": false
+},
+{
+"name": "New Haven",
+"lon": -72.9,
+"lat": 41.33,
+"population": 846766,
+"department": "CT",
+"capital": false
+},
+{
+"name": "Tucson",
+"lon": -110.892,
+"lat": 32.207,
+"population": 823000,
+"department": "AZ",
+"capital": false
+},
+{
+"name": "St. Petersburg",
+"lon": -82.679,
+"lat": 27.771,
+"population": 800313,
+"department": "FL",
+"capital": false
+},
+{
+"name": "Oklahoma City",
+"lon": -97.521,
+"lat": 35.472,
+"population": 788000,
+"department": "OK",
+"capital": false
+},
+{
+"name": "Honolulu",
+"lon": -157.858,
+"lat": 21.303,
+"population": 786000,
+"department": "HI",
+"capital": false
+},
+{
+"name": "La Nouvelle-Orléans",
+"lon": -90.088,
+"lat": 29.969,
+"population": 785000,
+"department": "LA",
+"capital": false
+},
+{
+"name": "Dayton",
+"lon": -84.202,
+"lat": 39.752,
+"population": 773000,
+"department": "OH",
+"capital": false
+},
+{
+"name": "Rochester",
+"lon": -77.622,
+"lat": 43.172,
+"population": 755000,
+"department": "NY",
+"capital": false
+},
+{
+"name": "El Paso",
+"lon": -106.512,
+"lat": 31.782,
+"population": 753000,
+"department": "TX",
+"capital": false
+},
+{
+"name": "Stamford",
+"lon": -73.539,
+"lat": 41.053,
+"population": 746920,
+"department": "CT",
+"capital": false
+},
+{
+"name": "Saint Paul",
+"lon": -93.085,
+"lat": 44.944,
+"population": 734854,
+"department": "MN",
+"capital": false
+},
+{
+"name": "Arlington",
+"lon": -97.02,
+"lat": 32.685,
+"population": 724777,
+"department": "TX",
+"capital": false
+},
+{
+"name": "Lowell",
+"lon": -71.317,
+"lat": 42.634,
+"population": 723629,
+"department": "MA",
+"capital": false
+},
+{
+"name": "Tacoma",
+"lon": -122.447,
+"lat": 47.241,
+"population": 719868,
+"department": "WA",
+"capital": false
+},
+{
+"name": "Akron",
+"lon": -81.52,
+"lat": 41.07,
+"population": 703200,
+"department": "OH",
+"capital": false
+},
+{
+"name": "Stockton",
+"lon": -121.29,
+"lat": 37.958,
+"population": 685306,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Syracuse",
+"lon": -76.15,
+"lat": 43.05,
+"population": 662577,
+"department": "NY",
+"capital": false
+},
+{
+"name": "Knoxville",
+"lon": -83.92,
+"lat": 35.97,
+"population": 655400,
+"department": "TN",
+"capital": false
+},
+{
+"name": "Pasadena",
+"lon": -95.148,
+"lat": 29.661,
+"population": 628492,
+"department": "TX",
+"capital": false
+},
+{
+"name": "San Mateo",
+"lon": -122.303,
+"lat": 37.541,
+"population": 626406,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Fresno",
+"lon": -119.773,
+"lat": 36.748,
+"population": 616353,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Oceanside",
+"lon": -117.346,
+"lat": 33.191,
+"population": 609854,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Gary",
+"lon": -87.33,
+"lat": 41.58,
+"population": 591180,
+"department": "IN",
+"capital": false
+},
+{
+"name": "Sarasota",
+"lon": -82.531,
+"lat": 27.336,
+"population": 589959,
+"department": "FL",
+"capital": false
+},
+{
+"name": "Aurora",
+"lon": -104.808,
+"lat": 39.696,
+"population": 587540,
+"department": "CO",
+"capital": false
+},
+{
+"name": "Covington",
+"lon": -84.509,
+"lat": 39.084,
+"population": 585489,
+"department": "KY",
+"capital": false
+},
+{
+"name": "Joliet",
+"lon": -88.107,
+"lat": 41.53,
+"population": 578460,
+"department": "IL",
+"capital": false
+},
+{
+"name": "Grand Rapids",
+"lon": -85.67,
+"lat": 42.964,
+"population": 535829,
+"department": "MI",
+"capital": false
+},
+{
+"name": "Harrisburg",
+"lon": -76.885,
+"lat": 40.274,
+"population": 528892,
+"department": "PA",
+"capital": false
+},
+{
+"name": "Vancouver",
+"lon": -122.64,
+"lat": 45.63,
+"population": 525802,
+"department": "OR",
+"capital": false
+},
+{
+"name": "Kansas City",
+"lon": -94.63,
+"lat": 39.114,
+"population": 501577,
+"department": "KS",
+"capital": false
+},
+{
+"name": "Glendale",
+"lon": -112.174,
+"lat": 33.535,
+"population": 500000,
+"department": "AZ",
+"capital": false
+},
+{
+"name": "Allentown",
+"lon": -75.5,
+"lat": 40.6,
+"population": 496442,
+"department": "PA",
+"capital": false
+},
+{
+"name": "Berkeley",
+"lon": -122.271,
+"lat": 37.874,
+"population": 496356,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Colorado Springs",
+"lon": -104.792,
+"lat": 38.863,
+"population": 493654,
+"department": "CO",
+"capital": false
+},
+{
+"name": "Everett",
+"lon": -122.2,
+"lat": 47.96,
+"population": 486903,
+"department": "WA",
+"capital": false
+},
+{
+"name": "Toledo",
+"lon": -83.553,
+"lat": 41.64,
+"population": 469924,
+"department": "OH",
+"capital": false
+},
+{
+"name": "Bakersfield",
+"lon": -119.02,
+"lat": 35.37,
+"population": 443129,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Baton Rouge",
+"lon": -91.14,
+"lat": 30.458,
+"population": 422072,
+"department": "LA",
+"capital": false
+},
+{
+"name": "Springfield",
+"lon": -72.58,
+"lat": 42.12,
+"population": 421780,
+"department": "MA",
+"capital": false
+},
+{
+"name": "Charleston",
+"lon": -79.992,
+"lat": 32.792,
+"population": 411940,
+"department": "SC",
+"capital": false
+},
+{
+"name": "Miami Beach",
+"lon": -80.132,
+"lat": 25.81,
+"population": 407750,
+"department": "FL",
+"capital": false
+},
+{
+"name": "Wichita",
+"lon": -97.328,
+"lat": 37.676,
+"population": 401843,
+"department": "KS",
+"capital": false
+},
+{
+"name": "Columbia",
+"lon": -92.334,
+"lat": 38.952,
+"population": 398093,
+"department": "MO",
+"capital": false
+},
+{
+"name": "Columbia",
+"lon": -81.031,
+"lat": 33.997,
+"population": 398093,
+"department": "SC",
+"capital": false
+},
+{
+"name": "Metairie",
+"lon": -90.153,
+"lat": 29.984,
+"population": 394206,
+"department": "LA",
+"capital": false
+},
+{
+"name": "Palm Springs",
+"lon": -116.533,
+"lat": 33.777,
+"population": 390115,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Elgin",
+"lon": -88.29,
+"lat": 42.039,
+"population": 389514,
+"department": "IL",
+"capital": false
+},
+{
+"name": "Greensboro",
+"lon": -79.8,
+"lat": 36.07,
+"population": 388887,
+"department": "NC",
+"capital": false
+},
+{
+"name": "Des Moines",
+"lon": -93.62,
+"lat": 41.58,
+"population": 380655,
+"department": "IA",
+"capital": false
+},
+{
+"name": "Ogden",
+"lon": -111.968,
+"lat": 41.232,
+"population": 377224,
+"department": "UT",
+"capital": false
+},
+{
+"name": "Hampton",
+"lon": -76.35,
+"lat": 37.03,
+"population": 366766,
+"department": "VA",
+"capital": false
+},
+{
+"name": "Trenton",
+"lon": -74.743,
+"lat": 40.217,
+"population": 366513,
+"department": "NJ",
+"capital": false
+},
+{
+"name": "McAllen",
+"lon": -98.23,
+"lat": 26.203,
+"population": 364004,
+"department": "TX",
+"capital": false
+},
+{
+"name": "Saint Charles",
+"lon": -90.506,
+"lat": 38.784,
+"population": 360485,
+"department": "MO",
+"capital": false
+},
+{
+"name": "Provo",
+"lon": -111.638,
+"lat": 40.249,
+"population": 356712,
+"department": "UT",
+"capital": false
+},
+{
+"name": "Greenville",
+"lon": -82.394,
+"lat": 34.853,
+"population": 350954,
+"department": "SC",
+"capital": false
+},
+{
+"name": "Evanston",
+"lon": -87.7,
+"lat": 42.048,
+"population": 350000,
+"department": "IL",
+"capital": false
+},
+{
+"name": "Aurora",
+"lon": -88.3,
+"lat": 41.765,
+"population": 350000,
+"department": "IL",
+"capital": false
+},
+{
+"name": "Spokane",
+"lon": -117.42,
+"lat": 47.67,
+"population": 347705,
+"department": "WA",
+"capital": false
+},
+{
+"name": "Boise",
+"lon": -116.227,
+"lat": 43.609,
+"population": 338071,
+"department": "ID",
+"capital": false
+},
+{
+"name": "Salem",
+"lon": -70.883,
+"lat": 42.522,
+"population": 335509,
+"department": "MA",
+"capital": false
+},
+{
+"name": "Sanford",
+"lon": -81.28,
+"lat": 28.79,
+"population": 333460,
+"department": "FL",
+"capital": false
+},
+{
+"name": "Reno",
+"lon": -119.82,
+"lat": 39.53,
+"population": 328585,
+"department": "NV",
+"capital": false
+},
+{
+"name": "Madison",
+"lon": -89.401,
+"lat": 43.073,
+"population": 327447,
+"department": "WI",
+"capital": false
+},
+{
+"name": "Modesto",
+"lon": -120.99,
+"lat": 37.655,
+"population": 323386,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Youngstown",
+"lon": -80.65,
+"lat": 41.1,
+"population": 311990,
+"department": "OH",
+"capital": false
+},
+{
+"name": "Durham",
+"lon": -78.92,
+"lat": 36.0,
+"population": 309495,
+"department": "NC",
+"capital": false
+},
+{
+"name": "Fort Wayne",
+"lon": -85.13,
+"lat": 41.08,
+"population": 299871,
+"department": "IN",
+"capital": false
+},
+{
+"name": "Riverside",
+"lon": -117.398,
+"lat": 33.942,
+"population": 297554,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Flint",
+"lon": -83.688,
+"lat": 43.013,
+"population": 295212,
+"department": "MI",
+"capital": false
+},
+{
+"name": "Worcester",
+"lon": -71.8,
+"lat": 42.27,
+"population": 287365,
+"department": "MA",
+"capital": false
+},
+{
+"name": "Bartlett",
+"lon": -89.841,
+"lat": 35.223,
+"population": 286423,
+"department": "TN",
+"capital": false
+},
+{
+"name": "Winston-Salem",
+"lon": -80.26,
+"lat": 36.105,
+"population": 281683,
+"department": "NC",
+"capital": false
+},
+{
+"name": "Newark",
+"lon": -74.17,
+"lat": 40.7,
+"population": 280123,
+"department": "NJ",
+"capital": false
+},
+{
+"name": "Lansing",
+"lon": -84.547,
+"lat": 42.734,
+"population": 279952,
+"department": "MI",
+"capital": false
+},
+{
+"name": "Corpus Christi",
+"lon": -97.402,
+"lat": 27.743,
+"population": 277454,
+"department": "TX",
+"capital": false
+},
+{
+"name": "Little Rock",
+"lon": -92.331,
+"lat": 34.736,
+"population": 270893,
+"department": "AR",
+"capital": false
+},
+{
+"name": "Ann Arbor",
+"lon": -83.72,
+"lat": 42.3,
+"population": 265976,
+"department": "MI",
+"capital": false
+},
+{
+"name": "Melbourne",
+"lon": -80.608,
+"lat": 28.083,
+"population": 265414,
+"department": "FL",
+"capital": false
+},
+{
+"name": "Lexington",
+"lon": -84.5,
+"lat": 38.05,
+"population": 264578,
+"department": "KY",
+"capital": false
+},
+{
+"name": "Augusta",
+"lon": -81.985,
+"lat": 33.461,
+"population": 262332,
+"department": "GA",
+"capital": false
+},
+{
+"name": "Naples",
+"lon": -81.795,
+"lat": 26.142,
+"population": 262306,
+"department": "FL",
+"capital": false
+},
+{
+"name": "Lakeville",
+"lon": -93.243,
+"lat": 44.65,
+"population": 261308,
+"department": "MN",
+"capital": false
+},
+{
+"name": "Anchorage",
+"lon": -149.887,
+"lat": 61.214,
+"population": 260283,
+"department": "AK",
+"capital": false
+},
+{
+"name": "Canton",
+"lon": -81.379,
+"lat": 40.799,
+"population": 258660,
+"department": "OH",
+"capital": false
+},
+{
+"name": "Chattanooga",
+"lon": -85.25,
+"lat": 35.07,
+"population": 257589,
+"department": "TN",
+"capital": false
+},
+{
+"name": "Rockford",
+"lon": -89.07,
+"lat": 42.27,
+"population": 255978,
+"department": "IL",
+"capital": false
+},
+{
+"name": "Davenport",
+"lon": -90.588,
+"lat": 41.554,
+"population": 255738,
+"department": "IA",
+"capital": false
+},
+{
+"name": "Mobile",
+"lon": -88.05,
+"lat": 30.68,
+"population": 253466,
+"department": "AL",
+"capital": false
+},
+{
+"name": "Jackson",
+"lon": -90.185,
+"lat": 32.299,
+"population": 250902,
+"department": "MS",
+"capital": false
+},
+{
+"name": "Coral Springs",
+"lon": -80.271,
+"lat": 26.271,
+"population": 250000,
+"department": "FL",
+"capital": false
+},
+{
+"name": "Waukesha",
+"lon": -88.231,
+"lat": 43.012,
+"population": 249912,
+"department": "WI",
+"capital": false
+},
+{
+"name": "Shreveport",
+"lon": -93.77,
+"lat": 32.5,
+"population": 248053,
+"department": "LA",
+"capital": false
+},
+{
+"name": "Lincoln",
+"lon": -96.68,
+"lat": 40.82,
+"population": 246220,
+"department": "NE",
+"capital": false
+},
+{
+"name": "Eugene",
+"lon": -123.1,
+"lat": 44.05,
+"population": 245158,
+"department": "OR",
+"capital": false
+},
+{
+"name": "Fayetteville",
+"lon": -78.887,
+"lat": 35.051,
+"population": 243306,
+"department": "NC",
+"capital": false
+},
+{
+"name": "South Bend",
+"lon": -86.25,
+"lat": 41.683,
+"population": 239822,
+"department": "IN",
+"capital": false
+},
+{
+"name": "Pensacola",
+"lon": -87.217,
+"lat": 30.421,
+"population": 234384,
+"department": "FL",
+"capital": false
+},
+{
+"name": "Santa Rosa",
+"lon": -122.7,
+"lat": 38.45,
+"population": 231792,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Salem",
+"lon": -123.024,
+"lat": 44.928,
+"population": 229010,
+"department": "OR",
+"capital": false
+},
+{
+"name": "Fort Collins",
+"lon": -105.059,
+"lat": 40.561,
+"population": 228385,
+"department": "CO",
+"capital": false
+},
+{
+"name": "Fort Pierce",
+"lon": -80.326,
+"lat": 27.447,
+"population": 228245,
+"department": "FL",
+"capital": false
+},
+{
+"name": "Lancaster",
+"lon": -118.136,
+"lat": 34.698,
+"population": 225799,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Kissimmee",
+"lon": -81.408,
+"lat": 28.292,
+"population": 225494,
+"department": "FL",
+"capital": false
+},
+{
+"name": "Tallahassee",
+"lon": -84.28,
+"lat": 30.45,
+"population": 221222,
+"department": "FL",
+"capital": false
+},
+{
+"name": "York",
+"lon": -76.728,
+"lat": 39.963,
+"population": 218010,
+"department": "PA",
+"capital": false
+},
+{
+"name": "Columbus",
+"lon": -84.98,
+"lat": 32.47,
+"population": 217980,
+"department": "GA",
+"capital": false
+},
+{
+"name": "Daytona Beach",
+"lon": -81.023,
+"lat": 29.211,
+"population": 216890,
+"department": "FL",
+"capital": false
+},
+{
+"name": "Lubbock",
+"lon": -101.88,
+"lat": 33.58,
+"population": 213300,
+"department": "TX",
+"capital": false
+},
+{
+"name": "Huntsville",
+"lon": -86.61,
+"lat": 34.72,
+"population": 212733,
+"department": "AL",
+"capital": false
+},
+{
+"name": "Springfield",
+"lon": -93.32,
+"lat": 37.18,
+"population": 210939,
+"department": "MO",
+"capital": false
+},
+{
+"name": "Lancaster",
+"lon": -76.306,
+"lat": 40.038,
+"population": 209489,
+"department": "PA",
+"capital": false
+},
+{
+"name": "Appleton",
+"lon": -88.401,
+"lat": 44.269,
+"population": 203665,
+"department": "WI",
+"capital": false
+},
+{
+"name": "Waukegan",
+"lon": -87.845,
+"lat": 42.364,
+"population": 200000,
+"department": "IL",
+"capital": false
+},
+{
+"name": "Green Bay",
+"lon": -88.0,
+"lat": 44.53,
+"population": 198611,
+"department": "WI",
+"capital": false
+},
+{
+"name": "Montgomery",
+"lon": -86.279,
+"lat": 32.362,
+"population": 198325,
+"department": "AL",
+"capital": false
+},
+{
+"name": "Roanoke",
+"lon": -79.942,
+"lat": 37.271,
+"population": 198171,
+"department": "VA",
+"capital": false
+},
+{
+"name": "Manchester",
+"lon": -71.455,
+"lat": 42.996,
+"population": 196566,
+"department": "NH",
+"capital": false
+},
+{
+"name": "Gainesville",
+"lon": -82.325,
+"lat": 29.651,
+"population": 191097,
+"department": "FL",
+"capital": false
+},
+{
+"name": "Kalamazoo",
+"lon": -85.587,
+"lat": 42.292,
+"population": 183381,
+"department": "MI",
+"capital": false
+},
+{
+"name": "Amarillo",
+"lon": -101.83,
+"lat": 35.23,
+"population": 181766,
+"department": "TX",
+"capital": false
+},
+{
+"name": "Savannah",
+"lon": -81.11,
+"lat": 32.021,
+"population": 180187,
+"department": "GA",
+"capital": false
+},
+{
+"name": "Érié",
+"lon": -80.085,
+"lat": 42.13,
+"population": 178182,
+"department": "PA",
+"capital": false
+},
+{
+"name": "Denton",
+"lon": -97.129,
+"lat": 33.216,
+"population": 176930,
+"department": "TX",
+"capital": false
+},
+{
+"name": "Wahiawa",
+"lon": -158.024,
+"lat": 21.503,
+"population": 174766,
+"department": "HI",
+"capital": false
+},
+{
+"name": "Waterbury",
+"lon": -73.05,
+"lat": 41.55,
+"population": 174236,
+"department": "CT",
+"capital": false
+},
+{
+"name": "Evansville",
+"lon": -87.556,
+"lat": 37.975,
+"population": 174102,
+"department": "IN",
+"capital": false
+},
+{
+"name": "Peoria",
+"lon": -89.579,
+"lat": 40.689,
+"population": 172308,
+"department": "IL",
+"capital": false
+},
+{
+"name": "Poughkeepsie",
+"lon": -73.921,
+"lat": 41.7,
+"population": 170996,
+"department": "NY",
+"capital": false
+},
+{
+"name": "Cedar Rapids",
+"lon": -91.66,
+"lat": 41.97,
+"population": 170621,
+"department": "IA",
+"capital": false
+},
+{
+"name": "Waco",
+"lon": -97.146,
+"lat": 31.549,
+"population": 167347,
+"department": "TX",
+"capital": false
+},
+{
+"name": "Rock Island",
+"lon": -90.535,
+"lat": 41.493,
+"population": 165728,
+"department": "IL",
+"capital": false
+},
+{
+"name": "Fargo",
+"lon": -96.789,
+"lat": 46.877,
+"population": 162842,
+"department": "ND",
+"capital": false
+},
+{
+"name": "Wilmington",
+"lon": -75.547,
+"lat": 39.746,
+"population": 161560,
+"department": "DE",
+"capital": false
+},
+{
+"name": "Wilmington",
+"lon": -77.945,
+"lat": 34.226,
+"population": 161560,
+"department": "NC",
+"capital": false
+},
+{
+"name": "Wilkes-Barre",
+"lon": -75.878,
+"lat": 41.249,
+"population": 158913,
+"department": "PA",
+"capital": false
+},
+{
+"name": "Lafayette",
+"lon": -92.02,
+"lat": 30.2,
+"population": 158214,
+"department": "LA",
+"capital": false
+},
+{
+"name": "Olympia",
+"lon": -122.899,
+"lat": 47.038,
+"population": 156984,
+"department": "WA",
+"capital": false
+},
+{
+"name": "Salinas",
+"lon": -121.642,
+"lat": 36.682,
+"population": 156784,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Scranton",
+"lon": -75.663,
+"lat": 41.409,
+"population": 156196,
+"department": "PA",
+"capital": false
+},
+{
+"name": "Sioux Falls",
+"lon": -96.73,
+"lat": 43.55,
+"population": 155724,
+"department": "SD",
+"capital": false
+},
+{
+"name": "Niagara Falls",
+"lon": -79.037,
+"lat": 43.095,
+"population": 153134,
+"department": "NY",
+"capital": false
+},
+{
+"name": "Fayetteville",
+"lon": -94.157,
+"lat": 36.063,
+"population": 151671,
+"department": "AR",
+"capital": false
+},
+{
+"name": "Paterson",
+"lon": -74.17,
+"lat": 40.92,
+"population": 151205,
+"department": "NJ",
+"capital": false
+},
+{
+"name": "National City",
+"lon": -117.098,
+"lat": 32.672,
+"population": 150000,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Edinburg",
+"lon": -98.16,
+"lat": 26.303,
+"population": 150000,
+"department": "TX",
+"capital": false
+},
+{
+"name": "Coral Gables",
+"lon": -80.291,
+"lat": 25.715,
+"population": 150000,
+"department": "FL",
+"capital": false
+},
+{
+"name": "Schenectady",
+"lon": -73.94,
+"lat": 42.815,
+"population": 149255,
+"department": "NY",
+"capital": false
+},
+{
+"name": "Elkhart",
+"lon": -85.969,
+"lat": 41.683,
+"population": 149190,
+"department": "IN",
+"capital": false
+},
+{
+"name": "Santa Cruz",
+"lon": -122.026,
+"lat": 36.972,
+"population": 148444,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Independence",
+"lon": -94.415,
+"lat": 39.091,
+"population": 148102,
+"department": "MO",
+"capital": false
+},
+{
+"name": "Bryan",
+"lon": -96.37,
+"lat": 30.674,
+"population": 146692,
+"department": "TX",
+"capital": false
+},
+{
+"name": "Vallejo",
+"lon": -122.258,
+"lat": 38.112,
+"population": 146289,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Pasadena",
+"lon": -118.139,
+"lat": 34.16,
+"population": 144618,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Urbana",
+"lon": -88.204,
+"lat": 40.11,
+"population": 144074,
+"department": "IL",
+"capital": false
+},
+{
+"name": "Belleville",
+"lon": -90.0,
+"lat": 38.525,
+"population": 143900,
+"department": "IL",
+"capital": false
+},
+{
+"name": "Asheville",
+"lon": -82.554,
+"lat": 35.601,
+"population": 142755,
+"department": "NC",
+"capital": false
+},
+{
+"name": "Ocala",
+"lon": -82.14,
+"lat": 29.187,
+"population": 141382,
+"department": "FL",
+"capital": false
+},
+{
+"name": "Binghamton",
+"lon": -75.918,
+"lat": 42.099,
+"population": 139895,
+"department": "NY",
+"capital": false
+},
+{
+"name": "Killeen",
+"lon": -97.727,
+"lat": 31.117,
+"population": 137919,
+"department": "TX",
+"capital": false
+},
+{
+"name": "New Bedford",
+"lon": -70.945,
+"lat": 41.656,
+"population": 136082,
+"department": "MA",
+"capital": false
+},
+{
+"name": "Springfield",
+"lon": -89.637,
+"lat": 39.788,
+"population": 134715,
+"department": "IL",
+"capital": false
+},
+{
+"name": "Lafayette",
+"lon": -86.878,
+"lat": 40.417,
+"population": 133977,
+"department": "IN",
+"capital": false
+},
+{
+"name": "Fredericksburg",
+"lon": -77.461,
+"lat": 38.304,
+"population": 133134,
+"department": "VA",
+"capital": false
+},
+{
+"name": "Clarksville",
+"lon": -87.359,
+"lat": 36.53,
+"population": 132536,
+"department": "TN",
+"capital": false
+},
+{
+"name": "Cape Coral",
+"lon": -81.98,
+"lat": 26.603,
+"population": 132489,
+"department": "FL",
+"capital": false
+},
+{
+"name": "Caldwell",
+"lon": -116.671,
+"lat": 43.661,
+"population": 132476,
+"department": "ID",
+"capital": false
+},
+{
+"name": "Topeka",
+"lon": -95.67,
+"lat": 39.05,
+"population": 132091,
+"department": "KS",
+"capital": false
+},
+{
+"name": "Racine",
+"lon": -87.812,
+"lat": 42.728,
+"population": 131654,
+"department": "WI",
+"capital": false
+},
+{
+"name": "Bloomington",
+"lon": -88.994,
+"lat": 40.485,
+"population": 128979,
+"department": "IL",
+"capital": false
+},
+{
+"name": "Alexandria",
+"lon": -77.055,
+"lat": 38.804,
+"population": 127273,
+"department": "VA",
+"capital": false
+},
+{
+"name": "Bremerton",
+"lon": -122.642,
+"lat": 47.574,
+"population": 126820,
+"department": "WA",
+"capital": false
+},
+{
+"name": "Greeley",
+"lon": -104.74,
+"lat": 40.419,
+"population": 125410,
+"department": "CO",
+"capital": false
+},
+{
+"name": "Monterey",
+"lon": -121.894,
+"lat": 36.6,
+"population": 124288,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Spartanburg",
+"lon": -81.932,
+"lat": 34.949,
+"population": 124126,
+"department": "SC",
+"capital": false
+},
+{
+"name": "Charleston",
+"lon": -81.633,
+"lat": 38.35,
+"population": 123799,
+"department": "WV",
+"capital": false
+},
+{
+"name": "Boulder",
+"lon": -105.245,
+"lat": 40.008,
+"population": 122274,
+"department": "CO",
+"capital": false
+},
+{
+"name": "Visalia",
+"lon": -119.316,
+"lat": 36.325,
+"population": 121968,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Saginaw",
+"lon": -83.951,
+"lat": 43.419,
+"population": 121379,
+"department": "MI",
+"capital": false
+},
+{
+"name": "Tuscaloosa",
+"lon": -87.544,
+"lat": 33.225,
+"population": 121373,
+"department": "AL",
+"capital": false
+},
+{
+"name": "Southaven",
+"lon": -90.003,
+"lat": 34.969,
+"population": 121268,
+"department": "MS",
+"capital": false
+},
+{
+"name": "New Albany",
+"lon": -85.821,
+"lat": 38.311,
+"population": 120625,
+"department": "IN",
+"capital": false
+},
+{
+"name": "Beaver Falls",
+"lon": -80.319,
+"lat": 40.752,
+"population": 120125,
+"department": "PA",
+"capital": false
+},
+{
+"name": "Petersburg",
+"lon": -77.402,
+"lat": 37.228,
+"population": 118577,
+"department": "VA",
+"capital": false
+},
+{
+"name": "Yuba City",
+"lon": -121.616,
+"lat": 39.141,
+"population": 116217,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Columbia",
+"lon": -87.035,
+"lat": 35.615,
+"population": 116091,
+"department": "TN",
+"capital": false
+},
+{
+"name": "Murfreesboro",
+"lon": -86.39,
+"lat": 35.846,
+"population": 115774,
+"department": "TN",
+"capital": false
+},
+{
+"name": "Macon",
+"lon": -83.63,
+"lat": 32.85,
+"population": 115592,
+"department": "GA",
+"capital": false
+},
+{
+"name": "Las Cruces",
+"lon": -106.778,
+"lat": 32.313,
+"population": 115167,
+"department": "NM",
+"capital": false
+},
+{
+"name": "Spring Hill",
+"lon": -82.548,
+"lat": 28.479,
+"population": 114697,
+"department": "FL",
+"capital": false
+},
+{
+"name": "Abilene",
+"lon": -99.733,
+"lat": 32.449,
+"population": 114247,
+"department": "TX",
+"capital": false
+},
+{
+"name": "Norman",
+"lon": -97.442,
+"lat": 35.22,
+"population": 113525,
+"department": "OK",
+"capital": false
+},
+{
+"name": "Saint Cloud",
+"lon": -94.162,
+"lat": 45.561,
+"population": 112794,
+"department": "MN",
+"capital": false
+},
+{
+"name": "Tyler",
+"lon": -95.301,
+"lat": 32.351,
+"population": 112245,
+"department": "TX",
+"capital": false
+},
+{
+"name": "Pueblo",
+"lon": -104.63,
+"lat": 38.28,
+"population": 112195,
+"department": "CO",
+"capital": false
+},
+{
+"name": "Beaumont",
+"lon": -94.102,
+"lat": 30.086,
+"population": 111485,
+"department": "TX",
+"capital": false
+},
+{
+"name": "Santa Maria",
+"lon": -120.437,
+"lat": 34.94,
+"population": 110705,
+"department": "CA",
+"capital": false
+},
+{
+"name": "Harlingen",
+"lon": -97.69,
+"lat": 26.198,
+"population": 110339,
+"department": "TX",
+"capital": false
+},
+{
+"name": "Athens",
+"lon": -83.378,
+"lat": 33.961,
+"population": 110301,
+"department": "GA",
+"capital": false
+},
+{
+"name": "Winter Haven",
+"lon": -81.733,
+"lat": 28.022,
+"population": 108932,
+"department": "FL",
+"capital": false
+}
+]
+}
+}

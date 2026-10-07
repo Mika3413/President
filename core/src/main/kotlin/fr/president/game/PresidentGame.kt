@@ -80,6 +80,7 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
 
     /** Écran d'accueil : continuer la partie en cours ou en commencer une nouvelle. */
     private fun showTitle() {
+        ui.localize = { it }
         // Erreur fatale lors de la session précédente : on montre d'abord son détail.
         platform.takeCrashReport()?.let { report ->
             val where = report.lineSequence().firstOrNull().orEmpty()
@@ -106,8 +107,9 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
         prepareSession("reprise de la partie", "Retour à l'Élysée", resumed = true) { GameSession.fromSave(db, file, platform::nowUtcMillis) }
     }
 
-    private fun showNewGame(error: String?) {
-        switchTo(NewGameScreen(ui, db, scale, platform::nowUtcMillis, error) { options ->
+    private fun showNewGame(error: String?, countryId: String = db.snapshot.playableCountries.first()) {
+        ui.localize = { it }
+        switchTo(NewGameScreen(ui, db, scale, platform::nowUtcMillis, error, countryId, onCountry = { id -> Gdx.app.postRunnable { safely("nouvelle partie") { showNewGame(error, id) } } }) { options ->
             // Après le traitement du toucher, pour ne pas détruire l'écran pendant qu'il gère l'événement.
             Gdx.app.postRunnable { safely("prise de fonctions") { newGame(options) } }
         })
@@ -160,7 +162,7 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
             showGameOver(session)
             return
         }
-        val map = mapData ?: MapData(db, skin.white, session.state.player.countryId).also { mapData = it }
+        val map = mapData?.takeIf { it.playerCountryId == session.state.player.countryId } ?: MapData(db, skin.white, session.state.player.countryId).also { mapData = it }
         val screen = MainScreen(c, ui, map, scale, { Gdx.app.postRunnable { safely("fin de partie") { showGameOver(session) } } },
             onDisplayChange = { Gdx.app.postRunnable { safely("réglages d'affichage") { applyDisplaySettings() } } }) {
             Gdx.app.postRunnable {

@@ -70,7 +70,7 @@ class MainScreen(
         private set
     override var openPanel: PanelId? = null
         private set
-    private val hints = fr.president.game.ui.Hints(ui).also { ui.hints = it }
+    private val hints = fr.president.game.ui.Hints(ui).also { ui.hints = it; ui.localize = { text -> session.localizer.apply(text) } }
     private val tour by lazy { fr.president.game.ui.hud.GuidedTour(ui, session, this) }
     val academy by lazy { fr.president.game.ui.hud.AcademyCoach(ui, session, this, this) }
     private var lod = Lod.FRANCE
@@ -312,7 +312,7 @@ class MainScreen(
         }
         picked ?: return
         if (picked is MapSelection.Country && picked.id == playerId) {
-            cameraController.focus(GeoProjection.x(FRANCE_LON), GeoProjection.y(FRANCE_LAT), FRANCE_VIEW_WIDTH)
+            home()
             return
         }
         select(picked)
@@ -350,6 +350,13 @@ class MainScreen(
         panelSlot.actor = null
         selection = null
         placeOverlay()
+    }
+
+    /** Vue d'ensemble du pays joué. */
+    private fun home() {
+        if (mapData.playerCountryId == "FRA") { cameraController.focus(GeoProjection.x(FRANCE_LON), GeoProjection.y(FRANCE_LAT), FRANCE_VIEW_WIDTH); return }
+        val (x, y, w) = mapData.homeView()
+        cameraController.focus(x, y, w.coerceIn(FRANCE_VIEW_WIDTH * 0.6f, FRANCE_VIEW_WIDTH * 4))
     }
 
     override fun focusOn(mapId: String) {
@@ -433,7 +440,7 @@ class MainScreen(
         if (cameraReady) {
             cameraController.focus(x, y, visible)
         } else {
-            cameraController.focus(GeoProjection.x(FRANCE_LON), GeoProjection.y(FRANCE_LAT), FRANCE_VIEW_WIDTH)
+            home()
             cameraReady = true
         }
         stage.viewport.update(width, height, true)

@@ -1,0 +1,123 @@
+{
+ "ministries": [
+  {
+   "id": "pm",
+   "title": "Vice-président",
+   "shortTitle": "Vice-présidence",
+   "isPrimeMinister": true
+  },
+  {
+   "id": "economy",
+   "title": "Secrétaire au Trésor",
+   "shortTitle": "Trésor"
+  },
+  {
+   "id": "interior",
+   "title": "Secrétaire à la Sécurité intérieure",
+   "shortTitle": "Sécurité intérieure",
+   "domain": "security"
+  },
+  {
+   "id": "armed_forces",
+   "title": "Secrétaire à la Défense",
+   "shortTitle": "Pentagone",
+   "domain": "defense"
+  },
+  {
+   "id": "foreign",
+   "title": "Secrétaire d'État",
+   "shortTitle": "Département d'État"
+  },
+  {
+   "id": "health",
+   "title": "Secrétaire à la Santé",
+   "shortTitle": "Santé",
+   "domain": "health"
+  },
+  {
+   "id": "education",
+   "title": "Secrétaire à l'Éducation",
+   "shortTitle": "Éducation",
+   "domain": "education"
+  },
+  {
+   "id": "labour",
+   "title": "Secrétaire au Travail",
+   "shortTitle": "Travail",
+   "domain": "social"
+  },
+  {
+   "id": "justice",
+   "title": "Procureur général",
+   "shortTitle": "Justice",
+   "domain": "justice"
+  },
+  {
+   "id": "ecology",
+   "title": "Secrétaire à l'Énergie",
+   "shortTitle": "Énergie",
+   "domain": "environment"
+  },
+  {
+   "id": "transport",
+   "title": "Secrétaire aux Transports",
+   "shortTitle": "Transports",
+   "domain": "transport"
+  },
+  {
+   "id": "agriculture",
+   "title": "Secrétaire à l'Agriculture",
+   "shortTitle": "Agriculture",
+   "domain": "agriculture"
+  }
+ ],
+ "maxHighPriorities": 3,
+ "candidatesPerMinistry": 3,
+ "effectivenessWeights": {
+  "competence": 0.4,
+  "management": 0.25,
+  "experience": 0.2,
+  "loyalty": 0.15,
+  "highPriorityBonus": 0.12,
+  "lowPriorityPenalty": 0.1
+ },
+ "parliament": {
+  "baseSupport": 0.53,
+  "approvalWeight": 0.5,
+  "primeMinisterDistanceWeight": 0.4,
+  "openingBonus": 0.12,
+  "voteNoise": 0.05,
+  "passThreshold": 0.5,
+  "forcePassApprovalCost": 0.03,
+  "forcePassSupportCost": 0.04,
+  "taxVoteDelayDays": 14,
+  "spendingVoteDelayDays": 10
+ },
+ "localTitles": {
+  "prefect": "Administrateur fédéral régional",
+  "regionPresident": "Coordinateur régional",
+  "departmentPresident": "Gouverneur",
+  "mayor": "Maire",
+  "prefectFemale": "Administratrice fédéral régional",
+  "regionPresidentFemale": "Coordinatrice régional",
+  "departmentPresidentFemale": "Gouverneure"
+ },
+ "ministerDrift": {
+  "loyaltyApprovalWeight": 0.4,
+  "loyaltyAdjustmentMonthly": 0.08,
+  "resignationLoyaltyThreshold": 0.18,
+  "experienceGainMonthly": 0.004
+ },
+ "initialServiceQuality": {
+  "health": 0.5,
+  "education": 0.55,
+  "security": 0.48,
+  "justice": 0.5,
+  "transport": 0.52,
+  "environment": 0.45,
+  "agriculture": 0.6,
+  "defense": 0.85,
+  "social": 0.4,
+  "pensions": 0.55
+ }
+}

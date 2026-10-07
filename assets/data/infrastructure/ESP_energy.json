@@ -1,0 +1,137 @@
+{
+ "electricityDemandTWh": 245,
+ "items": [
+  {
+   "id": "esp_almaraz",
+   "type": "NUCLEAR_PLANT",
+   "name": "Centrale nucléaire d'Almaraz",
+   "lon": -5.7,
+   "lat": 39.81,
+   "department": "CC",
+   "employees": 1200,
+   "maintenanceCostMillions": 80,
+   "initialCondition": 0.7,
+   "commissionedYear": 1985,
+   "capacityMW": 2000,
+   "capacityFactor": 0.8,
+   "description": "Réacteurs nucléaires. L'état des installations conditionne leur disponibilité et le risque d'incident."
+  },
+  {
+   "id": "esp_asco",
+   "type": "NUCLEAR_PLANT",
+   "name": "Centrale nucléaire d'Ascó",
+   "lon": 0.57,
+   "lat": 41.2,
+   "department": "T",
+   "employees": 1200,
+   "maintenanceCostMillions": 80,
+   "initialCondition": 0.7,
+   "commissionedYear": 1985,
+   "capacityMW": 2000,
+   "capacityFactor": 0.8,
+   "description": "Réacteurs nucléaires. L'état des installations conditionne leur disponibilité et le risque d'incident."
+  },
+  {
+   "id": "esp_cofrentes",
+   "type": "NUCLEAR_PLANT",
+   "name": "Centrale nucléaire de Cofrentes",
+   "lon": -1.05,
+   "lat": 39.21,
+   "department": "V",
+   "employees": 1200,
+   "maintenanceCostMillions": 43,
+   "initialCondition": 0.7,
+   "commissionedYear": 1985,
+   "capacityMW": 1090,
+   "capacityFactor": 0.8,
+   "description": "Réacteurs nucléaires. L'état des installations conditionne leur disponibilité et le risque d'incident."
+  },
+  {
+   "id": "esp_vandellos",
+   "type": "NUCLEAR_PLANT",
+   "name": "Centrale nucléaire de Vandellós",
+   "lon": 0.87,
+   "lat": 40.95,
+   "department": "T",
+   "employees": 1200,
+   "maintenanceCostMillions": 43,
+   "initialCondition": 0.7,
+   "commissionedYear": 1985,
+   "capacityMW": 1080,
+   "capacityFactor": 0.8,
+   "description": "Réacteurs nucléaires. L'état des installations conditionne leur disponibilité et le risque d'incident."
+  },
+  {
+   "id": "esp_trillo",
+   "type": "NUCLEAR_PLANT",
+   "name": "Centrale nucléaire de Trillo",
+   "lon": -2.62,
+   "lat": 40.7,
+   "department": "GU",
+   "employees": 1200,
+   "maintenanceCostMillions": 40,
+   "initialCondition": 0.7,
+   "commissionedYear": 1985,
+   "capacityMW": 1000,
+   "capacityFactor": 0.8,
+   "description": "Réacteurs nucléaires. L'état des installations conditionne leur disponibilité et le risque d'incident."
+  },
+  {
+   "id": "esp_cartagena",
+   "type": "REFINERY",
+   "name": "Raffinerie de Carthagène",
+   "lon": -0.98,
+   "lat": 37.58,
+   "department": "MU",
+   "employees": 600,
+   "maintenanceCostMillions": 20,
+   "initialCondition": 0.72,
+   "commissionedYear": 1990,
+   "description": "Installation énergétique majeure."
+  }
+ ],
+ "nationalGeneration": [
+  {
+   "id": "other_hydro",
+   "label": "Hydraulique",
+   "capacityMW": 17000,
+   "capacityFactor": 0.2
+  },
+  {
+   "id": "wind",
+   "label": "Éolien",
+   "capacityMW": 31000,
+   "capacityFactor": 0.25
+  },
+  {
+   "id": "solar",
+   "label": "Solaire",
+   "capacityMW": 32000,
+   "capacityFactor": 0.2
+  },
+  {
+   "id": "bioenergy",
+   "label": "Bioénergies",
+   "capacityMW": 1100,
+   "capacityFactor": 0.5
+  },
+  {
+   "id": "other_thermal",
+   "label": "Cycles combinés au gaz",
+   "capacityMW": 26000,
+   "capacityFactor": 0.2
+  },
+  {
+   "id": "new_nuclear",
+   "label": "Nouveaux réacteurs",
+   "capacityMW": 0,
+   "capacityFactor": 0.82
+  },
+  {
+   "id": "new_renewables",
+   "label": "Nouveaux parcs renouvelables",
+   "capacityMW": 0,
+   "capacityFactor": 0.2
+  }
+ ]
+}

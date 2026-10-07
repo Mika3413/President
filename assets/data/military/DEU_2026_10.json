@@ -1,0 +1,288 @@
+{
+ "budgetSpendingItem": "defense",
+ "bases": [
+  {
+   "id": "deu_base_0",
+   "name": "Garnison de Berlin",
+   "branch": "Terre",
+   "lon": 13.4,
+   "lat": 52.524,
+   "department": "BB",
+   "capacityUnits": 6
+  },
+  {
+   "id": "deu_base_1",
+   "name": "Garnison de Stuttgart",
+   "branch": "Terre",
+   "lon": 9.2,
+   "lat": 48.78,
+   "department": "BW",
+   "capacityUnits": 6
+  },
+  {
+   "id": "deu_base_2",
+   "name": "Garnison de Francfort",
+   "branch": "Terre",
+   "lon": 8.675,
+   "lat": 50.1,
+   "department": "HE",
+   "capacityUnits": 6
+  },
+  {
+   "id": "deu_base_3",
+   "name": "Garnison de Mannheim",
+   "branch": "Terre",
+   "lon": 8.47,
+   "lat": 49.5,
+   "department": "BW",
+   "capacityUnits": 6
+  },
+  {
+   "id": "deu_base_4",
+   "name": "Garnison de Hambourg",
+   "branch": "Terre",
+   "lon": 9.998,
+   "lat": 53.552,
+   "department": "HH",
+   "capacityUnits": 6
+  },
+  {
+   "id": "deu_base_5",
+   "name": "Garnison de Essen",
+   "branch": "Terre",
+   "lon": 7.017,
+   "lat": 51.45,
+   "department": "NW",
+   "capacityUnits": 6
+  },
+  {
+   "id": "deu_base_6",
+   "name": "Garnison de Duisbourg",
+   "branch": "Terre",
+   "lon": 6.75,
+   "lat": 51.43,
+   "department": "NW",
+   "capacityUnits": 6
+  },
+  {
+   "id": "deu_base_7",
+   "name": "Garnison de Munich",
+   "branch": "Terre",
+   "lon": 11.573,
+   "lat": 48.132,
+   "department": "BY",
+   "capacityUnits": 6
+  },
+  {
+   "id": "deu_naval_0",
+   "name": "Base navale de Berlin",
+   "branch": "Marine",
+   "lon": 13.4,
+   "lat": 52.524,
+   "department": "BB",
+   "capacityUnits": 6
+  },
+  {
+   "id": "deu_naval_1",
+   "name": "Base navale de Hambourg",
+   "branch": "Marine",
+   "lon": 9.998,
+   "lat": 53.552,
+   "department": "HH",
+   "capacityUnits": 6
+  },
+  {
+   "id": "deu_naval_2",
+   "name": "Base navale de Essen",
+   "branch": "Marine",
+   "lon": 7.017,
+   "lat": 51.45,
+   "department": "NW",
+   "capacityUnits": 6
+  }
+ ],
+ "units": [
+  {
+   "id": "u_deu_0",
+   "name": "Panzerbrigade 21",
+   "branch": "Terre",
+   "type": "ARMORED_BRIGADE",
+   "baseId": "deu_base_0",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_deu_1",
+   "name": "Panzergrenadierbrigade 37",
+   "branch": "Terre",
+   "type": "MECHANIZED_BRIGADE",
+   "baseId": "deu_base_1",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_deu_2",
+   "name": "Panzerbrigade 45 (Lituanie)",
+   "branch": "Terre",
+   "type": "ARMORED_BRIGADE",
+   "baseId": "deu_base_2",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_deu_3",
+   "name": "Gebirgsjägerbrigade 23",
+   "branch": "Terre",
+   "type": "MOUNTAIN_BRIGADE",
+   "baseId": "deu_base_3",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_deu_4",
+   "name": "Luftlandebrigade 1",
+   "branch": "Terre",
+   "type": "AIRBORNE_BRIGADE",
+   "baseId": "deu_base_4",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_deu_5",
+   "name": "Jägerbrigade 9",
+   "branch": "Terre",
+   "type": "INFANTRY_BRIGADE",
+   "baseId": "deu_base_5",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_deu_6",
+   "name": "Artilleriebataillon 345",
+   "branch": "Terre",
+   "type": "ARTILLERY_REGIMENT",
+   "baseId": "deu_base_6",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_deu_7",
+   "name": "Flugabwehrraketengeschwader 1",
+   "branch": "Terre",
+   "type": "AIR_DEFENSE_REGIMENT",
+   "baseId": "deu_base_7",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_deu_8",
+   "name": "Logistikbrigade",
+   "branch": "Terre",
+   "type": "SUPPORT_BRIGADE",
+   "baseId": "deu_base_0",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_deu_9",
+   "name": "Taktisches Luftwaffengeschwader 31",
+   "branch": "Air",
+   "type": "FIGHTER_WING",
+   "baseId": "deu_base_1",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_deu_10",
+   "name": "Taktisches Luftwaffengeschwader 74",
+   "branch": "Air",
+   "type": "FIGHTER_WING",
+   "baseId": "deu_base_2",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_deu_11",
+   "name": "Lufttransportgeschwader 62",
+   "branch": "Air",
+   "type": "TRANSPORT_WING",
+   "baseId": "deu_base_3",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_deu_12",
+   "name": "Flotte de la Baltique (frégates)",
+   "branch": "Marine",
+   "type": "SURFACE_GROUP",
+   "baseId": "deu_naval_0",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_deu_13",
+   "name": "Flotte de la mer du Nord (frégates)",
+   "branch": "Marine",
+   "type": "SURFACE_GROUP",
+   "baseId": "deu_naval_1",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  }
+ ]
+}

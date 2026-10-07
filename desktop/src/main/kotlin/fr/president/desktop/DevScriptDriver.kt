@@ -26,7 +26,7 @@ class DevScriptDriver(private val game: PresidentGame, script: String) : Applica
         val step = steps.removeFirstOrNull() ?: return
         val (cmd, arg) = step.substringBefore(':') to step.substringAfter(':', "")
         when (cmd) {
-            "new" -> game.newGame(NewGameOptions("normal", SEED, System.currentTimeMillis()))
+            "new" -> game.newGame(NewGameOptions("normal", SEED, System.currentTimeMillis(), countryId = arg.ifBlank { null }))
             "wait" -> waitFrames = arg.toInt()
             "shot" -> screenshot(arg)
             "zoom" -> arg.split(',').let { (lon, lat, w) -> game.mainScreen?.devZoom(lon.toDouble(), lat.toDouble(), w.toFloat()) }

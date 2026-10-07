@@ -1,0 +1,251 @@
+{
+ "_source": "Ordres de grandeur arrondis (ITA), convertis en euros ; budget calqué sur la structure française.",
+ "currency": "EUR",
+ "gdpBillions": 2250,
+ "realGrowth": 0.006,
+ "potentialGrowth": 0.0071,
+ "inflation": 0.016,
+ "inflationTarget": 0.02,
+ "unemployment": 0.061,
+ "naturalUnemployment": 0.0579,
+ "publicDebtBillions": 3083,
+ "averageDebtRate": 0.028000000000000004,
+ "riskFreeRate": 0.035,
+ "consumerConfidence": 0.44,
+ "businessConfidence": 0.47,
+ "averageNetMonthlyWage": 1900,
+ "tradeBalanceBillions": 50,
+ "budget": {
+  "revenues": [
+   {
+    "id": "social_contributions",
+    "label": "Cotisations sociales",
+    "amountBillions": 315.6,
+    "base": "WAGES",
+    "payer": "MIXED",
+    "rate": 100,
+    "rateLabel": "indice",
+    "minRate": 50,
+    "maxRate": 160,
+    "step": 2,
+    "behaviouralLoss": 0.25,
+    "description": "Cotisations patronales et salariales finançant la protection sociale."
+   },
+   {
+    "id": "vat",
+    "label": "TVA",
+    "amountBillions": 150.8,
+    "base": "CONSUMPTION",
+    "payer": "HOUSEHOLDS",
+    "rate": 22,
+    "rateLabel": "% (taux normal)",
+    "minRate": 0,
+    "maxRate": 40,
+    "step": 0.5,
+    "behaviouralLoss": 0.1,
+    "description": "Taxe sur la consommation, payée par tous les ménages."
+   },
+   {
+    "id": "csg",
+    "label": "IRAP (taxe régionale)",
+    "amountBillions": 112.2,
+    "base": "WAGES",
+    "payer": "HOUSEHOLDS",
+    "rate": 3.9,
+    "rateLabel": "%",
+    "minRate": 0,
+    "maxRate": 25,
+    "step": 0.1,
+    "behaviouralLoss": 0.05,
+    "description": "Contribution prélevée sur les revenus d'activité et de remplacement."
+   },
+   {
+    "id": "income_tax",
+    "label": "Impôt sur le revenu",
+    "amountBillions": 70.1,
+    "base": "WAGES",
+    "payer": "HOUSEHOLDS",
+    "rate": 100,
+    "rateLabel": "indice du barème",
+    "minRate": 0,
+    "maxRate": 250,
+    "step": 5,
+    "behaviouralLoss": 0.2,
+    "description": "Impôt progressif payé par environ 45 % des foyers."
+   },
+   {
+    "id": "corporate_tax",
+    "label": "Impôt sur les sociétés",
+    "amountBillions": 45.6,
+    "base": "PROFITS",
+    "payer": "BUSINESSES",
+    "rate": 24,
+    "rateLabel": "%",
+    "minRate": 0,
+    "maxRate": 60,
+    "step": 0.5,
+    "behaviouralLoss": 0.35,
+    "description": "Impôt sur les bénéfices des entreprises."
+   },
+   {
+    "id": "property_taxes",
+    "label": "Fiscalité locale et patrimoine",
+    "amountBillions": 77.1,
+    "base": "PROPERTY",
+    "payer": "HOUSEHOLDS",
+    "rate": 100,
+    "rateLabel": "indice",
+    "minRate": 0,
+    "maxRate": 200,
+    "step": 5,
+    "behaviouralLoss": 0.1,
+    "description": "Taxes foncières, droits de mutation, impôt sur la fortune immobilière."
+   },
+   {
+    "id": "energy_taxes",
+    "label": "Taxes sur l'énergie",
+    "amountBillions": 28.1,
+    "base": "CONSUMPTION",
+    "payer": "MIXED",
+    "rate": 100,
+    "rateLabel": "indice",
+    "minRate": 0,
+    "maxRate": 250,
+    "step": 5,
+    "behaviouralLoss": 0.15,
+    "description": "Accises sur les carburants, le gaz et l'électricité."
+   },
+   {
+    "id": "other_revenue",
+    "label": "Autres prélèvements et recettes",
+    "amountBillions": 280.5,
+    "base": "GDP",
+    "payer": "MIXED",
+    "rate": 100,
+    "rateLabel": "indice",
+    "minRate": 100,
+    "maxRate": 100,
+    "step": 0,
+    "behaviouralLoss": 0,
+    "adjustable": false,
+    "description": "Impôts de production, recettes non fiscales, autres taxes."
+   }
+  ],
+  "spending": [
+   {
+    "id": "pensions",
+    "label": "Retraites",
+    "amountBillions": 266.1,
+    "ministry": "labour",
+    "domain": "pensions",
+    "indexation": "PRICES",
+    "description": "Pensions de base et complémentaires, indexées sur les prix."
+   },
+   {
+    "id": "health",
+    "label": "Santé",
+    "amountBillions": 181.7,
+    "ministry": "health",
+    "domain": "health",
+    "description": "Hôpitaux, soins de ville, médicaments.",
+    "indexation": "PRICES"
+   },
+   {
+    "id": "education",
+    "label": "Éducation et recherche",
+    "amountBillions": 113.6,
+    "ministry": "education",
+    "domain": "education",
+    "description": "Écoles, collèges, lycées, universités et recherche publique.",
+    "indexation": "PRICES"
+   },
+   {
+    "id": "defense",
+    "label": "Défense",
+    "amountBillions": 33,
+    "ministry": "armed_forces",
+    "domain": "defense",
+    "description": "Forces armées, équipements, dissuasion.",
+    "indexation": "PRICES"
+   },
+   {
+    "id": "police",
+    "label": "Sécurité intérieure",
+    "amountBillions": 19.5,
+    "ministry": "interior",
+    "domain": "security",
+    "description": "Police et gendarmerie nationales.",
+    "indexation": "PRICES"
+   },
+   {
+    "id": "justice",
+    "label": "Justice et prisons",
+    "amountBillions": 9.7,
+    "ministry": "justice",
+    "domain": "justice",
+    "description": "Tribunaux, administration pénitentiaire, protection judiciaire.",
+    "indexation": "PRICES"
+   },
+   {
+    "id": "solidarity",
+    "label": "Solidarité, famille, logement",
+    "amountBillions": 123.3,
+    "ministry": "labour",
+    "domain": "social",
+    "description": "Prestations familiales, minima sociaux, aides au logement.",
+    "indexation": "PRICES"
+   },
+   {
+    "id": "unemployment_benefits",
+    "label": "Assurance chômage",
+    "amountBillions": 29.2,
+    "ministry": "labour",
+    "indexation": "UNEMPLOYMENT",
+    "description": "Indemnisation des demandeurs d'emploi : augmente automatiquement avec le chômage."
+   },
+   {
+    "id": "transport",
+    "label": "Transports et infrastructures",
+    "amountBillions": 38.9,
+    "ministry": "transport",
+    "domain": "transport",
+    "description": "Routes, rail, transports collectifs.",
+    "indexation": "PRICES"
+   },
+   {
+    "id": "ecology",
+    "label": "Énergie et environnement",
+    "amountBillions": 26.0,
+    "ministry": "ecology",
+    "domain": "environment",
+    "description": "Transition énergétique, environnement, biodiversité.",
+    "indexation": "PRICES"
+   },
+   {
+    "id": "agriculture",
+    "label": "Agriculture",
+    "amountBillions": 13.0,
+    "ministry": "agriculture",
+    "domain": "agriculture",
+    "description": "Soutien aux exploitations, sécurité sanitaire.",
+    "indexation": "PRICES"
+   },
+   {
+    "id": "local_authorities",
+    "label": "Collectivités locales",
+    "amountBillions": 97.4,
+    "ministry": "interior",
+    "description": "Fonctionnement des communes, départements et régions hors postes ci-dessus.",
+    "indexation": "PRICES"
+   },
+   {
+    "id": "state_operations",
+    "label": "Fonctionnement de l'État",
+    "amountBillions": 107.1,
+    "ministry": "economy",
+    "description": "Administrations centrales, action extérieure, autres missions.",
+    "indexation": "PRICES"
+   }
+  ]
+ }
+}

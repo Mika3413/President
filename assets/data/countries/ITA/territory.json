@@ -1,0 +1,3801 @@
+{
+ "regions": [
+  {
+   "code": "VALLEE",
+   "name": "Vallée d'Aoste",
+   "capitalCityId": "ita_aoste",
+   "defaults": {
+    "unemployment": 0.063,
+    "incomeIndex": 0.94,
+    "urbanShare": 0.31,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.08
+   }
+  },
+  {
+   "code": "PIEMON",
+   "name": "Piémont",
+   "capitalCityId": "ita_turin",
+   "defaults": {
+    "unemployment": 0.06,
+    "incomeIndex": 1.015,
+    "urbanShare": 0.506,
+    "seniorShare": 0.206,
+    "politicalLeaning": 0.009
+   }
+  },
+  {
+   "code": "LOMBAR",
+   "name": "Lombardie",
+   "capitalCityId": "ita_milan",
+   "defaults": {
+    "unemployment": 0.05,
+    "incomeIndex": 1.009,
+    "urbanShare": 0.568,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.08
+   }
+  },
+  {
+   "code": "TRENTI",
+   "name": "Trentin-Haut-Adige",
+   "capitalCityId": "ita_trente",
+   "defaults": {
+    "unemployment": 0.056,
+    "incomeIndex": 0.946,
+    "urbanShare": 0.339,
+    "seniorShare": 0.197,
+    "politicalLeaning": -0.053
+   }
+  },
+  {
+   "code": "LIGURI",
+   "name": "Ligurie",
+   "capitalCityId": "ita_genes",
+   "defaults": {
+    "unemployment": 0.058,
+    "incomeIndex": 0.992,
+    "urbanShare": 0.562,
+    "seniorShare": 0.178,
+    "politicalLeaning": 0.07
+   }
+  },
+  {
+   "code": "EMILIE",
+   "name": "Émilie-Romagne",
+   "capitalCityId": "ita_bologne",
+   "defaults": {
+    "unemployment": 0.061,
+    "incomeIndex": 0.991,
+    "urbanShare": 0.468,
+    "seniorShare": 0.231,
+    "politicalLeaning": 0.021
+   }
+  },
+  {
+   "code": "MARCHE",
+   "name": "Marches",
+   "capitalCityId": "ita_ancone",
+   "defaults": {
+    "unemployment": 0.067,
+    "incomeIndex": 0.986,
+    "urbanShare": 0.416,
+    "seniorShare": 0.233,
+    "politicalLeaning": -0.01
+   }
+  },
+  {
+   "code": "VENETI",
+   "name": "Vénétie",
+   "capitalCityId": "ita_verone",
+   "defaults": {
+    "unemployment": 0.06,
+    "incomeIndex": 0.987,
+    "urbanShare": 0.462,
+    "seniorShare": 0.228,
+    "politicalLeaning": -0.054
+   }
+  },
+  {
+   "code": "FRIOUL",
+   "name": "Frioul-Vénétie Julienne",
+   "capitalCityId": "ita_trieste",
+   "defaults": {
+    "unemployment": 0.067,
+    "incomeIndex": 0.976,
+    "urbanShare": 0.47,
+    "seniorShare": 0.224,
+    "politicalLeaning": -0.052
+   }
+  },
+  {
+   "code": "ABRUZZ",
+   "name": "Abruzzes",
+   "capitalCityId": "ita_pescara",
+   "defaults": {
+    "unemployment": 0.059,
+    "incomeIndex": 0.972,
+    "urbanShare": 0.443,
+    "seniorShare": 0.239,
+    "politicalLeaning": -0.082
+   }
+  },
+  {
+   "code": "MOLISE",
+   "name": "Molise",
+   "capitalCityId": "ita_isernia_chef_lieu",
+   "defaults": {
+    "unemployment": 0.048,
+    "incomeIndex": 0.946,
+    "urbanShare": 0.382,
+    "seniorShare": 0.182,
+    "politicalLeaning": -0.011
+   }
+  },
+  {
+   "code": "POUILL",
+   "name": "Pouilles",
+   "capitalCityId": "ita_bari",
+   "defaults": {
+    "unemployment": 0.066,
+    "incomeIndex": 0.992,
+    "urbanShare": 0.479,
+    "seniorShare": 0.229,
+    "politicalLeaning": 0.049
+   }
+  },
+  {
+   "code": "BASILI",
+   "name": "Basilicate",
+   "capitalCityId": "ita_potenza",
+   "defaults": {
+    "unemployment": 0.051,
+    "incomeIndex": 0.929,
+    "urbanShare": 0.335,
+    "seniorShare": 0.255,
+    "politicalLeaning": 0.046
+   }
+  },
+  {
+   "code": "CALABR",
+   "name": "Calabre",
+   "capitalCityId": "ita_reggio_de_calabre",
+   "defaults": {
+    "unemployment": 0.063,
+    "incomeIndex": 0.995,
+    "urbanShare": 0.399,
+    "seniorShare": 0.218,
+    "politicalLeaning": 0.078
+   }
+  },
+  {
+   "code": "CAMPAN",
+   "name": "Campanie",
+   "capitalCityId": "ita_naples",
+   "defaults": {
+    "unemployment": 0.079,
+    "incomeIndex": 1.04,
+    "urbanShare": 0.608,
+    "seniorShare": 0.213,
+    "politicalLeaning": -0.078
+   }
+  },
+  {
+   "code": "LATIUM",
+   "name": "Latium",
+   "capitalCityId": "ita_rome",
+   "defaults": {
+    "unemployment": 0.062,
+    "incomeIndex": 1.06,
+    "urbanShare": 0.595,
+    "seniorShare": 0.234,
+    "politicalLeaning": -0.08
+   }
+  },
+  {
+   "code": "TOSCAN",
+   "name": "Toscane",
+   "capitalCityId": "ita_florence",
+   "defaults": {
+    "unemployment": 0.055,
+    "incomeIndex": 1.034,
+    "urbanShare": 0.525,
+    "seniorShare": 0.223,
+    "politicalLeaning": 0.119
+   }
+  },
+  {
+   "code": "SICILE",
+   "name": "Sicile",
+   "capitalCityId": "ita_palerme",
+   "defaults": {
+    "unemployment": 0.065,
+    "incomeIndex": 1.008,
+    "urbanShare": 0.52,
+    "seniorShare": 0.217,
+    "politicalLeaning": -0.074
+   }
+  },
+  {
+   "code": "SARDAI",
+   "name": "Sardaigne",
+   "capitalCityId": "ita_cagliari",
+   "defaults": {
+    "unemployment": 0.063,
+    "incomeIndex": 0.982,
+    "urbanShare": 0.411,
+    "seniorShare": 0.219,
+    "politicalLeaning": 0.034
+   }
+  },
+  {
+   "code": "OMBRIE",
+   "name": "Ombrie",
+   "capitalCityId": "ita_perouse",
+   "defaults": {
+    "unemployment": 0.067,
+    "incomeIndex": 0.973,
+    "urbanShare": 0.383,
+    "seniorShare": 0.197,
+    "politicalLeaning": -0.13
+   }
+  }
+ ],
+ "departments": [
+  {
+   "code": "AO",
+   "name": "Aoste",
+   "article": "l'",
+   "region": "VALLEE",
+   "population": 318000,
+   "tags": [
+    "border",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.063,
+    "incomeIndex": 0.94,
+    "urbanShare": 0.31,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.08,
+    "healthAccess": 0.93,
+    "crime": 0.89,
+    "industryShare": 0.16,
+    "agricultureShare": 0.047,
+    "pollution": 0.89
+   }
+  },
+  {
+   "code": "VB",
+   "name": "Verbano-Cusio-Ossola",
+   "article": "le",
+   "region": "PIEMON",
+   "population": 271000,
+   "tags": [
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.056,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.38,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.02,
+    "healthAccess": 0.95,
+    "crime": 0.93,
+    "industryShare": 0.13,
+    "agricultureShare": 0.05,
+    "pollution": 0.93
+   }
+  },
+  {
+   "code": "VA",
+   "name": "Varèse",
+   "article": "la",
+   "region": "LOMBAR",
+   "population": 175000,
+   "tags": [
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.061,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.45,
+    "seniorShare": 0.22,
+    "politicalLeaning": -0.11,
+    "healthAccess": 0.98,
+    "crime": 0.97,
+    "industryShare": 0.22,
+    "agricultureShare": 0.04,
+    "pollution": 0.97
+   }
+  },
+  {
+   "code": "CO",
+   "name": "Côme",
+   "article": "la",
+   "region": "LOMBAR",
+   "population": 454000,
+   "tags": [
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.047,
+    "incomeIndex": 1.07,
+    "urbanShare": 0.58,
+    "seniorShare": 0.27,
+    "politicalLeaning": 0.04,
+    "healthAccess": 1.03,
+    "crime": 1.05,
+    "industryShare": 0.11,
+    "agricultureShare": 0.029,
+    "pollution": 1.05
+   }
+  },
+  {
+   "code": "SO",
+   "name": "Sondrio",
+   "article": "le",
+   "region": "LOMBAR",
+   "population": 352000,
+   "tags": [
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.062,
+    "incomeIndex": 0.95,
+    "urbanShare": 0.35,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.08,
+    "healthAccess": 0.94,
+    "crime": 0.91,
+    "industryShare": 0.13,
+    "agricultureShare": 0.033,
+    "pollution": 0.91
+   }
+  },
+  {
+   "code": "BZ",
+   "name": "Trentin-Haut-Adige",
+   "article": "la",
+   "region": "TRENTI",
+   "population": 751000,
+   "tags": [
+    "coastal",
+    "border",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.056,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.33,
+    "seniorShare": 0.22,
+    "politicalLeaning": -0.02,
+    "healthAccess": 0.93,
+    "crime": 0.9,
+    "industryShare": 0.19,
+    "agricultureShare": 0.056,
+    "pollution": 0.9
+   }
+  },
+  {
+   "code": "IM",
+   "name": "Imperia",
+   "article": "l'",
+   "region": "LIGURI",
+   "population": 181000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.047,
+    "incomeIndex": 1.02,
+    "urbanShare": 0.45,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.11,
+    "healthAccess": 0.98,
+    "crime": 0.97,
+    "industryShare": 0.24,
+    "agricultureShare": 0.045,
+    "pollution": 0.97
+   }
+  },
+  {
+   "code": "CN",
+   "name": "Coni",
+   "article": "le",
+   "region": "PIEMON",
+   "population": 639000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.079,
+    "incomeIndex": 0.9,
+    "urbanShare": 0.31,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.02,
+    "healthAccess": 0.92,
+    "crime": 0.88,
+    "industryShare": 0.11,
+    "agricultureShare": 0.036,
+    "pollution": 0.88
+   }
+  },
+  {
+   "code": "TO",
+   "name": "Turin",
+   "article": "le",
+   "region": "PIEMON",
+   "population": 2865000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.057,
+    "incomeIndex": 1.06,
+    "urbanShare": 0.6,
+    "seniorShare": 0.2,
+    "politicalLeaning": 0.04,
+    "healthAccess": 1.04,
+    "crime": 1.06,
+    "industryShare": 0.18,
+    "agricultureShare": 0.046,
+    "pollution": 1.06
+   }
+  },
+  {
+   "code": "RN",
+   "name": "Rimini",
+   "article": "le",
+   "region": "EMILIE",
+   "population": 152000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.064,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.49,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.18,
+    "healthAccess": 0.99,
+    "crime": 0.99,
+    "industryShare": 0.11,
+    "agricultureShare": 0.044,
+    "pollution": 0.99
+   }
+  },
+  {
+   "code": "PU",
+   "name": "Pesaro et Urbino",
+   "article": "le",
+   "region": "MARCHE",
+   "population": 289000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.052,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.37,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.2,
+    "healthAccess": 0.95,
+    "crime": 0.92,
+    "industryShare": 0.17,
+    "agricultureShare": 0.049,
+    "pollution": 0.92
+   }
+  },
+  {
+   "code": "BL",
+   "name": "Belluno",
+   "article": "le",
+   "region": "VENETI",
+   "population": 390000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.053,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.34,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.0,
+    "healthAccess": 0.94,
+    "crime": 0.91,
+    "industryShare": 0.08,
+    "agricultureShare": 0.051,
+    "pollution": 0.91
+   }
+  },
+  {
+   "code": "UD",
+   "name": "Udine",
+   "article": "l'",
+   "region": "FRIOUL",
+   "population": 548000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.066,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.38,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.04,
+    "healthAccess": 0.95,
+    "crime": 0.93,
+    "industryShare": 0.14,
+    "agricultureShare": 0.038,
+    "pollution": 0.93
+   }
+  },
+  {
+   "code": "GO",
+   "name": "Gorizia",
+   "article": "le",
+   "region": "FRIOUL",
+   "population": 113000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.057,
+    "incomeIndex": 1.04,
+    "urbanShare": 0.57,
+    "seniorShare": 0.25,
+    "politicalLeaning": -0.17,
+    "healthAccess": 1.03,
+    "crime": 1.04,
+    "industryShare": 0.15,
+    "agricultureShare": 0.046,
+    "pollution": 1.04
+   }
+  },
+  {
+   "code": "TS",
+   "name": "Trieste",
+   "article": "la",
+   "region": "FRIOUL",
+   "population": 314000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.061,
+    "incomeIndex": 1.08,
+    "urbanShare": 0.66,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.24,
+    "healthAccess": 1.06,
+    "crime": 1.1,
+    "industryShare": 0.13,
+    "agricultureShare": 0.024,
+    "pollution": 1.1
+   }
+  },
+  {
+   "code": "VE",
+   "name": "Venise",
+   "article": "la",
+   "region": "VENETI",
+   "population": 549000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.075,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.55,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.19,
+    "healthAccess": 1.02,
+    "crime": 1.03,
+    "industryShare": 0.16,
+    "agricultureShare": 0.047,
+    "pollution": 1.03
+   }
+  },
+  {
+   "code": "PD",
+   "name": "Padoue",
+   "article": "la",
+   "region": "VENETI",
+   "population": 252000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.062,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.39,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.08,
+    "healthAccess": 0.96,
+    "crime": 0.94,
+    "industryShare": 0.23,
+    "agricultureShare": 0.05,
+    "pollution": 0.94
+   }
+  },
+  {
+   "code": "RO",
+   "name": "Rovigo",
+   "article": "le",
+   "region": "VENETI",
+   "population": 229000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.074,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.41,
+    "seniorShare": 0.21,
+    "politicalLeaning": -0.17,
+    "healthAccess": 0.96,
+    "crime": 0.94,
+    "industryShare": 0.2,
+    "agricultureShare": 0.032,
+    "pollution": 0.94
+   }
+  },
+  {
+   "code": "FE",
+   "name": "Ferrare",
+   "article": "la",
+   "region": "EMILIE",
+   "population": 398000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.063,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.45,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.01,
+    "healthAccess": 0.98,
+    "crime": 0.97,
+    "industryShare": 0.16,
+    "agricultureShare": 0.029,
+    "pollution": 0.97
+   }
+  },
+  {
+   "code": "RA",
+   "name": "Ravenne",
+   "article": "la",
+   "region": "EMILIE",
+   "population": 336000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.045,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.49,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.03,
+    "healthAccess": 1.0,
+    "crime": 0.99,
+    "industryShare": 0.1,
+    "agricultureShare": 0.037,
+    "pollution": 0.99
+   }
+  },
+  {
+   "code": "FC",
+   "name": "Forlì-Cesena",
+   "article": "le",
+   "region": "EMILIE",
+   "population": 271000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.056,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.38,
+    "seniorShare": 0.26,
+    "politicalLeaning": 0.08,
+    "healthAccess": 0.95,
+    "crime": 0.93,
+    "industryShare": 0.11,
+    "agricultureShare": 0.032,
+    "pollution": 0.93
+   }
+  },
+  {
+   "code": "AN",
+   "name": "Ancône",
+   "article": "l'",
+   "region": "MARCHE",
+   "population": 298000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.063,
+    "incomeIndex": 1.0,
+    "urbanShare": 0.45,
+    "seniorShare": 0.24,
+    "politicalLeaning": -0.15,
+    "healthAccess": 0.98,
+    "crime": 0.97,
+    "industryShare": 0.17,
+    "agricultureShare": 0.053,
+    "pollution": 0.97
+   }
+  },
+  {
+   "code": "MC",
+   "name": "Macerata",
+   "article": "le",
+   "region": "MARCHE",
+   "population": 301000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.079,
+    "incomeIndex": 1.0,
+    "urbanShare": 0.37,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.24,
+    "healthAccess": 0.95,
+    "crime": 0.92,
+    "industryShare": 0.2,
+    "agricultureShare": 0.045,
+    "pollution": 0.92
+   }
+  },
+  {
+   "code": "FM",
+   "name": "Fermo",
+   "article": "le",
+   "region": "MARCHE",
+   "population": 153000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.066,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.49,
+    "seniorShare": 0.27,
+    "politicalLeaning": 0.18,
+    "healthAccess": 0.99,
+    "crime": 0.99,
+    "industryShare": 0.12,
+    "agricultureShare": 0.026,
+    "pollution": 0.99
+   }
+  },
+  {
+   "code": "AP",
+   "name": "Ascoli Piceno",
+   "article": "l'",
+   "region": "MARCHE",
+   "population": 176000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.079,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.45,
+    "seniorShare": 0.27,
+    "politicalLeaning": 0.11,
+    "healthAccess": 0.98,
+    "crime": 0.97,
+    "industryShare": 0.15,
+    "agricultureShare": 0.053,
+    "pollution": 0.97
+   }
+  },
+  {
+   "code": "TE",
+   "name": "Teramo",
+   "article": "le",
+   "region": "ABRUZZ",
+   "population": 238000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.049,
+    "incomeIndex": 0.94,
+    "urbanShare": 0.4,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.21,
+    "healthAccess": 0.96,
+    "crime": 0.94,
+    "industryShare": 0.18,
+    "agricultureShare": 0.043,
+    "pollution": 0.94
+   }
+  },
+  {
+   "code": "PE",
+   "name": "Pescara",
+   "article": "le",
+   "region": "ABRUZZ",
+   "population": 532000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.079,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.6,
+    "seniorShare": 0.23,
+    "politicalLeaning": -0.05,
+    "healthAccess": 1.04,
+    "crime": 1.06,
+    "industryShare": 0.23,
+    "agricultureShare": 0.032,
+    "pollution": 1.06
+   }
+  },
+  {
+   "code": "CH",
+   "name": "Chieti",
+   "article": "le",
+   "region": "ABRUZZ",
+   "population": 283000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.056,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.38,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.15,
+    "healthAccess": 0.95,
+    "crime": 0.93,
+    "industryShare": 0.19,
+    "agricultureShare": 0.055,
+    "pollution": 0.93
+   }
+  },
+  {
+   "code": "CB",
+   "name": "Campobasso",
+   "article": "le",
+   "region": "MOLISE",
+   "population": 299000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.043,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.35,
+    "seniorShare": 0.17,
+    "politicalLeaning": -0.1,
+    "healthAccess": 0.94,
+    "crime": 0.91,
+    "industryShare": 0.16,
+    "agricultureShare": 0.034,
+    "pollution": 0.91
+   }
+  },
+  {
+   "code": "FG",
+   "name": "Foggia",
+   "article": "le",
+   "region": "POUILL",
+   "population": 747000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.075,
+    "incomeIndex": 0.92,
+    "urbanShare": 0.37,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.21,
+    "healthAccess": 0.95,
+    "crime": 0.92,
+    "industryShare": 0.08,
+    "agricultureShare": 0.033,
+    "pollution": 0.92
+   }
+  },
+  {
+   "code": "BT",
+   "name": "Barletta-Andria-Trani",
+   "article": "le",
+   "region": "POUILL",
+   "population": 272000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.052,
+    "incomeIndex": 0.95,
+    "urbanShare": 0.49,
+    "seniorShare": 0.27,
+    "politicalLeaning": 0.22,
+    "healthAccess": 1.0,
+    "crime": 0.99,
+    "industryShare": 0.13,
+    "agricultureShare": 0.028,
+    "pollution": 0.99
+   }
+  },
+  {
+   "code": "BA",
+   "name": "Bari",
+   "article": "le",
+   "region": "POUILL",
+   "population": 991000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.069,
+    "incomeIndex": 1.06,
+    "urbanShare": 0.55,
+    "seniorShare": 0.22,
+    "politicalLeaning": -0.07,
+    "healthAccess": 1.02,
+    "crime": 1.03,
+    "industryShare": 0.09,
+    "agricultureShare": 0.038,
+    "pollution": 1.03
+   }
+  },
+  {
+   "code": "BR",
+   "name": "Brindisi",
+   "article": "le",
+   "region": "POUILL",
+   "population": 285000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.068,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.47,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.09,
+    "healthAccess": 0.99,
+    "crime": 0.98,
+    "industryShare": 0.28,
+    "agricultureShare": 0.049,
+    "pollution": 0.98
+   }
+  },
+  {
+   "code": "LE",
+   "name": "Lecce",
+   "article": "la",
+   "region": "POUILL",
+   "population": 434000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.07,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.47,
+    "seniorShare": 0.24,
+    "politicalLeaning": 0.12,
+    "healthAccess": 0.99,
+    "crime": 0.98,
+    "industryShare": 0.23,
+    "agricultureShare": 0.027,
+    "pollution": 0.98
+   }
+  },
+  {
+   "code": "TA",
+   "name": "Tarente",
+   "article": "la",
+   "region": "POUILL",
+   "population": 462000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.045,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.51,
+    "seniorShare": 0.24,
+    "politicalLeaning": -0.04,
+    "healthAccess": 1.0,
+    "crime": 1.01,
+    "industryShare": 0.26,
+    "agricultureShare": 0.029,
+    "pollution": 1.01
+   }
+  },
+  {
+   "code": "MT",
+   "name": "Matera",
+   "article": "le",
+   "region": "BASILI",
+   "population": 341000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.055,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.36,
+    "seniorShare": 0.23,
+    "politicalLeaning": -0.17,
+    "healthAccess": 0.94,
+    "crime": 0.91,
+    "industryShare": 0.14,
+    "agricultureShare": 0.033,
+    "pollution": 0.91
+   }
+  },
+  {
+   "code": "CS",
+   "name": "Cosenza",
+   "article": "le",
+   "region": "CALABR",
+   "population": 583000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.068,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.31,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.24,
+    "healthAccess": 0.92,
+    "crime": 0.89,
+    "industryShare": 0.09,
+    "agricultureShare": 0.035,
+    "pollution": 0.89
+   }
+  },
+  {
+   "code": "KR",
+   "name": "Crotone",
+   "article": "la",
+   "region": "CALABR",
+   "population": 212000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.074,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.42,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.24,
+    "healthAccess": 0.97,
+    "crime": 0.95,
+    "industryShare": 0.17,
+    "agricultureShare": 0.042,
+    "pollution": 0.95
+   }
+  },
+  {
+   "code": "CZ",
+   "name": "Catanzaro",
+   "article": "le",
+   "region": "CALABR",
+   "population": 306000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.068,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.44,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.12,
+    "healthAccess": 0.97,
+    "crime": 0.96,
+    "industryShare": 0.24,
+    "agricultureShare": 0.048,
+    "pollution": 0.96
+   }
+  },
+  {
+   "code": "RC",
+   "name": "Reggio de Calabre",
+   "article": "la",
+   "region": "CALABR",
+   "population": 481000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.047,
+    "incomeIndex": 1.03,
+    "urbanShare": 0.47,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.02,
+    "healthAccess": 0.99,
+    "crime": 0.98,
+    "industryShare": 0.19,
+    "agricultureShare": 0.053,
+    "pollution": 0.98
+   }
+  },
+  {
+   "code": "VV",
+   "name": "Vibo Valentia",
+   "article": "le",
+   "region": "CALABR",
+   "population": 132000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.07,
+    "incomeIndex": 0.95,
+    "urbanShare": 0.4,
+    "seniorShare": 0.17,
+    "politicalLeaning": -0.23,
+    "healthAccess": 0.96,
+    "crime": 0.94,
+    "industryShare": 0.19,
+    "agricultureShare": 0.039,
+    "pollution": 0.94
+   }
+  },
+  {
+   "code": "PZ",
+   "name": "Potenza",
+   "article": "le",
+   "region": "BASILI",
+   "population": 597000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.049,
+    "incomeIndex": 0.9,
+    "urbanShare": 0.32,
+    "seniorShare": 0.27,
+    "politicalLeaning": 0.17,
+    "healthAccess": 0.93,
+    "crime": 0.89,
+    "industryShare": 0.08,
+    "agricultureShare": 0.056,
+    "pollution": 0.89
+   }
+  },
+  {
+   "code": "SA",
+   "name": "Salerne",
+   "article": "la",
+   "region": "CAMPAN",
+   "population": 1695000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.082,
+    "incomeIndex": 1.07,
+    "urbanShare": 0.59,
+    "seniorShare": 0.24,
+    "politicalLeaning": -0.24,
+    "healthAccess": 1.04,
+    "crime": 1.05,
+    "industryShare": 0.21,
+    "agricultureShare": 0.036,
+    "pollution": 1.05
+   }
+  },
+  {
+   "code": "NA",
+   "name": "Naples",
+   "article": "le",
+   "region": "CAMPAN",
+   "population": 3217000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.08,
+    "incomeIndex": 1.04,
+    "urbanShare": 0.67,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.02,
+    "healthAccess": 1.07,
+    "crime": 1.1,
+    "industryShare": 0.19,
+    "agricultureShare": 0.039,
+    "pollution": 1.1
+   }
+  },
+  {
+   "code": "CE",
+   "name": "Caserte",
+   "article": "la",
+   "region": "CAMPAN",
+   "population": 550000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.079,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.52,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.2,
+    "healthAccess": 1.01,
+    "crime": 1.01,
+    "industryShare": 0.18,
+    "agricultureShare": 0.048,
+    "pollution": 1.01
+   }
+  },
+  {
+   "code": "LT",
+   "name": "Latina",
+   "article": "le",
+   "region": "LATIUM",
+   "population": 250000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.075,
+    "incomeIndex": 1.0,
+    "urbanShare": 0.39,
+    "seniorShare": 0.24,
+    "politicalLeaning": 0.0,
+    "healthAccess": 0.96,
+    "crime": 0.94,
+    "industryShare": 0.23,
+    "agricultureShare": 0.041,
+    "pollution": 0.94
+   }
+  },
+  {
+   "code": "RM",
+   "name": "Rome",
+   "article": "la",
+   "region": "LATIUM",
+   "population": 5143000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.06,
+    "incomeIndex": 1.08,
+    "urbanShare": 0.65,
+    "seniorShare": 0.24,
+    "politicalLeaning": -0.09,
+    "healthAccess": 1.06,
+    "crime": 1.09,
+    "industryShare": 0.26,
+    "agricultureShare": 0.02,
+    "pollution": 1.09
+   }
+  },
+  {
+   "code": "VT",
+   "name": "Viterbe",
+   "article": "la",
+   "region": "LATIUM",
+   "population": 365000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.059,
+    "incomeIndex": 0.95,
+    "urbanShare": 0.35,
+    "seniorShare": 0.22,
+    "politicalLeaning": -0.1,
+    "healthAccess": 0.94,
+    "crime": 0.91,
+    "industryShare": 0.14,
+    "agricultureShare": 0.061,
+    "pollution": 0.91
+   }
+  },
+  {
+   "code": "GR",
+   "name": "Grosseto",
+   "article": "le",
+   "region": "TOSCAN",
+   "population": 432000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.05,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.33,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.16,
+    "healthAccess": 0.93,
+    "crime": 0.9,
+    "industryShare": 0.15,
+    "agricultureShare": 0.055,
+    "pollution": 0.9
+   }
+  },
+  {
+   "code": "LI",
+   "name": "Livourne",
+   "article": "la",
+   "region": "TOSCAN",
+   "population": 309000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.077,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.55,
+    "seniorShare": 0.24,
+    "politicalLeaning": 0.22,
+    "healthAccess": 1.02,
+    "crime": 1.03,
+    "industryShare": 0.27,
+    "agricultureShare": 0.05,
+    "pollution": 1.03
+   }
+  },
+  {
+   "code": "PI",
+   "name": "Pise",
+   "article": "la",
+   "region": "TOSCAN",
+   "population": 475000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.078,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.51,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.14,
+    "healthAccess": 1.0,
+    "crime": 1.0,
+    "industryShare": 0.13,
+    "agricultureShare": 0.032,
+    "pollution": 1.0
+   }
+  },
+  {
+   "code": "LU",
+   "name": "Lucques",
+   "article": "le",
+   "region": "TOSCAN",
+   "population": 223000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.048,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.41,
+    "seniorShare": 0.27,
+    "politicalLeaning": 0.2,
+    "healthAccess": 0.96,
+    "crime": 0.95,
+    "industryShare": 0.18,
+    "agricultureShare": 0.038,
+    "pollution": 0.95
+   }
+  },
+  {
+   "code": "MS",
+   "name": "Massa-Carrara",
+   "article": "le",
+   "region": "TOSCAN",
+   "population": 177000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.065,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.45,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.22,
+    "healthAccess": 0.98,
+    "crime": 0.97,
+    "industryShare": 0.23,
+    "agricultureShare": 0.032,
+    "pollution": 0.97
+   }
+  },
+  {
+   "code": "SP",
+   "name": "La Spezia",
+   "article": "le",
+   "region": "LIGURI",
+   "population": 149000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.076,
+    "incomeIndex": 1.02,
+    "urbanShare": 0.49,
+    "seniorShare": 0.17,
+    "politicalLeaning": 0.2,
+    "healthAccess": 1.0,
+    "crime": 0.99,
+    "industryShare": 0.09,
+    "agricultureShare": 0.034,
+    "pollution": 0.99
+   }
+  },
+  {
+   "code": "GE",
+   "name": "Ligurie",
+   "article": "la",
+   "region": "LIGURI",
+   "population": 1049000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.058,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.62,
+    "seniorShare": 0.17,
+    "politicalLeaning": 0.09,
+    "healthAccess": 1.05,
+    "crime": 1.07,
+    "industryShare": 0.1,
+    "agricultureShare": 0.031,
+    "pollution": 1.07
+   }
+  },
+  {
+   "code": "SV",
+   "name": "Savone",
+   "article": "la",
+   "region": "LIGURI",
+   "population": 209000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.052,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.42,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.03,
+    "healthAccess": 0.97,
+    "crime": 0.95,
+    "industryShare": 0.11,
+    "agricultureShare": 0.039,
+    "pollution": 0.95
+   }
+  },
+  {
+   "code": "TP",
+   "name": "Trapani",
+   "article": "le",
+   "region": "SICILE",
+   "population": 286000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.08,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.41,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.01,
+    "healthAccess": 0.97,
+    "crime": 0.95,
+    "industryShare": 0.11,
+    "agricultureShare": 0.036,
+    "pollution": 0.95
+   }
+  },
+  {
+   "code": "ME",
+   "name": "Messine",
+   "article": "la",
+   "region": "SICILE",
+   "population": 583000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.081,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.51,
+    "seniorShare": 0.21,
+    "politicalLeaning": -0.13,
+    "healthAccess": 1.0,
+    "crime": 1.01,
+    "industryShare": 0.26,
+    "agricultureShare": 0.038,
+    "pollution": 1.01
+   }
+  },
+  {
+   "code": "PA",
+   "name": "Palerme",
+   "article": "la",
+   "region": "SICILE",
+   "population": 1570000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.075,
+    "incomeIndex": 1.0,
+    "urbanShare": 0.58,
+    "seniorShare": 0.24,
+    "politicalLeaning": -0.08,
+    "healthAccess": 1.03,
+    "crime": 1.05,
+    "industryShare": 0.11,
+    "agricultureShare": 0.039,
+    "pollution": 1.05
+   }
+  },
+  {
+   "code": "AG",
+   "name": "Agrigente",
+   "article": "l'",
+   "region": "SICILE",
+   "population": 299000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.061,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.37,
+    "seniorShare": 0.17,
+    "politicalLeaning": -0.06,
+    "healthAccess": 0.95,
+    "crime": 0.92,
+    "industryShare": 0.2,
+    "agricultureShare": 0.061,
+    "pollution": 0.92
+   }
+  },
+  {
+   "code": "CL",
+   "name": "Caltanissetta",
+   "article": "le",
+   "region": "SICILE",
+   "population": 234000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.045,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.4,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.21,
+    "healthAccess": 0.96,
+    "crime": 0.94,
+    "industryShare": 0.16,
+    "agricultureShare": 0.058,
+    "pollution": 0.94
+   }
+  },
+  {
+   "code": "RG",
+   "name": "Raguse",
+   "article": "la",
+   "region": "SICILE",
+   "population": 211000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.066,
+    "incomeIndex": 1.02,
+    "urbanShare": 0.45,
+    "seniorShare": 0.22,
+    "politicalLeaning": -0.05,
+    "healthAccess": 0.98,
+    "crime": 0.97,
+    "industryShare": 0.19,
+    "agricultureShare": 0.042,
+    "pollution": 0.97
+   }
+  },
+  {
+   "code": "SR",
+   "name": "Syracuse",
+   "article": "la",
+   "region": "SICILE",
+   "population": 327000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.058,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.48,
+    "seniorShare": 0.25,
+    "politicalLeaning": -0.08,
+    "healthAccess": 0.99,
+    "crime": 0.99,
+    "industryShare": 0.18,
+    "agricultureShare": 0.05,
+    "pollution": 0.99
+   }
+  },
+  {
+   "code": "CT",
+   "name": "Catane",
+   "article": "la",
+   "region": "SICILE",
+   "population": 1196000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.047,
+    "incomeIndex": 1.07,
+    "urbanShare": 0.59,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.07,
+    "healthAccess": 1.04,
+    "crime": 1.05,
+    "industryShare": 0.16,
+    "agricultureShare": 0.039,
+    "pollution": 1.05
+   }
+  },
+  {
+   "code": "CI",
+   "name": "Carbonia-Iglesias",
+   "article": "le",
+   "region": "SARDAI",
+   "population": 194000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.055,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.44,
+    "seniorShare": 0.26,
+    "politicalLeaning": 0.14,
+    "healthAccess": 0.97,
+    "crime": 0.96,
+    "industryShare": 0.21,
+    "agricultureShare": 0.03,
+    "pollution": 0.96
+   }
+  },
+  {
+   "code": "SS",
+   "name": "Sassari",
+   "article": "le",
+   "region": "SARDAI",
+   "population": 494000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.081,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.4,
+    "seniorShare": 0.21,
+    "politicalLeaning": -0.24,
+    "healthAccess": 0.96,
+    "crime": 0.94,
+    "industryShare": 0.14,
+    "agricultureShare": 0.049,
+    "pollution": 0.94
+   }
+  },
+  {
+   "code": "NU",
+   "name": "Nuoro",
+   "article": "le",
+   "region": "SARDAI",
+   "population": 379000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.048,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.34,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.22,
+    "healthAccess": 0.94,
+    "crime": 0.91,
+    "industryShare": 0.25,
+    "agricultureShare": 0.038,
+    "pollution": 0.91
+   }
+  },
+  {
+   "code": "OT",
+   "name": "Olbia-Tempio",
+   "article": "l'",
+   "region": "SARDAI",
+   "population": 317000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.055,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.34,
+    "seniorShare": 0.22,
+    "politicalLeaning": -0.09,
+    "healthAccess": 0.93,
+    "crime": 0.9,
+    "industryShare": 0.11,
+    "agricultureShare": 0.042,
+    "pollution": 0.9
+   }
+  },
+  {
+   "code": "OR",
+   "name": "d'Oristano",
+   "article": "le",
+   "region": "SARDAI",
+   "population": 312000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.072,
+    "incomeIndex": 1.0,
+    "urbanShare": 0.37,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.04,
+    "healthAccess": 0.95,
+    "crime": 0.92,
+    "industryShare": 0.23,
+    "agricultureShare": 0.035,
+    "pollution": 0.92
+   }
+  },
+  {
+   "code": "VS",
+   "name": "Medio Campidano",
+   "article": "le",
+   "region": "SARDAI",
+   "population": 197000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.075,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.43,
+    "seniorShare": 0.22,
+    "politicalLeaning": -0.15,
+    "healthAccess": 0.97,
+    "crime": 0.96,
+    "industryShare": 0.13,
+    "agricultureShare": 0.05,
+    "pollution": 0.96
+   }
+  },
+  {
+   "code": "CA",
+   "name": "Cagliari",
+   "article": "le",
+   "region": "SARDAI",
+   "population": 740000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.062,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.49,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.19,
+    "healthAccess": 0.99,
+    "crime": 0.99,
+    "industryShare": 0.12,
+    "agricultureShare": 0.026,
+    "pollution": 0.99
+   }
+  },
+  {
+   "code": "OG",
+   "name": "Ogliastra",
+   "article": "l'",
+   "region": "SARDAI",
+   "population": 223000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.044,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.41,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.04,
+    "healthAccess": 0.96,
+    "crime": 0.95,
+    "industryShare": 0.13,
+    "agricultureShare": 0.052,
+    "pollution": 0.95
+   }
+  },
+  {
+   "code": "EN",
+   "name": "Enna",
+   "article": "l'",
+   "region": "SICILE",
+   "population": 268000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.067,
+    "incomeIndex": 0.94,
+    "urbanShare": 0.38,
+    "seniorShare": 0.2,
+    "politicalLeaning": 0.06,
+    "healthAccess": 0.95,
+    "crime": 0.93,
+    "industryShare": 0.13,
+    "agricultureShare": 0.051,
+    "pollution": 0.93
+   }
+  },
+  {
+   "code": "BN",
+   "name": "Bénévent",
+   "article": "le",
+   "region": "CAMPAN",
+   "population": 244000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.063,
+    "incomeIndex": 0.95,
+    "urbanShare": 0.4,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.17,
+    "healthAccess": 0.96,
+    "crime": 0.94,
+    "industryShare": 0.14,
+    "agricultureShare": 0.052,
+    "pollution": 0.94
+   }
+  },
+  {
+   "code": "AT",
+   "name": "Asti",
+   "article": "l'",
+   "region": "PIEMON",
+   "population": 222000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.054,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.44,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.24,
+    "healthAccess": 0.98,
+    "crime": 0.97,
+    "industryShare": 0.21,
+    "agricultureShare": 0.047,
+    "pollution": 0.97
+   }
+  },
+  {
+   "code": "BG",
+   "name": "Bergame",
+   "article": "la",
+   "region": "LOMBAR",
+   "population": 503000,
+   "tags": [
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.043,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.49,
+    "seniorShare": 0.2,
+    "politicalLeaning": 0.23,
+    "healthAccess": 1.0,
+    "crime": 0.99,
+    "industryShare": 0.16,
+    "agricultureShare": 0.037,
+    "pollution": 0.99
+   }
+  },
+  {
+   "code": "BS",
+   "name": "Brescia",
+   "article": "le",
+   "region": "LOMBAR",
+   "population": 483000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.045,
+    "incomeIndex": 0.9,
+    "urbanShare": 0.32,
+    "seniorShare": 0.26,
+    "politicalLeaning": 0.16,
+    "healthAccess": 0.93,
+    "crime": 0.89,
+    "industryShare": 0.11,
+    "agricultureShare": 0.055,
+    "pollution": 0.89
+   }
+  },
+  {
+   "code": "CR",
+   "name": "Crémone",
+   "article": "la",
+   "region": "LOMBAR",
+   "population": 228000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.069,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.41,
+    "seniorShare": 0.18,
+    "politicalLeaning": 0.15,
+    "healthAccess": 0.96,
+    "crime": 0.94,
+    "industryShare": 0.12,
+    "agricultureShare": 0.057,
+    "pollution": 0.94
+   }
+  },
+  {
+   "code": "MN",
+   "name": "Mantoue",
+   "article": "la",
+   "region": "LOMBAR",
+   "population": 271000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.049,
+    "incomeIndex": 0.95,
+    "urbanShare": 0.38,
+    "seniorShare": 0.26,
+    "politicalLeaning": 0.12,
+    "healthAccess": 0.95,
+    "crime": 0.93,
+    "industryShare": 0.22,
+    "agricultureShare": 0.059,
+    "pollution": 0.93
+   }
+  },
+  {
+   "code": "MI",
+   "name": "Milan",
+   "article": "le",
+   "region": "LOMBAR",
+   "population": 4224000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.046,
+    "incomeIndex": 1.03,
+    "urbanShare": 0.67,
+    "seniorShare": 0.2,
+    "politicalLeaning": 0.07,
+    "healthAccess": 1.07,
+    "crime": 1.1,
+    "industryShare": 0.23,
+    "agricultureShare": 0.042,
+    "pollution": 1.1
+   }
+  },
+  {
+   "code": "LC",
+   "name": "Lecco",
+   "article": "le",
+   "region": "LOMBAR",
+   "population": 151000,
+   "tags": [
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.047,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.49,
+    "seniorShare": 0.19,
+    "politicalLeaning": 0.01,
+    "healthAccess": 0.99,
+    "crime": 0.99,
+    "industryShare": 0.21,
+    "agricultureShare": 0.036,
+    "pollution": 0.99
+   }
+  },
+  {
+   "code": "MB",
+   "name": "Monza et Brianza",
+   "article": "le",
+   "region": "LOMBAR",
+   "population": 116000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.068,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.56,
+    "seniorShare": 0.21,
+    "politicalLeaning": -0.24,
+    "healthAccess": 1.02,
+    "crime": 1.04,
+    "industryShare": 0.09,
+    "agricultureShare": 0.051,
+    "pollution": 1.04
+   }
+  },
+  {
+   "code": "LO",
+   "name": "Lodi",
+   "article": "le",
+   "region": "LOMBAR",
+   "population": 148000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.069,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.49,
+    "seniorShare": 0.17,
+    "politicalLeaning": 0.23,
+    "healthAccess": 1.0,
+    "crime": 1.0,
+    "industryShare": 0.24,
+    "agricultureShare": 0.035,
+    "pollution": 1.0
+   }
+  },
+  {
+   "code": "SI",
+   "name": "Sienne",
+   "article": "la",
+   "region": "TOSCAN",
+   "population": 372000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.059,
+    "incomeIndex": 0.94,
+    "urbanShare": 0.33,
+    "seniorShare": 0.25,
+    "politicalLeaning": -0.12,
+    "healthAccess": 0.93,
+    "crime": 0.9,
+    "industryShare": 0.21,
+    "agricultureShare": 0.044,
+    "pollution": 0.9
+   }
+  },
+  {
+   "code": "AR",
+   "name": "Arezzo",
+   "article": "l'",
+   "region": "TOSCAN",
+   "population": 382000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.059,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.39,
+    "seniorShare": 0.22,
+    "politicalLeaning": -0.02,
+    "healthAccess": 0.96,
+    "crime": 0.94,
+    "industryShare": 0.19,
+    "agricultureShare": 0.043,
+    "pollution": 0.94
+   }
+  },
+  {
+   "code": "FI",
+   "name": "Florence",
+   "article": "la",
+   "region": "TOSCAN",
+   "population": 2368000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.047,
+    "incomeIndex": 1.09,
+    "urbanShare": 0.63,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.21,
+    "healthAccess": 1.05,
+    "crime": 1.08,
+    "industryShare": 0.15,
+    "agricultureShare": 0.041,
+    "pollution": 1.08
+   }
+  },
+  {
+   "code": "VC",
+   "name": "Verceil",
+   "article": "le",
+   "region": "PIEMON",
+   "population": 253000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.082,
+    "incomeIndex": 0.92,
+    "urbanShare": 0.39,
+    "seniorShare": 0.27,
+    "politicalLeaning": 0.24,
+    "healthAccess": 0.96,
+    "crime": 0.94,
+    "industryShare": 0.1,
+    "agricultureShare": 0.044,
+    "pollution": 0.94
+   }
+  },
+  {
+   "code": "PV",
+   "name": "Pavie",
+   "article": "la",
+   "region": "LOMBAR",
+   "population": 330000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.071,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.36,
+    "seniorShare": 0.19,
+    "politicalLeaning": 0.01,
+    "healthAccess": 0.94,
+    "crime": 0.92,
+    "industryShare": 0.28,
+    "agricultureShare": 0.058,
+    "pollution": 0.92
+   }
+  },
+  {
+   "code": "RI",
+   "name": "Rieti",
+   "article": "le",
+   "region": "LATIUM",
+   "population": 291000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.061,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.37,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.03,
+    "healthAccess": 0.95,
+    "crime": 0.92,
+    "industryShare": 0.13,
+    "agricultureShare": 0.033,
+    "pollution": 0.92
+   }
+  },
+  {
+   "code": "NO",
+   "name": "Novare",
+   "article": "la",
+   "region": "PIEMON",
+   "population": 248000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.044,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.49,
+    "seniorShare": 0.23,
+    "politicalLeaning": -0.02,
+    "healthAccess": 1.0,
+    "crime": 1.0,
+    "industryShare": 0.17,
+    "agricultureShare": 0.031,
+    "pollution": 1.0
+   }
+  },
+  {
+   "code": "AL",
+   "name": "Alexandrie",
+   "article": "l'",
+   "region": "PIEMON",
+   "population": 366000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.059,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.35,
+    "seniorShare": 0.24,
+    "politicalLeaning": -0.17,
+    "healthAccess": 0.94,
+    "crime": 0.91,
+    "industryShare": 0.23,
+    "agricultureShare": 0.058,
+    "pollution": 0.91
+   }
+  },
+  {
+   "code": "TN",
+   "name": "Trentin",
+   "article": "le",
+   "region": "TRENTI",
+   "population": 656000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.056,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.35,
+    "seniorShare": 0.17,
+    "politicalLeaning": -0.09,
+    "healthAccess": 0.94,
+    "crime": 0.91,
+    "industryShare": 0.11,
+    "agricultureShare": 0.06,
+    "pollution": 0.91
+   }
+  },
+  {
+   "code": "VI",
+   "name": "Vicence",
+   "article": "la",
+   "region": "VENETI",
+   "population": 308000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.05,
+    "incomeIndex": 0.92,
+    "urbanShare": 0.37,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.04,
+    "healthAccess": 0.95,
+    "crime": 0.92,
+    "industryShare": 0.21,
+    "agricultureShare": 0.035,
+    "pollution": 0.92
+   }
+  },
+  {
+   "code": "VR",
+   "name": "Vérone",
+   "article": "la",
+   "region": "VENETI",
+   "population": 735000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.063,
+    "incomeIndex": 1.04,
+    "urbanShare": 0.53,
+    "seniorShare": 0.22,
+    "politicalLeaning": -0.25,
+    "healthAccess": 1.01,
+    "crime": 1.02,
+    "industryShare": 0.1,
+    "agricultureShare": 0.036,
+    "pollution": 1.02
+   }
+  },
+  {
+   "code": "TV",
+   "name": "Trévise",
+   "article": "la",
+   "region": "VENETI",
+   "population": 453000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.043,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.48,
+    "seniorShare": 0.22,
+    "politicalLeaning": -0.07,
+    "healthAccess": 0.99,
+    "crime": 0.99,
+    "industryShare": 0.14,
+    "agricultureShare": 0.049,
+    "pollution": 0.99
+   }
+  },
+  {
+   "code": "PC",
+   "name": "Plaisance",
+   "article": "la",
+   "region": "EMILIE",
+   "population": 294000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.064,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.37,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.03,
+    "healthAccess": 0.95,
+    "crime": 0.92,
+    "industryShare": 0.13,
+    "agricultureShare": 0.048,
+    "pollution": 0.92
+   }
+  },
+  {
+   "code": "PR",
+   "name": "Parme",
+   "article": "la",
+   "region": "EMILIE",
+   "population": 511000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.05,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.44,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.17,
+    "healthAccess": 0.98,
+    "crime": 0.97,
+    "industryShare": 0.27,
+    "agricultureShare": 0.039,
+    "pollution": 0.97
+   }
+  },
+  {
+   "code": "RE",
+   "name": "Reggio d'Émilie",
+   "article": "la",
+   "region": "EMILIE",
+   "population": 269000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.047,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.38,
+    "seniorShare": 0.26,
+    "politicalLeaning": 0.08,
+    "healthAccess": 0.95,
+    "crime": 0.93,
+    "industryShare": 0.17,
+    "agricultureShare": 0.044,
+    "pollution": 0.93
+   }
+  },
+  {
+   "code": "MO",
+   "name": "Modène",
+   "article": "la",
+   "region": "EMILIE",
+   "population": 459000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.069,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.48,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.08,
+    "healthAccess": 0.99,
+    "crime": 0.99,
+    "industryShare": 0.21,
+    "agricultureShare": 0.048,
+    "pollution": 0.99
+   }
+  },
+  {
+   "code": "BO",
+   "name": "Bologne",
+   "article": "la",
+   "region": "EMILIE",
+   "population": 974000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.07,
+    "incomeIndex": 1.03,
+    "urbanShare": 0.55,
+    "seniorShare": 0.25,
+    "politicalLeaning": -0.05,
+    "healthAccess": 1.02,
+    "crime": 1.03,
+    "industryShare": 0.25,
+    "agricultureShare": 0.045,
+    "pollution": 1.03
+   }
+  },
+  {
+   "code": "PT",
+   "name": "Pistoia",
+   "article": "le",
+   "region": "TOSCAN",
+   "population": 159000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.062,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.48,
+    "seniorShare": 0.17,
+    "politicalLeaning": 0.12,
+    "healthAccess": 0.99,
+    "crime": 0.99,
+    "industryShare": 0.09,
+    "agricultureShare": 0.038,
+    "pollution": 0.99
+   }
+  },
+  {
+   "code": "TR",
+   "name": "Terni",
+   "article": "le",
+   "region": "OMBRIE",
+   "population": 248000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.066,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.39,
+    "seniorShare": 0.19,
+    "politicalLeaning": 0.04,
+    "healthAccess": 0.96,
+    "crime": 0.94,
+    "industryShare": 0.09,
+    "agricultureShare": 0.049,
+    "pollution": 0.94
+   }
+  },
+  {
+   "code": "PG",
+   "name": "Pérouse",
+   "article": "la",
+   "region": "OMBRIE",
+   "population": 707000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.067,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.38,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.19,
+    "healthAccess": 0.95,
+    "crime": 0.93,
+    "industryShare": 0.1,
+    "agricultureShare": 0.036,
+    "pollution": 0.93
+   }
+  },
+  {
+   "code": "FR",
+   "name": "Frosinone",
+   "article": "la",
+   "region": "LATIUM",
+   "population": 328000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.079,
+    "incomeIndex": 0.95,
+    "urbanShare": 0.36,
+    "seniorShare": 0.17,
+    "politicalLeaning": -0.06,
+    "healthAccess": 0.94,
+    "crime": 0.92,
+    "industryShare": 0.25,
+    "agricultureShare": 0.053,
+    "pollution": 0.92
+   }
+  },
+  {
+   "code": "AV",
+   "name": "Avellino",
+   "article": "l'",
+   "region": "CAMPAN",
+   "population": 293000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.06,
+    "incomeIndex": 0.92,
+    "urbanShare": 0.37,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.22,
+    "healthAccess": 0.95,
+    "crime": 0.92,
+    "industryShare": 0.12,
+    "agricultureShare": 0.057,
+    "pollution": 0.92
+   }
+  },
+  {
+   "code": "AQ",
+   "name": "L'Aquila",
+   "article": "le",
+   "region": "ABRUZZ",
+   "population": 489000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.043,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.33,
+    "seniorShare": 0.25,
+    "politicalLeaning": -0.19,
+    "healthAccess": 0.93,
+    "crime": 0.9,
+    "industryShare": 0.08,
+    "agricultureShare": 0.042,
+    "pollution": 0.9
+   }
+  },
+  {
+   "code": "PN",
+   "name": "Pordenone",
+   "article": "la",
+   "region": "FRIOUL",
+   "population": 264000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.079,
+    "incomeIndex": 0.92,
+    "urbanShare": 0.39,
+    "seniorShare": 0.18,
+    "politicalLeaning": 0.03,
+    "healthAccess": 0.95,
+    "crime": 0.93,
+    "industryShare": 0.25,
+    "agricultureShare": 0.059,
+    "pollution": 0.93
+   }
+  },
+  {
+   "code": "IS",
+   "name": "Isernia",
+   "article": "l'",
+   "region": "MOLISE",
+   "population": 202000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.055,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.43,
+    "seniorShare": 0.2,
+    "politicalLeaning": 0.12,
+    "healthAccess": 0.97,
+    "crime": 0.96,
+    "industryShare": 0.14,
+    "agricultureShare": 0.044,
+    "pollution": 0.96
+   }
+  },
+  {
+   "code": "BI",
+   "name": "Biella",
+   "article": "le",
+   "region": "PIEMON",
+   "population": 158000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.044,
+    "incomeIndex": 1.0,
+    "urbanShare": 0.48,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.06,
+    "healthAccess": 0.99,
+    "crime": 0.99,
+    "industryShare": 0.15,
+    "agricultureShare": 0.043,
+    "pollution": 0.99
+   }
+  },
+  {
+   "code": "PO",
+   "name": "Prato",
+   "article": "le",
+   "region": "TOSCAN",
+   "population": 112000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.06,
+    "incomeIndex": 1.0,
+    "urbanShare": 0.57,
+    "seniorShare": 0.23,
+    "politicalLeaning": -0.16,
+    "healthAccess": 1.03,
+    "crime": 1.04,
+    "industryShare": 0.27,
+    "agricultureShare": 0.026,
+    "pollution": 1.04
+   }
+  }
+ ],
+ "cities": [
+  {
+   "id": "ita_rome",
+   "name": "Rome",
+   "department": "RM",
+   "lon": 12.481,
+   "lat": 41.898,
+   "population": 2337300,
+   "urbanAreaPopulation": 3339000,
+   "rank": 1
+  },
+  {
+   "id": "ita_milan",
+   "name": "Milan",
+   "department": "MI",
+   "lon": 9.203,
+   "lat": 45.472,
+   "population": 2061499,
+   "urbanAreaPopulation": 2945000,
+   "rank": 1
+  },
+  {
+   "id": "ita_naples",
+   "name": "Naples",
+   "department": "NA",
+   "lon": 14.243,
+   "lat": 40.842,
+   "population": 1575000,
+   "urbanAreaPopulation": 2250000,
+   "rank": 1
+  },
+  {
+   "id": "ita_turin",
+   "name": "Turin",
+   "department": "TO",
+   "lon": 7.668,
+   "lat": 45.072,
+   "population": 1156400,
+   "urbanAreaPopulation": 1652000,
+   "rank": 1
+  },
+  {
+   "id": "ita_florence",
+   "name": "Florence",
+   "department": "FI",
+   "lon": 11.25,
+   "lat": 43.78,
+   "population": 1050000,
+   "urbanAreaPopulation": 1500000,
+   "rank": 1
+  },
+  {
+   "id": "ita_salerne",
+   "name": "Salerne",
+   "department": "SA",
+   "lon": 14.77,
+   "lat": 40.68,
+   "population": 667985,
+   "urbanAreaPopulation": 954265,
+   "rank": 1
+  },
+  {
+   "id": "ita_palerme",
+   "name": "Palerme",
+   "department": "PA",
+   "lon": 13.348,
+   "lat": 38.127,
+   "population": 604100,
+   "urbanAreaPopulation": 863000,
+   "rank": 1
+  },
+  {
+   "id": "ita_catane",
+   "name": "Catane",
+   "department": "CT",
+   "lon": 15.08,
+   "lat": 37.5,
+   "population": 472179,
+   "urbanAreaPopulation": 674542,
+   "rank": 2
+  },
+  {
+   "id": "ita_genes",
+   "name": "Gênes",
+   "department": "GE",
+   "lon": 8.93,
+   "lat": 44.41,
+   "population": 453247,
+   "urbanAreaPopulation": 647497,
+   "rank": 2
+  },
+  {
+   "id": "ita_bari",
+   "name": "Bari",
+   "department": "BA",
+   "lon": 16.873,
+   "lat": 41.114,
+   "population": 350403,
+   "urbanAreaPopulation": 500577,
+   "rank": 2
+  },
+  {
+   "id": "ita_bologne",
+   "name": "Bologne",
+   "department": "BO",
+   "lon": 11.34,
+   "lat": 44.5,
+   "population": 341720,
+   "urbanAreaPopulation": 488172,
+   "rank": 2
+  },
+  {
+   "id": "ita_verone",
+   "name": "Vérone",
+   "department": "VR",
+   "lon": 10.99,
+   "lat": 45.44,
+   "population": 243221,
+   "urbanAreaPopulation": 347459,
+   "rank": 2
+  },
+  {
+   "id": "ita_pescara",
+   "name": "Pescara",
+   "department": "PE",
+   "lon": 14.219,
+   "lat": 42.455,
+   "population": 220352,
+   "urbanAreaPopulation": 314789,
+   "rank": 2
+  },
+  {
+   "id": "ita_cagliari",
+   "name": "Cagliari",
+   "department": "CA",
+   "lon": 9.104,
+   "lat": 39.222,
+   "population": 204057,
+   "urbanAreaPopulation": 291511,
+   "rank": 2
+  },
+  {
+   "id": "ita_venise",
+   "name": "Venise",
+   "department": "VE",
+   "lon": 12.335,
+   "lat": 45.439,
+   "population": 189571,
+   "urbanAreaPopulation": 270816,
+   "rank": 2
+  },
+  {
+   "id": "ita_messine",
+   "name": "Messine",
+   "department": "ME",
+   "lon": 15.55,
+   "lat": 38.2,
+   "population": 176418,
+   "urbanAreaPopulation": 252026,
+   "rank": 2
+  },
+  {
+   "id": "ita_caserte",
+   "name": "Caserte",
+   "department": "CE",
+   "lon": 14.337,
+   "lat": 41.06,
+   "population": 175000,
+   "urbanAreaPopulation": 250000,
+   "rank": 2
+  },
+  {
+   "id": "ita_come",
+   "name": "Côme",
+   "department": "CO",
+   "lon": 9.08,
+   "lat": 45.81,
+   "population": 175000,
+   "urbanAreaPopulation": 250000,
+   "rank": 2
+  },
+  {
+   "id": "ita_trieste",
+   "name": "Trieste",
+   "department": "TS",
+   "lon": 13.8,
+   "lat": 45.65,
+   "population": 151224,
+   "urbanAreaPopulation": 216035,
+   "rank": 2
+  },
+  {
+   "id": "ita_pise",
+   "name": "Pise",
+   "department": "PI",
+   "lon": 10.4,
+   "lat": 43.72,
+   "population": 142335,
+   "urbanAreaPopulation": 203336,
+   "rank": 2
+  },
+  {
+   "id": "ita_tarente",
+   "name": "Tarente",
+   "department": "TA",
+   "lon": 17.23,
+   "lat": 40.508,
+   "population": 141423,
+   "urbanAreaPopulation": 202033,
+   "rank": 2
+  },
+  {
+   "id": "ita_bergame",
+   "name": "Bergame",
+   "department": "BG",
+   "lon": 9.67,
+   "lat": 45.7,
+   "population": 140000,
+   "urbanAreaPopulation": 200000,
+   "rank": 2
+  },
+  {
+   "id": "ita_reggio_de_calabre",
+   "name": "Reggio de Calabre",
+   "department": "RC",
+   "lon": 15.641,
+   "lat": 38.115,
+   "population": 126247,
+   "urbanAreaPopulation": 180353,
+   "rank": 2
+  },
+  {
+   "id": "ita_trevise",
+   "name": "Trévise",
+   "department": "TV",
+   "lon": 12.24,
+   "lat": 45.67,
+   "population": 124116,
+   "urbanAreaPopulation": 177309,
+   "rank": 2
+  },
+  {
+   "id": "ita_modene",
+   "name": "Modène",
+   "department": "MO",
+   "lon": 10.92,
+   "lat": 44.65,
+   "population": 122851,
+   "urbanAreaPopulation": 175502,
+   "rank": 2
+  },
+  {
+   "id": "ita_parme",
+   "name": "Parme",
+   "department": "PR",
+   "lon": 10.32,
+   "lat": 44.81,
+   "population": 116207,
+   "urbanAreaPopulation": 166011,
+   "rank": 2
+  },
+  {
+   "id": "ita_lecce",
+   "name": "Lecce",
+   "department": "LE",
+   "lon": 18.15,
+   "lat": 40.36,
+   "population": 113807,
+   "urbanAreaPopulation": 162582,
+   "rank": 2
+  },
+  {
+   "id": "ita_livourne",
+   "name": "Livourne",
+   "department": "LI",
+   "lon": 10.302,
+   "lat": 43.551,
+   "population": 109391,
+   "urbanAreaPopulation": 156274,
+   "rank": 2
+  },
+  {
+   "id": "ita_foggia",
+   "name": "Foggia",
+   "department": "FG",
+   "lon": 15.56,
+   "lat": 41.46,
+   "population": 108642,
+   "urbanAreaPopulation": 155203,
+   "rank": 3
+  },
+  {
+   "id": "ita_perouse",
+   "name": "Pérouse",
+   "department": "PG",
+   "lon": 12.39,
+   "lat": 43.11,
+   "population": 104387,
+   "urbanAreaPopulation": 149125,
+   "rank": 3
+  },
+  {
+   "id": "ita_ravenne",
+   "name": "Ravenne",
+   "department": "RA",
+   "lon": 12.22,
+   "lat": 44.42,
+   "population": 94241,
+   "urbanAreaPopulation": 134631,
+   "rank": 3
+  },
+  {
+   "id": "ita_ferrare",
+   "name": "Ferrare",
+   "department": "FE",
+   "lon": 11.61,
+   "lat": 44.85,
+   "population": 91694,
+   "urbanAreaPopulation": 130992,
+   "rank": 3
+  },
+  {
+   "id": "ita_syracuse",
+   "name": "Syracuse",
+   "department": "SR",
+   "lon": 15.29,
+   "lat": 37.07,
+   "population": 86559,
+   "urbanAreaPopulation": 123657,
+   "rank": 3
+  },
+  {
+   "id": "ita_sassari",
+   "name": "Sassari",
+   "department": "SS",
+   "lon": 8.57,
+   "lat": 40.73,
+   "population": 84510,
+   "urbanAreaPopulation": 120729,
+   "rank": 3
+  },
+  {
+   "id": "ita_udine",
+   "name": "Udine",
+   "department": "UD",
+   "lon": 13.24,
+   "lat": 46.07,
+   "population": 83306,
+   "urbanAreaPopulation": 119009,
+   "rank": 3
+  },
+  {
+   "id": "ita_barletta",
+   "name": "Barletta",
+   "department": "BT",
+   "lon": 16.27,
+   "lat": 41.32,
+   "population": 75481,
+   "urbanAreaPopulation": 107830,
+   "rank": 3
+  },
+  {
+   "id": "ita_trente",
+   "name": "Trente",
+   "department": "TN",
+   "lon": 11.12,
+   "lat": 46.08,
+   "population": 75465,
+   "urbanAreaPopulation": 107808,
+   "rank": 3
+  },
+  {
+   "id": "ita_brindisi",
+   "name": "Brindisi",
+   "department": "BR",
+   "lon": 17.93,
+   "lat": 40.64,
+   "population": 73105,
+   "urbanAreaPopulation": 104437,
+   "rank": 3
+  },
+  {
+   "id": "ita_novare",
+   "name": "Novare",
+   "department": "NO",
+   "lon": 8.62,
+   "lat": 45.45,
+   "population": 70637,
+   "urbanAreaPopulation": 100910,
+   "rank": 3
+  },
+  {
+   "id": "ita_ancone",
+   "name": "Ancône",
+   "department": "AN",
+   "lon": 13.5,
+   "lat": 43.6,
+   "population": 70354,
+   "urbanAreaPopulation": 100507,
+   "rank": 3
+  },
+  {
+   "id": "ita_bolzano",
+   "name": "Bolzano",
+   "department": "BZ",
+   "lon": 11.36,
+   "lat": 46.5,
+   "population": 67126,
+   "urbanAreaPopulation": 95895,
+   "rank": 3
+  },
+  {
+   "id": "ita_catanzaro",
+   "name": "Catanzaro",
+   "department": "CZ",
+   "lon": 16.6,
+   "lat": 38.9,
+   "population": 66675,
+   "urbanAreaPopulation": 95251,
+   "rank": 3
+  },
+  {
+   "id": "ita_arezzo",
+   "name": "Arezzo",
+   "department": "AR",
+   "lon": 11.875,
+   "lat": 43.462,
+   "population": 64112,
+   "urbanAreaPopulation": 91589,
+   "rank": 3
+  },
+  {
+   "id": "ita_marsala",
+   "name": "Marsala",
+   "department": "TP",
+   "lon": 12.439,
+   "lat": 37.805,
+   "population": 54448,
+   "urbanAreaPopulation": 77784,
+   "rank": 3
+  },
+  {
+   "id": "ita_asti",
+   "name": "Asti",
+   "department": "AT",
+   "lon": 8.21,
+   "lat": 44.93,
+   "population": 49893,
+   "urbanAreaPopulation": 71276,
+   "rank": 3
+  },
+  {
+   "id": "ita_potenza",
+   "name": "Potenza",
+   "department": "PZ",
+   "lon": 15.799,
+   "lat": 40.642,
+   "population": 48342,
+   "urbanAreaPopulation": 69060,
+   "rank": 3
+  },
+  {
+   "id": "ita_raguse",
+   "name": "Raguse",
+   "department": "RG",
+   "lon": 14.73,
+   "lat": 36.93,
+   "population": 48269,
+   "urbanAreaPopulation": 68956,
+   "rank": 3
+  },
+  {
+   "id": "ita_l_aquila",
+   "name": "L'Aquila",
+   "department": "AQ",
+   "lon": 13.39,
+   "lat": 42.35,
+   "population": 47952,
+   "urbanAreaPopulation": 68503,
+   "rank": 3
+  },
+  {
+   "id": "ita_benevent",
+   "name": "Bénévent",
+   "department": "BN",
+   "lon": 14.75,
+   "lat": 41.134,
+   "population": 43253,
+   "urbanAreaPopulation": 61791,
+   "rank": 3
+  },
+  {
+   "id": "ita_civitavecchia",
+   "name": "Civitavecchia",
+   "department": "RM",
+   "lon": 11.8,
+   "lat": 42.1,
+   "population": 42921,
+   "urbanAreaPopulation": 61316,
+   "rank": 3
+  },
+  {
+   "id": "ita_crotone",
+   "name": "Crotone",
+   "department": "KR",
+   "lon": 17.123,
+   "lat": 39.083,
+   "population": 42007,
+   "urbanAreaPopulation": 60010,
+   "rank": 3
+  },
+  {
+   "id": "ita_verbano_cusio_ossola_chef_lieu",
+   "name": "Verbano-Cusio-Ossola",
+   "department": "VB",
+   "lon": 8.313,
+   "lat": 46.058,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_varese_chef_lieu",
+   "name": "Varèse",
+   "department": "VA",
+   "lon": 8.786,
+   "lat": 45.761,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_sondrio_chef_lieu",
+   "name": "Sondrio",
+   "department": "SO",
+   "lon": 9.94,
+   "lat": 46.343,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_imperia_chef_lieu",
+   "name": "Imperia",
+   "department": "IM",
+   "lon": 7.791,
+   "lat": 44.005,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_coni_chef_lieu",
+   "name": "Coni",
+   "department": "CN",
+   "lon": 7.731,
+   "lat": 44.432,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_rimini_chef_lieu",
+   "name": "Rimini",
+   "department": "RN",
+   "lon": 12.43,
+   "lat": 43.896,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_pesaro_et_urbino_chef_lieu",
+   "name": "Pesaro et Urbino",
+   "department": "PU",
+   "lon": 12.513,
+   "lat": 43.725,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_belluno_chef_lieu",
+   "name": "Belluno",
+   "department": "BL",
+   "lon": 12.178,
+   "lat": 46.325,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_gorizia_chef_lieu",
+   "name": "Gorizia",
+   "department": "GO",
+   "lon": 13.498,
+   "lat": 45.851,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_padoue_chef_lieu",
+   "name": "Padoue",
+   "department": "PD",
+   "lon": 11.814,
+   "lat": 45.397,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_rovigo_chef_lieu",
+   "name": "Rovigo",
+   "department": "RO",
+   "lon": 12.098,
+   "lat": 44.979,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_forli_cesena_chef_lieu",
+   "name": "Forlì-Cesena",
+   "department": "FC",
+   "lon": 11.987,
+   "lat": 44.052,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_macerata_chef_lieu",
+   "name": "Macerata",
+   "department": "MC",
+   "lon": 13.151,
+   "lat": 43.131,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_fermo_chef_lieu",
+   "name": "Fermo",
+   "department": "FM",
+   "lon": 13.497,
+   "lat": 43.065,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_ascoli_piceno_chef_lieu",
+   "name": "Ascoli Piceno",
+   "department": "AP",
+   "lon": 13.465,
+   "lat": 42.834,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_teramo_chef_lieu",
+   "name": "Teramo",
+   "department": "TE",
+   "lon": 13.64,
+   "lat": 42.677,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_chieti_chef_lieu",
+   "name": "Chieti",
+   "department": "CH",
+   "lon": 14.381,
+   "lat": 42.02,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_matera_chef_lieu",
+   "name": "Matera",
+   "department": "MT",
+   "lon": 16.485,
+   "lat": 40.468,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_cosenza_chef_lieu",
+   "name": "Cosenza",
+   "department": "CS",
+   "lon": 16.346,
+   "lat": 39.752,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_latina_chef_lieu",
+   "name": "Latina",
+   "department": "LT",
+   "lon": 13.248,
+   "lat": 41.429,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_viterbe_chef_lieu",
+   "name": "Viterbe",
+   "department": "VT",
+   "lon": 11.993,
+   "lat": 42.508,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_grosseto_chef_lieu",
+   "name": "Grosseto",
+   "department": "GR",
+   "lon": 11.294,
+   "lat": 42.74,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_lucques_chef_lieu",
+   "name": "Lucques",
+   "department": "LU",
+   "lon": 10.483,
+   "lat": 43.998,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_massa_carrara_chef_lieu",
+   "name": "Massa-Carrara",
+   "department": "MS",
+   "lon": 9.975,
+   "lat": 44.241,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_la_spezia_chef_lieu",
+   "name": "La Spezia",
+   "department": "SP",
+   "lon": 9.818,
+   "lat": 44.183,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_savone_chef_lieu",
+   "name": "Savone",
+   "department": "SV",
+   "lon": 8.236,
+   "lat": 44.308,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_agrigente_chef_lieu",
+   "name": "Agrigente",
+   "department": "AG",
+   "lon": 13.532,
+   "lat": 37.481,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_caltanissetta_chef_lieu",
+   "name": "Caltanissetta",
+   "department": "CL",
+   "lon": 14.007,
+   "lat": 37.428,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_carbonia_iglesias_chef_lieu",
+   "name": "Carbonia-Iglesias",
+   "department": "CI",
+   "lon": 8.549,
+   "lat": 39.198,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_nuoro_chef_lieu",
+   "name": "Nuoro",
+   "department": "NU",
+   "lon": 9.253,
+   "lat": 40.299,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_d_oristano_chef_lieu",
+   "name": "d'Oristano",
+   "department": "OR",
+   "lon": 8.647,
+   "lat": 39.992,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_medio_campidano_chef_lieu",
+   "name": "Medio Campidano",
+   "department": "VS",
+   "lon": 8.697,
+   "lat": 39.584,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_ogliastra_chef_lieu",
+   "name": "Ogliastra",
+   "department": "OG",
+   "lon": 9.501,
+   "lat": 39.88,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_enna_chef_lieu",
+   "name": "Enna",
+   "department": "EN",
+   "lon": 14.474,
+   "lat": 37.596,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_brescia_chef_lieu",
+   "name": "Brescia",
+   "department": "BS",
+   "lon": 10.383,
+   "lat": 45.686,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_cremone_chef_lieu",
+   "name": "Crémone",
+   "department": "CR",
+   "lon": 10.091,
+   "lat": 45.22,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_mantoue_chef_lieu",
+   "name": "Mantoue",
+   "department": "MN",
+   "lon": 10.802,
+   "lat": 45.122,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_lecco_chef_lieu",
+   "name": "Lecco",
+   "department": "LC",
+   "lon": 9.388,
+   "lat": 45.891,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_monza_et_brianza_chef_lieu",
+   "name": "Monza et Brianza",
+   "department": "MB",
+   "lon": 9.251,
+   "lat": 45.648,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_lodi_chef_lieu",
+   "name": "Lodi",
+   "department": "LO",
+   "lon": 9.573,
+   "lat": 45.233,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_verceil_chef_lieu",
+   "name": "Verceil",
+   "department": "VC",
+   "lon": 8.234,
+   "lat": 45.491,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_pavie_chef_lieu",
+   "name": "Pavie",
+   "department": "PV",
+   "lon": 9.018,
+   "lat": 45.077,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_rieti_chef_lieu",
+   "name": "Rieti",
+   "department": "RI",
+   "lon": 13.027,
+   "lat": 42.404,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_alexandrie_chef_lieu",
+   "name": "Alexandrie",
+   "department": "AL",
+   "lon": 8.655,
+   "lat": 44.768,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_vicence_chef_lieu",
+   "name": "Vicence",
+   "department": "VI",
+   "lon": 11.514,
+   "lat": 45.712,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_plaisance_chef_lieu",
+   "name": "Plaisance",
+   "department": "PC",
+   "lon": 9.564,
+   "lat": 44.867,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_reggio_d_emilie_chef_lieu",
+   "name": "Reggio d'Émilie",
+   "department": "RE",
+   "lon": 10.582,
+   "lat": 44.64,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_pistoia_chef_lieu",
+   "name": "Pistoia",
+   "department": "PT",
+   "lon": 10.855,
+   "lat": 44.008,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_terni_chef_lieu",
+   "name": "Terni",
+   "department": "TR",
+   "lon": 12.428,
+   "lat": 42.611,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_frosinone_chef_lieu",
+   "name": "Frosinone",
+   "department": "FR",
+   "lon": 13.565,
+   "lat": 41.644,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_avellino_chef_lieu",
+   "name": "Avellino",
+   "department": "AV",
+   "lon": 15.049,
+   "lat": 41.031,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_pordenone_chef_lieu",
+   "name": "Pordenone",
+   "department": "PN",
+   "lon": 12.662,
+   "lat": 46.063,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_isernia_chef_lieu",
+   "name": "Isernia",
+   "department": "IS",
+   "lon": 14.21,
+   "lat": 41.66,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_biella_chef_lieu",
+   "name": "Biella",
+   "department": "BI",
+   "lon": 8.102,
+   "lat": 45.58,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_prato_chef_lieu",
+   "name": "Prato",
+   "department": "PO",
+   "lon": 11.096,
+   "lat": 43.939,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "ita_sienne",
+   "name": "Sienne",
+   "department": "SI",
+   "lon": 11.35,
+   "lat": 43.317,
+   "population": 36837,
+   "urbanAreaPopulation": 52625,
+   "rank": 3
+  },
+  {
+   "id": "ita_campobasso",
+   "name": "Campobasso",
+   "department": "CB",
+   "lon": 14.656,
+   "lat": 41.563,
+   "population": 35533,
+   "urbanAreaPopulation": 50762,
+   "rank": 3
+  },
+  {
+   "id": "ita_olbia",
+   "name": "Olbia",
+   "department": "OT",
+   "lon": 9.515,
+   "lat": 40.914,
+   "population": 31756,
+   "urbanAreaPopulation": 45366,
+   "rank": 3
+  },
+  {
+   "id": "ita_aoste",
+   "name": "Aoste",
+   "department": "AO",
+   "lon": 7.315,
+   "lat": 45.737,
+   "population": 23843,
+   "urbanAreaPopulation": 34062,
+   "rank": 3
+  },
+  {
+   "id": "ita_vibo_valentia",
+   "name": "Vibo Valentia",
+   "department": "VV",
+   "lon": 16.1,
+   "lat": 38.667,
+   "population": 23769,
+   "urbanAreaPopulation": 33957,
+   "rank": 3
+  }
+ ]
+}

@@ -59,40 +59,49 @@ class DataLoader(private val source: DataSource) {
 
     private fun loadCountry(path: String): CountryData {
         val def = read<CountryDefinition>(path)
+        // Les fichiers empruntés à un autre pays (la France) sont adaptés par le lexique du pays.
+        val localizer = fr.president.engine.util.Localizer(def.lexicon)
+        val own = "countries/${def.id}/"
+        fun <T> load(strategy: DeserializationStrategy<T>, file: String): T =
+            if (localizer.isEmpty || file.startsWith(own) || file.startsWith("economy/") || file.startsWith("infrastructure/") || file.startsWith("military/")) decode(strategy, file)
+            else decodeText(strategy, file, localizer.apply(readText(file)))
         return CountryData(
             definition = def,
             economy = read(def.economy),
-            territory = def.territory?.let { read(it) },
-            government = def.government?.let { read(it) },
-            socialGroups = def.socialGroups?.let { read(it) },
-            elections = def.elections?.let { read(it) },
+            territory = def.territory?.let { load(serializer(), it) },
+            government = def.government?.let { load(serializer(), it) },
+            socialGroups = def.socialGroups?.let { load(serializer(), it) },
+            elections = def.elections?.let { load(serializer(), it) },
             energy = def.energy?.let { read(it) },
             transport = def.transport?.let { read(it) },
             military = def.military?.let { read(it) },
-            reforms = def.reforms?.let { read(it) },
-            promises = def.promises?.let { read(it) },
-            localActions = def.localActions?.let { read(it) },
-            nationalActions = def.nationalActions?.let { read(it) },
-            measures = def.measures?.let { read(it) },
-            cabinet = def.cabinet?.let { read(it) },
-            agenda = def.agenda?.let { read(it) },
-            sectors = def.sectors?.let { read(it) },
-            careers = def.careers?.let { read<fr.president.engine.politics.CareersFile>(it).careers }.orEmpty(),
-            laws = def.laws?.let { read(it) },
-            actors = def.actors?.let { read(it) },
-            fiscal = def.fiscal?.let { read(it) },
-            legislation = def.legislation?.let { read(it) },
+            reforms = def.reforms?.let { load(serializer(), it) },
+            promises = def.promises?.let { load(serializer(), it) },
+            localActions = def.localActions?.let { load(serializer(), it) },
+            nationalActions = def.nationalActions?.let { load(serializer(), it) },
+            measures = def.measures?.let { load(serializer(), it) },
+            cabinet = def.cabinet?.let { load(serializer(), it) },
+            agenda = def.agenda?.let { load(serializer(), it) },
+            sectors = def.sectors?.let { load(serializer(), it) },
+            careers = def.careers?.let { load(serializer<fr.president.engine.politics.CareersFile>(), it).careers }.orEmpty(),
+            laws = def.laws?.let { load(serializer(), it) },
+            actors = def.actors?.let { load(serializer(), it) },
+            fiscal = def.fiscal?.let { load(serializer(), it) },
+            legislation = def.legislation?.let { load(serializer(), it) },
         )
     }
 
     private inline fun <reified T> read(path: String): T = decode(serializer<T>(), path)
 
-    private fun <T> decode(strategy: DeserializationStrategy<T>, path: String): T {
-        val text = try {
-            source.read("$DATA_ROOT/$path")
-        } catch (e: Exception) {
-            throw DataException("Fichier de données introuvable : $path", e)
-        }
+    private fun readText(path: String): String = try {
+        source.read("$DATA_ROOT/$path")
+    } catch (e: Exception) {
+        throw DataException("Fichier de données introuvable : $path", e)
+    }
+
+    private fun <T> decode(strategy: DeserializationStrategy<T>, path: String): T = decodeText(strategy, path, readText(path))
+
+    private fun <T> decodeText(strategy: DeserializationStrategy<T>, path: String, text: String): T {
         return try {
             GameJson.data.decodeFromString(strategy, text)
         } catch (e: Exception) {

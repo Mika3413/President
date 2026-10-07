@@ -49,6 +49,8 @@ data class DepartmentDef(
     val region: String,
     val population: Long,
     val profile: LocalProfileDef = LocalProfileDef(),
+    /** Caractéristiques (coastal, mountain, border, wine, tourist, regionalLanguage) hors de France. */
+    val tags: List<String> = emptyList(),
 )
 
 @Serializable

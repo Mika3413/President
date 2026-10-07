@@ -1,0 +1,249 @@
+{
+ "budgetSpendingItem": "defense",
+ "bases": [
+  {
+   "id": "esp_base_0",
+   "name": "Garnison de Madrid",
+   "branch": "Terre",
+   "lon": -3.685,
+   "lat": 40.402,
+   "department": "M",
+   "capacityUnits": 6
+  },
+  {
+   "id": "esp_base_1",
+   "name": "Garnison de Barcelone",
+   "branch": "Terre",
+   "lon": 2.181,
+   "lat": 41.385,
+   "department": "B",
+   "capacityUnits": 6
+  },
+  {
+   "id": "esp_base_2",
+   "name": "Garnison de Séville",
+   "branch": "Terre",
+   "lon": -5.98,
+   "lat": 37.405,
+   "department": "SE",
+   "capacityUnits": 6
+  },
+  {
+   "id": "esp_base_3",
+   "name": "Garnison de Bilbao",
+   "branch": "Terre",
+   "lon": -2.93,
+   "lat": 43.25,
+   "department": "BI",
+   "capacityUnits": 6
+  },
+  {
+   "id": "esp_base_4",
+   "name": "Garnison de Valence",
+   "branch": "Terre",
+   "lon": -0.402,
+   "lat": 39.487,
+   "department": "V",
+   "capacityUnits": 6
+  },
+  {
+   "id": "esp_base_5",
+   "name": "Garnison de Saragosse",
+   "branch": "Terre",
+   "lon": -0.89,
+   "lat": 41.65,
+   "department": "Z",
+   "capacityUnits": 6
+  },
+  {
+   "id": "esp_base_6",
+   "name": "Garnison de Malaga",
+   "branch": "Terre",
+   "lon": -4.42,
+   "lat": 36.72,
+   "department": "MA",
+   "capacityUnits": 6
+  },
+  {
+   "id": "esp_base_7",
+   "name": "Garnison de Murcie",
+   "branch": "Terre",
+   "lon": -1.13,
+   "lat": 37.98,
+   "department": "MU",
+   "capacityUnits": 6
+  },
+  {
+   "id": "esp_naval_0",
+   "name": "Base navale de Barcelone",
+   "branch": "Marine",
+   "lon": 2.181,
+   "lat": 41.385,
+   "department": "B",
+   "capacityUnits": 6
+  },
+  {
+   "id": "esp_naval_1",
+   "name": "Base navale de Séville",
+   "branch": "Marine",
+   "lon": -5.98,
+   "lat": 37.405,
+   "department": "SE",
+   "capacityUnits": 6
+  },
+  {
+   "id": "esp_naval_2",
+   "name": "Base navale de Bilbao",
+   "branch": "Marine",
+   "lon": -2.93,
+   "lat": 43.25,
+   "department": "BI",
+   "capacityUnits": 6
+  }
+ ],
+ "units": [
+  {
+   "id": "u_esp_0",
+   "name": "Brigada Guadarrama XII",
+   "branch": "Terre",
+   "type": "ARMORED_BRIGADE",
+   "baseId": "esp_base_0",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_esp_1",
+   "name": "Brigada Extremadura XI",
+   "branch": "Terre",
+   "type": "MECHANIZED_BRIGADE",
+   "baseId": "esp_base_1",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_esp_2",
+   "name": "Brigada Paracaidista",
+   "branch": "Terre",
+   "type": "AIRBORNE_BRIGADE",
+   "baseId": "esp_base_2",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_esp_3",
+   "name": "Brigada de Infantería de Marina",
+   "branch": "Terre",
+   "type": "MARINE_BRIGADE",
+   "baseId": "esp_base_3",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_esp_4",
+   "name": "Brigada Rey Alfonso XIII (Légion)",
+   "branch": "Terre",
+   "type": "LIGHT_ARMORED_BRIGADE",
+   "baseId": "esp_base_4",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_esp_5",
+   "name": "Regimiento de Artillería",
+   "branch": "Terre",
+   "type": "ARTILLERY_REGIMENT",
+   "baseId": "esp_base_5",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_esp_6",
+   "name": "Ala 11 (Eurofighter)",
+   "branch": "Air",
+   "type": "FIGHTER_WING",
+   "baseId": "esp_base_6",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_esp_7",
+   "name": "Ala 15 (F-18)",
+   "branch": "Air",
+   "type": "FIGHTER_WING",
+   "baseId": "esp_base_7",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_esp_8",
+   "name": "Ala 31 (A400M)",
+   "branch": "Air",
+   "type": "TRANSPORT_WING",
+   "baseId": "esp_base_0",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_esp_9",
+   "name": "Groupe naval de Rota",
+   "branch": "Marine",
+   "type": "SURFACE_GROUP",
+   "baseId": "esp_naval_0",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_esp_10",
+   "name": "Flotte de Carthagène",
+   "branch": "Marine",
+   "type": "SURFACE_GROUP",
+   "baseId": "esp_naval_1",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  }
+ ]
+}

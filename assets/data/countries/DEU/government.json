@@ -1,0 +1,123 @@
+{
+ "ministries": [
+  {
+   "id": "pm",
+   "title": "Vice-chancelier",
+   "shortTitle": "Vice-chancellerie",
+   "isPrimeMinister": true
+  },
+  {
+   "id": "economy",
+   "title": "Ministre fédéral des Finances",
+   "shortTitle": "Finances"
+  },
+  {
+   "id": "interior",
+   "title": "Ministre fédéral de l'Intérieur",
+   "shortTitle": "Intérieur",
+   "domain": "security"
+  },
+  {
+   "id": "armed_forces",
+   "title": "Ministre fédéral de la Défense",
+   "shortTitle": "Défense",
+   "domain": "defense"
+  },
+  {
+   "id": "foreign",
+   "title": "Ministre fédéral des Affaires étrangères",
+   "shortTitle": "Affaires étrangères"
+  },
+  {
+   "id": "health",
+   "title": "Ministre fédéral de la Santé",
+   "shortTitle": "Santé",
+   "domain": "health"
+  },
+  {
+   "id": "education",
+   "title": "Ministre fédéral de l'Éducation",
+   "shortTitle": "Éducation",
+   "domain": "education"
+  },
+  {
+   "id": "labour",
+   "title": "Ministre fédéral du Travail",
+   "shortTitle": "Travail",
+   "domain": "social"
+  },
+  {
+   "id": "justice",
+   "title": "Ministre fédéral de la Justice",
+   "shortTitle": "Justice",
+   "domain": "justice"
+  },
+  {
+   "id": "ecology",
+   "title": "Ministre fédéral du Climat",
+   "shortTitle": "Climat",
+   "domain": "environment"
+  },
+  {
+   "id": "transport",
+   "title": "Ministre fédéral des Transports",
+   "shortTitle": "Transports",
+   "domain": "transport"
+  },
+  {
+   "id": "agriculture",
+   "title": "Ministre fédéral de l'Agriculture",
+   "shortTitle": "Agriculture",
+   "domain": "agriculture"
+  }
+ ],
+ "maxHighPriorities": 3,
+ "candidatesPerMinistry": 3,
+ "effectivenessWeights": {
+  "competence": 0.4,
+  "management": 0.25,
+  "experience": 0.2,
+  "loyalty": 0.15,
+  "highPriorityBonus": 0.12,
+  "lowPriorityPenalty": 0.1
+ },
+ "parliament": {
+  "baseSupport": 0.53,
+  "approvalWeight": 0.5,
+  "primeMinisterDistanceWeight": 0.4,
+  "openingBonus": 0.12,
+  "voteNoise": 0.05,
+  "passThreshold": 0.5,
+  "forcePassApprovalCost": 0.03,
+  "forcePassSupportCost": 0.04,
+  "taxVoteDelayDays": 14,
+  "spendingVoteDelayDays": 10
+ },
+ "localTitles": {
+  "prefect": "Délégué du gouvernement fédéral",
+  "regionPresident": "Président de la conférence régionale",
+  "departmentPresident": "Ministre-président du Land",
+  "mayor": "Bourgmestre",
+  "prefectFemale": "Déléguée du gouvernement fédéral",
+  "regionPresidentFemale": "Présidente de la conférence régionale",
+  "departmentPresidentFemale": "Ministre-présidente du Land"
+ },
+ "ministerDrift": {
+  "loyaltyApprovalWeight": 0.4,
+  "loyaltyAdjustmentMonthly": 0.08,
+  "resignationLoyaltyThreshold": 0.18,
+  "experienceGainMonthly": 0.004
+ },
+ "initialServiceQuality": {
+  "health": 0.62,
+  "education": 0.6,
+  "security": 0.6,
+  "justice": 0.58,
+  "transport": 0.5,
+  "environment": 0.58,
+  "agriculture": 0.55,
+  "defense": 0.5,
+  "social": 0.65,
+  "pensions": 0.58
+ }
+}

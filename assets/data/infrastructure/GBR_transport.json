@@ -1,0 +1,80 @@
+{
+ "items": [
+  {
+   "id": "gbr_felixstowe",
+   "type": "PORT",
+   "name": "Port de Felixstowe",
+   "lon": 1.33,
+   "lat": 51.95,
+   "department": "SFK",
+   "employees": 3000,
+   "maintenanceCostMillions": 60,
+   "initialCondition": 0.75,
+   "commissionedYear": 1960,
+   "description": "Grand port de commerce."
+  },
+  {
+   "id": "gbr_southampton_port",
+   "type": "PORT",
+   "name": "Port de Southampton",
+   "lon": -1.4,
+   "lat": 50.9,
+   "department": "STH",
+   "employees": 3000,
+   "maintenanceCostMillions": 60,
+   "initialCondition": 0.75,
+   "commissionedYear": 1960,
+   "description": "Grand port de commerce."
+  },
+  {
+   "id": "gbr_lhr",
+   "type": "AIRPORT",
+   "name": "Aéroport d'Heathrow",
+   "lon": -0.45,
+   "lat": 51.47,
+   "department": "HIL",
+   "employees": 5000,
+   "maintenanceCostMillions": 80,
+   "initialCondition": 0.75,
+   "commissionedYear": 1970,
+   "description": "Aéroport international."
+  },
+  {
+   "id": "gbr_man_airport",
+   "type": "AIRPORT",
+   "name": "Aéroport de Manchester",
+   "lon": -2.27,
+   "lat": 53.36,
+   "department": "MAN",
+   "employees": 5000,
+   "maintenanceCostMillions": 80,
+   "initialCondition": 0.75,
+   "commissionedYear": 1970,
+   "description": "Aéroport international."
+  }
+ ],
+ "networks": [
+  {
+   "id": "gbr_wcml",
+   "kind": "RAIL_HIGH_SPEED",
+   "name": "West Coast Main Line",
+   "cityIds": [
+    "gbr_londres",
+    "gbr_birmingham",
+    "gbr_manchester",
+    "gbr_glasgow"
+   ]
+  },
+  {
+   "id": "gbr_m1",
+   "kind": "MOTORWAY",
+   "name": "Autoroute M1",
+   "cityIds": [
+    "gbr_londres",
+    "gbr_leicester",
+    "gbr_sheffield",
+    "gbr_leeds"
+   ]
+  }
+ ]
+}

@@ -5,9 +5,9 @@
  "adjective": "espagnol",
  "language": "es",
  "namePool": "es",
- "detail": "LIGHT",
+ "detail": "FULL",
  "population": 48600000,
- "economy": "economy/ESP_2026_10.json",
+ "economy": "economy/ESP_FULL_2026_10.json",
  "institutions": {
   "headOfStateTitle": "Chef de l'État",
   "headOfGovernmentTitle": "Président du gouvernement",
@@ -86,5 +86,224 @@
    "wildfire",
    "drought"
   ]
- }
+ },
+ "capitalCityId": "esp_madrid",
+ "territory": "countries/ESP/territory.json",
+ "government": "countries/ESP/government.json",
+ "socialGroups": "countries/FRA/social_groups.json",
+ "elections": "countries/ESP/elections.json",
+ "energy": "infrastructure/ESP_energy.json",
+ "transport": "infrastructure/ESP_transport.json",
+ "military": "military/ESP_2026_10.json",
+ "measures": "countries/FRA/measures.json",
+ "cabinet": "countries/FRA/cabinet.json",
+ "agenda": "countries/FRA/agenda.json",
+ "sectors": "countries/FRA/sectors.json",
+ "careers": "countries/FRA/careers.json",
+ "laws": "countries/FRA/laws.json",
+ "actors": "countries/FRA/actors.json",
+ "fiscal": "countries/FRA/fiscal.json",
+ "legislation": "countries/FRA/legislation.json",
+ "reforms": "countries/FRA/reforms.json",
+ "promises": "countries/FRA/promises.json",
+ "localActions": "countries/FRA/local_actions.json",
+ "nationalActions": "countries/FRA/national_actions.json",
+ "demography": {
+  "birthRate": 0.0068,
+  "deathRate": 0.0092,
+  "netMigrationRate": 0.009,
+  "agingPerYear": 0.0028
+ },
+ "geo": "ESP",
+ "electionLabel": "Élections générales",
+ "lexicon": [
+  [
+   "\\bFrance Travail\\b",
+   "Service public de l'emploi"
+  ],
+  [
+   "\\bBanque de France\\b",
+   "Banque d'Espagne"
+  ],
+  [
+   "\\bAssemblée nationale\\b",
+   "Congrès des députés"
+  ],
+  [
+   "\\bConseil constitutionnel\\b",
+   "Tribunal constitutionnel"
+  ],
+  [
+   "\\bSNCF\\b",
+   "Renfe"
+  ],
+  [
+   "\\bEDF\\b",
+   "Iberdrola"
+  ],
+  [
+   "\\bCAC 40\\b",
+   "IBEX 35"
+  ],
+  [
+   "\\bRSA\\b",
+   "revenu minimum vital"
+  ],
+  [
+   "\\bSMIC\\b",
+   "salaire minimum"
+  ],
+  [
+   "\\bBercy\\b",
+   "le ministère des Finances"
+  ],
+  [
+   "\\bMatignon\\b",
+   "le gouvernement"
+  ],
+  [
+   "\\b(article |l'article )?49\\.3\\b",
+   "procédure d'urgence"
+  ],
+  [
+   "\\b[Aa]rticle 16\\b",
+   "pouvoirs d'exception"
+  ],
+  [
+   "\\bà l'Élysée\\b",
+   "à la Moncloa"
+  ],
+  [
+   "\\bde l'Élysée\\b",
+   "de la Moncloa"
+  ],
+  [
+   "\\bl'Élysée\\b",
+   "la Moncloa"
+  ],
+  [
+   "\\bÉlysée\\b",
+   "Moncloa"
+  ],
+  [
+   "\\bBureau du président\\b",
+   "Bureau du président du gouvernement"
+  ],
+  [
+   "\\b[Pp]résident de la République\\b",
+   "président du gouvernement"
+  ],
+  [
+   "\\bles Bleus\\b",
+   "la Roja"
+  ],
+  [
+   "\\bLes Bleus\\b",
+   "La Roja"
+  ],
+  [
+   "\\ble XV de France\\b",
+   "le XV d'Espagne"
+  ],
+  [
+   "\\bMarine nationale\\b",
+   "Marine"
+  ],
+  [
+   "\\bArmée de l'air et de l'espace\\b",
+   "Armée de l'air"
+  ],
+  [
+   "\\bDGSE\\b",
+   "le renseignement extérieur"
+  ],
+  [
+   "\\bDGSI\\b",
+   "le renseignement intérieur"
+  ],
+  [
+   "\\b[àa] Paris\\b",
+   "à Madrid"
+  ],
+  [
+   "\\bde Paris\\b",
+   "de Madrid"
+  ],
+  [
+   "\\bde la France\\b",
+   "de l'Espagne"
+  ],
+  [
+   "\\bà la France\\b",
+   "à l'Espagne"
+  ],
+  [
+   "\\bÀ la France\\b",
+   "À l'Espagne"
+  ],
+  [
+   "\\bLa France\\b",
+   "L'Espagne"
+  ],
+  [
+   "\\bla France\\b",
+   "l'Espagne"
+  ],
+  [
+   "\\ben France\\b",
+   "en Espagne"
+  ],
+  [
+   "\\bEn France\\b",
+   "En Espagne"
+  ],
+  [
+   "\\bFrance\\b",
+   "Espagne"
+  ],
+  [
+   "\\bFrançaises\\b",
+   "Espagnoles"
+  ],
+  [
+   "\\bFrançais\\b",
+   "Espagnols"
+  ],
+  [
+   "\\bfrançaises\\b",
+   "espagnoles"
+  ],
+  [
+   "\\bfrançaise\\b",
+   "espagnole"
+  ],
+  [
+   "\\bfrançais\\b",
+   "espagnol"
+  ],
+  [
+   "\\bPrésidentielle\\b",
+   "Élections générales"
+  ],
+  [
+   "\\bprésidentielle\\b",
+   "élections générales"
+  ],
+  [
+   "\\bLe président\\b(?! (de la Commission|du Conseil européen|du conseil|de région|de la région|de l'Assemblée|du Sénat|chinois|américain|russe|turc|ukrainien|égyptien|brésilien|algérien))",
+   "Le président du gouvernement"
+  ],
+  [
+   "\\ble président\\b(?! (de la Commission|du Conseil européen|du conseil|de région|de la région|de l'Assemblée|du Sénat|chinois|américain|russe|turc|ukrainien|égyptien|brésilien|algérien))",
+   "le président du gouvernement"
+  ],
+  [
+   "\\bdu président\\b(?! (de la Commission|du conseil|de région))",
+   "du président du gouvernement"
+  ],
+  [
+   "\\bau président\\b(?! (de la Commission|du conseil|de région))",
+   "au président du gouvernement"
+  ]
+ ]
 }

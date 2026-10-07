@@ -1,0 +1,288 @@
+{
+ "budgetSpendingItem": "defense",
+ "bases": [
+  {
+   "id": "ita_base_0",
+   "name": "Garnison de Rome",
+   "branch": "Terre",
+   "lon": 12.481,
+   "lat": 41.898,
+   "department": "RM",
+   "capacityUnits": 6
+  },
+  {
+   "id": "ita_base_1",
+   "name": "Garnison de Milan",
+   "branch": "Terre",
+   "lon": 9.203,
+   "lat": 45.472,
+   "department": "MI",
+   "capacityUnits": 6
+  },
+  {
+   "id": "ita_base_2",
+   "name": "Garnison de Naples",
+   "branch": "Terre",
+   "lon": 14.243,
+   "lat": 40.842,
+   "department": "NA",
+   "capacityUnits": 6
+  },
+  {
+   "id": "ita_base_3",
+   "name": "Garnison de Turin",
+   "branch": "Terre",
+   "lon": 7.668,
+   "lat": 45.072,
+   "department": "TO",
+   "capacityUnits": 6
+  },
+  {
+   "id": "ita_base_4",
+   "name": "Garnison de Florence",
+   "branch": "Terre",
+   "lon": 11.25,
+   "lat": 43.78,
+   "department": "FI",
+   "capacityUnits": 6
+  },
+  {
+   "id": "ita_base_5",
+   "name": "Garnison de Salerne",
+   "branch": "Terre",
+   "lon": 14.77,
+   "lat": 40.68,
+   "department": "SA",
+   "capacityUnits": 6
+  },
+  {
+   "id": "ita_base_6",
+   "name": "Garnison de Palerme",
+   "branch": "Terre",
+   "lon": 13.348,
+   "lat": 38.127,
+   "department": "PA",
+   "capacityUnits": 6
+  },
+  {
+   "id": "ita_base_7",
+   "name": "Garnison de Catane",
+   "branch": "Terre",
+   "lon": 15.08,
+   "lat": 37.5,
+   "department": "CT",
+   "capacityUnits": 6
+  },
+  {
+   "id": "ita_naval_0",
+   "name": "Base navale de Rome",
+   "branch": "Marine",
+   "lon": 12.481,
+   "lat": 41.898,
+   "department": "RM",
+   "capacityUnits": 6
+  },
+  {
+   "id": "ita_naval_1",
+   "name": "Base navale de Milan",
+   "branch": "Marine",
+   "lon": 9.203,
+   "lat": 45.472,
+   "department": "MI",
+   "capacityUnits": 6
+  },
+  {
+   "id": "ita_naval_2",
+   "name": "Base navale de Naples",
+   "branch": "Marine",
+   "lon": 14.243,
+   "lat": 40.842,
+   "department": "NA",
+   "capacityUnits": 6
+  }
+ ],
+ "units": [
+  {
+   "id": "u_ita_0",
+   "name": "Brigata corazzata Ariete",
+   "branch": "Terre",
+   "type": "ARMORED_BRIGADE",
+   "baseId": "ita_base_0",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_ita_1",
+   "name": "Brigata meccanizzata Pinerolo",
+   "branch": "Terre",
+   "type": "MECHANIZED_BRIGADE",
+   "baseId": "ita_base_1",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_ita_2",
+   "name": "Brigata alpina Taurinense",
+   "branch": "Terre",
+   "type": "MOUNTAIN_BRIGADE",
+   "baseId": "ita_base_2",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_ita_3",
+   "name": "Brigata alpina Julia",
+   "branch": "Terre",
+   "type": "MOUNTAIN_BRIGADE",
+   "baseId": "ita_base_3",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_ita_4",
+   "name": "Brigata paracadutisti Folgore",
+   "branch": "Terre",
+   "type": "AIRBORNE_BRIGADE",
+   "baseId": "ita_base_4",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_ita_5",
+   "name": "Brigata San Marco",
+   "branch": "Terre",
+   "type": "MARINE_BRIGADE",
+   "baseId": "ita_base_5",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_ita_6",
+   "name": "Brigata Sassari",
+   "branch": "Terre",
+   "type": "INFANTRY_BRIGADE",
+   "baseId": "ita_base_6",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_ita_7",
+   "name": "Reggimento artiglieria",
+   "branch": "Terre",
+   "type": "ARTILLERY_REGIMENT",
+   "baseId": "ita_base_7",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_ita_8",
+   "name": "Reggimento antiaerei",
+   "branch": "Terre",
+   "type": "AIR_DEFENSE_REGIMENT",
+   "baseId": "ita_base_0",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_ita_9",
+   "name": "4° Stormo (Eurofighter)",
+   "branch": "Air",
+   "type": "FIGHTER_WING",
+   "baseId": "ita_base_1",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_ita_10",
+   "name": "32° Stormo (F-35)",
+   "branch": "Air",
+   "type": "FIGHTER_WING",
+   "baseId": "ita_base_2",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_ita_11",
+   "name": "46ª Brigata aerea",
+   "branch": "Air",
+   "type": "TRANSPORT_WING",
+   "baseId": "ita_base_3",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_ita_12",
+   "name": "Groupe aéronaval (Cavour)",
+   "branch": "Marine",
+   "type": "CARRIER_GROUP",
+   "baseId": "ita_naval_0",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  },
+  {
+   "id": "u_ita_13",
+   "name": "Flotte de Tarente",
+   "branch": "Marine",
+   "type": "SURFACE_GROUP",
+   "baseId": "ita_naval_1",
+   "personnel": 6000,
+   "equipment": {},
+   "readiness": 0.7,
+   "morale": 0.65,
+   "ammunition": 0.55,
+   "fuel": 0.6
+  }
+ ]
+}

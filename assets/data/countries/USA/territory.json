@@ -1,0 +1,3646 @@
+{
+ "regions": [
+  {
+   "code": "PAC",
+   "name": "Pacifique",
+   "capitalCityId": "usa_los_angeles",
+   "defaults": {
+    "unemployment": 0.047,
+    "incomeIndex": 1.091,
+    "urbanShare": 0.724,
+    "seniorShare": 0.224,
+    "politicalLeaning": -0.201
+   }
+  },
+  {
+   "code": "MTN",
+   "name": "Montagnes Rocheuses",
+   "capitalCityId": "usa_phoenix",
+   "defaults": {
+    "unemployment": 0.047,
+    "incomeIndex": 1.026,
+    "urbanShare": 0.607,
+    "seniorShare": 0.233,
+    "politicalLeaning": 0.33
+   }
+  },
+  {
+   "code": "WNC",
+   "name": "Grandes Plaines",
+   "capitalCityId": "usa_minneapolis",
+   "defaults": {
+    "unemployment": 0.038,
+    "incomeIndex": 1.028,
+    "urbanShare": 0.555,
+    "seniorShare": 0.233,
+    "politicalLeaning": 0.344
+   }
+  },
+  {
+   "code": "ENC",
+   "name": "Grands Lacs",
+   "capitalCityId": "usa_chicago",
+   "defaults": {
+    "unemployment": 0.044,
+    "incomeIndex": 1.069,
+    "urbanShare": 0.632,
+    "seniorShare": 0.196,
+    "politicalLeaning": -0.004
+   }
+  },
+  {
+   "code": "MA",
+   "name": "Centre-Atlantique",
+   "capitalCityId": "usa_philadelphie",
+   "defaults": {
+    "unemployment": 0.04,
+    "incomeIndex": 0.966,
+    "urbanShare": 0.448,
+    "seniorShare": 0.211,
+    "politicalLeaning": -0.299
+   }
+  },
+  {
+   "code": "NE",
+   "name": "Nouvelle-Angleterre",
+   "capitalCityId": "usa_boston",
+   "defaults": {
+    "unemployment": 0.035,
+    "incomeIndex": 1.062,
+    "urbanShare": 0.716,
+    "seniorShare": 0.225,
+    "politicalLeaning": -0.379
+   }
+  },
+  {
+   "code": "WSC",
+   "name": "Sud-Ouest",
+   "capitalCityId": "usa_dallas",
+   "defaults": {
+    "unemployment": 0.043,
+    "incomeIndex": 1.032,
+    "urbanShare": 0.56,
+    "seniorShare": 0.188,
+    "politicalLeaning": 0.425
+   }
+  },
+  {
+   "code": "ESC",
+   "name": "Sud-Est intérieur",
+   "capitalCityId": "usa_birmingham",
+   "defaults": {
+    "unemployment": 0.047,
+    "incomeIndex": 0.977,
+    "urbanShare": 0.482,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.63
+   }
+  },
+  {
+   "code": "SA",
+   "name": "Atlantique Sud",
+   "capitalCityId": "usa_miami",
+   "defaults": {
+    "unemployment": 0.041,
+    "incomeIndex": 0.988,
+    "urbanShare": 0.565,
+    "seniorShare": 0.196,
+    "politicalLeaning": 0.215
+   }
+  }
+ ],
+ "departments": [
+  {
+   "code": "WA",
+   "name": "Washington",
+   "article": "le",
+   "region": "PAC",
+   "population": 7923000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.03,
+    "incomeIndex": 1.08,
+    "urbanShare": 0.63,
+    "seniorShare": 0.21,
+    "politicalLeaning": -0.16,
+    "healthAccess": 1.05,
+    "crime": 1.08,
+    "industryShare": 0.17,
+    "agricultureShare": 0.039,
+    "pollution": 1.08
+   }
+  },
+  {
+   "code": "ID",
+   "name": "Idaho",
+   "article": "l'",
+   "region": "MTN",
+   "population": 2031000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.047,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.39,
+    "seniorShare": 0.24,
+    "politicalLeaning": 0.32,
+    "healthAccess": 0.96,
+    "crime": 0.93,
+    "industryShare": 0.22,
+    "agricultureShare": 0.058,
+    "pollution": 0.93
+   }
+  },
+  {
+   "code": "MT",
+   "name": "Montana",
+   "article": "le",
+   "region": "MTN",
+   "population": 1117000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.031,
+    "incomeIndex": 0.91,
+    "urbanShare": 0.28,
+    "seniorShare": 0.27,
+    "politicalLeaning": 0.43,
+    "healthAccess": 0.91,
+    "crime": 0.87,
+    "industryShare": 0.23,
+    "agricultureShare": 0.06,
+    "pollution": 0.87
+   }
+  },
+  {
+   "code": "ND",
+   "name": "Dakota du Nord",
+   "article": "le",
+   "region": "WNC",
+   "population": 812000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.052,
+    "incomeIndex": 0.92,
+    "urbanShare": 0.37,
+    "seniorShare": 0.24,
+    "politicalLeaning": 0.36,
+    "healthAccess": 0.95,
+    "crime": 0.92,
+    "industryShare": 0.11,
+    "agricultureShare": 0.047,
+    "pollution": 0.92
+   }
+  },
+  {
+   "code": "MN",
+   "name": "Minnesota",
+   "article": "le",
+   "region": "WNC",
+   "population": 5790000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.045,
+    "incomeIndex": 1.06,
+    "urbanShare": 0.64,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.44,
+    "healthAccess": 1.06,
+    "crime": 1.09,
+    "industryShare": 0.22,
+    "agricultureShare": 0.036,
+    "pollution": 1.09
+   }
+  },
+  {
+   "code": "MI",
+   "name": "Michigan",
+   "article": "le",
+   "region": "ENC",
+   "population": 10158000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.053,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.6,
+    "seniorShare": 0.17,
+    "politicalLeaning": -0.02,
+    "healthAccess": 1.04,
+    "crime": 1.06,
+    "industryShare": 0.23,
+    "agricultureShare": 0.041,
+    "pollution": 1.06
+   }
+  },
+  {
+   "code": "OH",
+   "name": "Ohio",
+   "article": "l'",
+   "region": "ENC",
+   "population": 11986000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.045,
+    "incomeIndex": 1.08,
+    "urbanShare": 0.62,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.17,
+    "healthAccess": 1.05,
+    "crime": 1.07,
+    "industryShare": 0.13,
+    "agricultureShare": 0.019,
+    "pollution": 1.07
+   }
+  },
+  {
+   "code": "PA",
+   "name": "Pennsylvanie",
+   "article": "la",
+   "region": "MA",
+   "population": 13205000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.047,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.67,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.38,
+    "healthAccess": 1.07,
+    "crime": 1.1,
+    "industryShare": 0.12,
+    "agricultureShare": 0.028,
+    "pollution": 1.1
+   }
+  },
+  {
+   "code": "NY",
+   "name": "État de New York",
+   "article": "l'",
+   "region": "MA",
+   "population": 19910000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.031,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.37,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.34,
+    "healthAccess": 0.95,
+    "crime": 0.92,
+    "industryShare": 0.12,
+    "agricultureShare": 0.034,
+    "pollution": 0.92
+   }
+  },
+  {
+   "code": "VT",
+   "name": "Vermont",
+   "article": "le",
+   "region": "NE",
+   "population": 609000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.041,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.31,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.63,
+    "healthAccess": 0.92,
+    "crime": 0.89,
+    "industryShare": 0.15,
+    "agricultureShare": 0.041,
+    "pollution": 0.89
+   }
+  },
+  {
+   "code": "NH",
+   "name": "New Hampshire",
+   "article": "la",
+   "region": "NE",
+   "population": 1422000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.039,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.33,
+    "seniorShare": 0.24,
+    "politicalLeaning": -0.54,
+    "healthAccess": 0.93,
+    "crime": 0.9,
+    "industryShare": 0.27,
+    "agricultureShare": 0.04,
+    "pollution": 0.9
+   }
+  },
+  {
+   "code": "ME",
+   "name": "Maine",
+   "article": "la",
+   "region": "NE",
+   "population": 1422000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.046,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.28,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.31,
+    "healthAccess": 0.91,
+    "crime": 0.87,
+    "industryShare": 0.08,
+    "agricultureShare": 0.05,
+    "pollution": 0.87
+   }
+  },
+  {
+   "code": "AZ",
+   "name": "Arizona",
+   "article": "l'",
+   "region": "MTN",
+   "population": 7517000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.05,
+    "incomeIndex": 1.04,
+    "urbanShare": 0.73,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.3,
+    "healthAccess": 1.09,
+    "crime": 1.14,
+    "industryShare": 0.09,
+    "agricultureShare": 0.033,
+    "pollution": 1.14
+   }
+  },
+  {
+   "code": "CA",
+   "name": "Californie",
+   "article": "la",
+   "region": "PAC",
+   "population": 39617000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.05,
+    "incomeIndex": 1.1,
+    "urbanShare": 0.76,
+    "seniorShare": 0.23,
+    "politicalLeaning": -0.2,
+    "healthAccess": 1.1,
+    "crime": 1.15,
+    "industryShare": 0.16,
+    "agricultureShare": 0.022,
+    "pollution": 1.15
+   }
+  },
+  {
+   "code": "NM",
+   "name": "Nouveau-Mexique",
+   "article": "la",
+   "region": "MTN",
+   "population": 2133000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.042,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.54,
+    "seniorShare": 0.2,
+    "politicalLeaning": 0.3,
+    "healthAccess": 1.02,
+    "crime": 1.02,
+    "industryShare": 0.13,
+    "agricultureShare": 0.028,
+    "pollution": 1.02
+   }
+  },
+  {
+   "code": "TX",
+   "name": "Texas",
+   "article": "le",
+   "region": "WSC",
+   "population": 30983000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.044,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.6,
+    "seniorShare": 0.18,
+    "politicalLeaning": 0.41,
+    "healthAccess": 1.04,
+    "crime": 1.06,
+    "industryShare": 0.26,
+    "agricultureShare": 0.033,
+    "pollution": 1.06
+   }
+  },
+  {
+   "code": "AK",
+   "name": "Alaska",
+   "article": "l'",
+   "region": "PAC",
+   "population": 711000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.034,
+    "incomeIndex": 1.0,
+    "urbanShare": 0.47,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.45,
+    "healthAccess": 0.99,
+    "crime": 0.98,
+    "industryShare": 0.27,
+    "agricultureShare": 0.032,
+    "pollution": 0.98
+   }
+  },
+  {
+   "code": "LA",
+   "name": "Louisiane",
+   "article": "la",
+   "region": "WSC",
+   "population": 4672000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.046,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.51,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.44,
+    "healthAccess": 1.0,
+    "crime": 1.01,
+    "industryShare": 0.19,
+    "agricultureShare": 0.036,
+    "pollution": 1.01
+   }
+  },
+  {
+   "code": "MS",
+   "name": "Mississippi",
+   "article": "le",
+   "region": "ESC",
+   "population": 2945000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.055,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.33,
+    "seniorShare": 0.19,
+    "politicalLeaning": 0.51,
+    "healthAccess": 0.93,
+    "crime": 0.9,
+    "industryShare": 0.25,
+    "agricultureShare": 0.04,
+    "pollution": 0.9
+   }
+  },
+  {
+   "code": "AL",
+   "name": "Alabama",
+   "article": "l'",
+   "region": "ESC",
+   "population": 5180000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.05,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.48,
+    "seniorShare": 0.24,
+    "politicalLeaning": 0.64,
+    "healthAccess": 0.99,
+    "crime": 0.99,
+    "industryShare": 0.14,
+    "agricultureShare": 0.033,
+    "pollution": 0.99
+   }
+  },
+  {
+   "code": "FL",
+   "name": "Floride",
+   "article": "la",
+   "region": "SA",
+   "population": 22957000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.039,
+    "incomeIndex": 1.03,
+    "urbanShare": 0.74,
+    "seniorShare": 0.19,
+    "politicalLeaning": 0.39,
+    "healthAccess": 1.1,
+    "crime": 1.14,
+    "industryShare": 0.1,
+    "agricultureShare": 0.025,
+    "pollution": 1.14
+   }
+  },
+  {
+   "code": "GA",
+   "name": "Géorgie",
+   "article": "la",
+   "region": "SA",
+   "population": 11174000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.032,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.53,
+    "seniorShare": 0.18,
+    "politicalLeaning": 0.08,
+    "healthAccess": 1.01,
+    "crime": 1.02,
+    "industryShare": 0.25,
+    "agricultureShare": 0.043,
+    "pollution": 1.02
+   }
+  },
+  {
+   "code": "SC",
+   "name": "Caroline du Sud",
+   "article": "le",
+   "region": "SA",
+   "population": 5485000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.054,
+    "incomeIndex": 0.91,
+    "urbanShare": 0.35,
+    "seniorShare": 0.18,
+    "politicalLeaning": 0.07,
+    "healthAccess": 0.94,
+    "crime": 0.91,
+    "industryShare": 0.26,
+    "agricultureShare": 0.045,
+    "pollution": 0.91
+   }
+  },
+  {
+   "code": "NC",
+   "name": "Caroline du Nord",
+   "article": "le",
+   "region": "SA",
+   "population": 10971000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.04,
+    "incomeIndex": 0.94,
+    "urbanShare": 0.45,
+    "seniorShare": 0.24,
+    "politicalLeaning": 0.27,
+    "healthAccess": 0.98,
+    "crime": 0.97,
+    "industryShare": 0.11,
+    "agricultureShare": 0.032,
+    "pollution": 0.97
+   }
+  },
+  {
+   "code": "VA",
+   "name": "Virginie",
+   "article": "la",
+   "region": "SA",
+   "population": 8837000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.054,
+    "incomeIndex": 1.02,
+    "urbanShare": 0.55,
+    "seniorShare": 0.2,
+    "politicalLeaning": 0.19,
+    "healthAccess": 1.02,
+    "crime": 1.03,
+    "industryShare": 0.2,
+    "agricultureShare": 0.047,
+    "pollution": 1.03
+   }
+  },
+  {
+   "code": "DC",
+   "name": "Washington",
+   "article": "le",
+   "region": "SA",
+   "population": 711000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.05,
+    "incomeIndex": 1.09,
+    "urbanShare": 0.95,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.38,
+    "healthAccess": 1.18,
+    "crime": 1.27,
+    "industryShare": 0.24,
+    "agricultureShare": 0.016,
+    "pollution": 1.27
+   }
+  },
+  {
+   "code": "MD",
+   "name": "Maryland",
+   "article": "le",
+   "region": "SA",
+   "population": 6298000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.03,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.47,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.06,
+    "healthAccess": 0.99,
+    "crime": 0.98,
+    "industryShare": 0.15,
+    "agricultureShare": 0.035,
+    "pollution": 0.98
+   }
+  },
+  {
+   "code": "DE",
+   "name": "Delaware",
+   "article": "la",
+   "region": "SA",
+   "population": 1015000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.034,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.35,
+    "seniorShare": 0.19,
+    "politicalLeaning": 0.02,
+    "healthAccess": 0.94,
+    "crime": 0.91,
+    "industryShare": 0.12,
+    "agricultureShare": 0.05,
+    "pollution": 0.91
+   }
+  },
+  {
+   "code": "NJ",
+   "name": "New Jersey",
+   "article": "le",
+   "region": "MA",
+   "population": 9447000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.048,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.3,
+    "seniorShare": 0.27,
+    "politicalLeaning": -0.1,
+    "healthAccess": 0.92,
+    "crime": 0.88,
+    "industryShare": 0.14,
+    "agricultureShare": 0.043,
+    "pollution": 0.88
+   }
+  },
+  {
+   "code": "CT",
+   "name": "Connecticut",
+   "article": "le",
+   "region": "NE",
+   "population": 3657000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.037,
+    "incomeIndex": 1.08,
+    "urbanShare": 0.87,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.22,
+    "healthAccess": 1.15,
+    "crime": 1.22,
+    "industryShare": 0.2,
+    "agricultureShare": 0.036,
+    "pollution": 1.22
+   }
+  },
+  {
+   "code": "RI",
+   "name": "Rhode Island",
+   "article": "le",
+   "region": "NE",
+   "population": 1117000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.037,
+    "incomeIndex": 1.17,
+    "urbanShare": 0.95,
+    "seniorShare": 0.23,
+    "politicalLeaning": -0.45,
+    "healthAccess": 1.18,
+    "crime": 1.27,
+    "industryShare": 0.23,
+    "agricultureShare": 0.013,
+    "pollution": 1.27
+   }
+  },
+  {
+   "code": "MA",
+   "name": "Massachusetts",
+   "article": "le",
+   "region": "NE",
+   "population": 7110000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.031,
+    "incomeIndex": 1.1,
+    "urbanShare": 0.8,
+    "seniorShare": 0.25,
+    "politicalLeaning": -0.41,
+    "healthAccess": 1.12,
+    "crime": 1.18,
+    "industryShare": 0.25,
+    "agricultureShare": 0.012,
+    "pollution": 1.18
+   }
+  },
+  {
+   "code": "OR",
+   "name": "Oregon",
+   "article": "l'",
+   "region": "PAC",
+   "population": 4266000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.053,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.63,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.22,
+    "healthAccess": 1.05,
+    "crime": 1.08,
+    "industryShare": 0.1,
+    "agricultureShare": 0.047,
+    "pollution": 1.08
+   }
+  },
+  {
+   "code": "HI",
+   "name": "Hawaï",
+   "article": "l'",
+   "region": "PAC",
+   "population": 1422000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.032,
+    "incomeIndex": 1.06,
+    "urbanShare": 0.66,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.29,
+    "healthAccess": 1.06,
+    "crime": 1.1,
+    "industryShare": 0.2,
+    "agricultureShare": 0.033,
+    "pollution": 1.1
+   }
+  },
+  {
+   "code": "UT",
+   "name": "Utah",
+   "article": "l'",
+   "region": "MTN",
+   "population": 3453000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.045,
+    "incomeIndex": 1.06,
+    "urbanShare": 0.55,
+    "seniorShare": 0.26,
+    "politicalLeaning": 0.38,
+    "healthAccess": 1.02,
+    "crime": 1.03,
+    "industryShare": 0.14,
+    "agricultureShare": 0.052,
+    "pollution": 1.03
+   }
+  },
+  {
+   "code": "WY",
+   "name": "Wyoming",
+   "article": "le",
+   "region": "MTN",
+   "population": 609000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.046,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.31,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.28,
+    "healthAccess": 0.92,
+    "crime": 0.89,
+    "industryShare": 0.24,
+    "agricultureShare": 0.043,
+    "pollution": 0.89
+   }
+  },
+  {
+   "code": "NV",
+   "name": "Nevada",
+   "article": "le",
+   "region": "MTN",
+   "population": 3250000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.056,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.65,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.53,
+    "healthAccess": 1.06,
+    "crime": 1.09,
+    "industryShare": 0.24,
+    "agricultureShare": 0.043,
+    "pollution": 1.09
+   }
+  },
+  {
+   "code": "CO",
+   "name": "Colorado",
+   "article": "le",
+   "region": "MTN",
+   "population": 5993000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.045,
+    "incomeIndex": 1.07,
+    "urbanShare": 0.65,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.23,
+    "healthAccess": 1.06,
+    "crime": 1.09,
+    "industryShare": 0.26,
+    "agricultureShare": 0.035,
+    "pollution": 1.09
+   }
+  },
+  {
+   "code": "SD",
+   "name": "Dakota du Sud",
+   "article": "le",
+   "region": "WNC",
+   "population": 914000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.032,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.35,
+    "seniorShare": 0.2,
+    "politicalLeaning": 0.12,
+    "healthAccess": 0.94,
+    "crime": 0.91,
+    "industryShare": 0.21,
+    "agricultureShare": 0.059,
+    "pollution": 0.91
+   }
+  },
+  {
+   "code": "NE",
+   "name": "Nebraska",
+   "article": "le",
+   "region": "WNC",
+   "population": 2031000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.035,
+    "incomeIndex": 1.0,
+    "urbanShare": 0.59,
+    "seniorShare": 0.27,
+    "politicalLeaning": 0.14,
+    "healthAccess": 1.03,
+    "crime": 1.05,
+    "industryShare": 0.16,
+    "agricultureShare": 0.047,
+    "pollution": 1.05
+   }
+  },
+  {
+   "code": "KS",
+   "name": "Kansas",
+   "article": "le",
+   "region": "WNC",
+   "population": 2945000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.05,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.36,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.09,
+    "healthAccess": 0.94,
+    "crime": 0.92,
+    "industryShare": 0.26,
+    "agricultureShare": 0.041,
+    "pollution": 0.92
+   }
+  },
+  {
+   "code": "OK",
+   "name": "Oklahoma",
+   "article": "l'",
+   "region": "WSC",
+   "population": 4163000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.031,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.52,
+    "seniorShare": 0.18,
+    "politicalLeaning": 0.49,
+    "healthAccess": 1.01,
+    "crime": 1.01,
+    "industryShare": 0.22,
+    "agricultureShare": 0.049,
+    "pollution": 1.01
+   }
+  },
+  {
+   "code": "IA",
+   "name": "Iowa",
+   "article": "l'",
+   "region": "WNC",
+   "population": 3250000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.031,
+    "incomeIndex": 1.02,
+    "urbanShare": 0.4,
+    "seniorShare": 0.17,
+    "politicalLeaning": 0.29,
+    "healthAccess": 0.96,
+    "crime": 0.94,
+    "industryShare": 0.12,
+    "agricultureShare": 0.033,
+    "pollution": 0.94
+   }
+  },
+  {
+   "code": "MO",
+   "name": "Missouri",
+   "article": "le",
+   "region": "WNC",
+   "population": 6298000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.031,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.69,
+    "seniorShare": 0.27,
+    "politicalLeaning": 0.5,
+    "healthAccess": 1.08,
+    "crime": 1.12,
+    "industryShare": 0.14,
+    "agricultureShare": 0.045,
+    "pollution": 1.12
+   }
+  },
+  {
+   "code": "WI",
+   "name": "Wisconsin",
+   "article": "le",
+   "region": "ENC",
+   "population": 5993000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.05,
+    "incomeIndex": 1.04,
+    "urbanShare": 0.5,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.27,
+    "healthAccess": 1.0,
+    "crime": 1.0,
+    "industryShare": 0.11,
+    "agricultureShare": 0.04,
+    "pollution": 1.0
+   }
+  },
+  {
+   "code": "IL",
+   "name": "Illinois",
+   "article": "l'",
+   "region": "ENC",
+   "population": 12697000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.039,
+    "incomeIndex": 1.13,
+    "urbanShare": 0.8,
+    "seniorShare": 0.22,
+    "politicalLeaning": -0.12,
+    "healthAccess": 1.12,
+    "crime": 1.18,
+    "industryShare": 0.11,
+    "agricultureShare": 0.035,
+    "pollution": 1.18
+   }
+  },
+  {
+   "code": "KY",
+   "name": "Kentucky",
+   "article": "le",
+   "region": "ESC",
+   "population": 4571000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.056,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.49,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.71,
+    "healthAccess": 1.0,
+    "crime": 0.99,
+    "industryShare": 0.27,
+    "agricultureShare": 0.043,
+    "pollution": 0.99
+   }
+  },
+  {
+   "code": "AR",
+   "name": "Arkansas",
+   "article": "l'",
+   "region": "WSC",
+   "population": 3149000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.039,
+    "incomeIndex": 0.92,
+    "urbanShare": 0.3,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.46,
+    "healthAccess": 0.92,
+    "crime": 0.88,
+    "industryShare": 0.18,
+    "agricultureShare": 0.05,
+    "pollution": 0.88
+   }
+  },
+  {
+   "code": "TN",
+   "name": "Tennessee",
+   "article": "la",
+   "region": "ESC",
+   "population": 7212000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.036,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.54,
+    "seniorShare": 0.24,
+    "politicalLeaning": 0.62,
+    "healthAccess": 1.02,
+    "crime": 1.02,
+    "industryShare": 0.14,
+    "agricultureShare": 0.045,
+    "pollution": 1.02
+   }
+  },
+  {
+   "code": "WV",
+   "name": "Virginie-Occidentale",
+   "article": "la",
+   "region": "SA",
+   "population": 1828000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.051,
+    "incomeIndex": 0.88,
+    "urbanShare": 0.27,
+    "seniorShare": 0.17,
+    "politicalLeaning": 0.07,
+    "healthAccess": 0.91,
+    "crime": 0.86,
+    "industryShare": 0.17,
+    "agricultureShare": 0.051,
+    "pollution": 0.86
+   }
+  },
+  {
+   "code": "IN",
+   "name": "Indiana",
+   "article": "l'",
+   "region": "ENC",
+   "population": 7009000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.035,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.51,
+    "seniorShare": 0.18,
+    "politicalLeaning": 0.28,
+    "healthAccess": 1.0,
+    "crime": 1.01,
+    "industryShare": 0.22,
+    "agricultureShare": 0.044,
+    "pollution": 1.01
+   }
+  }
+ ],
+ "cities": [
+  {
+   "id": "usa_los_angeles",
+   "name": "Los Angeles",
+   "department": "CA",
+   "lon": -118.232,
+   "lat": 34.049,
+   "population": 8750000,
+   "urbanAreaPopulation": 12500000,
+   "rank": 1
+  },
+  {
+   "id": "usa_chicago",
+   "name": "Chicago",
+   "department": "IL",
+   "lon": -87.635,
+   "lat": 41.848,
+   "population": 6293000,
+   "urbanAreaPopulation": 8990000,
+   "rank": 1
+  },
+  {
+   "id": "usa_miami",
+   "name": "Miami",
+   "department": "FL",
+   "lon": -80.226,
+   "lat": 25.79,
+   "population": 3909499,
+   "urbanAreaPopulation": 5585000,
+   "rank": 1
+  },
+  {
+   "id": "usa_philadelphie",
+   "name": "Philadelphie",
+   "department": "PA",
+   "lon": -75.18,
+   "lat": 39.946,
+   "population": 3844399,
+   "urbanAreaPopulation": 5492000,
+   "rank": 1
+  },
+  {
+   "id": "usa_dallas",
+   "name": "Dallas",
+   "department": "TX",
+   "lon": -96.795,
+   "lat": 32.772,
+   "population": 3358600,
+   "urbanAreaPopulation": 4798000,
+   "rank": 1
+  },
+  {
+   "id": "usa_atlanta",
+   "name": "Atlanta",
+   "department": "GA",
+   "lon": -84.368,
+   "lat": 33.739,
+   "population": 3154200,
+   "urbanAreaPopulation": 4506000,
+   "rank": 1
+  },
+  {
+   "id": "usa_boston",
+   "name": "Boston",
+   "department": "MA",
+   "lon": -71.072,
+   "lat": 42.332,
+   "population": 3126900,
+   "urbanAreaPopulation": 4467000,
+   "rank": 1
+  },
+  {
+   "id": "usa_houston",
+   "name": "Houston",
+   "department": "TX",
+   "lon": -95.348,
+   "lat": 29.741,
+   "population": 3121300,
+   "urbanAreaPopulation": 4459000,
+   "rank": 1
+  },
+  {
+   "id": "usa_washington",
+   "name": "Washington",
+   "department": "DC",
+   "lon": -77.011,
+   "lat": 38.901,
+   "population": 3036600,
+   "urbanAreaPopulation": 4338000,
+   "rank": 1
+  },
+  {
+   "id": "usa_detroit",
+   "name": "Détroit",
+   "department": "MI",
+   "lon": -83.051,
+   "lat": 42.334,
+   "population": 2870700,
+   "urbanAreaPopulation": 4101000,
+   "rank": 1
+  },
+  {
+   "id": "usa_phoenix",
+   "name": "Phoenix",
+   "department": "AZ",
+   "lon": -112.067,
+   "lat": 33.448,
+   "population": 2485700,
+   "urbanAreaPopulation": 3551000,
+   "rank": 1
+  },
+  {
+   "id": "usa_seattle",
+   "name": "Seattle",
+   "department": "WA",
+   "lon": -122.315,
+   "lat": 47.6,
+   "population": 2151800,
+   "urbanAreaPopulation": 3074000,
+   "rank": 1
+  },
+  {
+   "id": "usa_irvine",
+   "name": "Irvine",
+   "department": "CA",
+   "lon": -117.83,
+   "lat": 33.68,
+   "population": 2107162,
+   "urbanAreaPopulation": 3010232,
+   "rank": 1
+  },
+  {
+   "id": "usa_san_diego",
+   "name": "San Diego",
+   "department": "CA",
+   "lon": -117.151,
+   "lat": 32.719,
+   "population": 2041199,
+   "urbanAreaPopulation": 2916000,
+   "rank": 1
+  },
+  {
+   "id": "usa_minneapolis",
+   "name": "Minneapolis",
+   "department": "MN",
+   "lon": -93.254,
+   "lat": 44.982,
+   "population": 1831200,
+   "urbanAreaPopulation": 2616000,
+   "rank": 2
+  },
+  {
+   "id": "usa_tampa",
+   "name": "Tampa",
+   "department": "FL",
+   "lon": -82.461,
+   "lat": 27.949,
+   "population": 1619800,
+   "urbanAreaPopulation": 2314000,
+   "rank": 2
+  },
+  {
+   "id": "usa_denver",
+   "name": "Denver",
+   "department": "CO",
+   "lon": -104.986,
+   "lat": 39.741,
+   "population": 1619100,
+   "urbanAreaPopulation": 2313000,
+   "rank": 2
+  },
+  {
+   "id": "usa_baltimore",
+   "name": "Baltimore",
+   "department": "MD",
+   "lon": -76.615,
+   "lat": 39.282,
+   "population": 1578500,
+   "urbanAreaPopulation": 2255000,
+   "rank": 2
+  },
+  {
+   "id": "usa_saint_louis",
+   "name": "Saint-Louis",
+   "department": "MO",
+   "lon": -90.242,
+   "lat": 38.637,
+   "population": 1539300,
+   "urbanAreaPopulation": 2199000,
+   "rank": 2
+  },
+  {
+   "id": "usa_fort_lauderdale",
+   "name": "Fort Lauderdale",
+   "department": "FL",
+   "lon": -80.142,
+   "lat": 26.136,
+   "population": 1429429,
+   "urbanAreaPopulation": 2042042,
+   "rank": 2
+  },
+  {
+   "id": "usa_long_beach",
+   "name": "Long Beach",
+   "department": "CA",
+   "lon": -118.2,
+   "lat": 33.777,
+   "population": 1425293,
+   "urbanAreaPopulation": 2036134,
+   "rank": 2
+  },
+  {
+   "id": "usa_cleveland",
+   "name": "Cleveland",
+   "department": "OH",
+   "lon": -81.697,
+   "lat": 41.472,
+   "population": 1323000,
+   "urbanAreaPopulation": 1890000,
+   "rank": 2
+  },
+  {
+   "id": "usa_portland",
+   "name": "Portland",
+   "department": "OR",
+   "lon": -122.682,
+   "lat": 45.522,
+   "population": 1312500,
+   "urbanAreaPopulation": 1875000,
+   "rank": 2
+  },
+  {
+   "id": "usa_pittsburgh",
+   "name": "Pittsburgh",
+   "department": "PA",
+   "lon": -80.002,
+   "lat": 40.432,
+   "population": 1286600,
+   "urbanAreaPopulation": 1838000,
+   "rank": 2
+  },
+  {
+   "id": "usa_las_vegas",
+   "name": "Las Vegas",
+   "department": "NV",
+   "lon": -115.151,
+   "lat": 36.165,
+   "population": 1276100,
+   "urbanAreaPopulation": 1823000,
+   "rank": 2
+  },
+  {
+   "id": "usa_san_bernardino",
+   "name": "San Bernardino",
+   "department": "CA",
+   "lon": -117.302,
+   "lat": 34.122,
+   "population": 1221500,
+   "urbanAreaPopulation": 1745000,
+   "rank": 2
+  },
+  {
+   "id": "usa_san_jose",
+   "name": "San José",
+   "department": "CA",
+   "lon": -121.888,
+   "lat": 37.331,
+   "population": 1167600,
+   "urbanAreaPopulation": 1668000,
+   "rank": 2
+  },
+  {
+   "id": "usa_cincinnati",
+   "name": "Cincinnati",
+   "department": "OH",
+   "lon": -84.459,
+   "lat": 39.164,
+   "population": 1145200,
+   "urbanAreaPopulation": 1636000,
+   "rank": 2
+  },
+  {
+   "id": "usa_sacramento",
+   "name": "Sacramento",
+   "department": "CA",
+   "lon": -121.472,
+   "lat": 38.577,
+   "population": 1122800,
+   "urbanAreaPopulation": 1604000,
+   "rank": 2
+  },
+  {
+   "id": "usa_oakland",
+   "name": "Oakland",
+   "department": "CA",
+   "lon": -122.278,
+   "lat": 37.805,
+   "population": 1057189,
+   "urbanAreaPopulation": 1510271,
+   "rank": 2
+  },
+  {
+   "id": "usa_virginia_beach",
+   "name": "Virginia Beach",
+   "department": "VA",
+   "lon": -75.98,
+   "lat": 36.855,
+   "population": 1043699,
+   "urbanAreaPopulation": 1491000,
+   "rank": 2
+  },
+  {
+   "id": "usa_san_antonio",
+   "name": "San Antonio",
+   "department": "TX",
+   "lon": -98.493,
+   "lat": 29.42,
+   "population": 1031099,
+   "urbanAreaPopulation": 1473000,
+   "rank": 2
+  },
+  {
+   "id": "usa_kansas_city",
+   "name": "Kansas City",
+   "department": "MO",
+   "lon": -94.606,
+   "lat": 39.109,
+   "population": 1028299,
+   "urbanAreaPopulation": 1469000,
+   "rank": 2
+  },
+  {
+   "id": "usa_fort_worth",
+   "name": "Fort Worth",
+   "department": "TX",
+   "lon": -97.34,
+   "lat": 32.74,
+   "population": 1008317,
+   "urbanAreaPopulation": 1440454,
+   "rank": 2
+  },
+  {
+   "id": "usa_indianapolis",
+   "name": "Indianapolis",
+   "department": "IN",
+   "lon": -86.172,
+   "lat": 39.752,
+   "population": 1005199,
+   "urbanAreaPopulation": 1436000,
+   "rank": 2
+  },
+  {
+   "id": "usa_milwaukee",
+   "name": "Milwaukee",
+   "department": "WI",
+   "lon": -87.917,
+   "lat": 43.03,
+   "population": 971599,
+   "urbanAreaPopulation": 1388000,
+   "rank": 2
+  },
+  {
+   "id": "usa_orlando",
+   "name": "Orlando",
+   "department": "FL",
+   "lon": -81.382,
+   "lat": 28.512,
+   "population": 944999,
+   "urbanAreaPopulation": 1350000,
+   "rank": 2
+  },
+  {
+   "id": "usa_providence",
+   "name": "Providence",
+   "department": "RI",
+   "lon": -71.417,
+   "lat": 41.823,
+   "population": 893900,
+   "urbanAreaPopulation": 1277000,
+   "rank": 2
+  },
+  {
+   "id": "usa_columbus",
+   "name": "Columbus",
+   "department": "OH",
+   "lon": -82.992,
+   "lat": 39.982,
+   "population": 889000,
+   "urbanAreaPopulation": 1270000,
+   "rank": 2
+  },
+  {
+   "id": "usa_west_palm_beach",
+   "name": "West Palm Beach",
+   "department": "FL",
+   "lon": -80.124,
+   "lat": 26.745,
+   "population": 875000,
+   "urbanAreaPopulation": 1250000,
+   "rank": 2
+  },
+  {
+   "id": "usa_raleigh",
+   "name": "Raleigh",
+   "department": "NC",
+   "lon": -78.647,
+   "lat": 35.773,
+   "population": 814460,
+   "urbanAreaPopulation": 1163515,
+   "rank": 2
+  },
+  {
+   "id": "usa_austin",
+   "name": "Austin",
+   "department": "TX",
+   "lon": -97.745,
+   "lat": 30.269,
+   "population": 812700,
+   "urbanAreaPopulation": 1161000,
+   "rank": 2
+  },
+  {
+   "id": "usa_birmingham",
+   "name": "Birmingham",
+   "department": "AL",
+   "lon": -86.825,
+   "lat": 33.53,
+   "population": 789632,
+   "urbanAreaPopulation": 1128047,
+   "rank": 2
+  },
+  {
+   "id": "usa_mesa",
+   "name": "Mesa",
+   "department": "AZ",
+   "lon": -111.821,
+   "lat": 33.415,
+   "population": 759775,
+   "urbanAreaPopulation": 1085394,
+   "rank": 2
+  },
+  {
+   "id": "usa_memphis",
+   "name": "Memphis",
+   "department": "TN",
+   "lon": -90.029,
+   "lat": 35.145,
+   "population": 756700,
+   "urbanAreaPopulation": 1081000,
+   "rank": 2
+  },
+  {
+   "id": "usa_norfolk",
+   "name": "Norfolk",
+   "department": "VA",
+   "lon": -76.28,
+   "lat": 36.85,
+   "population": 733508,
+   "urbanAreaPopulation": 1047869,
+   "rank": 2
+  },
+  {
+   "id": "usa_bridgeport",
+   "name": "Bridgeport",
+   "department": "CT",
+   "lon": -73.202,
+   "lat": 41.182,
+   "population": 712600,
+   "urbanAreaPopulation": 1018000,
+   "rank": 2
+  },
+  {
+   "id": "usa_buffalo",
+   "name": "Buffalo",
+   "department": "NY",
+   "lon": -78.882,
+   "lat": 42.882,
+   "population": 711200,
+   "urbanAreaPopulation": 1016000,
+   "rank": 2
+  },
+  {
+   "id": "usa_charlotte",
+   "name": "Charlotte",
+   "department": "NC",
+   "lon": -80.832,
+   "lat": 35.207,
+   "population": 696500,
+   "urbanAreaPopulation": 995000,
+   "rank": 2
+  },
+  {
+   "id": "usa_jacksonville",
+   "name": "Jacksonville",
+   "department": "FL",
+   "lon": -81.672,
+   "lat": 30.332,
+   "population": 691600,
+   "urbanAreaPopulation": 988000,
+   "rank": 2
+  },
+  {
+   "id": "usa_salt_lake_city",
+   "name": "Salt Lake City",
+   "department": "UT",
+   "lon": -111.932,
+   "lat": 40.777,
+   "population": 676200,
+   "urbanAreaPopulation": 966000,
+   "rank": 2
+  },
+  {
+   "id": "usa_louisville",
+   "name": "Louisville",
+   "department": "KY",
+   "lon": -85.751,
+   "lat": 38.227,
+   "population": 663600,
+   "urbanAreaPopulation": 948000,
+   "rank": 2
+  },
+  {
+   "id": "usa_tulsa",
+   "name": "Tulsa",
+   "department": "OK",
+   "lon": -95.93,
+   "lat": 36.12,
+   "population": 662873,
+   "urbanAreaPopulation": 946962,
+   "rank": 2
+  },
+  {
+   "id": "usa_hartford",
+   "name": "Hartford",
+   "department": "CT",
+   "lon": -72.682,
+   "lat": 41.772,
+   "population": 639100,
+   "urbanAreaPopulation": 913000,
+   "rank": 2
+  },
+  {
+   "id": "usa_richmond",
+   "name": "Richmond",
+   "department": "VA",
+   "lon": -77.452,
+   "lat": 37.552,
+   "population": 638400,
+   "urbanAreaPopulation": 912000,
+   "rank": 2
+  },
+  {
+   "id": "usa_albuquerque",
+   "name": "Albuquerque",
+   "department": "NM",
+   "lon": -106.641,
+   "lat": 35.105,
+   "population": 629049,
+   "urbanAreaPopulation": 898642,
+   "rank": 2
+  },
+  {
+   "id": "usa_omaha",
+   "name": "Omaha",
+   "department": "NE",
+   "lon": -96.01,
+   "lat": 41.24,
+   "population": 613977,
+   "urbanAreaPopulation": 877110,
+   "rank": 3
+  },
+  {
+   "id": "usa_nashville",
+   "name": "Nashville",
+   "department": "TN",
+   "lon": -86.782,
+   "lat": 36.172,
+   "population": 613900,
+   "urbanAreaPopulation": 877000,
+   "rank": 3
+  },
+  {
+   "id": "usa_albany",
+   "name": "Albany",
+   "department": "NY",
+   "lon": -73.758,
+   "lat": 42.654,
+   "population": 609501,
+   "urbanAreaPopulation": 870716,
+   "rank": 3
+  },
+  {
+   "id": "usa_new_haven",
+   "name": "New Haven",
+   "department": "CT",
+   "lon": -72.9,
+   "lat": 41.33,
+   "population": 592736,
+   "urbanAreaPopulation": 846766,
+   "rank": 3
+  },
+  {
+   "id": "usa_tucson",
+   "name": "Tucson",
+   "department": "AZ",
+   "lon": -110.892,
+   "lat": 32.207,
+   "population": 576100,
+   "urbanAreaPopulation": 823000,
+   "rank": 3
+  },
+  {
+   "id": "usa_st__petersburg",
+   "name": "St. Petersburg",
+   "department": "FL",
+   "lon": -82.679,
+   "lat": 27.771,
+   "population": 560219,
+   "urbanAreaPopulation": 800313,
+   "rank": 3
+  },
+  {
+   "id": "usa_oklahoma_city",
+   "name": "Oklahoma City",
+   "department": "OK",
+   "lon": -97.521,
+   "lat": 35.472,
+   "population": 551600,
+   "urbanAreaPopulation": 788000,
+   "rank": 3
+  },
+  {
+   "id": "usa_honolulu",
+   "name": "Honolulu",
+   "department": "HI",
+   "lon": -157.858,
+   "lat": 21.303,
+   "population": 550200,
+   "urbanAreaPopulation": 786000,
+   "rank": 3
+  },
+  {
+   "id": "usa_la_nouvelle_orleans",
+   "name": "La Nouvelle-Orléans",
+   "department": "LA",
+   "lon": -90.088,
+   "lat": 29.969,
+   "population": 549500,
+   "urbanAreaPopulation": 785000,
+   "rank": 3
+  },
+  {
+   "id": "usa_dayton",
+   "name": "Dayton",
+   "department": "OH",
+   "lon": -84.202,
+   "lat": 39.752,
+   "population": 541100,
+   "urbanAreaPopulation": 773000,
+   "rank": 3
+  },
+  {
+   "id": "usa_rochester",
+   "name": "Rochester",
+   "department": "NY",
+   "lon": -77.622,
+   "lat": 43.172,
+   "population": 528500,
+   "urbanAreaPopulation": 755000,
+   "rank": 3
+  },
+  {
+   "id": "usa_el_paso",
+   "name": "El Paso",
+   "department": "TX",
+   "lon": -106.512,
+   "lat": 31.782,
+   "population": 527100,
+   "urbanAreaPopulation": 753000,
+   "rank": 3
+  },
+  {
+   "id": "usa_stamford",
+   "name": "Stamford",
+   "department": "CT",
+   "lon": -73.539,
+   "lat": 41.053,
+   "population": 522843,
+   "urbanAreaPopulation": 746920,
+   "rank": 3
+  },
+  {
+   "id": "usa_saint_paul",
+   "name": "Saint Paul",
+   "department": "MN",
+   "lon": -93.085,
+   "lat": 44.944,
+   "population": 514397,
+   "urbanAreaPopulation": 734854,
+   "rank": 3
+  },
+  {
+   "id": "usa_arlington",
+   "name": "Arlington",
+   "department": "TX",
+   "lon": -97.02,
+   "lat": 32.685,
+   "population": 507343,
+   "urbanAreaPopulation": 724777,
+   "rank": 3
+  },
+  {
+   "id": "usa_lowell",
+   "name": "Lowell",
+   "department": "MA",
+   "lon": -71.317,
+   "lat": 42.634,
+   "population": 506540,
+   "urbanAreaPopulation": 723629,
+   "rank": 3
+  },
+  {
+   "id": "usa_tacoma",
+   "name": "Tacoma",
+   "department": "WA",
+   "lon": -122.447,
+   "lat": 47.241,
+   "population": 503907,
+   "urbanAreaPopulation": 719868,
+   "rank": 3
+  },
+  {
+   "id": "usa_akron",
+   "name": "Akron",
+   "department": "OH",
+   "lon": -81.52,
+   "lat": 41.07,
+   "population": 492239,
+   "urbanAreaPopulation": 703200,
+   "rank": 3
+  },
+  {
+   "id": "usa_stockton",
+   "name": "Stockton",
+   "department": "CA",
+   "lon": -121.29,
+   "lat": 37.958,
+   "population": 479714,
+   "urbanAreaPopulation": 685306,
+   "rank": 3
+  },
+  {
+   "id": "usa_syracuse",
+   "name": "Syracuse",
+   "department": "NY",
+   "lon": -76.15,
+   "lat": 43.05,
+   "population": 463803,
+   "urbanAreaPopulation": 662577,
+   "rank": 3
+  },
+  {
+   "id": "usa_knoxville",
+   "name": "Knoxville",
+   "department": "TN",
+   "lon": -83.92,
+   "lat": 35.97,
+   "population": 458779,
+   "urbanAreaPopulation": 655400,
+   "rank": 3
+  },
+  {
+   "id": "usa_pasadena",
+   "name": "Pasadena",
+   "department": "TX",
+   "lon": -95.148,
+   "lat": 29.661,
+   "population": 439944,
+   "urbanAreaPopulation": 628492,
+   "rank": 3
+  },
+  {
+   "id": "usa_san_mateo",
+   "name": "San Mateo",
+   "department": "CA",
+   "lon": -122.303,
+   "lat": 37.541,
+   "population": 438484,
+   "urbanAreaPopulation": 626406,
+   "rank": 3
+  },
+  {
+   "id": "usa_fresno",
+   "name": "Fresno",
+   "department": "CA",
+   "lon": -119.773,
+   "lat": 36.748,
+   "population": 431447,
+   "urbanAreaPopulation": 616353,
+   "rank": 3
+  },
+  {
+   "id": "usa_oceanside",
+   "name": "Oceanside",
+   "department": "CA",
+   "lon": -117.346,
+   "lat": 33.191,
+   "population": 426897,
+   "urbanAreaPopulation": 609854,
+   "rank": 3
+  },
+  {
+   "id": "usa_gary",
+   "name": "Gary",
+   "department": "IN",
+   "lon": -87.33,
+   "lat": 41.58,
+   "population": 413826,
+   "urbanAreaPopulation": 591180,
+   "rank": 3
+  },
+  {
+   "id": "usa_sarasota",
+   "name": "Sarasota",
+   "department": "FL",
+   "lon": -82.531,
+   "lat": 27.336,
+   "population": 412971,
+   "urbanAreaPopulation": 589959,
+   "rank": 3
+  },
+  {
+   "id": "usa_aurora",
+   "name": "Aurora",
+   "department": "CO",
+   "lon": -104.808,
+   "lat": 39.696,
+   "population": 411278,
+   "urbanAreaPopulation": 587540,
+   "rank": 3
+  },
+  {
+   "id": "usa_covington",
+   "name": "Covington",
+   "department": "KY",
+   "lon": -84.509,
+   "lat": 39.084,
+   "population": 409842,
+   "urbanAreaPopulation": 585489,
+   "rank": 3
+  },
+  {
+   "id": "usa_joliet",
+   "name": "Joliet",
+   "department": "IL",
+   "lon": -88.107,
+   "lat": 41.53,
+   "population": 404922,
+   "urbanAreaPopulation": 578460,
+   "rank": 3
+  },
+  {
+   "id": "usa_grand_rapids",
+   "name": "Grand Rapids",
+   "department": "MI",
+   "lon": -85.67,
+   "lat": 42.964,
+   "population": 375080,
+   "urbanAreaPopulation": 535829,
+   "rank": 3
+  },
+  {
+   "id": "usa_harrisburg",
+   "name": "Harrisburg",
+   "department": "PA",
+   "lon": -76.885,
+   "lat": 40.274,
+   "population": 370224,
+   "urbanAreaPopulation": 528892,
+   "rank": 3
+  },
+  {
+   "id": "usa_vancouver",
+   "name": "Vancouver",
+   "department": "OR",
+   "lon": -122.64,
+   "lat": 45.63,
+   "population": 368061,
+   "urbanAreaPopulation": 525802,
+   "rank": 3
+  },
+  {
+   "id": "usa_glendale",
+   "name": "Glendale",
+   "department": "AZ",
+   "lon": -112.174,
+   "lat": 33.535,
+   "population": 350000,
+   "urbanAreaPopulation": 500000,
+   "rank": 3
+  },
+  {
+   "id": "usa_allentown",
+   "name": "Allentown",
+   "department": "PA",
+   "lon": -75.5,
+   "lat": 40.6,
+   "population": 347509,
+   "urbanAreaPopulation": 496442,
+   "rank": 3
+  },
+  {
+   "id": "usa_berkeley",
+   "name": "Berkeley",
+   "department": "CA",
+   "lon": -122.271,
+   "lat": 37.874,
+   "population": 347449,
+   "urbanAreaPopulation": 496356,
+   "rank": 3
+  },
+  {
+   "id": "usa_colorado_springs",
+   "name": "Colorado Springs",
+   "department": "CO",
+   "lon": -104.792,
+   "lat": 38.863,
+   "population": 345557,
+   "urbanAreaPopulation": 493654,
+   "rank": 3
+  },
+  {
+   "id": "usa_everett",
+   "name": "Everett",
+   "department": "WA",
+   "lon": -122.2,
+   "lat": 47.96,
+   "population": 340832,
+   "urbanAreaPopulation": 486903,
+   "rank": 3
+  },
+  {
+   "id": "usa_toledo",
+   "name": "Toledo",
+   "department": "OH",
+   "lon": -83.553,
+   "lat": 41.64,
+   "population": 328946,
+   "urbanAreaPopulation": 469924,
+   "rank": 3
+  },
+  {
+   "id": "usa_bakersfield",
+   "name": "Bakersfield",
+   "department": "CA",
+   "lon": -119.02,
+   "lat": 35.37,
+   "population": 310190,
+   "urbanAreaPopulation": 443129,
+   "rank": 3
+  },
+  {
+   "id": "usa_baton_rouge",
+   "name": "Baton Rouge",
+   "department": "LA",
+   "lon": -91.14,
+   "lat": 30.458,
+   "population": 295450,
+   "urbanAreaPopulation": 422072,
+   "rank": 3
+  },
+  {
+   "id": "usa_springfield",
+   "name": "Springfield",
+   "department": "MA",
+   "lon": -72.58,
+   "lat": 42.12,
+   "population": 295246,
+   "urbanAreaPopulation": 421780,
+   "rank": 3
+  },
+  {
+   "id": "usa_charleston",
+   "name": "Charleston",
+   "department": "SC",
+   "lon": -79.992,
+   "lat": 32.792,
+   "population": 288358,
+   "urbanAreaPopulation": 411940,
+   "rank": 3
+  },
+  {
+   "id": "usa_miami_beach",
+   "name": "Miami Beach",
+   "department": "FL",
+   "lon": -80.132,
+   "lat": 25.81,
+   "population": 285425,
+   "urbanAreaPopulation": 407750,
+   "rank": 3
+  },
+  {
+   "id": "usa_wichita",
+   "name": "Wichita",
+   "department": "KS",
+   "lon": -97.328,
+   "lat": 37.676,
+   "population": 281290,
+   "urbanAreaPopulation": 401843,
+   "rank": 3
+  },
+  {
+   "id": "usa_columbia",
+   "name": "Columbia",
+   "department": "MO",
+   "lon": -92.334,
+   "lat": 38.952,
+   "population": 278665,
+   "urbanAreaPopulation": 398093,
+   "rank": 3
+  },
+  {
+   "id": "usa_metairie",
+   "name": "Metairie",
+   "department": "LA",
+   "lon": -90.153,
+   "lat": 29.984,
+   "population": 275944,
+   "urbanAreaPopulation": 394206,
+   "rank": 3
+  },
+  {
+   "id": "usa_palm_springs",
+   "name": "Palm Springs",
+   "department": "CA",
+   "lon": -116.533,
+   "lat": 33.777,
+   "population": 273080,
+   "urbanAreaPopulation": 390115,
+   "rank": 3
+  },
+  {
+   "id": "usa_elgin",
+   "name": "Elgin",
+   "department": "IL",
+   "lon": -88.29,
+   "lat": 42.039,
+   "population": 272659,
+   "urbanAreaPopulation": 389514,
+   "rank": 3
+  },
+  {
+   "id": "usa_greensboro",
+   "name": "Greensboro",
+   "department": "NC",
+   "lon": -79.8,
+   "lat": 36.07,
+   "population": 272220,
+   "urbanAreaPopulation": 388887,
+   "rank": 3
+  },
+  {
+   "id": "usa_des_moines",
+   "name": "Des Moines",
+   "department": "IA",
+   "lon": -93.62,
+   "lat": 41.58,
+   "population": 266458,
+   "urbanAreaPopulation": 380655,
+   "rank": 3
+  },
+  {
+   "id": "usa_ogden",
+   "name": "Ogden",
+   "department": "UT",
+   "lon": -111.968,
+   "lat": 41.232,
+   "population": 264056,
+   "urbanAreaPopulation": 377224,
+   "rank": 3
+  },
+  {
+   "id": "usa_hampton",
+   "name": "Hampton",
+   "department": "VA",
+   "lon": -76.35,
+   "lat": 37.03,
+   "population": 256736,
+   "urbanAreaPopulation": 366766,
+   "rank": 3
+  },
+  {
+   "id": "usa_trenton",
+   "name": "Trenton",
+   "department": "NJ",
+   "lon": -74.743,
+   "lat": 40.217,
+   "population": 256559,
+   "urbanAreaPopulation": 366513,
+   "rank": 3
+  },
+  {
+   "id": "usa_mcallen",
+   "name": "McAllen",
+   "department": "TX",
+   "lon": -98.23,
+   "lat": 26.203,
+   "population": 254802,
+   "urbanAreaPopulation": 364004,
+   "rank": 3
+  },
+  {
+   "id": "usa_saint_charles",
+   "name": "Saint Charles",
+   "department": "MO",
+   "lon": -90.506,
+   "lat": 38.784,
+   "population": 252339,
+   "urbanAreaPopulation": 360485,
+   "rank": 3
+  },
+  {
+   "id": "usa_provo",
+   "name": "Provo",
+   "department": "UT",
+   "lon": -111.638,
+   "lat": 40.249,
+   "population": 249698,
+   "urbanAreaPopulation": 356712,
+   "rank": 3
+  },
+  {
+   "id": "usa_greenville",
+   "name": "Greenville",
+   "department": "SC",
+   "lon": -82.394,
+   "lat": 34.853,
+   "population": 245667,
+   "urbanAreaPopulation": 350954,
+   "rank": 3
+  },
+  {
+   "id": "usa_evanston",
+   "name": "Evanston",
+   "department": "IL",
+   "lon": -87.7,
+   "lat": 42.048,
+   "population": 244999,
+   "urbanAreaPopulation": 350000,
+   "rank": 3
+  },
+  {
+   "id": "usa_spokane",
+   "name": "Spokane",
+   "department": "WA",
+   "lon": -117.42,
+   "lat": 47.67,
+   "population": 243393,
+   "urbanAreaPopulation": 347705,
+   "rank": 3
+  },
+  {
+   "id": "usa_boise",
+   "name": "Boise",
+   "department": "ID",
+   "lon": -116.227,
+   "lat": 43.609,
+   "population": 236649,
+   "urbanAreaPopulation": 338071,
+   "rank": 3
+  },
+  {
+   "id": "usa_salem",
+   "name": "Salem",
+   "department": "MA",
+   "lon": -70.883,
+   "lat": 42.522,
+   "population": 234856,
+   "urbanAreaPopulation": 335509,
+   "rank": 3
+  },
+  {
+   "id": "usa_sanford",
+   "name": "Sanford",
+   "department": "FL",
+   "lon": -81.28,
+   "lat": 28.79,
+   "population": 233421,
+   "urbanAreaPopulation": 333460,
+   "rank": 3
+  },
+  {
+   "id": "usa_reno",
+   "name": "Reno",
+   "department": "NV",
+   "lon": -119.82,
+   "lat": 39.53,
+   "population": 230009,
+   "urbanAreaPopulation": 328585,
+   "rank": 3
+  },
+  {
+   "id": "usa_madison",
+   "name": "Madison",
+   "department": "WI",
+   "lon": -89.401,
+   "lat": 43.073,
+   "population": 229212,
+   "urbanAreaPopulation": 327447,
+   "rank": 3
+  },
+  {
+   "id": "usa_modesto",
+   "name": "Modesto",
+   "department": "CA",
+   "lon": -120.99,
+   "lat": 37.655,
+   "population": 226370,
+   "urbanAreaPopulation": 323386,
+   "rank": 3
+  },
+  {
+   "id": "usa_youngstown",
+   "name": "Youngstown",
+   "department": "OH",
+   "lon": -80.65,
+   "lat": 41.1,
+   "population": 218393,
+   "urbanAreaPopulation": 311990,
+   "rank": 3
+  },
+  {
+   "id": "usa_durham",
+   "name": "Durham",
+   "department": "NC",
+   "lon": -78.92,
+   "lat": 36.0,
+   "population": 216646,
+   "urbanAreaPopulation": 309495,
+   "rank": 3
+  },
+  {
+   "id": "usa_fort_wayne",
+   "name": "Fort Wayne",
+   "department": "IN",
+   "lon": -85.13,
+   "lat": 41.08,
+   "population": 209909,
+   "urbanAreaPopulation": 299871,
+   "rank": 3
+  },
+  {
+   "id": "usa_riverside",
+   "name": "Riverside",
+   "department": "CA",
+   "lon": -117.398,
+   "lat": 33.942,
+   "population": 208287,
+   "urbanAreaPopulation": 297554,
+   "rank": 3
+  },
+  {
+   "id": "usa_flint",
+   "name": "Flint",
+   "department": "MI",
+   "lon": -83.688,
+   "lat": 43.013,
+   "population": 206648,
+   "urbanAreaPopulation": 295212,
+   "rank": 3
+  },
+  {
+   "id": "usa_worcester",
+   "name": "Worcester",
+   "department": "MA",
+   "lon": -71.8,
+   "lat": 42.27,
+   "population": 201155,
+   "urbanAreaPopulation": 287365,
+   "rank": 3
+  },
+  {
+   "id": "usa_bartlett",
+   "name": "Bartlett",
+   "department": "TN",
+   "lon": -89.841,
+   "lat": 35.223,
+   "population": 200496,
+   "urbanAreaPopulation": 286423,
+   "rank": 3
+  },
+  {
+   "id": "usa_winston_salem",
+   "name": "Winston-Salem",
+   "department": "NC",
+   "lon": -80.26,
+   "lat": 36.105,
+   "population": 197178,
+   "urbanAreaPopulation": 281683,
+   "rank": 3
+  },
+  {
+   "id": "usa_newark",
+   "name": "Newark",
+   "department": "NJ",
+   "lon": -74.17,
+   "lat": 40.7,
+   "population": 196086,
+   "urbanAreaPopulation": 280123,
+   "rank": 3
+  },
+  {
+   "id": "usa_lansing",
+   "name": "Lansing",
+   "department": "MI",
+   "lon": -84.547,
+   "lat": 42.734,
+   "population": 195966,
+   "urbanAreaPopulation": 279952,
+   "rank": 3
+  },
+  {
+   "id": "usa_corpus_christi",
+   "name": "Corpus Christi",
+   "department": "TX",
+   "lon": -97.402,
+   "lat": 27.743,
+   "population": 194217,
+   "urbanAreaPopulation": 277454,
+   "rank": 3
+  },
+  {
+   "id": "usa_little_rock",
+   "name": "Little Rock",
+   "department": "AR",
+   "lon": -92.331,
+   "lat": 34.736,
+   "population": 189625,
+   "urbanAreaPopulation": 270893,
+   "rank": 3
+  },
+  {
+   "id": "usa_ann_arbor",
+   "name": "Ann Arbor",
+   "department": "MI",
+   "lon": -83.72,
+   "lat": 42.3,
+   "population": 186183,
+   "urbanAreaPopulation": 265976,
+   "rank": 3
+  },
+  {
+   "id": "usa_melbourne",
+   "name": "Melbourne",
+   "department": "FL",
+   "lon": -80.608,
+   "lat": 28.083,
+   "population": 185789,
+   "urbanAreaPopulation": 265414,
+   "rank": 3
+  },
+  {
+   "id": "usa_lexington",
+   "name": "Lexington",
+   "department": "KY",
+   "lon": -84.5,
+   "lat": 38.05,
+   "population": 185204,
+   "urbanAreaPopulation": 264578,
+   "rank": 3
+  },
+  {
+   "id": "usa_augusta",
+   "name": "Augusta",
+   "department": "GA",
+   "lon": -81.985,
+   "lat": 33.461,
+   "population": 183632,
+   "urbanAreaPopulation": 262332,
+   "rank": 3
+  },
+  {
+   "id": "usa_naples",
+   "name": "Naples",
+   "department": "FL",
+   "lon": -81.795,
+   "lat": 26.142,
+   "population": 183614,
+   "urbanAreaPopulation": 262306,
+   "rank": 3
+  },
+  {
+   "id": "usa_lakeville",
+   "name": "Lakeville",
+   "department": "MN",
+   "lon": -93.243,
+   "lat": 44.65,
+   "population": 182915,
+   "urbanAreaPopulation": 261308,
+   "rank": 3
+  },
+  {
+   "id": "usa_anchorage",
+   "name": "Anchorage",
+   "department": "AK",
+   "lon": -149.887,
+   "lat": 61.214,
+   "population": 182198,
+   "urbanAreaPopulation": 260283,
+   "rank": 3
+  },
+  {
+   "id": "usa_canton",
+   "name": "Canton",
+   "department": "OH",
+   "lon": -81.379,
+   "lat": 40.799,
+   "population": 181062,
+   "urbanAreaPopulation": 258660,
+   "rank": 3
+  },
+  {
+   "id": "usa_chattanooga",
+   "name": "Chattanooga",
+   "department": "TN",
+   "lon": -85.25,
+   "lat": 35.07,
+   "population": 180312,
+   "urbanAreaPopulation": 257589,
+   "rank": 3
+  },
+  {
+   "id": "usa_rockford",
+   "name": "Rockford",
+   "department": "IL",
+   "lon": -89.07,
+   "lat": 42.27,
+   "population": 179184,
+   "urbanAreaPopulation": 255978,
+   "rank": 3
+  },
+  {
+   "id": "usa_davenport",
+   "name": "Davenport",
+   "department": "IA",
+   "lon": -90.588,
+   "lat": 41.554,
+   "population": 179016,
+   "urbanAreaPopulation": 255738,
+   "rank": 3
+  },
+  {
+   "id": "usa_mobile",
+   "name": "Mobile",
+   "department": "AL",
+   "lon": -88.05,
+   "lat": 30.68,
+   "population": 177426,
+   "urbanAreaPopulation": 253466,
+   "rank": 3
+  },
+  {
+   "id": "usa_jackson",
+   "name": "Jackson",
+   "department": "MS",
+   "lon": -90.185,
+   "lat": 32.299,
+   "population": 175631,
+   "urbanAreaPopulation": 250902,
+   "rank": 3
+  },
+  {
+   "id": "usa_coral_springs",
+   "name": "Coral Springs",
+   "department": "FL",
+   "lon": -80.271,
+   "lat": 26.271,
+   "population": 175000,
+   "urbanAreaPopulation": 250000,
+   "rank": 3
+  },
+  {
+   "id": "usa_waukesha",
+   "name": "Waukesha",
+   "department": "WI",
+   "lon": -88.231,
+   "lat": 43.012,
+   "population": 174938,
+   "urbanAreaPopulation": 249912,
+   "rank": 3
+  },
+  {
+   "id": "usa_shreveport",
+   "name": "Shreveport",
+   "department": "LA",
+   "lon": -93.77,
+   "lat": 32.5,
+   "population": 173637,
+   "urbanAreaPopulation": 248053,
+   "rank": 3
+  },
+  {
+   "id": "usa_lincoln",
+   "name": "Lincoln",
+   "department": "NE",
+   "lon": -96.68,
+   "lat": 40.82,
+   "population": 172354,
+   "urbanAreaPopulation": 246220,
+   "rank": 3
+  },
+  {
+   "id": "usa_eugene",
+   "name": "Eugene",
+   "department": "OR",
+   "lon": -123.1,
+   "lat": 44.05,
+   "population": 171610,
+   "urbanAreaPopulation": 245158,
+   "rank": 3
+  },
+  {
+   "id": "usa_fayetteville",
+   "name": "Fayetteville",
+   "department": "NC",
+   "lon": -78.887,
+   "lat": 35.051,
+   "population": 170314,
+   "urbanAreaPopulation": 243306,
+   "rank": 3
+  },
+  {
+   "id": "usa_south_bend",
+   "name": "South Bend",
+   "department": "IN",
+   "lon": -86.25,
+   "lat": 41.683,
+   "population": 167875,
+   "urbanAreaPopulation": 239822,
+   "rank": 3
+  },
+  {
+   "id": "usa_pensacola",
+   "name": "Pensacola",
+   "department": "FL",
+   "lon": -87.217,
+   "lat": 30.421,
+   "population": 164068,
+   "urbanAreaPopulation": 234384,
+   "rank": 3
+  },
+  {
+   "id": "usa_santa_rosa",
+   "name": "Santa Rosa",
+   "department": "CA",
+   "lon": -122.7,
+   "lat": 38.45,
+   "population": 162254,
+   "urbanAreaPopulation": 231792,
+   "rank": 3
+  },
+  {
+   "id": "usa_fort_collins",
+   "name": "Fort Collins",
+   "department": "CO",
+   "lon": -105.059,
+   "lat": 40.561,
+   "population": 159869,
+   "urbanAreaPopulation": 228385,
+   "rank": 3
+  },
+  {
+   "id": "usa_fort_pierce",
+   "name": "Fort Pierce",
+   "department": "FL",
+   "lon": -80.326,
+   "lat": 27.447,
+   "population": 159771,
+   "urbanAreaPopulation": 228245,
+   "rank": 3
+  },
+  {
+   "id": "usa_lancaster",
+   "name": "Lancaster",
+   "department": "CA",
+   "lon": -118.136,
+   "lat": 34.698,
+   "population": 158059,
+   "urbanAreaPopulation": 225799,
+   "rank": 3
+  },
+  {
+   "id": "usa_kissimmee",
+   "name": "Kissimmee",
+   "department": "FL",
+   "lon": -81.408,
+   "lat": 28.292,
+   "population": 157845,
+   "urbanAreaPopulation": 225494,
+   "rank": 3
+  },
+  {
+   "id": "usa_tallahassee",
+   "name": "Tallahassee",
+   "department": "FL",
+   "lon": -84.28,
+   "lat": 30.45,
+   "population": 154855,
+   "urbanAreaPopulation": 221222,
+   "rank": 3
+  },
+  {
+   "id": "usa_york",
+   "name": "York",
+   "department": "PA",
+   "lon": -76.728,
+   "lat": 39.963,
+   "population": 152607,
+   "urbanAreaPopulation": 218010,
+   "rank": 3
+  },
+  {
+   "id": "usa_daytona_beach",
+   "name": "Daytona Beach",
+   "department": "FL",
+   "lon": -81.023,
+   "lat": 29.211,
+   "population": 151823,
+   "urbanAreaPopulation": 216890,
+   "rank": 3
+  },
+  {
+   "id": "usa_lubbock",
+   "name": "Lubbock",
+   "department": "TX",
+   "lon": -101.88,
+   "lat": 33.58,
+   "population": 149310,
+   "urbanAreaPopulation": 213300,
+   "rank": 3
+  },
+  {
+   "id": "usa_huntsville",
+   "name": "Huntsville",
+   "department": "AL",
+   "lon": -86.61,
+   "lat": 34.72,
+   "population": 148913,
+   "urbanAreaPopulation": 212733,
+   "rank": 3
+  },
+  {
+   "id": "usa_appleton",
+   "name": "Appleton",
+   "department": "WI",
+   "lon": -88.401,
+   "lat": 44.269,
+   "population": 142565,
+   "urbanAreaPopulation": 203665,
+   "rank": 3
+  },
+  {
+   "id": "usa_waukegan",
+   "name": "Waukegan",
+   "department": "IL",
+   "lon": -87.845,
+   "lat": 42.364,
+   "population": 140000,
+   "urbanAreaPopulation": 200000,
+   "rank": 3
+  },
+  {
+   "id": "usa_green_bay",
+   "name": "Green Bay",
+   "department": "WI",
+   "lon": -88.0,
+   "lat": 44.53,
+   "population": 139027,
+   "urbanAreaPopulation": 198611,
+   "rank": 3
+  },
+  {
+   "id": "usa_montgomery",
+   "name": "Montgomery",
+   "department": "AL",
+   "lon": -86.279,
+   "lat": 32.362,
+   "population": 138827,
+   "urbanAreaPopulation": 198325,
+   "rank": 3
+  },
+  {
+   "id": "usa_roanoke",
+   "name": "Roanoke",
+   "department": "VA",
+   "lon": -79.942,
+   "lat": 37.271,
+   "population": 138719,
+   "urbanAreaPopulation": 198171,
+   "rank": 3
+  },
+  {
+   "id": "usa_manchester",
+   "name": "Manchester",
+   "department": "NH",
+   "lon": -71.455,
+   "lat": 42.996,
+   "population": 137596,
+   "urbanAreaPopulation": 196566,
+   "rank": 3
+  },
+  {
+   "id": "usa_gainesville",
+   "name": "Gainesville",
+   "department": "FL",
+   "lon": -82.325,
+   "lat": 29.651,
+   "population": 133767,
+   "urbanAreaPopulation": 191097,
+   "rank": 3
+  },
+  {
+   "id": "usa_kalamazoo",
+   "name": "Kalamazoo",
+   "department": "MI",
+   "lon": -85.587,
+   "lat": 42.292,
+   "population": 128366,
+   "urbanAreaPopulation": 183381,
+   "rank": 3
+  },
+  {
+   "id": "usa_amarillo",
+   "name": "Amarillo",
+   "department": "TX",
+   "lon": -101.83,
+   "lat": 35.23,
+   "population": 127236,
+   "urbanAreaPopulation": 181766,
+   "rank": 3
+  },
+  {
+   "id": "usa_savannah",
+   "name": "Savannah",
+   "department": "GA",
+   "lon": -81.11,
+   "lat": 32.021,
+   "population": 126130,
+   "urbanAreaPopulation": 180187,
+   "rank": 3
+  },
+  {
+   "id": "usa_erie",
+   "name": "Érié",
+   "department": "PA",
+   "lon": -80.085,
+   "lat": 42.13,
+   "population": 124727,
+   "urbanAreaPopulation": 178182,
+   "rank": 3
+  },
+  {
+   "id": "usa_denton",
+   "name": "Denton",
+   "department": "TX",
+   "lon": -97.129,
+   "lat": 33.216,
+   "population": 123850,
+   "urbanAreaPopulation": 176930,
+   "rank": 3
+  },
+  {
+   "id": "usa_wahiawa",
+   "name": "Wahiawa",
+   "department": "HI",
+   "lon": -158.024,
+   "lat": 21.503,
+   "population": 122336,
+   "urbanAreaPopulation": 174766,
+   "rank": 3
+  },
+  {
+   "id": "usa_waterbury",
+   "name": "Waterbury",
+   "department": "CT",
+   "lon": -73.05,
+   "lat": 41.55,
+   "population": 121965,
+   "urbanAreaPopulation": 174236,
+   "rank": 3
+  },
+  {
+   "id": "usa_evansville",
+   "name": "Evansville",
+   "department": "IN",
+   "lon": -87.556,
+   "lat": 37.975,
+   "population": 121871,
+   "urbanAreaPopulation": 174102,
+   "rank": 3
+  },
+  {
+   "id": "usa_peoria",
+   "name": "Peoria",
+   "department": "IL",
+   "lon": -89.579,
+   "lat": 40.689,
+   "population": 120615,
+   "urbanAreaPopulation": 172308,
+   "rank": 3
+  },
+  {
+   "id": "usa_poughkeepsie",
+   "name": "Poughkeepsie",
+   "department": "NY",
+   "lon": -73.921,
+   "lat": 41.7,
+   "population": 119697,
+   "urbanAreaPopulation": 170996,
+   "rank": 3
+  },
+  {
+   "id": "usa_cedar_rapids",
+   "name": "Cedar Rapids",
+   "department": "IA",
+   "lon": -91.66,
+   "lat": 41.97,
+   "population": 119434,
+   "urbanAreaPopulation": 170621,
+   "rank": 3
+  },
+  {
+   "id": "usa_waco",
+   "name": "Waco",
+   "department": "TX",
+   "lon": -97.146,
+   "lat": 31.549,
+   "population": 117142,
+   "urbanAreaPopulation": 167347,
+   "rank": 3
+  },
+  {
+   "id": "usa_rock_island",
+   "name": "Rock Island",
+   "department": "IL",
+   "lon": -90.535,
+   "lat": 41.493,
+   "population": 116009,
+   "urbanAreaPopulation": 165728,
+   "rank": 3
+  },
+  {
+   "id": "usa_fargo",
+   "name": "Fargo",
+   "department": "ND",
+   "lon": -96.789,
+   "lat": 46.877,
+   "population": 113989,
+   "urbanAreaPopulation": 162842,
+   "rank": 3
+  },
+  {
+   "id": "usa_wilmington",
+   "name": "Wilmington",
+   "department": "DE",
+   "lon": -75.547,
+   "lat": 39.746,
+   "population": 113092,
+   "urbanAreaPopulation": 161560,
+   "rank": 3
+  },
+  {
+   "id": "usa_wilkes_barre",
+   "name": "Wilkes-Barre",
+   "department": "PA",
+   "lon": -75.878,
+   "lat": 41.249,
+   "population": 111239,
+   "urbanAreaPopulation": 158913,
+   "rank": 3
+  },
+  {
+   "id": "usa_lafayette",
+   "name": "Lafayette",
+   "department": "LA",
+   "lon": -92.02,
+   "lat": 30.2,
+   "population": 110749,
+   "urbanAreaPopulation": 158214,
+   "rank": 3
+  },
+  {
+   "id": "usa_olympia",
+   "name": "Olympia",
+   "department": "WA",
+   "lon": -122.899,
+   "lat": 47.038,
+   "population": 109888,
+   "urbanAreaPopulation": 156984,
+   "rank": 3
+  },
+  {
+   "id": "usa_salinas",
+   "name": "Salinas",
+   "department": "CA",
+   "lon": -121.642,
+   "lat": 36.682,
+   "population": 109748,
+   "urbanAreaPopulation": 156784,
+   "rank": 3
+  },
+  {
+   "id": "usa_scranton",
+   "name": "Scranton",
+   "department": "PA",
+   "lon": -75.663,
+   "lat": 41.409,
+   "population": 109337,
+   "urbanAreaPopulation": 156196,
+   "rank": 3
+  },
+  {
+   "id": "usa_sioux_falls",
+   "name": "Sioux Falls",
+   "department": "SD",
+   "lon": -96.73,
+   "lat": 43.55,
+   "population": 109006,
+   "urbanAreaPopulation": 155724,
+   "rank": 3
+  },
+  {
+   "id": "usa_niagara_falls",
+   "name": "Niagara Falls",
+   "department": "NY",
+   "lon": -79.037,
+   "lat": 43.095,
+   "population": 107193,
+   "urbanAreaPopulation": 153134,
+   "rank": 3
+  },
+  {
+   "id": "usa_paterson",
+   "name": "Paterson",
+   "department": "NJ",
+   "lon": -74.17,
+   "lat": 40.92,
+   "population": 105843,
+   "urbanAreaPopulation": 151205,
+   "rank": 3
+  },
+  {
+   "id": "usa_national_city",
+   "name": "National City",
+   "department": "CA",
+   "lon": -117.098,
+   "lat": 32.672,
+   "population": 105000,
+   "urbanAreaPopulation": 150000,
+   "rank": 3
+  },
+  {
+   "id": "usa_edinburg",
+   "name": "Edinburg",
+   "department": "TX",
+   "lon": -98.16,
+   "lat": 26.303,
+   "population": 105000,
+   "urbanAreaPopulation": 150000,
+   "rank": 3
+  },
+  {
+   "id": "usa_coral_gables",
+   "name": "Coral Gables",
+   "department": "FL",
+   "lon": -80.291,
+   "lat": 25.715,
+   "population": 105000,
+   "urbanAreaPopulation": 150000,
+   "rank": 3
+  },
+  {
+   "id": "usa_schenectady",
+   "name": "Schenectady",
+   "department": "NY",
+   "lon": -73.94,
+   "lat": 42.815,
+   "population": 104478,
+   "urbanAreaPopulation": 149255,
+   "rank": 3
+  },
+  {
+   "id": "usa_elkhart",
+   "name": "Elkhart",
+   "department": "IN",
+   "lon": -85.969,
+   "lat": 41.683,
+   "population": 104433,
+   "urbanAreaPopulation": 149190,
+   "rank": 3
+  },
+  {
+   "id": "usa_santa_cruz",
+   "name": "Santa Cruz",
+   "department": "CA",
+   "lon": -122.026,
+   "lat": 36.972,
+   "population": 103910,
+   "urbanAreaPopulation": 148444,
+   "rank": 3
+  },
+  {
+   "id": "usa_independence",
+   "name": "Independence",
+   "department": "MO",
+   "lon": -94.415,
+   "lat": 39.091,
+   "population": 103671,
+   "urbanAreaPopulation": 148102,
+   "rank": 3
+  },
+  {
+   "id": "usa_bryan",
+   "name": "Bryan",
+   "department": "TX",
+   "lon": -96.37,
+   "lat": 30.674,
+   "population": 102684,
+   "urbanAreaPopulation": 146692,
+   "rank": 3
+  },
+  {
+   "id": "usa_vallejo",
+   "name": "Vallejo",
+   "department": "CA",
+   "lon": -122.258,
+   "lat": 38.112,
+   "population": 102402,
+   "urbanAreaPopulation": 146289,
+   "rank": 3
+  },
+  {
+   "id": "usa_urbana",
+   "name": "Urbana",
+   "department": "IL",
+   "lon": -88.204,
+   "lat": 40.11,
+   "population": 100851,
+   "urbanAreaPopulation": 144074,
+   "rank": 3
+  },
+  {
+   "id": "usa_belleville",
+   "name": "Belleville",
+   "department": "IL",
+   "lon": -90.0,
+   "lat": 38.525,
+   "population": 100730,
+   "urbanAreaPopulation": 143900,
+   "rank": 3
+  },
+  {
+   "id": "usa_asheville",
+   "name": "Asheville",
+   "department": "NC",
+   "lon": -82.554,
+   "lat": 35.601,
+   "population": 99928,
+   "urbanAreaPopulation": 142755,
+   "rank": 3
+  },
+  {
+   "id": "usa_ocala",
+   "name": "Ocala",
+   "department": "FL",
+   "lon": -82.14,
+   "lat": 29.187,
+   "population": 98967,
+   "urbanAreaPopulation": 141382,
+   "rank": 3
+  },
+  {
+   "id": "usa_binghamton",
+   "name": "Binghamton",
+   "department": "NY",
+   "lon": -75.918,
+   "lat": 42.099,
+   "population": 97926,
+   "urbanAreaPopulation": 139895,
+   "rank": 3
+  },
+  {
+   "id": "usa_killeen",
+   "name": "Killeen",
+   "department": "TX",
+   "lon": -97.727,
+   "lat": 31.117,
+   "population": 96543,
+   "urbanAreaPopulation": 137919,
+   "rank": 3
+  },
+  {
+   "id": "usa_new_bedford",
+   "name": "New Bedford",
+   "department": "MA",
+   "lon": -70.945,
+   "lat": 41.656,
+   "population": 95257,
+   "urbanAreaPopulation": 136082,
+   "rank": 3
+  },
+  {
+   "id": "usa_fredericksburg",
+   "name": "Fredericksburg",
+   "department": "VA",
+   "lon": -77.461,
+   "lat": 38.304,
+   "population": 93193,
+   "urbanAreaPopulation": 133134,
+   "rank": 3
+  },
+  {
+   "id": "usa_clarksville",
+   "name": "Clarksville",
+   "department": "TN",
+   "lon": -87.359,
+   "lat": 36.53,
+   "population": 92775,
+   "urbanAreaPopulation": 132536,
+   "rank": 3
+  },
+  {
+   "id": "usa_cape_coral",
+   "name": "Cape Coral",
+   "department": "FL",
+   "lon": -81.98,
+   "lat": 26.603,
+   "population": 92742,
+   "urbanAreaPopulation": 132489,
+   "rank": 3
+  },
+  {
+   "id": "usa_caldwell",
+   "name": "Caldwell",
+   "department": "ID",
+   "lon": -116.671,
+   "lat": 43.661,
+   "population": 92733,
+   "urbanAreaPopulation": 132476,
+   "rank": 3
+  },
+  {
+   "id": "usa_topeka",
+   "name": "Topeka",
+   "department": "KS",
+   "lon": -95.67,
+   "lat": 39.05,
+   "population": 92463,
+   "urbanAreaPopulation": 132091,
+   "rank": 3
+  },
+  {
+   "id": "usa_racine",
+   "name": "Racine",
+   "department": "WI",
+   "lon": -87.812,
+   "lat": 42.728,
+   "population": 92157,
+   "urbanAreaPopulation": 131654,
+   "rank": 3
+  },
+  {
+   "id": "usa_bloomington",
+   "name": "Bloomington",
+   "department": "IL",
+   "lon": -88.994,
+   "lat": 40.485,
+   "population": 90285,
+   "urbanAreaPopulation": 128979,
+   "rank": 3
+  },
+  {
+   "id": "usa_alexandria",
+   "name": "Alexandria",
+   "department": "VA",
+   "lon": -77.055,
+   "lat": 38.804,
+   "population": 89091,
+   "urbanAreaPopulation": 127273,
+   "rank": 3
+  },
+  {
+   "id": "usa_bremerton",
+   "name": "Bremerton",
+   "department": "WA",
+   "lon": -122.642,
+   "lat": 47.574,
+   "population": 88774,
+   "urbanAreaPopulation": 126820,
+   "rank": 3
+  },
+  {
+   "id": "usa_greeley",
+   "name": "Greeley",
+   "department": "CO",
+   "lon": -104.74,
+   "lat": 40.419,
+   "population": 87787,
+   "urbanAreaPopulation": 125410,
+   "rank": 3
+  },
+  {
+   "id": "usa_monterey",
+   "name": "Monterey",
+   "department": "CA",
+   "lon": -121.894,
+   "lat": 36.6,
+   "population": 87001,
+   "urbanAreaPopulation": 124288,
+   "rank": 3
+  },
+  {
+   "id": "usa_spartanburg",
+   "name": "Spartanburg",
+   "department": "SC",
+   "lon": -81.932,
+   "lat": 34.949,
+   "population": 86888,
+   "urbanAreaPopulation": 124126,
+   "rank": 3
+  },
+  {
+   "id": "usa_boulder",
+   "name": "Boulder",
+   "department": "CO",
+   "lon": -105.245,
+   "lat": 40.008,
+   "population": 85591,
+   "urbanAreaPopulation": 122274,
+   "rank": 3
+  },
+  {
+   "id": "usa_visalia",
+   "name": "Visalia",
+   "department": "CA",
+   "lon": -119.316,
+   "lat": 36.325,
+   "population": 85377,
+   "urbanAreaPopulation": 121968,
+   "rank": 3
+  },
+  {
+   "id": "usa_saginaw",
+   "name": "Saginaw",
+   "department": "MI",
+   "lon": -83.951,
+   "lat": 43.419,
+   "population": 84965,
+   "urbanAreaPopulation": 121379,
+   "rank": 3
+  },
+  {
+   "id": "usa_tuscaloosa",
+   "name": "Tuscaloosa",
+   "department": "AL",
+   "lon": -87.544,
+   "lat": 33.225,
+   "population": 84961,
+   "urbanAreaPopulation": 121373,
+   "rank": 3
+  },
+  {
+   "id": "usa_southaven",
+   "name": "Southaven",
+   "department": "MS",
+   "lon": -90.003,
+   "lat": 34.969,
+   "population": 84887,
+   "urbanAreaPopulation": 121268,
+   "rank": 3
+  },
+  {
+   "id": "usa_new_albany",
+   "name": "New Albany",
+   "department": "IN",
+   "lon": -85.821,
+   "lat": 38.311,
+   "population": 84437,
+   "urbanAreaPopulation": 120625,
+   "rank": 3
+  },
+  {
+   "id": "usa_beaver_falls",
+   "name": "Beaver Falls",
+   "department": "PA",
+   "lon": -80.319,
+   "lat": 40.752,
+   "population": 84087,
+   "urbanAreaPopulation": 120125,
+   "rank": 3
+  },
+  {
+   "id": "usa_petersburg",
+   "name": "Petersburg",
+   "department": "VA",
+   "lon": -77.402,
+   "lat": 37.228,
+   "population": 83003,
+   "urbanAreaPopulation": 118577,
+   "rank": 3
+  },
+  {
+   "id": "usa_yuba_city",
+   "name": "Yuba City",
+   "department": "CA",
+   "lon": -121.616,
+   "lat": 39.141,
+   "population": 81351,
+   "urbanAreaPopulation": 116217,
+   "rank": 3
+  },
+  {
+   "id": "usa_murfreesboro",
+   "name": "Murfreesboro",
+   "department": "TN",
+   "lon": -86.39,
+   "lat": 35.846,
+   "population": 81041,
+   "urbanAreaPopulation": 115774,
+   "rank": 3
+  },
+  {
+   "id": "usa_macon",
+   "name": "Macon",
+   "department": "GA",
+   "lon": -83.63,
+   "lat": 32.85,
+   "population": 80914,
+   "urbanAreaPopulation": 115592,
+   "rank": 3
+  },
+  {
+   "id": "usa_las_cruces",
+   "name": "Las Cruces",
+   "department": "NM",
+   "lon": -106.778,
+   "lat": 32.313,
+   "population": 80616,
+   "urbanAreaPopulation": 115167,
+   "rank": 3
+  },
+  {
+   "id": "usa_spring_hill",
+   "name": "Spring Hill",
+   "department": "FL",
+   "lon": -82.548,
+   "lat": 28.479,
+   "population": 80287,
+   "urbanAreaPopulation": 114697,
+   "rank": 3
+  },
+  {
+   "id": "usa_abilene",
+   "name": "Abilene",
+   "department": "TX",
+   "lon": -99.733,
+   "lat": 32.449,
+   "population": 79972,
+   "urbanAreaPopulation": 114247,
+   "rank": 3
+  },
+  {
+   "id": "usa_norman",
+   "name": "Norman",
+   "department": "OK",
+   "lon": -97.442,
+   "lat": 35.22,
+   "population": 79467,
+   "urbanAreaPopulation": 113525,
+   "rank": 3
+  },
+  {
+   "id": "usa_saint_cloud",
+   "name": "Saint Cloud",
+   "department": "MN",
+   "lon": -94.162,
+   "lat": 45.561,
+   "population": 78955,
+   "urbanAreaPopulation": 112794,
+   "rank": 3
+  },
+  {
+   "id": "usa_tyler",
+   "name": "Tyler",
+   "department": "TX",
+   "lon": -95.301,
+   "lat": 32.351,
+   "population": 78571,
+   "urbanAreaPopulation": 112245,
+   "rank": 3
+  },
+  {
+   "id": "usa_pueblo",
+   "name": "Pueblo",
+   "department": "CO",
+   "lon": -104.63,
+   "lat": 38.28,
+   "population": 78536,
+   "urbanAreaPopulation": 112195,
+   "rank": 3
+  },
+  {
+   "id": "usa_beaumont",
+   "name": "Beaumont",
+   "department": "TX",
+   "lon": -94.102,
+   "lat": 30.086,
+   "population": 78039,
+   "urbanAreaPopulation": 111485,
+   "rank": 3
+  },
+  {
+   "id": "usa_santa_maria",
+   "name": "Santa Maria",
+   "department": "CA",
+   "lon": -120.437,
+   "lat": 34.94,
+   "population": 77493,
+   "urbanAreaPopulation": 110705,
+   "rank": 3
+  },
+  {
+   "id": "usa_harlingen",
+   "name": "Harlingen",
+   "department": "TX",
+   "lon": -97.69,
+   "lat": 26.198,
+   "population": 77237,
+   "urbanAreaPopulation": 110339,
+   "rank": 3
+  },
+  {
+   "id": "usa_athens",
+   "name": "Athens",
+   "department": "GA",
+   "lon": -83.378,
+   "lat": 33.961,
+   "population": 77210,
+   "urbanAreaPopulation": 110301,
+   "rank": 3
+  },
+  {
+   "id": "usa_winter_haven",
+   "name": "Winter Haven",
+   "department": "FL",
+   "lon": -81.733,
+   "lat": 28.022,
+   "population": 76252,
+   "urbanAreaPopulation": 108932,
+   "rank": 3
+  },
+  {
+   "id": "usa_montana_chef_lieu",
+   "name": "Montana",
+   "department": "MT",
+   "lon": -112.824,
+   "lat": 45.928,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "usa_vermont_chef_lieu",
+   "name": "Vermont",
+   "department": "VT",
+   "lon": -72.807,
+   "lat": 43.963,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "usa_maine_chef_lieu",
+   "name": "Maine",
+   "department": "ME",
+   "lon": -68.972,
+   "lat": 44.615,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "usa_wyoming_chef_lieu",
+   "name": "Wyoming",
+   "department": "WY",
+   "lon": -107.983,
+   "lat": 43.17,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "usa_virginie_occidentale_chef_lieu",
+   "name": "Virginie-Occidentale",
+   "department": "WV",
+   "lon": -80.323,
+   "lat": 38.719,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  }
+ ]
+}

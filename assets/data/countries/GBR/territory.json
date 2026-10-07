@@ -1,0 +1,7558 @@
+{
+ "regions": [
+  {
+   "code": "NIR",
+   "name": "Irlande du Nord",
+   "capitalCityId": "gbr_belfast",
+   "defaults": {
+    "unemployment": 0.051,
+    "incomeIndex": 1.028,
+    "urbanShare": 0.578,
+    "seniorShare": 0.218,
+    "politicalLeaning": -0.04
+   }
+  },
+  {
+   "code": "WLS",
+   "name": "Pays de Galles",
+   "capitalCityId": "gbr_cardiff",
+   "defaults": {
+    "unemployment": 0.051,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.556,
+    "seniorShare": 0.22,
+    "politicalLeaning": -0.039
+   }
+  },
+  {
+   "code": "NW",
+   "name": "Nord-Ouest de l'Angleterre",
+   "capitalCityId": "gbr_manchester",
+   "defaults": {
+    "unemployment": 0.058,
+    "incomeIndex": 1.038,
+    "urbanShare": 0.694,
+    "seniorShare": 0.2,
+    "politicalLeaning": 0.006
+   }
+  },
+  {
+   "code": "WM",
+   "name": "Midlands de l'Ouest",
+   "capitalCityId": "gbr_birmingham",
+   "defaults": {
+    "unemployment": 0.05,
+    "incomeIndex": 1.044,
+    "urbanShare": 0.683,
+    "seniorShare": 0.23,
+    "politicalLeaning": -0.006
+   }
+  },
+  {
+   "code": "SW",
+   "name": "Sud-Ouest de l'Angleterre",
+   "capitalCityId": "gbr_bristol",
+   "defaults": {
+    "unemployment": 0.053,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.512,
+    "seniorShare": 0.216,
+    "politicalLeaning": -0.0
+   }
+  },
+  {
+   "code": "SCT",
+   "name": "Écosse",
+   "capitalCityId": "gbr_glasgow",
+   "defaults": {
+    "unemployment": 0.048,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.416,
+    "seniorShare": 0.233,
+    "politicalLeaning": -0.077
+   }
+  },
+  {
+   "code": "NE",
+   "name": "Nord-Est de l'Angleterre",
+   "capitalCityId": "gbr_newcastle_upon_tyne",
+   "defaults": {
+    "unemployment": 0.055,
+    "incomeIndex": 1.024,
+    "urbanShare": 0.665,
+    "seniorShare": 0.206,
+    "politicalLeaning": -0.029
+   }
+  },
+  {
+   "code": "YH",
+   "name": "Yorkshire",
+   "capitalCityId": "gbr_leeds",
+   "defaults": {
+    "unemployment": 0.05,
+    "incomeIndex": 1.031,
+    "urbanShare": 0.679,
+    "seniorShare": 0.217,
+    "politicalLeaning": 0.035
+   }
+  },
+  {
+   "code": "EM",
+   "name": "Midlands de l'Est",
+   "capitalCityId": "gbr_nottingham",
+   "defaults": {
+    "unemployment": 0.051,
+    "incomeIndex": 1.018,
+    "urbanShare": 0.544,
+    "seniorShare": 0.201,
+    "politicalLeaning": 0.046
+   }
+  },
+  {
+   "code": "EE",
+   "name": "Est de l'Angleterre",
+   "capitalCityId": "gbr_southend_on_sea",
+   "defaults": {
+    "unemployment": 0.051,
+    "incomeIndex": 0.992,
+    "urbanShare": 0.528,
+    "seniorShare": 0.232,
+    "politicalLeaning": -0.079
+   }
+  },
+  {
+   "code": "SE",
+   "name": "Sud-Est de l'Angleterre",
+   "capitalCityId": "gbr_brighton",
+   "defaults": {
+    "unemployment": 0.047,
+    "incomeIndex": 1.025,
+    "urbanShare": 0.596,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.032
+   }
+  },
+  {
+   "code": "LDN",
+   "name": "Grand Londres",
+   "capitalCityId": "gbr_londres",
+   "defaults": {
+    "unemployment": 0.04,
+    "incomeIndex": 1.065,
+    "urbanShare": 0.84,
+    "seniorShare": 0.221,
+    "politicalLeaning": 0.054
+   }
+  }
+ ],
+ "departments": [
+  {
+   "code": "DRY",
+   "name": "Ville de Derry",
+   "article": "le",
+   "region": "NIR",
+   "population": 127000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.046,
+    "incomeIndex": 1.03,
+    "urbanShare": 0.64,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.02,
+    "healthAccess": 1.06,
+    "crime": 1.09,
+    "industryShare": 0.28,
+    "agricultureShare": 0.029,
+    "pollution": 1.09
+   }
+  },
+  {
+   "code": "STB",
+   "name": "Strabane",
+   "article": "la",
+   "region": "NIR",
+   "population": 160000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.06,
+    "incomeIndex": 1.02,
+    "urbanShare": 0.47,
+    "seniorShare": 0.17,
+    "politicalLeaning": 0.19,
+    "healthAccess": 0.99,
+    "crime": 0.98,
+    "industryShare": 0.19,
+    "agricultureShare": 0.049,
+    "pollution": 0.98
+   }
+  },
+  {
+   "code": "FER",
+   "name": "Fermanagh",
+   "article": "le",
+   "region": "NIR",
+   "population": 275000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.036,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.38,
+    "seniorShare": 0.22,
+    "politicalLeaning": -0.15,
+    "healthAccess": 0.95,
+    "crime": 0.93,
+    "industryShare": 0.16,
+    "agricultureShare": 0.044,
+    "pollution": 0.93
+   }
+  },
+  {
+   "code": "DGN",
+   "name": "Dungannon and South Tyrone",
+   "article": "la",
+   "region": "NIR",
+   "population": 147000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.039,
+    "incomeIndex": 1.04,
+    "urbanShare": 0.49,
+    "seniorShare": 0.2,
+    "politicalLeaning": 0.11,
+    "healthAccess": 1.0,
+    "crime": 1.0,
+    "industryShare": 0.2,
+    "agricultureShare": 0.037,
+    "pollution": 1.0
+   }
+  },
+  {
+   "code": "ARM",
+   "name": "Armagh",
+   "article": "l'",
+   "region": "NIR",
+   "population": 135000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.06,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.52,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.05,
+    "healthAccess": 1.01,
+    "crime": 1.01,
+    "industryShare": 0.24,
+    "agricultureShare": 0.053,
+    "pollution": 1.01
+   }
+  },
+  {
+   "code": "NYM",
+   "name": "Newry and Mourne",
+   "article": "la",
+   "region": "NIR",
+   "population": 164000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.051,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.47,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.21,
+    "healthAccess": 0.99,
+    "crime": 0.98,
+    "industryShare": 0.18,
+    "agricultureShare": 0.045,
+    "pollution": 0.98
+   }
+  },
+  {
+   "code": "FLN",
+   "name": "Flintshire",
+   "article": "la",
+   "region": "WLS",
+   "population": 110000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.054,
+    "incomeIndex": 1.0,
+    "urbanShare": 0.58,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.16,
+    "healthAccess": 1.03,
+    "crime": 1.05,
+    "industryShare": 0.11,
+    "agricultureShare": 0.042,
+    "pollution": 1.05
+   }
+  },
+  {
+   "code": "CHW",
+   "name": "Cheshire West and Chester",
+   "article": "le",
+   "region": "NW",
+   "population": 194000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.036,
+    "incomeIndex": 1.03,
+    "urbanShare": 0.53,
+    "seniorShare": 0.24,
+    "politicalLeaning": 0.04,
+    "healthAccess": 1.01,
+    "crime": 1.02,
+    "industryShare": 0.18,
+    "agricultureShare": 0.039,
+    "pollution": 1.02
+   }
+  },
+  {
+   "code": "WRX",
+   "name": "Wrexham",
+   "article": "le",
+   "region": "WLS",
+   "population": 132000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.036,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.52,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.14,
+    "healthAccess": 1.01,
+    "crime": 1.01,
+    "industryShare": 0.14,
+    "agricultureShare": 0.037,
+    "pollution": 1.01
+   }
+  },
+  {
+   "code": "SHR",
+   "name": "Shropshire",
+   "article": "la",
+   "region": "WM",
+   "population": 409000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.049,
+    "incomeIndex": 0.95,
+    "urbanShare": 0.34,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.1,
+    "healthAccess": 0.94,
+    "crime": 0.9,
+    "industryShare": 0.23,
+    "agricultureShare": 0.043,
+    "pollution": 0.9
+   }
+  },
+  {
+   "code": "POW",
+   "name": "Powys",
+   "article": "le",
+   "region": "WLS",
+   "population": 614000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.038,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.31,
+    "seniorShare": 0.26,
+    "politicalLeaning": 0.17,
+    "healthAccess": 0.92,
+    "crime": 0.89,
+    "industryShare": 0.25,
+    "agricultureShare": 0.06,
+    "pollution": 0.89
+   }
+  },
+  {
+   "code": "HEF",
+   "name": "Herefordshire",
+   "article": "l'",
+   "region": "WM",
+   "population": 291000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.063,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.37,
+    "seniorShare": 0.21,
+    "politicalLeaning": -0.15,
+    "healthAccess": 0.95,
+    "crime": 0.92,
+    "industryShare": 0.24,
+    "agricultureShare": 0.06,
+    "pollution": 0.92
+   }
+  },
+  {
+   "code": "MON",
+   "name": "Monmouthshire",
+   "article": "la",
+   "region": "WLS",
+   "population": 146000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.067,
+    "incomeIndex": 1.03,
+    "urbanShare": 0.5,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.2,
+    "healthAccess": 1.0,
+    "crime": 1.0,
+    "industryShare": 0.17,
+    "agricultureShare": 0.041,
+    "pollution": 1.0
+   }
+  },
+  {
+   "code": "GLS",
+   "name": "Gloucestershire",
+   "article": "la",
+   "region": "SW",
+   "population": 344000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.052,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.35,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.05,
+    "healthAccess": 0.94,
+    "crime": 0.91,
+    "industryShare": 0.25,
+    "agricultureShare": 0.045,
+    "pollution": 0.91
+   }
+  },
+  {
+   "code": "SCB",
+   "name": "Scottish Borders",
+   "article": "le",
+   "region": "SCT",
+   "population": 609000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.047,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.31,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.22,
+    "healthAccess": 0.92,
+    "crime": 0.89,
+    "industryShare": 0.12,
+    "agricultureShare": 0.048,
+    "pollution": 0.89
+   }
+  },
+  {
+   "code": "NBL",
+   "name": "Northumberland",
+   "article": "le",
+   "region": "NE",
+   "population": 655000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.064,
+    "incomeIndex": 0.9,
+    "urbanShare": 0.3,
+    "seniorShare": 0.25,
+    "politicalLeaning": -0.24,
+    "healthAccess": 0.92,
+    "crime": 0.88,
+    "industryShare": 0.24,
+    "agricultureShare": 0.043,
+    "pollution": 0.88
+   }
+  },
+  {
+   "code": "CMA",
+   "name": "Cumbria",
+   "article": "le",
+   "region": "NW",
+   "population": 857000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.045,
+    "incomeIndex": 0.9,
+    "urbanShare": 0.3,
+    "seniorShare": 0.19,
+    "politicalLeaning": 0.08,
+    "healthAccess": 0.92,
+    "crime": 0.88,
+    "industryShare": 0.24,
+    "agricultureShare": 0.047,
+    "pollution": 0.88
+   }
+  },
+  {
+   "code": "DGY",
+   "name": "Dumfries and Galloway",
+   "article": "le",
+   "region": "SCT",
+   "population": 776000,
+   "tags": [
+    "coastal",
+    "border",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.051,
+    "incomeIndex": 0.95,
+    "urbanShare": 0.27,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.01,
+    "healthAccess": 0.91,
+    "crime": 0.86,
+    "industryShare": 0.1,
+    "agricultureShare": 0.063,
+    "pollution": 0.86
+   }
+  },
+  {
+   "code": "LMV",
+   "name": "Limavady",
+   "article": "le",
+   "region": "NIR",
+   "population": 130000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.047,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.53,
+    "seniorShare": 0.27,
+    "politicalLeaning": 0.06,
+    "healthAccess": 1.01,
+    "crime": 1.02,
+    "industryShare": 0.08,
+    "agricultureShare": 0.025,
+    "pollution": 1.02
+   }
+  },
+  {
+   "code": "CLR",
+   "name": "Coleraine",
+   "article": "la",
+   "region": "NIR",
+   "population": 117000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.054,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.56,
+    "seniorShare": 0.23,
+    "politicalLeaning": -0.2,
+    "healthAccess": 1.02,
+    "crime": 1.03,
+    "industryShare": 0.11,
+    "agricultureShare": 0.038,
+    "pollution": 1.03
+   }
+  },
+  {
+   "code": "MYL",
+   "name": "Moyle",
+   "article": "la",
+   "region": "NIR",
+   "population": 118000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.053,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.55,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.23,
+    "healthAccess": 1.02,
+    "crime": 1.03,
+    "industryShare": 0.19,
+    "agricultureShare": 0.023,
+    "pollution": 1.03
+   }
+  },
+  {
+   "code": "LRN",
+   "name": "Larne",
+   "article": "la",
+   "region": "NIR",
+   "population": 100000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.052,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.61,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.06,
+    "healthAccess": 1.04,
+    "crime": 1.07,
+    "industryShare": 0.08,
+    "agricultureShare": 0.042,
+    "pollution": 1.07
+   }
+  },
+  {
+   "code": "CKF",
+   "name": "Carrickfergus",
+   "article": "le",
+   "region": "NIR",
+   "population": 69000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.039,
+    "incomeIndex": 1.1,
+    "urbanShare": 0.77,
+    "seniorShare": 0.23,
+    "politicalLeaning": -0.19,
+    "healthAccess": 1.11,
+    "crime": 1.16,
+    "industryShare": 0.11,
+    "agricultureShare": 0.034,
+    "pollution": 1.16
+   }
+  },
+  {
+   "code": "NTA",
+   "name": "Newtownabbey",
+   "article": "le",
+   "region": "NIR",
+   "population": 76000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.035,
+    "incomeIndex": 1.03,
+    "urbanShare": 0.72,
+    "seniorShare": 0.22,
+    "politicalLeaning": -0.05,
+    "healthAccess": 1.09,
+    "crime": 1.13,
+    "industryShare": 0.09,
+    "agricultureShare": 0.017,
+    "pollution": 1.13
+   }
+  },
+  {
+   "code": "BFS",
+   "name": "Belfast",
+   "article": "le",
+   "region": "NIR",
+   "population": 463000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.054,
+    "incomeIndex": 1.11,
+    "urbanShare": 0.83,
+    "seniorShare": 0.21,
+    "politicalLeaning": -0.14,
+    "healthAccess": 1.13,
+    "crime": 1.2,
+    "industryShare": 0.11,
+    "agricultureShare": 0.033,
+    "pollution": 1.2
+   }
+  },
+  {
+   "code": "NDN",
+   "name": "North Down",
+   "article": "le",
+   "region": "NIR",
+   "population": 70000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.052,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.76,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.01,
+    "healthAccess": 1.1,
+    "crime": 1.16,
+    "industryShare": 0.22,
+    "agricultureShare": 0.027,
+    "pollution": 1.16
+   }
+  },
+  {
+   "code": "ARD",
+   "name": "Ards",
+   "article": "l'",
+   "region": "NIR",
+   "population": 105000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.05,
+    "incomeIndex": 1.03,
+    "urbanShare": 0.59,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.16,
+    "healthAccess": 1.04,
+    "crime": 1.06,
+    "industryShare": 0.09,
+    "agricultureShare": 0.034,
+    "pollution": 1.06
+   }
+  },
+  {
+   "code": "DOW",
+   "name": "Down",
+   "article": "le",
+   "region": "NIR",
+   "population": 134000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.065,
+    "incomeIndex": 1.02,
+    "urbanShare": 0.52,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.06,
+    "healthAccess": 1.01,
+    "crime": 1.01,
+    "industryShare": 0.1,
+    "agricultureShare": 0.051,
+    "pollution": 1.01
+   }
+  },
+  {
+   "code": "CLK",
+   "name": "Clackmannanshire",
+   "article": "la",
+   "region": "SCT",
+   "population": 78000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.059,
+    "incomeIndex": 1.06,
+    "urbanShare": 0.71,
+    "seniorShare": 0.19,
+    "politicalLeaning": 0.02,
+    "healthAccess": 1.08,
+    "crime": 1.12,
+    "industryShare": 0.15,
+    "agricultureShare": 0.031,
+    "pollution": 1.12
+   }
+  },
+  {
+   "code": "STG",
+   "name": "Stirling",
+   "article": "le",
+   "region": "SCT",
+   "population": 334000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.062,
+    "incomeIndex": 0.94,
+    "urbanShare": 0.36,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.09,
+    "healthAccess": 0.94,
+    "crime": 0.91,
+    "industryShare": 0.12,
+    "agricultureShare": 0.049,
+    "pollution": 0.91
+   }
+  },
+  {
+   "code": "FAL",
+   "name": "Falkirk",
+   "article": "le",
+   "region": "SCT",
+   "population": 91000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.053,
+    "incomeIndex": 1.04,
+    "urbanShare": 0.64,
+    "seniorShare": 0.19,
+    "politicalLeaning": 0.09,
+    "healthAccess": 1.06,
+    "crime": 1.09,
+    "industryShare": 0.22,
+    "agricultureShare": 0.047,
+    "pollution": 1.09
+   }
+  },
+  {
+   "code": "WLN",
+   "name": "West Lothian",
+   "article": "le",
+   "region": "SCT",
+   "population": 109000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.063,
+    "incomeIndex": 1.03,
+    "urbanShare": 0.58,
+    "seniorShare": 0.25,
+    "politicalLeaning": -0.09,
+    "healthAccess": 1.03,
+    "crime": 1.05,
+    "industryShare": 0.16,
+    "agricultureShare": 0.024,
+    "pollution": 1.05
+   }
+  },
+  {
+   "code": "EDH",
+   "name": "Édimbourg",
+   "article": "l'",
+   "region": "SCT",
+   "population": 539000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.058,
+    "incomeIndex": 1.12,
+    "urbanShare": 0.81,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.07,
+    "healthAccess": 1.12,
+    "crime": 1.19,
+    "industryShare": 0.14,
+    "agricultureShare": 0.025,
+    "pollution": 1.19
+   }
+  },
+  {
+   "code": "MLN",
+   "name": "Midlothian",
+   "article": "le",
+   "region": "SCT",
+   "population": 100000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.064,
+    "incomeIndex": 1.06,
+    "urbanShare": 0.61,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.13,
+    "healthAccess": 1.04,
+    "crime": 1.06,
+    "industryShare": 0.1,
+    "agricultureShare": 0.03,
+    "pollution": 1.06
+   }
+  },
+  {
+   "code": "ELN",
+   "name": "East Lothian",
+   "article": "l'",
+   "region": "SCT",
+   "population": 147000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.041,
+    "incomeIndex": 1.03,
+    "urbanShare": 0.49,
+    "seniorShare": 0.27,
+    "politicalLeaning": -0.22,
+    "healthAccess": 1.0,
+    "crime": 1.0,
+    "industryShare": 0.12,
+    "agricultureShare": 0.03,
+    "pollution": 1.0
+   }
+  },
+  {
+   "code": "NTY",
+   "name": "North Tyneside",
+   "article": "la",
+   "region": "NE",
+   "population": 68000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.05,
+    "incomeIndex": 1.06,
+    "urbanShare": 0.78,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.01,
+    "healthAccess": 1.11,
+    "crime": 1.17,
+    "industryShare": 0.19,
+    "agricultureShare": 0.038,
+    "pollution": 1.17
+   }
+  },
+  {
+   "code": "STY",
+   "name": "South Tyneside",
+   "article": "la",
+   "region": "NE",
+   "population": 69000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.042,
+    "incomeIndex": 1.04,
+    "urbanShare": 0.77,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.24,
+    "healthAccess": 1.11,
+    "crime": 1.16,
+    "industryShare": 0.17,
+    "agricultureShare": 0.038,
+    "pollution": 1.16
+   }
+  },
+  {
+   "code": "SND",
+   "name": "Sunderland",
+   "article": "le",
+   "region": "NE",
+   "population": 469000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.055,
+    "incomeIndex": 1.07,
+    "urbanShare": 0.83,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.07,
+    "healthAccess": 1.13,
+    "crime": 1.2,
+    "industryShare": 0.16,
+    "agricultureShare": 0.014,
+    "pollution": 1.2
+   }
+  },
+  {
+   "code": "DUR",
+   "name": "Durham",
+   "article": "le",
+   "region": "NE",
+   "population": 317000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.036,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.36,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.14,
+    "healthAccess": 0.95,
+    "crime": 0.92,
+    "industryShare": 0.22,
+    "agricultureShare": 0.032,
+    "pollution": 0.92
+   }
+  },
+  {
+   "code": "HPL",
+   "name": "Hartlepool",
+   "article": "l'",
+   "region": "NE",
+   "population": 73000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.048,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.74,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.25,
+    "healthAccess": 1.1,
+    "crime": 1.15,
+    "industryShare": 0.18,
+    "agricultureShare": 0.037,
+    "pollution": 1.15
+   }
+  },
+  {
+   "code": "RCC",
+   "name": "Redcar et Cleveland",
+   "article": "le",
+   "region": "NE",
+   "population": 94000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.048,
+    "incomeIndex": 1.02,
+    "urbanShare": 0.63,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.06,
+    "healthAccess": 1.05,
+    "crime": 1.08,
+    "industryShare": 0.08,
+    "agricultureShare": 0.022,
+    "pollution": 1.08
+   }
+  },
+  {
+   "code": "NYK",
+   "name": "Yorkshire du Nord",
+   "article": "l'",
+   "region": "YH",
+   "population": 979000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.063,
+    "incomeIndex": 0.89,
+    "urbanShare": 0.29,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.05,
+    "healthAccess": 0.92,
+    "crime": 0.88,
+    "industryShare": 0.11,
+    "agricultureShare": 0.042,
+    "pollution": 0.88
+   }
+  },
+  {
+   "code": "ERY",
+   "name": "Yorkshire de l'Est",
+   "article": "l'",
+   "region": "YH",
+   "population": 336000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.04,
+    "incomeIndex": 1.0,
+    "urbanShare": 0.36,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.22,
+    "healthAccess": 0.94,
+    "crime": 0.91,
+    "industryShare": 0.25,
+    "agricultureShare": 0.033,
+    "pollution": 0.91
+   }
+  },
+  {
+   "code": "KHL",
+   "name": "Kingston-upon-Hull",
+   "article": "le",
+   "region": "YH",
+   "population": 308000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.049,
+    "incomeIndex": 1.12,
+    "urbanShare": 0.84,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.16,
+    "healthAccess": 1.13,
+    "crime": 1.2,
+    "industryShare": 0.25,
+    "agricultureShare": 0.02,
+    "pollution": 1.2
+   }
+  },
+  {
+   "code": "NLN",
+   "name": "Lincolnshire du Nord",
+   "article": "le",
+   "region": "YH",
+   "population": 156000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.054,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.48,
+    "seniorShare": 0.21,
+    "politicalLeaning": -0.09,
+    "healthAccess": 0.99,
+    "crime": 0.99,
+    "industryShare": 0.26,
+    "agricultureShare": 0.042,
+    "pollution": 0.99
+   }
+  },
+  {
+   "code": "NEL",
+   "name": "North East Lincolnshire",
+   "article": "la",
+   "region": "YH",
+   "population": 79000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.037,
+    "incomeIndex": 1.03,
+    "urbanShare": 0.7,
+    "seniorShare": 0.24,
+    "politicalLeaning": -0.16,
+    "healthAccess": 1.08,
+    "crime": 1.12,
+    "industryShare": 0.13,
+    "agricultureShare": 0.021,
+    "pollution": 1.12
+   }
+  },
+  {
+   "code": "LIN",
+   "name": "Lincolnshire",
+   "article": "la",
+   "region": "EM",
+   "population": 720000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.04,
+    "incomeIndex": 0.92,
+    "urbanShare": 0.3,
+    "seniorShare": 0.24,
+    "politicalLeaning": -0.12,
+    "healthAccess": 0.92,
+    "crime": 0.88,
+    "industryShare": 0.26,
+    "agricultureShare": 0.045,
+    "pollution": 0.88
+   }
+  },
+  {
+   "code": "NFK",
+   "name": "Norfolk",
+   "article": "le",
+   "region": "EE",
+   "population": 786000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.057,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.4,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.11,
+    "healthAccess": 0.96,
+    "crime": 0.94,
+    "industryShare": 0.11,
+    "agricultureShare": 0.039,
+    "pollution": 0.94
+   }
+  },
+  {
+   "code": "SFK",
+   "name": "Suffolk",
+   "article": "le",
+   "region": "EE",
+   "population": 553000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.038,
+    "incomeIndex": 0.95,
+    "urbanShare": 0.41,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.19,
+    "healthAccess": 0.96,
+    "crime": 0.94,
+    "industryShare": 0.13,
+    "agricultureShare": 0.048,
+    "pollution": 0.94
+   }
+  },
+  {
+   "code": "ESS",
+   "name": "Essex",
+   "article": "l'",
+   "region": "EE",
+   "population": 424000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.039,
+    "incomeIndex": 0.92,
+    "urbanShare": 0.33,
+    "seniorShare": 0.21,
+    "politicalLeaning": -0.04,
+    "healthAccess": 0.93,
+    "crime": 0.9,
+    "industryShare": 0.23,
+    "agricultureShare": 0.039,
+    "pollution": 0.9
+   }
+  },
+  {
+   "code": "SOS",
+   "name": "Southend-on-Sea",
+   "article": "le",
+   "region": "EE",
+   "population": 624000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.065,
+    "incomeIndex": 1.08,
+    "urbanShare": 0.85,
+    "seniorShare": 0.22,
+    "politicalLeaning": -0.25,
+    "healthAccess": 1.14,
+    "crime": 1.21,
+    "industryShare": 0.25,
+    "agricultureShare": 0.033,
+    "pollution": 1.21
+   }
+  },
+  {
+   "code": "THR",
+   "name": "Thurrock",
+   "article": "le",
+   "region": "EE",
+   "population": 76000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.067,
+    "incomeIndex": 1.03,
+    "urbanShare": 0.72,
+    "seniorShare": 0.23,
+    "politicalLeaning": -0.15,
+    "healthAccess": 1.09,
+    "crime": 1.13,
+    "industryShare": 0.09,
+    "agricultureShare": 0.039,
+    "pollution": 1.13
+   }
+  },
+  {
+   "code": "KEN",
+   "name": "Kent",
+   "article": "le",
+   "region": "SE",
+   "population": 413000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.038,
+    "incomeIndex": 0.94,
+    "urbanShare": 0.3,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.25,
+    "healthAccess": 0.92,
+    "crime": 0.88,
+    "industryShare": 0.1,
+    "agricultureShare": 0.047,
+    "pollution": 0.88
+   }
+  },
+  {
+   "code": "MDW",
+   "name": "Medway",
+   "article": "le",
+   "region": "SE",
+   "population": 81000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.046,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.69,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.24,
+    "healthAccess": 1.08,
+    "crime": 1.12,
+    "industryShare": 0.23,
+    "agricultureShare": 0.044,
+    "pollution": 1.12
+   }
+  },
+  {
+   "code": "ESX",
+   "name": "Sussex de l'Est",
+   "article": "le",
+   "region": "SE",
+   "population": 236000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.035,
+    "incomeIndex": 0.92,
+    "urbanShare": 0.4,
+    "seniorShare": 0.23,
+    "politicalLeaning": -0.18,
+    "healthAccess": 0.96,
+    "crime": 0.94,
+    "industryShare": 0.16,
+    "agricultureShare": 0.057,
+    "pollution": 0.94
+   }
+  },
+  {
+   "code": "BNH",
+   "name": "Brighton et Hove",
+   "article": "la",
+   "region": "SE",
+   "population": 512000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.048,
+    "incomeIndex": 1.07,
+    "urbanShare": 0.84,
+    "seniorShare": 0.21,
+    "politicalLeaning": -0.12,
+    "healthAccess": 1.14,
+    "crime": 1.2,
+    "industryShare": 0.21,
+    "agricultureShare": 0.015,
+    "pollution": 1.2
+   }
+  },
+  {
+   "code": "WSX",
+   "name": "Sussex de l'Ouest",
+   "article": "le",
+   "region": "SE",
+   "population": 268000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.044,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.38,
+    "seniorShare": 0.23,
+    "politicalLeaning": -0.15,
+    "healthAccess": 0.95,
+    "crime": 0.93,
+    "industryShare": 0.18,
+    "agricultureShare": 0.047,
+    "pollution": 0.93
+   }
+  },
+  {
+   "code": "HAM",
+   "name": "Hampshire",
+   "article": "l'",
+   "region": "SE",
+   "population": 446000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.045,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.33,
+    "seniorShare": 0.26,
+    "politicalLeaning": 0.09,
+    "healthAccess": 0.93,
+    "crime": 0.9,
+    "industryShare": 0.27,
+    "agricultureShare": 0.035,
+    "pollution": 0.9
+   }
+  },
+  {
+   "code": "POR",
+   "name": "Portsmouth",
+   "article": "le",
+   "region": "SE",
+   "population": 445000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.067,
+    "incomeIndex": 1.08,
+    "urbanShare": 0.85,
+    "seniorShare": 0.24,
+    "politicalLeaning": -0.04,
+    "healthAccess": 1.14,
+    "crime": 1.21,
+    "industryShare": 0.18,
+    "agricultureShare": 0.035,
+    "pollution": 1.21
+   }
+  },
+  {
+   "code": "STH",
+   "name": "Southampton",
+   "article": "le",
+   "region": "SE",
+   "population": 390000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.062,
+    "incomeIndex": 1.15,
+    "urbanShare": 0.84,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.08,
+    "healthAccess": 1.14,
+    "crime": 1.2,
+    "industryShare": 0.09,
+    "agricultureShare": 0.012,
+    "pollution": 1.2
+   }
+  },
+  {
+   "code": "DOR",
+   "name": "Dorset",
+   "article": "le",
+   "region": "SW",
+   "population": 329000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.065,
+    "incomeIndex": 0.95,
+    "urbanShare": 0.36,
+    "seniorShare": 0.23,
+    "politicalLeaning": -0.18,
+    "healthAccess": 0.94,
+    "crime": 0.92,
+    "industryShare": 0.28,
+    "agricultureShare": 0.049,
+    "pollution": 0.92
+   }
+  },
+  {
+   "code": "POL",
+   "name": "Poole",
+   "article": "la",
+   "region": "SW",
+   "population": 431000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.048,
+    "incomeIndex": 1.13,
+    "urbanShare": 0.84,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.02,
+    "healthAccess": 1.14,
+    "crime": 1.21,
+    "industryShare": 0.11,
+    "agricultureShare": 0.036,
+    "pollution": 1.21
+   }
+  },
+  {
+   "code": "DEV",
+   "name": "Devon",
+   "article": "le",
+   "region": "SW",
+   "population": 807000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.051,
+    "incomeIndex": 0.95,
+    "urbanShare": 0.33,
+    "seniorShare": 0.24,
+    "politicalLeaning": -0.06,
+    "healthAccess": 0.93,
+    "crime": 0.9,
+    "industryShare": 0.09,
+    "agricultureShare": 0.05,
+    "pollution": 0.9
+   }
+  },
+  {
+   "code": "TOB",
+   "name": "Torbay",
+   "article": "le",
+   "region": "SW",
+   "population": 71000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.054,
+    "incomeIndex": 1.12,
+    "urbanShare": 0.76,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.11,
+    "healthAccess": 1.1,
+    "crime": 1.15,
+    "industryShare": 0.2,
+    "agricultureShare": 0.024,
+    "pollution": 1.15
+   }
+  },
+  {
+   "code": "PLY",
+   "name": "Plymouth",
+   "article": "le",
+   "region": "SW",
+   "population": 253000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.058,
+    "incomeIndex": 1.07,
+    "urbanShare": 0.83,
+    "seniorShare": 0.24,
+    "politicalLeaning": 0.14,
+    "healthAccess": 1.13,
+    "crime": 1.2,
+    "industryShare": 0.16,
+    "agricultureShare": 0.036,
+    "pollution": 1.2
+   }
+  },
+  {
+   "code": "CON",
+   "name": "Cornouailles",
+   "article": "les",
+   "region": "SW",
+   "population": 428000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.036,
+    "incomeIndex": 0.95,
+    "urbanShare": 0.33,
+    "seniorShare": 0.17,
+    "politicalLeaning": 0.21,
+    "healthAccess": 0.93,
+    "crime": 0.9,
+    "industryShare": 0.18,
+    "agricultureShare": 0.035,
+    "pollution": 0.9
+   }
+  },
+  {
+   "code": "SOM",
+   "name": "Somerset",
+   "article": "le",
+   "region": "SW",
+   "population": 424000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.043,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.33,
+    "seniorShare": 0.21,
+    "politicalLeaning": -0.2,
+    "healthAccess": 0.93,
+    "crime": 0.9,
+    "industryShare": 0.14,
+    "agricultureShare": 0.046,
+    "pollution": 0.9
+   }
+  },
+  {
+   "code": "NSM",
+   "name": "North Somerset",
+   "article": "le",
+   "region": "SW",
+   "population": 98000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.067,
+    "incomeIndex": 1.02,
+    "urbanShare": 0.61,
+    "seniorShare": 0.24,
+    "politicalLeaning": 0.23,
+    "healthAccess": 1.05,
+    "crime": 1.07,
+    "industryShare": 0.27,
+    "agricultureShare": 0.032,
+    "pollution": 1.07
+   }
+  },
+  {
+   "code": "BST",
+   "name": "Bristol",
+   "article": "le",
+   "region": "SW",
+   "population": 566000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.059,
+    "incomeIndex": 1.09,
+    "urbanShare": 0.84,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.0,
+    "healthAccess": 1.13,
+    "crime": 1.2,
+    "industryShare": 0.23,
+    "agricultureShare": 0.027,
+    "pollution": 1.2
+   }
+  },
+  {
+   "code": "SGC",
+   "name": "South Gloucestershire",
+   "article": "la",
+   "region": "SW",
+   "population": 119000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.057,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.55,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.08,
+    "healthAccess": 1.02,
+    "crime": 1.03,
+    "industryShare": 0.19,
+    "agricultureShare": 0.048,
+    "pollution": 1.03
+   }
+  },
+  {
+   "code": "NWP",
+   "name": "Newport",
+   "article": "le",
+   "region": "WLS",
+   "population": 78000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.051,
+    "incomeIndex": 1.11,
+    "urbanShare": 0.71,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.22,
+    "healthAccess": 1.08,
+    "crime": 1.12,
+    "industryShare": 0.17,
+    "agricultureShare": 0.02,
+    "pollution": 1.12
+   }
+  },
+  {
+   "code": "CRF",
+   "name": "Cardiff",
+   "article": "le",
+   "region": "WLS",
+   "population": 874000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.055,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.84,
+    "seniorShare": 0.17,
+    "politicalLeaning": -0.19,
+    "healthAccess": 1.14,
+    "crime": 1.21,
+    "industryShare": 0.17,
+    "agricultureShare": 0.018,
+    "pollution": 1.21
+   }
+  },
+  {
+   "code": "VGL",
+   "name": "Vale of Glamorgan",
+   "article": "le",
+   "region": "WLS",
+   "population": 90000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.047,
+    "incomeIndex": 1.09,
+    "urbanShare": 0.65,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.15,
+    "healthAccess": 1.06,
+    "crime": 1.09,
+    "industryShare": 0.12,
+    "agricultureShare": 0.044,
+    "pollution": 1.09
+   }
+  },
+  {
+   "code": "BGE",
+   "name": "Bridgend",
+   "article": "le",
+   "region": "WLS",
+   "population": 90000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.062,
+    "incomeIndex": 1.04,
+    "urbanShare": 0.65,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.19,
+    "healthAccess": 1.06,
+    "crime": 1.09,
+    "industryShare": 0.26,
+    "agricultureShare": 0.033,
+    "pollution": 1.09
+   }
+  },
+  {
+   "code": "NTL",
+   "name": "Neath Port Talbot",
+   "article": "le",
+   "region": "WLS",
+   "population": 107000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.048,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.59,
+    "seniorShare": 0.19,
+    "politicalLeaning": 0.03,
+    "healthAccess": 1.03,
+    "crime": 1.05,
+    "industryShare": 0.24,
+    "agricultureShare": 0.022,
+    "pollution": 1.05
+   }
+  },
+  {
+   "code": "SWA",
+   "name": "Swansea",
+   "article": "le",
+   "region": "WLS",
+   "population": 333000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.061,
+    "incomeIndex": 1.1,
+    "urbanShare": 0.78,
+    "seniorShare": 0.22,
+    "politicalLeaning": -0.19,
+    "healthAccess": 1.11,
+    "crime": 1.17,
+    "industryShare": 0.28,
+    "agricultureShare": 0.027,
+    "pollution": 1.17
+   }
+  },
+  {
+   "code": "CMN",
+   "name": "Carmarthenshire",
+   "article": "la",
+   "region": "WLS",
+   "population": 315000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.039,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.36,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.18,
+    "healthAccess": 0.95,
+    "crime": 0.92,
+    "industryShare": 0.1,
+    "agricultureShare": 0.053,
+    "pollution": 0.92
+   }
+  },
+  {
+   "code": "PEM",
+   "name": "Pembrokeshire",
+   "article": "la",
+   "region": "WLS",
+   "population": 227000,
+   "tags": [
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.054,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.41,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.17,
+    "healthAccess": 0.96,
+    "crime": 0.94,
+    "industryShare": 0.2,
+    "agricultureShare": 0.035,
+    "pollution": 0.94
+   }
+  },
+  {
+   "code": "CGN",
+   "name": "Ceredigion",
+   "article": "le",
+   "region": "WLS",
+   "population": 263000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.052,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.39,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.01,
+    "healthAccess": 0.95,
+    "crime": 0.93,
+    "industryShare": 0.27,
+    "agricultureShare": 0.044,
+    "pollution": 0.93
+   }
+  },
+  {
+   "code": "GWN",
+   "name": "Gwynedd",
+   "article": "le",
+   "region": "WLS",
+   "population": 345000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.049,
+    "incomeIndex": 0.92,
+    "urbanShare": 0.35,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.13,
+    "healthAccess": 0.94,
+    "crime": 0.91,
+    "industryShare": 0.22,
+    "agricultureShare": 0.042,
+    "pollution": 0.91
+   }
+  },
+  {
+   "code": "CWY",
+   "name": "Conwy",
+   "article": "le",
+   "region": "WLS",
+   "population": 185000,
+   "tags": [
+    "coastal",
+    "border",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.067,
+    "incomeIndex": 0.95,
+    "urbanShare": 0.44,
+    "seniorShare": 0.17,
+    "politicalLeaning": -0.02,
+    "healthAccess": 0.98,
+    "crime": 0.97,
+    "industryShare": 0.13,
+    "agricultureShare": 0.055,
+    "pollution": 0.97
+   }
+  },
+  {
+   "code": "DEN",
+   "name": "Denbighshire",
+   "article": "la",
+   "region": "WLS",
+   "population": 151000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.039,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.49,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.18,
+    "healthAccess": 0.99,
+    "crime": 0.99,
+    "industryShare": 0.18,
+    "agricultureShare": 0.045,
+    "pollution": 0.99
+   }
+  },
+  {
+   "code": "WRL",
+   "name": "Halton",
+   "article": "l'",
+   "region": "NW",
+   "population": 78000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.063,
+    "incomeIndex": 1.06,
+    "urbanShare": 0.71,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.17,
+    "healthAccess": 1.08,
+    "crime": 1.12,
+    "industryShare": 0.08,
+    "agricultureShare": 0.037,
+    "pollution": 1.12
+   }
+  },
+  {
+   "code": "HAL",
+   "name": "Halton",
+   "article": "l'",
+   "region": "NW",
+   "population": 69000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.039,
+    "incomeIndex": 1.13,
+    "urbanShare": 0.77,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.05,
+    "healthAccess": 1.11,
+    "crime": 1.16,
+    "industryShare": 0.27,
+    "agricultureShare": 0.024,
+    "pollution": 1.16
+   }
+  },
+  {
+   "code": "KWL",
+   "name": "Knowsley",
+   "article": "le",
+   "region": "NW",
+   "population": 75000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.048,
+    "incomeIndex": 1.04,
+    "urbanShare": 0.73,
+    "seniorShare": 0.23,
+    "politicalLeaning": -0.03,
+    "healthAccess": 1.09,
+    "crime": 1.14,
+    "industryShare": 0.26,
+    "agricultureShare": 0.037,
+    "pollution": 1.14
+   }
+  },
+  {
+   "code": "LIV",
+   "name": "Liverpool",
+   "article": "le",
+   "region": "NW",
+   "population": 824000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.066,
+    "incomeIndex": 1.07,
+    "urbanShare": 0.84,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.2,
+    "healthAccess": 1.14,
+    "crime": 1.2,
+    "industryShare": 0.12,
+    "agricultureShare": 0.011,
+    "pollution": 1.2
+   }
+  },
+  {
+   "code": "SFT",
+   "name": "Sefton",
+   "article": "le",
+   "region": "NW",
+   "population": 75000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.05,
+    "incomeIndex": 1.12,
+    "urbanShare": 0.73,
+    "seniorShare": 0.27,
+    "politicalLeaning": -0.03,
+    "healthAccess": 1.09,
+    "crime": 1.14,
+    "industryShare": 0.19,
+    "agricultureShare": 0.035,
+    "pollution": 1.14
+   }
+  },
+  {
+   "code": "LAN",
+   "name": "Lancashire",
+   "article": "la",
+   "region": "NW",
+   "population": 377000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.044,
+    "incomeIndex": 0.91,
+    "urbanShare": 0.35,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.21,
+    "healthAccess": 0.94,
+    "crime": 0.91,
+    "industryShare": 0.26,
+    "agricultureShare": 0.048,
+    "pollution": 0.91
+   }
+  },
+  {
+   "code": "BPL",
+   "name": "Blackpool",
+   "article": "le",
+   "region": "NW",
+   "population": 284000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.053,
+    "incomeIndex": 1.15,
+    "urbanShare": 0.83,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.14,
+    "healthAccess": 1.13,
+    "crime": 1.2,
+    "industryShare": 0.23,
+    "agricultureShare": 0.02,
+    "pollution": 1.2
+   }
+  },
+  {
+   "code": "SAY",
+   "name": "South Ayrshire",
+   "article": "la",
+   "region": "SCT",
+   "population": 215000,
+   "tags": [
+    "coastal",
+    "border",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.036,
+    "incomeIndex": 1.0,
+    "urbanShare": 0.44,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.05,
+    "healthAccess": 0.98,
+    "crime": 0.97,
+    "industryShare": 0.13,
+    "agricultureShare": 0.056,
+    "pollution": 0.97
+   }
+  },
+  {
+   "code": "NAY",
+   "name": "North Ayrshire",
+   "article": "la",
+   "region": "SCT",
+   "population": 115000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.064,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.56,
+    "seniorShare": 0.22,
+    "politicalLeaning": -0.04,
+    "healthAccess": 1.02,
+    "crime": 1.04,
+    "industryShare": 0.21,
+    "agricultureShare": 0.022,
+    "pollution": 1.04
+   }
+  },
+  {
+   "code": "IVC",
+   "name": "Inverclyde",
+   "article": "l'",
+   "region": "SCT",
+   "population": 95000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.06,
+    "incomeIndex": 1.04,
+    "urbanShare": 0.72,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.01,
+    "healthAccess": 1.09,
+    "crime": 1.13,
+    "industryShare": 0.18,
+    "agricultureShare": 0.032,
+    "pollution": 1.13
+   }
+  },
+  {
+   "code": "RFW",
+   "name": "Renfrewshire",
+   "article": "la",
+   "region": "SCT",
+   "population": 92000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.053,
+    "incomeIndex": 1.04,
+    "urbanShare": 0.64,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.03,
+    "healthAccess": 1.06,
+    "crime": 1.08,
+    "industryShare": 0.18,
+    "agricultureShare": 0.028,
+    "pollution": 1.08
+   }
+  },
+  {
+   "code": "WDU",
+   "name": "West Dunbartonshire",
+   "article": "la",
+   "region": "SCT",
+   "population": 83000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.046,
+    "incomeIndex": 1.03,
+    "urbanShare": 0.68,
+    "seniorShare": 0.23,
+    "politicalLeaning": -0.12,
+    "healthAccess": 1.07,
+    "crime": 1.11,
+    "industryShare": 0.22,
+    "agricultureShare": 0.038,
+    "pollution": 1.11
+   }
+  },
+  {
+   "code": "AGB",
+   "name": "Argyll and Bute",
+   "article": "l'",
+   "region": "SCT",
+   "population": 959000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.046,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.29,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.12,
+    "healthAccess": 0.92,
+    "crime": 0.87,
+    "industryShare": 0.26,
+    "agricultureShare": 0.065,
+    "pollution": 0.87
+   }
+  },
+  {
+   "code": "HLD",
+   "name": "Highland",
+   "article": "l'",
+   "region": "SCT",
+   "population": 3248000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.042,
+    "incomeIndex": 0.92,
+    "urbanShare": 0.26,
+    "seniorShare": 0.27,
+    "politicalLeaning": -0.22,
+    "healthAccess": 0.9,
+    "crime": 0.86,
+    "industryShare": 0.1,
+    "agricultureShare": 0.058,
+    "pollution": 0.86
+   }
+  },
+  {
+   "code": "MRY",
+   "name": "Moray",
+   "article": "le",
+   "region": "SCT",
+   "population": 336000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.04,
+    "incomeIndex": 0.92,
+    "urbanShare": 0.36,
+    "seniorShare": 0.24,
+    "politicalLeaning": -0.02,
+    "healthAccess": 0.94,
+    "crime": 0.91,
+    "industryShare": 0.25,
+    "agricultureShare": 0.04,
+    "pollution": 0.91
+   }
+  },
+  {
+   "code": "ABD",
+   "name": "Aberdeenshire",
+   "article": "l'",
+   "region": "SCT",
+   "population": 840000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.06,
+    "incomeIndex": 0.9,
+    "urbanShare": 0.29,
+    "seniorShare": 0.19,
+    "politicalLeaning": 0.01,
+    "healthAccess": 0.92,
+    "crime": 0.88,
+    "industryShare": 0.08,
+    "agricultureShare": 0.036,
+    "pollution": 0.88
+   }
+  },
+  {
+   "code": "ABE",
+   "name": "Aberdeen",
+   "article": "l'",
+   "region": "SCT",
+   "population": 217000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.058,
+    "incomeIndex": 1.08,
+    "urbanShare": 0.77,
+    "seniorShare": 0.21,
+    "politicalLeaning": -0.1,
+    "healthAccess": 1.11,
+    "crime": 1.16,
+    "industryShare": 0.08,
+    "agricultureShare": 0.026,
+    "pollution": 1.16
+   }
+  },
+  {
+   "code": "ANS",
+   "name": "Angus",
+   "article": "l'",
+   "region": "SCT",
+   "population": 316000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.039,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.36,
+    "seniorShare": 0.24,
+    "politicalLeaning": 0.14,
+    "healthAccess": 0.95,
+    "crime": 0.92,
+    "industryShare": 0.15,
+    "agricultureShare": 0.039,
+    "pollution": 0.92
+   }
+  },
+  {
+   "code": "DND",
+   "name": "Dundee",
+   "article": "la",
+   "region": "SCT",
+   "population": 161000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.065,
+    "incomeIndex": 1.06,
+    "urbanShare": 0.81,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.24,
+    "healthAccess": 1.13,
+    "crime": 1.19,
+    "industryShare": 0.2,
+    "agricultureShare": 0.018,
+    "pollution": 1.19
+   }
+  },
+  {
+   "code": "PKN",
+   "name": "Perth and Kinross",
+   "article": "le",
+   "region": "SCT",
+   "population": 696000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.04,
+    "incomeIndex": 0.89,
+    "urbanShare": 0.28,
+    "seniorShare": 0.2,
+    "politicalLeaning": 0.01,
+    "healthAccess": 0.91,
+    "crime": 0.87,
+    "industryShare": 0.28,
+    "agricultureShare": 0.061,
+    "pollution": 0.87
+   }
+  },
+  {
+   "code": "FIF",
+   "name": "Fife",
+   "article": "la",
+   "region": "SCT",
+   "population": 218000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.065,
+    "incomeIndex": 1.02,
+    "urbanShare": 0.41,
+    "seniorShare": 0.18,
+    "politicalLeaning": 0.16,
+    "healthAccess": 0.97,
+    "crime": 0.95,
+    "industryShare": 0.27,
+    "agricultureShare": 0.041,
+    "pollution": 0.95
+   }
+  },
+  {
+   "code": "IOW",
+   "name": "île de Wight",
+   "article": "l'",
+   "region": "SE",
+   "population": 102000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.052,
+    "incomeIndex": 1.04,
+    "urbanShare": 0.6,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.02,
+    "healthAccess": 1.04,
+    "crime": 1.06,
+    "industryShare": 0.22,
+    "agricultureShare": 0.048,
+    "pollution": 1.06
+   }
+  },
+  {
+   "code": "AGY",
+   "name": "Anglesey",
+   "article": "l'",
+   "region": "WLS",
+   "population": 139000,
+   "tags": [
+    "coastal",
+    "border",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.046,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.51,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.17,
+    "healthAccess": 1.0,
+    "crime": 1.0,
+    "industryShare": 0.11,
+    "agricultureShare": 0.028,
+    "pollution": 1.0
+   }
+  },
+  {
+   "code": "ELS",
+   "name": "Hébrides extérieures",
+   "article": "l'",
+   "region": "SCT",
+   "population": 417000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.044,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.34,
+    "seniorShare": 0.25,
+    "politicalLeaning": -0.18,
+    "healthAccess": 0.93,
+    "crime": 0.9,
+    "industryShare": 0.23,
+    "agricultureShare": 0.042,
+    "pollution": 0.9
+   }
+  },
+  {
+   "code": "ORK",
+   "name": "Orcades",
+   "article": "l'",
+   "region": "SCT",
+   "population": 180000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.041,
+    "incomeIndex": 0.94,
+    "urbanShare": 0.45,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.21,
+    "healthAccess": 0.98,
+    "crime": 0.97,
+    "industryShare": 0.19,
+    "agricultureShare": 0.031,
+    "pollution": 0.97
+   }
+  },
+  {
+   "code": "ZET",
+   "name": "Shetland",
+   "article": "le",
+   "region": "SCT",
+   "population": 236000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.048,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.4,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.21,
+    "healthAccess": 0.96,
+    "crime": 0.94,
+    "industryShare": 0.21,
+    "agricultureShare": 0.037,
+    "pollution": 0.94
+   }
+  },
+  {
+   "code": "CAY",
+   "name": "Caerphilly",
+   "article": "le",
+   "region": "WLS",
+   "population": 91000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.059,
+    "incomeIndex": 1.08,
+    "urbanShare": 0.64,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.01,
+    "healthAccess": 1.06,
+    "crime": 1.09,
+    "industryShare": 0.17,
+    "agricultureShare": 0.033,
+    "pollution": 1.09
+   }
+  },
+  {
+   "code": "RCT",
+   "name": "Rhondda Cynon Taf",
+   "article": "le",
+   "region": "WLS",
+   "population": 107000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.067,
+    "incomeIndex": 1.03,
+    "urbanShare": 0.59,
+    "seniorShare": 0.24,
+    "politicalLeaning": 0.03,
+    "healthAccess": 1.03,
+    "crime": 1.05,
+    "industryShare": 0.16,
+    "agricultureShare": 0.022,
+    "pollution": 1.05
+   }
+  },
+  {
+   "code": "BGW",
+   "name": "Blaenau Gwent",
+   "article": "le",
+   "region": "WLS",
+   "population": 70000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.055,
+    "incomeIndex": 1.03,
+    "urbanShare": 0.76,
+    "seniorShare": 0.19,
+    "politicalLeaning": 0.03,
+    "healthAccess": 1.1,
+    "crime": 1.16,
+    "industryShare": 0.17,
+    "agricultureShare": 0.02,
+    "pollution": 1.16
+   }
+  },
+  {
+   "code": "TOF",
+   "name": "Torfaen",
+   "article": "le",
+   "region": "WLS",
+   "population": 74000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.049,
+    "incomeIndex": 1.11,
+    "urbanShare": 0.73,
+    "seniorShare": 0.23,
+    "politicalLeaning": -0.18,
+    "healthAccess": 1.09,
+    "crime": 1.14,
+    "industryShare": 0.12,
+    "agricultureShare": 0.037,
+    "pollution": 1.14
+   }
+  },
+  {
+   "code": "MTY",
+   "name": "Merthyr Tydfil",
+   "article": "le",
+   "region": "WLS",
+   "population": 71000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.046,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.76,
+    "seniorShare": 0.25,
+    "politicalLeaning": -0.04,
+    "healthAccess": 1.1,
+    "crime": 1.15,
+    "industryShare": 0.22,
+    "agricultureShare": 0.023,
+    "pollution": 1.15
+   }
+  },
+  {
+   "code": "NLK",
+   "name": "North Lanarkshire",
+   "article": "la",
+   "region": "SCT",
+   "population": 116000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.037,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.56,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.12,
+    "healthAccess": 1.02,
+    "crime": 1.03,
+    "industryShare": 0.09,
+    "agricultureShare": 0.027,
+    "pollution": 1.03
+   }
+  },
+  {
+   "code": "EDU",
+   "name": "East Dunbartonshire",
+   "article": "l'",
+   "region": "SCT",
+   "population": 82000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.044,
+    "incomeIndex": 1.07,
+    "urbanShare": 0.69,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.16,
+    "healthAccess": 1.07,
+    "crime": 1.11,
+    "industryShare": 0.15,
+    "agricultureShare": 0.041,
+    "pollution": 1.11
+   }
+  },
+  {
+   "code": "GLG",
+   "name": "Glasgow",
+   "article": "le",
+   "region": "SCT",
+   "population": 1180000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.043,
+    "incomeIndex": 1.09,
+    "urbanShare": 0.84,
+    "seniorShare": 0.21,
+    "politicalLeaning": -0.07,
+    "healthAccess": 1.14,
+    "crime": 1.2,
+    "industryShare": 0.12,
+    "agricultureShare": 0.015,
+    "pollution": 1.2
+   }
+  },
+  {
+   "code": "ERW",
+   "name": "East Renfrewshire",
+   "article": "l'",
+   "region": "SCT",
+   "population": 77000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.057,
+    "incomeIndex": 1.02,
+    "urbanShare": 0.71,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.24,
+    "healthAccess": 1.09,
+    "crime": 1.13,
+    "industryShare": 0.17,
+    "agricultureShare": 0.042,
+    "pollution": 1.13
+   }
+  },
+  {
+   "code": "EAY",
+   "name": "East Ayrshire",
+   "article": "l'",
+   "region": "SCT",
+   "population": 210000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.039,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.42,
+    "seniorShare": 0.22,
+    "politicalLeaning": -0.14,
+    "healthAccess": 0.97,
+    "crime": 0.95,
+    "industryShare": 0.14,
+    "agricultureShare": 0.048,
+    "pollution": 0.95
+   }
+  },
+  {
+   "code": "SLK",
+   "name": "South Lanarkshire",
+   "article": "la",
+   "region": "SCT",
+   "population": 266000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.066,
+    "incomeIndex": 0.92,
+    "urbanShare": 0.39,
+    "seniorShare": 0.19,
+    "politicalLeaning": 0.09,
+    "healthAccess": 0.95,
+    "crime": 0.93,
+    "industryShare": 0.22,
+    "agricultureShare": 0.056,
+    "pollution": 0.93
+   }
+  },
+  {
+   "code": "MFT",
+   "name": "Magherafelt",
+   "article": "le",
+   "region": "NIR",
+   "population": 124000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.04,
+    "incomeIndex": 1.04,
+    "urbanShare": 0.54,
+    "seniorShare": 0.17,
+    "politicalLeaning": 0.07,
+    "healthAccess": 1.02,
+    "crime": 1.02,
+    "industryShare": 0.09,
+    "agricultureShare": 0.045,
+    "pollution": 1.02
+   }
+  },
+  {
+   "code": "OMH",
+   "name": "d'Omagh",
+   "article": "le",
+   "region": "NIR",
+   "population": 193000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.062,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.44,
+    "seniorShare": 0.22,
+    "politicalLeaning": -0.16,
+    "healthAccess": 0.97,
+    "crime": 0.96,
+    "industryShare": 0.2,
+    "agricultureShare": 0.04,
+    "pollution": 0.96
+   }
+  },
+  {
+   "code": "CKT",
+   "name": "Mid-Ulster",
+   "article": "le",
+   "region": "NIR",
+   "population": 130000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.039,
+    "incomeIndex": 1.0,
+    "urbanShare": 0.53,
+    "seniorShare": 0.21,
+    "politicalLeaning": -0.13,
+    "healthAccess": 1.01,
+    "crime": 1.02,
+    "industryShare": 0.09,
+    "agricultureShare": 0.049,
+    "pollution": 1.02
+   }
+  },
+  {
+   "code": "CGV",
+   "name": "Craigavon",
+   "article": "le",
+   "region": "NIR",
+   "population": 103000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.067,
+    "incomeIndex": 1.02,
+    "urbanShare": 0.6,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.16,
+    "healthAccess": 1.04,
+    "crime": 1.06,
+    "industryShare": 0.09,
+    "agricultureShare": 0.032,
+    "pollution": 1.06
+   }
+  },
+  {
+   "code": "BNB",
+   "name": "Banbridge",
+   "article": "la",
+   "region": "NIR",
+   "population": 112000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.061,
+    "incomeIndex": 1.03,
+    "urbanShare": 0.57,
+    "seniorShare": 0.25,
+    "politicalLeaning": -0.12,
+    "healthAccess": 1.03,
+    "crime": 1.04,
+    "industryShare": 0.13,
+    "agricultureShare": 0.042,
+    "pollution": 1.04
+   }
+  },
+  {
+   "code": "ANT",
+   "name": "d'Antrim",
+   "article": "le",
+   "region": "NIR",
+   "population": 124000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.051,
+    "incomeIndex": 1.04,
+    "urbanShare": 0.54,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.01,
+    "healthAccess": 1.02,
+    "crime": 1.02,
+    "industryShare": 0.13,
+    "agricultureShare": 0.032,
+    "pollution": 1.02
+   }
+  },
+  {
+   "code": "LSB",
+   "name": "Lisburn",
+   "article": "le",
+   "region": "NIR",
+   "population": 111000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.047,
+    "incomeIndex": 1.04,
+    "urbanShare": 0.57,
+    "seniorShare": 0.27,
+    "politicalLeaning": -0.03,
+    "healthAccess": 1.03,
+    "crime": 1.04,
+    "industryShare": 0.18,
+    "agricultureShare": 0.043,
+    "pollution": 1.04
+   }
+  },
+  {
+   "code": "BLY",
+   "name": "Ballymoney",
+   "article": "le",
+   "region": "NIR",
+   "population": 108000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.055,
+    "incomeIndex": 1.03,
+    "urbanShare": 0.58,
+    "seniorShare": 0.23,
+    "politicalLeaning": -0.04,
+    "healthAccess": 1.03,
+    "crime": 1.05,
+    "industryShare": 0.16,
+    "agricultureShare": 0.022,
+    "pollution": 1.05
+   }
+  },
+  {
+   "code": "BLA",
+   "name": "Ballymena",
+   "article": "le",
+   "region": "NIR",
+   "population": 134000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.047,
+    "incomeIndex": 1.02,
+    "urbanShare": 0.52,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.15,
+    "healthAccess": 1.01,
+    "crime": 1.01,
+    "industryShare": 0.19,
+    "agricultureShare": 0.047,
+    "pollution": 1.01
+   }
+  },
+  {
+   "code": "CSR",
+   "name": "Castlereagh",
+   "article": "le",
+   "region": "NIR",
+   "population": 70000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.064,
+    "incomeIndex": 1.09,
+    "urbanShare": 0.76,
+    "seniorShare": 0.24,
+    "politicalLeaning": 0.03,
+    "healthAccess": 1.1,
+    "crime": 1.16,
+    "industryShare": 0.2,
+    "agricultureShare": 0.031,
+    "pollution": 1.16
+   }
+  },
+  {
+   "code": "WND",
+   "name": "Wandsworth",
+   "article": "le",
+   "region": "LDN",
+   "population": 63000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.036,
+    "incomeIndex": 1.11,
+    "urbanShare": 0.81,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.17,
+    "healthAccess": 1.13,
+    "crime": 1.19,
+    "industryShare": 0.18,
+    "agricultureShare": 0.032,
+    "pollution": 1.19
+   }
+  },
+  {
+   "code": "MRT",
+   "name": "Merton",
+   "article": "le",
+   "region": "LDN",
+   "population": 63000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.065,
+    "incomeIndex": 1.06,
+    "urbanShare": 0.81,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.05,
+    "healthAccess": 1.13,
+    "crime": 1.19,
+    "industryShare": 0.11,
+    "agricultureShare": 0.036,
+    "pollution": 1.19
+   }
+  },
+  {
+   "code": "WSM",
+   "name": "cité de Westminster",
+   "article": "le",
+   "region": "LDN",
+   "population": 61000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.06,
+    "incomeIndex": 1.12,
+    "urbanShare": 0.83,
+    "seniorShare": 0.18,
+    "politicalLeaning": 0.04,
+    "healthAccess": 1.13,
+    "crime": 1.2,
+    "industryShare": 0.23,
+    "agricultureShare": 0.016,
+    "pollution": 1.2
+   }
+  },
+  {
+   "code": "KEC",
+   "name": "Kensington et Chelsea",
+   "article": "le",
+   "region": "LDN",
+   "population": 61000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.056,
+    "incomeIndex": 1.14,
+    "urbanShare": 0.84,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.13,
+    "healthAccess": 1.14,
+    "crime": 1.2,
+    "industryShare": 0.26,
+    "agricultureShare": 0.012,
+    "pollution": 1.2
+   }
+  },
+  {
+   "code": "HNS",
+   "name": "Hounslow",
+   "article": "l'",
+   "region": "LDN",
+   "population": 65000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.064,
+    "incomeIndex": 1.13,
+    "urbanShare": 0.8,
+    "seniorShare": 0.23,
+    "politicalLeaning": -0.09,
+    "healthAccess": 1.12,
+    "crime": 1.18,
+    "industryShare": 0.17,
+    "agricultureShare": 0.036,
+    "pollution": 1.18
+   }
+  },
+  {
+   "code": "EAL",
+   "name": "londonien d'Ealing",
+   "article": "le",
+   "region": "LDN",
+   "population": 65000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.049,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.8,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.21,
+    "healthAccess": 1.12,
+    "crime": 1.18,
+    "industryShare": 0.11,
+    "agricultureShare": 0.039,
+    "pollution": 1.18
+   }
+  },
+  {
+   "code": "HMF",
+   "name": "Hammersmith et Fulham",
+   "article": "l'",
+   "region": "LDN",
+   "population": 61000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.061,
+    "incomeIndex": 1.13,
+    "urbanShare": 0.83,
+    "seniorShare": 0.27,
+    "politicalLeaning": -0.17,
+    "healthAccess": 1.13,
+    "crime": 1.2,
+    "industryShare": 0.24,
+    "agricultureShare": 0.016,
+    "pollution": 1.2
+   }
+  },
+  {
+   "code": "STT",
+   "name": "Stockton-on-Tees",
+   "article": "les",
+   "region": "NE",
+   "population": 76000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.067,
+    "incomeIndex": 1.08,
+    "urbanShare": 0.72,
+    "seniorShare": 0.19,
+    "politicalLeaning": 0.14,
+    "healthAccess": 1.09,
+    "crime": 1.13,
+    "industryShare": 0.22,
+    "agricultureShare": 0.019,
+    "pollution": 1.13
+   }
+  },
+  {
+   "code": "DAL",
+   "name": "Darlington",
+   "article": "le",
+   "region": "NE",
+   "population": 79000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.052,
+    "incomeIndex": 1.04,
+    "urbanShare": 0.7,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.05,
+    "healthAccess": 1.08,
+    "crime": 1.12,
+    "industryShare": 0.11,
+    "agricultureShare": 0.045,
+    "pollution": 1.12
+   }
+  },
+  {
+   "code": "MDB",
+   "name": "Middlesbrough",
+   "article": "le",
+   "region": "NE",
+   "population": 421000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.059,
+    "incomeIndex": 1.1,
+    "urbanShare": 0.84,
+    "seniorShare": 0.17,
+    "politicalLeaning": -0.1,
+    "healthAccess": 1.14,
+    "crime": 1.21,
+    "industryShare": 0.25,
+    "agricultureShare": 0.019,
+    "pollution": 1.21
+   }
+  },
+  {
+   "code": "RIC",
+   "name": "Richmond upon Thames",
+   "article": "les",
+   "region": "LDN",
+   "population": 66000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.049,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.79,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.24,
+    "healthAccess": 1.12,
+    "crime": 1.18,
+    "industryShare": 0.14,
+    "agricultureShare": 0.034,
+    "pollution": 1.18
+   }
+  },
+  {
+   "code": "TWH",
+   "name": "Tower Hamlets",
+   "article": "le",
+   "region": "LDN",
+   "population": 62000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.066,
+    "incomeIndex": 1.12,
+    "urbanShare": 0.83,
+    "seniorShare": 0.2,
+    "politicalLeaning": 0.02,
+    "healthAccess": 1.13,
+    "crime": 1.2,
+    "industryShare": 0.17,
+    "agricultureShare": 0.01,
+    "pollution": 1.2
+   }
+  },
+  {
+   "code": "GAT",
+   "name": "Gateshead",
+   "article": "le",
+   "region": "NE",
+   "population": 79000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.058,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.71,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.18,
+    "healthAccess": 1.08,
+    "crime": 1.12,
+    "industryShare": 0.15,
+    "agricultureShare": 0.028,
+    "pollution": 1.12
+   }
+  },
+  {
+   "code": "NET",
+   "name": "Newcastle upon Tyne",
+   "article": "la",
+   "region": "NE",
+   "population": 894000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.054,
+    "incomeIndex": 1.06,
+    "urbanShare": 0.84,
+    "seniorShare": 0.19,
+    "politicalLeaning": 0.04,
+    "healthAccess": 1.14,
+    "crime": 1.21,
+    "industryShare": 0.27,
+    "agricultureShare": 0.031,
+    "pollution": 1.21
+   }
+  },
+  {
+   "code": "YOR",
+   "name": "York",
+   "article": "l'",
+   "region": "YH",
+   "population": 193000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.046,
+    "incomeIndex": 1.07,
+    "urbanShare": 0.74,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.12,
+    "healthAccess": 1.1,
+    "crime": 1.15,
+    "industryShare": 0.19,
+    "agricultureShare": 0.041,
+    "pollution": 1.15
+   }
+  },
+  {
+   "code": "SHN",
+   "name": "Merseyside",
+   "article": "la",
+   "region": "NW",
+   "population": 75000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.04,
+    "incomeIndex": 1.09,
+    "urbanShare": 0.73,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.08,
+    "healthAccess": 1.09,
+    "crime": 1.14,
+    "industryShare": 0.09,
+    "agricultureShare": 0.02,
+    "pollution": 1.14
+   }
+  },
+  {
+   "code": "ENF",
+   "name": "londonien d'Enfield",
+   "article": "le",
+   "region": "LDN",
+   "population": 68000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.044,
+    "incomeIndex": 1.06,
+    "urbanShare": 0.77,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.14,
+    "healthAccess": 1.11,
+    "crime": 1.16,
+    "industryShare": 0.1,
+    "agricultureShare": 0.04,
+    "pollution": 1.16
+   }
+  },
+  {
+   "code": "HRT",
+   "name": "Hertfordshire",
+   "article": "l'",
+   "region": "EE",
+   "population": 235000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.038,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.4,
+    "seniorShare": 0.18,
+    "politicalLeaning": 0.07,
+    "healthAccess": 0.96,
+    "crime": 0.94,
+    "industryShare": 0.18,
+    "agricultureShare": 0.034,
+    "pollution": 0.94
+   }
+  },
+  {
+   "code": "BNE",
+   "name": "Barnet",
+   "article": "le",
+   "region": "LDN",
+   "population": 70000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.041,
+    "incomeIndex": 1.12,
+    "urbanShare": 0.76,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.19,
+    "healthAccess": 1.11,
+    "crime": 1.16,
+    "industryShare": 0.28,
+    "agricultureShare": 0.032,
+    "pollution": 1.16
+   }
+  },
+  {
+   "code": "WFT",
+   "name": "Waltham Forest",
+   "article": "le",
+   "region": "LDN",
+   "population": 63000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.049,
+    "incomeIndex": 1.13,
+    "urbanShare": 0.81,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.03,
+    "healthAccess": 1.13,
+    "crime": 1.19,
+    "industryShare": 0.16,
+    "agricultureShare": 0.038,
+    "pollution": 1.19
+   }
+  },
+  {
+   "code": "RDB",
+   "name": "Redbridge",
+   "article": "la",
+   "region": "LDN",
+   "population": 65000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.044,
+    "incomeIndex": 1.07,
+    "urbanShare": 0.8,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.04,
+    "healthAccess": 1.12,
+    "crime": 1.18,
+    "industryShare": 0.11,
+    "agricultureShare": 0.011,
+    "pollution": 1.18
+   }
+  },
+  {
+   "code": "HAV",
+   "name": "londonien d'Havering",
+   "article": "le",
+   "region": "LDN",
+   "population": 72000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.048,
+    "incomeIndex": 1.1,
+    "urbanShare": 0.74,
+    "seniorShare": 0.25,
+    "politicalLeaning": -0.18,
+    "healthAccess": 1.1,
+    "crime": 1.15,
+    "industryShare": 0.21,
+    "agricultureShare": 0.025,
+    "pollution": 1.15
+   }
+  },
+  {
+   "code": "CAM",
+   "name": "Cambridgeshire",
+   "article": "la",
+   "region": "EE",
+   "population": 462000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.038,
+    "incomeIndex": 1.0,
+    "urbanShare": 0.42,
+    "seniorShare": 0.25,
+    "politicalLeaning": -0.14,
+    "healthAccess": 0.97,
+    "crime": 0.95,
+    "industryShare": 0.12,
+    "agricultureShare": 0.053,
+    "pollution": 0.95
+   }
+  },
+  {
+   "code": "BEX",
+   "name": "Bexley",
+   "article": "le",
+   "region": "LDN",
+   "population": 67000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.048,
+    "incomeIndex": 1.1,
+    "urbanShare": 0.79,
+    "seniorShare": 0.17,
+    "politicalLeaning": 0.03,
+    "healthAccess": 1.11,
+    "crime": 1.17,
+    "industryShare": 0.09,
+    "agricultureShare": 0.036,
+    "pollution": 1.17
+   }
+  },
+  {
+   "code": "STN",
+   "name": "Sutton",
+   "article": "le",
+   "region": "LDN",
+   "population": 64000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.06,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.81,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.09,
+    "healthAccess": 1.12,
+    "crime": 1.18,
+    "industryShare": 0.25,
+    "agricultureShare": 0.013,
+    "pollution": 1.18
+   }
+  },
+  {
+   "code": "MIK",
+   "name": "Milton Keynes",
+   "article": "les",
+   "region": "SE",
+   "population": 96000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.04,
+    "incomeIndex": 1.04,
+    "urbanShare": 0.62,
+    "seniorShare": 0.25,
+    "politicalLeaning": -0.03,
+    "healthAccess": 1.05,
+    "crime": 1.07,
+    "industryShare": 0.25,
+    "agricultureShare": 0.045,
+    "pollution": 1.07
+   }
+  },
+  {
+   "code": "BKM",
+   "name": "Buckinghamshire",
+   "article": "la",
+   "region": "SE",
+   "population": 227000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.045,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.41,
+    "seniorShare": 0.24,
+    "politicalLeaning": 0.2,
+    "healthAccess": 0.96,
+    "crime": 0.94,
+    "industryShare": 0.24,
+    "agricultureShare": 0.043,
+    "pollution": 0.94
+   }
+  },
+  {
+   "code": "HIL",
+   "name": "Hillingdon",
+   "article": "l'",
+   "region": "LDN",
+   "population": 72000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.04,
+    "incomeIndex": 1.06,
+    "urbanShare": 0.75,
+    "seniorShare": 0.26,
+    "politicalLeaning": 0.21,
+    "healthAccess": 1.1,
+    "crime": 1.15,
+    "industryShare": 0.26,
+    "agricultureShare": 0.031,
+    "pollution": 1.15
+   }
+  },
+  {
+   "code": "BEN",
+   "name": "Brent",
+   "article": "le",
+   "region": "LDN",
+   "population": 64000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.039,
+    "incomeIndex": 1.1,
+    "urbanShare": 0.8,
+    "seniorShare": 0.27,
+    "politicalLeaning": 0.08,
+    "healthAccess": 1.12,
+    "crime": 1.18,
+    "industryShare": 0.16,
+    "agricultureShare": 0.025,
+    "pollution": 1.18
+   }
+  },
+  {
+   "code": "LUT",
+   "name": "Luton",
+   "article": "le",
+   "region": "EE",
+   "population": 243000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.063,
+    "incomeIndex": 1.09,
+    "urbanShare": 0.83,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.23,
+    "healthAccess": 1.13,
+    "crime": 1.2,
+    "industryShare": 0.27,
+    "agricultureShare": 0.029,
+    "pollution": 1.2
+   }
+  },
+  {
+   "code": "HRW",
+   "name": "Harrow",
+   "article": "l'",
+   "region": "LDN",
+   "population": 65000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.055,
+    "incomeIndex": 1.08,
+    "urbanShare": 0.8,
+    "seniorShare": 0.18,
+    "politicalLeaning": 0.22,
+    "healthAccess": 1.12,
+    "crime": 1.18,
+    "industryShare": 0.17,
+    "agricultureShare": 0.029,
+    "pollution": 1.18
+   }
+  },
+  {
+   "code": "CBF",
+   "name": "Central Bedfordshire",
+   "article": "la",
+   "region": "EE",
+   "population": 135000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.066,
+    "incomeIndex": 1.03,
+    "urbanShare": 0.52,
+    "seniorShare": 0.26,
+    "politicalLeaning": 0.23,
+    "healthAccess": 1.01,
+    "crime": 1.01,
+    "industryShare": 0.27,
+    "agricultureShare": 0.043,
+    "pollution": 1.01
+   }
+  },
+  {
+   "code": "BDF",
+   "name": "Bedford",
+   "article": "le",
+   "region": "EE",
+   "population": 107000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.044,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.59,
+    "seniorShare": 0.22,
+    "politicalLeaning": -0.19,
+    "healthAccess": 1.03,
+    "crime": 1.05,
+    "industryShare": 0.08,
+    "agricultureShare": 0.026,
+    "pollution": 1.05
+   }
+  },
+  {
+   "code": "RUT",
+   "name": "Rutland",
+   "article": "le",
+   "region": "EM",
+   "population": 104000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.038,
+    "incomeIndex": 1.08,
+    "urbanShare": 0.59,
+    "seniorShare": 0.17,
+    "politicalLeaning": 0.24,
+    "healthAccess": 1.04,
+    "crime": 1.06,
+    "industryShare": 0.17,
+    "agricultureShare": 0.043,
+    "pollution": 1.06
+   }
+  },
+  {
+   "code": "NTT",
+   "name": "Nottinghamshire",
+   "article": "la",
+   "region": "EM",
+   "population": 1066000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.056,
+    "incomeIndex": 1.07,
+    "urbanShare": 0.71,
+    "seniorShare": 0.19,
+    "politicalLeaning": 0.08,
+    "healthAccess": 1.09,
+    "crime": 1.13,
+    "industryShare": 0.18,
+    "agricultureShare": 0.031,
+    "pollution": 1.13
+   }
+  },
+  {
+   "code": "NTH",
+   "name": "Northamptonshire",
+   "article": "la",
+   "region": "EM",
+   "population": 313000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.055,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.36,
+    "seniorShare": 0.19,
+    "politicalLeaning": 0.08,
+    "healthAccess": 0.95,
+    "crime": 0.92,
+    "industryShare": 0.23,
+    "agricultureShare": 0.032,
+    "pollution": 0.92
+   }
+  },
+  {
+   "code": "CMD",
+   "name": "Camden",
+   "article": "le",
+   "region": "LDN",
+   "population": 8584000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.038,
+    "incomeIndex": 1.06,
+    "urbanShare": 0.85,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.06,
+    "healthAccess": 1.14,
+    "crime": 1.21,
+    "industryShare": 0.25,
+    "agricultureShare": 0.012,
+    "pollution": 1.21
+   }
+  },
+  {
+   "code": "ISL",
+   "name": "londonien d’Islington",
+   "article": "le",
+   "region": "LDN",
+   "population": 61000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.067,
+    "incomeIndex": 1.1,
+    "urbanShare": 0.84,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.24,
+    "healthAccess": 1.14,
+    "crime": 1.2,
+    "industryShare": 0.27,
+    "agricultureShare": 0.014,
+    "pollution": 1.2
+   }
+  },
+  {
+   "code": "PTE",
+   "name": "Peterborough",
+   "article": "le",
+   "region": "EE",
+   "population": 174000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.062,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.73,
+    "seniorShare": 0.22,
+    "politicalLeaning": -0.04,
+    "healthAccess": 1.09,
+    "crime": 1.14,
+    "industryShare": 0.11,
+    "agricultureShare": 0.043,
+    "pollution": 1.14
+   }
+  },
+  {
+   "code": "LBH",
+   "name": "Lambeth",
+   "article": "le",
+   "region": "LDN",
+   "population": 63000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.045,
+    "incomeIndex": 1.14,
+    "urbanShare": 0.82,
+    "seniorShare": 0.24,
+    "politicalLeaning": 0.19,
+    "healthAccess": 1.13,
+    "crime": 1.19,
+    "industryShare": 0.17,
+    "agricultureShare": 0.021,
+    "pollution": 1.19
+   }
+  },
+  {
+   "code": "SWK",
+   "name": "Southwark",
+   "article": "le",
+   "region": "LDN",
+   "population": 63000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.052,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.82,
+    "seniorShare": 0.23,
+    "politicalLeaning": -0.03,
+    "healthAccess": 1.13,
+    "crime": 1.19,
+    "industryShare": 0.08,
+    "agricultureShare": 0.03,
+    "pollution": 1.19
+   }
+  },
+  {
+   "code": "DNC",
+   "name": "Doncaster",
+   "article": "le",
+   "region": "YH",
+   "population": 132000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.064,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.52,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.08,
+    "healthAccess": 1.01,
+    "crime": 1.01,
+    "industryShare": 0.11,
+    "agricultureShare": 0.032,
+    "pollution": 1.01
+   }
+  },
+  {
+   "code": "CRY",
+   "name": "Croydon",
+   "article": "le",
+   "region": "LDN",
+   "population": 68000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.037,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.77,
+    "seniorShare": 0.27,
+    "politicalLeaning": 0.18,
+    "healthAccess": 1.11,
+    "crime": 1.16,
+    "industryShare": 0.18,
+    "agricultureShare": 0.026,
+    "pollution": 1.16
+   }
+  },
+  {
+   "code": "LEW",
+   "name": "Lewisham",
+   "article": "le",
+   "region": "LDN",
+   "population": 63000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.043,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.82,
+    "seniorShare": 0.2,
+    "politicalLeaning": 0.06,
+    "healthAccess": 1.13,
+    "crime": 1.19,
+    "industryShare": 0.14,
+    "agricultureShare": 0.028,
+    "pollution": 1.19
+   }
+  },
+  {
+   "code": "HRY",
+   "name": "Haringey",
+   "article": "l'",
+   "region": "LDN",
+   "population": 63000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.046,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.82,
+    "seniorShare": 0.17,
+    "politicalLeaning": 0.18,
+    "healthAccess": 1.13,
+    "crime": 1.19,
+    "industryShare": 0.1,
+    "agricultureShare": 0.022,
+    "pollution": 1.19
+   }
+  },
+  {
+   "code": "KTT",
+   "name": "Kingston-upon-Thames",
+   "article": "les",
+   "region": "LDN",
+   "population": 64000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.04,
+    "incomeIndex": 1.07,
+    "urbanShare": 0.81,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.01,
+    "healthAccess": 1.12,
+    "crime": 1.19,
+    "industryShare": 0.13,
+    "agricultureShare": 0.014,
+    "pollution": 1.19
+   }
+  },
+  {
+   "code": "NWM",
+   "name": "Newham",
+   "article": "le",
+   "region": "LDN",
+   "population": 64000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.047,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.81,
+    "seniorShare": 0.22,
+    "politicalLeaning": -0.09,
+    "healthAccess": 1.12,
+    "crime": 1.19,
+    "industryShare": 0.21,
+    "agricultureShare": 0.028,
+    "pollution": 1.19
+   }
+  },
+  {
+   "code": "GRE",
+   "name": "Greenwich",
+   "article": "le",
+   "region": "LDN",
+   "population": 64000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.052,
+    "incomeIndex": 1.09,
+    "urbanShare": 0.8,
+    "seniorShare": 0.24,
+    "politicalLeaning": -0.15,
+    "healthAccess": 1.12,
+    "crime": 1.18,
+    "industryShare": 0.23,
+    "agricultureShare": 0.038,
+    "pollution": 1.18
+   }
+  },
+  {
+   "code": "HCK",
+   "name": "Hackney",
+   "article": "l'",
+   "region": "LDN",
+   "population": 62000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.037,
+    "incomeIndex": 1.1,
+    "urbanShare": 0.83,
+    "seniorShare": 0.24,
+    "politicalLeaning": 0.02,
+    "healthAccess": 1.13,
+    "crime": 1.2,
+    "industryShare": 0.11,
+    "agricultureShare": 0.015,
+    "pollution": 1.2
+   }
+  },
+  {
+   "code": "BDG",
+   "name": "Barking et Dagenham",
+   "article": "le",
+   "region": "LDN",
+   "population": 64000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.04,
+    "incomeIndex": 1.08,
+    "urbanShare": 0.81,
+    "seniorShare": 0.25,
+    "politicalLeaning": -0.19,
+    "healthAccess": 1.12,
+    "crime": 1.18,
+    "industryShare": 0.11,
+    "agricultureShare": 0.029,
+    "pollution": 1.18
+   }
+  },
+  {
+   "code": "LEC",
+   "name": "Leicestershire",
+   "article": "la",
+   "region": "EM",
+   "population": 691000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.062,
+    "incomeIndex": 1.07,
+    "urbanShare": 0.65,
+    "seniorShare": 0.17,
+    "politicalLeaning": 0.15,
+    "healthAccess": 1.06,
+    "crime": 1.09,
+    "industryShare": 0.24,
+    "agricultureShare": 0.023,
+    "pollution": 1.09
+   }
+  },
+  {
+   "code": "CHE",
+   "name": "Cheshire East",
+   "article": "le",
+   "region": "NW",
+   "population": 185000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.065,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.44,
+    "seniorShare": 0.17,
+    "politicalLeaning": 0.03,
+    "healthAccess": 0.98,
+    "crime": 0.97,
+    "industryShare": 0.19,
+    "agricultureShare": 0.041,
+    "pollution": 0.97
+   }
+  },
+  {
+   "code": "DBY",
+   "name": "Derbyshire",
+   "article": "la",
+   "region": "EM",
+   "population": 354000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.036,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.35,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.01,
+    "healthAccess": 0.94,
+    "crime": 0.91,
+    "industryShare": 0.22,
+    "agricultureShare": 0.035,
+    "pollution": 0.91
+   }
+  },
+  {
+   "code": "ROT",
+   "name": "Rotherham",
+   "article": "le",
+   "region": "YH",
+   "population": 91000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.037,
+    "incomeIndex": 1.02,
+    "urbanShare": 0.65,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.23,
+    "healthAccess": 1.06,
+    "crime": 1.09,
+    "industryShare": 0.08,
+    "agricultureShare": 0.044,
+    "pollution": 1.09
+   }
+  },
+  {
+   "code": "SHF",
+   "name": "Sheffield",
+   "article": "le",
+   "region": "YH",
+   "population": 1337000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.05,
+    "incomeIndex": 1.09,
+    "urbanShare": 0.83,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.08,
+    "healthAccess": 1.13,
+    "crime": 1.2,
+    "industryShare": 0.14,
+    "agricultureShare": 0.015,
+    "pollution": 1.2
+   }
+  },
+  {
+   "code": "STE",
+   "name": "Stoke-on-Trent",
+   "article": "le",
+   "region": "WM",
+   "population": 402000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.039,
+    "incomeIndex": 1.13,
+    "urbanShare": 0.83,
+    "seniorShare": 0.18,
+    "politicalLeaning": 0.07,
+    "healthAccess": 1.13,
+    "crime": 1.2,
+    "industryShare": 0.12,
+    "agricultureShare": 0.032,
+    "pollution": 1.2
+   }
+  },
+  {
+   "code": "TFW",
+   "name": "Telford et Wrekin",
+   "article": "le",
+   "region": "WM",
+   "population": 92000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.067,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.64,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.23,
+    "healthAccess": 1.06,
+    "crime": 1.08,
+    "industryShare": 0.2,
+    "agricultureShare": 0.027,
+    "pollution": 1.08
+   }
+  },
+  {
+   "code": "STS",
+   "name": "Staffordshire",
+   "article": "la",
+   "region": "WM",
+   "population": 347000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.046,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.35,
+    "seniorShare": 0.22,
+    "politicalLeaning": -0.01,
+    "healthAccess": 0.94,
+    "crime": 0.91,
+    "industryShare": 0.26,
+    "agricultureShare": 0.048,
+    "pollution": 0.91
+   }
+  },
+  {
+   "code": "BRY",
+   "name": "Bromley",
+   "article": "le",
+   "region": "LDN",
+   "population": 76000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.066,
+    "incomeIndex": 1.1,
+    "urbanShare": 0.72,
+    "seniorShare": 0.24,
+    "politicalLeaning": 0.07,
+    "healthAccess": 1.09,
+    "crime": 1.13,
+    "industryShare": 0.11,
+    "agricultureShare": 0.041,
+    "pollution": 1.13
+   }
+  },
+  {
+   "code": "WOR",
+   "name": "Worcestershire",
+   "article": "la",
+   "region": "WM",
+   "population": 254000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.066,
+    "incomeIndex": 1.0,
+    "urbanShare": 0.39,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.07,
+    "healthAccess": 0.96,
+    "crime": 0.93,
+    "industryShare": 0.16,
+    "agricultureShare": 0.04,
+    "pollution": 0.93
+   }
+  },
+  {
+   "code": "WAR",
+   "name": "Warwickshire",
+   "article": "la",
+   "region": "WM",
+   "population": 273000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.056,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.38,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.04,
+    "healthAccess": 0.95,
+    "crime": 0.93,
+    "industryShare": 0.09,
+    "agricultureShare": 0.036,
+    "pollution": 0.93
+   }
+  },
+  {
+   "code": "OXF",
+   "name": "Oxfordshire",
+   "article": "l'",
+   "region": "SE",
+   "population": 845000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.042,
+    "incomeIndex": 1.03,
+    "urbanShare": 0.65,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.09,
+    "healthAccess": 1.06,
+    "crime": 1.09,
+    "industryShare": 0.14,
+    "agricultureShare": 0.043,
+    "pollution": 1.09
+   }
+  },
+  {
+   "code": "WGN",
+   "name": "Wigan",
+   "article": "le",
+   "region": "NW",
+   "population": 82000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.065,
+    "incomeIndex": 1.07,
+    "urbanShare": 0.68,
+    "seniorShare": 0.24,
+    "politicalLeaning": -0.05,
+    "healthAccess": 1.07,
+    "crime": 1.11,
+    "industryShare": 0.23,
+    "agricultureShare": 0.029,
+    "pollution": 1.11
+   }
+  },
+  {
+   "code": "SKP",
+   "name": "Stockport",
+   "article": "le",
+   "region": "NW",
+   "population": 73000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.059,
+    "incomeIndex": 1.08,
+    "urbanShare": 0.74,
+    "seniorShare": 0.17,
+    "politicalLeaning": -0.06,
+    "healthAccess": 1.1,
+    "crime": 1.14,
+    "industryShare": 0.18,
+    "agricultureShare": 0.026,
+    "pollution": 1.14
+   }
+  },
+  {
+   "code": "WRT",
+   "name": "Warrington",
+   "article": "le",
+   "region": "NW",
+   "population": 79000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.055,
+    "incomeIndex": 1.11,
+    "urbanShare": 0.7,
+    "seniorShare": 0.19,
+    "politicalLeaning": 0.04,
+    "healthAccess": 1.08,
+    "crime": 1.12,
+    "industryShare": 0.11,
+    "agricultureShare": 0.043,
+    "pollution": 1.12
+   }
+  },
+  {
+   "code": "WBK",
+   "name": "West Berkshire",
+   "article": "la",
+   "region": "SE",
+   "population": 128000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.039,
+    "incomeIndex": 1.04,
+    "urbanShare": 0.53,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.23,
+    "healthAccess": 1.01,
+    "crime": 1.02,
+    "industryShare": 0.15,
+    "agricultureShare": 0.036,
+    "pollution": 1.02
+   }
+  },
+  {
+   "code": "WOK",
+   "name": "Wokingham",
+   "article": "le",
+   "region": "SE",
+   "population": 80000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.053,
+    "incomeIndex": 1.07,
+    "urbanShare": 0.7,
+    "seniorShare": 0.24,
+    "politicalLeaning": -0.18,
+    "healthAccess": 1.08,
+    "crime": 1.12,
+    "industryShare": 0.15,
+    "agricultureShare": 0.028,
+    "pollution": 1.12
+   }
+  },
+  {
+   "code": "BRC",
+   "name": "Bracknell Forest",
+   "article": "le",
+   "region": "SE",
+   "population": 72000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.042,
+    "incomeIndex": 1.11,
+    "urbanShare": 0.75,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.15,
+    "healthAccess": 1.1,
+    "crime": 1.15,
+    "industryShare": 0.25,
+    "agricultureShare": 0.021,
+    "pollution": 1.15
+   }
+  },
+  {
+   "code": "WNM",
+   "name": "Windsor and Maidenhead",
+   "article": "le",
+   "region": "SE",
+   "population": 80000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.038,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.7,
+    "seniorShare": 0.25,
+    "politicalLeaning": -0.23,
+    "healthAccess": 1.08,
+    "crime": 1.12,
+    "industryShare": 0.11,
+    "agricultureShare": 0.042,
+    "pollution": 1.12
+   }
+  },
+  {
+   "code": "SLG",
+   "name": "Slough",
+   "article": "le",
+   "region": "SE",
+   "population": 65000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.065,
+    "incomeIndex": 1.06,
+    "urbanShare": 0.8,
+    "seniorShare": 0.18,
+    "politicalLeaning": 0.01,
+    "healthAccess": 1.12,
+    "crime": 1.18,
+    "industryShare": 0.15,
+    "agricultureShare": 0.019,
+    "pollution": 1.18
+   }
+  },
+  {
+   "code": "RDG",
+   "name": "Reading",
+   "article": "le",
+   "region": "SE",
+   "population": 64000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.046,
+    "incomeIndex": 1.14,
+    "urbanShare": 0.8,
+    "seniorShare": 0.24,
+    "politicalLeaning": 0.05,
+    "healthAccess": 1.12,
+    "crime": 1.18,
+    "industryShare": 0.19,
+    "agricultureShare": 0.032,
+    "pollution": 1.18
+   }
+  },
+  {
+   "code": "SRY",
+   "name": "Surrey",
+   "article": "le",
+   "region": "SE",
+   "population": 239000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.045,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.4,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.22,
+    "healthAccess": 0.96,
+    "crime": 0.94,
+    "industryShare": 0.19,
+    "agricultureShare": 0.035,
+    "pollution": 0.94
+   }
+  },
+  {
+   "code": "BBD",
+   "name": "Blackburn with Darwen",
+   "article": "le",
+   "region": "NW",
+   "population": 75000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.045,
+    "incomeIndex": 1.07,
+    "urbanShare": 0.73,
+    "seniorShare": 0.24,
+    "politicalLeaning": 0.16,
+    "healthAccess": 1.09,
+    "crime": 1.14,
+    "industryShare": 0.18,
+    "agricultureShare": 0.039,
+    "pollution": 1.14
+   }
+  },
+  {
+   "code": "SWD",
+   "name": "Swindon",
+   "article": "le",
+   "region": "SW",
+   "population": 87000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.049,
+    "incomeIndex": 1.03,
+    "urbanShare": 0.66,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.0,
+    "healthAccess": 1.06,
+    "crime": 1.1,
+    "industryShare": 0.18,
+    "agricultureShare": 0.019,
+    "pollution": 1.1
+   }
+  },
+  {
+   "code": "BAS",
+   "name": "Bath and North East Somerset",
+   "article": "le",
+   "region": "SW",
+   "population": 126000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.066,
+    "incomeIndex": 1.1,
+    "urbanShare": 0.69,
+    "seniorShare": 0.21,
+    "politicalLeaning": -0.0,
+    "healthAccess": 1.08,
+    "crime": 1.12,
+    "industryShare": 0.15,
+    "agricultureShare": 0.025,
+    "pollution": 1.12
+   }
+  },
+  {
+   "code": "WIL",
+   "name": "Wiltshire",
+   "article": "la",
+   "region": "SW",
+   "population": 398000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.062,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.34,
+    "seniorShare": 0.19,
+    "politicalLeaning": 0.22,
+    "healthAccess": 0.94,
+    "crime": 0.9,
+    "industryShare": 0.18,
+    "agricultureShare": 0.05,
+    "pollution": 0.9
+   }
+  },
+  {
+   "code": "CLD",
+   "name": "Calderdale",
+   "article": "la",
+   "region": "YH",
+   "population": 107000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.063,
+    "incomeIndex": 1.02,
+    "urbanShare": 0.58,
+    "seniorShare": 0.19,
+    "politicalLeaning": 0.1,
+    "healthAccess": 1.03,
+    "crime": 1.05,
+    "industryShare": 0.22,
+    "agricultureShare": 0.023,
+    "pollution": 1.05
+   }
+  },
+  {
+   "code": "KIR",
+   "name": "Kirklees",
+   "article": "le",
+   "region": "YH",
+   "population": 108000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.064,
+    "incomeIndex": 1.07,
+    "urbanShare": 0.58,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.24,
+    "healthAccess": 1.03,
+    "crime": 1.05,
+    "industryShare": 0.24,
+    "agricultureShare": 0.041,
+    "pollution": 1.05
+   }
+  },
+  {
+   "code": "NGM",
+   "name": "Nottingham",
+   "article": "le",
+   "region": "EM",
+   "population": 69000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.067,
+    "incomeIndex": 1.12,
+    "urbanShare": 0.77,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.05,
+    "healthAccess": 1.11,
+    "crime": 1.16,
+    "industryShare": 0.15,
+    "agricultureShare": 0.028,
+    "pollution": 1.16
+   }
+  },
+  {
+   "code": "LCE",
+   "name": "Leicester",
+   "article": "le",
+   "region": "EM",
+   "population": 67000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.056,
+    "incomeIndex": 1.13,
+    "urbanShare": 0.79,
+    "seniorShare": 0.2,
+    "politicalLeaning": 0.15,
+    "healthAccess": 1.11,
+    "crime": 1.17,
+    "industryShare": 0.2,
+    "agricultureShare": 0.037,
+    "pollution": 1.17
+   }
+  },
+  {
+   "code": "DER",
+   "name": "Derby",
+   "article": "le",
+   "region": "EM",
+   "population": 68000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.044,
+    "incomeIndex": 1.04,
+    "urbanShare": 0.78,
+    "seniorShare": 0.24,
+    "politicalLeaning": -0.08,
+    "healthAccess": 1.11,
+    "crime": 1.17,
+    "industryShare": 0.2,
+    "agricultureShare": 0.015,
+    "pollution": 1.17
+   }
+  },
+  {
+   "code": "LDS",
+   "name": "cité de Leeds",
+   "article": "le",
+   "region": "YH",
+   "population": 1593000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.04,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.83,
+    "seniorShare": 0.18,
+    "politicalLeaning": 0.13,
+    "healthAccess": 1.13,
+    "crime": 1.2,
+    "industryShare": 0.22,
+    "agricultureShare": 0.022,
+    "pollution": 1.2
+   }
+  },
+  {
+   "code": "BRD",
+   "name": "cité de Bradford",
+   "article": "le",
+   "region": "YH",
+   "population": 536000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.054,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.81,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.22,
+    "healthAccess": 1.12,
+    "crime": 1.19,
+    "industryShare": 0.27,
+    "agricultureShare": 0.02,
+    "pollution": 1.19
+   }
+  },
+  {
+   "code": "WKF",
+   "name": "cité de Wakefield",
+   "article": "le",
+   "region": "YH",
+   "population": 95000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.066,
+    "incomeIndex": 1.0,
+    "urbanShare": 0.63,
+    "seniorShare": 0.25,
+    "politicalLeaning": -0.19,
+    "healthAccess": 1.05,
+    "crime": 1.08,
+    "industryShare": 0.12,
+    "agricultureShare": 0.03,
+    "pollution": 1.08
+   }
+  },
+  {
+   "code": "BNS",
+   "name": "Barnsley",
+   "article": "le",
+   "region": "YH",
+   "population": 98000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.035,
+    "incomeIndex": 1.02,
+    "urbanShare": 0.62,
+    "seniorShare": 0.21,
+    "politicalLeaning": -0.15,
+    "healthAccess": 1.05,
+    "crime": 1.07,
+    "industryShare": 0.2,
+    "agricultureShare": 0.019,
+    "pollution": 1.07
+   }
+  },
+  {
+   "code": "SLF",
+   "name": "cité de Salford",
+   "article": "le",
+   "region": "NW",
+   "population": 74000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.063,
+    "incomeIndex": 1.12,
+    "urbanShare": 0.73,
+    "seniorShare": 0.23,
+    "politicalLeaning": -0.17,
+    "healthAccess": 1.09,
+    "crime": 1.14,
+    "industryShare": 0.15,
+    "agricultureShare": 0.036,
+    "pollution": 1.14
+   }
+  },
+  {
+   "code": "BOL",
+   "name": "Bolton",
+   "article": "le",
+   "region": "NW",
+   "population": 72000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.056,
+    "incomeIndex": 1.06,
+    "urbanShare": 0.74,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.21,
+    "healthAccess": 1.1,
+    "crime": 1.15,
+    "industryShare": 0.08,
+    "agricultureShare": 0.035,
+    "pollution": 1.15
+   }
+  },
+  {
+   "code": "TRF",
+   "name": "Trafford",
+   "article": "le",
+   "region": "NW",
+   "population": 68000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.058,
+    "incomeIndex": 1.13,
+    "urbanShare": 0.77,
+    "seniorShare": 0.24,
+    "politicalLeaning": -0.19,
+    "healthAccess": 1.11,
+    "crime": 1.16,
+    "industryShare": 0.19,
+    "agricultureShare": 0.035,
+    "pollution": 1.16
+   }
+  },
+  {
+   "code": "MAN",
+   "name": "Manchester",
+   "article": "le",
+   "region": "NW",
+   "population": 2247000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.066,
+    "incomeIndex": 1.07,
+    "urbanShare": 0.85,
+    "seniorShare": 0.19,
+    "politicalLeaning": 0.04,
+    "healthAccess": 1.14,
+    "crime": 1.21,
+    "industryShare": 0.23,
+    "agricultureShare": 0.011,
+    "pollution": 1.21
+   }
+  },
+  {
+   "code": "OLD",
+   "name": "Oldham",
+   "article": "l'",
+   "region": "NW",
+   "population": 80000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.065,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.7,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.18,
+    "healthAccess": 1.08,
+    "crime": 1.12,
+    "industryShare": 0.2,
+    "agricultureShare": 0.043,
+    "pollution": 1.12
+   }
+  },
+  {
+   "code": "RCH",
+   "name": "Rochdale",
+   "article": "la",
+   "region": "NW",
+   "population": 81000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.037,
+    "incomeIndex": 1.1,
+    "urbanShare": 0.69,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.05,
+    "healthAccess": 1.08,
+    "crime": 1.12,
+    "industryShare": 0.27,
+    "agricultureShare": 0.023,
+    "pollution": 1.12
+   }
+  },
+  {
+   "code": "TAM",
+   "name": "Tameside",
+   "article": "la",
+   "region": "NW",
+   "population": 74000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.041,
+    "incomeIndex": 1.02,
+    "urbanShare": 0.74,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.13,
+    "healthAccess": 1.09,
+    "crime": 1.14,
+    "industryShare": 0.11,
+    "agricultureShare": 0.03,
+    "pollution": 1.14
+   }
+  },
+  {
+   "code": "BUR",
+   "name": "Bury",
+   "article": "le",
+   "region": "NW",
+   "population": 71000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.057,
+    "incomeIndex": 1.07,
+    "urbanShare": 0.76,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.08,
+    "healthAccess": 1.1,
+    "crime": 1.15,
+    "industryShare": 0.13,
+    "agricultureShare": 0.024,
+    "pollution": 1.15
+   }
+  },
+  {
+   "code": "SOL",
+   "name": "Solihull",
+   "article": "le",
+   "region": "WM",
+   "population": 75000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.049,
+    "incomeIndex": 1.1,
+    "urbanShare": 0.72,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.15,
+    "healthAccess": 1.09,
+    "crime": 1.13,
+    "industryShare": 0.14,
+    "agricultureShare": 0.043,
+    "pollution": 1.13
+   }
+  },
+  {
+   "code": "COV",
+   "name": "Coventry",
+   "article": "le",
+   "region": "WM",
+   "population": 400000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.057,
+    "incomeIndex": 1.13,
+    "urbanShare": 0.83,
+    "seniorShare": 0.17,
+    "politicalLeaning": 0.03,
+    "healthAccess": 1.13,
+    "crime": 1.2,
+    "industryShare": 0.17,
+    "agricultureShare": 0.023,
+    "pollution": 1.2
+   }
+  },
+  {
+   "code": "BIR",
+   "name": "Birmingham",
+   "article": "le",
+   "region": "WM",
+   "population": 2318000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.047,
+    "incomeIndex": 1.06,
+    "urbanShare": 0.84,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.04,
+    "healthAccess": 1.14,
+    "crime": 1.21,
+    "industryShare": 0.18,
+    "agricultureShare": 0.032,
+    "pollution": 1.21
+   }
+  },
+  {
+   "code": "SAW",
+   "name": "Sandwell",
+   "article": "le",
+   "region": "WM",
+   "population": 70000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.065,
+    "incomeIndex": 1.13,
+    "urbanShare": 0.76,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.16,
+    "healthAccess": 1.1,
+    "crime": 1.15,
+    "industryShare": 0.11,
+    "agricultureShare": 0.031,
+    "pollution": 1.15
+   }
+  },
+  {
+   "code": "DUD",
+   "name": "Dudley",
+   "article": "le",
+   "region": "WM",
+   "population": 69000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.067,
+    "incomeIndex": 1.04,
+    "urbanShare": 0.76,
+    "seniorShare": 0.26,
+    "politicalLeaning": 0.12,
+    "healthAccess": 1.11,
+    "crime": 1.16,
+    "industryShare": 0.24,
+    "agricultureShare": 0.016,
+    "pollution": 1.16
+   }
+  },
+  {
+   "code": "WLL",
+   "name": "Walsall",
+   "article": "le",
+   "region": "WM",
+   "population": 70000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.041,
+    "incomeIndex": 1.12,
+    "urbanShare": 0.76,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.18,
+    "healthAccess": 1.1,
+    "crime": 1.16,
+    "industryShare": 0.09,
+    "agricultureShare": 0.022,
+    "pollution": 1.16
+   }
+  },
+  {
+   "code": "WLV",
+   "name": "Wolverhampton",
+   "article": "le",
+   "region": "WM",
+   "population": 67000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.047,
+    "incomeIndex": 1.11,
+    "urbanShare": 0.79,
+    "seniorShare": 0.18,
+    "politicalLeaning": 0.02,
+    "healthAccess": 1.11,
+    "crime": 1.17,
+    "industryShare": 0.21,
+    "agricultureShare": 0.037,
+    "pollution": 1.17
+   }
+  }
+ ],
+ "cities": [
+  {
+   "id": "gbr_londres",
+   "name": "Londres",
+   "department": "CMD",
+   "lon": -0.119,
+   "lat": 51.502,
+   "population": 5996900,
+   "urbanAreaPopulation": 8567000,
+   "rank": 1
+  },
+  {
+   "id": "gbr_birmingham",
+   "name": "Birmingham",
+   "department": "BIR",
+   "lon": -1.922,
+   "lat": 52.477,
+   "population": 1599500,
+   "urbanAreaPopulation": 2285000,
+   "rank": 1
+  },
+  {
+   "id": "gbr_manchester",
+   "name": "Manchester",
+   "department": "MAN",
+   "lon": -2.249,
+   "lat": 53.475,
+   "population": 1561000,
+   "urbanAreaPopulation": 2230000,
+   "rank": 1
+  },
+  {
+   "id": "gbr_leeds",
+   "name": "Leeds",
+   "department": "LDS",
+   "lon": -1.551,
+   "lat": 53.79,
+   "population": 1070300,
+   "urbanAreaPopulation": 1529000,
+   "rank": 1
+  },
+  {
+   "id": "gbr_sheffield",
+   "name": "Sheffield",
+   "department": "SHF",
+   "lon": -1.5,
+   "lat": 53.367,
+   "population": 905030,
+   "urbanAreaPopulation": 1292900,
+   "rank": 1
+  },
+  {
+   "id": "gbr_glasgow",
+   "name": "Glasgow",
+   "department": "GLG",
+   "lon": -4.239,
+   "lat": 55.862,
+   "population": 812000,
+   "urbanAreaPopulation": 1160000,
+   "rank": 1
+  },
+  {
+   "id": "gbr_newcastle_upon_tyne",
+   "name": "Newcastle upon Tyne",
+   "department": "NET",
+   "lon": -1.612,
+   "lat": 54.99,
+   "population": 617400,
+   "urbanAreaPopulation": 882000,
+   "rank": 2
+  },
+  {
+   "id": "gbr_cardiff",
+   "name": "Cardiff",
+   "department": "CRF",
+   "lon": -3.168,
+   "lat": 51.483,
+   "population": 602980,
+   "urbanAreaPopulation": 861400,
+   "rank": 2
+  },
+  {
+   "id": "gbr_nottingham",
+   "name": "Nottingham",
+   "department": "NTT",
+   "lon": -1.166,
+   "lat": 52.941,
+   "population": 577920,
+   "urbanAreaPopulation": 825600,
+   "rank": 2
+  },
+  {
+   "id": "gbr_liverpool",
+   "name": "Liverpool",
+   "department": "LIV",
+   "lon": -2.962,
+   "lat": 53.405,
+   "population": 567700,
+   "urbanAreaPopulation": 811000,
+   "rank": 2
+  },
+  {
+   "id": "gbr_southend_on_sea",
+   "name": "Southend-on-Sea",
+   "department": "SOS",
+   "lon": 0.72,
+   "lat": 51.55,
+   "population": 432870,
+   "urbanAreaPopulation": 618386,
+   "rank": 2
+  },
+  {
+   "id": "gbr_bristol",
+   "name": "Bristol",
+   "department": "BST",
+   "lon": -2.583,
+   "lat": 51.45,
+   "population": 387469,
+   "urbanAreaPopulation": 553528,
+   "rank": 2
+  },
+  {
+   "id": "gbr_edimbourg",
+   "name": "Édimbourg",
+   "department": "EDH",
+   "lon": -3.219,
+   "lat": 55.948,
+   "population": 353476,
+   "urbanAreaPopulation": 504966,
+   "rank": 2
+  },
+  {
+   "id": "gbr_brighton",
+   "name": "Brighton",
+   "department": "BNH",
+   "lon": -0.17,
+   "lat": 50.83,
+   "population": 352105,
+   "urbanAreaPopulation": 503008,
+   "rank": 2
+  },
+  {
+   "id": "gbr_bradford",
+   "name": "Bradford",
+   "department": "BRD",
+   "lon": -1.754,
+   "lat": 53.792,
+   "population": 351190,
+   "urbanAreaPopulation": 501700,
+   "rank": 2
+  },
+  {
+   "id": "gbr_leicester",
+   "name": "Leicester",
+   "department": "LEC",
+   "lon": -1.133,
+   "lat": 52.63,
+   "population": 320588,
+   "urbanAreaPopulation": 457983,
+   "rank": 2
+  },
+  {
+   "id": "gbr_sunderland",
+   "name": "Sunderland",
+   "department": "SND",
+   "lon": -1.38,
+   "lat": 54.903,
+   "population": 317053,
+   "urbanAreaPopulation": 452934,
+   "rank": 2
+  },
+  {
+   "id": "gbr_belfast",
+   "name": "Belfast",
+   "department": "BFS",
+   "lon": -5.928,
+   "lat": 54.594,
+   "population": 315284,
+   "urbanAreaPopulation": 450406,
+   "rank": 2
+  },
+  {
+   "id": "gbr_portsmouth",
+   "name": "Portsmouth",
+   "department": "POR",
+   "lon": -1.08,
+   "lat": 50.8,
+   "population": 309576,
+   "urbanAreaPopulation": 442252,
+   "rank": 2
+  },
+  {
+   "id": "gbr_bournemouth",
+   "name": "Bournemouth",
+   "department": "POL",
+   "lon": -1.9,
+   "lat": 50.73,
+   "population": 298861,
+   "urbanAreaPopulation": 426945,
+   "rank": 2
+  },
+  {
+   "id": "gbr_middlesbrough",
+   "name": "Middlesbrough",
+   "department": "MDB",
+   "lon": -1.23,
+   "lat": 54.58,
+   "population": 291229,
+   "urbanAreaPopulation": 416042,
+   "rank": 2
+  },
+  {
+   "id": "gbr_stoke_on_trent",
+   "name": "Stoke-on-Trent",
+   "department": "STE",
+   "lon": -2.18,
+   "lat": 53.0,
+   "population": 273560,
+   "urbanAreaPopulation": 390801,
+   "rank": 2
+  },
+  {
+   "id": "gbr_coventry",
+   "name": "Coventry",
+   "department": "COV",
+   "lon": -1.503,
+   "lat": 52.401,
+   "population": 271789,
+   "urbanAreaPopulation": 388271,
+   "rank": 2
+  },
+  {
+   "id": "gbr_southampton",
+   "name": "Southampton",
+   "department": "STH",
+   "lon": -1.4,
+   "lat": 50.9,
+   "population": 269091,
+   "urbanAreaPopulation": 384417,
+   "rank": 2
+  },
+  {
+   "id": "gbr_reading",
+   "name": "Reading",
+   "department": "OXF",
+   "lon": -0.98,
+   "lat": 51.47,
+   "population": 258862,
+   "urbanAreaPopulation": 369804,
+   "rank": 3
+  },
+  {
+   "id": "gbr_kingston_upon_hull",
+   "name": "Kingston-upon-Hull",
+   "department": "KHL",
+   "lon": -0.33,
+   "lat": 53.75,
+   "population": 211607,
+   "urbanAreaPopulation": 302296,
+   "rank": 3
+  },
+  {
+   "id": "gbr_swansea",
+   "name": "Swansea",
+   "department": "SWA",
+   "lon": -3.95,
+   "lat": 51.63,
+   "population": 206037,
+   "urbanAreaPopulation": 294339,
+   "rank": 3
+  },
+  {
+   "id": "gbr_blackpool",
+   "name": "Blackpool",
+   "department": "BPL",
+   "lon": -3.05,
+   "lat": 53.83,
+   "population": 190954,
+   "urbanAreaPopulation": 272792,
+   "rank": 3
+  },
+  {
+   "id": "gbr_plymouth",
+   "name": "Plymouth",
+   "department": "PLY",
+   "lon": -4.16,
+   "lat": 50.385,
+   "population": 173107,
+   "urbanAreaPopulation": 247297,
+   "rank": 3
+  },
+  {
+   "id": "gbr_luton",
+   "name": "Luton",
+   "department": "LUT",
+   "lon": -0.42,
+   "lat": 51.88,
+   "population": 165170,
+   "urbanAreaPopulation": 235958,
+   "rank": 3
+  },
+  {
+   "id": "gbr_oxford",
+   "name": "Oxford",
+   "department": "OXF",
+   "lon": -1.248,
+   "lat": 51.752,
+   "population": 134957,
+   "urbanAreaPopulation": 192796,
+   "rank": 3
+  },
+  {
+   "id": "gbr_norwich",
+   "name": "Norwich",
+   "department": "NFK",
+   "lon": 1.3,
+   "lat": 52.63,
+   "population": 133529,
+   "urbanAreaPopulation": 190756,
+   "rank": 3
+  },
+  {
+   "id": "gbr_aberdeen",
+   "name": "Aberdeen",
+   "department": "ABE",
+   "lon": -2.105,
+   "lat": 57.145,
+   "population": 132554,
+   "urbanAreaPopulation": 189364,
+   "rank": 3
+  },
+  {
+   "id": "gbr_york",
+   "name": "York",
+   "department": "YOR",
+   "lon": -1.072,
+   "lat": 53.951,
+   "population": 111262,
+   "urbanAreaPopulation": 158947,
+   "rank": 3
+  },
+  {
+   "id": "gbr_dundee",
+   "name": "Dundee",
+   "department": "DND",
+   "lon": -3.0,
+   "lat": 56.47,
+   "population": 106114,
+   "urbanAreaPopulation": 151592,
+   "rank": 3
+  },
+  {
+   "id": "gbr_ipswich",
+   "name": "Ipswich",
+   "department": "SFK",
+   "lon": 1.17,
+   "lat": 52.07,
+   "population": 100636,
+   "urbanAreaPopulation": 143767,
+   "rank": 3
+  },
+  {
+   "id": "gbr_peterborough",
+   "name": "Peterborough",
+   "department": "PTE",
+   "lon": -0.248,
+   "lat": 52.567,
+   "population": 98098,
+   "urbanAreaPopulation": 140141,
+   "rank": 3
+  },
+  {
+   "id": "gbr_cambridge",
+   "name": "Cambridge",
+   "department": "CAM",
+   "lon": 0.117,
+   "lat": 52.2,
+   "population": 89941,
+   "urbanAreaPopulation": 128488,
+   "rank": 3
+  },
+  {
+   "id": "gbr_exeter",
+   "name": "Exeter",
+   "department": "DEV",
+   "lon": -3.53,
+   "lat": 50.7,
+   "population": 79182,
+   "urbanAreaPopulation": 113118,
+   "rank": 3
+  },
+  {
+   "id": "gbr_bath",
+   "name": "Bath",
+   "department": "BAS",
+   "lon": -2.35,
+   "lat": 51.384,
+   "population": 65266,
+   "urbanAreaPopulation": 93238,
+   "rank": 3
+  },
+  {
+   "id": "gbr_chester",
+   "name": "Chester",
+   "department": "CHW",
+   "lon": -2.903,
+   "lat": 53.186,
+   "population": 62671,
+   "urbanAreaPopulation": 89531,
+   "rank": 3
+  },
+  {
+   "id": "gbr_londonderry_derry",
+   "name": "Londonderry/Derry",
+   "department": "DRY",
+   "lon": -7.333,
+   "lat": 55.0,
+   "population": 58556,
+   "urbanAreaPopulation": 83652,
+   "rank": 3
+  },
+  {
+   "id": "gbr_greenock",
+   "name": "Greenock",
+   "department": "IVC",
+   "lon": -4.75,
+   "lat": 55.933,
+   "population": 52244,
+   "urbanAreaPopulation": 74635,
+   "rank": 3
+  },
+  {
+   "id": "gbr_carlisle",
+   "name": "Carlisle",
+   "department": "CMA",
+   "lon": -2.93,
+   "lat": 54.88,
+   "population": 50843,
+   "urbanAreaPopulation": 72633,
+   "rank": 3
+  },
+  {
+   "id": "gbr_scarborough",
+   "name": "Scarborough",
+   "department": "NYK",
+   "lon": -0.43,
+   "lat": 54.28,
+   "population": 49399,
+   "urbanAreaPopulation": 70571,
+   "rank": 3
+  },
+  {
+   "id": "gbr_ayr",
+   "name": "Ayr",
+   "department": "SAY",
+   "lon": -4.617,
+   "lat": 55.45,
+   "population": 48329,
+   "urbanAreaPopulation": 69042,
+   "rank": 3
+  },
+  {
+   "id": "gbr_strabane_chef_lieu",
+   "name": "Strabane",
+   "department": "STB",
+   "lon": -7.446,
+   "lat": 54.756,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_fermanagh_chef_lieu",
+   "name": "Fermanagh",
+   "department": "FER",
+   "lon": -7.539,
+   "lat": 54.315,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_dungannon_and_south_tyrone_chef_lieu",
+   "name": "Dungannon and South Tyrone",
+   "department": "DGN",
+   "lon": -6.923,
+   "lat": 54.446,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_armagh_chef_lieu",
+   "name": "Armagh",
+   "department": "ARM",
+   "lon": -6.648,
+   "lat": 54.305,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_newry_and_mourne_chef_lieu",
+   "name": "Newry and Mourne",
+   "department": "NYM",
+   "lon": -6.311,
+   "lat": 54.137,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_flintshire_chef_lieu",
+   "name": "Flintshire",
+   "department": "FLN",
+   "lon": -3.16,
+   "lat": 53.22,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_wrexham_chef_lieu",
+   "name": "Wrexham",
+   "department": "WRX",
+   "lon": -3.021,
+   "lat": 52.938,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_shropshire_chef_lieu",
+   "name": "Shropshire",
+   "department": "SHR",
+   "lon": -2.808,
+   "lat": 52.663,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_powys_chef_lieu",
+   "name": "Powys",
+   "department": "POW",
+   "lon": -3.28,
+   "lat": 52.34,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_herefordshire_chef_lieu",
+   "name": "Herefordshire",
+   "department": "HEF",
+   "lon": -2.802,
+   "lat": 52.108,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_monmouthshire_chef_lieu",
+   "name": "Monmouthshire",
+   "department": "MON",
+   "lon": -2.855,
+   "lat": 51.777,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_gloucestershire_chef_lieu",
+   "name": "Gloucestershire",
+   "department": "GLS",
+   "lon": -2.218,
+   "lat": 51.812,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_scottish_borders_chef_lieu",
+   "name": "Scottish Borders",
+   "department": "SCB",
+   "lon": -2.709,
+   "lat": 55.553,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_northumberland_chef_lieu",
+   "name": "Northumberland",
+   "department": "NBL",
+   "lon": -2.071,
+   "lat": 55.308,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_limavady_chef_lieu",
+   "name": "Limavady",
+   "department": "LMV",
+   "lon": -6.961,
+   "lat": 55.007,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_coleraine_chef_lieu",
+   "name": "Coleraine",
+   "department": "CLR",
+   "lon": -6.661,
+   "lat": 55.063,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_moyle_chef_lieu",
+   "name": "Moyle",
+   "department": "MYL",
+   "lon": -6.258,
+   "lat": 55.135,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_larne_chef_lieu",
+   "name": "Larne",
+   "department": "LRN",
+   "lon": -5.903,
+   "lat": 54.879,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_carrickfergus_chef_lieu",
+   "name": "Carrickfergus",
+   "department": "CKF",
+   "lon": -5.816,
+   "lat": 54.736,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_newtownabbey_chef_lieu",
+   "name": "Newtownabbey",
+   "department": "NTA",
+   "lon": -5.964,
+   "lat": 54.723,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_north_down_chef_lieu",
+   "name": "North Down",
+   "department": "NDN",
+   "lon": -5.72,
+   "lat": 54.647,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_ards_chef_lieu",
+   "name": "Ards",
+   "department": "ARD",
+   "lon": -5.598,
+   "lat": 54.513,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_down_chef_lieu",
+   "name": "Down",
+   "department": "DOW",
+   "lon": -5.809,
+   "lat": 54.325,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_clackmannanshire_chef_lieu",
+   "name": "Clackmannanshire",
+   "department": "CLK",
+   "lon": -3.723,
+   "lat": 56.141,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_stirling_chef_lieu",
+   "name": "Stirling",
+   "department": "STG",
+   "lon": -4.325,
+   "lat": 56.245,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_falkirk_chef_lieu",
+   "name": "Falkirk",
+   "department": "FAL",
+   "lon": -3.764,
+   "lat": 55.991,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_west_lothian_chef_lieu",
+   "name": "West Lothian",
+   "department": "WLN",
+   "lon": -3.588,
+   "lat": 55.883,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_midlothian_chef_lieu",
+   "name": "Midlothian",
+   "department": "MLN",
+   "lon": -3.084,
+   "lat": 55.827,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_east_lothian_chef_lieu",
+   "name": "East Lothian",
+   "department": "ELN",
+   "lon": -2.666,
+   "lat": 55.94,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_north_tyneside_chef_lieu",
+   "name": "North Tyneside",
+   "department": "NTY",
+   "lon": -1.497,
+   "lat": 55.042,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_south_tyneside_chef_lieu",
+   "name": "South Tyneside",
+   "department": "STY",
+   "lon": -1.427,
+   "lat": 54.955,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_durham_chef_lieu",
+   "name": "Durham",
+   "department": "DUR",
+   "lon": -1.775,
+   "lat": 54.69,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_hartlepool_chef_lieu",
+   "name": "Hartlepool",
+   "department": "HPL",
+   "lon": -1.233,
+   "lat": 54.66,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_redcar_et_cleveland_chef_lieu",
+   "name": "Redcar et Cleveland",
+   "department": "RCC",
+   "lon": -1.077,
+   "lat": 54.575,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_yorkshire_de_l_est_chef_lieu",
+   "name": "Yorkshire de l'Est",
+   "department": "ERY",
+   "lon": -0.492,
+   "lat": 53.829,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_lincolnshire_du_nord_chef_lieu",
+   "name": "Lincolnshire du Nord",
+   "department": "NLN",
+   "lon": -0.607,
+   "lat": 53.578,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_north_east_lincolnshire_chef_lieu",
+   "name": "North East Lincolnshire",
+   "department": "NEL",
+   "lon": -0.125,
+   "lat": 53.537,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_lincolnshire_chef_lieu",
+   "name": "Lincolnshire",
+   "department": "LIN",
+   "lon": -0.294,
+   "lat": 53.148,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_essex_chef_lieu",
+   "name": "Essex",
+   "department": "ESS",
+   "lon": 0.635,
+   "lat": 51.783,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_thurrock_chef_lieu",
+   "name": "Thurrock",
+   "department": "THR",
+   "lon": 0.371,
+   "lat": 51.495,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_medway_chef_lieu",
+   "name": "Medway",
+   "department": "MDW",
+   "lon": 0.566,
+   "lat": 51.409,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_sussex_de_l_est_chef_lieu",
+   "name": "Sussex de l'Est",
+   "department": "ESX",
+   "lon": 0.265,
+   "lat": 50.96,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_sussex_de_l_ouest_chef_lieu",
+   "name": "Sussex de l'Ouest",
+   "department": "WSX",
+   "lon": -0.467,
+   "lat": 50.949,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_hampshire_chef_lieu",
+   "name": "Hampshire",
+   "department": "HAM",
+   "lon": -1.337,
+   "lat": 50.999,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_dorset_chef_lieu",
+   "name": "Dorset",
+   "department": "DOR",
+   "lon": -2.221,
+   "lat": 50.809,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_torbay_chef_lieu",
+   "name": "Torbay",
+   "department": "TOB",
+   "lon": -3.55,
+   "lat": 50.441,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_cornouailles_chef_lieu",
+   "name": "Cornouailles",
+   "department": "CON",
+   "lon": -4.862,
+   "lat": 50.351,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_somerset_chef_lieu",
+   "name": "Somerset",
+   "department": "SOM",
+   "lon": -2.947,
+   "lat": 51.119,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_north_somerset_chef_lieu",
+   "name": "North Somerset",
+   "department": "NSM",
+   "lon": -2.807,
+   "lat": 51.369,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_south_gloucestershire_chef_lieu",
+   "name": "South Gloucestershire",
+   "department": "SGC",
+   "lon": -2.446,
+   "lat": 51.549,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_newport_chef_lieu",
+   "name": "Newport",
+   "department": "NWP",
+   "lon": -2.954,
+   "lat": 51.578,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_vale_of_glamorgan_chef_lieu",
+   "name": "Vale of Glamorgan",
+   "department": "VGL",
+   "lon": -3.357,
+   "lat": 51.464,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_bridgend_chef_lieu",
+   "name": "Bridgend",
+   "department": "BGE",
+   "lon": -3.617,
+   "lat": 51.518,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_neath_port_talbot_chef_lieu",
+   "name": "Neath Port Talbot",
+   "department": "NTL",
+   "lon": -3.738,
+   "lat": 51.673,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_carmarthenshire_chef_lieu",
+   "name": "Carmarthenshire",
+   "department": "CMN",
+   "lon": -4.236,
+   "lat": 51.874,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_pembrokeshire_chef_lieu",
+   "name": "Pembrokeshire",
+   "department": "PEM",
+   "lon": -4.902,
+   "lat": 51.841,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_ceredigion_chef_lieu",
+   "name": "Ceredigion",
+   "department": "CGN",
+   "lon": -4.124,
+   "lat": 52.237,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_gwynedd_chef_lieu",
+   "name": "Gwynedd",
+   "department": "GWN",
+   "lon": -4.085,
+   "lat": 52.897,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_conwy_chef_lieu",
+   "name": "Conwy",
+   "department": "CWY",
+   "lon": -3.743,
+   "lat": 53.134,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_denbighshire_chef_lieu",
+   "name": "Denbighshire",
+   "department": "DEN",
+   "lon": -3.367,
+   "lat": 53.108,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_halton_chef_lieu",
+   "name": "Halton",
+   "department": "WRL",
+   "lon": -3.057,
+   "lat": 53.347,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_halton_chef_lieu",
+   "name": "Halton",
+   "department": "HAL",
+   "lon": -2.723,
+   "lat": 53.336,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_knowsley_chef_lieu",
+   "name": "Knowsley",
+   "department": "KWL",
+   "lon": -2.836,
+   "lat": 53.405,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_sefton_chef_lieu",
+   "name": "Sefton",
+   "department": "SFT",
+   "lon": -2.99,
+   "lat": 53.584,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_lancashire_chef_lieu",
+   "name": "Lancashire",
+   "department": "LAN",
+   "lon": -2.621,
+   "lat": 53.839,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_north_ayrshire_chef_lieu",
+   "name": "North Ayrshire",
+   "department": "NAY",
+   "lon": -4.697,
+   "lat": 55.705,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_renfrewshire_chef_lieu",
+   "name": "Renfrewshire",
+   "department": "RFW",
+   "lon": -4.557,
+   "lat": 55.849,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_west_dunbartonshire_chef_lieu",
+   "name": "West Dunbartonshire",
+   "department": "WDU",
+   "lon": -4.496,
+   "lat": 55.985,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_argyll_and_bute_chef_lieu",
+   "name": "Argyll and Bute",
+   "department": "AGB",
+   "lon": -5.471,
+   "lat": 56.066,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_moray_chef_lieu",
+   "name": "Moray",
+   "department": "MRY",
+   "lon": -3.358,
+   "lat": 57.429,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_aberdeenshire_chef_lieu",
+   "name": "Aberdeenshire",
+   "department": "ABD",
+   "lon": -2.632,
+   "lat": 57.245,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_angus_chef_lieu",
+   "name": "Angus",
+   "department": "ANS",
+   "lon": -2.915,
+   "lat": 56.706,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_fife_chef_lieu",
+   "name": "Fife",
+   "department": "FIF",
+   "lon": -3.169,
+   "lat": 56.232,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_ile_de_wight_chef_lieu",
+   "name": "île de Wight",
+   "department": "IOW",
+   "lon": -1.252,
+   "lat": 50.689,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_anglesey_chef_lieu",
+   "name": "Anglesey",
+   "department": "AGY",
+   "lon": -4.335,
+   "lat": 53.261,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_hebrides_exterieures_chef_lieu",
+   "name": "Hébrides extérieures",
+   "department": "ELS",
+   "lon": -6.845,
+   "lat": 57.906,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_orcades_chef_lieu",
+   "name": "Orcades",
+   "department": "ORK",
+   "lon": -3.01,
+   "lat": 59.02,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_shetland_chef_lieu",
+   "name": "Shetland",
+   "department": "ZET",
+   "lon": -1.221,
+   "lat": 60.399,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_caerphilly_chef_lieu",
+   "name": "Caerphilly",
+   "department": "CAY",
+   "lon": -3.164,
+   "lat": 51.661,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_rhondda_cynon_taf_chef_lieu",
+   "name": "Rhondda Cynon Taf",
+   "department": "RCT",
+   "lon": -3.436,
+   "lat": 51.642,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_blaenau_gwent_chef_lieu",
+   "name": "Blaenau Gwent",
+   "department": "BGW",
+   "lon": -3.185,
+   "lat": 51.761,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_torfaen_chef_lieu",
+   "name": "Torfaen",
+   "department": "TOF",
+   "lon": -3.053,
+   "lat": 51.701,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_merthyr_tydfil_chef_lieu",
+   "name": "Merthyr Tydfil",
+   "department": "MTY",
+   "lon": -3.362,
+   "lat": 51.759,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_north_lanarkshire_chef_lieu",
+   "name": "North Lanarkshire",
+   "department": "NLK",
+   "lon": -3.971,
+   "lat": 55.901,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_east_dunbartonshire_chef_lieu",
+   "name": "East Dunbartonshire",
+   "department": "EDU",
+   "lon": -4.202,
+   "lat": 55.95,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_east_renfrewshire_chef_lieu",
+   "name": "East Renfrewshire",
+   "department": "ERW",
+   "lon": -4.331,
+   "lat": 55.758,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_east_ayrshire_chef_lieu",
+   "name": "East Ayrshire",
+   "department": "EAY",
+   "lon": -4.337,
+   "lat": 55.449,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_south_lanarkshire_chef_lieu",
+   "name": "South Lanarkshire",
+   "department": "SLK",
+   "lon": -3.869,
+   "lat": 55.62,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_magherafelt_chef_lieu",
+   "name": "Magherafelt",
+   "department": "MFT",
+   "lon": -6.651,
+   "lat": 54.802,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_d_omagh_chef_lieu",
+   "name": "d'Omagh",
+   "department": "OMH",
+   "lon": -7.284,
+   "lat": 54.584,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_mid_ulster_chef_lieu",
+   "name": "Mid-Ulster",
+   "department": "CKT",
+   "lon": -6.696,
+   "lat": 54.642,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_craigavon_chef_lieu",
+   "name": "Craigavon",
+   "department": "CGV",
+   "lon": -6.356,
+   "lat": 54.498,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_banbridge_chef_lieu",
+   "name": "Banbridge",
+   "department": "BNB",
+   "lon": -6.161,
+   "lat": 54.338,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_d_antrim_chef_lieu",
+   "name": "d'Antrim",
+   "department": "ANT",
+   "lon": -6.293,
+   "lat": 54.689,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_lisburn_chef_lieu",
+   "name": "Lisburn",
+   "department": "LSB",
+   "lon": -6.062,
+   "lat": 54.497,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_ballymoney_chef_lieu",
+   "name": "Ballymoney",
+   "department": "BLY",
+   "lon": -6.415,
+   "lat": 55.032,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_ballymena_chef_lieu",
+   "name": "Ballymena",
+   "department": "BLA",
+   "lon": -6.275,
+   "lat": 54.887,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_castlereagh_chef_lieu",
+   "name": "Castlereagh",
+   "department": "CSR",
+   "lon": -5.844,
+   "lat": 54.552,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_wandsworth_chef_lieu",
+   "name": "Wandsworth",
+   "department": "WND",
+   "lon": -0.179,
+   "lat": 51.454,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_merton_chef_lieu",
+   "name": "Merton",
+   "department": "MRT",
+   "lon": -0.177,
+   "lat": 51.401,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_cite_de_westminster_chef_lieu",
+   "name": "cité de Westminster",
+   "department": "WSM",
+   "lon": -0.168,
+   "lat": 51.512,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_kensington_et_chelsea_chef_lieu",
+   "name": "Kensington et Chelsea",
+   "department": "KEC",
+   "lon": -0.187,
+   "lat": 51.504,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_hounslow_chef_lieu",
+   "name": "Hounslow",
+   "department": "HNS",
+   "lon": -0.345,
+   "lat": 51.461,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_londonien_d_ealing_chef_lieu",
+   "name": "londonien d'Ealing",
+   "department": "EAL",
+   "lon": -0.328,
+   "lat": 51.521,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_hammersmith_et_fulham_chef_lieu",
+   "name": "Hammersmith et Fulham",
+   "department": "HMF",
+   "lon": -0.218,
+   "lat": 51.5,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_stockton_on_tees_chef_lieu",
+   "name": "Stockton-on-Tees",
+   "department": "STT",
+   "lon": -1.341,
+   "lat": 54.544,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_darlington_chef_lieu",
+   "name": "Darlington",
+   "department": "DAL",
+   "lon": -1.518,
+   "lat": 54.529,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_richmond_upon_thames_chef_lieu",
+   "name": "Richmond upon Thames",
+   "department": "RIC",
+   "lon": -0.302,
+   "lat": 51.439,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_tower_hamlets_chef_lieu",
+   "name": "Tower Hamlets",
+   "department": "TWH",
+   "lon": -0.03,
+   "lat": 51.508,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_gateshead_chef_lieu",
+   "name": "Gateshead",
+   "department": "GAT",
+   "lon": -1.695,
+   "lat": 54.938,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_merseyside_chef_lieu",
+   "name": "Merseyside",
+   "department": "SHN",
+   "lon": -2.702,
+   "lat": 53.449,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_londonien_d_enfield_chef_lieu",
+   "name": "londonien d'Enfield",
+   "department": "ENF",
+   "lon": -0.041,
+   "lat": 51.627,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_hertfordshire_chef_lieu",
+   "name": "Hertfordshire",
+   "department": "HRT",
+   "lon": -0.306,
+   "lat": 51.83,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_barnet_chef_lieu",
+   "name": "Barnet",
+   "department": "BNE",
+   "lon": -0.185,
+   "lat": 51.599,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_waltham_forest_chef_lieu",
+   "name": "Waltham Forest",
+   "department": "WFT",
+   "lon": -0.018,
+   "lat": 51.605,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_redbridge_chef_lieu",
+   "name": "Redbridge",
+   "department": "RDB",
+   "lon": 0.078,
+   "lat": 51.578,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_londonien_d_havering_chef_lieu",
+   "name": "londonien d'Havering",
+   "department": "HAV",
+   "lon": 0.199,
+   "lat": 51.558,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_bexley_chef_lieu",
+   "name": "Bexley",
+   "department": "BEX",
+   "lon": 0.138,
+   "lat": 51.466,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_sutton_chef_lieu",
+   "name": "Sutton",
+   "department": "STN",
+   "lon": -0.168,
+   "lat": 51.364,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_milton_keynes_chef_lieu",
+   "name": "Milton Keynes",
+   "department": "MIK",
+   "lon": -0.733,
+   "lat": 52.069,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_buckinghamshire_chef_lieu",
+   "name": "Buckinghamshire",
+   "department": "BKM",
+   "lon": -0.785,
+   "lat": 51.747,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_hillingdon_chef_lieu",
+   "name": "Hillingdon",
+   "department": "HIL",
+   "lon": -0.412,
+   "lat": 51.53,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_brent_chef_lieu",
+   "name": "Brent",
+   "department": "BEN",
+   "lon": -0.26,
+   "lat": 51.552,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_harrow_chef_lieu",
+   "name": "Harrow",
+   "department": "HRW",
+   "lon": -0.324,
+   "lat": 51.581,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_central_bedfordshire_chef_lieu",
+   "name": "Central Bedfordshire",
+   "department": "CBF",
+   "lon": -0.422,
+   "lat": 51.989,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_bedford_chef_lieu",
+   "name": "Bedford",
+   "department": "BDF",
+   "lon": -0.481,
+   "lat": 52.207,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_rutland_chef_lieu",
+   "name": "Rutland",
+   "department": "RUT",
+   "lon": -0.637,
+   "lat": 52.656,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_northamptonshire_chef_lieu",
+   "name": "Northamptonshire",
+   "department": "NTH",
+   "lon": -0.87,
+   "lat": 52.277,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_londonien_dislington_chef_lieu",
+   "name": "londonien d’Islington",
+   "department": "ISL",
+   "lon": -0.097,
+   "lat": 51.545,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_lambeth_chef_lieu",
+   "name": "Lambeth",
+   "department": "LBH",
+   "lon": -0.106,
+   "lat": 51.45,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_southwark_chef_lieu",
+   "name": "Southwark",
+   "department": "SWK",
+   "lon": -0.067,
+   "lat": 51.464,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_doncaster_chef_lieu",
+   "name": "Doncaster",
+   "department": "DNC",
+   "lon": -1.051,
+   "lat": 53.545,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_croydon_chef_lieu",
+   "name": "Croydon",
+   "department": "CRY",
+   "lon": -0.107,
+   "lat": 51.359,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_lewisham_chef_lieu",
+   "name": "Lewisham",
+   "department": "LEW",
+   "lon": -0.009,
+   "lat": 51.454,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_haringey_chef_lieu",
+   "name": "Haringey",
+   "department": "HRY",
+   "lon": -0.107,
+   "lat": 51.586,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_kingston_upon_thames_chef_lieu",
+   "name": "Kingston-upon-Thames",
+   "department": "KTT",
+   "lon": -0.265,
+   "lat": 51.402,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_newham_chef_lieu",
+   "name": "Newham",
+   "department": "NWM",
+   "lon": 0.049,
+   "lat": 51.534,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_greenwich_chef_lieu",
+   "name": "Greenwich",
+   "department": "GRE",
+   "lon": 0.032,
+   "lat": 51.465,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_hackney_chef_lieu",
+   "name": "Hackney",
+   "department": "HCK",
+   "lon": -0.066,
+   "lat": 51.544,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_barking_et_dagenham_chef_lieu",
+   "name": "Barking et Dagenham",
+   "department": "BDG",
+   "lon": 0.139,
+   "lat": 51.551,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_cheshire_east_chef_lieu",
+   "name": "Cheshire East",
+   "department": "CHE",
+   "lon": -2.299,
+   "lat": 53.188,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_derbyshire_chef_lieu",
+   "name": "Derbyshire",
+   "department": "DBY",
+   "lon": -1.597,
+   "lat": 53.122,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_rotherham_chef_lieu",
+   "name": "Rotherham",
+   "department": "ROT",
+   "lon": -1.276,
+   "lat": 53.351,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_telford_et_wrekin_chef_lieu",
+   "name": "Telford et Wrekin",
+   "department": "TFW",
+   "lon": -2.456,
+   "lat": 52.729,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_staffordshire_chef_lieu",
+   "name": "Staffordshire",
+   "department": "STS",
+   "lon": -2.054,
+   "lat": 52.804,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_bromley_chef_lieu",
+   "name": "Bromley",
+   "department": "BRY",
+   "lon": 0.01,
+   "lat": 51.401,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_worcestershire_chef_lieu",
+   "name": "Worcestershire",
+   "department": "WOR",
+   "lon": -2.174,
+   "lat": 52.217,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_warwickshire_chef_lieu",
+   "name": "Warwickshire",
+   "department": "WAR",
+   "lon": -1.585,
+   "lat": 52.289,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_wigan_chef_lieu",
+   "name": "Wigan",
+   "department": "WGN",
+   "lon": -2.617,
+   "lat": 53.528,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_stockport_chef_lieu",
+   "name": "Stockport",
+   "department": "SKP",
+   "lon": -2.122,
+   "lat": 53.374,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_warrington_chef_lieu",
+   "name": "Warrington",
+   "department": "WRT",
+   "lon": -2.569,
+   "lat": 53.387,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_west_berkshire_chef_lieu",
+   "name": "West Berkshire",
+   "department": "WBK",
+   "lon": -1.328,
+   "lat": 51.45,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_wokingham_chef_lieu",
+   "name": "Wokingham",
+   "department": "WOK",
+   "lon": -0.911,
+   "lat": 51.447,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_bracknell_forest_chef_lieu",
+   "name": "Bracknell Forest",
+   "department": "BRC",
+   "lon": -0.768,
+   "lat": 51.391,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_windsor_and_maidenhead_chef_lieu",
+   "name": "Windsor and Maidenhead",
+   "department": "WNM",
+   "lon": -0.692,
+   "lat": 51.482,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_slough_chef_lieu",
+   "name": "Slough",
+   "department": "SLG",
+   "lon": -0.575,
+   "lat": 51.495,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_reading_chef_lieu",
+   "name": "Reading",
+   "department": "RDG",
+   "lon": -1.033,
+   "lat": 51.454,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_surrey_chef_lieu",
+   "name": "Surrey",
+   "department": "SRY",
+   "lon": -0.379,
+   "lat": 51.273,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_blackburn_with_darwen_chef_lieu",
+   "name": "Blackburn with Darwen",
+   "department": "BBD",
+   "lon": -2.45,
+   "lat": 53.692,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_swindon_chef_lieu",
+   "name": "Swindon",
+   "department": "SWD",
+   "lon": -1.714,
+   "lat": 51.567,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_wiltshire_chef_lieu",
+   "name": "Wiltshire",
+   "department": "WIL",
+   "lon": -1.898,
+   "lat": 51.327,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_calderdale_chef_lieu",
+   "name": "Calderdale",
+   "department": "CLD",
+   "lon": -2.016,
+   "lat": 53.736,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_kirklees_chef_lieu",
+   "name": "Kirklees",
+   "department": "KIR",
+   "lon": -1.78,
+   "lat": 53.614,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_nottingham_chef_lieu",
+   "name": "Nottingham",
+   "department": "NGM",
+   "lon": -1.17,
+   "lat": 52.939,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_leicester_chef_lieu",
+   "name": "Leicester",
+   "department": "LCE",
+   "lon": -1.124,
+   "lat": 52.623,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_derby_chef_lieu",
+   "name": "Derby",
+   "department": "DER",
+   "lon": -1.464,
+   "lat": 52.894,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_cite_de_wakefield_chef_lieu",
+   "name": "cité de Wakefield",
+   "department": "WKF",
+   "lon": -1.408,
+   "lat": 53.644,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_barnsley_chef_lieu",
+   "name": "Barnsley",
+   "department": "BNS",
+   "lon": -1.511,
+   "lat": 53.533,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_cite_de_salford_chef_lieu",
+   "name": "cité de Salford",
+   "department": "SLF",
+   "lon": -2.406,
+   "lat": 53.489,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_bolton_chef_lieu",
+   "name": "Bolton",
+   "department": "BOL",
+   "lon": -2.443,
+   "lat": 53.584,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_trafford_chef_lieu",
+   "name": "Trafford",
+   "department": "TRF",
+   "lon": -2.382,
+   "lat": 53.408,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_oldham_chef_lieu",
+   "name": "Oldham",
+   "department": "OLD",
+   "lon": -2.045,
+   "lat": 53.525,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_rochdale_chef_lieu",
+   "name": "Rochdale",
+   "department": "RCH",
+   "lon": -2.125,
+   "lat": 53.639,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_tameside_chef_lieu",
+   "name": "Tameside",
+   "department": "TAM",
+   "lon": -2.094,
+   "lat": 53.452,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_bury_chef_lieu",
+   "name": "Bury",
+   "department": "BUR",
+   "lon": -2.317,
+   "lat": 53.608,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_solihull_chef_lieu",
+   "name": "Solihull",
+   "department": "SOL",
+   "lon": -1.737,
+   "lat": 52.403,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_sandwell_chef_lieu",
+   "name": "Sandwell",
+   "department": "SAW",
+   "lon": -2.009,
+   "lat": 52.513,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_dudley_chef_lieu",
+   "name": "Dudley",
+   "department": "DUD",
+   "lon": -2.094,
+   "lat": 52.493,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_walsall_chef_lieu",
+   "name": "Walsall",
+   "department": "WLL",
+   "lon": -1.949,
+   "lat": 52.601,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_wolverhampton_chef_lieu",
+   "name": "Wolverhampton",
+   "department": "WLV",
+   "lon": -2.117,
+   "lat": 52.587,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "gbr_inverness",
+   "name": "Inverness",
+   "department": "HLD",
+   "lon": -4.233,
+   "lat": 57.467,
+   "population": 31610,
+   "urbanAreaPopulation": 45158,
+   "rank": 3
+  },
+  {
+   "id": "gbr_perth",
+   "name": "Perth",
+   "department": "PKN",
+   "lon": -3.436,
+   "lat": 56.393,
+   "population": 27757,
+   "urbanAreaPopulation": 39654,
+   "rank": 3
+  },
+  {
+   "id": "gbr_douvres",
+   "name": "Douvres",
+   "department": "KEN",
+   "lon": 1.3,
+   "lat": 51.134,
+   "population": 25468,
+   "urbanAreaPopulation": 36384,
+   "rank": 3
+  },
+  {
+   "id": "gbr_dumfries",
+   "name": "Dumfries",
+   "department": "DGY",
+   "lon": -3.55,
+   "lat": 55.067,
+   "population": 21730,
+   "urbanAreaPopulation": 31044,
+   "rank": 3
+  }
+ ]
+}

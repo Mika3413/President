@@ -60,7 +60,7 @@ abstract class Panel(protected val ui: Ui, private val onClose: () -> Unit) {
     protected abstract fun build(into: Table)
 
     fun refresh() {
-        titleLabel.setText(title)
+        titleLabel.setText(ui.localize(title))
         val scrollY = scroll.scrollY
         content.clearChildren()
         build(content)

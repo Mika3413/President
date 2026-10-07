@@ -61,6 +61,8 @@ class GameSession(
     val warfare = fr.president.engine.readout.WarfareReadout(context)
     val nuclear = fr.president.engine.military.NuclearService(context)
     val moments = fr.president.engine.presidency.MomentService(context)
+    /** Adaptation des textes au pays joué (identité pour la France). */
+    val localizer = fr.president.engine.util.Localizer(context.playerData.definition.lexicon)
     val parliament = fr.president.engine.government.ParliamentService(context)
     val conversations = fr.president.engine.dialogue.ConversationService(context)
     val senate = fr.president.engine.government.SenateService(context)

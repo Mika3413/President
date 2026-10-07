@@ -1,0 +1,179 @@
+{
+ "termYears": 4,
+ "secondRoundGapDays": 14,
+ "families": [
+  {
+   "id": "radical_left",
+   "name": "Démocrates progressistes",
+   "economicPosition": -0.75,
+   "socialPosition": -0.6,
+   "baseStrength": -0.1,
+   "color": "b23a48",
+   "figure": {
+    "firstName": "Alexandria",
+    "lastName": "Ocasio-Cortel",
+    "birthYear": 1989,
+    "female": true
+   }
+  },
+  {
+   "id": "left",
+   "name": "Démocrates",
+   "economicPosition": -0.25,
+   "socialPosition": -0.45,
+   "baseStrength": 0.1,
+   "color": "2f6fcc",
+   "figure": {
+    "firstName": "Gavin",
+    "lastName": "Newsum",
+    "birthYear": 1967
+   }
+  },
+  {
+   "id": "greens",
+   "name": "Parti vert",
+   "economicPosition": -0.5,
+   "socialPosition": -0.7,
+   "baseStrength": -0.35,
+   "color": "5aa95a",
+   "figure": {
+    "firstName": "Jill",
+    "lastName": "Stine",
+    "birthYear": 1950,
+    "female": true
+   }
+  },
+  {
+   "id": "centre",
+   "name": "Indépendants",
+   "economicPosition": 0.15,
+   "socialPosition": -0.05,
+   "baseStrength": -0.3,
+   "color": "e8b23a",
+   "figure": {
+    "firstName": "Mark",
+    "lastName": "Cuban-Smith",
+    "birthYear": 1958
+   }
+  },
+  {
+   "id": "right",
+   "name": "Républicains",
+   "economicPosition": 0.55,
+   "socialPosition": 0.55,
+   "baseStrength": 0.12,
+   "color": "d12c2c",
+   "figure": {
+    "firstName": "Marco",
+    "lastName": "Rubiot",
+    "birthYear": 1971
+   }
+  },
+  {
+   "id": "nationalist",
+   "name": "Républicains MAGA",
+   "economicPosition": 0.35,
+   "socialPosition": 0.85,
+   "baseStrength": 0.05,
+   "color": "8b1a1a",
+   "figure": {
+    "firstName": "J. D.",
+    "lastName": "Vanse",
+    "birthYear": 1984
+   }
+  }
+ ],
+ "incumbentRecordWeight": 1.8,
+ "incumbentBonus": 0.17,
+ "affinityWeight": 1.5,
+ "choiceTemperature": 0.3,
+ "turnoutDiscontentWeight": 0.3,
+ "turnoutEnthusiasmWeight": 0.2,
+ "pollNoise": 0.04,
+ "scandalPenalty": 0.1,
+ "voterSpread": 0.6,
+ "partisanLoyalty": 0.15,
+ "legislative": {
+  "seats": 435,
+  "termYears": 4,
+  "daysAfterPresidential": 35,
+  "seatAmplification": 1.6,
+  "coattailBonus": 0.12,
+  "coattailWindowDays": 90,
+  "incumbentBonusShare": 0.9,
+  "dissolutionCampaignDays": 21,
+  "minDaysBetweenDissolutions": 365,
+  "allyRange": 0.8,
+  "approvalWeight": 0.35,
+  "cohesionWeight": 0.12,
+  "censureThreshold": 0.45,
+  "censureDelayDays": 3,
+  "censureNoise": 0.04,
+  "spontaneousCensureSupport": 0.38,
+  "spontaneousCensureChanceMonthly": 0.25,
+  "governmentFallApprovalCost": 0.01
+ },
+ "referendum": {
+  "campaignDays": 30,
+  "minDaysBetween": 365,
+  "approvalWeight": 0.9,
+  "interestWeight": 3.0,
+  "noise": 0.03,
+  "victorySupportBonus": 0.05,
+  "defeatApprovalCost": 0.05,
+  "defeatLockDays": 1095
+ },
+ "local": {
+  "kinds": [
+   {
+    "id": "governor",
+    "label": "Élections des gouverneurs",
+    "level": "DEPARTMENT",
+    "termYears": 4,
+    "firstDate": "2026-11-03T08:00:00Z"
+   },
+   {
+    "id": "municipal",
+    "label": "Municipales",
+    "level": "CITY",
+    "termYears": 4,
+    "firstDate": "2029-11-06T08:00:00Z"
+   }
+  ],
+  "swing": 1.6,
+  "noise": 0.05,
+  "incumbentBonus": 0.03,
+  "incumbentRerunChance": 0.7,
+  "parliamentImpact": 0.08
+ },
+ "senate": {
+  "seats": 348,
+  "initialSeats": {
+   "radical_left": 20,
+   "left": 87,
+   "greens": 27,
+   "centre": 34,
+   "right": 125,
+   "nationalist": 52
+  },
+  "renewalYears": 3,
+  "firstRenewal": "2029-09-23T08:00:00Z",
+  "renewedShare": 0.5,
+  "mayorWeight": 0.6,
+  "departmentWeight": 0.25,
+  "regionWeight": 0.15,
+  "passThreshold": 0.5,
+  "voteNoise": 0.05,
+  "navetteDelayDays": 60
+ },
+ "european": {
+  "firstDate": "2029-06-10T08:00:00Z",
+  "termYears": 5,
+  "seats": 81,
+  "turnoutFactor": 0.68,
+  "goodScore": 0.25,
+  "badScore": 0.17,
+  "supportSwing": 0.04,
+  "opinionSwing": 0.01
+ }
+}

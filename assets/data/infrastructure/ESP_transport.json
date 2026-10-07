@@ -1,0 +1,78 @@
+{
+ "items": [
+  {
+   "id": "esp_algeciras",
+   "type": "PORT",
+   "name": "Port d'Algésiras",
+   "lon": -5.44,
+   "lat": 36.13,
+   "department": "CE",
+   "employees": 3000,
+   "maintenanceCostMillions": 60,
+   "initialCondition": 0.75,
+   "commissionedYear": 1960,
+   "description": "Grand port de commerce."
+  },
+  {
+   "id": "esp_valencia_port",
+   "type": "PORT",
+   "name": "Port de Valence",
+   "lon": -0.32,
+   "lat": 39.45,
+   "department": "V",
+   "employees": 3000,
+   "maintenanceCostMillions": 60,
+   "initialCondition": 0.75,
+   "commissionedYear": 1960,
+   "description": "Grand port de commerce."
+  },
+  {
+   "id": "esp_mad",
+   "type": "AIRPORT",
+   "name": "Aéroport de Madrid-Barajas",
+   "lon": -3.57,
+   "lat": 40.49,
+   "department": "M",
+   "employees": 5000,
+   "maintenanceCostMillions": 80,
+   "initialCondition": 0.75,
+   "commissionedYear": 1970,
+   "description": "Aéroport international."
+  },
+  {
+   "id": "esp_bcn",
+   "type": "AIRPORT",
+   "name": "Aéroport de Barcelone",
+   "lon": 2.08,
+   "lat": 41.3,
+   "department": "B",
+   "employees": 5000,
+   "maintenanceCostMillions": 80,
+   "initialCondition": 0.75,
+   "commissionedYear": 1970,
+   "description": "Aéroport international."
+  }
+ ],
+ "networks": [
+  {
+   "id": "esp_ave_mad_bcn",
+   "kind": "RAIL_HIGH_SPEED",
+   "name": "AVE Madrid – Barcelone",
+   "cityIds": [
+    "esp_madrid",
+    "esp_saragosse",
+    "esp_barcelone"
+   ]
+  },
+  {
+   "id": "esp_ave_mad_sev",
+   "kind": "RAIL_HIGH_SPEED",
+   "name": "AVE Madrid – Séville",
+   "cityIds": [
+    "esp_madrid",
+    "esp_cordoue",
+    "esp_seville"
+   ]
+  }
+ ]
+}

@@ -31,6 +31,9 @@ class NewGameScreen(
     uiScale: Float,
     private val nowMillis: () -> Long,
     private val errorMessage: String?,
+    /** Pays joué (la France par défaut) ; en changer reconstruit l'écran. */
+    private val countryId: String = db.snapshot.playableCountries.first(),
+    private val onCountry: (String) -> Unit = {},
     private val onStart: (NewGameOptions) -> Unit,
 ) : ScreenAdapter(), HasStage {
     override val stage = Stage(ScreenViewport().apply { unitsPerPixel = 1f / uiScale })
@@ -52,11 +55,29 @@ class NewGameScreen(
 
     init {
         // Par défaut, le président sortant (nom inspiré du réel) ; « Autre nom » en tire un autre.
-        first.text = INCUMBENT_FIRST
-        last.text = INCUMBENT_LAST
+        val figure = db.country(countryId).definition.leader.figure
+        first.text = if (countryId == FRANCE) INCUMBENT_FIRST else figure?.firstName ?: INCUMBENT_FIRST
+        last.text = if (countryId == FRANCE) INCUMBENT_LAST else figure?.lastName ?: INCUMBENT_LAST
         val content = Table().apply { pad(24f); defaults().left().padBottom(8f) }
         content.add(ui.label("PRÉSIDENT", "headline")).row()
-        content.add(ui.label("Vous venez d'être élu(e) à la tête de la ${db.country(db.snapshot.playableCountries.first()).definition.name}. Le monde ne s'arrêtera pas pour vous attendre.", "default", wrap = true)).width(CONTENT_WIDTH).row()
+        content.add(ui.label("Vous venez d'être élu(e) à la tête ${fr.president.engine.data.CountryNames(db.country(countryId).definition).of}. Le monde ne s'arrêtera pas pour vous attendre.", "default", wrap = true)).width(CONTENT_WIDTH).row()
+        // Le pays à gouverner.
+        if (db.snapshot.playableCountries.size > 1) {
+            content.add(ui.label("Pays", "title")).padTop(12f).row()
+            val countries = Table().apply { defaults().padRight(6f).padBottom(4f).left() }
+            val group = ButtonGroup<TextButton>()
+            db.snapshot.playableCountries.forEachIndexed { i, id ->
+                val b = ui.button(db.country(id).definition.name, "toggle") { if (id != countryId) onCountry(id) }
+                group.add(b)
+                if (id == countryId) b.isChecked = true
+                countries.add(b)
+                if (i % FAMILY_COLUMNS == FAMILY_COLUMNS - 1) countries.row()
+            }
+            content.add(countries).row()
+            db.country(countryId).definition.institutions.let { inst ->
+                content.add(ui.label("Vous serez : ${inst.headOfGovernmentTitle.takeIf { countryId != FRANCE && countryId != "USA" } ?: inst.headOfStateTitle}.", "muted", wrap = true)).width(CONTENT_WIDTH).row()
+            }
+        }
         errorMessage?.let { content.add(ui.label(it, "small", Theme.bad, wrap = true)).width(CONTENT_WIDTH).row() }
 
         if (db.scenarios.isNotEmpty()) {
@@ -109,7 +130,7 @@ class NewGameScreen(
         content.add(ui.label("Famille politique", "title")).padTop(12f).row()
         content.add(ui.label("Elle détermine votre gouvernement, vos alliés à l'Assemblée et les électorats qui vous soutiennent. " +
             "Les extrêmes mobilisent un noyau fidèle mais peinent à rassembler au second tour.", "muted", wrap = true)).width(CONTENT_WIDTH).row()
-        val families = db.country(db.snapshot.playableCountries.first()).elections?.families.orEmpty()
+        val families = db.country(countryId).elections?.families.orEmpty()
         val familyGroup = ButtonGroup<TextButton>()
         val familyGrid = Table().apply { defaults().padRight(6f).padBottom(4f).left() }
         val familyInfo = ui.label("", "muted", wrap = true)
@@ -132,7 +153,7 @@ class NewGameScreen(
         }
         content.add(familyGrid).row()
         content.add(familyInfo).width(CONTENT_WIDTH).row()
-        val promiseFile = db.country(db.snapshot.playableCountries.first()).promises
+        val promiseFile = db.country(countryId).promises
         if (promiseFile != null) {
             content.add(ui.label("Vos promesses de campagne", "title")).padTop(12f).row()
             content.add(ui.label("Choisissez jusqu'à ${promiseFile.maxPromises} engagements : les électeurs les jugeront à la prochaine élection.", "muted", wrap = true)).width(CONTENT_WIDTH).row()
@@ -149,7 +170,7 @@ class NewGameScreen(
             content.add(grid).row()
         }
         content.add(ui.button("Prendre ses fonctions", "accent") {
-            onStart(NewGameOptions(pace, seed, nowMillis(), first.text, last.text, female, leaning, socialLeaning = social, promises = promises.toList(), scenarioId = scenario?.takeIf { it != STANDARD },
+            onStart(NewGameOptions(pace, seed, nowMillis(), first.text, last.text, female, leaning, socialLeaning = social, promises = promises.toList(), scenarioId = scenario?.takeIf { it != STANDARD }, countryId = countryId,
                 presidentAge = age, careerId = career, presidentTraits = traits.toMap(), appearance = appearance))
         }).padTop(16f).row()
         content.add(ui.label("Pays, institutions et données de départ inspirés du monde réel (${db.snapshot.label}). Personnages fictifs : les noms des dirigeants s'inspirent de personnalités réelles sans les reprendre.", "muted", wrap = true)).width(CONTENT_WIDTH).row()
@@ -198,7 +219,7 @@ class NewGameScreen(
         content.add(ageRow).left().padTop(6f).row()
 
         // Parcours.
-        val careers = db.country(db.snapshot.playableCountries.first()).careers
+        val careers = db.country(countryId).careers
         if (careers.isNotEmpty()) {
             content.add(ui.label("Parcours avant l'élection", "bold")).padTop(8f).row()
             val info = ui.label("Chaque parcours change vos compétences, votre tempérament et vos soutiens de départ.", "muted", wrap = true)
@@ -245,7 +266,7 @@ class NewGameScreen(
 
     private fun refreshPreview() {
         ageLabel.setText("$age ans")
-        val country = db.snapshot.playableCountries.first()
+        val country = countryId
         val c = CharacterGenerator(db).generate("apercu", CharacterSpec(country, CharacterRole.PRESIDENT, null, PREVIEW_YEAR, female = female), GameRandom(seed))
         c.female = female
         c.birthYear = PREVIEW_YEAR - age
@@ -257,7 +278,7 @@ class NewGameScreen(
     private class Axis(val label: String, val options: List<Pair<String, Map<String, Double>>>)
 
     private fun regenerateName() {
-        val country = db.snapshot.playableCountries.first()
+        val country = countryId
         val c = CharacterGenerator(db).generate("preview", CharacterSpec(country, CharacterRole.PRESIDENT, null, PREVIEW_YEAR, female = female), GameRandom(seed))
         first.text = c.firstName
         last.text = c.lastName
@@ -290,6 +311,7 @@ class NewGameScreen(
             Axis("Prudence", listOf("Prudent(e)" to mapOf("caution" to 0.85), "Audacieux(se)" to mapOf("caution" to 0.25))),
             Axis("Ouverture", listOf("Européen(ne) convaincu(e)" to mapOf("openness" to 0.85, "nationalism" to 0.25), "Souverainiste" to mapOf("openness" to 0.35, "nationalism" to 0.8))),
         )
+        const val FRANCE = "FRA"
         const val INCUMBENT_FIRST = "Emmanuel"
         const val INCUMBENT_LAST = "Macrin"
         const val SCENARIO_WIDTH = 2.1f

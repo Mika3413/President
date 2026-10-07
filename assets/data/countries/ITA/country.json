@@ -5,9 +5,9 @@
  "adjective": "italien",
  "language": "it",
  "namePool": "it",
- "detail": "LIGHT",
+ "detail": "FULL",
  "population": 58900000,
- "economy": "economy/ITA_2026_10.json",
+ "economy": "economy/ITA_FULL_2026_10.json",
  "institutions": {
   "headOfStateTitle": "Chef de l'État",
   "headOfGovernmentTitle": "Président du Conseil",
@@ -72,7 +72,7 @@
   "militaryBudgetBillions": 33,
   "nuclear": false,
   "forces": {
-   "land": 6,
+   "land": 7,
    "air": 4,
    "sea": 3
   },
@@ -88,5 +88,224 @@
    "wildfire",
    "drought"
   ]
- }
+ },
+ "capitalCityId": "ita_rome",
+ "territory": "countries/ITA/territory.json",
+ "government": "countries/ITA/government.json",
+ "socialGroups": "countries/FRA/social_groups.json",
+ "elections": "countries/ITA/elections.json",
+ "energy": "infrastructure/ITA_energy.json",
+ "transport": "infrastructure/ITA_transport.json",
+ "military": "military/ITA_2026_10.json",
+ "measures": "countries/FRA/measures.json",
+ "cabinet": "countries/FRA/cabinet.json",
+ "agenda": "countries/FRA/agenda.json",
+ "sectors": "countries/FRA/sectors.json",
+ "careers": "countries/FRA/careers.json",
+ "laws": "countries/FRA/laws.json",
+ "actors": "countries/FRA/actors.json",
+ "fiscal": "countries/FRA/fiscal.json",
+ "legislation": "countries/FRA/legislation.json",
+ "reforms": "countries/FRA/reforms.json",
+ "promises": "countries/FRA/promises.json",
+ "localActions": "countries/FRA/local_actions.json",
+ "nationalActions": "countries/FRA/national_actions.json",
+ "demography": {
+  "birthRate": 0.0065,
+  "deathRate": 0.0118,
+  "netMigrationRate": 0.003,
+  "agingPerYear": 0.0032
+ },
+ "geo": "ITA",
+ "electionLabel": "Élections générales",
+ "lexicon": [
+  [
+   "\\bFrance Travail\\b",
+   "Agence nationale pour l'emploi"
+  ],
+  [
+   "\\bBanque de France\\b",
+   "Banque d'Italie"
+  ],
+  [
+   "\\bAssemblée nationale\\b",
+   "Chambre des députés"
+  ],
+  [
+   "\\bConseil constitutionnel\\b",
+   "Cour constitutionnelle"
+  ],
+  [
+   "\\bSNCF\\b",
+   "Trenitalia"
+  ],
+  [
+   "\\bEDF\\b",
+   "Enel"
+  ],
+  [
+   "\\bCAC 40\\b",
+   "FTSE MIB"
+  ],
+  [
+   "\\bRSA\\b",
+   "allocation d'inclusion"
+  ],
+  [
+   "\\bSMIC\\b",
+   "salaire minimum"
+  ],
+  [
+   "\\bBercy\\b",
+   "le ministère des Finances"
+  ],
+  [
+   "\\bMatignon\\b",
+   "le gouvernement"
+  ],
+  [
+   "\\b(article |l'article )?49\\.3\\b",
+   "procédure d'urgence"
+  ],
+  [
+   "\\b[Aa]rticle 16\\b",
+   "pouvoirs d'exception"
+  ],
+  [
+   "\\bà l'Élysée\\b",
+   "au palais Chigi"
+  ],
+  [
+   "\\bde l'Élysée\\b",
+   "du palais Chigi"
+  ],
+  [
+   "\\bl'Élysée\\b",
+   "le palais Chigi"
+  ],
+  [
+   "\\bÉlysée\\b",
+   "Palais Chigi"
+  ],
+  [
+   "\\bBureau du président\\b",
+   "Bureau du président du Conseil"
+  ],
+  [
+   "\\b[Pp]résident de la République\\b",
+   "président du Conseil"
+  ],
+  [
+   "\\bles Bleus\\b",
+   "la Squadra Azzurra"
+  ],
+  [
+   "\\bLes Bleus\\b",
+   "La Squadra Azzurra"
+  ],
+  [
+   "\\ble XV de France\\b",
+   "le XV d'Italie"
+  ],
+  [
+   "\\bMarine nationale\\b",
+   "Marine"
+  ],
+  [
+   "\\bArmée de l'air et de l'espace\\b",
+   "Armée de l'air"
+  ],
+  [
+   "\\bDGSE\\b",
+   "le renseignement extérieur"
+  ],
+  [
+   "\\bDGSI\\b",
+   "le renseignement intérieur"
+  ],
+  [
+   "\\b[àa] Paris\\b",
+   "à Rome"
+  ],
+  [
+   "\\bde Paris\\b",
+   "de Rome"
+  ],
+  [
+   "\\bde la France\\b",
+   "de l'Italie"
+  ],
+  [
+   "\\bà la France\\b",
+   "à l'Italie"
+  ],
+  [
+   "\\bÀ la France\\b",
+   "À l'Italie"
+  ],
+  [
+   "\\bLa France\\b",
+   "L'Italie"
+  ],
+  [
+   "\\bla France\\b",
+   "l'Italie"
+  ],
+  [
+   "\\ben France\\b",
+   "en Italie"
+  ],
+  [
+   "\\bEn France\\b",
+   "En Italie"
+  ],
+  [
+   "\\bFrance\\b",
+   "Italie"
+  ],
+  [
+   "\\bFrançaises\\b",
+   "Italiennes"
+  ],
+  [
+   "\\bFrançais\\b",
+   "Italiens"
+  ],
+  [
+   "\\bfrançaises\\b",
+   "italiennes"
+  ],
+  [
+   "\\bfrançaise\\b",
+   "italienne"
+  ],
+  [
+   "\\bfrançais\\b",
+   "italien"
+  ],
+  [
+   "\\bPrésidentielle\\b",
+   "Élections générales"
+  ],
+  [
+   "\\bprésidentielle\\b",
+   "élections générales"
+  ],
+  [
+   "\\bLe président\\b(?! (de la Commission|du Conseil européen|du conseil|de région|de la région|de l'Assemblée|du Sénat|chinois|américain|russe|turc|ukrainien|égyptien|brésilien|algérien))",
+   "Le président du Conseil"
+  ],
+  [
+   "\\ble président\\b(?! (de la Commission|du Conseil européen|du conseil|de région|de la région|de l'Assemblée|du Sénat|chinois|américain|russe|turc|ukrainien|égyptien|brésilien|algérien))",
+   "le président du Conseil"
+  ],
+  [
+   "\\bdu président\\b(?! (de la Commission|du conseil|de région))",
+   "du président du Conseil"
+  ],
+  [
+   "\\bau président\\b(?! (de la Commission|du conseil|de région))",
+   "au président du Conseil"
+  ]
+ ]
 }

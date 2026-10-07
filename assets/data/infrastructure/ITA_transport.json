@@ -1,0 +1,82 @@
+{
+ "items": [
+  {
+   "id": "ita_genova_port",
+   "type": "PORT",
+   "name": "Port de Gênes",
+   "lon": 8.91,
+   "lat": 44.4,
+   "department": "GE",
+   "employees": 3000,
+   "maintenanceCostMillions": 60,
+   "initialCondition": 0.75,
+   "commissionedYear": 1960,
+   "description": "Grand port de commerce."
+  },
+  {
+   "id": "ita_trieste_port",
+   "type": "PORT",
+   "name": "Port de Trieste",
+   "lon": 13.75,
+   "lat": 45.65,
+   "department": "TS",
+   "employees": 3000,
+   "maintenanceCostMillions": 60,
+   "initialCondition": 0.75,
+   "commissionedYear": 1960,
+   "description": "Grand port de commerce."
+  },
+  {
+   "id": "ita_fco",
+   "type": "AIRPORT",
+   "name": "Aéroport de Rome-Fiumicino",
+   "lon": 12.25,
+   "lat": 41.8,
+   "department": "RM",
+   "employees": 5000,
+   "maintenanceCostMillions": 80,
+   "initialCondition": 0.75,
+   "commissionedYear": 1970,
+   "description": "Aéroport international."
+  },
+  {
+   "id": "ita_mxp",
+   "type": "AIRPORT",
+   "name": "Aéroport de Milan-Malpensa",
+   "lon": 8.72,
+   "lat": 45.63,
+   "department": "NO",
+   "employees": 5000,
+   "maintenanceCostMillions": 80,
+   "initialCondition": 0.75,
+   "commissionedYear": 1970,
+   "description": "Aéroport international."
+  }
+ ],
+ "networks": [
+  {
+   "id": "ita_av_milan_naples",
+   "kind": "RAIL_HIGH_SPEED",
+   "name": "Alta Velocità Milan – Naples",
+   "cityIds": [
+    "ita_milan",
+    "ita_bologne",
+    "ita_florence",
+    "ita_rome",
+    "ita_naples"
+   ]
+  },
+  {
+   "id": "ita_a1",
+   "kind": "MOTORWAY",
+   "name": "Autoroute du Soleil (A1)",
+   "cityIds": [
+    "ita_milan",
+    "ita_bologne",
+    "ita_florence",
+    "ita_rome",
+    "ita_naples"
+   ]
+  }
+ ]
+}

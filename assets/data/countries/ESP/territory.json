@@ -1,0 +1,1966 @@
+{
+ "regions": [
+  {
+   "code": "CEUTA",
+   "name": "Ceuta",
+   "capitalCityId": "esp_ceuta",
+   "defaults": {
+    "unemployment": 0.084,
+    "incomeIndex": 1.02,
+    "urbanShare": 0.74,
+    "seniorShare": 0.24,
+    "politicalLeaning": -0.02
+   }
+  },
+  {
+   "code": "MELILL",
+   "name": "Melilla",
+   "capitalCityId": "esp_melilla",
+   "defaults": {
+    "unemployment": 0.136,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.74,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.01
+   }
+  },
+  {
+   "code": "NAVARR",
+   "name": "Navarre",
+   "capitalCityId": "esp_pampelune",
+   "defaults": {
+    "unemployment": 0.117,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.47,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.19
+   }
+  },
+  {
+   "code": "PAYS_B",
+   "name": "Pays basque",
+   "capitalCityId": "esp_bilbao",
+   "defaults": {
+    "unemployment": 0.106,
+    "incomeIndex": 1.032,
+    "urbanShare": 0.677,
+    "seniorShare": 0.219,
+    "politicalLeaning": 0.132
+   }
+  },
+  {
+   "code": "ARAGON",
+   "name": "Aragon",
+   "capitalCityId": "esp_saragosse",
+   "defaults": {
+    "unemployment": 0.11,
+    "incomeIndex": 0.976,
+    "urbanShare": 0.418,
+    "seniorShare": 0.246,
+    "politicalLeaning": 0.03
+   }
+  },
+  {
+   "code": "CATALO",
+   "name": "Catalogne",
+   "capitalCityId": "esp_barcelone",
+   "defaults": {
+    "unemployment": 0.131,
+    "incomeIndex": 1.014,
+    "urbanShare": 0.664,
+    "seniorShare": 0.187,
+    "politicalLeaning": 0.086
+   }
+  },
+  {
+   "code": "ESTREM",
+   "name": "Estrémadure",
+   "capitalCityId": "esp_badajoz",
+   "defaults": {
+    "unemployment": 0.102,
+    "incomeIndex": 0.942,
+    "urbanShare": 0.329,
+    "seniorShare": 0.219,
+    "politicalLeaning": -0.014
+   }
+  },
+  {
+   "code": "ANDALO",
+   "name": "Andalousie",
+   "capitalCityId": "esp_seville",
+   "defaults": {
+    "unemployment": 0.116,
+    "incomeIndex": 0.999,
+    "urbanShare": 0.534,
+    "seniorShare": 0.23,
+    "politicalLeaning": -0.028
+   }
+  },
+  {
+   "code": "GALICE",
+   "name": "Galice",
+   "capitalCityId": "esp_vigo",
+   "defaults": {
+    "unemployment": 0.1,
+    "incomeIndex": 0.976,
+    "urbanShare": 0.505,
+    "seniorShare": 0.211,
+    "politicalLeaning": 0.0
+   }
+  },
+  {
+   "code": "CASTIL",
+   "name": "Castille-et-León",
+   "capitalCityId": "esp_valladolid",
+   "defaults": {
+    "unemployment": 0.109,
+    "incomeIndex": 0.951,
+    "urbanShare": 0.356,
+    "seniorShare": 0.215,
+    "politicalLeaning": -0.082
+   }
+  },
+  {
+   "code": "COMMUN",
+   "name": "Communauté de Madrid",
+   "capitalCityId": "esp_madrid",
+   "defaults": {
+    "unemployment": 0.118,
+    "incomeIndex": 1.068,
+    "urbanShare": 0.681,
+    "seniorShare": 0.223,
+    "politicalLeaning": 0.09
+   }
+  },
+  {
+   "code": "REGION",
+   "name": "Région de Murcie",
+   "capitalCityId": "esp_murcie",
+   "defaults": {
+    "unemployment": 0.118,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.58,
+    "seniorShare": 0.17,
+    "politicalLeaning": 0.17
+   }
+  },
+  {
+   "code": "ASTURI",
+   "name": "Asturies",
+   "capitalCityId": "esp_gijon",
+   "defaults": {
+    "unemployment": 0.076,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.56,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.01
+   }
+  },
+  {
+   "code": "CANTAB",
+   "name": "Cantabrie",
+   "capitalCityId": "esp_santander",
+   "defaults": {
+    "unemployment": 0.084,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.52,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.13
+   }
+  },
+  {
+   "code": "CANARI",
+   "name": "Canaries",
+   "capitalCityId": "esp_las_palmas_de_gran_canaria",
+   "defaults": {
+    "unemployment": 0.104,
+    "incomeIndex": 1.045,
+    "urbanShare": 0.635,
+    "seniorShare": 0.223,
+    "politicalLeaning": -0.013
+   }
+  },
+  {
+   "code": "BALEAR",
+   "name": "Baléares",
+   "capitalCityId": "esp_palma_de_majorque",
+   "defaults": {
+    "unemployment": 0.13,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.6,
+    "seniorShare": 0.2,
+    "politicalLeaning": 0.16
+   }
+  },
+  {
+   "code": "LA_RIO",
+   "name": "La Rioja",
+   "capitalCityId": "esp_logrogne",
+   "defaults": {
+    "unemployment": 0.096,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.47,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.11
+   }
+  }
+ ],
+ "departments": [
+  {
+   "code": "CE",
+   "name": "Ceuta",
+   "article": "le",
+   "region": "CEUTA",
+   "population": 97000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.084,
+    "incomeIndex": 1.02,
+    "urbanShare": 0.74,
+    "seniorShare": 0.24,
+    "politicalLeaning": -0.02,
+    "healthAccess": 1.09,
+    "crime": 1.14,
+    "industryShare": 0.18,
+    "agricultureShare": 0.034,
+    "pollution": 1.14
+   }
+  },
+  {
+   "code": "ML",
+   "name": "Melilla",
+   "article": "le",
+   "region": "MELILL",
+   "population": 172000,
+   "tags": [
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.136,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.74,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.01,
+    "healthAccess": 1.1,
+    "crime": 1.15,
+    "industryShare": 0.1,
+    "agricultureShare": 0.019,
+    "pollution": 1.15
+   }
+  },
+  {
+   "code": "NA",
+   "name": "Navarre",
+   "article": "la",
+   "region": "NAVARR",
+   "population": 733000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.117,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.47,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.19,
+    "healthAccess": 0.99,
+    "crime": 0.98,
+    "industryShare": 0.17,
+    "agricultureShare": 0.034,
+    "pollution": 0.98
+   }
+  },
+  {
+   "code": "SS",
+   "name": "Guipuscoa",
+   "article": "le",
+   "region": "PAYS_B",
+   "population": 513000,
+   "tags": [
+    "coastal",
+    "border",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.085,
+    "incomeIndex": 1.0,
+    "urbanShare": 0.67,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.21,
+    "healthAccess": 1.07,
+    "crime": 1.1,
+    "industryShare": 0.22,
+    "agricultureShare": 0.027,
+    "pollution": 1.1
+   }
+  },
+  {
+   "code": "HU",
+   "name": "Huesca",
+   "article": "l'",
+   "region": "ARAGON",
+   "population": 685000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.103,
+    "incomeIndex": 0.9,
+    "urbanShare": 0.3,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.17,
+    "healthAccess": 0.92,
+    "crime": 0.88,
+    "industryShare": 0.1,
+    "agricultureShare": 0.052,
+    "pollution": 0.88
+   }
+  },
+  {
+   "code": "L",
+   "name": "Lérida",
+   "article": "le",
+   "region": "CATALO",
+   "population": 548000,
+   "tags": [
+    "coastal",
+    "border",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.085,
+    "incomeIndex": 0.9,
+    "urbanShare": 0.32,
+    "seniorShare": 0.24,
+    "politicalLeaning": -0.12,
+    "healthAccess": 0.93,
+    "crime": 0.89,
+    "industryShare": 0.26,
+    "agricultureShare": 0.057,
+    "pollution": 0.89
+   }
+  },
+  {
+   "code": "GI",
+   "name": "Gérone",
+   "article": "la",
+   "region": "CATALO",
+   "population": 303000,
+   "tags": [
+    "coastal",
+    "border",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.127,
+    "incomeIndex": 0.94,
+    "urbanShare": 0.37,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.19,
+    "healthAccess": 0.95,
+    "crime": 0.92,
+    "industryShare": 0.24,
+    "agricultureShare": 0.039,
+    "pollution": 0.92
+   }
+  },
+  {
+   "code": "BA",
+   "name": "Badajoz",
+   "article": "le",
+   "region": "ESTREM",
+   "population": 1058000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.083,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.36,
+    "seniorShare": 0.21,
+    "politicalLeaning": -0.16,
+    "healthAccess": 0.94,
+    "crime": 0.92,
+    "industryShare": 0.16,
+    "agricultureShare": 0.047,
+    "pollution": 0.92
+   }
+  },
+  {
+   "code": "CA",
+   "name": "Cadix",
+   "article": "le",
+   "region": "ANDALO",
+   "population": 749000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.095,
+    "incomeIndex": 1.02,
+    "urbanShare": 0.57,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.06,
+    "healthAccess": 1.03,
+    "crime": 1.04,
+    "industryShare": 0.15,
+    "agricultureShare": 0.023,
+    "pollution": 1.04
+   }
+  },
+  {
+   "code": "OR",
+   "name": "d'Ourense",
+   "article": "la",
+   "region": "GALICE",
+   "population": 434000,
+   "tags": [
+    "coastal",
+    "border",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.14,
+    "incomeIndex": 0.95,
+    "urbanShare": 0.41,
+    "seniorShare": 0.19,
+    "politicalLeaning": 0.14,
+    "healthAccess": 0.97,
+    "crime": 0.95,
+    "industryShare": 0.15,
+    "agricultureShare": 0.041,
+    "pollution": 0.95
+   }
+  },
+  {
+   "code": "CC",
+   "name": "Cáceres",
+   "article": "le",
+   "region": "ESTREM",
+   "population": 837000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.125,
+    "incomeIndex": 0.92,
+    "urbanShare": 0.29,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.17,
+    "healthAccess": 0.92,
+    "crime": 0.88,
+    "industryShare": 0.14,
+    "agricultureShare": 0.037,
+    "pollution": 0.88
+   }
+  },
+  {
+   "code": "SA",
+   "name": "Salamanque",
+   "article": "la",
+   "region": "CASTIL",
+   "population": 683000,
+   "tags": [
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.14,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.39,
+    "seniorShare": 0.25,
+    "politicalLeaning": -0.1,
+    "healthAccess": 0.96,
+    "crime": 0.94,
+    "industryShare": 0.2,
+    "agricultureShare": 0.055,
+    "pollution": 0.94
+   }
+  },
+  {
+   "code": "ZA",
+   "name": "Zamora",
+   "article": "le",
+   "region": "CASTIL",
+   "population": 490000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.079,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.32,
+    "seniorShare": 0.24,
+    "politicalLeaning": -0.1,
+    "healthAccess": 0.93,
+    "crime": 0.89,
+    "industryShare": 0.27,
+    "agricultureShare": 0.059,
+    "pollution": 0.89
+   }
+  },
+  {
+   "code": "PO",
+   "name": "Pontevedra",
+   "article": "le",
+   "region": "GALICE",
+   "population": 635000,
+   "tags": [
+    "coastal",
+    "border",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.113,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.61,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.16,
+    "healthAccess": 1.04,
+    "crime": 1.06,
+    "industryShare": 0.1,
+    "agricultureShare": 0.028,
+    "pollution": 1.06
+   }
+  },
+  {
+   "code": "H",
+   "name": "Huelva",
+   "article": "l'",
+   "region": "ANDALO",
+   "population": 549000,
+   "tags": [
+    "coastal",
+    "border"
+   ],
+   "profile": {
+    "unemployment": 0.092,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.41,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.02,
+    "healthAccess": 0.96,
+    "crime": 0.94,
+    "industryShare": 0.25,
+    "agricultureShare": 0.032,
+    "pollution": 0.94
+   }
+  },
+  {
+   "code": "B",
+   "name": "Barcelone",
+   "article": "la",
+   "region": "CATALO",
+   "population": 6509000,
+   "tags": [
+    "coastal",
+    "border",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.137,
+    "incomeIndex": 1.03,
+    "urbanShare": 0.72,
+    "seniorShare": 0.18,
+    "politicalLeaning": 0.13,
+    "healthAccess": 1.09,
+    "crime": 1.13,
+    "industryShare": 0.23,
+    "agricultureShare": 0.021,
+    "pollution": 1.13
+   }
+  },
+  {
+   "code": "T",
+   "name": "Tarragone",
+   "article": "la",
+   "region": "CATALO",
+   "population": 396000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.103,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.44,
+    "seniorShare": 0.21,
+    "politicalLeaning": -0.15,
+    "healthAccess": 0.98,
+    "crime": 0.96,
+    "industryShare": 0.12,
+    "agricultureShare": 0.045,
+    "pollution": 0.96
+   }
+  },
+  {
+   "code": "CS",
+   "name": "Castellón",
+   "article": "le",
+   "region": "COMMUN",
+   "population": 475000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.111,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.48,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.1,
+    "healthAccess": 0.99,
+    "crime": 0.99,
+    "industryShare": 0.16,
+    "agricultureShare": 0.033,
+    "pollution": 0.99
+   }
+  },
+  {
+   "code": "V",
+   "name": "Valence",
+   "article": "la",
+   "region": "COMMUN",
+   "population": 1389000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.132,
+    "incomeIndex": 1.02,
+    "urbanShare": 0.6,
+    "seniorShare": 0.25,
+    "politicalLeaning": 0.19,
+    "healthAccess": 1.04,
+    "crime": 1.06,
+    "industryShare": 0.16,
+    "agricultureShare": 0.039,
+    "pollution": 1.06
+   }
+  },
+  {
+   "code": "A",
+   "name": "d'Alicante",
+   "article": "la",
+   "region": "COMMUN",
+   "population": 600000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.115,
+    "incomeIndex": 1.0,
+    "urbanShare": 0.57,
+    "seniorShare": 0.22,
+    "politicalLeaning": -0.22,
+    "healthAccess": 1.03,
+    "crime": 1.04,
+    "industryShare": 0.09,
+    "agricultureShare": 0.042,
+    "pollution": 1.04
+   }
+  },
+  {
+   "code": "MU",
+   "name": "Murcie",
+   "article": "la",
+   "region": "REGION",
+   "population": 1263000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.118,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.58,
+    "seniorShare": 0.17,
+    "politicalLeaning": 0.17,
+    "healthAccess": 1.03,
+    "crime": 1.05,
+    "industryShare": 0.24,
+    "agricultureShare": 0.042,
+    "pollution": 1.05
+   }
+  },
+  {
+   "code": "AL",
+   "name": "d'Almería",
+   "article": "le",
+   "region": "ANDALO",
+   "population": 539000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.1,
+    "incomeIndex": 0.94,
+    "urbanShare": 0.45,
+    "seniorShare": 0.17,
+    "politicalLeaning": 0.09,
+    "healthAccess": 0.98,
+    "crime": 0.97,
+    "industryShare": 0.23,
+    "agricultureShare": 0.047,
+    "pollution": 0.97
+   }
+  },
+  {
+   "code": "GR",
+   "name": "Grenade",
+   "article": "la",
+   "region": "ANDALO",
+   "population": 938000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.081,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.5,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.03,
+    "healthAccess": 1.0,
+    "crime": 1.0,
+    "industryShare": 0.24,
+    "agricultureShare": 0.041,
+    "pollution": 1.0
+   }
+  },
+  {
+   "code": "MA",
+   "name": "Málaga",
+   "article": "le",
+   "region": "ANDALO",
+   "population": 1163000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.134,
+    "incomeIndex": 1.03,
+    "urbanShare": 0.63,
+    "seniorShare": 0.26,
+    "politicalLeaning": 0.03,
+    "healthAccess": 1.05,
+    "crime": 1.08,
+    "industryShare": 0.15,
+    "agricultureShare": 0.031,
+    "pollution": 1.08
+   }
+  },
+  {
+   "code": "SE",
+   "name": "Séville",
+   "article": "la",
+   "region": "ANDALO",
+   "population": 1990000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.133,
+    "incomeIndex": 1.0,
+    "urbanShare": 0.62,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.07,
+    "healthAccess": 1.05,
+    "crime": 1.07,
+    "industryShare": 0.11,
+    "agricultureShare": 0.028,
+    "pollution": 1.07
+   }
+  },
+  {
+   "code": "C",
+   "name": "Corogne",
+   "article": "la",
+   "region": "GALICE",
+   "population": 880000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.081,
+    "incomeIndex": 0.97,
+    "urbanShare": 0.57,
+    "seniorShare": 0.21,
+    "politicalLeaning": -0.07,
+    "healthAccess": 1.03,
+    "crime": 1.04,
+    "industryShare": 0.1,
+    "agricultureShare": 0.051,
+    "pollution": 1.04
+   }
+  },
+  {
+   "code": "LU",
+   "name": "Lugo",
+   "article": "le",
+   "region": "GALICE",
+   "population": 466000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.081,
+    "incomeIndex": 0.91,
+    "urbanShare": 0.33,
+    "seniorShare": 0.26,
+    "politicalLeaning": 0.22,
+    "healthAccess": 0.93,
+    "crime": 0.9,
+    "industryShare": 0.24,
+    "agricultureShare": 0.06,
+    "pollution": 0.9
+   }
+  },
+  {
+   "code": "O",
+   "name": "Asturies",
+   "article": "l'",
+   "region": "ASTURI",
+   "population": 1123000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.076,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.56,
+    "seniorShare": 0.21,
+    "politicalLeaning": 0.01,
+    "healthAccess": 1.02,
+    "crime": 1.03,
+    "industryShare": 0.18,
+    "agricultureShare": 0.037,
+    "pollution": 1.03
+   }
+  },
+  {
+   "code": "S",
+   "name": "Cantabrie",
+   "article": "la",
+   "region": "CANTAB",
+   "population": 467000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.084,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.52,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.13,
+    "healthAccess": 1.01,
+    "crime": 1.01,
+    "industryShare": 0.23,
+    "agricultureShare": 0.053,
+    "pollution": 1.01
+   }
+  },
+  {
+   "code": "BI",
+   "name": "Biscaye",
+   "article": "la",
+   "region": "PAYS_B",
+   "population": 1152000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.115,
+    "incomeIndex": 1.04,
+    "urbanShare": 0.71,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.22,
+    "healthAccess": 1.08,
+    "crime": 1.12,
+    "industryShare": 0.26,
+    "agricultureShare": 0.024,
+    "pollution": 1.12
+   }
+  },
+  {
+   "code": "TF",
+   "name": "Santa Cruz de Ténérife",
+   "article": "la",
+   "region": "CANARI",
+   "population": 521000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.114,
+    "incomeIndex": 1.04,
+    "urbanShare": 0.64,
+    "seniorShare": 0.26,
+    "politicalLeaning": -0.05,
+    "healthAccess": 1.05,
+    "crime": 1.08,
+    "industryShare": 0.27,
+    "agricultureShare": 0.033,
+    "pollution": 1.08
+   }
+  },
+  {
+   "code": "GC",
+   "name": "Las Palmas",
+   "article": "le",
+   "region": "CANARI",
+   "population": 594000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.095,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.63,
+    "seniorShare": 0.19,
+    "politicalLeaning": 0.02,
+    "healthAccess": 1.05,
+    "crime": 1.08,
+    "industryShare": 0.11,
+    "agricultureShare": 0.047,
+    "pollution": 1.08
+   }
+  },
+  {
+   "code": "PM",
+   "name": "Îles Baléares",
+   "article": "l'",
+   "region": "BALEAR",
+   "population": 649000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.13,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.6,
+    "seniorShare": 0.2,
+    "politicalLeaning": 0.16,
+    "healthAccess": 1.04,
+    "crime": 1.06,
+    "industryShare": 0.26,
+    "agricultureShare": 0.048,
+    "pollution": 1.06
+   }
+  },
+  {
+   "code": "Z",
+   "name": "Saragosse",
+   "article": "la",
+   "region": "ARAGON",
+   "population": 1466000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.121,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.52,
+    "seniorShare": 0.26,
+    "politicalLeaning": 0.19,
+    "healthAccess": 1.01,
+    "crime": 1.01,
+    "industryShare": 0.14,
+    "agricultureShare": 0.048,
+    "pollution": 1.01
+   }
+  },
+  {
+   "code": "LO",
+   "name": "La Rioja",
+   "article": "le",
+   "region": "LA_RIO",
+   "population": 385000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.096,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.47,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.11,
+    "healthAccess": 0.99,
+    "crime": 0.98,
+    "industryShare": 0.15,
+    "agricultureShare": 0.054,
+    "pollution": 0.98
+   }
+  },
+  {
+   "code": "VI",
+   "name": "Alava",
+   "article": "l'",
+   "region": "PAYS_B",
+   "population": 399000,
+   "tags": [
+    "coastal",
+    "regionalLanguage"
+   ],
+   "profile": {
+    "unemployment": 0.105,
+    "incomeIndex": 1.05,
+    "urbanShare": 0.59,
+    "seniorShare": 0.23,
+    "politicalLeaning": -0.22,
+    "healthAccess": 1.03,
+    "crime": 1.05,
+    "industryShare": 0.13,
+    "agricultureShare": 0.047,
+    "pollution": 1.05
+   }
+  },
+  {
+   "code": "AB",
+   "name": "d'Albacete",
+   "article": "la",
+   "region": "CASTIL",
+   "population": 752000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.109,
+    "incomeIndex": 0.96,
+    "urbanShare": 0.38,
+    "seniorShare": 0.17,
+    "politicalLeaning": 0.17,
+    "healthAccess": 0.95,
+    "crime": 0.93,
+    "industryShare": 0.17,
+    "agricultureShare": 0.054,
+    "pollution": 0.93
+   }
+  },
+  {
+   "code": "TE",
+   "name": "Teruel",
+   "article": "le",
+   "region": "ARAGON",
+   "population": 643000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.091,
+    "incomeIndex": 0.98,
+    "urbanShare": 0.31,
+    "seniorShare": 0.2,
+    "politicalLeaning": -0.12,
+    "healthAccess": 0.92,
+    "crime": 0.88,
+    "industryShare": 0.13,
+    "agricultureShare": 0.047,
+    "pollution": 0.88
+   }
+  },
+  {
+   "code": "CU",
+   "name": "Cuenca",
+   "article": "le",
+   "region": "CASTIL",
+   "population": 727000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.093,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.3,
+    "seniorShare": 0.2,
+    "politicalLeaning": 0.04,
+    "healthAccess": 0.92,
+    "crime": 0.88,
+    "industryShare": 0.13,
+    "agricultureShare": 0.063,
+    "pollution": 0.88
+   }
+  },
+  {
+   "code": "TO",
+   "name": "Tolède",
+   "article": "la",
+   "region": "CASTIL",
+   "population": 675000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.091,
+    "incomeIndex": 0.92,
+    "urbanShare": 0.32,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.19,
+    "healthAccess": 0.93,
+    "crime": 0.89,
+    "industryShare": 0.18,
+    "agricultureShare": 0.042,
+    "pollution": 0.89
+   }
+  },
+  {
+   "code": "LE",
+   "name": "León",
+   "article": "le",
+   "region": "CASTIL",
+   "population": 787000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.112,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.35,
+    "seniorShare": 0.23,
+    "politicalLeaning": -0.23,
+    "healthAccess": 0.94,
+    "crime": 0.91,
+    "industryShare": 0.24,
+    "agricultureShare": 0.033,
+    "pollution": 0.91
+   }
+  },
+  {
+   "code": "SO",
+   "name": "Soria",
+   "article": "le",
+   "region": "CASTIL",
+   "population": 474000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.096,
+    "incomeIndex": 0.91,
+    "urbanShare": 0.33,
+    "seniorShare": 0.27,
+    "politicalLeaning": 0.05,
+    "healthAccess": 0.93,
+    "crime": 0.9,
+    "industryShare": 0.22,
+    "agricultureShare": 0.035,
+    "pollution": 0.9
+   }
+  },
+  {
+   "code": "BU",
+   "name": "Burgos",
+   "article": "le",
+   "region": "CASTIL",
+   "population": 780000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.136,
+    "incomeIndex": 0.94,
+    "urbanShare": 0.38,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.05,
+    "healthAccess": 0.95,
+    "crime": 0.93,
+    "industryShare": 0.28,
+    "agricultureShare": 0.048,
+    "pollution": 0.93
+   }
+  },
+  {
+   "code": "AV",
+   "name": "d'Ávila",
+   "article": "le",
+   "region": "CASTIL",
+   "population": 384000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.098,
+    "incomeIndex": 0.94,
+    "urbanShare": 0.34,
+    "seniorShare": 0.27,
+    "politicalLeaning": -0.22,
+    "healthAccess": 0.94,
+    "crime": 0.91,
+    "industryShare": 0.22,
+    "agricultureShare": 0.043,
+    "pollution": 0.91
+   }
+  },
+  {
+   "code": "P",
+   "name": "Palencia",
+   "article": "le",
+   "region": "CASTIL",
+   "population": 389000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.08,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.34,
+    "seniorShare": 0.23,
+    "politicalLeaning": 0.06,
+    "healthAccess": 0.94,
+    "crime": 0.91,
+    "industryShare": 0.13,
+    "agricultureShare": 0.039,
+    "pollution": 0.91
+   }
+  },
+  {
+   "code": "CR",
+   "name": "Ciudad Real",
+   "article": "le",
+   "region": "CASTIL",
+   "population": 814000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.125,
+    "incomeIndex": 0.91,
+    "urbanShare": 0.29,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.02,
+    "healthAccess": 0.92,
+    "crime": 0.88,
+    "industryShare": 0.23,
+    "agricultureShare": 0.052,
+    "pollution": 0.88
+   }
+  },
+  {
+   "code": "CO",
+   "name": "Cordoue",
+   "article": "la",
+   "region": "ANDALO",
+   "population": 900000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.134,
+    "incomeIndex": 0.95,
+    "urbanShare": 0.46,
+    "seniorShare": 0.18,
+    "politicalLeaning": -0.22,
+    "healthAccess": 0.99,
+    "crime": 0.98,
+    "industryShare": 0.1,
+    "agricultureShare": 0.035,
+    "pollution": 0.98
+   }
+  },
+  {
+   "code": "GU",
+   "name": "Guadalajara",
+   "article": "le",
+   "region": "CASTIL",
+   "population": 561000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.096,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.33,
+    "seniorShare": 0.24,
+    "politicalLeaning": -0.17,
+    "healthAccess": 0.93,
+    "crime": 0.9,
+    "industryShare": 0.27,
+    "agricultureShare": 0.036,
+    "pollution": 0.9
+   }
+  },
+  {
+   "code": "J",
+   "name": "Jaén",
+   "article": "le",
+   "region": "ANDALO",
+   "population": 719000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.118,
+    "incomeIndex": 0.99,
+    "urbanShare": 0.4,
+    "seniorShare": 0.18,
+    "politicalLeaning": 0.05,
+    "healthAccess": 0.96,
+    "crime": 0.94,
+    "industryShare": 0.13,
+    "agricultureShare": 0.05,
+    "pollution": 0.94
+   }
+  },
+  {
+   "code": "M",
+   "name": "Communauté de Madrid",
+   "article": "le",
+   "region": "COMMUN",
+   "population": 7076000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.116,
+    "incomeIndex": 1.09,
+    "urbanShare": 0.72,
+    "seniorShare": 0.22,
+    "politicalLeaning": 0.11,
+    "healthAccess": 1.09,
+    "crime": 1.13,
+    "industryShare": 0.21,
+    "agricultureShare": 0.022,
+    "pollution": 1.13
+   }
+  },
+  {
+   "code": "SG",
+   "name": "Ségovie",
+   "article": "la",
+   "region": "CASTIL",
+   "population": 340000,
+   "tags": [],
+   "profile": {
+    "unemployment": 0.093,
+    "incomeIndex": 0.93,
+    "urbanShare": 0.36,
+    "seniorShare": 0.19,
+    "politicalLeaning": -0.2,
+    "healthAccess": 0.94,
+    "crime": 0.91,
+    "industryShare": 0.21,
+    "agricultureShare": 0.038,
+    "pollution": 0.91
+   }
+  },
+  {
+   "code": "VA",
+   "name": "Valladolid",
+   "article": "le",
+   "region": "CASTIL",
+   "population": 709000,
+   "tags": [
+    "coastal"
+   ],
+   "profile": {
+    "unemployment": 0.134,
+    "incomeIndex": 1.01,
+    "urbanShare": 0.52,
+    "seniorShare": 0.21,
+    "politicalLeaning": -0.25,
+    "healthAccess": 1.01,
+    "crime": 1.01,
+    "industryShare": 0.27,
+    "agricultureShare": 0.044,
+    "pollution": 1.01
+   }
+  }
+ ],
+ "cities": [
+  {
+   "id": "esp_madrid",
+   "name": "Madrid",
+   "department": "M",
+   "lon": -3.685,
+   "lat": 40.402,
+   "population": 3896899,
+   "urbanAreaPopulation": 5567000,
+   "rank": 1
+  },
+  {
+   "id": "esp_barcelone",
+   "name": "Barcelone",
+   "department": "B",
+   "lon": 2.181,
+   "lat": 41.385,
+   "population": 3444000,
+   "urbanAreaPopulation": 4920000,
+   "rank": 1
+  },
+  {
+   "id": "esp_seville",
+   "name": "Séville",
+   "department": "SE",
+   "lon": -5.98,
+   "lat": 37.405,
+   "population": 848431,
+   "urbanAreaPopulation": 1212045,
+   "rank": 1
+  },
+  {
+   "id": "esp_bilbao",
+   "name": "Bilbao",
+   "department": "BI",
+   "lon": -2.93,
+   "lat": 43.25,
+   "population": 612886,
+   "urbanAreaPopulation": 875552,
+   "rank": 1
+  },
+  {
+   "id": "esp_valence",
+   "name": "Valence",
+   "department": "V",
+   "lon": -0.402,
+   "lat": 39.487,
+   "population": 565600,
+   "urbanAreaPopulation": 808000,
+   "rank": 1
+  },
+  {
+   "id": "esp_saragosse",
+   "name": "Saragosse",
+   "department": "Z",
+   "lon": -0.89,
+   "lat": 41.65,
+   "population": 454582,
+   "urbanAreaPopulation": 649404,
+   "rank": 1
+  },
+  {
+   "id": "esp_malaga",
+   "name": "Malaga",
+   "department": "MA",
+   "lon": -4.42,
+   "lat": 36.72,
+   "population": 385040,
+   "urbanAreaPopulation": 550058,
+   "rank": 1
+  },
+  {
+   "id": "esp_murcie",
+   "name": "Murcie",
+   "department": "MU",
+   "lon": -1.13,
+   "lat": 37.98,
+   "population": 284764,
+   "urbanAreaPopulation": 406807,
+   "rank": 2
+  },
+  {
+   "id": "esp_grenade",
+   "name": "Grenade",
+   "department": "GR",
+   "lon": -3.585,
+   "lat": 37.165,
+   "population": 271803,
+   "urbanAreaPopulation": 388290,
+   "rank": 2
+  },
+  {
+   "id": "esp_vigo",
+   "name": "Vigo",
+   "department": "PO",
+   "lon": -8.73,
+   "lat": 42.22,
+   "population": 265266,
+   "urbanAreaPopulation": 378952,
+   "rank": 2
+  },
+  {
+   "id": "esp_las_palmas_de_gran_canaria",
+   "name": "Las Palmas de Gran Canaria",
+   "department": "GC",
+   "lon": -15.43,
+   "lat": 28.1,
+   "population": 264946,
+   "urbanAreaPopulation": 378495,
+   "rank": 2
+  },
+  {
+   "id": "esp_palma_de_majorque",
+   "name": "Palma de Majorque",
+   "department": "PM",
+   "lon": 2.654,
+   "lat": 39.574,
+   "population": 263041,
+   "urbanAreaPopulation": 375773,
+   "rank": 2
+  },
+  {
+   "id": "esp_la_corogne",
+   "name": "La Corogne",
+   "department": "C",
+   "lon": -8.42,
+   "lat": 43.33,
+   "population": 259426,
+   "urbanAreaPopulation": 370610,
+   "rank": 2
+  },
+  {
+   "id": "esp_saint_sebastien",
+   "name": "Saint-Sébastien",
+   "department": "SS",
+   "lon": -1.98,
+   "lat": 43.32,
+   "population": 250227,
+   "urbanAreaPopulation": 357468,
+   "rank": 2
+  },
+  {
+   "id": "esp_santa_cruz_de_tenerife",
+   "name": "Santa Cruz de Ténérife",
+   "department": "TF",
+   "lon": -16.25,
+   "lat": 28.47,
+   "population": 235242,
+   "urbanAreaPopulation": 336061,
+   "rank": 2
+  },
+  {
+   "id": "esp_gijon",
+   "name": "Gijón",
+   "department": "O",
+   "lon": -5.67,
+   "lat": 43.53,
+   "population": 235180,
+   "urbanAreaPopulation": 335972,
+   "rank": 2
+  },
+  {
+   "id": "esp_valladolid",
+   "name": "Valladolid",
+   "department": "VA",
+   "lon": -4.75,
+   "lat": 41.65,
+   "population": 225612,
+   "urbanAreaPopulation": 322304,
+   "rank": 2
+  },
+  {
+   "id": "esp_cordoue",
+   "name": "Cordoue",
+   "department": "CO",
+   "lon": -4.77,
+   "lat": 37.88,
+   "population": 224963,
+   "urbanAreaPopulation": 321376,
+   "rank": 2
+  },
+  {
+   "id": "esp_alicante",
+   "name": "Alicante",
+   "department": "A",
+   "lon": -0.484,
+   "lat": 38.351,
+   "population": 221104,
+   "urbanAreaPopulation": 315863,
+   "rank": 2
+  },
+  {
+   "id": "esp_cadix",
+   "name": "Cadix",
+   "department": "CA",
+   "lon": -6.286,
+   "lat": 36.525,
+   "population": 198209,
+   "urbanAreaPopulation": 283157,
+   "rank": 2
+  },
+  {
+   "id": "esp_pampelune",
+   "name": "Pampelune",
+   "department": "NA",
+   "lon": -1.65,
+   "lat": 42.82,
+   "population": 192181,
+   "urbanAreaPopulation": 274545,
+   "rank": 2
+  },
+  {
+   "id": "esp_oviedo",
+   "name": "Oviedo",
+   "department": "O",
+   "lon": -5.83,
+   "lat": 43.35,
+   "population": 164955,
+   "urbanAreaPopulation": 235651,
+   "rank": 2
+  },
+  {
+   "id": "esp_vitoria_gasteiz",
+   "name": "Vitoria-Gasteiz",
+   "department": "VI",
+   "lon": -2.67,
+   "lat": 42.85,
+   "population": 157204,
+   "urbanAreaPopulation": 224578,
+   "rank": 2
+  },
+  {
+   "id": "esp_santander",
+   "name": "Santander",
+   "department": "S",
+   "lon": -3.8,
+   "lat": 43.38,
+   "population": 146134,
+   "urbanAreaPopulation": 208763,
+   "rank": 2
+  },
+  {
+   "id": "esp_carthagene",
+   "name": "Carthagène",
+   "department": "MU",
+   "lon": -0.98,
+   "lat": 37.6,
+   "population": 140891,
+   "urbanAreaPopulation": 201274,
+   "rank": 2
+  },
+  {
+   "id": "esp_marbella",
+   "name": "Marbella",
+   "department": "MA",
+   "lon": -4.883,
+   "lat": 36.517,
+   "population": 130291,
+   "urbanAreaPopulation": 186131,
+   "rank": 2
+  },
+  {
+   "id": "esp_mataro",
+   "name": "Mataró",
+   "department": "B",
+   "lon": 2.45,
+   "lat": 41.54,
+   "population": 128305,
+   "urbanAreaPopulation": 183293,
+   "rank": 2
+  },
+  {
+   "id": "esp_castello_de_la_plana",
+   "name": "Castelló de la Plana",
+   "department": "CS",
+   "lon": -0.05,
+   "lat": 39.97,
+   "population": 126426,
+   "urbanAreaPopulation": 180610,
+   "rank": 2
+  },
+  {
+   "id": "esp_almeria",
+   "name": "Almería",
+   "department": "AL",
+   "lon": -2.43,
+   "lat": 36.83,
+   "population": 125583,
+   "urbanAreaPopulation": 179405,
+   "rank": 3
+  },
+  {
+   "id": "esp_burgos",
+   "name": "Burgos",
+   "department": "BU",
+   "lon": -3.68,
+   "lat": 42.35,
+   "population": 119128,
+   "urbanAreaPopulation": 170183,
+   "rank": 3
+  },
+  {
+   "id": "esp_salamanque",
+   "name": "Salamanque",
+   "department": "SA",
+   "lon": -5.67,
+   "lat": 40.97,
+   "population": 113647,
+   "urbanAreaPopulation": 162353,
+   "rank": 3
+  },
+  {
+   "id": "esp_albacete",
+   "name": "Albacete",
+   "department": "AB",
+   "lon": -1.87,
+   "lat": 39.0,
+   "population": 110665,
+   "urbanAreaPopulation": 158094,
+   "rank": 3
+  },
+  {
+   "id": "esp_huelva",
+   "name": "Huelva",
+   "department": "H",
+   "lon": -6.93,
+   "lat": 37.25,
+   "population": 100921,
+   "urbanAreaPopulation": 144174,
+   "rank": 3
+  },
+  {
+   "id": "esp_logrogne",
+   "name": "Logrogne",
+   "department": "LO",
+   "lon": -2.43,
+   "lat": 42.47,
+   "population": 100588,
+   "urbanAreaPopulation": 143698,
+   "rank": 3
+  },
+  {
+   "id": "esp_melilla",
+   "name": "Melilla",
+   "department": "ML",
+   "lon": -2.95,
+   "lat": 35.3,
+   "population": 98915,
+   "urbanAreaPopulation": 141308,
+   "rank": 3
+  },
+  {
+   "id": "esp_badajoz",
+   "name": "Badajoz",
+   "department": "BA",
+   "lon": -6.97,
+   "lat": 38.88,
+   "population": 98093,
+   "urbanAreaPopulation": 140133,
+   "rank": 3
+  },
+  {
+   "id": "esp_leon",
+   "name": "León",
+   "department": "LE",
+   "lon": -5.57,
+   "lat": 42.58,
+   "population": 95358,
+   "urbanAreaPopulation": 136227,
+   "rank": 3
+  },
+  {
+   "id": "esp_tarragone",
+   "name": "Tarragone",
+   "department": "T",
+   "lon": 1.25,
+   "lat": 41.12,
+   "population": 88403,
+   "urbanAreaPopulation": 126291,
+   "rank": 3
+  },
+  {
+   "id": "esp_ourense",
+   "name": "Ourense",
+   "department": "OR",
+   "lon": -7.87,
+   "lat": 42.33,
+   "population": 82674,
+   "urbanAreaPopulation": 118107,
+   "rank": 3
+  },
+  {
+   "id": "esp_jaen",
+   "name": "Jaén",
+   "department": "J",
+   "lon": -3.8,
+   "lat": 37.77,
+   "population": 81480,
+   "urbanAreaPopulation": 116400,
+   "rank": 3
+  },
+  {
+   "id": "esp_algesiras",
+   "name": "Algésiras",
+   "department": "CA",
+   "lon": -5.453,
+   "lat": 36.132,
+   "population": 77718,
+   "urbanAreaPopulation": 111027,
+   "rank": 3
+  },
+  {
+   "id": "esp_saint_jacques_de_compostelle",
+   "name": "Saint-Jacques-de-Compostelle",
+   "department": "C",
+   "lon": -8.541,
+   "lat": 42.883,
+   "population": 64700,
+   "urbanAreaPopulation": 92430,
+   "rank": 3
+  },
+  {
+   "id": "esp_lorca",
+   "name": "Lorca",
+   "department": "MU",
+   "lon": -1.699,
+   "lat": 37.689,
+   "population": 60283,
+   "urbanAreaPopulation": 86119,
+   "rank": 3
+  },
+  {
+   "id": "esp_ceuta",
+   "name": "Ceuta",
+   "department": "CE",
+   "lon": -5.307,
+   "lat": 35.889,
+   "population": 55071,
+   "urbanAreaPopulation": 78674,
+   "rank": 3
+  },
+  {
+   "id": "esp_tolede",
+   "name": "Tolède",
+   "department": "TO",
+   "lon": -4.017,
+   "lat": 39.867,
+   "population": 52242,
+   "urbanAreaPopulation": 74632,
+   "rank": 3
+  },
+  {
+   "id": "esp_guadalajara",
+   "name": "Guadalajara",
+   "department": "GU",
+   "lon": -3.167,
+   "lat": 40.634,
+   "population": 50995,
+   "urbanAreaPopulation": 72850,
+   "rank": 3
+  },
+  {
+   "id": "esp_huesca_chef_lieu",
+   "name": "Huesca",
+   "department": "HU",
+   "lon": -0.025,
+   "lat": 42.254,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "esp_lerida_chef_lieu",
+   "name": "Lérida",
+   "department": "L",
+   "lon": 0.993,
+   "lat": 42.071,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "esp_gerone_chef_lieu",
+   "name": "Gérone",
+   "department": "GI",
+   "lon": 2.558,
+   "lat": 42.177,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "esp_caceres_chef_lieu",
+   "name": "Cáceres",
+   "department": "CC",
+   "lon": -6.162,
+   "lat": 39.794,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "esp_zamora_chef_lieu",
+   "name": "Zamora",
+   "department": "ZA",
+   "lon": -6.097,
+   "lat": 41.709,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "esp_lugo_chef_lieu",
+   "name": "Lugo",
+   "department": "LU",
+   "lon": -7.286,
+   "lat": 43.133,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "esp_teruel_chef_lieu",
+   "name": "Teruel",
+   "department": "TE",
+   "lon": -0.788,
+   "lat": 40.576,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "esp_cuenca_chef_lieu",
+   "name": "Cuenca",
+   "department": "CU",
+   "lon": -2.034,
+   "lat": 40.011,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "esp_soria_chef_lieu",
+   "name": "Soria",
+   "department": "SO",
+   "lon": -2.461,
+   "lat": 41.608,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "esp_d_avila_chef_lieu",
+   "name": "d'Ávila",
+   "department": "AV",
+   "lon": -4.824,
+   "lat": 40.498,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "esp_palencia_chef_lieu",
+   "name": "Palencia",
+   "department": "P",
+   "lon": -4.431,
+   "lat": 42.452,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "esp_ciudad_real_chef_lieu",
+   "name": "Ciudad Real",
+   "department": "CR",
+   "lon": -4.015,
+   "lat": 38.894,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "esp_segovie_chef_lieu",
+   "name": "Ségovie",
+   "department": "SG",
+   "lon": -3.954,
+   "lat": 41.145,
+   "population": 40000,
+   "urbanAreaPopulation": 60000,
+   "rank": 3
+  },
+  {
+   "id": "esp_linares",
+   "name": "Linares",
+   "department": "J",
+   "lon": -3.633,
+   "lat": 38.083,
+   "population": 41832,
+   "urbanAreaPopulation": 59761,
+   "rank": 3
+  },
+  {
+   "id": "esp_merida",
+   "name": "Mérida",
+   "department": "BA",
+   "lon": -6.338,
+   "lat": 38.912,
+   "population": 36696,
+   "urbanAreaPopulation": 52423,
+   "rank": 3
+  }
+ ]
+}

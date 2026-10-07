@@ -5,9 +5,9 @@
  "adjective": "allemand",
  "language": "de",
  "namePool": "de",
- "detail": "LIGHT",
+ "detail": "FULL",
  "population": 83500000,
- "economy": "economy/DEU_2026_10.json",
+ "economy": "economy/DEU_FULL_2026_10.json",
  "institutions": {
   "headOfStateTitle": "Chef de l'État",
   "headOfGovernmentTitle": "Chancelier fédéral",
@@ -71,9 +71,9 @@
   "militaryBudgetBillions": 75,
   "nuclear": false,
   "forces": {
-   "land": 8,
+   "land": 9,
    "air": 6,
-   "sea": 2
+   "sea": 3
   },
   "capital": {
    "name": "Berlin",
@@ -83,5 +83,224 @@
   "hazards": [
    "flood"
   ]
- }
+ },
+ "capitalCityId": "deu_berlin",
+ "territory": "countries/DEU/territory.json",
+ "government": "countries/DEU/government.json",
+ "socialGroups": "countries/FRA/social_groups.json",
+ "elections": "countries/DEU/elections.json",
+ "energy": "infrastructure/DEU_energy.json",
+ "transport": "infrastructure/DEU_transport.json",
+ "military": "military/DEU_2026_10.json",
+ "measures": "countries/FRA/measures.json",
+ "cabinet": "countries/FRA/cabinet.json",
+ "agenda": "countries/FRA/agenda.json",
+ "sectors": "countries/FRA/sectors.json",
+ "careers": "countries/FRA/careers.json",
+ "laws": "countries/FRA/laws.json",
+ "actors": "countries/FRA/actors.json",
+ "fiscal": "countries/FRA/fiscal.json",
+ "legislation": "countries/FRA/legislation.json",
+ "reforms": "countries/FRA/reforms.json",
+ "promises": "countries/FRA/promises.json",
+ "localActions": "countries/FRA/local_actions.json",
+ "nationalActions": "countries/FRA/national_actions.json",
+ "demography": {
+  "birthRate": 0.0088,
+  "deathRate": 0.0122,
+  "netMigrationRate": 0.004,
+  "agingPerYear": 0.003
+ },
+ "geo": "DEU",
+ "electionLabel": "Élections fédérales",
+ "lexicon": [
+  [
+   "\\bFrance Travail\\b",
+   "Agence fédérale pour l'emploi"
+  ],
+  [
+   "\\bBanque de France\\b",
+   "Bundesbank"
+  ],
+  [
+   "\\bAssemblée nationale\\b",
+   "Bundestag"
+  ],
+  [
+   "\\bConseil constitutionnel\\b",
+   "Cour constitutionnelle fédérale"
+  ],
+  [
+   "\\bSNCF\\b",
+   "Deutsche Bahn"
+  ],
+  [
+   "\\bEDF\\b",
+   "les énergéticiens allemands"
+  ],
+  [
+   "\\bCAC 40\\b",
+   "DAX"
+  ],
+  [
+   "\\bRSA\\b",
+   "Bürgergeld"
+  ],
+  [
+   "\\bSMIC\\b",
+   "salaire minimum"
+  ],
+  [
+   "\\bBercy\\b",
+   "le ministère des Finances"
+  ],
+  [
+   "\\bMatignon\\b",
+   "le gouvernement"
+  ],
+  [
+   "\\b(article |l'article )?49\\.3\\b",
+   "procédure d'urgence"
+  ],
+  [
+   "\\b[Aa]rticle 16\\b",
+   "pouvoirs d'exception"
+  ],
+  [
+   "\\bà l'Élysée\\b",
+   "à la Chancellerie"
+  ],
+  [
+   "\\bde l'Élysée\\b",
+   "de la Chancellerie"
+  ],
+  [
+   "\\bl'Élysée\\b",
+   "la Chancellerie"
+  ],
+  [
+   "\\bÉlysée\\b",
+   "Chancellerie"
+  ],
+  [
+   "\\bBureau du président\\b",
+   "Bureau du chancelier"
+  ],
+  [
+   "\\b[Pp]résident de la République\\b",
+   "chancelier"
+  ],
+  [
+   "\\bles Bleus\\b",
+   "la Mannschaft"
+  ],
+  [
+   "\\bLes Bleus\\b",
+   "La Mannschaft"
+  ],
+  [
+   "\\ble XV de France\\b",
+   "le XV d'Allemagne"
+  ],
+  [
+   "\\bMarine nationale\\b",
+   "Marine"
+  ],
+  [
+   "\\bArmée de l'air et de l'espace\\b",
+   "Armée de l'air"
+  ],
+  [
+   "\\bDGSE\\b",
+   "le renseignement extérieur"
+  ],
+  [
+   "\\bDGSI\\b",
+   "le renseignement intérieur"
+  ],
+  [
+   "\\b[àa] Paris\\b",
+   "à Berlin"
+  ],
+  [
+   "\\bde Paris\\b",
+   "de Berlin"
+  ],
+  [
+   "\\bde la France\\b",
+   "de l'Allemagne"
+  ],
+  [
+   "\\bà la France\\b",
+   "à l'Allemagne"
+  ],
+  [
+   "\\bÀ la France\\b",
+   "À l'Allemagne"
+  ],
+  [
+   "\\bLa France\\b",
+   "L'Allemagne"
+  ],
+  [
+   "\\bla France\\b",
+   "l'Allemagne"
+  ],
+  [
+   "\\ben France\\b",
+   "en Allemagne"
+  ],
+  [
+   "\\bEn France\\b",
+   "En Allemagne"
+  ],
+  [
+   "\\bFrance\\b",
+   "Allemagne"
+  ],
+  [
+   "\\bFrançaises\\b",
+   "Allemandes"
+  ],
+  [
+   "\\bFrançais\\b",
+   "Allemands"
+  ],
+  [
+   "\\bfrançaises\\b",
+   "allemandes"
+  ],
+  [
+   "\\bfrançaise\\b",
+   "allemande"
+  ],
+  [
+   "\\bfrançais\\b",
+   "allemand"
+  ],
+  [
+   "\\bPrésidentielle\\b",
+   "Élections fédérales"
+  ],
+  [
+   "\\bprésidentielle\\b",
+   "élections fédérales"
+  ],
+  [
+   "\\bLe président\\b(?! (de la Commission|du Conseil européen|du conseil|de région|de la région|de l'Assemblée|du Sénat|chinois|américain|russe|turc|ukrainien|égyptien|brésilien|algérien))",
+   "Le chancelier"
+  ],
+  [
+   "\\ble président\\b(?! (de la Commission|du Conseil européen|du conseil|de région|de la région|de l'Assemblée|du Sénat|chinois|américain|russe|turc|ukrainien|égyptien|brésilien|algérien))",
+   "le chancelier"
+  ],
+  [
+   "\\bdu président\\b(?! (de la Commission|du conseil|de région))",
+   "du chancelier"
+  ],
+  [
+   "\\bau président\\b(?! (de la Commission|du conseil|de région))",
+   "au chancelier"
+  ]
+ ]
 }

@@ -15,19 +15,21 @@ class Ui(val skin: UiSkin, val portraits: fr.president.game.ui.widgets.Portraits
     /** Info-bulles de l'écran principal (null ailleurs). */
     var hints: Hints? = null
     val s: Skin get() = skin.skin
+    /** Adaptation des textes au pays joué (posée par l'écran de jeu). */
+    var localize: (String) -> String = { it }
 
     fun label(text: String, style: String = "default", color: Color? = null, wrap: Boolean = false): Label =
-        Label(text, s, style).apply {
+        Label(localize(text), s, style).apply {
             color?.let { this.color = it }
             this.wrap = wrap
         }
 
     fun button(text: String, style: String = "default", action: () -> Unit): TextButton =
-        TextButton(text, s, style).apply { onClick { Sfx.play(Sfx.Kind.CLICK); action() } }
+        TextButton(localize(text), s, style).apply { onClick { Sfx.play(Sfx.Kind.CLICK); action() } }
 
     /** Bouton plein et coloré, pour les grandes catégories et les actions principales. */
     fun colorButton(text: String, color: Color, action: () -> Unit): TextButton =
-        TextButton(text, skin.colorButtonStyle(color)).apply { onClick { Sfx.play(Sfx.Kind.CLICK); action() } }
+        TextButton(localize(text), skin.colorButtonStyle(color)).apply { onClick { Sfx.play(Sfx.Kind.CLICK); action() } }
 
     fun panelTable(): Table = Table().apply { setBackground(this@Ui.skin.fill(Theme.panel)); blockInput() }
 

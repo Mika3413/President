@@ -4,7 +4,12 @@
  "startDate": "2026-10-05T09:00:00Z",
  "dataVersion": 1,
  "playableCountries": [
-  "FRA"
+  "FRA",
+  "DEU",
+  "GBR",
+  "ITA",
+  "ESP",
+  "USA"
  ],
  "countries": [
   "countries/FRA/country.json",

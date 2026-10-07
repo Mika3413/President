@@ -51,6 +51,12 @@ data class CountryDefinition(
     /** Législation unifiée : réglages chiffrés, constructeur de mesures (facultatif). */
     val legislation: String? = null,
     val demography: fr.president.engine.government.DemographyDef? = null,
+    /** Préfixe des contours de la carte (geo/<préfixe>_departments.json) ; la France a les siens. */
+    val geo: String? = null,
+    /** Nom de l'élection décisive (« Élections fédérales »...). */
+    val electionLabel: String? = null,
+    /** Adaptation des textes pensés pour la France : [expression régulière, remplacement]. */
+    val lexicon: List<List<String>> = emptyList(),
 )
 
 @Serializable

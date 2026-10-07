@@ -1,0 +1,114 @@
+{
+ "items": [
+  {
+   "id": "usa_la_port",
+   "type": "PORT",
+   "name": "Port de Los Angeles",
+   "lon": -118.27,
+   "lat": 33.73,
+   "department": "CA",
+   "employees": 3000,
+   "maintenanceCostMillions": 60,
+   "initialCondition": 0.75,
+   "commissionedYear": 1960,
+   "description": "Grand port de commerce."
+  },
+  {
+   "id": "usa_ny_port",
+   "type": "PORT",
+   "name": "Port de New York",
+   "lon": -74.15,
+   "lat": 40.67,
+   "department": "NJ",
+   "employees": 3000,
+   "maintenanceCostMillions": 60,
+   "initialCondition": 0.75,
+   "commissionedYear": 1960,
+   "description": "Grand port de commerce."
+  },
+  {
+   "id": "usa_houston_port",
+   "type": "PORT",
+   "name": "Port de Houston",
+   "lon": -95.1,
+   "lat": 29.73,
+   "department": "TX",
+   "employees": 3000,
+   "maintenanceCostMillions": 60,
+   "initialCondition": 0.75,
+   "commissionedYear": 1960,
+   "description": "Grand port de commerce."
+  },
+  {
+   "id": "usa_atl",
+   "type": "AIRPORT",
+   "name": "Aéroport d'Atlanta",
+   "lon": -84.43,
+   "lat": 33.64,
+   "department": "GA",
+   "employees": 5000,
+   "maintenanceCostMillions": 80,
+   "initialCondition": 0.75,
+   "commissionedYear": 1970,
+   "description": "Aéroport international."
+  },
+  {
+   "id": "usa_lax",
+   "type": "AIRPORT",
+   "name": "Aéroport de Los Angeles",
+   "lon": -118.41,
+   "lat": 33.94,
+   "department": "CA",
+   "employees": 5000,
+   "maintenanceCostMillions": 80,
+   "initialCondition": 0.75,
+   "commissionedYear": 1970,
+   "description": "Aéroport international."
+  },
+  {
+   "id": "usa_jfk",
+   "type": "AIRPORT",
+   "name": "Aéroport JFK",
+   "lon": -73.78,
+   "lat": 40.64,
+   "department": "NJ",
+   "employees": 5000,
+   "maintenanceCostMillions": 80,
+   "initialCondition": 0.75,
+   "commissionedYear": 1970,
+   "description": "Aéroport international."
+  }
+ ],
+ "networks": [
+  {
+   "id": "usa_acela",
+   "kind": "RAIL_HIGH_SPEED",
+   "name": "Acela (corridor Nord-Est)",
+   "cityIds": [
+    "usa_boston",
+    "usa_philadelphie",
+    "usa_washington"
+   ]
+  },
+  {
+   "id": "usa_i95",
+   "kind": "MOTORWAY",
+   "name": "Interstate 95",
+   "cityIds": [
+    "usa_boston",
+    "usa_washington",
+    "usa_miami"
+   ]
+  },
+  {
+   "id": "usa_i10",
+   "kind": "MOTORWAY",
+   "name": "Interstate 10",
+   "cityIds": [
+    "usa_los_angeles",
+    "usa_phoenix",
+    "usa_houston"
+   ]
+  }
+ ]
+}

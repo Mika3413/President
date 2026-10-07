@@ -74,7 +74,8 @@ class WorldCities(private val ctx: SimulationContext) {
         val french = ctx.playerData.territory?.cities.orEmpty().filter { it.rank <= 2 }.map {
             WorldCityDef(it.id, it.name, ctx.state.player.countryId, it.lat, it.lon, it.urbanAreaPopulation / 1e6, it.id == ctx.playerData.definition.capitalCityId, it.rank)
         }
-        return ctx.db.worldCities + french
+        // Les villes du pays joué viennent de son territoire, pas de la liste mondiale.
+        return ctx.db.worldCities.filter { it.country != ctx.state.player.countryId || french.isEmpty() } + french
     }
 
     fun zoneOf(city: WorldCityDef): String? = zones.getOrPut(city.id) {

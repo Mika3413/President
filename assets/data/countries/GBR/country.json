@@ -5,9 +5,9 @@
  "adjective": "britannique",
  "language": "en",
  "namePool": "en",
- "detail": "LIGHT",
+ "detail": "FULL",
  "population": 69300000,
- "economy": "economy/GBR_2026_10.json",
+ "economy": "economy/GBR_FULL_2026_10.json",
  "institutions": {
   "headOfStateTitle": "Chef de l'État",
   "headOfGovernmentTitle": "Premier ministre",
@@ -70,7 +70,7 @@
   "militaryBudgetBillions": 72,
   "nuclear": true,
   "forces": {
-   "land": 5,
+   "land": 6,
    "air": 6,
    "sea": 4
   },
@@ -84,5 +84,224 @@
    "flood",
    "storm"
   ]
- }
+ },
+ "capitalCityId": "gbr_londres",
+ "territory": "countries/GBR/territory.json",
+ "government": "countries/GBR/government.json",
+ "socialGroups": "countries/FRA/social_groups.json",
+ "elections": "countries/GBR/elections.json",
+ "energy": "infrastructure/GBR_energy.json",
+ "transport": "infrastructure/GBR_transport.json",
+ "military": "military/GBR_2026_10.json",
+ "measures": "countries/FRA/measures.json",
+ "cabinet": "countries/FRA/cabinet.json",
+ "agenda": "countries/FRA/agenda.json",
+ "sectors": "countries/FRA/sectors.json",
+ "careers": "countries/FRA/careers.json",
+ "laws": "countries/FRA/laws.json",
+ "actors": "countries/FRA/actors.json",
+ "fiscal": "countries/FRA/fiscal.json",
+ "legislation": "countries/FRA/legislation.json",
+ "reforms": "countries/FRA/reforms.json",
+ "promises": "countries/FRA/promises.json",
+ "localActions": "countries/FRA/local_actions.json",
+ "nationalActions": "countries/FRA/national_actions.json",
+ "demography": {
+  "birthRate": 0.0098,
+  "deathRate": 0.0092,
+  "netMigrationRate": 0.006,
+  "agingPerYear": 0.0022
+ },
+ "geo": "GBR",
+ "electionLabel": "Élections générales",
+ "lexicon": [
+  [
+   "\\bFrance Travail\\b",
+   "Jobcentre Plus"
+  ],
+  [
+   "\\bBanque de France\\b",
+   "Banque d'Angleterre"
+  ],
+  [
+   "\\bAssemblée nationale\\b",
+   "Chambre des communes"
+  ],
+  [
+   "\\bConseil constitutionnel\\b",
+   "Cour suprême"
+  ],
+  [
+   "\\bSNCF\\b",
+   "Network Rail"
+  ],
+  [
+   "\\bEDF\\b",
+   "les fournisseurs d'électricité"
+  ],
+  [
+   "\\bCAC 40\\b",
+   "FTSE 100"
+  ],
+  [
+   "\\bRSA\\b",
+   "Universal Credit"
+  ],
+  [
+   "\\bSMIC\\b",
+   "salaire minimum"
+  ],
+  [
+   "\\bBercy\\b",
+   "le ministère des Finances"
+  ],
+  [
+   "\\bMatignon\\b",
+   "le gouvernement"
+  ],
+  [
+   "\\b(article |l'article )?49\\.3\\b",
+   "procédure d'urgence"
+  ],
+  [
+   "\\b[Aa]rticle 16\\b",
+   "pouvoirs d'exception"
+  ],
+  [
+   "\\bà l'Élysée\\b",
+   "à Downing Street"
+  ],
+  [
+   "\\bde l'Élysée\\b",
+   "de Downing Street"
+  ],
+  [
+   "\\bl'Élysée\\b",
+   "Downing Street"
+  ],
+  [
+   "\\bÉlysée\\b",
+   "Downing Street"
+  ],
+  [
+   "\\bBureau du président\\b",
+   "Bureau du Premier ministre"
+  ],
+  [
+   "\\b[Pp]résident de la République\\b",
+   "Premier ministre"
+  ],
+  [
+   "\\bles Bleus\\b",
+   "les Three Lions"
+  ],
+  [
+   "\\bLes Bleus\\b",
+   "Les Three Lions"
+  ],
+  [
+   "\\ble XV de France\\b",
+   "le XV de la Rose"
+  ],
+  [
+   "\\bMarine nationale\\b",
+   "Marine"
+  ],
+  [
+   "\\bArmée de l'air et de l'espace\\b",
+   "Armée de l'air"
+  ],
+  [
+   "\\bDGSE\\b",
+   "le renseignement extérieur"
+  ],
+  [
+   "\\bDGSI\\b",
+   "le renseignement intérieur"
+  ],
+  [
+   "\\b[àa] Paris\\b",
+   "à Londres"
+  ],
+  [
+   "\\bde Paris\\b",
+   "de Londres"
+  ],
+  [
+   "\\bde la France\\b",
+   "du Royaume-Uni"
+  ],
+  [
+   "\\bà la France\\b",
+   "au Royaume-Uni"
+  ],
+  [
+   "\\bÀ la France\\b",
+   "Au Royaume-Uni"
+  ],
+  [
+   "\\bLa France\\b",
+   "Le Royaume-Uni"
+  ],
+  [
+   "\\bla France\\b",
+   "le Royaume-Uni"
+  ],
+  [
+   "\\ben France\\b",
+   "au Royaume-Uni"
+  ],
+  [
+   "\\bEn France\\b",
+   "Au Royaume-Uni"
+  ],
+  [
+   "\\bFrance\\b",
+   "Royaume-Uni"
+  ],
+  [
+   "\\bFrançaises\\b",
+   "Britanniques"
+  ],
+  [
+   "\\bFrançais\\b",
+   "Britanniques"
+  ],
+  [
+   "\\bfrançaises\\b",
+   "britanniques"
+  ],
+  [
+   "\\bfrançaise\\b",
+   "britannique"
+  ],
+  [
+   "\\bfrançais\\b",
+   "britannique"
+  ],
+  [
+   "\\bPrésidentielle\\b",
+   "Élections générales"
+  ],
+  [
+   "\\bprésidentielle\\b",
+   "élections générales"
+  ],
+  [
+   "\\bLe président\\b(?! (de la Commission|du Conseil européen|du conseil|de région|de la région|de l'Assemblée|du Sénat|chinois|américain|russe|turc|ukrainien|égyptien|brésilien|algérien))",
+   "Le Premier ministre"
+  ],
+  [
+   "\\ble président\\b(?! (de la Commission|du Conseil européen|du conseil|de région|de la région|de l'Assemblée|du Sénat|chinois|américain|russe|turc|ukrainien|égyptien|brésilien|algérien))",
+   "le Premier ministre"
+  ],
+  [
+   "\\bdu président\\b(?! (de la Commission|du conseil|de région))",
+   "du Premier ministre"
+  ],
+  [
+   "\\bau président\\b(?! (de la Commission|du conseil|de région))",
+   "au Premier ministre"
+  ]
+ ]
 }

@@ -1,0 +1,103 @@
+{
+ "items": [
+  {
+   "id": "deu_hamburg_port",
+   "type": "PORT",
+   "name": "Port de Hambourg",
+   "lon": 9.97,
+   "lat": 53.54,
+   "department": "HH",
+   "employees": 3000,
+   "maintenanceCostMillions": 60,
+   "initialCondition": 0.75,
+   "commissionedYear": 1960,
+   "description": "Grand port de commerce."
+  },
+  {
+   "id": "deu_bremerhaven",
+   "type": "PORT",
+   "name": "Port de Bremerhaven",
+   "lon": 8.58,
+   "lat": 53.55,
+   "department": "HB",
+   "employees": 3000,
+   "maintenanceCostMillions": 60,
+   "initialCondition": 0.75,
+   "commissionedYear": 1960,
+   "description": "Grand port de commerce."
+  },
+  {
+   "id": "deu_fra_airport",
+   "type": "AIRPORT",
+   "name": "Aéroport de Francfort",
+   "lon": 8.57,
+   "lat": 50.04,
+   "department": "HE",
+   "employees": 5000,
+   "maintenanceCostMillions": 80,
+   "initialCondition": 0.75,
+   "commissionedYear": 1970,
+   "description": "Aéroport international."
+  },
+  {
+   "id": "deu_muc_airport",
+   "type": "AIRPORT",
+   "name": "Aéroport de Munich",
+   "lon": 11.79,
+   "lat": 48.35,
+   "department": "BY",
+   "employees": 5000,
+   "maintenanceCostMillions": 80,
+   "initialCondition": 0.75,
+   "commissionedYear": 1970,
+   "description": "Aéroport international."
+  },
+  {
+   "id": "deu_ber_airport",
+   "type": "AIRPORT",
+   "name": "Aéroport de Berlin-Brandebourg",
+   "lon": 13.5,
+   "lat": 52.37,
+   "department": "BE",
+   "employees": 5000,
+   "maintenanceCostMillions": 80,
+   "initialCondition": 0.75,
+   "commissionedYear": 1970,
+   "description": "Aéroport international."
+  }
+ ],
+ "networks": [
+  {
+   "id": "deu_ice_berlin_munich",
+   "kind": "RAIL_HIGH_SPEED",
+   "name": "ICE Berlin – Munich",
+   "cityIds": [
+    "deu_berlin",
+    "deu_leipzig",
+    "deu_nuremberg",
+    "deu_munich"
+   ]
+  },
+  {
+   "id": "deu_ice_cologne_frankfurt",
+   "kind": "RAIL_HIGH_SPEED",
+   "name": "ICE Cologne – Francfort",
+   "cityIds": [
+    "deu_cologne",
+    "deu_francfort",
+    "deu_stuttgart"
+   ]
+  },
+  {
+   "id": "deu_a7",
+   "kind": "MOTORWAY",
+   "name": "Autobahn A7",
+   "cityIds": [
+    "deu_hambourg",
+    "deu_hanovre",
+    "deu_cassel",
+    "deu_wurtzbourg"
+   ]
+  }
+ ]
+}
