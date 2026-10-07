@@ -12,7 +12,7 @@ import fr.president.engine.util.Formatting
 class AdvisorReadout(private val ctx: SimulationContext) {
     private val risks = RiskReadout(ctx)
 
-    enum class Target { INBOX, DEPARTMENT, COUNTRY, ECONOMY, ELECTIONS, GOVERNMENT, DECISIONS, CRISIS, CONSEQUENCES, OFFICE, DEFENSE }
+    enum class Target { INBOX, DEPARTMENT, COUNTRY, ECONOMY, ELECTIONS, GOVERNMENT, DECISIONS, CRISIS, CONSEQUENCES, OFFICE, DEFENSE, MOMENTS }
 
     data class Advice(val icon: String, val text: String, val target: Target, val targetId: String? = null, val tone: Tone, val priority: Int)
 

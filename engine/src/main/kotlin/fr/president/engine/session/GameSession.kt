@@ -60,6 +60,7 @@ class GameSession(
     val militaryReadouts = fr.president.engine.readout.MilitaryReadouts(context)
     val warfare = fr.president.engine.readout.WarfareReadout(context)
     val nuclear = fr.president.engine.military.NuclearService(context)
+    val moments = fr.president.engine.presidency.MomentService(context)
     val parliament = fr.president.engine.government.ParliamentService(context)
     val conversations = fr.president.engine.dialogue.ConversationService(context)
     val senate = fr.president.engine.government.SenateService(context)

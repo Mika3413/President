@@ -125,6 +125,7 @@
     "consequences": "config/consequences.json",
     "worldEvents": "diplomacy/world_events.json",
     "un": "diplomacy/un.json",
-    "warfare": "military/warfare.json"
+    "warfare": "military/warfare.json",
+    "moments": "config/moments.json"
   }
 }

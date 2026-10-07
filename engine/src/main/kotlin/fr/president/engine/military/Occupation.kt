@@ -152,7 +152,7 @@ class OccupationService(private val ctx: SimulationContext) {
         o.morale = (o.morale - SWEEP_MORALE).coerceAtLeast(0.0)
         o.lastAction = ctx.now
         ctx.effects.trigger(EffectSpec("alliance.EU.DISAGREEMENT", SWEEP_EU), null, emptyMap(), "occupation:$zoneId")
-        ctx.effects.trigger(EffectSpec("opinion.group.left_voters", SWEEP_OPINION), null, emptyMap(), "occupation:$zoneId")
+        ctx.effects.trigger(EffectSpec("opinion.national", SWEEP_OPINION), null, emptyMap(), "occupation:$zoneId")
         "Opération de ratissage : la résistance est désorganisée, mais la population nous hait davantage et nos alliés s'inquiètent."
     }
 

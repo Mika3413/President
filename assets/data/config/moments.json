@@ -1,0 +1,1510 @@
+{
+ "_doc": "Généré par tools/datagen/moments_fr.py",
+ "speech": {
+  "cooldownDays": 30,
+  "themes": [
+   {
+    "id": "unity",
+    "label": "Unité nationale",
+    "description": "Rassembler le pays dans l'épreuve."
+   },
+   {
+    "id": "purchasing",
+    "label": "Pouvoir d'achat",
+    "description": "Répondre à la vie chère.",
+    "fits": [
+     "inflationHigh"
+    ]
+   },
+   {
+    "id": "security",
+    "label": "Sécurité et ordre",
+    "description": "Rassurer et fixer des limites.",
+    "fits": [
+     "unrest"
+    ]
+   },
+   {
+    "id": "war",
+    "label": "La France en guerre",
+    "description": "Expliquer, mobiliser, tenir.",
+    "when": [
+     "war"
+    ]
+   },
+   {
+    "id": "reform",
+    "label": "Réformer le pays",
+    "description": "Défendre un cap difficile.",
+    "fits": [
+     "deficitHigh"
+    ]
+   },
+   {
+    "id": "jobs",
+    "label": "Emploi et industrie",
+    "description": "Relancer l'activité.",
+    "fits": [
+     "unemploymentHigh",
+     "growthWeak"
+    ]
+   },
+   {
+    "id": "ecology",
+    "label": "Climat et transition",
+    "description": "Préparer l'avenir."
+   },
+   {
+    "id": "europe",
+    "label": "Europe et monde",
+    "description": "La place de la France.",
+    "fits": [
+     "foreignWar"
+    ]
+   }
+  ],
+  "sections": [
+   {
+    "id": "opening",
+    "label": "Ouverture",
+    "prompt": "Les caméras tournent. Comment ouvrez-vous ?",
+    "choices": [
+     {
+      "text": "« Mes chers compatriotes, je veux vous parler ce soir avec gravité. »",
+      "tone": "UNITY",
+      "effects": {
+       "opinion.group.seniors": 0.004,
+       "opinion.group.retirees": 0.004
+      },
+      "fits": [
+       "war",
+       "crisis"
+      ]
+     },
+     {
+      "text": "« Françaises, Français, je sais ce que vous traversez. »",
+      "tone": "EMPATHY",
+      "effects": {
+       "opinion.group.low_income": 0.005,
+       "opinion.group.middle_income": 0.003
+      },
+      "fits": [
+       "inflationHigh",
+       "unemploymentHigh"
+      ]
+     },
+     {
+      "text": "« Ce soir, je viens vous dire la vérité, même quand elle dérange. »",
+      "tone": "REFORM",
+      "effects": {
+       "opinion.group.high_income": 0.004,
+       "opinion.group.self_employed": 0.003,
+       "opinion.group.low_income": -0.002
+      },
+      "fits": [
+       "deficitHigh"
+      ]
+     },
+     {
+      "text": "« La République ne reculera devant rien ni personne. »",
+      "tone": "FIRM",
+      "effects": {
+       "opinion.group.seniors": 0.005,
+       "opinion.group.rural": 0.003,
+       "opinion.group.young": -0.003
+      },
+      "fits": [
+       "unrest",
+       "war"
+      ]
+     },
+     {
+      "text": "« Je veux d'abord avoir une pensée pour nos soldats engagés. »",
+      "tone": "PATRIOT",
+      "effects": {
+       "opinion.national": 0.004
+      },
+      "when": [
+       "war"
+      ]
+     },
+     {
+      "text": "« Je veux vous parler de l'avenir, de celui de nos enfants. »",
+      "tone": "VISION",
+      "effects": {
+       "opinion.group.young": 0.005,
+       "opinion.group.urban": 0.002
+      }
+     },
+     {
+      "text": "« On me reproche beaucoup de choses. Ce soir, je vous réponds. »",
+      "tone": "COMBAT",
+      "effects": {
+       "opinion.group.adults": 0.002,
+       "president.popularity": -0.002
+      },
+      "fits": [
+       "lowApproval"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "diagnosis",
+    "label": "Constat",
+    "prompt": "Quel constat posez-vous ?",
+    "choices": [
+     {
+      "text": "« Le chômage recule, nos efforts paient : il faut continuer. »",
+      "tone": "REFORM",
+      "effects": {
+       "opinion.group.private_employees": 0.003
+      },
+      "when": [
+       "!unemploymentHigh"
+      ]
+     },
+     {
+      "text": "« Trop de nos concitoyens n'arrivent plus à finir le mois. »",
+      "tone": "EMPATHY",
+      "effects": {
+       "opinion.group.low_income": 0.006,
+       "opinion.group.inactive": 0.004
+      },
+      "fits": [
+       "inflationHigh"
+      ]
+     },
+     {
+      "text": "« Notre dette nous enchaîne : chaque année, nous payons pour hier. »",
+      "tone": "REFORM",
+      "effects": {
+       "opinion.group.high_income": 0.004,
+       "opinion.group.civil_servants": -0.004
+      },
+      "fits": [
+       "deficitHigh"
+      ]
+     },
+     {
+      "text": "« La violence de certains ne peut pas tenir en otage tout un pays. »",
+      "tone": "FIRM",
+      "effects": {
+       "opinion.group.seniors": 0.005,
+       "opinion.group.urban": -0.002
+      },
+      "fits": [
+       "unrest"
+      ]
+     },
+     {
+      "text": "« Une guerre est à nos portes, et elle nous concerne tous. »",
+      "tone": "PATRIOT",
+      "effects": {
+       "opinion.national": 0.004
+      },
+      "when": [
+       "foreignWar"
+      ]
+     },
+     {
+      "text": "« Notre industrie s'est trop longtemps exilée. »",
+      "tone": "SOCIAL",
+      "effects": {
+       "opinion.group.private_employees": 0.004,
+       "opinion.group.rural": 0.003
+      },
+      "fits": [
+       "unemploymentHigh",
+       "growthWeak"
+      ]
+     },
+     {
+      "text": "« Le climat ne nous attendra pas. »",
+      "tone": "VISION",
+      "effects": {
+       "opinion.group.young": 0.006,
+       "opinion.group.rural": -0.003
+      }
+     },
+     {
+      "text": "« Nous sommes un grand pays qui doute de lui-même à tort. »",
+      "tone": "UNITY",
+      "effects": {
+       "opinion.national": 0.003
+      }
+     }
+    ]
+   },
+   {
+    "id": "announce",
+    "label": "Annonce",
+    "prompt": "Que décidez-vous d'annoncer ?",
+    "choices": [
+     {
+      "text": "« J'ai demandé au gouvernement un bouclier sur les prix de l'énergie. »",
+      "tone": "SOCIAL",
+      "effects": {
+       "opinion.group.low_income": 0.008,
+       "opinion.group.middle_income": 0.005,
+       "economy.consumerConfidence": 0.01
+      },
+      "fits": [
+       "inflationHigh"
+      ]
+     },
+     {
+      "text": "« Je demande un effort de chacun : l'État donnera l'exemple en réduisant son train de vie. »",
+      "tone": "REFORM",
+      "effects": {
+       "opinion.group.high_income": 0.005,
+       "opinion.group.civil_servants": -0.006,
+       "economy.businessConfidence": 0.008
+      },
+      "fits": [
+       "deficitHigh"
+      ]
+     },
+     {
+      "text": "« Les forces de l'ordre recevront des renforts dès ce mois-ci. »",
+      "tone": "FIRM",
+      "effects": {
+       "opinion.group.seniors": 0.006,
+       "opinion.group.rural": 0.004,
+       "opinion.group.young": -0.004
+      },
+      "fits": [
+       "unrest"
+      ]
+     },
+     {
+      "text": "« Je recevrai dès demain les syndicats et les élus à l'Élysée. »",
+      "tone": "EMPATHY",
+      "effects": {
+       "opinion.group.civil_servants": 0.005,
+       "opinion.group.private_employees": 0.004
+      },
+      "fits": [
+       "unrest"
+      ]
+     },
+     {
+      "text": "« Nous augmenterons l'effort de défense : la liberté a un prix. »",
+      "tone": "PATRIOT",
+      "effects": {
+       "opinion.group.seniors": 0.004,
+       "opinion.group.young": -0.003,
+       "economy.businessConfidence": 0.003
+      },
+      "fits": [
+       "war",
+       "foreignWar"
+      ]
+     },
+     {
+      "text": "« Un grand plan pour réindustrialiser nos territoires sera lancé. »",
+      "tone": "SOCIAL",
+      "effects": {
+       "opinion.group.rural": 0.005,
+       "opinion.group.private_employees": 0.005
+      },
+      "fits": [
+       "unemploymentHigh",
+       "growthWeak"
+      ]
+     },
+     {
+      "text": "« Je proposerai un référendum aux Français sur ce sujet décisif. »",
+      "tone": "VISION",
+      "effects": {
+       "opinion.national": 0.004,
+       "opinion.group.high_income": -0.002
+      }
+     },
+     {
+      "text": "« Aucune annonce ce soir : je veux d'abord écouter. »",
+      "tone": "EMPATHY",
+      "effects": {
+       "president.popularity": -0.003,
+       "opinion.group.adults": 0.002
+      }
+     }
+    ]
+   },
+   {
+    "id": "call",
+    "label": "Appel",
+    "prompt": "Que demandez-vous aux Français ?",
+    "choices": [
+     {
+      "text": "« Je vous demande de rester unis. »",
+      "tone": "UNITY",
+      "effects": {
+       "opinion.national": 0.004
+      },
+      "fits": [
+       "war",
+       "crisis",
+       "unrest"
+      ]
+     },
+     {
+      "text": "« Je compte sur votre civisme et votre sang-froid. »",
+      "tone": "FIRM",
+      "effects": {
+       "opinion.group.seniors": 0.003,
+       "opinion.group.young": -0.002
+      },
+      "fits": [
+       "unrest",
+       "crisis"
+      ]
+     },
+     {
+      "text": "« Faites confiance à nos entrepreneurs, à nos ouvriers, à nos chercheurs. »",
+      "tone": "REFORM",
+      "effects": {
+       "opinion.group.self_employed": 0.005,
+       "opinion.group.private_employees": 0.002
+      }
+     },
+     {
+      "text": "« Soutenez nos soldats, nos soignants, nos policiers. »",
+      "tone": "PATRIOT",
+      "effects": {
+       "opinion.group.seniors": 0.004,
+       "opinion.group.rural": 0.003
+      },
+      "fits": [
+       "war"
+      ]
+     },
+     {
+      "text": "« Chacun, à sa mesure, peut changer les choses. »",
+      "tone": "VISION",
+      "effects": {
+       "opinion.group.young": 0.004,
+       "opinion.group.urban": 0.003
+      }
+     },
+     {
+      "text": "« Ne vous laissez pas diviser par ceux qui vivent de la colère. »",
+      "tone": "COMBAT",
+      "effects": {
+       "opinion.group.adults": 0.003,
+       "opinion.group.low_income": -0.003
+      },
+      "fits": [
+       "unrest"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "closing",
+    "label": "Conclusion",
+    "prompt": "Le mot de la fin ?",
+    "choices": [
+     {
+      "text": "« Vive la République, vive la France. »",
+      "tone": "UNITY",
+      "effects": {
+       "opinion.national": 0.003
+      }
+     },
+     {
+      "text": "« Nous gagnerons, parce que nous sommes la France. »",
+      "tone": "PATRIOT",
+      "effects": {
+       "opinion.group.seniors": 0.004,
+       "opinion.group.rural": 0.003
+      },
+      "fits": [
+       "war"
+      ]
+     },
+     {
+      "text": "« Je serai à vos côtés, chaque jour. »",
+      "tone": "EMPATHY",
+      "effects": {
+       "opinion.group.low_income": 0.004,
+       "opinion.group.retirees": 0.003
+      }
+     },
+     {
+      "text": "« Le cap est fixé, je le tiendrai. »",
+      "tone": "REFORM",
+      "effects": {
+       "opinion.group.high_income": 0.004,
+       "opinion.group.low_income": -0.002
+      }
+     },
+     {
+      "text": "« Rendez-vous dans six mois pour faire le bilan. »",
+      "tone": "VISION",
+      "effects": {
+       "president.popularity": 0.002
+      }
+     }
+    ]
+   }
+  ],
+  "headlines": {
+   "UNITY": [
+    "« Le président en appelle à l'unité nationale »",
+    "Une allocution solennelle et rassembleuse"
+   ],
+   "EMPATHY": [
+    "« Je sais ce que vous traversez » : le président joue la proximité",
+    "Un ton humble qui tranche"
+   ],
+   "REFORM": [
+    "Le président assume la rigueur",
+    "« La vérité, même quand elle dérange » : un discours de cap"
+   ],
+   "FIRM": [
+    "Le président hausse le ton",
+    "Fermeté affichée à l'Élysée"
+   ],
+   "PATRIOT": [
+    "« Nous gagnerons » : un discours de chef de guerre",
+    "Le président mobilise la nation"
+   ],
+   "SOCIAL": [
+    "Des annonces pour le pouvoir d'achat et l'emploi",
+    "Le président dégaine son plan"
+   ],
+   "VISION": [
+    "Le président veut parler d'avenir",
+    "Un discours de projet, sans annonce choc"
+   ],
+   "COMBAT": [
+    "Le président contre-attaque",
+    "Un discours offensif face aux critiques"
+   ]
+  }
+ },
+ "interview": {
+  "cooldownDays": 21,
+  "journalists": [
+   "Claire Morvan (Le 20 heures)",
+   "Julien Deschamps (La Grande Matinale)",
+   "Sonia Belkacem (Info Continue)",
+   "Marc-Antoine Ferrand (Le Journal de la nuit)"
+  ],
+  "questions": [
+   {
+    "id": "unemployment",
+    "text": "Le chômage atteint {unemployment}. Qu'avez-vous à dire à ceux qui cherchent un emploi ?",
+    "when": [
+     "unemploymentHigh"
+    ],
+    "answers": [
+     {
+      "text": "Je reconnais que nous n'avons pas assez fait.",
+      "style": "ASSUME",
+      "effects": {
+       "opinion.group.low_income": 0.004,
+       "president.popularity": 0.002
+      }
+     },
+     {
+      "text": "Les résultats arrivent : la courbe va s'inverser.",
+      "style": "PROMISE",
+      "effects": {
+       "president.popularity": 0.001,
+       "media.climate": -0.02
+      }
+     },
+     {
+      "text": "La conjoncture mondiale n'aide personne.",
+      "style": "DEFLECT",
+      "effects": {
+       "president.popularity": -0.003
+      }
+     },
+     {
+      "text": "Mes prédécesseurs ont laissé une industrie à genoux.",
+      "style": "ATTACK",
+      "effects": {
+       "opinion.group.adults": 0.002,
+       "president.popularity": -0.001
+      }
+     }
+    ]
+   },
+   {
+    "id": "prices",
+    "text": "L'inflation est à {inflation}. Les Français ont le sentiment de s'appauvrir. Que faites-vous ?",
+    "when": [
+     "inflationHigh"
+    ],
+    "answers": [
+     {
+      "text": "Je comprends cette colère, elle est légitime.",
+      "style": "ASSUME",
+      "effects": {
+       "opinion.group.low_income": 0.005,
+       "opinion.group.middle_income": 0.003
+      }
+     },
+     {
+      "text": "Des mesures ciblées arrivent dans les prochaines semaines.",
+      "style": "PROMISE",
+      "effects": {
+       "opinion.group.low_income": 0.003,
+       "economy.consumerConfidence": 0.005
+      }
+     },
+     {
+      "text": "C'est la BCE qui fixe les taux, pas moi.",
+      "style": "DEFLECT",
+      "effects": {
+       "president.popularity": -0.004
+      }
+     },
+     {
+      "text": "Les profiteurs de crise devront rendre des comptes.",
+      "style": "ATTACK",
+      "effects": {
+       "opinion.group.low_income": 0.004,
+       "economy.businessConfidence": -0.006
+      }
+     }
+    ]
+   },
+   {
+    "id": "deficit",
+    "text": "Le déficit dépasse {deficit} du PIB. Bruxelles s'inquiète. Allez-vous augmenter les impôts ?",
+    "when": [
+     "deficitHigh"
+    ],
+    "answers": [
+     {
+      "text": "Non : nous ferons des économies sur l'État.",
+      "style": "PROMISE",
+      "effects": {
+       "opinion.group.high_income": 0.004,
+       "opinion.group.civil_servants": -0.004
+      }
+     },
+     {
+      "text": "Tout le monde devra contribuer, les plus aisés d'abord.",
+      "style": "ASSUME",
+      "effects": {
+       "opinion.group.low_income": 0.004,
+       "opinion.group.high_income": -0.005
+      }
+     },
+     {
+      "text": "Le déficit n'est pas mon obsession, la croissance l'est.",
+      "style": "DEFLECT",
+      "effects": {
+       "economy.businessConfidence": -0.004,
+       "president.popularity": 0.001
+      }
+     },
+     {
+      "text": "Ceux qui me donnent des leçons ont creusé la dette.",
+      "style": "ATTACK",
+      "effects": {
+       "opinion.group.adults": 0.002
+      }
+     }
+    ]
+   },
+   {
+    "id": "unrest",
+    "text": "La rue gronde depuis des semaines. Allez-vous céder ?",
+    "when": [
+     "unrest"
+    ],
+    "answers": [
+     {
+      "text": "J'entends la colère et je reçois les organisateurs.",
+      "style": "ASSUME",
+      "effects": {
+       "opinion.group.civil_servants": 0.004,
+       "unrest.calm": 0.05
+      }
+     },
+     {
+      "text": "Le texte ira jusqu'au bout, c'est l'intérêt du pays.",
+      "style": "PROMISE",
+      "effects": {
+       "opinion.group.high_income": 0.004,
+       "opinion.group.low_income": -0.004
+      }
+     },
+     {
+      "text": "Les casseurs ne représentent pas la France.",
+      "style": "DEFLECT",
+      "effects": {
+       "opinion.group.seniors": 0.003,
+       "opinion.group.young": -0.003
+      }
+     },
+     {
+      "text": "Certains partis soufflent sur les braises.",
+      "style": "ATTACK",
+      "effects": {
+       "opinion.group.adults": 0.002,
+       "media.climate": -0.03
+      }
+     }
+    ]
+   },
+   {
+    "id": "war",
+    "text": "Nos soldats sont au combat. Combien de temps cette guerre va-t-elle durer ?",
+    "when": [
+     "war"
+    ],
+    "answers": [
+     {
+      "text": "Le temps qu'il faudra pour que la France soit en sécurité.",
+      "style": "ASSUME",
+      "effects": {
+       "opinion.national": 0.004,
+       "military.weariness": -0.01
+      }
+     },
+     {
+      "text": "Nous serons victorieux dans les prochains mois.",
+      "style": "PROMISE",
+      "effects": {
+       "opinion.national": 0.003,
+       "military.weariness": 0.01
+      }
+     },
+     {
+      "text": "Je ne commente pas les opérations en cours.",
+      "style": "DEFLECT",
+      "effects": {
+       "president.popularity": -0.002
+      }
+     },
+     {
+      "text": "L'agresseur porte seul la responsabilité de chaque mort.",
+      "style": "ATTACK",
+      "effects": {
+       "opinion.national": 0.003
+      }
+     }
+    ]
+   },
+   {
+    "id": "foreign_war",
+    "text": "Une guerre fait rage aux portes de l'Europe. La France en fait-elle assez ?",
+    "when": [
+     "foreignWar"
+    ],
+    "answers": [
+     {
+      "text": "Nous aidons, et nous aiderons davantage.",
+      "style": "PROMISE",
+      "effects": {
+       "opinion.group.young": 0.002,
+       "alliance.EU.DISAGREEMENT": 0.01
+      }
+     },
+     {
+      "text": "Nous devons aussi penser à nos propres intérêts.",
+      "style": "DEFLECT",
+      "effects": {
+       "opinion.group.rural": 0.003,
+       "alliance.EU.DISAGREEMENT": -0.01
+      }
+     },
+     {
+      "text": "Je parle à tous, c'est le rôle de la France.",
+      "style": "ASSUME",
+      "effects": {
+       "president.popularity": 0.002
+      }
+     },
+     {
+      "text": "D'autres en Europe parlent beaucoup et font peu.",
+      "style": "ATTACK",
+      "effects": {
+       "opinion.group.seniors": 0.002,
+       "alliance.EU.DISAGREEMENT": -0.015
+      }
+     }
+    ]
+   },
+   {
+    "id": "popularity",
+    "text": "Vous êtes à {approval} d'opinions favorables. Comment l'expliquez-vous ?",
+    "when": [
+     "lowApproval"
+    ],
+    "answers": [
+     {
+      "text": "Je n'ai pas toujours su expliquer. J'en tire les leçons.",
+      "style": "ASSUME",
+      "effects": {
+       "president.popularity": 0.004
+      }
+     },
+     {
+      "text": "On me jugera à la fin, sur les résultats.",
+      "style": "PROMISE",
+      "effects": {
+       "president.popularity": 0.001
+      }
+     },
+     {
+      "text": "Les sondages ne gouvernent pas.",
+      "style": "DEFLECT",
+      "effects": {
+       "president.popularity": -0.003,
+       "media.climate": -0.03
+      }
+     },
+     {
+      "text": "Réformer n'a jamais rendu populaire.",
+      "style": "ATTACK",
+      "effects": {
+       "opinion.group.high_income": 0.003
+      }
+     }
+    ]
+   },
+   {
+    "id": "success",
+    "text": "Vos chiffres sont plutôt bons. Est-ce votre mérite ?",
+    "when": [
+     "highApproval"
+    ],
+    "answers": [
+     {
+      "text": "C'est d'abord celui des Français.",
+      "style": "ASSUME",
+      "effects": {
+       "opinion.national": 0.004
+      }
+     },
+     {
+      "text": "Oui, et nous irons plus loin.",
+      "style": "PROMISE",
+      "effects": {
+       "president.popularity": 0.002,
+       "media.climate": -0.02
+      }
+     },
+     {
+      "text": "Restons prudents, rien n'est acquis.",
+      "style": "DEFLECT",
+      "effects": {
+       "president.popularity": 0.002
+      }
+     },
+     {
+      "text": "Ceux qui annonçaient la catastrophe se sont trompés.",
+      "style": "ATTACK",
+      "effects": {
+       "opinion.group.adults": 0.002,
+       "media.climate": -0.02
+      }
+     }
+    ]
+   },
+   {
+    "id": "ecology",
+    "text": "Les jeunes vous reprochent votre inaction climatique. Que leur répondez-vous ?",
+    "answers": [
+     {
+      "text": "Ils ont raison d'être impatients, nous accélérons.",
+      "style": "PROMISE",
+      "effects": {
+       "opinion.group.young": 0.006,
+       "opinion.group.rural": -0.002
+      }
+     },
+     {
+      "text": "L'écologie punitive, ce n'est pas ma politique.",
+      "style": "ATTACK",
+      "effects": {
+       "opinion.group.rural": 0.005,
+       "opinion.group.young": -0.004
+      }
+     },
+     {
+      "text": "La France émet peu, c'est un effort mondial.",
+      "style": "DEFLECT",
+      "effects": {
+       "opinion.group.young": -0.003
+      }
+     },
+     {
+      "text": "Nous avons fait beaucoup, pas assez, je l'admets.",
+      "style": "ASSUME",
+      "effects": {
+       "opinion.group.young": 0.003,
+       "president.popularity": 0.001
+      }
+     }
+    ]
+   },
+   {
+    "id": "security",
+    "text": "L'insécurité inquiète beaucoup de Français. Avez-vous perdu le contrôle ?",
+    "answers": [
+     {
+      "text": "Plus de policiers sur le terrain, et des peines exécutées.",
+      "style": "PROMISE",
+      "effects": {
+       "opinion.group.seniors": 0.005,
+       "opinion.group.rural": 0.003
+      }
+     },
+     {
+      "text": "Les chiffres sont stables ; le ressenti est réel et je l'entends.",
+      "style": "ASSUME",
+      "effects": {
+       "opinion.group.urban": 0.003
+      }
+     },
+     {
+      "text": "Ne cédons pas aux discours de peur.",
+      "style": "DEFLECT",
+      "effects": {
+       "opinion.group.young": 0.003,
+       "opinion.group.seniors": -0.003
+      }
+     },
+     {
+      "text": "Les maires de l'opposition laissent faire.",
+      "style": "ATTACK",
+      "effects": {
+       "opinion.group.seniors": 0.002,
+       "president.popularity": -0.001
+      }
+     }
+    ]
+   },
+   {
+    "id": "europe",
+    "text": "Faut-il plus ou moins d'Europe ?",
+    "answers": [
+     {
+      "text": "Plus d'Europe pour peser face aux grandes puissances.",
+      "style": "PROMISE",
+      "effects": {
+       "opinion.group.urban": 0.004,
+       "opinion.group.rural": -0.003,
+       "alliance.EU.DISAGREEMENT": 0.01
+      }
+     },
+     {
+      "text": "Une Europe qui protège, ou rien.",
+      "style": "ASSUME",
+      "effects": {
+       "opinion.group.middle_income": 0.003
+      }
+     },
+     {
+      "text": "Ce n'est pas la question du moment.",
+      "style": "DEFLECT",
+      "effects": {
+       "president.popularity": -0.001
+      }
+     },
+     {
+      "text": "Bruxelles doit cesser de tout réglementer.",
+      "style": "ATTACK",
+      "effects": {
+       "opinion.group.rural": 0.004,
+       "alliance.EU.DISAGREEMENT": -0.012
+      }
+     }
+    ]
+   },
+   {
+    "id": "health",
+    "text": "Des services d'urgence ferment l'été. L'hôpital craque-t-il ?",
+    "answers": [
+     {
+      "text": "Oui, et nous investissons massivement.",
+      "style": "ASSUME",
+      "effects": {
+       "opinion.group.retirees": 0.004,
+       "opinion.group.civil_servants": 0.003
+      }
+     },
+     {
+      "text": "Les recrutements arrivent, la situation va s'améliorer.",
+      "style": "PROMISE",
+      "effects": {
+       "opinion.group.retirees": 0.002
+      }
+     },
+     {
+      "text": "C'est un problème de gestion locale.",
+      "style": "DEFLECT",
+      "effects": {
+       "opinion.group.retirees": -0.004
+      }
+     },
+     {
+      "text": "Trente ans de sous-investissement ne se rattrapent pas en un jour.",
+      "style": "ATTACK",
+      "effects": {
+       "opinion.group.adults": 0.002
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "debate": {
+  "bonusMax": 0.04,
+  "rounds": [
+   {
+    "id": "record",
+    "label": "Le bilan",
+    "prompt": "Votre adversaire attaque d'emblée votre bilan. Vous répondez :",
+    "choices": [
+     {
+      "text": "Par les chiffres : emploi, croissance, déficit.",
+      "style": "FACTS",
+      "needs": "economy"
+     },
+     {
+      "text": "Par l'émotion : les visages rencontrés, les vies changées.",
+      "style": "EMPATHY",
+      "needs": "approval"
+     },
+     {
+      "text": "En contre-attaquant sur son inexpérience.",
+      "style": "ATTACK",
+      "needs": "always"
+     },
+     {
+      "text": "En reconnaissant des erreurs pour mieux défendre le cap.",
+      "style": "HUMILITY",
+      "needs": "approval"
+     }
+    ]
+   },
+   {
+    "id": "economy",
+    "label": "Économie et pouvoir d'achat",
+    "prompt": "« Avec vous, les Français se sont appauvris. »",
+    "choices": [
+     {
+      "text": "Je détaille mon plan pour les salaires.",
+      "style": "PROJECT",
+      "needs": "economy"
+     },
+     {
+      "text": "Je démonte le chiffrage de son programme.",
+      "style": "FACTS",
+      "needs": "competence"
+     },
+     {
+      "text": "Je lui rappelle ses votes passés.",
+      "style": "ATTACK",
+      "needs": "always"
+     },
+     {
+      "text": "Je parle à ceux qui souffrent, directement.",
+      "style": "EMPATHY",
+      "needs": "approval"
+     }
+    ]
+   },
+   {
+    "id": "security",
+    "label": "Sécurité et immigration",
+    "prompt": "Le sujet s'enflamme sur la sécurité.",
+    "choices": [
+     {
+      "text": "Fermeté : chiffres des forces de l'ordre à l'appui.",
+      "style": "FACTS",
+      "needs": "security"
+     },
+     {
+      "text": "Je refuse les amalgames et j'élève le débat.",
+      "style": "HUMILITY",
+      "needs": "approval"
+     },
+     {
+      "text": "Je l'accuse de jouer sur les peurs.",
+      "style": "ATTACK",
+      "needs": "always"
+     },
+     {
+      "text": "J'annonce une mesure forte, en direct.",
+      "style": "PROJECT",
+      "needs": "security"
+     }
+    ]
+   },
+   {
+    "id": "world",
+    "label": "La France dans le monde",
+    "prompt": "« Vous avez affaibli la voix de la France. »",
+    "choices": [
+     {
+      "text": "Je rappelle les sommets, les accords, les crises gérées.",
+      "style": "FACTS",
+      "needs": "diplomacy"
+     },
+     {
+      "text": "J'interroge son flou sur nos alliances.",
+      "style": "ATTACK",
+      "needs": "always"
+     },
+     {
+      "text": "Je décris ma vision d'une Europe puissance.",
+      "style": "PROJECT",
+      "needs": "diplomacy"
+     },
+     {
+      "text": "Je parle de nos soldats et de nos diplomates.",
+      "style": "EMPATHY",
+      "needs": "approval"
+     }
+    ]
+   },
+   {
+    "id": "closing",
+    "label": "Conclusion",
+    "prompt": "Deux minutes pour convaincre les indécis.",
+    "choices": [
+     {
+      "text": "« Je vous demande de me confier la suite. »",
+      "style": "HUMILITY",
+      "needs": "approval"
+     },
+     {
+      "text": "« Voici les trois chantiers des cinq prochaines années. »",
+      "style": "PROJECT",
+      "needs": "competence"
+     },
+     {
+      "text": "« Le risque, c'est mon adversaire. »",
+      "style": "ATTACK",
+      "needs": "always"
+     },
+     {
+      "text": "« Je pense à chacun d'entre vous. »",
+      "style": "EMPATHY",
+      "needs": "approval"
+     }
+    ]
+   }
+  ]
+ },
+ "summits": {
+  "eu_budget": {
+   "label": "Conseil européen : le budget de l'Union",
+   "exchanges": [
+    {
+     "speaker": "DEU",
+     "prompt": "Le chancelier allemand : « Les pays frugaux ne paieront pas davantage. »",
+     "choices": [
+      {
+       "text": "Proposer un compromis : plus de ressources propres, pas de nouvelles contributions.",
+       "effects": {
+        "memory.DEU.NEGOTIATION_GOODWILL": 0.03,
+        "alliance.EU.DISAGREEMENT": 0.01
+       }
+      },
+      {
+       "text": "Défendre la politique agricole commune coûte que coûte.",
+       "effects": {
+        "opinion.group.rural": 0.006,
+        "memory.DEU.DISAGREEMENT": -0.03,
+        "memory.NLD.DISAGREEMENT": -0.02
+       }
+      },
+      {
+       "text": "Exiger un grand budget de défense européenne.",
+       "effects": {
+        "memory.POL.NEGOTIATION_GOODWILL": 0.03,
+        "memory.DEU.DISAGREEMENT": -0.01
+       }
+      }
+     ]
+    },
+    {
+     "speaker": "NLD",
+     "prompt": "Le Premier ministre néerlandais : « Et les règles budgétaires, la France les respecte ? »",
+     "choices": [
+      {
+       "text": "Reconnaître nos efforts à faire, avec un calendrier crédible.",
+       "effects": {
+        "memory.NLD.NEGOTIATION_GOODWILL": 0.03,
+        "opinion.group.civil_servants": -0.002
+       }
+      },
+      {
+       "text": "Répliquer sur le dumping fiscal néerlandais.",
+       "effects": {
+        "memory.NLD.DISAGREEMENT": -0.04,
+        "opinion.national": 0.003
+       }
+      },
+      {
+       "text": "Changer de sujet : l'investissement commun.",
+       "effects": {
+        "alliance.EU.DISAGREEMENT": 0.005
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "eu_defense": {
+   "label": "Conseil européen : vers une défense européenne",
+   "exchanges": [
+    {
+     "speaker": "POL",
+     "prompt": "Le Premier ministre polonais : « Nous achetons américain : c'est plus rapide. »",
+     "choices": [
+      {
+       "text": "Proposer une préférence européenne avec des livraisons garanties.",
+       "effects": {
+        "memory.POL.NEGOTIATION_GOODWILL": 0.02,
+        "economy.businessConfidence": 0.004
+       }
+      },
+      {
+       "text": "Offrir l'extension de la dissuasion française au débat européen.",
+       "effects": {
+        "memory.POL.NEGOTIATION_GOODWILL": 0.05,
+        "memory.DEU.NEGOTIATION_GOODWILL": 0.02,
+        "opinion.group.rural": -0.003
+       }
+      },
+      {
+       "text": "Respecter leur choix et miser sur l'industrie franco-allemande.",
+       "effects": {
+        "memory.DEU.NEGOTIATION_GOODWILL": 0.03
+       }
+      }
+     ]
+    },
+    {
+     "speaker": "DEU",
+     "prompt": "Le chancelier : « Un emprunt commun pour la défense ? Mes électeurs n'en veulent pas. »",
+     "choices": [
+      {
+       "text": "Insister : sans argent commun, pas d'autonomie stratégique.",
+       "effects": {
+        "memory.DEU.DISAGREEMENT": -0.02,
+        "alliance.EU.DISAGREEMENT": 0.01
+       }
+      },
+      {
+       "text": "Accepter des programmes nationaux coordonnés.",
+       "effects": {
+        "memory.DEU.NEGOTIATION_GOODWILL": 0.03
+       }
+      },
+      {
+       "text": "Proposer un fonds limité, garanti par les pays volontaires.",
+       "effects": {
+        "memory.DEU.NEGOTIATION_GOODWILL": 0.015,
+        "memory.ITA.NEGOTIATION_GOODWILL": 0.02
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "eu_migration": {
+   "label": "Conseil européen : le pacte sur les migrations",
+   "exchanges": [
+    {
+     "speaker": "ITA",
+     "prompt": "La présidente du Conseil italien : « L'Italie ne sera plus le camp de l'Europe. »",
+     "choices": [
+      {
+       "text": "Soutenir une répartition obligatoire des demandeurs d'asile.",
+       "effects": {
+        "memory.ITA.NEGOTIATION_GOODWILL": 0.04,
+        "opinion.group.rural": -0.004,
+        "opinion.group.urban": 0.002
+       }
+      },
+      {
+       "text": "Proposer le renforcement de Frontex plutôt que la répartition.",
+       "effects": {
+        "memory.ITA.NEGOTIATION_GOODWILL": 0.02,
+        "opinion.group.seniors": 0.003
+       }
+      },
+      {
+       "text": "Rappeler que la France accueille déjà beaucoup.",
+       "effects": {
+        "memory.ITA.DISAGREEMENT": -0.03,
+        "opinion.group.rural": 0.003
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "eu_sanctions_war": {
+   "label": "Conseil européen : sanctions contre l'agresseur",
+   "exchanges": [
+    {
+     "speaker": "HUN",
+     "prompt": "Le Premier ministre hongrois menace d'un veto.",
+     "choices": [
+      {
+       "text": "Négocier une exemption gazière pour la Hongrie.",
+       "effects": {
+        "alliance.EU.DISAGREEMENT": 0.01
+       }
+      },
+      {
+       "text": "Menacer de suspendre ses fonds européens.",
+       "effects": {
+        "alliance.EU.DISAGREEMENT": -0.005,
+        "opinion.group.young": 0.003
+       }
+      },
+      {
+       "text": "Proposer des sanctions à 26, hors traités.",
+       "effects": {
+        "memory.POL.NEGOTIATION_GOODWILL": 0.03
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "g7_tax": {
+   "label": "G7 : la taxation des multinationales",
+   "exchanges": [
+    {
+     "speaker": "USA",
+     "prompt": "Le président américain : « Vos taxes sur nos géants du numérique, c'est du protectionnisme. »",
+     "choices": [
+      {
+       "text": "Tenir bon : les géants doivent payer là où ils gagnent.",
+       "effects": {
+        "memory.USA.DISAGREEMENT": -0.04,
+        "opinion.group.low_income": 0.004,
+        "opinion.group.middle_income": 0.003
+       }
+      },
+      {
+       "text": "Proposer de suspendre la taxe contre un accord mondial.",
+       "effects": {
+        "memory.USA.NEGOTIATION_GOODWILL": 0.03,
+        "economy.businessConfidence": 0.004
+       }
+      },
+      {
+       "text": "Chercher un front commun avec le Canada et le Japon.",
+       "effects": {
+        "memory.CAN.NEGOTIATION_GOODWILL": 0.03,
+        "memory.JPN.NEGOTIATION_GOODWILL": 0.03
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "g7_africa": {
+   "label": "G7 : partenariat avec l'Afrique",
+   "exchanges": [
+    {
+     "speaker": "GBR",
+     "prompt": "Le Premier ministre britannique : « La France a encore une influence en Afrique ? »",
+     "choices": [
+      {
+       "text": "Annoncer un fonds d'investissement franco-africain.",
+       "effects": {
+        "memory.MAR.NEGOTIATION_GOODWILL": 0.03,
+        "memory.DZA.NEGOTIATION_GOODWILL": 0.02,
+        "budget.oneOff": 0.5
+       }
+      },
+      {
+       "text": "Reconnaître les erreurs du passé et proposer un partenariat d'égal à égal.",
+       "effects": {
+        "memory.DZA.NEGOTIATION_GOODWILL": 0.04,
+        "opinion.group.seniors": -0.002
+       }
+      },
+      {
+       "text": "Rappeler nos bases et notre présence militaire.",
+       "effects": {
+        "opinion.group.seniors": 0.003,
+        "memory.DZA.DISAGREEMENT": -0.02
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "nato_spending": {
+   "label": "Sommet de l'OTAN : les dépenses militaires",
+   "exchanges": [
+    {
+     "speaker": "USA",
+     "prompt": "Le président américain : « 2 % ne suffisent plus. Ce sera 3,5 %. »",
+     "choices": [
+      {
+       "text": "S'engager sur une trajectoire réaliste, avec un pilier européen.",
+       "effects": {
+        "memory.USA.NEGOTIATION_GOODWILL": 0.02,
+        "alliance.NATO.DISAGREEMENT": 0.01
+       }
+      },
+      {
+       "text": "Refuser : la France ne paiera pas pour l'industrie américaine.",
+       "effects": {
+        "memory.USA.DISAGREEMENT": -0.04,
+        "opinion.national": 0.003
+       }
+      },
+      {
+       "text": "Accepter 3,5 % : la sécurité n'a pas de prix.",
+       "effects": {
+        "memory.USA.NEGOTIATION_GOODWILL": 0.04,
+        "memory.POL.NEGOTIATION_GOODWILL": 0.03,
+        "opinion.group.civil_servants": -0.003
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "nato_war_support": {
+   "label": "Sommet de l'OTAN : soutien au pays agressé",
+   "exchanges": [
+    {
+     "speaker": "POL",
+     "prompt": "Le Premier ministre polonais : « Il faut des armes, maintenant. »",
+     "choices": [
+      {
+       "text": "Annoncer une nouvelle livraison de CAESAR et de missiles.",
+       "effects": {
+        "memory.POL.NEGOTIATION_GOODWILL": 0.03,
+        "memory.UKR.NEGOTIATION_GOODWILL": 0.05,
+        "budget.oneOff": 1.0
+       }
+      },
+      {
+       "text": "Proposer de former les soldats sur notre sol.",
+       "effects": {
+        "memory.UKR.NEGOTIATION_GOODWILL": 0.03
+       }
+      },
+      {
+       "text": "Plaider pour une initiative de paix.",
+       "effects": {
+        "memory.POL.DISAGREEMENT": -0.03,
+        "opinion.group.young": 0.002
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "un_resolution": {
+   "label": "Assemblée générale de l'ONU",
+   "exchanges": [
+    {
+     "speaker": "CHN",
+     "prompt": "Le président chinois : « L'Occident donne des leçons au monde entier. »",
+     "choices": [
+      {
+       "text": "Défendre le droit international, pour tous.",
+       "effects": {
+        "opinion.national": 0.003,
+        "memory.CHN.DISAGREEMENT": -0.01
+       }
+      },
+      {
+       "text": "Proposer une coopération sur le climat.",
+       "effects": {
+        "memory.CHN.NEGOTIATION_GOODWILL": 0.03,
+        "opinion.group.young": 0.002
+       }
+      },
+      {
+       "text": "Plaider pour la réforme du Conseil de sécurité (Inde, Brésil, Afrique).",
+       "effects": {
+        "memory.IND.NEGOTIATION_GOODWILL": 0.03,
+        "memory.BRA.NEGOTIATION_GOODWILL": 0.03
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "un_nuclear": {
+   "label": "Conférence sur la non-prolifération",
+   "exchanges": [
+    {
+     "speaker": "RUS",
+     "prompt": "Le président russe agite la menace nucléaire.",
+     "choices": [
+      {
+       "text": "Rappeler calmement que la France a les moyens de se défendre.",
+       "effects": {
+        "opinion.national": 0.003
+       }
+      },
+      {
+       "text": "Proposer un dialogue sur la maîtrise des armements.",
+       "effects": {
+        "memory.RUS.NEGOTIATION_GOODWILL": 0.02,
+        "memory.POL.DISAGREEMENT": -0.01
+       }
+      },
+      {
+       "text": "Quitter la salle avec les Européens.",
+       "effects": {
+        "memory.RUS.DISAGREEMENT": -0.03,
+        "alliance.EU.DISAGREEMENT": 0.01
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "cop_climate": {
+   "label": "COP : la conférence pour le climat",
+   "exchanges": [
+    {
+     "speaker": "IND",
+     "prompt": "Le Premier ministre indien : « Les pays riches ont pollué ; à eux de payer. »",
+     "choices": [
+      {
+       "text": "Annoncer une contribution française au fonds climat.",
+       "effects": {
+        "memory.IND.NEGOTIATION_GOODWILL": 0.04,
+        "opinion.group.young": 0.004,
+        "budget.oneOff": 0.6
+       }
+      },
+      {
+       "text": "Proposer de partager notre savoir-faire nucléaire civil.",
+       "effects": {
+        "memory.IND.NEGOTIATION_GOODWILL": 0.03,
+        "economy.businessConfidence": 0.003
+       }
+      },
+      {
+       "text": "Exiger des engagements de tous, Inde et Chine comprises.",
+       "effects": {
+        "memory.IND.DISAGREEMENT": -0.03,
+        "opinion.group.rural": 0.002
+       }
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

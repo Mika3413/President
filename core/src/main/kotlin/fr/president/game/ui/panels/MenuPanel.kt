@@ -19,6 +19,7 @@ class MenuPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel
     private val entries = listOf(
         Entry("✪", "Bureau du président", "Note du jour, rapports des ministres, préfets, renseignement, prévisions de Bercy.", Theme.highlightDark, PanelId.OFFICE) {
             session.state.consequences.current.values.count { it.active && it.severity >= 1 } },
+        Entry("★", "Moments présidentiels", "Allocution composée phrase par phrase, interview du 20 heures, débat d'entre-deux-tours, sommets.", Theme.highlightDark, PanelId.MOMENTS),
         Entry("◎", "Journal du monde", "Ce qui se passe dans les autres pays et entre eux : élections, crises, accords, guerres, catastrophes.", Theme.catDiplomacy, PanelId.WORLD),
         Entry("★", "Décider", "Plans, décrets, déplacements, décisions de crise.", Theme.highlightDark, PanelId.DECISIONS),
         Entry("⚠", "Crises et risques", "Risques à 30 jours, prévention, confinement, couvre-feu, ORSEC...", Theme.warning, PanelId.CRISIS) { session.risks.unattended().size },

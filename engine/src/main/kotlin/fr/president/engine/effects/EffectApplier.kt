@@ -201,7 +201,9 @@ class EffectApplier(private val ctx: SimulationContext) {
                     .forEach { it.readiness = (it.readiness + delta).clamp01() }
                 "ammoStock" -> state.military.stocks.ammunition = (state.military.stocks.ammunition + delta).clamp01()
                 "fuelStock" -> state.military.stocks.fuel = (state.military.stocks.fuel + delta).clamp01()
+                "weariness" -> state.military.warWeariness = (state.military.warWeariness + delta).clamp01()
             }
+            "media" -> if (parts[1] == "climate") state.media.climate = (state.media.climate + delta).coerceIn(-1.0, 1.0)
             "memory" -> state.diplomacy.relation(parts[1], state.player.countryId).memories
                 .add(DiplomaticMemory(parts[2], delta, ctx.now))
             // Souvenir collectif : tous les membres d'une alliance (UE, OTAN...), sauf le joueur.
@@ -217,6 +219,8 @@ class EffectApplier(private val ctx: SimulationContext) {
             "actor" -> state.actors.actors[parts[1]]?.let { it.goodwill += delta }
             "unrest" -> when (parts[1]) {
                 "armyLoyalty" -> if (state.unrest.armyLoyalty >= 0) state.unrest.armyLoyalty = (state.unrest.armyLoyalty + delta).clamp01()
+                // Apaisement : tous les mouvements perdent de leur élan.
+                "calm" -> state.unrest.movements.forEach { it.momentum = (it.momentum * (1 - delta)).coerceAtLeast(0.0) }
                 else -> if (delta > 0) fr.president.engine.politics.UnrestService(ctx).let { s -> s.cause(parts[1])?.let { s.spark(it, delta) } }
             }
             "intel" -> if (parts[1] == "capacity" && state.intel.capacity >= 0) state.intel.capacity = (state.intel.capacity + delta).clamp01()

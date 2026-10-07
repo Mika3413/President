@@ -70,6 +70,8 @@ data class GlobalDataFiles(
     val worldEvents: String? = null,
     /** Fortifications, terrains, fleuves et forces/faiblesses des unités (facultatif). */
     val warfare: String? = null,
+    /** Moments présidentiels : allocutions, interviews, débat, sommets (facultatif). */
+    val moments: String? = null,
 )
 
 /** Multiplicateurs de fréquence : l'outil d'équilibrage du rythme des événements. */

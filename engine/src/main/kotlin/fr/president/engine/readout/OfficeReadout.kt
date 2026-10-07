@@ -87,6 +87,10 @@ class OfficeReadout(private val ctx: SimulationContext) {
                 (if (vacant.size == 1) "L'intérim est assuré par le cabinet" else "Intérim : ${vacant.joinToString(", ") { it.shortTitle }}") +
                     ". Ses dossiers avancent moins bien : nommez un successeur.", Tone.WARNING, AdvisorReadout.Target.GOVERNMENT)
         }
+        fr.president.engine.presidency.MomentService(ctx).let { m ->
+            if (m.debateOpen()) items += 80 to Item("⚖", "Débat d'entre-deux-tours à préparer", "Vingt millions de téléspectateurs : le vainqueur du débat gagne des points au second tour.", Tone.WARNING, AdvisorReadout.Target.MOMENTS)
+            m.summitsOpen().firstOrNull()?.let { (_, s) -> items += 44 to Item("✪", s.label, "Les dirigeants vous attendent : vos prises de parole changeront nos relations.", Tone.NEUTRAL, AdvisorReadout.Target.MOMENTS) }
+        }
         if (fr.president.engine.military.NuclearService(ctx).pendingDecision()) {
             items += 100 to Item("☢", "Décision nucléaire en attente", "Une arme nucléaire a frappé nos forces. Riposte massive, riposte limitée ou retenue : vous seul décidez.", Tone.BAD, AdvisorReadout.Target.DEFENSE)
         }

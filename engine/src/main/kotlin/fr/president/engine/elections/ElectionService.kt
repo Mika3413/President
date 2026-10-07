@@ -76,7 +76,11 @@ class ElectionService(private val ctx: SimulationContext) {
         } else {
             val first = state.pendingFirstRound ?: return
             val finalists = state.candidates.filter { it.characterId in topTwo(first) }
-            val result = simulator.simulate(finalists, def.pollNoise / 2)
+            val raw = simulator.simulate(finalists, def.pollNoise / 2)
+            // Le débat d'entre-deux-tours déplace quelques points.
+            val bonus = ctx.state.moments.debateBonus
+            val result = if (bonus == 0.0) raw else raw.copy(shares = raw.shares.mapValues { (id, v) -> (v + if (id == incumbentId) bonus else -bonus).coerceIn(0.0, 1.0) })
+            ctx.state.moments.debateBonus = 0.0
             val winner = result.shares.maxByOrNull { it.value }!!.key
             finish(first, result, winner, winner == incumbentId)
         }

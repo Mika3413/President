@@ -109,6 +109,22 @@ class DecisionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : P
         row.onClick { nav.open(PanelId.CRISIS) }
         row.name = "decide.crisis"
         into.add(row).growX().padBottom(GAP).row()
+        momentsLink(into)
+    }
+
+    /** Prendre la parole : allocution, interview, débat, sommets. */
+    private fun momentsLink(into: Table) {
+        val offers = session.moments.offers()
+        val ready = offers.count { it.blocker == null }
+        val row = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(5f, 8f, 5f, 8f) }
+        row.add(ui.label("★", "value", if (ready > 0) Theme.highlight else Theme.textMuted)).padRight(6f)
+        val col = Table()
+        col.add(ui.label("Moments présidentiels", "bold")).left().row()
+        col.add(ui.label(offers.joinToString(" · ") { it.title + if (it.blocker == null) "" else " (plus tard)" }, "small", Theme.textMuted, wrap = true)).left().growX()
+        row.add(col).growX().minWidth(0f)
+        row.add(ui.label("▶", "bold", Theme.highlight)).right().padLeft(6f)
+        row.onClick { nav.open(PanelId.MOMENTS) }
+        into.add(row).growX().padBottom(GAP).row()
     }
 
     /** Décisions de crise que la situation vient de débloquer : signalées en tête. */
