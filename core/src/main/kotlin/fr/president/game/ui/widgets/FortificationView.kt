@@ -24,6 +24,7 @@ class FortificationView(private val ui: Ui, private val nav: Navigator, private 
             into.add(head).growX().row()
             if (v.terrainHint.isNotEmpty()) into.add(ui.label(v.terrainHint, "muted", wrap = true)).growX().padBottom(4f).row()
         }
+        v.occupation?.let { occupation(into, zoneId, it) }
         if (v.works.isEmpty()) into.add(ui.label("Aucun ouvrage militaire dans cette zone.", "muted", wrap = true)).growX().padBottom(4f).row()
         v.works.forEach { w ->
             val row = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(4f, 8f, 4f, 8f); defaults().left() }
@@ -58,6 +59,21 @@ class FortificationView(private val ui: Ui, private val nav: Navigator, private 
             } else card.add(ui.label("↻ ${o.blocker}", "small", Theme.warning, wrap = true)).growX().padTop(2f).row()
             into.add(card).growX().padBottom(3f).row()
         }
+    }
+
+    private fun occupation(into: Table, zoneId: String, o: fr.president.engine.readout.WarfareReadout.OccupationView) {
+        val box = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(6f, 8f, 6f, 8f); defaults().left() }
+        box.add(ui.label("⚑ ${o.title}", "bold", Theme.warning, wrap = true)).growX().row()
+        box.add(ui.label("Population : ${Math.round(o.morale * 100)} % résignée · Résistance : ${Math.round(o.resistance * 100)} %", "small", wrap = true)).growX().row()
+        box.add(ui.label(o.text, "muted", wrap = true)).growX().row()
+        o.actions.forEach { a ->
+            box.add(ui.label(a.description, "muted", wrap = true)).growX().padTop(3f).row()
+            if (o.blocker == null) box.add(ui.colorButton(a.label, if (a.id == "sweep") Theme.catArmy else Theme.accentDark) {
+                onMessage(session.warfare.occupationAction(zoneId, a.id).fold({ it }, { it.message ?: "Impossible." }))
+            }).left().row()
+        }
+        o.blocker?.let { box.add(ui.label("↻ $it", "small", Theme.warning, wrap = true)).growX().padTop(2f).row() }
+        into.add(box).growX().padBottom(4f).row()
     }
 
     /** Liste compacte de nos ouvrages (panneau Armées) : toucher une ligne centre la carte. */

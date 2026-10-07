@@ -18,7 +18,10 @@ class WarfareReadout(private val ctx: SimulationContext) {
 
     data class WorkRow(val work: Fortification, val icon: String, val title: String, val detail: String, val tone: Tone)
     data class BuildOption(val def: FortTypeDef, val level: FortLevelDef, val upgrade: Boolean, val days: Long, val effects: String, val blocker: String?)
-    data class ZoneView(val zoneId: String, val place: String, val terrain: String, val terrainHint: String, val controller: String, val works: List<WorkRow>, val options: List<BuildOption>)
+    data class ZoneView(val zoneId: String, val place: String, val terrain: String, val terrainHint: String, val controller: String, val works: List<WorkRow>, val options: List<BuildOption>,
+        val occupation: OccupationView? = null)
+    data class OccupationAction(val id: String, val label: String, val description: String)
+    data class OccupationView(val title: String, val morale: Double, val resistance: Double, val text: String, val actions: List<OccupationAction>, val blocker: String?, val weOccupy: Boolean)
     data class BattleView(val record: BattleRecord, val title: String, val status: String, val sides: String, val losses: String, val ratio: Double?, val modifiers: List<String>, val tone: Tone, val ours: Boolean)
 
     /** Zones de théâtre d'un département (au moins une : la plus proche de ses villes). */
@@ -43,7 +46,43 @@ class WarfareReadout(private val ctx: SimulationContext) {
             BuildOption(def, level, (forts.work(zoneId, def.id)?.level ?: 0) > 0, forts.days(level), effects(level), forts.blocker(def.id, zoneId))
         }
         return ZoneView(zoneId, BattlePlaces(ctx).name(zoneId), t?.let { "${it.icon} ${it.label}" } ?: "", t?.hint.orEmpty(),
-            ctx.db.countries[controller]?.definition?.name ?: controller, works, options)
+            ctx.db.countries[controller]?.definition?.name ?: controller, works, options, occupation(zoneId))
+    }
+
+    /** Zone occupée : la population, la résistance, et ce que l'on peut faire (occupant ou pays occupé). */
+    fun occupation(zoneId: String): OccupationView? {
+        val service = fr.president.engine.military.OccupationService(ctx)
+        val o = service.state(zoneId) ?: return null
+        val occupier = ctx.state.military.occupied[zoneId] ?: return null
+        val owner = geo.ownerOf(zoneId)
+        val player = ctx.state.player.countryId
+        fun name(c: String) = ctx.db.countries[c]?.definition?.name ?: c
+        val weOccupy = occupier == player
+        val text = when {
+            o.resistance >= 0.8 -> "Insurrection : sans garnison, la zone se libérera."
+            o.resistance >= 0.5 -> "Résistance armée : convois sabotés, le ravitaillement de l'occupant ne passe plus."
+            o.resistance >= 0.25 -> "Des partisans harcèlent la garnison."
+            else -> "La population se tient tranquille pour l'instant."
+        }
+        val actions = when {
+            weOccupy -> listOf(
+                OccupationAction("administer", "Administration civile et aide (0,2 Md€)", "La population se calme ; la résistance recrute moins."),
+                OccupationAction("sweep", "Opération de ratissage", "Désorganise la résistance, mais la population nous hait davantage et nos alliés s'inquiètent."),
+            )
+            owner == player -> listOf(OccupationAction("support", "Soutenir la Résistance (0,1 Md€)", "Armes, radios, argent : nos compatriotes harcèlent l'occupant et peuvent libérer la zone."))
+            else -> emptyList()
+        }
+        return OccupationView("Occupée par ${name(occupier)}" + if (owner != occupier) " (territoire ${fr.president.engine.data.CountryNames(ctx.db.country(owner).definition).of})" else "",
+            o.morale, o.resistance, text, actions, if (actions.isEmpty()) null else service.actionBlocker(zoneId), weOccupy)
+    }
+
+    fun occupationAction(zoneId: String, id: String): Result<String> {
+        val service = fr.president.engine.military.OccupationService(ctx)
+        return when (id) {
+            "administer" -> service.administer(zoneId)
+            "sweep" -> service.sweep(zoneId)
+            else -> service.supportResistance(zoneId)
+        }
     }
 
     fun row(w: Fortification): WorkRow {

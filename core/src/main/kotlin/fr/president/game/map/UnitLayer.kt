@@ -99,6 +99,7 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
             battles += Battle(bx, by, if (involved) preview.battleRatio(zone, player) else null)
         }
         if (lod >= Lod.FRANCE || layer == ThematicLayer.MILITARY || atWar) drawWorks(shapes, camera, session, lod, layer)
+        drawResistance(shapes, camera, session)
         battleEffects(shapes, camera, session, visible, delta)
         // Glissement des pions : la position affichée rejoint la zone réelle en quelques dixièmes de seconde.
         val follow = 1f - Math.exp((-delta * GLIDE_SPEED).toDouble()).toFloat()
@@ -202,6 +203,26 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
                 val alpha = if (w.level <= 0) 0.45f else 0.6f + 0.4f * w.condition.toFloat()
                 drawWork(shapes, w.type, x, y, Color(base.r, base.g, base.b, alpha), w.level)
             }
+        }
+    }
+
+    /** Zones occupées où la résistance agit : une flamme qui vacille (plus grande quand l'insurrection gronde). */
+    private fun drawResistance(shapes: ShapeRenderer, camera: OrthographicCamera, session: GameSession) {
+        val player = session.state.player.countryId
+        val geo = session.military.geo
+        for ((zoneId, o) in session.state.military.occupation) {
+            if (o.resistance < 0.25) continue
+            val occupier = session.state.military.occupied[zoneId] ?: continue
+            if (occupier != player && geo.ownerOf(zoneId) != player && zoneId !in observedCache) continue
+            val z = session.db.zones.zones[zoneId] ?: continue
+            val p = project(camera, z.lon, z.lat) ?: continue
+            val flicker = 0.8f + 0.2f * Math.sin((time * 9 + zoneId.hashCode()).toDouble()).toFloat()
+            val r = (3f + 5f * o.resistance.toFloat()) * flicker
+            val x = p.x + WORK_OFFSET_X; val y = p.y - WORK_OFFSET_Y
+            shapes.color = Color(1f, 0.45f, 0.1f, 0.85f)
+            shapes.triangle(x - r * 0.6f, y - r * 0.5f, x + r * 0.6f, y - r * 0.5f, x, y + r)
+            shapes.color = Color(1f, 0.85f, 0.3f, 0.9f)
+            shapes.triangle(x - r * 0.3f, y - r * 0.5f, x + r * 0.3f, y - r * 0.5f, x, y + r * 0.4f)
         }
     }
 
@@ -314,6 +335,8 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
 
     private fun drawCounter(shapes: ShapeRenderer, u: UnitState, domain: Domain, x: Float, y: Float, color: Color, selected: Boolean) {
         if (selected) { shapes.color = Theme.highlight; shapes.rect(x - COUNTER_W / 2 - 3, y - COUNTER_H / 2 - 5, COUNTER_W + 6, COUNTER_H + 9) }
+        // Encerclée : un cadre orange qui clignote.
+        if (u.isolatedDays > 0 && (time * 3).toInt() % 2 == 0) { shapes.color = Theme.warning; shapes.rect(x - COUNTER_W / 2 - 4, y - COUNTER_H / 2 - 4, COUNTER_W + 8, COUNTER_H + 8) }
         shapes.color = Theme.border
         shapes.rect(x - COUNTER_W / 2 - 1, y - COUNTER_H / 2 - 1, COUNTER_W + 2, COUNTER_H + 2)
         shapes.color = color

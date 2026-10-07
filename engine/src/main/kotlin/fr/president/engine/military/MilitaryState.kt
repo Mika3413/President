@@ -51,6 +51,8 @@ class UnitState(
     var lastOperationAt: fr.president.engine.time.WorldTime? = null,
     /** Zone d'où vient l'unité (franchissement d'un fleuve, débarquement). */
     var cameFrom: String? = null,
+    /** Jours passés encerclée, sans ravitaillement. */
+    var isolatedDays: Int = 0,
 )
 
 @Serializable
@@ -123,6 +125,8 @@ class MilitaryState(
     /** Fortifications et bâtiments militaires de tous les pays. */
     val works: MutableList<Fortification> = mutableListOf(),
     var worksSeeded: Boolean = false,
+    /** Vie des zones occupées : moral de la population, résistance. */
+    val occupation: MutableMap<String, OccupationState> = mutableMapOf(),
     /** Batailles récentes et en cours (rapports de combat). */
     val battles: MutableList<BattleRecord> = mutableListOf(),
 )

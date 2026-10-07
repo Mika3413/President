@@ -66,8 +66,10 @@ class LogisticsSystem : SimulationSystem {
         // Seules les zones proches des unités comptent : on part de la frontière utile.
         val bonus = (units.maxOfOrNull { ctx.db.unitType(it.type).logistics } ?: 0) +
             (depots.maxOfOrNull { FortificationService(ctx).value(it, "supply").toInt() } ?: 0)
+        // Là où les partisans sabotent routes et voies ferrées, le ravitaillement de l'occupant ne passe plus.
+        val occupation = OccupationService(ctx)
         return ctx.db.zones.within(sources, p.supplyRangeZones + bonus) { z ->
-            z.sea || geo.controllerOf(z.id) in friends || geo.allied(country, geo.controllerOf(z.id))
+            (z.sea || geo.controllerOf(z.id) in friends || geo.allied(country, geo.controllerOf(z.id))) && !occupation.sabotaged(z.id, country)
         }
     }
 
