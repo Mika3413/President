@@ -38,7 +38,7 @@ class MapRenderer(private val data: MapData, private val playerCountryId: String
         }
         if (showDepartments) {
             for (dept in data.visibleDepartments(view)) {
-                polygons.color = style.departmentColor(dept.id, dept.parent, layer, state)
+                polygons.color = departmentOverride?.invoke(dept.id) ?: style.departmentColor(dept.id, dept.parent, layer, state)
                 dept.rings.forEach { polygons.draw(it.region, 0f, 0f) }
             }
         }
@@ -114,19 +114,24 @@ class MapRenderer(private val data: MapData, private val playerCountryId: String
     private fun drawFronts(state: WorldState, lod: Lod) {
         if (lod == Lod.WORLD) return
         val military = state.military
-        if (military.occupied.isEmpty() && military.annexed.isEmpty()) return
+        val fronts = occupiedOverride ?: (military.occupied + military.annexed)
+        if (fronts.isEmpty()) return
         val zones = zoneLookup ?: return
-        for ((zoneId, holder) in military.occupied + military.annexed) {
+        for ((zoneId, holder) in fronts) {
             val z = zones.zones[zoneId] ?: continue
             val x0 = GeoProjection.x(z.lon - HALF_CELL); val x1 = GeoProjection.x(z.lon + HALF_CELL)
             val y0 = GeoProjection.y(z.lat - HALF_CELL); val y1 = GeoProjection.y(z.lat + HALF_CELL)
             if (!view.overlaps(com.badlogic.gdx.math.Rectangle(x0, y0, x1 - x0, y1 - y0))) continue
-            val annexed = military.annexed[zoneId] == holder && military.occupied[zoneId] == null
+            val annexed = occupiedOverride == null && military.annexed[zoneId] == holder && military.occupied[zoneId] == null
             val base = when (holder) { playerCountryId -> Theme.accent; else -> if (holderHostile(holder)) Theme.bad else Theme.warning }
             shapes.color = Color(base.r, base.g, base.b, if (annexed) ANNEXED_ALPHA else OCCUPIED_ALPHA)
             shapes.rect(x0, y0, x1 - x0, y1 - y0)
         }
     }
+
+    /** Relecture du mandat : couleurs des départements et zones occupées d'une semaine passée. */
+    var departmentOverride: ((String) -> Color?)? = null
+    var occupiedOverride: Map<String, String>? = null
 
     /** Graphe des zones (fourni par l'écran) et test d'hostilité envers le joueur. */
     var zoneLookup: fr.president.engine.military.ZoneGraph? = null

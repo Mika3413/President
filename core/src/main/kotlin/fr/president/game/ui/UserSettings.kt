@@ -29,6 +29,25 @@ object UserSettings {
         get() = prefs?.getBoolean(MUSIC, true) ?: true
         set(v) { prefs?.apply { putBoolean(MUSIC, v); flush() } }
 
+    /** Volumes (0 à 1) des sons et de la musique. */
+    var soundVolume: Float
+        get() = prefs?.getFloat(SOUND_VOLUME, 0.8f) ?: 0.8f
+        set(v) { prefs?.apply { putFloat(SOUND_VOLUME, v); flush() } }
+
+    var musicVolume: Float
+        get() = prefs?.getFloat(MUSIC_VOLUME, 0.7f) ?: 0.7f
+        set(v) { prefs?.apply { putFloat(MUSIC_VOLUME, v); flush() } }
+
+    /** Alternance du jour et de la nuit sur la carte. */
+    var dayNight: Boolean
+        get() = prefs?.getBoolean(DAY_NIGHT, true) ?: true
+        set(v) { prefs?.apply { putBoolean(DAY_NIGHT, v); flush() } }
+
+    val volumes = listOf(0.25f to "25 %", 0.5f to "50 %", 0.8f to "80 %", 1f to "100 %")
+
+    private const val SOUND_VOLUME = "soundVolume"
+    private const val MUSIC_VOLUME = "musicVolume"
+    private const val DAY_NIGHT = "dayNight"
     private const val NAME = "president-reglages"
     private const val MUSIC = "music"
     private const val TEXT = "textScale"

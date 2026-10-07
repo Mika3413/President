@@ -14,7 +14,7 @@ class MenuPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel
     override val title = "☰ Tous les écrans"
     private val session get() = nav.session
 
-    private data class Entry(val icon: String, val label: String, val text: String, val color: Color, val panel: PanelId, val badge: () -> Int = { 0 })
+    private data class Entry(val icon: String, val label: String, val text: String, val color: Color, val panel: PanelId?, val badge: () -> Int = { 0 }, val action: (() -> Unit)? = null)
 
     private val entries = listOf(
         Entry("✪", "Bureau du président", "Note du jour, rapports des ministres, préfets, renseignement, prévisions de Bercy.", Theme.highlightDark, PanelId.OFFICE) {
@@ -24,6 +24,7 @@ class MenuPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel
         Entry("★", "Décider", "Plans, décrets, déplacements, décisions de crise.", Theme.highlightDark, PanelId.DECISIONS),
         Entry("⚠", "Crises et risques", "Risques à 30 jours, prévention, confinement, couvre-feu, ORSEC...", Theme.warning, PanelId.CRISIS) { session.risks.unattended().size },
         Entry("▲", "Bilan", "Courbes, causes, conséquences en chaîne, groupes sociaux, pays, journal.", Theme.catStats, PanelId.STATS),
+        Entry("▶", "Relecture du mandat", "Votre mandat en accéléré : la carte de popularité semaine après semaine, les fronts, les chiffres et les grands titres.", Theme.catStats, null, action = { nav.startReplay() }),
         Entry("⚖", "Lois et budget", "Budget annuel, projets de loi, mesures sur mesure, décrets, textes votés.", Theme.catGovernment, PanelId.LEGISLATION) { session.legislation.pendingBills().size },
         Entry("⚖", "Lois et Constitution", "Société, justice, travail, libertés, mandat, référendum.", Theme.catGovernment, PanelId.LAWS),
         Entry("⚒", "Société civile", "Syndicats, patronat, cultes, lobbies, associations.", Theme.catElections, PanelId.ACTORS) { session.actors.rows().count { it.satisfaction < 0.3 } },
@@ -58,7 +59,7 @@ class MenuPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel
             if (n > 0) head.add(ui.label("● $n", "small", Theme.warning)).right()
             tile.add(head).growX().row()
             tile.add(ui.label(e.text, "muted", wrap = true)).growX().padTop(3f).row()
-            tile.onClick { nav.open(e.panel) }
+            tile.onClick { e.action?.invoke() ?: e.panel?.let { nav.open(it) } }
             grid.add(tile).fill().minWidth(0f)
             if (i % 2 == 1) grid.row()
         }

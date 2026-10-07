@@ -26,7 +26,7 @@ class NetworkLine(val id: String, val kind: String, val name: String, val points
 
 /** Toutes les données géographiques de la carte, préparées une fois au chargement. */
 class MapData(db: GameDatabase, white: TextureRegion, val playerCountryId: String) {
-    private val capitalId = db.country(playerCountryId).definition.capitalCityId
+    val capitalId = db.country(playerCountryId).definition.capitalCityId
     private val loader = GeoLoader(white)
     /** Contours du pays joué : la France a les siens, les autres pays jouables un préfixe (geo/DEU_...). */
     private val geoPrefix = db.country(playerCountryId).definition.geo

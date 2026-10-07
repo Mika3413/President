@@ -131,7 +131,28 @@ class MilitaryState(
     val nuclearZones: MutableMap<String, WorldTime> = mutableMapOf(),
     /** Batailles récentes et en cours (rapports de combat). */
     val battles: MutableList<BattleRecord> = mutableListOf(),
+    /** Frappes récentes (missiles, arme nucléaire), pour les animer sur la carte. */
+    val strikes: MutableList<StrikeRecord> = mutableListOf(),
 )
+
+/** Une frappe : d'où elle part, où elle tombe, par qui. */
+@Serializable
+class StrikeRecord(val from: String, val to: String, val at: WorldTime, val actor: String = "", val nuclear: Boolean = false)
+
+/** Tient la liste des frappes récentes (quelques jours, au plus une vingtaine). */
+object StrikeLog {
+    fun add(state: MilitaryState, zones: ZoneGraph, now: WorldTime, actor: String, target: String, nuclear: Boolean = false) {
+        // Point de départ : l'unité du tireur la plus proche de la cible.
+        val origin = state.units.values.filter { it.countryId == actor && !it.destroyed && it.zoneId != target }
+            .minByOrNull { u -> zones.distanceKm(u.zoneId, target) }?.zoneId ?: target
+        state.strikes.removeAll { it.at.daysUntil(now) > KEEP_DAYS }
+        state.strikes += StrikeRecord(origin, target, now, actor, nuclear)
+        while (state.strikes.size > MAX) state.strikes.removeAt(0)
+    }
+
+    private const val KEEP_DAYS = 3.0
+    private const val MAX = 20
+}
 
 /** Rapport d'une bataille : qui, où, avec quels avantages, et à quel prix. */
 @Serializable

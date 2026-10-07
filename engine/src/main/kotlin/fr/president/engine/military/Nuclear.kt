@@ -59,6 +59,7 @@ class NuclearService(private val ctx: SimulationContext) {
         strikeBlocker()?.let { error(it) }
         val enemy = legitimateTarget()!!
         val zone = target(enemy) ?: error("Aucun objectif militaire identifié.")
+        StrikeLog.add(ctx.state.military, ctx.db.zones, ctx.now, player, zone, nuclear = true)
         devastate(zone)
         state.lastNuclearStrike = ctx.now
         state.escalation = maxOf(state.escalation, Rung.STRIKE.ordinal)
@@ -89,6 +90,7 @@ class NuclearService(private val ctx: SimulationContext) {
     fun enemyStrike(enemy: String) {
         val zone = ctx.state.military.units.values.filter { it.countryId == player && !it.destroyed && !ctx.db.zones.zone(it.zoneId).sea }
             .groupBy { it.zoneId }.maxByOrNull { (_, us) -> us.sumOf { it.strength } }?.key ?: return
+        StrikeLog.add(ctx.state.military, ctx.db.zones, ctx.now, enemy, zone, nuclear = true)
         devastate(zone)
         state.nuclearAttackBy = enemy
         state.nuclearAttackAt = ctx.now
@@ -130,7 +132,7 @@ class NuclearService(private val ctx: SimulationContext) {
             }
             Response.LIMITED -> {
                 val zone = target(enemy)
-                if (zone != null) devastate(zone)
+                if (zone != null) { StrikeLog.add(ctx.state.military, ctx.db.zones, ctx.now, player, zone, nuclear = true); devastate(zone) }
                 state.credibility = (state.credibility + 0.1).coerceAtMost(1.0)
                 if (geo.isNuclear(enemy) && ctx.rng.chance(LIMITED_ESCALATION)) {
                     state.escalation = Rung.EXCHANGE.ordinal

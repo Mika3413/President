@@ -65,7 +65,7 @@ class MomentsPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pa
         s.choices.forEach { c ->
             val b = ui.button(c.text, "flat") {
                 fr.president.game.ui.Sfx.play(fr.president.game.ui.Sfx.Kind.DECISION)
-                moments.choose(c.index).fold({ r -> result = r; message = null }, { message = it.message })
+                moments.choose(c.index).fold({ r -> result = r; message = null; if (r != null) fr.president.game.ui.Sfx.play(fr.president.game.ui.Sfx.Kind.CROWD) }, { message = it.message })
                 nav.refresh()
             }
             b.label.setWrap(true); b.label.setAlignment(Align.left)

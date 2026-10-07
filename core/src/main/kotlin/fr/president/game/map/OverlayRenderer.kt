@@ -38,6 +38,7 @@ class OverlayRenderer(
     val visibleMarkers = mutableListOf<Pair<MapMarker, Vector3>>()
 
     val units = UnitLayer(smallFont, uiScale)
+    val ambience = AmbienceLayer(data, uiScale)
 
     fun render(camera: OrthographicCamera, session: fr.president.engine.session.GameSession, layer: ThematicLayer, lod: Lod, delta: Float, selectedId: String?) {
         val state = session.state
@@ -51,6 +52,7 @@ class OverlayRenderer(
 
         shapes.projectionMatrix = screen
         shapes.begin(ShapeRenderer.ShapeType.Filled)
+        ambience.night(shapes, camera, session, lod)
         drawCrises(camera, state, lod)
         drawProjects(camera, state)
         selectedId?.let { id -> data.markersById[id]?.let { m -> toScreen(camera, m.x, m.y)?.let { p ->
@@ -64,6 +66,9 @@ class OverlayRenderer(
             drawMarker(m, p, state, session)
         }
         units.shapes(shapes, camera, session, lod, layer, selectedId, delta)
+        ambience.strikes(shapes, camera, session, delta)
+        ambience.drawFireworks(shapes, camera)
+        ambience.flash(shapes)
         shapes.end()
 
         batch.projectionMatrix = screen
@@ -106,7 +111,7 @@ class OverlayRenderer(
     private fun visible(m: MapMarker, lod: Lod, layer: ThematicLayer): Boolean = when (m.kind) {
         MarkerKind.CITY -> when (lod) {
             Lod.WORLD -> false
-            Lod.EUROPE -> m.rank == 1 && m.id == CAPITAL
+            Lod.EUROPE -> m.rank == 1 && m.id == data.capitalId
             Lod.FRANCE -> m.rank == 1
             Lod.REGION -> m.rank <= 3
             Lod.LOCAL -> true
@@ -142,7 +147,7 @@ class OverlayRenderer(
             MarkerKind.CITY -> {
                 val r = if (m.rank == 1) CITY_MAJOR else if (m.rank == 2) CITY_MEDIUM else CITY_MINOR
                 shapes.color = Theme.border; shapes.circle(p.x, p.y, r + 1.5f, SEGMENTS)
-                shapes.color = if (m.id == CAPITAL) Theme.highlight else Color.WHITE; shapes.circle(p.x, p.y, r, SEGMENTS)
+                shapes.color = if (m.id == data.capitalId) Theme.highlight else Color.WHITE; shapes.circle(p.x, p.y, r, SEGMENTS)
             }
             MarkerKind.FOREIGN_CITY -> {
                 holderRing(session, m.id)?.let { ring -> shapes.color = ring; shapes.circle(p.x, p.y, CITY_MAJOR + RING, SEGMENTS) }
@@ -256,7 +261,6 @@ class OverlayRenderer(
 
     private companion object {
         const val MIN_SEGMENT_PX = 60f
-        const val CAPITAL = "paris"
         const val SEGMENTS = 16
         const val CITY_MAJOR = 4.5f
         const val CITY_MEDIUM = 3.5f

@@ -51,6 +51,13 @@ class DevScriptDriver(private val game: PresidentGame, script: String) : Applica
                 fr.president.engine.events.EventLauncher(ctx).launch(def, fr.president.engine.events.ScopeRef(def.scope, scopeId))
             }
             "measure" -> game.controller?.session?.let { s -> arg.split(',').let { s.measures.activate(it[0], it.getOrNull(1)) } }
+            "hours" -> game.controller?.session?.context?.let { ctx -> Simulator(ctx).advanceTo(ctx.now.plusHours(arg.toLong())) }
+            "fireworks" -> game.mainScreen?.devFireworks()
+            // strike:acteur,lon,lat[,nuke] : une frappe animée sur la carte.
+            "strike" -> game.controller?.session?.let { s -> arg.split(',').let { a ->
+                fr.president.engine.military.StrikeLog.add(s.state.military, s.db.zones, s.context.now, a[0], s.military.zoneAt(a[1].toDouble(), a[2].toDouble()) ?: return@let, nuclear = a.getOrNull(3) == "nuke")
+            } }
+            "replay" -> game.mainScreen?.startReplay()
             "quit" -> Gdx.app.exit()
         }
         if (cmd != "wait") waitFrames = STEP_FRAMES

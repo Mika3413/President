@@ -44,6 +44,7 @@ class QuickOrders(private val ui: Ui, private val session: GameSession, private 
             head.add(ui.colorButton(o.label, if (o.label.startsWith("⚔")) Theme.catArmy else Theme.accentDark) {
                 hide()
                 val r = session.military.order(unitId, o.order, zoneId)
+                if (r !is OrderService.Outcome.Refused) fr.president.game.ui.Sfx.play(fr.president.game.ui.Sfx.Kind.MARCH)
                 onResult(unitId, if (r is OrderService.Outcome.Refused) r.reason else "Ordre transmis : ${o.label.drop(2).lowercase()}.")
             }).left()
             o.etaHours?.let { head.add(ui.label("  ◷ ${eta(it)}", "small")).left() }

@@ -104,6 +104,19 @@ class SettingsPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit, pri
             if (!settings.music) fr.president.game.ui.MusicPlayer.stop()
             nav.refresh()
         }.also { it.isChecked = settings.music }).left().padTop(4f).row()
+        fun volumeRow(title: String, current: Float, set: (Float) -> Unit) {
+            into.add(ui.label(title, "small")).padTop(2f).row()
+            val row = Table().apply { defaults().padRight(4f) }
+            settings.volumes.forEach { (v, label) ->
+                row.add(ui.button(label, "toggle") { set(v); nav.refresh() }.also { it.isChecked = kotlin.math.abs(current - v) < 0.01f })
+            }
+            into.add(row).left().row()
+        }
+        volumeRow("Volume des sons", settings.soundVolume) { settings.soundVolume = it }
+        volumeRow("Volume de la musique", settings.musicVolume) { settings.musicVolume = it }
+        into.add(ui.button(if (settings.dayNight) "✔ Jour et nuit sur la carte" else "Jour et nuit sur la carte", "toggle") {
+            settings.dayNight = !settings.dayNight; nav.refresh()
+        }.also { it.isChecked = settings.dayNight }).left().padTop(4f).row()
         into.add(ui.label("Les flèches ▲ ▼ et les mots (« élevé », « favorable »...) doublent toujours les couleurs.", "muted", wrap = true)).growX().padBottom(GAP).row()
     }
 }

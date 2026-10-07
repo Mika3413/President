@@ -41,6 +41,21 @@ class StatsSystem : SimulationSystem {
             val player = s.player.countryId
             val relations = RelationCalculator(ctx)
             s.countries.keys.filter { it != player }.forEach { put("relation.$it", relations.score(it, player)) }
+            frame(ctx)
         }
+
+        /** Image de la carte pour la relecture du mandat. */
+        private fun frame(ctx: SimulationContext) {
+            val s = ctx.state
+            val order = s.stats.replayDepartments
+            if (order.isEmpty()) order += s.territory.departments.keys.sorted()
+            val approval = buildString { order.forEach { append(fr.president.engine.stats.ReplayFrame.encode(s.territory.departments[it]?.approval ?: 0.5)) } }
+            val occupied = (s.military.occupied + s.military.annexed).entries.take(MAX_OCCUPIED).map { "${it.key}=${it.value}" }
+            val enemies = fr.president.engine.military.Geopolitics(ctx).enemiesOf(s.player.countryId).toList()
+            s.stats.replay += ReplayFrame(ctx.now, approval, occupied, enemies)
+            while (s.stats.replay.size > CAPACITY) s.stats.replay.removeAt(0)
+        }
+
+        private const val MAX_OCCUPIED = 400
     }
 }

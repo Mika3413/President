@@ -112,6 +112,7 @@ class OperationsService(private val ctx: SimulationContext) {
         strikeBlocker(country)?.let { error(it) }
         val target = strikeTarget(country)!!
         val hit = units.filter { it.zoneId == target && it.countryId == country && !it.destroyed }
+        StrikeLog.add(ctx.state.military, zones, ctx.now, player, target)
         // La défense sol-air ennemie intercepte une partie des missiles.
         val forts = FortificationService(ctx)
         val intercepted = forts.interception(target, geo.coBelligerents(country) + country)
@@ -174,6 +175,7 @@ class OperationsService(private val ctx: SimulationContext) {
         if (wait("$STRIKE_KEY|$actor", AI_STRIKE_COOLDOWN) != null) return false
         val target = strikeTarget(enemy, actor) ?: return false
         val hit = units.filter { it.zoneId == target && it.countryId == enemy && !it.destroyed }
+        StrikeLog.add(ctx.state.military, zones, ctx.now, actor, target)
         val forts = FortificationService(ctx)
         val intercepted = forts.interception(target, geo.coBelligerents(enemy) + enemy)
         forts.strikeDamage(target)

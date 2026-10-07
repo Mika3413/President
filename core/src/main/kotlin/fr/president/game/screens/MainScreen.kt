@@ -51,12 +51,15 @@ class MainScreen(
     private val uiScale: Float,
     private val onGameOver: () -> Unit,
     private val onDisplayChange: () -> Unit = {},
+    private val onReplay: () -> Unit = {},
     private val onAbandon: () -> Unit = {},
 ) : ScreenAdapter(), Navigator, HasStage, fr.president.game.ui.hud.TourHost {
     override val session: GameSession get() = controller.session
     override val platform get() = controller.platform
     private val playerId = session.state.player.countryId
     private val camera = OrthographicCamera()
+    /** Sons et musique tirés de ce qui se passe dans la partie. */
+    private val audio = fr.president.game.ui.AudioDirector()
     override val stage = Stage(ScreenViewport().apply { unitsPerPixel = 1f / uiScale })
     private val mapRenderer = MapRenderer(mapData, playerId)
     private val advisor by lazy { fr.president.game.ui.hud.AdvisorCard(ui, session, this) }
@@ -231,6 +234,8 @@ class MainScreen(
     override fun render(delta: Float) {
         fr.president.game.ui.MusicPlayer.update(delta)
         controller.update(delta)
+        audio.update(session, delta)
+        while (audio.pendingFireworks > 0) { audio.pendingFireworks--; overlay.ambience.fireworks() }
         if (session.isGameOver) {
             onGameOver()
             return
@@ -261,6 +266,11 @@ class MainScreen(
 
     override fun applyDisplaySettings() = onDisplayChange()
 
+    override fun startReplay() = onReplay()
+
+    /** Outil de développement : feu d'artifice immédiat. */
+    fun devFireworks() = overlay.ambience.fireworks()
+
     override fun startTargeting(unitId: String, order: fr.president.engine.military.UnitOrder) {
         targeting = unitId to order
         targetingBanner.clearChildren()
@@ -286,6 +296,7 @@ class MainScreen(
             val (lon, lat) = picker.lonLat(camera, x, y)
             val zone = session.military.zoneAt(lon, lat)
             val r = session.military.order(unitId, order, zone)
+            if (r !is fr.president.engine.military.OrderService.Outcome.Refused) fr.president.game.ui.Sfx.play(fr.president.game.ui.Sfx.Kind.MARCH)
             selectionPanel.unitSheet.message = if (r is fr.president.engine.military.OrderService.Outcome.Refused) r.reason else "Ordre transmis : ${order.label.lowercase()}."
             stopTargeting()
             select(MapSelection.Unit(unitId))
@@ -475,13 +486,12 @@ class MainScreen(
 
     private fun fmtDays(v: Double) = if (v == Math.floor(v)) v.toInt().toString() else String.format(java.util.Locale.FRENCH, "%.1f", v)
 
-    /** Ambiance musicale : tendue en guerre, en crise grave ou quand le pays gronde. */
+    /** Ambiance musicale : marche quand nos troupes se battent, fête après un triomphe, tendue en crise grave ou quand le pays gronde. */
     private fun mood(): fr.president.game.ui.MusicPlayer.Mood {
         val s = session.state
         val war = fr.president.engine.military.Geopolitics(session.context).enemiesOf(s.player.countryId).isNotEmpty()
         val emergency = s.measures.active.any { m -> session.measures.definitions.firstOrNull { it.id == m.id }?.emergency == true }
-        val calm = !war && !emergency && s.opinion.nationalApproval >= TENSE_APPROVAL
-        return if (calm) fr.president.game.ui.MusicPlayer.Mood.CALM else fr.president.game.ui.MusicPlayer.Mood.TENSE
+        return audio.mood(session, tense = war || emergency || s.opinion.nationalApproval < TENSE_APPROVAL)
     }
 
     override fun dispose() {

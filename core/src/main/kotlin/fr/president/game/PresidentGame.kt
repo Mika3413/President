@@ -164,7 +164,15 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
         }
         val map = mapData?.takeIf { it.playerCountryId == session.state.player.countryId } ?: MapData(db, skin.white, session.state.player.countryId).also { mapData = it }
         val screen = MainScreen(c, ui, map, scale, { Gdx.app.postRunnable { safely("fin de partie") { showGameOver(session) } } },
-            onDisplayChange = { Gdx.app.postRunnable { safely("réglages d'affichage") { applyDisplaySettings() } } }) {
+            onDisplayChange = { Gdx.app.postRunnable { safely("réglages d'affichage") { applyDisplaySettings() } } },
+            onReplay = {
+                Gdx.app.postRunnable {
+                    safely("relecture") {
+                        c.save()
+                        showReplay(session) { val now = session.state.time; showSession(c, Simulator.Report(now, now, 0, 0), resumed = false) }
+                    }
+                }
+            }) {
             Gdx.app.postRunnable {
                 safely("abandon") {
                     controller = null
@@ -205,7 +213,9 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
     private fun showGameOver(session: GameSession) {
         controller?.save()
         controller = null
-        switchTo(GameOverScreen(ui, session, scale) {
+        switchTo(GameOverScreen(ui, session, scale, onReplay = {
+            Gdx.app.postRunnable { safely("relecture") { showReplay(session) { showGameOver(session) } } }
+        }) {
             Gdx.app.postRunnable {
                 safely("nouvelle partie") {
                     saves.delete()
@@ -213,6 +223,12 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
                 }
             }
         })
+    }
+
+    /** Relecture accélérée du mandat ; [back] rouvre l'écran d'où l'on vient. */
+    private fun showReplay(session: GameSession, back: () -> Unit) {
+        val map = mapData?.takeIf { it.playerCountryId == session.state.player.countryId } ?: MapData(db, skin.white, session.state.player.countryId).also { mapData = it }
+        switchTo(fr.president.game.screens.ReplayScreen(ui, session, map, scale) { Gdx.app.postRunnable { safely("relecture") { back() } } })
     }
 
     private fun switchTo(next: Screen) {

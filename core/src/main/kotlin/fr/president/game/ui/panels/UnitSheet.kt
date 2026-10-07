@@ -97,6 +97,7 @@ class UnitSheet(private val ui: Ui, private val nav: Navigator, private val expa
         simple.forEach { (order, label) ->
             immediate.add(ui.button(label) {
                 val r = session.military.order(unitId, order)
+                if (r !is OrderService.Outcome.Refused) fr.president.game.ui.Sfx.play(fr.president.game.ui.Sfx.Kind.MARCH)
                 message = if (r is OrderService.Outcome.Refused) r.reason else "Ordre transmis : ${order.label.lowercase()}."
                 nav.refresh()
             })
