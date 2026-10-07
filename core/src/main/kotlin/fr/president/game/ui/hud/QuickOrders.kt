@@ -48,7 +48,11 @@ class QuickOrders(private val ui: Ui, private val session: GameSession, private 
             }).left()
             o.etaHours?.let { head.add(ui.label("  ◷ ${eta(it)}", "small")).left() }
             row.add(head).left().row()
-            o.odds?.let { row.add(ui.label("Rapport de forces : ${it.label}", "small", Theme.tone(it.tone))).left().padTop(2f).row() }
+            o.odds?.let {
+                row.add(ui.label("Rapport de forces : ${it.label}", "small", Theme.tone(it.tone))).left().padTop(2f).row()
+                // Terrain, fortifications, fleuve, forces et faiblesses : pourquoi ce rapport.
+                it.notes.take(MAX_NOTES).forEach { n -> row.add(ui.label(n, "muted", wrap = true)).width(WIDTH).left().row() }
+            }
         } else {
             row.add(ui.label(o.label, "small", Theme.textMuted)).left().row()
             o.reason?.let { row.add(ui.label(it, "muted", wrap = true)).width(WIDTH).left().row() }
@@ -67,6 +71,7 @@ class QuickOrders(private val ui: Ui, private val session: GameSession, private 
 
     private companion object {
         const val WIDTH = 230f
+        const val MAX_NOTES = 4
         const val OFFSET = 16f
         const val MARGIN = 6f
         const val HOURS_PER_DAY = 24

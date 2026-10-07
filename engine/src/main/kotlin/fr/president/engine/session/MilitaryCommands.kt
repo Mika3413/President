@@ -15,6 +15,7 @@ class MilitaryCommands(private val ctx: SimulationContext) {
     val geo get() = Geopolitics(ctx)
     val intelligence get() = Intelligence(ctx)
     val production get() = ProductionService(ctx)
+    val fortifications get() = fr.president.engine.military.FortificationService(ctx)
 
     fun ownUnits(): List<UnitState> = ctx.state.military.units.values.filter { it.countryId == player && !it.destroyed }
 

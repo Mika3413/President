@@ -19,7 +19,7 @@ class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
     private var tab = Tab.SUMMARY
 
     /** Onglets des fiches de territoire : l'essentiel d'abord, l'action ensuite, le détail sur demande. */
-    private enum class Tab(val label: String) { SUMMARY("Résumé"), ACT("▶ Agir"), CRISIS("⚠ Crise"), DETAILS("Détails") }
+    private enum class Tab(val label: String) { SUMMARY("Résumé"), ACT("▶ Agir"), CRISIS("⚠ Crise"), DEFENSE("▦ Défense"), DETAILS("Détails") }
     private val session get() = nav.session
 
     override val title: String
@@ -64,7 +64,9 @@ class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
     private fun buildDepartment(into: Table, code: String) {
         val available = localActions.availableCount(code)
         val local = session.state.measures.active.count { it.department == code }
-        tabs(into, listOf(Tab.SUMMARY, Tab.ACT, Tab.CRISIS, Tab.DETAILS), mapOf(Tab.ACT to available, Tab.CRISIS to local))
+        val zones = session.warfare.zonesOfDepartment(code)
+        val works = zones.sumOf { z -> session.military.fortifications.at(z).size }
+        tabs(into, listOfNotNull(Tab.SUMMARY, Tab.ACT, Tab.CRISIS, Tab.DEFENSE.takeIf { zones.isNotEmpty() }, Tab.DETAILS), mapOf(Tab.ACT to available, Tab.CRISIS to local, Tab.DEFENSE to works))
         when (tab) {
             Tab.SUMMARY -> {
                 into.add(SheetView(ui, session.local.department(code), expanded, compact = true)).row()
@@ -86,8 +88,17 @@ class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
                     .forEach { into.add(measureCards.card(it, code)).growX().padBottom(4f).row() }
                 into.add(ui.button("Mesures nationales et risques ▶", "flat") { nav.open(PanelId.CRISIS, "dept:$code") }).left().padTop(4f).row()
             }
+            Tab.DEFENSE -> {
+                into.add(ui.label("Fortifications et bâtiments militaires : ils protègent la zone, prolongent le ravitaillement et accélèrent la production. Le terrain compte aussi.", "muted", wrap = true)).growX().padBottom(4f).row()
+                zones.forEach { z -> fortifications.build(into, z); into.add().height(GAP).row() }
+            }
             Tab.DETAILS -> into.add(SheetView(ui, session.local.department(code), expanded)).row()
         }
+    }
+
+    private val fortifications = fr.president.game.ui.widgets.FortificationView(ui, nav) { result ->
+        message = result
+        nav.refresh()
     }
 
     private val measureCards = fr.president.game.ui.widgets.MeasureCards(ui, nav.session, { nav.refresh() }) { result ->

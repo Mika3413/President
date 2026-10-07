@@ -16,7 +16,7 @@ class ProductionService(private val ctx: SimulationContext) {
     fun order(typeId: String): Result<ProductionOrder> = runCatching {
         val type = ctx.db.unitType(typeId)
         require(type.buildable) { "Ce type d'unité ne peut pas être commandé." }
-        val order = ProductionOrder(ctx.state.newId("prod"), typeId, ctx.now.plusDays(type.buildDays.toLong()), type.costBillions)
+        val order = ProductionOrder(ctx.state.newId("prod"), typeId, ctx.now.plusDays(buildDays(typeId)), type.costBillions)
         ctx.state.military.production += order
         ctx.effects.trigger(EffectSpec("budget.oneOff", type.costBillions, days = type.buildDays.toDouble()), null, emptyMap(), order.id)
         ctx.scheduler.schedule(ScheduledAction.UnitDelivery(order.readyAt, order.id))
@@ -25,11 +25,19 @@ class ProductionService(private val ctx: SimulationContext) {
         order
     }
 
+    /** Délai de production, raccourci par les casernes et centres d'entraînement. */
+    fun buildDays(typeId: String): Long {
+        val type = ctx.db.unitType(typeId)
+        val bonus = if (type.domain == fr.president.engine.data.Domain.LAND) FortificationService(ctx).productionBonus(player) else 0.0
+        return (type.buildDays * (1 - bonus)).toLong().coerceAtLeast(1)
+    }
+
     fun deliver(orderId: String) {
         val order = ctx.state.military.production.firstOrNull { it.id == orderId } ?: return
         ctx.state.military.production.remove(order)
         val type = ctx.db.unitType(order.unitType)
         val unit = MilitarySetup(ctx).createUnit(player, type, homeZoneFor(type.domain), ctx.db.militaryParameters.aiUnitStartReadiness)
+        unit.experience = (unit.experience + FortificationService(ctx).trainingBonus(player)).coerceAtMost(1.0)
         ctx.notifications.post(NotificationCategory.MILITARY, Urgency.IMPORTANT, "Nouvelle unité : ${unit.name}",
             "L'unité rejoint les forces armées.", unit.id)
     }

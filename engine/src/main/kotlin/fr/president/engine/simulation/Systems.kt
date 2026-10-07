@@ -29,6 +29,7 @@ object Systems {
         LogisticsSystem(),
         WarSystem(),
         MilitaryAiSystem(),
+        fr.president.engine.military.FortificationSystem(),
         fr.president.engine.military.ForeignOperationsSystem(),
         fr.president.engine.military.CitiesSystem(),
         fr.president.engine.crisis.MeasureSystem(),

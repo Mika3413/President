@@ -68,6 +68,8 @@ data class GlobalDataFiles(
     val consequences: String? = null,
     /** La vie des autres pays (facultatif). */
     val worldEvents: String? = null,
+    /** Fortifications, terrains, fleuves et forces/faiblesses des unités (facultatif). */
+    val warfare: String? = null,
 )
 
 /** Multiplicateurs de fréquence : l'outil d'équilibrage du rythme des événements. */

@@ -50,9 +50,18 @@ class MovementSystem : SimulationSystem {
     }
 
     private fun arrive(ctx: SimulationContext, geo: Geopolitics, unit: UnitState, domain: Domain, zoneId: String) {
+        unit.cameFrom = unit.zoneId
         unit.zoneId = zoneId
         unit.path.removeAt(0)
         unit.legProgressKm = 0.0
+        if (domain == Domain.LAND && unit.cameFrom?.let { ctx.db.zones.zones[it]?.sea } == true) {
+            // Débarquement sous le feu des batteries côtières ennemies.
+            FortificationService(ctx).work(zoneId, "coastal")?.takeIf { it.level > 0 && geo.atWar(unit.countryId, it.countryId) }?.let { w ->
+                val hit = FortificationService(ctx).value(w, "amphibious") * LANDING_DAMAGE
+                unit.strength = (unit.strength - hit).coerceAtLeast(MIN_LANDING_STRENGTH)
+                unit.morale = (unit.morale - hit).coerceAtLeast(0.0)
+            }
+        }
         if (domain == Domain.LAND) Capture(ctx, geo).tryCapture(unit, zoneId)
         if (unit.path.isEmpty()) {
             unit.order = when (unit.order) {
@@ -85,6 +94,8 @@ class MovementSystem : SimulationSystem {
         const val UNSUPPLIED_FACTOR = 0.7
         /** Une unité de carburant = autonomie pour 100 km × fuelPer100Km. */
         const val KM_PER_FUEL_UNIT = 100.0
+        const val LANDING_DAMAGE = 0.25
+        const val MIN_LANDING_STRENGTH = 0.1
     }
 }
 
@@ -108,6 +119,7 @@ class Capture(private val ctx: SimulationContext, private val geo: Geopolitics) 
         val previous = geo.controllerOf(zoneId)
         if (owner == by || owner in geo.coBelligerents(by)) ctx.state.military.occupied.remove(zoneId)
         else ctx.state.military.occupied[zoneId] = by
+        FortificationService(ctx).onCapture(zoneId, by)
         val player = ctx.state.player.countryId
         val zone = ctx.db.zones.zone(zoneId)
         val capital = ctx.db.country(owner).definition.strategic.capital

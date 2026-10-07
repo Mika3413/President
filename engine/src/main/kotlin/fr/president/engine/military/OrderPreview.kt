@@ -14,7 +14,7 @@ class OrderPreview(private val ctx: SimulationContext) {
     private val geo = Geopolitics(ctx)
     private val zones get() = ctx.db.zones
 
-    data class Odds(val own: Double, val enemy: Double, val label: String, val tone: Tone)
+    data class Odds(val own: Double, val enemy: Double, val label: String, val tone: Tone, val notes: List<String> = emptyList())
 
     data class Option(
         val order: UnitOrder,
@@ -104,14 +104,32 @@ class OrderPreview(private val ctx: SimulationContext) {
         return if (own <= 0 || enemy <= 0) null else own / enemy
     }
 
-    /** Rapport de forces : notre unité (et nos unités déjà sur place) contre l'ennemi repéré. */
+    /** Rapport de forces : notre unité (et nos unités déjà sur place) contre l'ennemi repéré, terrain et ouvrages compris. */
     private fun odds(unit: UnitState, zoneId: String): Odds {
         val visible = Intelligence(ctx).visibleUnits(unit.countryId)
         val enemies = visible.filter { it.zoneId == zoneId && !it.destroyed && geo.atWar(unit.countryId, it.countryId) }
         val friends = ctx.state.military.units.values.filter { it.zoneId == zoneId && it.countryId == unit.countryId && !it.destroyed }
-        val own = power(unit, true) + friends.sumOf { power(it, true) }
-        val enemy = enemies.sumOf { power(it, false) * if (geo.ownerOf(zoneId) == it.countryId) HOME_BONUS else 1.0 }
-        if (enemy <= 0.0) return Odds(own, 0.0, "Aucune défense repérée", Tone.GOOD)
+        val terrain = Terrain(ctx)
+        val forts = FortificationService(ctx)
+        val notes = mutableListOf<String>()
+        val t = terrain.of(zoneId)
+        val enemyCamp = enemies.flatMap { geo.coBelligerents(it.countryId) + it.countryId }.toSet() + geo.controllerOf(zoneId)
+        val line = forts.effect(zoneId, "line", "defense", enemyCamp)
+        val defenseFactor = terrain.defenseFactor(zoneId) * (1 + line)
+        if (t != null) notes += "${t.icon} ${t.label}" + (if (t.defense != 1.0) " (défense ×${fmt(t.defense)})" else "") + if (t.hint.isNotEmpty()) " — ${t.hint}" else ""
+        if (line > 0) notes += "▦ Zone fortifiée : défense +${Math.round(line * 100)} % (l'artillerie la réduit)"
+        val enemyCategory = enemies.groupBy { terrain.category(it.type) }.maxByOrNull { (_, us) -> us.size }?.key.orEmpty()
+        val matchup = terrain.matchup(terrain.category(unit.type), enemyCategory)
+        if (matchup != null && matchup.label.isNotEmpty()) notes += (if (matchup.factor >= 1) "✦ " else "✕ ") + matchup.label.replaceFirstChar { it.uppercase() }
+        val unitFactor = terrain.unitFactor(zoneId, unit.type)
+        if (unitFactor < 1.0) notes += "✕ ${ctx.db.unitType(unit.type).label} mal adaptée à ce terrain (×${fmt(unitFactor)})"
+        else if (unitFactor > 1.0) notes += "✦ ${ctx.db.unitType(unit.type).label} à l'aise sur ce terrain (×${fmt(unitFactor)})"
+        val river = (unit.path.dropLast(1).lastOrNull() ?: unit.zoneId).let { terrain.riverBetween(it, zoneId) }
+        val riverFactor = if (river != null) ctx.db.warfare?.riverCrossing ?: 1.0 else 1.0
+        if (river != null) notes += "≈ Il faudra franchir le fleuve $river (attaque ×${fmt(riverFactor)})"
+        val own = (power(unit, true) * unitFactor * (matchup?.factor ?: 1.0) + friends.sumOf { power(it, true) * terrain.unitFactor(zoneId, it.type) }) * riverFactor
+        val enemy = enemies.sumOf { power(it, false) * terrain.unitFactor(zoneId, it.type) * if (geo.ownerOf(zoneId) == it.countryId) HOME_BONUS else 1.0 } * defenseFactor
+        if (enemy <= 0.0) return Odds(own, 0.0, "Aucune défense repérée", Tone.GOOD, notes)
         val ratio = own / enemy
         val (label, tone) = when {
             ratio >= CRUSHING -> "Écrasant (${fmt(ratio)} contre 1)" to Tone.GOOD
@@ -119,7 +137,7 @@ class OrderPreview(private val ctx: SimulationContext) {
             ratio >= UNCERTAIN -> "Incertain (${fmt(ratio)} contre 1)" to Tone.WARNING
             else -> "Défavorable (${fmt(ratio)} contre 1)" to Tone.BAD
         }
-        return Odds(own, enemy, label, tone)
+        return Odds(own, enemy, label, tone, notes)
     }
 
     private fun power(u: UnitState, attacking: Boolean): Double {

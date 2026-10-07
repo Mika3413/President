@@ -1,0 +1,1403 @@
+{
+ "_doc": "Généré par tools/datagen/warfare_fr.py",
+ "fortifications": [
+  {
+   "id": "line",
+   "label": "Ligne de défense",
+   "icon": "▦",
+   "description": "Tranchées, obstacles antichars, fortins puis béton : les défenseurs de la zone tiennent bien mieux. L'artillerie ennemie la grignote.",
+   "levels": [
+    {
+     "label": "Tranchées et obstacles",
+     "costBillions": 0.3,
+     "days": 45,
+     "effects": {
+      "defense": 0.2
+     }
+    },
+    {
+     "label": "Fortins et champs de mines",
+     "costBillions": 0.6,
+     "days": 90,
+     "effects": {
+      "defense": 0.4
+     }
+    },
+    {
+     "label": "Ligne bétonnée",
+     "costBillions": 1.2,
+     "days": 180,
+     "effects": {
+      "defense": 0.65
+     }
+    }
+   ]
+  },
+  {
+   "id": "air_defense",
+   "label": "Défense sol-air",
+   "icon": "◭",
+   "description": "Batteries de missiles : abattent les avions ennemis et interceptent une partie des missiles de croisière dans un rayon de 200 km.",
+   "levels": [
+    {
+     "label": "Batterie courte portée (VL Mica)",
+     "costBillions": 0.5,
+     "days": 60,
+     "effects": {
+      "airDefense": 4,
+      "radiusKm": 150,
+      "interception": 0.25
+     }
+    },
+    {
+     "label": "Système longue portée (SAMP/T)",
+     "costBillions": 1.5,
+     "days": 180,
+     "effects": {
+      "airDefense": 9,
+      "radiusKm": 250,
+      "interception": 0.5
+     }
+    }
+   ]
+  },
+  {
+   "id": "radar",
+   "label": "Station radar",
+   "icon": "◠",
+   "description": "Alerte avancée : la défense sol-air de la région est plus efficace et nos services voient plus loin.",
+   "levels": [
+    {
+     "label": "Radar de veille longue portée",
+     "costBillions": 0.25,
+     "days": 60,
+     "effects": {
+      "radar": 0.3,
+      "radiusKm": 400,
+      "intel": 2
+     }
+    }
+   ]
+  },
+  {
+   "id": "airfield",
+   "label": "Base aérienne avancée",
+   "icon": "✈",
+   "description": "Piste, hangars et dépôts de munitions : les escadres stationnées ici portent 40 % plus loin et se réarment plus vite.",
+   "levels": [
+    {
+     "label": "Base aérienne de campagne",
+     "costBillions": 0.8,
+     "days": 120,
+     "effects": {
+      "airRange": 0.4,
+      "rearm": 1.0
+     }
+    }
+   ]
+  },
+  {
+   "id": "barracks",
+   "label": "Caserne et centre d'entraînement",
+   "icon": "⌂",
+   "description": "Les unités de la zone récupèrent plus vite ; les nouvelles unités sortent mieux entraînées et plus tôt.",
+   "levels": [
+    {
+     "label": "Caserne",
+     "costBillions": 0.4,
+     "days": 120,
+     "effects": {
+      "recovery": 0.6,
+      "production": 0.08,
+      "training": 0.08
+     }
+    },
+    {
+     "label": "Camp d'entraînement interarmes",
+     "costBillions": 0.8,
+     "days": 240,
+     "effects": {
+      "recovery": 1.2,
+      "production": 0.15,
+      "training": 0.15
+     }
+    }
+   ]
+  },
+  {
+   "id": "depot",
+   "label": "Dépôt logistique",
+   "icon": "▣",
+   "description": "Munitions, carburant, pièces : point de départ du ravitaillement. Bâti près du front ou en zone conquise, il prolonge la portée de nos lignes.",
+   "levels": [
+    {
+     "label": "Dépôt de campagne",
+     "costBillions": 0.3,
+     "days": 60,
+     "effects": {
+      "supply": 1,
+      "resupply": 0.3
+     }
+    },
+    {
+     "label": "Grand dépôt interarmées",
+     "costBillions": 0.6,
+     "days": 120,
+     "effects": {
+      "supply": 2,
+      "resupply": 0.6
+     }
+    }
+   ]
+  },
+  {
+   "id": "coastal",
+   "label": "Batterie côtière",
+   "icon": "⚓",
+   "coastalOnly": true,
+   "description": "Canons et missiles antinavires : un débarquement sur cette côte paie le prix fort, et les navires ennemis au large sont harcelés.",
+   "levels": [
+    {
+     "label": "Batterie d'artillerie côtière",
+     "costBillions": 0.4,
+     "days": 90,
+     "effects": {
+      "amphibious": 0.3,
+      "naval": 0.03
+     }
+    },
+    {
+     "label": "Missiles antinavires Exocet",
+     "costBillions": 0.9,
+     "days": 180,
+     "effects": {
+      "amphibious": 0.6,
+      "naval": 0.06
+     }
+    }
+   ]
+  }
+ ],
+ "terrains": [
+  {
+   "id": "PLAINS",
+   "label": "Plaine",
+   "icon": "·",
+   "defense": 1.0,
+   "categories": {
+    "ARMOR": 1.2,
+    "INFANTRY": 1.0,
+    "MOUNTAIN": 0.9
+   },
+   "hint": "Terrain ouvert : idéal pour les blindés."
+  },
+  {
+   "id": "HILLS",
+   "label": "Collines",
+   "icon": "∩",
+   "defense": 1.15,
+   "categories": {
+    "ARMOR": 0.95,
+    "INFANTRY": 1.05,
+    "MOUNTAIN": 1.15
+   },
+   "hint": "Relief modéré : léger avantage au défenseur."
+  },
+  {
+   "id": "FOREST",
+   "label": "Forêt",
+   "icon": "♣",
+   "defense": 1.25,
+   "categories": {
+    "ARMOR": 0.8,
+    "INFANTRY": 1.15,
+    "AIRBORNE": 1.1,
+    "MOUNTAIN": 1.1
+   },
+   "hint": "Embuscades : l'infanterie y excelle, les chars s'y empêtrent."
+  },
+  {
+   "id": "MOUNTAIN",
+   "label": "Montagne",
+   "icon": "▲",
+   "defense": 1.5,
+   "categories": {
+    "ARMOR": 0.6,
+    "INFANTRY": 1.0,
+    "MOUNTAIN": 1.5,
+    "ARTILLERY": 0.8
+   },
+   "hint": "Le défenseur a l'avantage ; seules les troupes de montagne s'y battent à leur aise."
+  },
+  {
+   "id": "URBAN",
+   "label": "Ville",
+   "icon": "▥",
+   "defense": 1.4,
+   "categories": {
+    "ARMOR": 0.7,
+    "INFANTRY": 1.2,
+    "MARINE": 1.1,
+    "AIRBORNE": 1.1
+   },
+   "hint": "Combats de rue : lents, coûteux, favorables à l'infanterie."
+  },
+  {
+   "id": "DESERT",
+   "label": "Désert",
+   "icon": "≈",
+   "defense": 0.95,
+   "categories": {
+    "ARMOR": 1.15,
+    "INFANTRY": 0.9
+   },
+   "hint": "Nulle part où se cacher ; la logistique souffre."
+  }
+ ],
+ "areas": [
+  {
+   "terrain": "MOUNTAIN",
+   "lon": 10.5,
+   "lat": 46.4,
+   "rx": 5.2,
+   "ry": 1.4,
+   "name": "Alpes"
+  },
+  {
+   "terrain": "MOUNTAIN",
+   "lon": 0.8,
+   "lat": 42.7,
+   "rx": 2.6,
+   "ry": 0.55,
+   "name": "Pyrénées"
+  },
+  {
+   "terrain": "MOUNTAIN",
+   "lon": 24.5,
+   "lat": 48.3,
+   "rx": 2.2,
+   "ry": 1.0,
+   "name": "Carpates du Nord"
+  },
+  {
+   "terrain": "MOUNTAIN",
+   "lon": 25.4,
+   "lat": 46.0,
+   "rx": 1.4,
+   "ry": 1.3,
+   "name": "Carpates roumaines"
+  },
+  {
+   "terrain": "MOUNTAIN",
+   "lon": 18.0,
+   "lat": 43.6,
+   "rx": 3.2,
+   "ry": 1.4,
+   "name": "Alpes dinariques"
+  },
+  {
+   "terrain": "MOUNTAIN",
+   "lon": 23.5,
+   "lat": 42.3,
+   "rx": 2.0,
+   "ry": 0.8,
+   "name": "Balkans"
+  },
+  {
+   "terrain": "MOUNTAIN",
+   "lon": 43.5,
+   "lat": 42.7,
+   "rx": 5.5,
+   "ry": 1.2,
+   "name": "Caucase"
+  },
+  {
+   "terrain": "MOUNTAIN",
+   "lon": 13.0,
+   "lat": 64.0,
+   "rx": 5.0,
+   "ry": 4.5,
+   "name": "Alpes scandinaves"
+  },
+  {
+   "terrain": "MOUNTAIN",
+   "lon": -4.5,
+   "lat": 57.2,
+   "rx": 1.6,
+   "ry": 1.0,
+   "name": "Highlands"
+  },
+  {
+   "terrain": "MOUNTAIN",
+   "lon": -4.0,
+   "lat": 43.0,
+   "rx": 2.5,
+   "ry": 0.5,
+   "name": "Cordillère cantabrique"
+  },
+  {
+   "terrain": "MOUNTAIN",
+   "lon": -3.3,
+   "lat": 37.1,
+   "rx": 1.5,
+   "ry": 0.5,
+   "name": "Sierra Nevada"
+  },
+  {
+   "terrain": "MOUNTAIN",
+   "lon": -3.0,
+   "lat": 32.5,
+   "rx": 5.5,
+   "ry": 1.6,
+   "name": "Atlas"
+  },
+  {
+   "terrain": "MOUNTAIN",
+   "lon": 49.0,
+   "lat": 32.0,
+   "rx": 5.5,
+   "ry": 4.0,
+   "name": "Zagros"
+  },
+  {
+   "terrain": "MOUNTAIN",
+   "lon": 52.0,
+   "lat": 36.3,
+   "rx": 3.5,
+   "ry": 0.8,
+   "name": "Elbourz"
+  },
+  {
+   "terrain": "MOUNTAIN",
+   "lon": 69.0,
+   "lat": 35.0,
+   "rx": 5.0,
+   "ry": 2.5,
+   "name": "Hindou Kouch"
+  },
+  {
+   "terrain": "MOUNTAIN",
+   "lon": 84.0,
+   "lat": 29.5,
+   "rx": 10.0,
+   "ry": 2.5,
+   "name": "Himalaya"
+  },
+  {
+   "terrain": "MOUNTAIN",
+   "lon": 89.0,
+   "lat": 33.5,
+   "rx": 9.0,
+   "ry": 3.0,
+   "name": "Plateau tibétain"
+  },
+  {
+   "terrain": "MOUNTAIN",
+   "lon": 39.5,
+   "lat": 10.0,
+   "rx": 3.0,
+   "ry": 4.0,
+   "name": "Hauts plateaux éthiopiens"
+  },
+  {
+   "terrain": "MOUNTAIN",
+   "lon": 44.5,
+   "lat": 15.0,
+   "rx": 1.5,
+   "ry": 2.5,
+   "name": "Montagnes du Yémen"
+  },
+  {
+   "terrain": "MOUNTAIN",
+   "lon": -112.0,
+   "lat": 42.0,
+   "rx": 6.0,
+   "ry": 9.0,
+   "name": "Rocheuses"
+  },
+  {
+   "terrain": "MOUNTAIN",
+   "lon": -70.0,
+   "lat": -25.0,
+   "rx": 3.0,
+   "ry": 15.0,
+   "name": "Andes"
+  },
+  {
+   "terrain": "MOUNTAIN",
+   "lon": 138.0,
+   "lat": 36.0,
+   "rx": 2.0,
+   "ry": 1.5,
+   "name": "Alpes japonaises"
+  },
+  {
+   "terrain": "HILLS",
+   "lon": 3.0,
+   "lat": 45.3,
+   "rx": 1.4,
+   "ry": 1.0,
+   "name": "Massif central"
+  },
+  {
+   "terrain": "HILLS",
+   "lon": 6.6,
+   "lat": 48.0,
+   "rx": 0.7,
+   "ry": 0.9,
+   "name": "Vosges"
+  },
+  {
+   "terrain": "HILLS",
+   "lon": 6.0,
+   "lat": 46.7,
+   "rx": 0.8,
+   "ry": 0.5,
+   "name": "Jura"
+  },
+  {
+   "terrain": "HILLS",
+   "lon": 13.0,
+   "lat": 42.5,
+   "rx": 2.5,
+   "ry": 2.2,
+   "name": "Apennins"
+  },
+  {
+   "terrain": "HILLS",
+   "lon": -4.5,
+   "lat": 40.3,
+   "rx": 3.0,
+   "ry": 2.0,
+   "name": "Meseta"
+  },
+  {
+   "terrain": "HILLS",
+   "lon": 13.5,
+   "lat": 50.0,
+   "rx": 2.5,
+   "ry": 0.8,
+   "name": "Monts de Bohême"
+  },
+  {
+   "terrain": "HILLS",
+   "lon": 59.0,
+   "lat": 58.0,
+   "rx": 2.5,
+   "ry": 9.0,
+   "name": "Oural"
+  },
+  {
+   "terrain": "HILLS",
+   "lon": 34.5,
+   "lat": 39.0,
+   "rx": 6.5,
+   "ry": 1.8,
+   "name": "Anatolie"
+  },
+  {
+   "terrain": "HILLS",
+   "lon": 38.0,
+   "lat": 33.5,
+   "rx": 1.5,
+   "ry": 1.5,
+   "name": "Plateau du Golan et Liban"
+  },
+  {
+   "terrain": "HILLS",
+   "lon": 34.2,
+   "lat": 44.7,
+   "rx": 1.0,
+   "ry": 0.4,
+   "name": "Montagnes de Crimée"
+  },
+  {
+   "terrain": "HILLS",
+   "lon": -3.8,
+   "lat": 52.5,
+   "rx": 1.0,
+   "ry": 0.8,
+   "name": "Pays de Galles"
+  },
+  {
+   "terrain": "FOREST",
+   "lon": 5.6,
+   "lat": 50.0,
+   "rx": 1.0,
+   "ry": 0.5,
+   "name": "Ardennes"
+  },
+  {
+   "terrain": "FOREST",
+   "lon": 8.2,
+   "lat": 48.2,
+   "rx": 0.5,
+   "ry": 0.7,
+   "name": "Forêt-Noire"
+  },
+  {
+   "terrain": "FOREST",
+   "lon": -0.8,
+   "lat": 44.2,
+   "rx": 0.8,
+   "ry": 0.6,
+   "name": "Landes de Gascogne"
+  },
+  {
+   "terrain": "FOREST",
+   "lon": 27.0,
+   "lat": 52.0,
+   "rx": 4.5,
+   "ry": 1.3,
+   "name": "Polésie"
+  },
+  {
+   "terrain": "FOREST",
+   "lon": 26.0,
+   "lat": 63.5,
+   "rx": 6.0,
+   "ry": 3.5,
+   "name": "Forêts finlandaises"
+  },
+  {
+   "terrain": "FOREST",
+   "lon": 16.5,
+   "lat": 61.5,
+   "rx": 4.0,
+   "ry": 2.5,
+   "name": "Forêts suédoises"
+  },
+  {
+   "terrain": "FOREST",
+   "lon": 34.0,
+   "lat": 58.5,
+   "rx": 6.0,
+   "ry": 2.5,
+   "name": "Forêts de Russie du Nord-Ouest"
+  },
+  {
+   "terrain": "FOREST",
+   "lon": 75.0,
+   "lat": 60.0,
+   "rx": 30.0,
+   "ry": 5.0,
+   "name": "Taïga sibérienne"
+  },
+  {
+   "terrain": "FOREST",
+   "lon": 24.0,
+   "lat": 56.5,
+   "rx": 3.0,
+   "ry": 1.2,
+   "name": "Forêts baltes"
+  },
+  {
+   "terrain": "FOREST",
+   "lon": 22.5,
+   "lat": 52.8,
+   "rx": 1.0,
+   "ry": 0.6,
+   "name": "Forêt de Białowieża"
+  },
+  {
+   "terrain": "FOREST",
+   "lon": 22.0,
+   "lat": 2.0,
+   "rx": 8.0,
+   "ry": 5.0,
+   "name": "Forêt du Congo"
+  },
+  {
+   "terrain": "FOREST",
+   "lon": -60.0,
+   "lat": -5.0,
+   "rx": 12.0,
+   "ry": 8.0,
+   "name": "Amazonie"
+  },
+  {
+   "terrain": "FOREST",
+   "lon": -78.0,
+   "lat": 50.0,
+   "rx": 18.0,
+   "ry": 4.0,
+   "name": "Forêt boréale canadienne"
+  },
+  {
+   "terrain": "DESERT",
+   "lon": 10.0,
+   "lat": 23.0,
+   "rx": 21.0,
+   "ry": 6.0,
+   "name": "Sahara"
+  },
+  {
+   "terrain": "DESERT",
+   "lon": 46.0,
+   "lat": 23.0,
+   "rx": 9.0,
+   "ry": 6.5,
+   "name": "Désert d'Arabie"
+  },
+  {
+   "terrain": "DESERT",
+   "lon": 40.0,
+   "lat": 33.0,
+   "rx": 3.5,
+   "ry": 2.2,
+   "name": "Désert de Syrie"
+  },
+  {
+   "terrain": "DESERT",
+   "lon": 59.0,
+   "lat": 39.5,
+   "rx": 5.5,
+   "ry": 2.5,
+   "name": "Karakoum"
+  },
+  {
+   "terrain": "DESERT",
+   "lon": 105.0,
+   "lat": 42.0,
+   "rx": 9.0,
+   "ry": 3.0,
+   "name": "Gobi"
+  },
+  {
+   "terrain": "DESERT",
+   "lon": 132.0,
+   "lat": -25.0,
+   "rx": 10.0,
+   "ry": 5.0,
+   "name": "Désert australien"
+  },
+  {
+   "terrain": "DESERT",
+   "lon": 71.0,
+   "lat": 27.0,
+   "rx": 3.0,
+   "ry": 2.0,
+   "name": "Thar"
+  }
+ ],
+ "rivers": [
+  {
+   "name": "Rhin",
+   "points": [
+    [
+     9.2,
+     47.65
+    ],
+    [
+     7.6,
+     47.6
+    ],
+    [
+     7.75,
+     48.6
+    ],
+    [
+     8.45,
+     49.0
+    ],
+    [
+     8.27,
+     50.0
+    ],
+    [
+     7.6,
+     50.36
+    ],
+    [
+     6.95,
+     50.94
+    ],
+    [
+     6.77,
+     51.23
+    ],
+    [
+     6.1,
+     51.85
+    ],
+    [
+     5.2,
+     51.9
+    ],
+    [
+     4.1,
+     51.95
+    ]
+   ]
+  },
+  {
+   "name": "Danube",
+   "points": [
+    [
+     8.5,
+     48.0
+    ],
+    [
+     10.0,
+     48.4
+    ],
+    [
+     12.1,
+     49.0
+    ],
+    [
+     14.3,
+     48.3
+    ],
+    [
+     16.4,
+     48.2
+    ],
+    [
+     17.1,
+     48.15
+    ],
+    [
+     18.9,
+     47.8
+    ],
+    [
+     19.05,
+     47.5
+    ],
+    [
+     18.9,
+     46.0
+    ],
+    [
+     19.0,
+     45.2
+    ],
+    [
+     20.5,
+     44.8
+    ],
+    [
+     22.5,
+     44.6
+    ],
+    [
+     22.9,
+     43.8
+    ],
+    [
+     25.0,
+     43.7
+    ],
+    [
+     26.1,
+     44.0
+    ],
+    [
+     27.9,
+     44.1
+    ],
+    [
+     28.2,
+     45.4
+    ],
+    [
+     29.6,
+     45.2
+    ]
+   ]
+  },
+  {
+   "name": "Dniepr",
+   "points": [
+    [
+     32.0,
+     54.8
+    ],
+    [
+     30.3,
+     53.9
+    ],
+    [
+     30.6,
+     52.0
+    ],
+    [
+     30.5,
+     50.45
+    ],
+    [
+     32.0,
+     49.4
+    ],
+    [
+     35.0,
+     48.45
+    ],
+    [
+     35.1,
+     47.8
+    ],
+    [
+     34.0,
+     47.3
+    ],
+    [
+     33.4,
+     46.8
+    ],
+    [
+     32.6,
+     46.6
+    ],
+    [
+     31.9,
+     46.6
+    ]
+   ]
+  },
+  {
+   "name": "Vistule",
+   "points": [
+    [
+     19.0,
+     49.6
+    ],
+    [
+     19.9,
+     50.05
+    ],
+    [
+     21.6,
+     50.6
+    ],
+    [
+     21.0,
+     52.23
+    ],
+    [
+     19.0,
+     52.9
+    ],
+    [
+     18.0,
+     53.1
+    ],
+    [
+     18.8,
+     54.0
+    ],
+    [
+     18.95,
+     54.35
+    ]
+   ]
+  },
+  {
+   "name": "Oder",
+   "points": [
+    [
+     18.3,
+     49.9
+    ],
+    [
+     17.0,
+     51.1
+    ],
+    [
+     15.5,
+     51.9
+    ],
+    [
+     14.6,
+     52.5
+    ],
+    [
+     14.3,
+     53.4
+    ],
+    [
+     14.5,
+     53.9
+    ]
+   ]
+  },
+  {
+   "name": "Elbe",
+   "points": [
+    [
+     15.9,
+     50.4
+    ],
+    [
+     14.4,
+     50.5
+    ],
+    [
+     13.7,
+     51.05
+    ],
+    [
+     12.4,
+     51.9
+    ],
+    [
+     11.6,
+     52.1
+    ],
+    [
+     10.0,
+     53.55
+    ],
+    [
+     8.9,
+     53.85
+    ]
+   ]
+  },
+  {
+   "name": "Loire",
+   "points": [
+    [
+     4.0,
+     45.0
+    ],
+    [
+     4.0,
+     46.5
+    ],
+    [
+     3.1,
+     47.0
+    ],
+    [
+     2.4,
+     47.4
+    ],
+    [
+     1.9,
+     47.9
+    ],
+    [
+     0.7,
+     47.4
+    ],
+    [
+     -0.55,
+     47.47
+    ],
+    [
+     -1.55,
+     47.2
+    ],
+    [
+     -2.2,
+     47.27
+    ]
+   ]
+  },
+  {
+   "name": "Seine",
+   "points": [
+    [
+     4.6,
+     47.8
+    ],
+    [
+     4.1,
+     48.3
+    ],
+    [
+     3.0,
+     48.4
+    ],
+    [
+     2.35,
+     48.85
+    ],
+    [
+     1.5,
+     49.1
+    ],
+    [
+     1.1,
+     49.44
+    ],
+    [
+     0.1,
+     49.45
+    ]
+   ]
+  },
+  {
+   "name": "Rhône",
+   "points": [
+    [
+     6.15,
+     46.2
+    ],
+    [
+     5.5,
+     45.9
+    ],
+    [
+     4.85,
+     45.76
+    ],
+    [
+     4.85,
+     44.9
+    ],
+    [
+     4.8,
+     43.95
+    ],
+    [
+     4.6,
+     43.65
+    ],
+    [
+     4.75,
+     43.35
+    ]
+   ]
+  },
+  {
+   "name": "Pô",
+   "points": [
+    [
+     7.6,
+     45.05
+    ],
+    [
+     9.0,
+     45.1
+    ],
+    [
+     10.0,
+     45.05
+    ],
+    [
+     11.0,
+     45.0
+    ],
+    [
+     12.3,
+     44.95
+    ]
+   ]
+  },
+  {
+   "name": "Volga",
+   "points": [
+    [
+     35.9,
+     56.85
+    ],
+    [
+     37.5,
+     57.3
+    ],
+    [
+     39.9,
+     57.6
+    ],
+    [
+     44.0,
+     56.3
+    ],
+    [
+     49.1,
+     55.8
+    ],
+    [
+     48.4,
+     54.3
+    ],
+    [
+     50.1,
+     53.2
+    ],
+    [
+     46.0,
+     51.5
+    ],
+    [
+     44.5,
+     48.7
+    ],
+    [
+     47.0,
+     46.9
+    ],
+    [
+     48.0,
+     46.35
+    ]
+   ]
+  },
+  {
+   "name": "Don",
+   "points": [
+    [
+     38.3,
+     53.8
+    ],
+    [
+     39.2,
+     51.7
+    ],
+    [
+     40.5,
+     49.8
+    ],
+    [
+     42.0,
+     48.5
+    ],
+    [
+     43.0,
+     48.8
+    ],
+    [
+     40.7,
+     47.4
+    ],
+    [
+     39.7,
+     47.25
+    ]
+   ]
+  },
+  {
+   "name": "Dniestr",
+   "points": [
+    [
+     23.2,
+     49.5
+    ],
+    [
+     25.0,
+     48.9
+    ],
+    [
+     26.6,
+     48.5
+    ],
+    [
+     27.8,
+     48.1
+    ],
+    [
+     29.0,
+     47.1
+    ],
+    [
+     30.2,
+     46.4
+    ]
+   ]
+  },
+  {
+   "name": "Daugava",
+   "points": [
+    [
+     32.0,
+     56.2
+    ],
+    [
+     30.3,
+     55.5
+    ],
+    [
+     28.0,
+     55.9
+    ],
+    [
+     26.5,
+     55.9
+    ],
+    [
+     24.0,
+     56.95
+    ]
+   ]
+  },
+  {
+   "name": "Niémen",
+   "points": [
+    [
+     26.0,
+     53.8
+    ],
+    [
+     24.0,
+     54.0
+    ],
+    [
+     23.9,
+     54.9
+    ],
+    [
+     22.0,
+     55.07
+    ],
+    [
+     21.2,
+     55.3
+    ]
+   ]
+  },
+  {
+   "name": "Nil",
+   "points": [
+    [
+     32.9,
+     24.1
+    ],
+    [
+     32.6,
+     25.7
+    ],
+    [
+     31.2,
+     27.2
+    ],
+    [
+     31.2,
+     30.05
+    ],
+    [
+     31.0,
+     31.5
+    ]
+   ]
+  },
+  {
+   "name": "Euphrate",
+   "points": [
+    [
+     38.3,
+     37.0
+    ],
+    [
+     38.5,
+     36.0
+    ],
+    [
+     40.1,
+     35.3
+    ],
+    [
+     41.4,
+     34.4
+    ],
+    [
+     43.3,
+     33.0
+    ],
+    [
+     44.4,
+     32.0
+    ],
+    [
+     46.3,
+     31.0
+    ],
+    [
+     47.4,
+     30.6
+    ]
+   ]
+  },
+  {
+   "name": "Tigre",
+   "points": [
+    [
+     40.2,
+     37.9
+    ],
+    [
+     42.5,
+     37.0
+    ],
+    [
+     43.1,
+     36.3
+    ],
+    [
+     43.9,
+     34.6
+    ],
+    [
+     44.4,
+     33.3
+    ],
+    [
+     45.8,
+     32.5
+    ],
+    [
+     47.4,
+     31.0
+    ]
+   ]
+  }
+ ],
+ "matchups": [
+  {
+   "attacker": "ARMOR",
+   "defender": "INFANTRY",
+   "factor": 1.2,
+   "label": "les blindés enfoncent l'infanterie"
+  },
+  {
+   "attacker": "ARMOR",
+   "defender": "AIRBORNE",
+   "factor": 1.25,
+   "label": "les parachutistes manquent d'armes lourdes"
+  },
+  {
+   "attacker": "INFANTRY",
+   "defender": "ARMOR",
+   "factor": 0.85,
+   "label": "l'infanterie peine face aux chars"
+  },
+  {
+   "attacker": "ARTILLERY",
+   "defender": "INFANTRY",
+   "factor": 1.2,
+   "label": "l'artillerie écrase les positions"
+  },
+  {
+   "attacker": "MOUNTAIN",
+   "defender": "MOUNTAIN",
+   "factor": 1.0,
+   "label": ""
+  },
+  {
+   "attacker": "SUPPORT",
+   "defender": "ARMOR",
+   "factor": 0.6,
+   "label": "des unités de soutien face aux chars"
+  }
+ ],
+ "categories": {
+  "ARMOR": "Blindés",
+  "INFANTRY": "Infanterie",
+  "MOUNTAIN": "Troupes de montagne",
+  "AIRBORNE": "Parachutistes",
+  "MARINE": "Infanterie de marine",
+  "ARTILLERY": "Artillerie",
+  "AIR_DEFENSE": "Défense sol-air mobile",
+  "SUPPORT": "Soutien",
+  "AIR": "Aviation",
+  "NAVAL": "Marine",
+  "STRATEGIC": "Dissuasion"
+ },
+ "urbanMinMillions": 1.0,
+ "urbanRadiusKm": 70,
+ "riverCrossing": 0.75,
+ "amphibiousPenalty": 0.8,
+ "artilleryVsFortification": 0.5
+}

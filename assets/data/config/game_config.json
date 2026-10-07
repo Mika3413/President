@@ -124,6 +124,7 @@
     "unrest": "config/unrest.json",
     "consequences": "config/consequences.json",
     "worldEvents": "diplomacy/world_events.json",
-    "un": "diplomacy/un.json"
+    "un": "diplomacy/un.json",
+    "warfare": "military/warfare.json"
   }
 }

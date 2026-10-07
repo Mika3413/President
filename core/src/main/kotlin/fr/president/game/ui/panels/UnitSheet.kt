@@ -20,14 +20,46 @@ class UnitSheet(private val ui: Ui, private val nav: Navigator, private val expa
         message?.let { into.add(ui.label(it, "small", Theme.accent, wrap = true)).growX().padBottom(6f).row() }
         into.add(ui.label(session.militaryReadouts.unitSubtitle(unit), "muted", wrap = true)).growX().row()
         if (!own) into.add(ui.label("Forces de ${session.db.country(unit.countryId).definition.name}", "small", Theme.warning)).row()
+        // Bataille en cours dans la zone : rapport de combat.
+        session.warfare.battleAt(unit.zoneId)?.takeIf { it.record.active(session.state.time) }?.let { battle(into, it) }
         session.militaryReadouts.unit(unit).forEach { into.add(IndicatorView(ui, it, expanded)).growX().padBottom(6f).row() }
         if (own && !unit.destroyed) orders(into, unitId)
+        if (!unit.destroyed) zone(into, unit.zoneId, own)
         val others = session.state.military.units.values.filter { it.zoneId == unit.zoneId && it.id != unit.id && !it.destroyed }
             .filter { it.countryId == unit.countryId || session.military.visibleUnits().contains(it) }
         if (others.isNotEmpty()) {
             into.add(ui.label("Autres unités dans la zone", "bold")).padTop(6f).row()
             others.forEach { o -> into.add(ui.button(o.name, "flat") { nav.select(MapSelection.Unit(o.id)) }).left().row() }
         }
+    }
+
+    private val fortifications = fr.president.game.ui.widgets.FortificationView(ui, nav) { result -> message = result; nav.refresh() }
+
+    /** Terrain et ouvrages de la zone ; nos unités peuvent la fortifier (y compris en territoire conquis). */
+    private fun zone(into: Table, zoneId: String, own: Boolean) {
+        val session = nav.session
+        val v = session.warfare.zone(zoneId)
+        val key = "zone:$zoneId"
+        val open = key in expanded
+        val works = if (v.works.isEmpty()) "" else " · ${v.works.size} ouvrage(s)"
+        into.add(ui.button((if (open) "▼ " else "▶ ") + "Zone : ${v.terrain}$works", "flat") {
+            if (open) expanded.remove(key) else expanded.add(key); nav.refresh()
+        }).left().padTop(6f).row()
+        if (!open) return
+        if (!own) { v.works.forEach { w -> into.add(ui.label("${w.icon} ${w.title}", "small", wrap = true)).growX().row() }; return }
+        fortifications.build(into, zoneId, showHeader = false)
+    }
+
+    private fun battle(into: Table, b: fr.president.engine.readout.WarfareReadout.BattleView) {
+        val box = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(6f, 8f, 6f, 8f); defaults().left() }
+        val head = Table()
+        head.add(ui.label("⚔ ${b.title}", "bold", Theme.tone(b.tone), wrap = true)).growX().left().minWidth(0f)
+        b.ratio?.let { head.add(ui.label(String.format(java.util.Locale.FRENCH, "%.1f : 1", it), "value", Theme.tone(b.tone))).right() }
+        box.add(head).growX().row()
+        box.add(ui.label("${b.sides} · ${b.status}", "muted", wrap = true)).growX().row()
+        box.add(ui.label(b.losses, "small", wrap = true)).growX().row()
+        b.modifiers.forEach { box.add(ui.label(it, "muted", wrap = true)).growX().row() }
+        into.add(box).growX().padBottom(6f).row()
     }
 
     private fun orders(into: Table, unitId: String) {

@@ -49,6 +49,8 @@ class UnitState(
     var destroyed: Boolean = false,
     /** Dernière opération spéciale (parachutage, débarquement) : délai avant la suivante. */
     var lastOperationAt: fr.president.engine.time.WorldTime? = null,
+    /** Zone d'où vient l'unité (franchissement d'un fleuve, débarquement). */
+    var cameFrom: String? = null,
 )
 
 @Serializable
@@ -118,4 +120,30 @@ class MilitaryState(
     /** Durée d'occupation de la capitale du joueur (jours). */
     var capitalOccupiedDays: Int = 0,
     var unitCounter: Int = 0,
+    /** Fortifications et bâtiments militaires de tous les pays. */
+    val works: MutableList<Fortification> = mutableListOf(),
+    var worksSeeded: Boolean = false,
+    /** Batailles récentes et en cours (rapports de combat). */
+    val battles: MutableList<BattleRecord> = mutableListOf(),
 )
+
+/** Rapport d'une bataille : qui, où, avec quels avantages, et à quel prix. */
+@Serializable
+class BattleRecord(
+    val id: String,
+    val zoneId: String,
+    val startedAt: WorldTime,
+    var lastAt: WorldTime,
+    val attackers: MutableList<String>,
+    val defenders: MutableList<String>,
+    var attackerLosses: Int = 0,
+    var defenderLosses: Int = 0,
+    var attackerPower: Double = 0.0,
+    var defenderPower: Double = 0.0,
+    /** Avantages et handicaps en jeu (terrain, fortifications, fleuve...), dans l'ordre d'importance. */
+    val modifiers: MutableList<String> = mutableListOf(),
+    var outcome: String = "",
+    var hours: Int = 0,
+) {
+    fun active(now: WorldTime): Boolean = outcome.isEmpty() && lastAt.daysUntil(now) * 24 < 2.5
+}

@@ -26,6 +26,8 @@ data class UnitTypeDef(
     /** Prolonge le rayon de ravitaillement des unités voisines. */
     val logistics: Int = 0,
     val buildable: Boolean = true,
+    /** Famille (blindés, infanterie, montagne, artillerie...) : forces et faiblesses selon le terrain et l'adversaire. */
+    val category: String = "",
 )
 
 /** Coefficients militaires (combat, logistique, usure). */

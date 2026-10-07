@@ -16,7 +16,14 @@ class Intelligence(private val ctx: SimulationContext) {
         val friends = geo.coBelligerents(observer) + observer
         val eyes = ctx.state.military.units.values.filter { it.countryId in friends && !it.destroyed }.map { it.zoneId } +
             friends.flatMap { geo.territoryOf(it) }
-        return ctx.db.zones.within(eyes.toSet(), ctx.db.militaryParameters.visibilityZones) { true }.keys
+        val seen = ctx.db.zones.within(eyes.toSet(), ctx.db.militaryParameters.visibilityZones) { true }.keys
+        // Les stations radar voient plus loin.
+        val radars = ctx.state.military.works.filter { it.type == "radar" && it.level > 0 && it.countryId in friends }
+        if (radars.isEmpty()) return seen
+        val forts = FortificationService(ctx)
+        return seen + radars.flatMap { r ->
+            ctx.db.zones.within(listOf(r.zoneId), ctx.db.militaryParameters.visibilityZones + forts.value(r, "intel").toInt()) { true }.keys
+        }
     }
 
     fun visibleUnits(observer: String): List<UnitState> {

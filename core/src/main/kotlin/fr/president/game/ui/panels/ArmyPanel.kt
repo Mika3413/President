@@ -68,7 +68,7 @@ class ArmyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel
         into.add(ui.label("Commander des unités", "bold")).padTop(GAP).row()
         session.military.production.buildable().forEach { t ->
             val row = Table()
-            row.add(ui.label("${t.label} — ${Formatting.billions(t.costBillions)}, ${t.buildDays} jours", "small", wrap = true)).growX().left()
+            row.add(ui.label("${t.label} — ${Formatting.billions(t.costBillions)}, ${session.military.production.buildDays(t.id)} jours", "small", wrap = true)).growX().left()
             row.add(ui.button("Commander", "flat") {
                 message = session.military.production.order(t.id).fold({ "${t.label} commandée." }, { it.message }); nav.refresh()
             }).right()
@@ -79,9 +79,33 @@ class ArmyPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel
             into.add(ui.label("En production", "bold")).padTop(GAP).row()
             orders.forEach { o -> into.add(ui.label("${session.db.unitType(o.unitType).label} — livraison le ${fr.president.game.ui.Formats.date(o.readyAt)}", "small")).row() }
         }
+        into.add(ui.label("Fortifications et bases", "bold")).padTop(GAP).row()
+        fortifications.ownList(into)
+    }
+
+    private val fortifications = fr.president.game.ui.widgets.FortificationView(ui, nav) { result -> message = result; nav.refresh() }
+
+    private fun battles(into: Table) {
+        val list = session.warfare.battles()
+        if (list.isEmpty()) return
+        into.add(ui.label("Batailles", "bold")).left().padBottom(2f).row()
+        list.forEach { b ->
+            val box = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(5f, 8f, 5f, 8f); defaults().left() }
+            val head = Table()
+            head.add(ui.label((if (b.record.active(session.state.time)) "⚔ " else "") + b.title, "bold", Theme.tone(b.tone), wrap = true)).growX().left().minWidth(0f)
+            b.ratio?.let { head.add(ui.label(String.format(java.util.Locale.FRENCH, "%.1f : 1", it), "small", Theme.tone(b.tone))).right() }
+            box.add(head).growX().row()
+            box.add(ui.label("${b.sides} · ${b.status}", "muted", wrap = true)).growX().row()
+            box.add(ui.label(b.losses, "muted", wrap = true)).growX().row()
+            if (b.ours) b.modifiers.take(3).forEach { box.add(ui.label(it, "muted", wrap = true)).growX().row() }
+            box.onClick { nav.focusOn(b.record.zoneId) }
+            into.add(box).growX().padBottom(3f).row()
+        }
+        into.add().height(GAP).row()
     }
 
     private fun wars(into: Table) {
+        battles(into)
         val wars = session.state.military.wars.sortedBy { it.status }
         if (wars.isEmpty()) {
             into.add(ui.label("Aucun conflit en cours dans le monde.", "muted")).row()

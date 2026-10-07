@@ -100,7 +100,10 @@ class OrderService(private val ctx: SimulationContext) {
     /** Le ravitaillement en vol allonge le rayon d'action des escadres. */
     fun effectiveRange(unit: UnitState, type: UnitTypeDef): Double {
         val tankers = ctx.state.military.units.values.count { it.countryId == unit.countryId && it.type == TANKER && !it.destroyed }
-        return type.rangeKm * (1.0 + TANKER_BONUS * minOf(tankers, MAX_TANKERS))
+        // Une base aérienne avancée allonge le rayon d'action des escadres qui y stationnent.
+        val geo = Geopolitics(ctx)
+        val airfield = FortificationService(ctx).effect(unit.zoneId, "airfield", "airRange", geo.coBelligerents(unit.countryId) + unit.countryId)
+        return type.rangeKm * (1.0 + TANKER_BONUS * minOf(tankers, MAX_TANKERS)) * (1.0 + airfield)
     }
 
     private fun retreat(unit: UnitState, type: UnitTypeDef): Outcome {

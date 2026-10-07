@@ -22,6 +22,7 @@ class LogisticsSystem : SimulationSystem {
         val p = ctx.db.militaryParameters
         val fraction = PERIOD_HOURS / HOURS_PER_DAY
         val byCountry = ctx.state.military.units.values.filter { !it.destroyed }.groupBy { it.countryId }
+        val forts = FortificationService(ctx)
         for ((country, units) in byCountry) {
             val atWar = geo.isAtWar(country)
             val reach: Map<String, Int>? = if (atWar) supplyReach(ctx, geo, country, units) else null
@@ -33,11 +34,17 @@ class LogisticsSystem : SimulationSystem {
                     type.domain == Domain.SEA -> true
                     else -> unit.zoneId in reach
                 }
-                if (unit.supplied) resupply(ctx, unit, p.resupplyPerDay * fraction, country)
+                // Dépôt ou base aérienne sur place : on se recomplète plus vite ; caserne : on récupère plus vite.
+                val owners = setOf(country)
+                val boost = forts.effect(unit.zoneId, "depot", "resupply", owners) +
+                    if (type.domain == Domain.AIR) forts.effect(unit.zoneId, "airfield", "rearm", owners) else 0.0
+                if (unit.supplied) resupply(ctx, unit, p.resupplyPerDay * fraction * (1 + boost), country)
                 else decay(unit, p.unsuppliedDecayPerDay * fraction)
                 val resting = !unit.inCombat && unit.path.isEmpty()
                 if (resting) {
-                    unit.fatigue = (unit.fatigue - p.fatigueRecoveryPerDay * fraction).coerceAtLeast(0.0)
+                    val recovery = 1 + forts.effect(unit.zoneId, "barracks", "recovery", owners)
+                    unit.fatigue = (unit.fatigue - p.fatigueRecoveryPerDay * fraction * recovery).coerceAtLeast(0.0)
+                    if (recovery > 1) unit.morale = (unit.morale + BARRACKS_MORALE * fraction * recovery).coerceAtMost(1.0)
                     if (unit.supplied) unit.strength = (unit.strength + REPLACEMENT_PER_DAY * fraction).coerceAtMost(1.0)
                 }
             }
@@ -52,10 +59,13 @@ class LogisticsSystem : SimulationSystem {
     private fun supplyReach(ctx: SimulationContext, geo: Geopolitics, country: String, units: List<UnitState>): Map<String, Int> {
         val p = ctx.db.militaryParameters
         val friends = geo.coBelligerents(country) + country
+        // Les dépôts bâtis en zone conquise deviennent eux aussi des points de départ du ravitaillement.
+        val depots = FortificationService(ctx).depots(country)
         val sources = (geo.territoryOf(country) + friends.flatMap { geo.territoryOf(it) })
-            .filter { geo.controllerOf(it) in friends }
+            .filter { geo.controllerOf(it) in friends } + depots.map { it.zoneId }
         // Seules les zones proches des unités comptent : on part de la frontière utile.
-        val bonus = units.maxOfOrNull { ctx.db.unitType(it.type).logistics } ?: 0
+        val bonus = (units.maxOfOrNull { ctx.db.unitType(it.type).logistics } ?: 0) +
+            (depots.maxOfOrNull { FortificationService(ctx).value(it, "supply").toInt() } ?: 0)
         return ctx.db.zones.within(sources, p.supplyRangeZones + bonus) { z ->
             z.sea || geo.controllerOf(z.id) in friends || geo.allied(country, geo.controllerOf(z.id))
         }
@@ -86,6 +96,7 @@ class LogisticsSystem : SimulationSystem {
         const val PERIOD_HOURS = 6L
         const val HOURS_PER_DAY = 24.0
         const val REPLACEMENT_PER_DAY = 0.01
+        const val BARRACKS_MORALE = 0.03
         /** Part des stocks nationaux nécessaire pour recompléter entièrement une unité. */
         const val UNIT_SHARE = 0.02
     }

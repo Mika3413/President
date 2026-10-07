@@ -112,8 +112,12 @@ class OperationsService(private val ctx: SimulationContext) {
         strikeBlocker(country)?.let { error(it) }
         val target = strikeTarget(country)!!
         val hit = units.filter { it.zoneId == target && it.countryId == country && !it.destroyed }
+        // La défense sol-air ennemie intercepte une partie des missiles.
+        val forts = FortificationService(ctx)
+        val intercepted = forts.interception(target, geo.coBelligerents(country) + country)
+        forts.strikeDamage(target)
         hit.forEach {
-            it.strength = (it.strength - STRIKE_STRENGTH * (1 + DefenseService.strikeBonus(ctx))).coerceAtLeast(MIN_STRENGTH)
+            it.strength = (it.strength - STRIKE_STRENGTH * (1 + DefenseService.strikeBonus(ctx)) * (1 - intercepted)).coerceAtLeast(MIN_STRENGTH)
             it.readiness = (it.readiness - STRIKE_READINESS).coerceAtLeast(0.0)
             it.morale = (it.morale - STRIKE_MORALE).coerceAtLeast(0.0)
         }
@@ -128,7 +132,9 @@ class OperationsService(private val ctx: SimulationContext) {
             ctx.effects.trigger(EffectSpec("opinion.national", -0.004), null, emptyMap(), "op:strike")
             ctx.effects.trigger(EffectSpec("alliance.EU.DISAGREEMENT", -0.01), null, emptyMap(), "op:strike")
         }
-        val text = "Frappes sur les forces ${ctx.db.ofCountry(country)} : ${hit.size} unité(s) touchée(s)" + if (collateral) ", mais des victimes civiles sont signalées." else "."
+        val text = "Frappes sur les forces ${ctx.db.ofCountry(country)} : ${hit.size} unité(s) touchée(s)" +
+            (if (intercepted > 0.05) " ; leur défense sol-air a intercepté ${Math.round(intercepted * 100)} % des missiles" else "") +
+            if (collateral) ", mais des victimes civiles sont signalées." else "."
         report("Frappes de missiles : $name", text, target, if (collateral) Tone.WARNING else Tone.GOOD)
         text
     }
@@ -168,8 +174,11 @@ class OperationsService(private val ctx: SimulationContext) {
         if (wait("$STRIKE_KEY|$actor", AI_STRIKE_COOLDOWN) != null) return false
         val target = strikeTarget(enemy, actor) ?: return false
         val hit = units.filter { it.zoneId == target && it.countryId == enemy && !it.destroyed }
+        val forts = FortificationService(ctx)
+        val intercepted = forts.interception(target, geo.coBelligerents(enemy) + enemy)
+        forts.strikeDamage(target)
         hit.forEach {
-            it.strength = (it.strength - STRIKE_STRENGTH * (if (enemy == player) 1 - DefenseService.airShield(ctx) else 1.0)).coerceAtLeast(MIN_STRENGTH)
+            it.strength = (it.strength - STRIKE_STRENGTH * (1 - intercepted) * (if (enemy == player) 1 - DefenseService.airShield(ctx) else 1.0)).coerceAtLeast(MIN_STRENGTH)
             it.readiness = (it.readiness - STRIKE_READINESS).coerceAtLeast(0.0)
             it.morale = (it.morale - STRIKE_MORALE).coerceAtLeast(0.0)
         }
@@ -181,7 +190,8 @@ class OperationsService(private val ctx: SimulationContext) {
                 // Être frappé soude d'abord le pays derrière son président, puis use les esprits.
                 ctx.effects.trigger(EffectSpec("opinion.national", RALLY), null, emptyMap(), "ai:strike")
                 ctx.notifications.post(NotificationCategory.MILITARY, Urgency.URGENT, "$by frappe nos forces",
-                    "Missiles de croisière sur nos positions : ${hit.size} unité(s) touchée(s).", target, journal = false)
+                    "Missiles de croisière sur nos positions : ${hit.size} unité(s) touchée(s)" +
+                        (if (intercepted > 0.05) ", ${Math.round(intercepted * 100)} % des missiles interceptés par notre défense sol-air." else ".") , target, journal = false)
                 JournalService(ctx).add("Opération", "$by frappe nos forces (${hit.size} unité(s) touchée(s))", Tone.BAD)
             }
             enemy in geo.coBelligerents(player) || geo.allied(player, enemy) ->

@@ -30,6 +30,15 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
     private var time = 0f
     /** Position affichée de chaque unité (coordonnées monde), qui glisse vers sa zone réelle. */
     private val displayed = HashMap<String, FloatArray>()
+    /** Explosions en cours (coordonnées monde) et chiffres de pertes qui s'élèvent au-dessus des batailles. */
+    private class Burst(val x: Float, val y: Float, val start: Float, val size: Float, val big: Boolean = false)
+    private val bursts = ArrayList<Burst>()
+    private class Floater(val x: Float, val y: Float, val text: String, val color: Color, val start: Float) { var sx = 0f; var sy = 0f }
+    private val floaters = ArrayList<Floater>()
+    /** Pertes déjà affichées par bataille, et issue déjà annoncée. */
+    private val shownLosses = HashMap<String, IntArray>()
+    private val shownOutcome = HashSet<String>()
+    private val random = java.util.Random(7)
 
     fun shapes(shapes: ShapeRenderer, camera: OrthographicCamera, session: GameSession, lod: Lod, layer: ThematicLayer, selectedUnit: String?, delta: Float) {
         time += delta
@@ -39,7 +48,8 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
         val player = session.state.player.countryId
         val geo = session.military.geo
         val atWar = geo.isAtWar(player)
-        val showForeign = layer == ThematicLayer.MILITARY || atWar || geo.activeWars().isNotEmpty() && lod <= Lod.EUROPE
+        // Dès qu'une guerre fait rage quelque part, ses armées se voient à toutes les échelles.
+        val showForeign = layer == ThematicLayer.MILITARY || atWar || geo.activeWars().isNotEmpty()
         if (lod == Lod.WORLD) return
         if (lod == Lod.EUROPE && !showForeign && layer != ThematicLayer.MILITARY) return
         val visible = visibleCache(session).filter { it.countryId == player || showForeign }
@@ -88,6 +98,8 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
             val involved = visible.any { it.zoneId == zone && (it.countryId == player || it.countryId in geo.coBelligerents(player)) }
             battles += Battle(bx, by, if (involved) preview.battleRatio(zone, player) else null)
         }
+        if (lod >= Lod.FRANCE || layer == ThematicLayer.MILITARY || atWar) drawWorks(shapes, camera, session, lod, layer)
+        battleEffects(shapes, camera, session, visible, delta)
         // Glissement des pions : la position affichée rejoint la zone réelle en quelques dixièmes de seconde.
         val follow = 1f - Math.exp((-delta * GLIDE_SPEED).toDouble()).toFloat()
         val alive = HashSet<String>()
@@ -131,6 +143,12 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
 
     fun labels(batch: SpriteBatch, session: GameSession) {
         val units = session.state.military.units
+        for (f in floaters) {
+            val age = time - f.start
+            val alpha = (1f - age / FLOAT_SECONDS).coerceIn(0f, 1f)
+            font.color = Color(f.color.r, f.color.g, f.color.b, alpha)
+            font.draw(batch, f.text, f.sx, f.sy + age * FLOAT_RISE)
+        }
         for (a in arrivals) {
             val h = Math.round(a.hours).toInt().coerceAtLeast(1)
             font.color = Theme.highlight
@@ -153,6 +171,130 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
         }
     }
 
+    /** Ouvrages militaires : petits symboles sous le centre de la zone (les nôtres, nos alliés, et ceux de l'ennemi que l'on voit). */
+    private fun drawWorks(shapes: ShapeRenderer, camera: OrthographicCamera, session: GameSession, lod: Lod, layer: ThematicLayer) {
+        val works = session.state.military.works
+        if (works.isEmpty()) return
+        val player = session.state.player.countryId
+        val geo = session.military.geo
+        val observed = observedCache
+        val zones = session.db.zones
+        for ((zoneId, list) in works.groupBy { it.zoneId }) {
+            val z = zones.zones[zoneId] ?: continue
+            // Les lignes des pays en guerre sont de notoriété publique (images satellites, presse).
+            // Les ouvrages des autres pays ne s'affichent qu'en vue rapprochée ou sur la couche militaire, pour ne pas encombrer.
+            val close = lod >= Lod.REGION || layer == ThematicLayer.MILITARY
+            val shown = list.filter { it.countryId == player || geo.allied(player, it.countryId) || it.countryId in geo.coBelligerents(player) ||
+                geo.atWar(player, it.countryId) || close && (zoneId in observed || geo.isAtWar(it.countryId)) }
+            if (shown.isEmpty()) continue
+            // En vue d'ensemble, seuls les ouvrages en guerre ou les nôtres.
+            if (lod < Lod.FRANCE && shown.none { it.countryId == player || geo.atWar(player, it.countryId) || geo.isAtWar(it.countryId) }) continue
+            val p = project(camera, z.lon, z.lat) ?: continue
+            shown.sortedBy { it.type }.forEachIndexed { i, w ->
+                val x = p.x - WORK_OFFSET_X + i * (WORK_SIZE + 3f)
+                val y = p.y - WORK_OFFSET_Y
+                val base = when {
+                    w.countryId == player -> Theme.accent
+                    geo.atWar(player, w.countryId) -> Theme.bad
+                    geo.allied(player, w.countryId) || w.countryId in geo.coBelligerents(player) -> Theme.good
+                    else -> NEUTRAL
+                }
+                val alpha = if (w.level <= 0) 0.45f else 0.6f + 0.4f * w.condition.toFloat()
+                drawWork(shapes, w.type, x, y, Color(base.r, base.g, base.b, alpha), w.level)
+            }
+        }
+    }
+
+    private fun drawWork(shapes: ShapeRenderer, type: String, x: Float, y: Float, color: Color, level: Int) {
+        val h = WORK_SIZE / 2
+        shapes.color = Theme.border
+        shapes.rect(x - h - 1, y - h - 1, WORK_SIZE + 2, WORK_SIZE + 2)
+        shapes.color = color
+        shapes.rect(x - h, y - h, WORK_SIZE, WORK_SIZE)
+        shapes.color = Color.WHITE
+        when (type) {
+            "line" -> { // créneaux
+                shapes.rect(x - h + 1, y - 1, WORK_SIZE - 2, 2f)
+                shapes.rect(x - h + 1, y + 1, 2f, 2f); shapes.rect(x - 1, y + 1, 2f, 2f); shapes.rect(x + h - 3, y + 1, 2f, 2f)
+            }
+            "air_defense" -> { shapes.triangle(x - 3f, y - 3f, x + 3f, y - 3f, x, y + 3.5f) }
+            "radar" -> { shapes.arc(x, y - 2.5f, 4.5f, 30f, 120f, 8); shapes.rect(x - 0.5f, y - 3.5f, 1f, 2f) }
+            "airfield" -> { shapes.rectLine(x - 4f, y - 2f, x + 4f, y + 2f, 1.6f); shapes.rectLine(x - 1.5f, y + 2f, x + 1.5f, y - 1f, 1f) }
+            "barracks" -> { shapes.rect(x - 3f, y - 3.5f, 6f, 3.5f); shapes.triangle(x - 4f, y, x + 4f, y, x, y + 3.5f) }
+            "depot" -> { shapes.rectLine(x - 3f, y - 3f, x + 3f, y + 3f, 1.2f); shapes.rectLine(x - 3f, y + 3f, x + 3f, y - 3f, 1.2f) }
+            "coastal" -> { shapes.circle(x, y + 1.5f, 2f, 8); shapes.rect(x - 0.6f, y - 3.5f, 1.2f, 4f); shapes.rect(x - 3f, y - 3.5f, 6f, 1.2f) }
+        }
+        // Niveau : un point par niveau sous le symbole.
+        shapes.color = Theme.highlight
+        repeat(level.coerceAtMost(3)) { i -> shapes.circle(x - h + 2f + i * 3.5f, y - h - 3f, 1.1f, 6) }
+    }
+
+    /**
+     * Combats animés : explosions qui éclatent sur le champ de bataille, pertes qui s'affichent
+     * au-dessus (rouge : les nôtres ; vert : celles de l'ennemi), issue annoncée.
+     */
+    private fun battleEffects(shapes: ShapeRenderer, camera: OrthographicCamera, session: GameSession, visible: List<UnitState>, delta: Float) {
+        val zones = session.db.zones
+        val player = session.state.player.countryId
+        val camp = session.military.geo.coBelligerents(player) + player
+        val fighting = visible.filter { it.inCombat }.map { it.zoneId }.toSet()
+        val now = session.state.time
+        // De nouvelles explosions, plus nombreuses dans les grosses batailles.
+        for (zoneId in fighting) {
+            val z = zones.zones[zoneId] ?: continue
+            val n = visible.count { it.zoneId == zoneId }
+            if (random.nextFloat() < delta * BURST_RATE * (1 + n * 0.3f) && bursts.size < MAX_BURSTS) {
+                val jx = (random.nextFloat() - 0.5f) * JITTER
+                val jy = (random.nextFloat() - 0.5f) * JITTER
+                bursts += Burst(GeoProjection.x(z.lon) + jx, GeoProjection.y(z.lat) + jy, time, 3f + random.nextFloat() * 4f)
+            }
+        }
+        // Pertes et issues des batailles que l'on voit.
+        for (b in session.state.military.battles) {
+            if (b.zoneId !in fighting && b.outcome.isEmpty()) continue
+            if (now.daysUntil(b.lastAt) < -0.2) continue
+            val z = zones.zones[b.zoneId] ?: continue
+            val wx = GeoProjection.x(z.lon); val wy = GeoProjection.y(z.lat)
+            val ours = b.attackers.any { it in camp } || b.defenders.any { it in camp }
+            val weAttack = b.attackers.any { it in camp }
+            val last = shownLosses.getOrPut(b.id) { intArrayOf(b.attackerLosses, b.defenderLosses) }
+            val dA = b.attackerLosses - last[0]
+            val dD = b.defenderLosses - last[1]
+            if (dA > 0 || dD > 0) {
+                last[0] = b.attackerLosses; last[1] = b.defenderLosses
+                if (ours) {
+                    val mine = if (weAttack) dA else dD
+                    val theirs = if (weAttack) dD else dA
+                    if (mine > 0) floaters += Floater(wx - 10f, wy, "−${fr.president.engine.util.Formatting.integer(mine.toDouble())}", Theme.bad, time)
+                    if (theirs > 0) floaters += Floater(wx + 6f, wy, "−${fr.president.engine.util.Formatting.integer(theirs.toDouble())}", Theme.good, time)
+                } else floaters += Floater(wx, wy, "−${fr.president.engine.util.Formatting.integer((dA + dD).toDouble())}", Theme.warning, time)
+            }
+            if (b.outcome.isNotEmpty() && shownOutcome.add(b.id)) {
+                val won = (b.outcome.startsWith("Victoire") && weAttack) || (b.outcome.startsWith("Le défenseur") && ours && !weAttack)
+                val text = if (!ours) b.outcome else if (won) "★ Victoire" else "✕ Défaite"
+                floaters += Floater(wx - 16f, wy + 12f, text, if (!ours) Theme.warning else if (won) Theme.good else Theme.bad, time)
+                bursts += Burst(wx, wy, time, 12f, big = true)
+            }
+        }
+        shownLosses.keys.retainAll(session.state.military.battles.map { it.id }.toSet())
+        floaters.removeAll { time - it.start > FLOAT_SECONDS }
+        floaters.forEach { f -> projectWorld(camera, f.x, f.y).let { f.sx = it.x; f.sy = it.y + 14f } }
+        // Dessin : un éclair jaune qui vire au rouge puis s'efface.
+        bursts.removeAll { time - it.start > BURST_SECONDS * (if (it.big) 2 else 1) }
+        for (b in bursts) {
+            val life = BURST_SECONDS * (if (b.big) 2 else 1)
+            val t = ((time - b.start) / life).coerceIn(0f, 1f)
+            val p = projectWorld(camera, b.x, b.y)
+            val r = b.size * (0.4f + t * 1.2f)
+            shapes.color = Color(1f, 0.35f + 0.4f * (1 - t), 0.1f, 0.75f * (1 - t))
+            shapes.circle(p.x, p.y, r, SEGMENTS)
+            shapes.color = Color(1f, 0.95f, 0.6f, 0.9f * (1 - t) * (1 - t))
+            shapes.circle(p.x, p.y, r * 0.45f, SEGMENTS)
+        }
+    }
+
+    private var observedCache: Set<String> = emptySet()
+
     private var cacheHour = -1L
     private var cacheCount = -1
     private var cache: List<UnitState> = emptyList()
@@ -163,6 +305,7 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
         val count = session.state.military.units.size
         if (hour != cacheHour || count != cacheCount) {
             cache = session.military.visibleUnits()
+            observedCache = session.military.intelligence.observedZones(session.state.player.countryId)
             cacheHour = hour
             cacheCount = count
         }
@@ -250,5 +393,14 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
         const val PULSE = 4f
         const val BATTLE_RADIUS = 10f
         const val BATTLE_ALPHA = 0.7f
+        const val WORK_SIZE = 9f
+        const val WORK_OFFSET_X = 14f
+        const val WORK_OFFSET_Y = 14f
+        const val BURST_RATE = 5f
+        const val MAX_BURSTS = 80
+        const val BURST_SECONDS = 0.7f
+        const val JITTER = 22f
+        const val FLOAT_SECONDS = 2.2f
+        const val FLOAT_RISE = 14f
     }
 }
