@@ -126,6 +126,7 @@
     "worldEvents": "diplomacy/world_events.json",
     "un": "diplomacy/un.json",
     "warfare": "military/warfare.json",
-    "moments": "config/moments.json"
+    "moments": "config/moments.json",
+    "majorEvents": "config/major_events.json"
   }
 }

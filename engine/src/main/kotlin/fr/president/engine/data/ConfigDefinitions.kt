@@ -72,6 +72,8 @@ data class GlobalDataFiles(
     val warfare: String? = null,
     /** Moments présidentiels : allocutions, interviews, débat, sommets (facultatif). */
     val moments: String? = null,
+    /** Grands événements : compétitions, JO 2030, catastrophes mondiales (facultatif). */
+    val majorEvents: String? = null,
 )
 
 /** Multiplicateurs de fréquence : l'outil d'équilibrage du rythme des événements. */

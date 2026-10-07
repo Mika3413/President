@@ -60,7 +60,8 @@ data class MomentsFile(val speech: SpeechDef = SpeechDef(), val interview: Inter
 
 @Serializable
 enum class MomentKind(val label: String, val icon: String) {
-    SPEECH("Allocution télévisée", "☎"), INTERVIEW("Interview du 20 heures", "✎"), DEBATE("Débat d'entre-deux-tours", "⚖"), SUMMIT("Sommet", "✪")
+    SPEECH("Allocution télévisée", "☎"), INTERVIEW("Interview du 20 heures", "✎"), DEBATE("Débat d'entre-deux-tours", "⚖"), SUMMIT("Sommet", "✪"),
+    DOSSIER("Grand dossier", "❖")
 }
 
 /** Moment en cours : étape, choix proposés (indices dans les données) et choix faits. */
@@ -149,6 +150,7 @@ class MomentService(private val ctx: SimulationContext) {
             cooldown(state.lastInterview, f.interview.cooldownDays) ?: AgendaService(ctx).blocker(INTERVIEW_AGENDA))
         if (debateOpen()) list += Offer(MomentKind.DEBATE, "", "Débat d'entre-deux-tours", "Cinq manches face à votre adversaire, devant 20 millions de téléspectateurs. Le vainqueur gagne des points au second tour.", null)
         summitsOpen().forEach { (id, def) -> list += Offer(MomentKind.SUMMIT, id, def.label, "Les dirigeants vous attendent : chaque prise de parole change vos relations.", null) }
+        MajorEventsService(ctx).openDossiers().forEach { d -> list += Offer(MomentKind.DOSSIER, d.id, d.label, d.prompt.substringBefore('\n'), null) }
         return list
     }
 
@@ -186,7 +188,7 @@ class MomentService(private val ctx: SimulationContext) {
                 m.questions += (topical + general).take(QUESTIONS).map { it.id }
             }
             MomentKind.DEBATE -> state.debateFor = ctx.state.elections.nextElection
-            MomentKind.SUMMIT -> Unit
+            MomentKind.SUMMIT, MomentKind.DOSSIER -> Unit
         }
         state.active = m
         view()!!
@@ -223,6 +225,11 @@ class MomentService(private val ctx: SimulationContext) {
                 m.offered += r.choices.indices
                 StepView(m.kind, "Débat face à ${opponentName()}", m.step, f.debate.rounds.size, r.label, r.prompt,
                     r.choices.mapIndexed { i, ch -> ChoiceView(i, ch.text, STYLES[ch.style].orEmpty()) }, m.feedback)
+            }
+            MomentKind.DOSSIER -> {
+                val d = MajorEventsService(ctx).openDossiers().firstOrNull { it.id == m.ref } ?: run { state.active = null; return null }
+                m.offered += d.choices.indices
+                StepView(m.kind, d.label, 0, 1, "Votre arbitrage", d.prompt, d.choices.mapIndexed { i, ch -> ChoiceView(i, ch.text) }, m.feedback)
             }
             MomentKind.SUMMIT -> {
                 val s = f.summits.getValue(m.ref)
@@ -269,6 +276,11 @@ class MomentService(private val ctx: SimulationContext) {
                 }
                 m.tones += ch.style
             }
+            MomentKind.DOSSIER -> {
+                val d = MajorEventsService(ctx).openDossiers().first { it.id == m.ref }
+                MajorEventsService(ctx).decide(d.id, d.choices[index])
+                m.feedback = d.choices[index].text
+            }
             MomentKind.SUMMIT -> {
                 val ch = f.summits.getValue(m.ref).exchanges[m.step].choices[index]
                 ch.effects.forEach { (k, v) -> ctx.effects.trigger(EffectSpec(k, v), null, emptyMap(), "summit:${m.ref}") }
@@ -281,6 +293,7 @@ class MomentService(private val ctx: SimulationContext) {
             MomentKind.INTERVIEW -> m.questions.size
             MomentKind.DEBATE -> f.debate.rounds.size
             MomentKind.SUMMIT -> f.summits.getValue(m.ref).exchanges.size
+            MomentKind.DOSSIER -> 1
         }
         if (m.step < total) null else finish(m)
     }
@@ -292,6 +305,7 @@ class MomentService(private val ctx: SimulationContext) {
             MomentKind.INTERVIEW -> finishInterview(m)
             MomentKind.DEBATE -> finishDebate(m)
             MomentKind.SUMMIT -> finishSummit(m)
+            MomentKind.DOSSIER -> MomentRecord(MomentKind.DOSSIER, "Arbitrage", m.feedback, "Votre décision est appliquée.", ctx.now, Tone.NEUTRAL)
         }
         state.history += record
         while (state.history.size > MAX_HISTORY) state.history.removeAt(0)

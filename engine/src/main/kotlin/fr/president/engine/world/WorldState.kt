@@ -72,6 +72,7 @@ class WorldState(
     /** Unes des journaux et sondages publiés. */
     val media: fr.president.engine.media.MediaState = fr.president.engine.media.MediaState(),
     val moments: fr.president.engine.presidency.MomentsState = fr.president.engine.presidency.MomentsState(),
+    val majorEvents: fr.president.engine.presidency.MajorEventsState = fr.president.engine.presidency.MajorEventsState(),
     /** Mesures de crise et de prévention en vigueur. */
     val measures: fr.president.engine.crisis.MeasureState = fr.president.engine.crisis.MeasureState(),
     val agenda: fr.president.engine.session.AgendaState = fr.president.engine.session.AgendaState(),

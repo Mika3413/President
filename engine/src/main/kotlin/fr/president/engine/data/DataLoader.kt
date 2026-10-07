@@ -51,6 +51,7 @@ class DataLoader(private val source: DataSource) {
             un = files.un?.let { read(it) },
             warfare = files.warfare?.let { read(it) },
             moments = files.moments?.let { read(it) },
+            majorEvents = files.majorEvents?.let { read(it) },
         )
         DataValidator.validate(db)
         return db

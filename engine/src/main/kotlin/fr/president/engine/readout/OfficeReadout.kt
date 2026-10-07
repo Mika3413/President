@@ -91,6 +91,13 @@ class OfficeReadout(private val ctx: SimulationContext) {
             if (m.debateOpen()) items += 80 to Item("⚖", "Débat d'entre-deux-tours à préparer", "Vingt millions de téléspectateurs : le vainqueur du débat gagne des points au second tour.", Tone.WARNING, AdvisorReadout.Target.MOMENTS)
             m.summitsOpen().firstOrNull()?.let { (_, s) -> items += 44 to Item("✪", s.label, "Les dirigeants vous attendent : vos prises de parole changeront nos relations.", Tone.NEUTRAL, AdvisorReadout.Target.MOMENTS) }
         }
+        fr.president.engine.presidency.MajorEventsService(ctx).let { major ->
+            major.openDossiers().firstOrNull()?.let { d -> items += 46 to Item("❖", d.label, d.prompt.substringBefore('\n'), Tone.WARNING, AdvisorReadout.Target.MOMENTS) }
+            major.upcoming(1).firstOrNull()?.let { (t, at) ->
+                val days = ctx.now.daysUntil(at)
+                if (days in 0.0..30.0) items += 15 to Item("★", "${t.label} dans ${days.toInt()} jour(s)", "${t.team.replaceFirstChar { it.uppercase() }} ${t.host} : une victoire soulèverait le pays.", Tone.NEUTRAL)
+            }
+        }
         if (fr.president.engine.military.NuclearService(ctx).pendingDecision()) {
             items += 100 to Item("☢", "Décision nucléaire en attente", "Une arme nucléaire a frappé nos forces. Riposte massive, riposte limitée ou retenue : vous seul décidez.", Tone.BAD, AdvisorReadout.Target.DEFENSE)
         }
