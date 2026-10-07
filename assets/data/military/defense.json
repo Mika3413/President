@@ -229,6 +229,257 @@
    "capabilities": {
     "cyber": 0.15
    }
+  },
+  {
+   "id": "mirage_2000d",
+   "category": "air",
+   "label": "Mirage 2000D rénovés (48 appareils)",
+   "description": "Moins cher qu'un Rafale neuf : l'appui au sol modernisé pour dix ans.",
+   "costBillions": 1.2,
+   "days": 360,
+   "capabilities": {
+    "strike": 0.03
+   }
+  },
+  {
+   "id": "tigre",
+   "category": "air",
+   "label": "Hélicoptères Tigre Mk III (24)",
+   "description": "L'hélicoptère de combat : chasse aux chars, appui des troupes.",
+   "costBillions": 1.8,
+   "days": 720,
+   "capabilities": {
+    "strike": 0.04,
+    "drones": 0.02
+   }
+  },
+  {
+   "id": "eurodrone",
+   "category": "air",
+   "label": "Eurodrone (programme européen)",
+   "description": "Drone de surveillance armé coproduit avec l'Allemagne, l'Italie et l'Espagne.",
+   "costBillions": 1.5,
+   "days": 1440,
+   "capabilities": {
+    "drones": 0.12,
+    "space": 0.05
+   }
+  },
+  {
+   "id": "avsimar",
+   "category": "air",
+   "label": "Avions de patrouille maritime Albatros",
+   "description": "Traquer les sous-marins et surveiller les approches maritimes.",
+   "costBillions": 1.0,
+   "days": 900,
+   "capabilities": {
+    "naval": 0.06,
+    "space": 0.03
+   }
+  },
+  {
+   "id": "e2d",
+   "category": "air",
+   "label": "E-2D Advanced Hawkeye (achat américain)",
+   "description": "Radar volant du porte-avions : voir loin, coordonner la défense aérienne.",
+   "costBillions": 1.4,
+   "days": 540,
+   "capabilities": {
+    "airDefense": 0.06,
+    "space": 0.05
+   },
+   "supplier": "USA"
+  },
+  {
+   "id": "scaf",
+   "category": "air",
+   "label": "SCAF : avion de combat du futur (tranche de développement)",
+   "description": "Le chasseur des années 2040 avec l'Allemagne et l'Espagne. Très long, très cher, décisif.",
+   "costBillions": 6.0,
+   "days": 3600,
+   "capabilities": {
+    "strike": 0.1,
+    "airDefense": 0.05
+   }
+  },
+  {
+   "id": "caesar_regiment",
+   "category": "land",
+   "label": "Régiment d'artillerie CAESAR Mk II",
+   "description": "Une unité d'artillerie de plus : la meilleure arme contre les lignes fortifiées.",
+   "costBillions": 1.2,
+   "days": 360,
+   "capabilities": {},
+   "unitType": "ARTILLERY_REGIMENT"
+  },
+  {
+   "id": "vl_mica_regiment",
+   "category": "land",
+   "label": "Régiment de défense sol-air VL MICA",
+   "description": "Défense antiaérienne mobile qui accompagne les brigades.",
+   "costBillions": 1.5,
+   "days": 420,
+   "capabilities": {
+    "airDefense": 0.03
+   },
+   "unitType": "AIR_DEFENSE_REGIMENT"
+  },
+  {
+   "id": "foudre",
+   "category": "land",
+   "label": "Lance-roquettes unitaires Foudre (26)",
+   "description": "Frappes de précision à 150 km : le successeur français du LRU.",
+   "costBillions": 0.8,
+   "days": 540,
+   "capabilities": {
+    "strike": 0.06
+   }
+  },
+  {
+   "id": "mountain_gear",
+   "category": "land",
+   "label": "Brigade de montagne (équipement complet)",
+   "description": "Chasseurs alpins : maîtres des combats en altitude.",
+   "costBillions": 1.6,
+   "days": 480,
+   "capabilities": {},
+   "unitType": "MOUNTAIN_BRIGADE"
+  },
+  {
+   "id": "marines",
+   "category": "land",
+   "label": "Brigade d'infanterie de marine",
+   "description": "Troupes de débarquement et d'intervention rapide.",
+   "costBillions": 1.8,
+   "days": 480,
+   "capabilities": {},
+   "unitType": "MARINE_BRIGADE"
+  },
+  {
+   "id": "larinae",
+   "category": "land",
+   "label": "Munitions rôdeuses Larinae et Colibri",
+   "description": "Drones kamikazes au niveau des sections.",
+   "costBillions": 0.3,
+   "days": 270,
+   "capabilities": {
+    "drones": 0.06
+   }
+  },
+  {
+   "id": "fremm",
+   "category": "sea",
+   "label": "Frégates FREMM supplémentaires (groupe)",
+   "description": "Frégates éprouvées, livrables plus tôt que les FDI.",
+   "costBillions": 2.6,
+   "days": 900,
+   "capabilities": {
+    "naval": 0.04
+   },
+   "unitType": "SURFACE_GROUP"
+  },
+  {
+   "id": "po",
+   "category": "sea",
+   "label": "Patrouilleurs océaniques (10)",
+   "description": "Surveiller la deuxième zone économique exclusive du monde.",
+   "costBillions": 0.9,
+   "days": 720,
+   "capabilities": {
+    "naval": 0.03
+   }
+  },
+  {
+   "id": "slamf",
+   "category": "sea",
+   "label": "Chasseurs de mines SLAM-F",
+   "description": "Drones sous-marins pour dégager ports et détroits.",
+   "costBillions": 0.6,
+   "days": 720,
+   "capabilities": {
+    "naval": 0.04
+   }
+  },
+  {
+   "id": "aster_b1nt",
+   "category": "missiles",
+   "label": "Missiles Aster 30 B1NT (antibalistiques)",
+   "description": "Intercepter les missiles balistiques et hypersoniques.",
+   "costBillions": 1.0,
+   "days": 540,
+   "capabilities": {
+    "airDefense": 0.1
+   }
+  },
+  {
+   "id": "exocet_b4",
+   "category": "missiles",
+   "label": "Missiles antinavires Exocet Block 4",
+   "description": "Tenir les flottes ennemies à distance.",
+   "costBillions": 0.5,
+   "days": 360,
+   "capabilities": {
+    "naval": 0.05
+   }
+  },
+  {
+   "id": "hypersonic",
+   "category": "missiles",
+   "label": "Planeur hypersonique (démonstrateur V-MaX)",
+   "description": "Un missile que personne ne sait intercepter : un saut technologique.",
+   "costBillions": 1.5,
+   "days": 1440,
+   "capabilities": {
+    "strike": 0.08
+   }
+  },
+  {
+   "id": "iris_t",
+   "category": "missiles",
+   "label": "IRIS-T SLM (achat allemand)",
+   "description": "Défense sol-air moyenne portée, vite livrée ; renforce le pilier européen.",
+   "costBillions": 0.9,
+   "days": 240,
+   "capabilities": {
+    "airDefense": 0.08
+   },
+   "supplier": "DEU"
+  },
+  {
+   "id": "nasams",
+   "category": "missiles",
+   "label": "NASAMS (achat norvégien)",
+   "description": "Système éprouvé en Ukraine, intégré à l'OTAN.",
+   "costBillions": 0.8,
+   "days": 300,
+   "capabilities": {
+    "airDefense": 0.07
+   },
+   "supplier": "NOR"
+  },
+  {
+   "id": "early_warning",
+   "category": "cyber",
+   "label": "Satellites d'alerte avancée (Odin's Eye)",
+   "description": "Détecter les tirs de missiles dès leur départ.",
+   "costBillions": 1.2,
+   "days": 1080,
+   "capabilities": {
+    "space": 0.15,
+    "airDefense": 0.03
+   }
+  },
+  {
+   "id": "ew",
+   "category": "cyber",
+   "label": "Guerre électronique (brouilleurs, leurres)",
+   "description": "Aveugler drones et radars ennemis.",
+   "costBillions": 0.4,
+   "days": 360,
+   "capabilities": {
+    "drones": 0.05,
+    "cyber": 0.05
+   }
   }
  ],
  "capabilities": {

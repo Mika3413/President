@@ -52,6 +52,7 @@ class AdvisorCard(private val ui: Ui, private val session: GameSession, private 
         AdvisorReadout.Target.CRISIS -> nav.open(PanelId.CRISIS, a.targetId ?: "active")
         AdvisorReadout.Target.CONSEQUENCES -> nav.open(PanelId.STATS, "consequences")
         AdvisorReadout.Target.OFFICE -> nav.open(PanelId.OFFICE)
+        AdvisorReadout.Target.DEFENSE -> nav.open(PanelId.DEFENSE, "nuclear")
     }
 
     private companion object {

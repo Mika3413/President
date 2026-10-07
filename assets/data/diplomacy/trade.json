@@ -483,6 +483,194 @@
     "SAU",
     "EGY"
    ]
+  },
+  {
+   "id": "arms_mirage",
+   "label": "Mirage 2000-5 d'occasion",
+   "sector": "aerospace",
+   "valueBillions": 1.0,
+   "delayDays": 60,
+   "clients": [
+    "UKR",
+    "GRC",
+    "IND",
+    "EGY",
+    "BRA"
+   ],
+   "arms": true,
+   "sensitive": [
+    "EGY"
+   ]
+  },
+  {
+   "id": "arms_griffon",
+   "label": "Blindés Griffon et Serval",
+   "sector": "aerospace",
+   "valueBillions": 1.4,
+   "delayDays": 90,
+   "clients": [
+    "BEL",
+    "ROU",
+    "MAR",
+    "SAU",
+    "EGY",
+    "UKR"
+   ],
+   "arms": true,
+   "sensitive": [
+    "SAU",
+    "EGY"
+   ]
+  },
+  {
+   "id": "arms_tigre",
+   "label": "Hélicoptères de combat Tigre",
+   "sector": "aerospace",
+   "valueBillions": 1.5,
+   "delayDays": 120,
+   "clients": [
+    "ESP",
+    "SAU",
+    "IND",
+    "BRA",
+    "MAR"
+   ],
+   "arms": true,
+   "sensitive": [
+    "SAU"
+   ]
+  },
+  {
+   "id": "arms_aster",
+   "label": "Missiles Aster 30",
+   "sector": "aerospace",
+   "valueBillions": 0.8,
+   "delayDays": 60,
+   "clients": [
+    "ITA",
+    "GBR",
+    "SAU",
+    "EGY",
+    "UKR",
+    "GRC"
+   ],
+   "arms": true,
+   "sensitive": [
+    "SAU",
+    "EGY"
+   ]
+  },
+  {
+   "id": "arms_exocet",
+   "label": "Missiles antinavires Exocet",
+   "sector": "aerospace",
+   "valueBillions": 0.4,
+   "delayDays": 60,
+   "clients": [
+    "BRA",
+    "IND",
+    "MAR",
+    "EGY",
+    "GRC",
+    "TUR"
+   ],
+   "arms": true,
+   "sensitive": [
+    "EGY",
+    "TUR"
+   ]
+  },
+  {
+   "id": "arms_gowind",
+   "label": "Corvettes Gowind",
+   "sector": "aerospace",
+   "valueBillions": 1.6,
+   "delayDays": 120,
+   "clients": [
+    "EGY",
+    "ROU",
+    "MAR",
+    "SAU",
+    "BRA"
+   ],
+   "arms": true,
+   "sensitive": [
+    "EGY",
+    "SAU"
+   ]
+  },
+  {
+   "id": "arms_satellites",
+   "label": "Satellites d'observation",
+   "sector": "aerospace",
+   "valueBillions": 0.9,
+   "delayDays": 120,
+   "clients": [
+    "MAR",
+    "BRA",
+    "IND",
+    "EGY",
+    "POL",
+    "SAU"
+   ],
+   "arms": true,
+   "sensitive": [
+    "EGY",
+    "SAU"
+   ]
+  },
+  {
+   "id": "arms_shells",
+   "label": "Obus de 155 mm (contrat pluriannuel)",
+   "sector": "aerospace",
+   "valueBillions": 0.6,
+   "delayDays": 45,
+   "clients": [
+    "UKR",
+    "POL",
+    "ROU",
+    "BEL",
+    "NLD",
+    "IND"
+   ],
+   "arms": true,
+   "sensitive": []
+  },
+  {
+   "id": "arms_drones",
+   "label": "Drones Aarok",
+   "sector": "aerospace",
+   "valueBillions": 0.5,
+   "delayDays": 90,
+   "clients": [
+    "UKR",
+    "IND",
+    "MAR",
+    "BRA",
+    "ROU"
+   ],
+   "arms": true,
+   "sensitive": []
+  },
+  {
+   "id": "arms_po",
+   "label": "Patrouilleurs hauturiers",
+   "sector": "aerospace",
+   "valueBillions": 0.5,
+   "delayDays": 90,
+   "clients": [
+    "MAR",
+    "EGY",
+    "BRA",
+    "GRC",
+    "TUN",
+    "DZA"
+   ],
+   "arms": true,
+   "sensitive": [
+    "EGY",
+    "DZA"
+   ]
   }
  ]
 }

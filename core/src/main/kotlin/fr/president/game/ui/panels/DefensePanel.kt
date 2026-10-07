@@ -40,6 +40,10 @@ class DefensePanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pa
         }
     }
 
+    override fun applyArgument(argument: String) {
+        if (argument == "nuclear") tab = Tab.NUCLEAR
+    }
+
     private fun run(r: Result<String>) { message = r.fold({ it }, { it.message ?: "Impossible." }); nav.refresh() }
 
     private fun TextButton.wide() = apply { label.setWrap(true); label.setAlignment(Align.left) }
@@ -152,7 +156,41 @@ class DefensePanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pa
 
     // ---- Dissuasion ----
 
+    private var confirming: String? = null
+
+    /** Échelle d'escalade, décision après une frappe ennemie, ultime avertissement. */
+    private fun escalation(into: Table) {
+        val nuclear = session.nuclear
+        if (nuclear.pendingDecision()) {
+            val box = Table().apply { setBackground(ui.skin.fill(Theme.bad)); pad(8f, 10f, 8f, 10f); defaults().left() }
+            box.add(ui.label("☢ DÉCISION NUCLÉAIRE", "title", com.badlogic.gdx.graphics.Color.WHITE)).row()
+            box.add(ui.label("Une arme nucléaire a frappé nos forces. Vous seul décidez de la réponse.", "small", com.badlogic.gdx.graphics.Color.WHITE, wrap = true)).growX().row()
+            into.add(box).growX().padBottom(4f).row()
+            fr.president.engine.military.NuclearService.Response.entries.forEach { r ->
+                into.add(ui.label(r.text, "small", wrap = true)).growX().padTop(4f).row()
+                if (confirming == r.name) {
+                    val row = Table().apply { defaults().padRight(4f) }
+                    row.add(ui.colorButton("✔ Je confirme : ${r.label.lowercase()}", Theme.bad) { confirming = null; run(nuclear.respond(r)) })
+                    row.add(ui.button("Annuler") { confirming = null; nav.refresh() })
+                    into.add(row).left().row()
+                } else into.add(ui.colorButton(r.label, if (r == fr.president.engine.military.NuclearService.Response.RESTRAINT) Theme.accentDark else Theme.bad) { confirming = r.name; nav.refresh() }).left().row()
+            }
+            into.add().height(GAP).row()
+        }
+        val ladder = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(6f, 8f, 6f, 8f); defaults().left() }
+        ladder.add(ui.label("Échelle d'escalade", "bold")).row()
+        val current = nuclear.rung()
+        fr.president.engine.military.NuclearService.Rung.entries.forEach { r ->
+            val on = r.ordinal <= current.ordinal
+            val color = when { !on -> Theme.textMuted; r.ordinal >= 3 -> Theme.bad; r.ordinal == 2 -> Theme.warning; else -> Theme.accent }
+            ladder.add(ui.label((if (r == current) "▶ " else "   ") + "${r.ordinal}. ${r.label}", if (r == current) "bold" else "small", color)).row()
+            if (r == current) ladder.add(ui.label(r.text, "muted", wrap = true)).growX().row()
+        }
+        into.add(ladder).growX().padBottom(GAP).row()
+    }
+
     private fun nuclear(into: Table) {
+        escalation(into)
         val d = defense.state
         val box = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(6f, 8f, 6f, 8f); defaults().left() }
         fun line(label: String, value: String) { val r = Table(); r.add(ui.label(label, "small")).left().expandX(); r.add(ui.label(value, "bold")).right(); box.add(r).growX().row() }
@@ -180,6 +218,15 @@ class DefensePanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pa
         action("Procéder à un essai nucléaire dans le Pacifique", defense.testBlocker(), Theme.bad) { defense.nuclearTest() }
         into.add(ui.label("Cas extrême", "bold")).padTop(GAP).row()
         action("Avertissement solennel à l'agresseur", defense.warningBlocker(), Theme.bad) { defense.solemnWarning() }
+        // L'ultime avertissement : une frappe nucléaire unique sur un objectif militaire. Double confirmation.
+        val blocker = session.nuclear.strikeBlocker()
+        into.add(ui.label("Frappe unique sur la plus forte concentration militaire de l'agresseur. Si l'ennemi est une puissance nucléaire, il peut riposter. Le monde entier vous jugera.", "small", Theme.textMuted, wrap = true)).growX().padTop(4f).row()
+        if (blocker == null && confirming == "strike") {
+            val row = Table().apply { defaults().padRight(4f) }
+            row.add(ui.colorButton("☢ J'ordonne l'ultime avertissement", Theme.bad) { confirming = null; run(session.nuclear.warningStrike()) })
+            row.add(ui.button("Annuler") { confirming = null; nav.refresh() })
+            into.add(row).left().padTop(3f).row()
+        } else action("☢ Ultime avertissement nucléaire", blocker, Theme.bad) { confirming = "strike"; Result.success("Confirmez l'ordre : il n'y aura pas de retour en arrière.") }
     }
 
     private companion object {

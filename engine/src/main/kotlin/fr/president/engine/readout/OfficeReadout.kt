@@ -87,6 +87,9 @@ class OfficeReadout(private val ctx: SimulationContext) {
                 (if (vacant.size == 1) "L'intérim est assuré par le cabinet" else "Intérim : ${vacant.joinToString(", ") { it.shortTitle }}") +
                     ". Ses dossiers avancent moins bien : nommez un successeur.", Tone.WARNING, AdvisorReadout.Target.GOVERNMENT)
         }
+        if (fr.president.engine.military.NuclearService(ctx).pendingDecision()) {
+            items += 100 to Item("☢", "Décision nucléaire en attente", "Une arme nucléaire a frappé nos forces. Riposte massive, riposte limitée ou retenue : vous seul décidez.", Tone.BAD, AdvisorReadout.Target.DEFENSE)
+        }
         if (items.isEmpty()) items += 0 to Item("★", "Rien d'urgent ce matin", "Le pays est calme : c'est le moment de lancer une réforme ou de préparer l'avenir.", Tone.GOOD)
         return items.sortedByDescending { it.first }.take(MAX_ITEMS).map { it.second }
     }

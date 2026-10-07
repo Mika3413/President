@@ -88,6 +88,13 @@ class DefenseState(
     var lastTest: WorldTime? = null,
     var lastWarning: WorldTime? = null,
     var lastReduction: WorldTime? = null,
+    /** Échelle d'escalade nucléaire (0 : calme … 4 : échange). */
+    var escalation: Int = 0,
+    /** Puissance qui a employé l'arme nucléaire contre nous (décision en attente). */
+    var nuclearAttackBy: String? = null,
+    var nuclearAttackAt: WorldTime? = null,
+    var decisionTaken: Boolean? = null,
+    var lastNuclearStrike: WorldTime? = null,
 )
 
 /**
@@ -288,6 +295,7 @@ class DefenseService(private val ctx: SimulationContext) {
     fun setPosture(p: NuclearPosture): Result<String> = runCatching {
         require(state.posture != p) { "Déjà en vigueur." }
         state.posture = p
+        if (p == NuclearPosture.REINFORCED) state.escalation = maxOf(state.escalation, 1)
         if (p == NuclearPosture.REINFORCED) {
             Geopolitics(ctx).enemiesOf(player).plus(listOf("RUS")).distinct().filter { it in ctx.state.countries }
                 .forEach { ctx.state.diplomacy.relation(it, player).memories += DiplomaticMemory("WARNING", -POSTURE_WARNING, ctx.now, "posture nucléaire renforcée") }
@@ -304,6 +312,7 @@ class DefenseService(private val ctx: SimulationContext) {
     fun nuclearTest(): Result<String> = runCatching {
         testBlocker()?.let { error(it) }
         state.lastTest = ctx.now
+        state.escalation = maxOf(state.escalation, 1)
         state.credibility = (state.credibility + TEST_GAIN).coerceAtMost(1.0)
         ctx.state.countries.keys.filter { it != player }.forEach { ctx.state.diplomacy.relation(it, player).memories += DiplomaticMemory("CONDEMNATION", -TEST_OUTRAGE, ctx.now, "essai nucléaire") }
         ctx.effects.trigger(EffectSpec("opinion.national", -0.03), null, emptyMap(), "nuclear")
@@ -352,6 +361,7 @@ class DefenseService(private val ctx: SimulationContext) {
         warningBlocker()?.let { error(it) }
         val war = invader()!!
         state.lastWarning = ctx.now
+        state.escalation = maxOf(state.escalation, 2)
         val enemies = war.participants.filter { !Geopolitics(ctx).allied(player, it) && it != player && Geopolitics(ctx).atWar(player, it) }
         val nuclearEnemy = enemies.any { Geopolitics(ctx).isNuclear(it) }
         val chance = if (nuclearEnemy) NUCLEAR_ENEMY_CHANCE else WARNING_BASE + WARNING_CREDIBILITY * state.credibility

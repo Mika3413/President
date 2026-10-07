@@ -127,6 +127,8 @@ class MilitaryState(
     var worksSeeded: Boolean = false,
     /** Vie des zones occupées : moral de la population, résistance. */
     val occupation: MutableMap<String, OccupationState> = mutableMapOf(),
+    /** Zones frappées par l'arme nucléaire (retombées). */
+    val nuclearZones: MutableMap<String, WorldTime> = mutableMapOf(),
     /** Batailles récentes et en cours (rapports de combat). */
     val battles: MutableList<BattleRecord> = mutableListOf(),
 )

@@ -100,6 +100,7 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
         }
         if (lod >= Lod.FRANCE || layer == ThematicLayer.MILITARY || atWar) drawWorks(shapes, camera, session, lod, layer)
         drawResistance(shapes, camera, session)
+        drawFallout(shapes, camera, session)
         battleEffects(shapes, camera, session, visible, delta)
         // Glissement des pions : la position affichée rejoint la zone réelle en quelques dixièmes de seconde.
         val follow = 1f - Math.exp((-delta * GLIDE_SPEED).toDouble()).toFloat()
@@ -144,6 +145,10 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
 
     fun labels(batch: SpriteBatch, session: GameSession) {
         val units = session.state.military.units
+        for (f in fallout) {
+            font.color = Color.BLACK
+            font.draw(batch, "☢", f.x - 5f, f.y + 6f)
+        }
         for (f in floaters) {
             val age = time - f.start
             val alpha = (1f - age / FLOAT_SECONDS).coerceIn(0f, 1f)
@@ -203,6 +208,26 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
                 val alpha = if (w.level <= 0) 0.45f else 0.6f + 0.4f * w.condition.toFloat()
                 drawWork(shapes, w.type, x, y, Color(base.r, base.g, base.b, alpha), w.level)
             }
+        }
+    }
+
+    /** Zones frappées par l'arme nucléaire : un halo jaune de retombées, pendant quatre mois. */
+    private class Fallout(val x: Float, val y: Float)
+    private val fallout = ArrayList<Fallout>()
+
+    private fun drawFallout(shapes: ShapeRenderer, camera: OrthographicCamera, session: GameSession) {
+        fallout.clear()
+        val now = session.state.time
+        for ((zoneId, at) in session.state.military.nuclearZones) {
+            if (at.daysUntil(now) > FALLOUT_DAYS) continue
+            val z = session.db.zones.zones[zoneId] ?: continue
+            val p = project(camera, z.lon, z.lat) ?: continue
+            val pulse = 0.85f + 0.15f * Math.sin(time * 2.0).toFloat()
+            shapes.color = Color(0.95f, 0.85f, 0.1f, 0.25f)
+            shapes.circle(p.x, p.y, FALLOUT_RADIUS * pulse, SEGMENTS * 2)
+            shapes.color = Color(0.95f, 0.6f, 0.1f, 0.35f)
+            shapes.circle(p.x, p.y, FALLOUT_RADIUS * 0.45f * pulse, SEGMENTS * 2)
+            fallout += Fallout(p.x, p.y)
         }
     }
 
@@ -425,5 +450,7 @@ class UnitLayer(private val font: BitmapFont, private val uiScale: Float) {
         const val JITTER = 22f
         const val FLOAT_SECONDS = 2.2f
         const val FLOAT_RISE = 14f
+        const val FALLOUT_DAYS = 120.0
+        const val FALLOUT_RADIUS = 26f
     }
 }

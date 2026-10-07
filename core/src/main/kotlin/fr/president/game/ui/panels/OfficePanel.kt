@@ -70,6 +70,7 @@ class OfficePanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Pan
             AdvisorReadout.Target.ECONOMY -> nav.open(PanelId.ECONOMY)
             AdvisorReadout.Target.INBOX -> nav.open(PanelId.INBOX)
             AdvisorReadout.Target.COUNTRY -> id?.let { nav.select(fr.president.game.map.MapSelection.Country(it)) }
+            AdvisorReadout.Target.DEFENSE -> nav.open(PanelId.DEFENSE, "nuclear")
             else -> nav.open(PanelId.DECISIONS)
         }
     }

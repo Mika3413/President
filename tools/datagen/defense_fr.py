@@ -34,6 +34,33 @@ EQUIPMENT = [
     ("drones", "cyber", "Drones Aarok et munitions rôdeuses", "Une filière française de drones de combat.", 0.8, 365, None, {"drones": 0.15, "strike": 0.04}, None),
     ("reaper", "cyber", "Drones MQ-9 Reaper (achat américain)", "Éprouvés et vite livrés ; les États-Unis gardent la main sur les logiciels.", 0.6, 180, None, {"drones": 0.12}, "USA"),
     ("cyber_command", "cyber", "Commandement cyber : 1 000 cyber-combattants", "Défendre réseaux, hôpitaux et centrales ; riposter.", 0.5, 365, None, {"cyber": 0.15}, None),
+    # Air
+    ("mirage_2000d", "air", "Mirage 2000D rénovés (48 appareils)", "Moins cher qu'un Rafale neuf : l'appui au sol modernisé pour dix ans.", 1.2, 360, None, {"strike": 0.03}, None),
+    ("tigre", "air", "Hélicoptères Tigre Mk III (24)", "L'hélicoptère de combat : chasse aux chars, appui des troupes.", 1.8, 720, None, {"strike": 0.04, "drones": 0.02}, None),
+    ("eurodrone", "air", "Eurodrone (programme européen)", "Drone de surveillance armé coproduit avec l'Allemagne, l'Italie et l'Espagne.", 1.5, 1440, None, {"drones": 0.12, "space": 0.05}, None),
+    ("avsimar", "air", "Avions de patrouille maritime Albatros", "Traquer les sous-marins et surveiller les approches maritimes.", 1.0, 900, None, {"naval": 0.06, "space": 0.03}, None),
+    ("e2d", "air", "E-2D Advanced Hawkeye (achat américain)", "Radar volant du porte-avions : voir loin, coordonner la défense aérienne.", 1.4, 540, None, {"airDefense": 0.06, "space": 0.05}, "USA"),
+    ("scaf", "air", "SCAF : avion de combat du futur (tranche de développement)", "Le chasseur des années 2040 avec l'Allemagne et l'Espagne. Très long, très cher, décisif.", 6.0, 3600, None, {"strike": 0.1, "airDefense": 0.05}, None),
+    # Terre
+    ("caesar_regiment", "land", "Régiment d'artillerie CAESAR Mk II", "Une unité d'artillerie de plus : la meilleure arme contre les lignes fortifiées.", 1.2, 360, "ARTILLERY_REGIMENT", {}, None),
+    ("vl_mica_regiment", "land", "Régiment de défense sol-air VL MICA", "Défense antiaérienne mobile qui accompagne les brigades.", 1.5, 420, "AIR_DEFENSE_REGIMENT", {"airDefense": 0.03}, None),
+    ("foudre", "land", "Lance-roquettes unitaires Foudre (26)", "Frappes de précision à 150 km : le successeur français du LRU.", 0.8, 540, None, {"strike": 0.06}, None),
+    ("mountain_gear", "land", "Brigade de montagne (équipement complet)", "Chasseurs alpins : maîtres des combats en altitude.", 1.6, 480, "MOUNTAIN_BRIGADE", {}, None),
+    ("marines", "land", "Brigade d'infanterie de marine", "Troupes de débarquement et d'intervention rapide.", 1.8, 480, "MARINE_BRIGADE", {}, None),
+    ("larinae", "land", "Munitions rôdeuses Larinae et Colibri", "Drones kamikazes au niveau des sections.", 0.3, 270, None, {"drones": 0.06}, None),
+    # Mer
+    ("fremm", "sea", "Frégates FREMM supplémentaires (groupe)", "Frégates éprouvées, livrables plus tôt que les FDI.", 2.6, 900, "SURFACE_GROUP", {"naval": 0.04}, None),
+    ("po", "sea", "Patrouilleurs océaniques (10)", "Surveiller la deuxième zone économique exclusive du monde.", 0.9, 720, None, {"naval": 0.03}, None),
+    ("slamf", "sea", "Chasseurs de mines SLAM-F", "Drones sous-marins pour dégager ports et détroits.", 0.6, 720, None, {"naval": 0.04}, None),
+    # Missiles et défense aérienne
+    ("aster_b1nt", "missiles", "Missiles Aster 30 B1NT (antibalistiques)", "Intercepter les missiles balistiques et hypersoniques.", 1.0, 540, None, {"airDefense": 0.1}, None),
+    ("exocet_b4", "missiles", "Missiles antinavires Exocet Block 4", "Tenir les flottes ennemies à distance.", 0.5, 360, None, {"naval": 0.05}, None),
+    ("hypersonic", "missiles", "Planeur hypersonique (démonstrateur V-MaX)", "Un missile que personne ne sait intercepter : un saut technologique.", 1.5, 1440, None, {"strike": 0.08}, None),
+    ("iris_t", "missiles", "IRIS-T SLM (achat allemand)", "Défense sol-air moyenne portée, vite livrée ; renforce le pilier européen.", 0.9, 240, None, {"airDefense": 0.08}, "DEU"),
+    ("nasams", "missiles", "NASAMS (achat norvégien)", "Système éprouvé en Ukraine, intégré à l'OTAN.", 0.8, 300, None, {"airDefense": 0.07}, "NOR"),
+    # Cyber, drones, renseignement
+    ("early_warning", "cyber", "Satellites d'alerte avancée (Odin's Eye)", "Détecter les tirs de missiles dès leur départ.", 1.2, 1080, None, {"space": 0.15, "airDefense": 0.03}, None),
+    ("ew", "cyber", "Guerre électronique (brouilleurs, leurres)", "Aveugler drones et radars ennemis.", 0.4, 360, None, {"drones": 0.05, "cyber": 0.05}, None),
 ]
 
 START_CAPABILITIES = {"airDefense": 0.3, "strike": 0.35, "cyber": 0.35, "drones": 0.2, "space": 0.4, "naval": 0.45, "ammo": 0.2}
@@ -64,6 +91,16 @@ ARMS = [
     ("arms_caesar", "Canons CAESAR", "aerospace", 0.5, 60, ["UKR", "BEL", "ROU", "MAR", "SAU", "IND"], ["SAU"]),
     ("arms_sampt", "Défense sol-air SAMP/T", "aerospace", 1.5, 90, ["UKR", "ROU", "POL", "SAU", "EGY", "GRC"], ["SAU", "EGY"]),
     ("arms_helicopters", "Hélicoptères H225M Caracal", "aerospace", 1.2, 90, ["BRA", "IND", "SAU", "EGY", "MAR", "NLD"], ["SAU", "EGY"]),
+    ("arms_mirage", "Mirage 2000-5 d'occasion", "aerospace", 1.0, 60, ["UKR", "GRC", "IND", "EGY", "BRA"], ["EGY"]),
+    ("arms_griffon", "Blindés Griffon et Serval", "aerospace", 1.4, 90, ["BEL", "ROU", "MAR", "SAU", "EGY", "UKR"], ["SAU", "EGY"]),
+    ("arms_tigre", "Hélicoptères de combat Tigre", "aerospace", 1.5, 120, ["ESP", "SAU", "IND", "BRA", "MAR"], ["SAU"]),
+    ("arms_aster", "Missiles Aster 30", "aerospace", 0.8, 60, ["ITA", "GBR", "SAU", "EGY", "UKR", "GRC"], ["SAU", "EGY"]),
+    ("arms_exocet", "Missiles antinavires Exocet", "aerospace", 0.4, 60, ["BRA", "IND", "MAR", "EGY", "GRC", "TUR"], ["EGY", "TUR"]),
+    ("arms_gowind", "Corvettes Gowind", "aerospace", 1.6, 120, ["EGY", "ROU", "MAR", "SAU", "BRA"], ["EGY", "SAU"]),
+    ("arms_satellites", "Satellites d'observation", "aerospace", 0.9, 120, ["MAR", "BRA", "IND", "EGY", "POL", "SAU"], ["EGY", "SAU"]),
+    ("arms_shells", "Obus de 155 mm (contrat pluriannuel)", "aerospace", 0.6, 45, ["UKR", "POL", "ROU", "BEL", "NLD", "IND"], []),
+    ("arms_drones", "Drones Aarok", "aerospace", 0.5, 90, ["UKR", "IND", "MAR", "BRA", "ROU"], []),
+    ("arms_po", "Patrouilleurs hauturiers", "aerospace", 0.5, 90, ["MAR", "EGY", "BRA", "GRC", "TUN", "DZA"], ["EGY", "DZA"]),
 ]
 
 snapshot = json.load(open(os.path.join(ROOT, "world_snapshots", "WORLD_SNAPSHOT_2026_10.json")))
