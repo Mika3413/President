@@ -37,6 +37,25 @@ C = [
  ("JPN","Japon","japonais","ja","ja",124.0,"Premier ministre","Monsieur le Premier ministre","Madame la Première ministre",3800,0.007,0.022,0.025,2.4,0.37,0.42,0,False,15,[],0.8,50,False,(0,0,0),("Tokyo",139.69,35.69),(0.2,0.5,0.55,0.65,0.75,0.4)),
  ("IND","Inde","indien","hi","hi",1440.0,"Premier ministre","Monsieur le Premier ministre","Madame la Première ministre",3900,0.065,0.045,0.075,0.82,0.19,0.27,0,False,13,[],0.7,75,True,(0,0,0),("New Delhi",77.21,28.61),(0.45,0.75,0.45,0.75,0.5,0.6)),
  ("BRA","Brésil","brésilien","pt","pt",212.0,"Président de la République","Monsieur le Président","Madame la Présidente",2100,0.021,0.045,0.068,0.88,0.38,0.45,0,False,8,[],0.6,22,False,(0,0,0),("Brasilia",-47.88,-15.79),(0.3,0.6,0.6,0.6,0.5,0.4)),
+ ("FIN","Finlande","finlandais","fi","fi",5.6,"Premier ministre","Monsieur le Premier ministre","Madame la Première ministre",290,0.01,0.02,0.085,0.82,0.53,0.56,0,False,5,["EU","NATO"],0.75,7,False,(4,2,1),("Helsinki",24.94,60.17),(0.25,0.5,0.6,0.7,0.65,0.55)),
+ ("DNK","Danemark","danois","da","da",6.0,"Premier ministre","Monsieur le Premier ministre","Madame la Première ministre",400,0.017,0.02,0.05,0.31,0.47,0.47,0,False,8,["EU","NATO"],0.75,9,False,(2,2,1),("Copenhague",12.57,55.68),(0.2,0.4,0.65,0.6,0.6,0.4)),
+ ("IRL","Irlande","irlandais","en","en",5.3,"Taoiseach","Monsieur le Taoiseach","Madame la Taoiseach",560,0.03,0.02,0.045,0.4,0.23,0.22,0,False,10,["EU"],0.6,1.5,False,(1,0,1),("Dublin",-6.26,53.35),(0.15,0.4,0.7,0.5,0.6,0.15)),
+ ("CZE","Tchéquie","tchèque","cs","cs",10.9,"Président du gouvernement","Monsieur le Président du gouvernement","Madame la Présidente du gouvernement",330,0.02,0.025,0.035,0.44,0.41,0.43,0,False,6,["EU","NATO"],0.6,6,False,(3,1,0),("Prague",14.42,50.08),(0.35,0.55,0.45,0.6,0.55,0.4)),
+ ("HUN","Hongrie","hongrois","hu","hu",9.6,"Premier ministre","Monsieur le Premier ministre","Madame la Première ministre",210,0.015,0.045,0.045,0.74,0.44,0.48,0,False,4,["EU","NATO"],0.55,4,False,(2,1,0),("Budapest",19.04,47.50),(0.45,0.85,0.3,0.7,0.5,0.45)),
+ ("SRB","Serbie","serbe","sr","sr",6.6,"Premier ministre","Monsieur le Premier ministre","Madame la Première ministre",75,0.035,0.04,0.08,0.5,0.42,0.44,0,False,2,[],0.5,1.5,False,(3,1,0),("Belgrade",20.46,44.79),(0.45,0.8,0.35,0.65,0.5,0.55)),
+ ("ISR","Israël","israélien","he","he",9.9,"Premier ministre","Monsieur le Premier ministre","Madame la Première ministre",520,0.02,0.03,0.035,0.68,0.36,0.42,0,False,3,[],0.95,30,True,(6,4,1),("Jérusalem",35.21,31.77),(0.75,0.75,0.3,0.9,0.4,0.85)),
+ ("IRN","Iran","iranien","fa","fa",90.0,"Président de la République islamique","Monsieur le Président","Madame la Présidente",400,0.02,0.35,0.09,0.35,0.15,0.22,0,False,1,[],0.7,10,False,(10,3,2),("Téhéran",51.39,35.69),(0.75,0.9,0.15,0.85,0.4,0.8)),
+ ("ARE","Émirats arabes unis","émirien","ar","ar",10.0,"Président de la Fédération","Votre Altesse","Votre Altesse",520,0.04,0.025,0.03,0.3,0.3,0.28,0,False,6,[],0.75,22,False,(3,3,1),("Abou Dabi",54.37,24.45),(0.35,0.6,0.5,0.7,0.6,0.5)),
+ ("LBY","Libye","libyen","ar","ar",7.0,"Président du Conseil présidentiel","Monsieur le Président","Madame la Présidente",45,0.05,0.03,0.2,0.1,0.5,0.5,0,False,3,[],0.3,2,False,(2,1,0),("Tripoli",13.18,32.89),(0.5,0.7,0.3,0.6,0.4,0.6)),
+ ("KOR","Corée du Sud","sud-coréen","ko","ko",51.7,"Président de la République","Monsieur le Président","Madame la Présidente",1700,0.02,0.02,0.03,0.5,0.25,0.26,0,False,10,[],0.8,45,False,(0,0,0),("Séoul",126.98,37.57),(0.4,0.6,0.5,0.75,0.6,0.6)),
+ ("PRK","Corée du Nord","nord-coréen","ko","ko",26.0,"Président des affaires de l'État","Monsieur le Président","Madame la Présidente",30,0.0,0.05,0.03,0.1,0.3,0.35,0,False,0,[],0.4,4,True,(0,0,0),("Pyongyang",125.75,39.03),(0.9,0.95,0.05,0.9,0.3,0.95)),
+ ("AUS","Australie","australien","en","en",27.0,"Premier ministre","Monsieur le Premier ministre","Madame la Première ministre",1650,0.02,0.03,0.04,0.5,0.36,0.38,0,False,6,[],0.85,40,False,(0,0,0),("Canberra",149.13,-35.28),(0.3,0.5,0.6,0.7,0.6,0.5)),
+ ("MEX","Mexique","mexicain","es","es",130.0,"Président des États-Unis mexicains","Monsieur le Président","Madame la Présidente",1700,0.012,0.04,0.03,0.5,0.22,0.26,0,False,6,[],0.55,15,False,(0,0,0),("Mexico",-99.13,19.43),(0.3,0.6,0.55,0.6,0.55,0.35)),
+ ("ARG","Argentine","argentin","es","es",46.0,"Président de la Nation","Monsieur le Président","Madame la Présidente",600,0.03,0.4,0.07,0.85,0.35,0.36,0,False,3,[],0.55,4,False,(0,0,0),("Buenos Aires",-58.38,-34.60),(0.4,0.7,0.5,0.75,0.45,0.4)),
+ ("ZAF","Afrique du Sud","sud-africain","en","en",63.0,"Président de la République","Monsieur le Président","Madame la Présidente",380,0.01,0.045,0.32,0.75,0.28,0.33,0,False,5,[],0.55,3,False,(0,0,0),("Pretoria",28.19,-25.75),(0.3,0.5,0.6,0.55,0.55,0.35)),
+ ("NGA","Nigeria","nigérian","en","en",230.0,"Président de la République fédérale","Monsieur le Président","Madame la Présidente",380,0.03,0.25,0.05,0.4,0.1,0.14,0,False,5,[],0.45,3,False,(8,2,1),("Abuja",7.49,9.06),(0.45,0.7,0.4,0.65,0.45,0.55)),
+ ("IDN","Indonésie","indonésien","id","id",280.0,"Président de la République","Monsieur le Président","Madame la Présidente",1300,0.05,0.025,0.05,0.4,0.15,0.17,0,False,4,[],0.55,10,False,(0,0,0),("Jakarta",106.85,-6.21),(0.3,0.65,0.5,0.6,0.6,0.45)),
+ ("PAK","Pakistan","pakistanais","ur","ur",245.0,"Premier ministre","Monsieur le Premier ministre","Madame la Première ministre",340,0.03,0.12,0.08,0.75,0.13,0.2,0,False,2,[],0.65,10,True,(0,0,0),("Islamabad",73.05,33.68),(0.65,0.85,0.3,0.8,0.4,0.8)),
 ]
 def feminine_title(t):
     """Titre accordé au féminin (« Première ministre », « Chancelière fédérale », « Présidente... »)."""
@@ -44,11 +63,23 @@ def feminine_title(t):
     t = t.replace("Chancelier fédéral", "Chancelière fédérale").replace("Premier ministre", "Première ministre").replace("Chef du gouvernement", "Cheffe du gouvernement")
     return re.sub(r"^Président\b", "Présidente", t)
 
+# Risques naturels réels de chaque pays (catastrophes à l'étranger, voir events_extra_fr.py).
+HAZARDS = {"AUT": ["flood"], "BEL": ["flood", "storm"], "BLR": [], "BRA": ["flood", "wildfire"], "CAN": ["wildfire"], "CHE": ["flood"], "CHN": ["earthquake", "flood", "storm"],
+           "DEU": ["flood"], "DZA": ["earthquake", "wildfire", "drought"], "EGY": ["drought"], "ESP": ["flood", "wildfire", "drought"], "GBR": ["flood", "storm"],
+           "GRC": ["earthquake", "wildfire"], "IND": ["earthquake", "flood", "storm", "drought"], "ITA": ["earthquake", "flood", "wildfire", "drought"],
+           "JPN": ["earthquake", "flood", "storm"], "MAR": ["earthquake", "wildfire", "drought"], "NLD": ["flood", "storm"], "NOR": ["storm"], "POL": ["flood"],
+           "PRT": ["earthquake", "wildfire"], "ROU": ["earthquake", "flood"], "RUS": ["wildfire"], "SAU": ["drought"], "SWE": ["wildfire"], "TUN": ["wildfire", "drought"],
+           "TUR": ["earthquake", "wildfire"], "UKR": ["flood"], "USA": ["earthquake", "wildfire", "storm"],
+           "FIN": ["wildfire"], "DNK": ["storm", "flood"], "IRL": ["storm", "flood"], "CZE": ["flood"], "HUN": ["flood", "drought"], "SRB": ["flood"], "ISR": ["wildfire", "drought"],
+           "IRN": ["earthquake", "drought"], "ARE": ["drought"], "LBY": ["flood", "drought"], "KOR": ["storm", "flood"], "PRK": ["flood", "drought"], "AUS": ["wildfire", "flood", "drought"],
+           "MEX": ["earthquake", "storm"], "ARG": ["flood", "drought"], "ZAF": ["drought", "flood"], "NGA": ["flood"], "IDN": ["earthquake", "flood"], "PAK": ["earthquake", "flood"]}
+
 # Voisins avec lesquels les zones de pêche sont partagées (conflits de pêche possibles).
 FISHERY_NEIGHBORS = {"GBR", "NOR", "ESP", "PRT", "BEL", "NLD", "ITA", "MAR", "DZA", "TUN"}
 
 # Article défini, pour accorder le nom du pays dans les textes (« de l'Italie », « au Brésil »).
-ARTICLES = {"AUT": "l'", "BEL": "la", "BLR": "la", "BRA": "le", "CAN": "le", "CHE": "la", "CHN": "la", "DEU": "l'", "DZA": "l'", "EGY": "l'", "ESP": "l'", "GBR": "le", "GRC": "la", "IND": "l'", "ITA": "l'", "JPN": "le", "MAR": "le", "NLD": "les", "NOR": "la", "POL": "la", "PRT": "le", "ROU": "la", "RUS": "la", "SAU": "l'", "SWE": "la", "TUN": "la", "TUR": "la", "UKR": "l'", "USA": "les"}
+ARTICLES = {"AUT": "l'", "BEL": "la", "BLR": "la", "BRA": "le", "CAN": "le", "CHE": "la", "CHN": "la", "DEU": "l'", "DZA": "l'", "EGY": "l'", "ESP": "l'", "GBR": "le", "GRC": "la", "IND": "l'", "ITA": "l'", "JPN": "le", "MAR": "le", "NLD": "les", "NOR": "la", "POL": "la", "PRT": "le", "ROU": "la", "RUS": "la", "SAU": "l'", "SWE": "la", "TUN": "la", "TUR": "la", "UKR": "l'", "USA": "les", "FIN": "la", "DNK": "le", "IRL": "l'", "CZE": "la", "HUN": "la", "SRB": "la", "ISR": "", "IRN": "l'", "ARE": "les",
+            "LBY": "la", "KOR": "la", "PRK": "la", "AUS": "l'", "MEX": "le", "ARG": "l'", "ZAF": "l'", "NGA": "le", "IDN": "l'", "PAK": "le"}
 countries = []
 for (cid,name,adj,lang,pool,pop,hog,hm,hf,gdp,g,inf,u,debt,rev,spend,elec,inter,trade,alli,intel,mil,nuc,forces,cap,temper) in C:
     a,n,o,t,c,m = temper
@@ -70,6 +101,7 @@ for (cid,name,adj,lang,pool,pop,hog,hm,hf,gdp,g,inf,u,debt,rev,spend,elec,inter,
                        "forces": {"land": forces[0], "air": forces[1], "sea": forces[2]},
                        "capital": {"name": cap[0], "lon": cap[1], "lat": cap[2]}}}
     if cid in FISHERY_NEIGHBORS: d["strategic"]["fisheryNeighbor"] = True
+    d["strategic"]["hazards"] = HAZARDS.get(cid, [])
     json.dump(d, open(f"countries/{cid}/country.json", "w"), ensure_ascii=False, indent=1)
     countries.append(cid)
 
@@ -78,11 +110,11 @@ snap["countries"] = ["countries/FRA/country.json"] + [f"countries/{c}/country.js
 R = []
 def rel(a, b, kind, w, label, both=True):
     R.append({"a": a, "b": b, "kind": kind, "weight": w, "label": label})
-EU = ["FRA","DEU","ESP","ITA","BEL","NLD","PRT","AUT","POL","SWE","GRC","ROU"]
+EU = ["FRA","DEU","ESP","ITA","BEL","NLD","PRT","AUT","POL","SWE","GRC","ROU","FIN","DNK","IRL","CZE","HUN"]
 for i, x in enumerate(EU):
     for y in EU[i+1:]:
         rel(x, y, "EU_PARTNERSHIP", 0.1, "Union européenne")
-NATO = ["FRA","DEU","ESP","ITA","GBR","BEL","NLD","PRT","POL","SWE","NOR","GRC","ROU","TUR","USA","CAN"]
+NATO = ["FRA","DEU","ESP","ITA","GBR","BEL","NLD","PRT","POL","SWE","NOR","GRC","ROU","TUR","USA","CAN","FIN","DNK","CZE","HUN"]
 for i, x in enumerate(NATO):
     for y in NATO[i+1:]:
         rel(x, y, "ALLIANCE", 0.06, "alliés au sein de l'OTAN")
@@ -104,6 +136,14 @@ for x, y, k, w, l in [
  ("RUS","BLR","ALLIANCE",0.2,"union d'États"),("DZA","MAR","DISAGREEMENT",-0.2,"Sahara occidental"),
  ("GRC","TUR","DISAGREEMENT",-0.15,"mer Égée"),("USA","CHN","DISAGREEMENT",-0.15,"rivalité commerciale"),
  ("UKR","POL","CRISIS_SOLIDARITY",0.1,"accueil des réfugiés"),("SAU","EGY","ALLIANCE",0.08,"coopération régionale"),
+ ("ISR","IRN","THREAT",-0.35,"guerre de l'ombre et programme nucléaire"),("USA","ISR","ALLIANCE",0.2,"alliance stratégique"),
+ ("IRN","SAU","DISAGREEMENT",-0.15,"rivalité régionale"),("IRN","RUS","ALLIANCE",0.1,"coopération militaire"),
+ ("PRK","KOR","THREAT",-0.4,"guerre jamais terminée"),("USA","KOR","ALLIANCE",0.2,"alliance de défense"),("CHN","PRK","ALLIANCE",0.1,"traité d'amitié"),
+ ("IND","PAK","THREAT",-0.3,"Cachemire"),("CHN","PAK","ALLIANCE",0.12,"partenariat stratégique"),("HUN","RUS","TRADE_PARTNER",0.06,"gaz russe"),
+ ("SRB","RUS","TRADE_PARTNER",0.06,"liens historiques"),("FIN","RUS","THREAT",-0.12,"frontière orientale"),("FRA","ARE","TRADE_PARTNER",0.05,"base militaire et contrats"),
+ ("FRA","ISR","DISAGREEMENT",-0.05,"conflit à Gaza"),("FRA","IRN","SANCTION",-0.12,"programme nucléaire"),("FRA","LBY","DISAGREEMENT",-0.04,"instabilité et migrations"),
+ ("FRA","AUS","DISAGREEMENT",-0.04,"affaire des sous-marins"),("FRA","MEX","TRADE_PARTNER",0.03,"échanges"),("FRA","NGA","TRADE_PARTNER",0.03,"énergie"),
+ ("FRA","IDN","TRADE_PARTNER",0.04,"contrats Rafale"),("FRA","KOR","TRADE_PARTNER",0.03,"technologies"),("FRA","PRK","SANCTION",-0.1,"sanctions de l'ONU"),
 ]:
     rel(x, y, k, w, l)
 snap["initialRelations"] = R

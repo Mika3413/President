@@ -1,0 +1,85 @@
+{
+ "id": "PRK",
+ "name": "Corée du Nord",
+ "article": "la",
+ "adjective": "nord-coréen",
+ "language": "ko",
+ "namePool": "ko",
+ "detail": "LIGHT",
+ "population": 26000000,
+ "economy": "economy/PRK_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Président des affaires de l'État",
+  "headOfGovernmentTitleFemale": "Présidente des affaires de l'État",
+  "honorificMale": "Monsieur le Président",
+  "honorificFemale": "Madame la Présidente"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.75,
+    1
+   ],
+   "nationalism": [
+    0.8,
+    1
+   ],
+   "openness": [
+    0,
+    0.2
+   ],
+   "toughness": [
+    0.75,
+    1
+   ],
+   "caution": [
+    0.15,
+    0.45
+   ],
+   "militarism": [
+    0.8,
+    1
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ],
+  "figure": {
+   "firstName": "Kim",
+   "lastName": "Jong-oun",
+   "birthYear": 1984
+  }
+ },
+ "strategic": {
+  "electricityBalanceTWh": 0,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 0
+  },
+  "alliances": [],
+  "priorities": [],
+  "intelligenceQuality": 0.4,
+  "militaryBudgetBillions": 4,
+  "nuclear": true,
+  "forces": {
+   "land": 0,
+   "air": 0,
+   "sea": 0
+  },
+  "capital": {
+   "name": "Pyongyang",
+   "lon": 125.75,
+   "lat": 39.03
+  },
+  "hazards": [
+   "flood",
+   "drought"
+  ]
+ }
+}

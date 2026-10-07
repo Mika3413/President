@@ -1,0 +1,85 @@
+{
+ "id": "PAK",
+ "name": "Pakistan",
+ "article": "le",
+ "adjective": "pakistanais",
+ "language": "ur",
+ "namePool": "ur",
+ "detail": "LIGHT",
+ "population": 245000000,
+ "economy": "economy/PAK_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Premier ministre",
+  "headOfGovernmentTitleFemale": "Première ministre",
+  "honorificMale": "Monsieur le Premier ministre",
+  "honorificFemale": "Madame la Première ministre"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.5,
+    0.8
+   ],
+   "nationalism": [
+    0.7,
+    1
+   ],
+   "openness": [
+    0.15,
+    0.45
+   ],
+   "toughness": [
+    0.65,
+    0.95
+   ],
+   "caution": [
+    0.25,
+    0.55
+   ],
+   "militarism": [
+    0.65,
+    0.95
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ],
+  "figure": {
+   "firstName": "Shehbaz",
+   "lastName": "Sharef",
+   "birthYear": 1951
+  }
+ },
+ "strategic": {
+  "electricityBalanceTWh": 0,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 2
+  },
+  "alliances": [],
+  "priorities": [],
+  "intelligenceQuality": 0.65,
+  "militaryBudgetBillions": 10,
+  "nuclear": true,
+  "forces": {
+   "land": 0,
+   "air": 0,
+   "sea": 0
+  },
+  "capital": {
+   "name": "Islamabad",
+   "lon": 73.05,
+   "lat": 33.68
+  },
+  "hazards": [
+   "earthquake",
+   "flood"
+  ]
+ }
+}

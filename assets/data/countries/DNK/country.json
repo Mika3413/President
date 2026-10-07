@@ -1,0 +1,89 @@
+{
+ "id": "DNK",
+ "name": "Danemark",
+ "article": "le",
+ "adjective": "danois",
+ "language": "da",
+ "namePool": "da",
+ "detail": "LIGHT",
+ "population": 6000000,
+ "economy": "economy/DNK_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Premier ministre",
+  "headOfGovernmentTitleFemale": "Première ministre",
+  "honorificMale": "Monsieur le Premier ministre",
+  "honorificFemale": "Madame la Première ministre"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.05,
+    0.35
+   ],
+   "nationalism": [
+    0.25,
+    0.55
+   ],
+   "openness": [
+    0.5,
+    0.8
+   ],
+   "toughness": [
+    0.45,
+    0.75
+   ],
+   "caution": [
+    0.45,
+    0.75
+   ],
+   "militarism": [
+    0.25,
+    0.55
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ],
+  "figure": {
+   "firstName": "Mette",
+   "lastName": "Frederiksson",
+   "female": true,
+   "birthYear": 1977
+  }
+ },
+ "strategic": {
+  "electricityBalanceTWh": 0,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 8
+  },
+  "alliances": [
+   "EU",
+   "NATO"
+  ],
+  "priorities": [],
+  "intelligenceQuality": 0.75,
+  "militaryBudgetBillions": 9,
+  "nuclear": false,
+  "forces": {
+   "land": 2,
+   "air": 2,
+   "sea": 1
+  },
+  "capital": {
+   "name": "Copenhague",
+   "lon": 12.57,
+   "lat": 55.68
+  },
+  "hazards": [
+   "storm",
+   "flood"
+  ]
+ }
+}

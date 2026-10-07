@@ -1,0 +1,86 @@
+{
+ "id": "MEX",
+ "name": "Mexique",
+ "article": "le",
+ "adjective": "mexicain",
+ "language": "es",
+ "namePool": "es",
+ "detail": "LIGHT",
+ "population": 130000000,
+ "economy": "economy/MEX_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Président des États-Unis mexicains",
+  "headOfGovernmentTitleFemale": "Présidente des États-Unis mexicains",
+  "honorificMale": "Monsieur le Président",
+  "honorificFemale": "Madame la Présidente"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.15,
+    0.45
+   ],
+   "nationalism": [
+    0.45,
+    0.75
+   ],
+   "openness": [
+    0.4,
+    0.7
+   ],
+   "toughness": [
+    0.45,
+    0.75
+   ],
+   "caution": [
+    0.4,
+    0.7
+   ],
+   "militarism": [
+    0.2,
+    0.5
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ],
+  "figure": {
+   "firstName": "Claudia",
+   "lastName": "Sheinbaun",
+   "female": true,
+   "birthYear": 1962
+  }
+ },
+ "strategic": {
+  "electricityBalanceTWh": 0,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 6
+  },
+  "alliances": [],
+  "priorities": [],
+  "intelligenceQuality": 0.55,
+  "militaryBudgetBillions": 15,
+  "nuclear": false,
+  "forces": {
+   "land": 0,
+   "air": 0,
+   "sea": 0
+  },
+  "capital": {
+   "name": "Mexico",
+   "lon": -99.13,
+   "lat": 19.43
+  },
+  "hazards": [
+   "earthquake",
+   "storm"
+  ]
+ }
+}

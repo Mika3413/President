@@ -1,0 +1,85 @@
+{
+ "id": "ARG",
+ "name": "Argentine",
+ "article": "l'",
+ "adjective": "argentin",
+ "language": "es",
+ "namePool": "es",
+ "detail": "LIGHT",
+ "population": 46000000,
+ "economy": "economy/ARG_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Président de la Nation",
+  "headOfGovernmentTitleFemale": "Présidente de la Nation",
+  "honorificMale": "Monsieur le Président",
+  "honorificFemale": "Madame la Présidente"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.25,
+    0.55
+   ],
+   "nationalism": [
+    0.55,
+    0.85
+   ],
+   "openness": [
+    0.35,
+    0.65
+   ],
+   "toughness": [
+    0.6,
+    0.9
+   ],
+   "caution": [
+    0.3,
+    0.6
+   ],
+   "militarism": [
+    0.25,
+    0.55
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ],
+  "figure": {
+   "firstName": "Javier",
+   "lastName": "Mileï",
+   "birthYear": 1970
+  }
+ },
+ "strategic": {
+  "electricityBalanceTWh": 0,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 3
+  },
+  "alliances": [],
+  "priorities": [],
+  "intelligenceQuality": 0.55,
+  "militaryBudgetBillions": 4,
+  "nuclear": false,
+  "forces": {
+   "land": 0,
+   "air": 0,
+   "sea": 0
+  },
+  "capital": {
+   "name": "Buenos Aires",
+   "lon": -58.38,
+   "lat": -34.6
+  },
+  "hazards": [
+   "flood",
+   "drought"
+  ]
+ }
+}

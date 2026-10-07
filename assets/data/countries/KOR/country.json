@@ -1,0 +1,85 @@
+{
+ "id": "KOR",
+ "name": "Corée du Sud",
+ "article": "la",
+ "adjective": "sud-coréen",
+ "language": "ko",
+ "namePool": "ko",
+ "detail": "LIGHT",
+ "population": 51700000,
+ "economy": "economy/KOR_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Président de la République",
+  "headOfGovernmentTitleFemale": "Présidente de la République",
+  "honorificMale": "Monsieur le Président",
+  "honorificFemale": "Madame la Présidente"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.25,
+    0.55
+   ],
+   "nationalism": [
+    0.45,
+    0.75
+   ],
+   "openness": [
+    0.35,
+    0.65
+   ],
+   "toughness": [
+    0.6,
+    0.9
+   ],
+   "caution": [
+    0.45,
+    0.75
+   ],
+   "militarism": [
+    0.45,
+    0.75
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ],
+  "figure": {
+   "firstName": "Lee",
+   "lastName": "Jae-myun",
+   "birthYear": 1963
+  }
+ },
+ "strategic": {
+  "electricityBalanceTWh": 0,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 10
+  },
+  "alliances": [],
+  "priorities": [],
+  "intelligenceQuality": 0.8,
+  "militaryBudgetBillions": 45,
+  "nuclear": false,
+  "forces": {
+   "land": 0,
+   "air": 0,
+   "sea": 0
+  },
+  "capital": {
+   "name": "Séoul",
+   "lon": 126.98,
+   "lat": 37.57
+  },
+  "hazards": [
+   "storm",
+   "flood"
+  ]
+ }
+}

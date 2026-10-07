@@ -19,14 +19,13 @@ class OccupationTest {
         WarService(s.context).declare("RUS", "UKR", "test")
         val zone = s.db.zones.ownedBy("UKR").first { z -> s.state.military.units.values.none { it.zoneId == z.id } }.id
         Capture(s.context, Geopolitics(s.context)).take(zone, "RUS")
-        clock.advanceWorldDays(3.0)
-        s.advanceToNow()
+        val system = fr.president.engine.military.OccupationSystem()
+        repeat(3) { system.run(s.context) }
         val o = s.state.military.occupation[zone]
         assertNotNull(o)
         assertTrue(o.resistance > 0.0, "La résistance doit naître")
         o.resistance = 0.95
-        clock.advanceWorldDays(2.0)
-        s.advanceToNow()
+        system.run(s.context)
         assertNull(s.state.military.occupied[zone], "Sans garnison, l'insurrection libère la zone")
     }
 

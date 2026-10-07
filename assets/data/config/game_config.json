@@ -106,7 +106,17 @@
       "ar": "names/ar.json",
       "zh": "names/zh.json",
       "ja": "names/ja.json",
-      "hi": "names/hi.json"
+      "hi": "names/hi.json",
+      "fi": "names/fi.json",
+      "da": "names/da.json",
+      "cs": "names/cs.json",
+      "hu": "names/hu.json",
+      "sr": "names/sr.json",
+      "he": "names/he.json",
+      "fa": "names/fa.json",
+      "ko": "names/ko.json",
+      "id": "names/id.json",
+      "ur": "names/ur.json"
     },
     "zones": "geo/zones.json",
     "unitTypes": "military/unit_types.json",

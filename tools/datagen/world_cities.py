@@ -61,12 +61,34 @@ C = {
  "IND": [("New Delhi", 28.61, 77.21, 32.9), ("Bombay", 19.08, 72.88, 21.3), ("Calcutta", 22.57, 88.36, 15.3), ("Bangalore", 12.97, 77.59, 13.6),
          ("Madras", 13.08, 80.27, 11.8), ("Hyderabad", 17.39, 78.49, 10.8), ("Ahmedabad", 23.02, 72.57, 8.6), ("Pune", 18.52, 73.86, 7.2),
          ("Jaipur", 26.91, 75.79, 4.1), ("Lucknow", 26.85, 80.95, 3.9), ("Visakhapatnam", 17.69, 83.22, 2.3), ("Srinagar", 34.08, 74.80, 1.5)],
+ "FIN": [("Helsinki", 60.17, 24.94, 1.3), ("Tampere", 61.50, 23.76, 0.4), ("Turku", 60.45, 22.27, 0.33), ("Oulu", 65.01, 25.47, 0.21)],
+ "DNK": [("Copenhague", 55.68, 12.57, 1.4), ("Aarhus", 56.16, 10.20, 0.36), ("Odense", 55.40, 10.39, 0.2)],
+ "IRL": [("Dublin", 53.35, -6.26, 1.4), ("Cork", 51.90, -8.47, 0.22), ("Galway", 53.27, -9.05, 0.08)],
+ "CZE": [("Prague", 50.08, 14.42, 1.3), ("Brno", 49.20, 16.61, 0.38), ("Ostrava", 49.82, 18.26, 0.28)],
+ "HUN": [("Budapest", 47.50, 19.04, 1.8), ("Debrecen", 47.53, 21.63, 0.2), ("Szeged", 46.25, 20.15, 0.16)],
+ "SRB": [("Belgrade", 44.79, 20.46, 1.4), ("Novi Sad", 45.27, 19.83, 0.35), ("Niš", 43.32, 21.90, 0.26)],
+ "ISR": [("Jérusalem", 31.77, 35.21, 1.0), ("Tel-Aviv", 32.08, 34.78, 4.0), ("Haïfa", 32.79, 34.99, 1.0), ("Beer-Sheva", 31.25, 34.79, 0.2)],
+ "IRN": [("Téhéran", 35.69, 51.39, 9.4), ("Machhad", 36.30, 59.60, 3.4), ("Ispahan", 32.65, 51.67, 2.2), ("Chiraz", 29.59, 52.58, 1.9), ("Tabriz", 38.08, 46.29, 1.7), ("Bandar Abbas", 27.18, 56.27, 0.6)],
+ "ARE": [("Abou Dabi", 24.45, 54.37, 1.5), ("Dubaï", 25.20, 55.27, 3.6), ("Charjah", 25.35, 55.39, 1.7)],
+ "LBY": [("Tripoli", 32.89, 13.18, 1.2), ("Benghazi", 32.12, 20.09, 0.8), ("Misrata", 32.38, 15.09, 0.4), ("Syrte", 31.21, 16.59, 0.13)],
+ "KOR": [("Séoul", 37.57, 126.98, 9.7), ("Busan", 35.18, 129.08, 3.4), ("Incheon", 37.46, 126.71, 3.0), ("Daegu", 35.87, 128.60, 2.4)],
+ "PRK": [("Pyongyang", 39.03, 125.75, 3.1), ("Hamhung", 39.92, 127.54, 0.7), ("Chongjin", 41.80, 129.78, 0.6)],
+ "AUS": [("Canberra", -35.28, 149.13, 0.46), ("Sydney", -33.87, 151.21, 5.3), ("Melbourne", -37.81, 144.96, 5.2), ("Brisbane", -27.47, 153.03, 2.6), ("Perth", -31.95, 115.86, 2.2)],
+ "MEX": [("Mexico", 19.43, -99.13, 22.0), ("Guadalajara", 20.67, -103.35, 5.3), ("Monterrey", 25.69, -100.32, 5.3), ("Puebla", 19.04, -98.21, 3.2), ("Tijuana", 32.51, -117.04, 2.2)],
+ "ARG": [("Buenos Aires", -34.60, -58.38, 15.6), ("Córdoba", -31.42, -64.18, 1.6), ("Rosario", -32.95, -60.64, 1.4), ("Mendoza", -32.89, -68.83, 1.2)],
+ "ZAF": [("Pretoria", -25.75, 28.19, 2.9), ("Johannesburg", -26.20, 28.05, 6.2), ("Le Cap", -33.92, 18.42, 4.8), ("Durban", -29.86, 31.02, 3.9)],
+ "NGA": [("Abuja", 9.06, 7.49, 3.8), ("Lagos", 6.52, 3.38, 15.9), ("Kano", 12.00, 8.52, 4.3), ("Ibadan", 7.38, 3.94, 3.9), ("Port Harcourt", 4.82, 7.03, 3.5)],
+ "IDN": [("Jakarta", -6.21, 106.85, 11.0), ("Surabaya", -7.25, 112.75, 3.0), ("Bandung", -6.92, 107.61, 2.6), ("Medan", 3.59, 98.67, 2.4)],
+ "PAK": [("Islamabad", 33.68, 73.05, 1.2), ("Karachi", 24.86, 67.01, 17.2), ("Lahore", 31.55, 74.34, 13.5), ("Faisalabad", 31.42, 73.08, 3.6), ("Peshawar", 34.01, 71.58, 2.3)],
 }
 
 CAPITALS = {"DEU": "Berlin", "ESP": "Madrid", "ITA": "Rome", "GBR": "Londres", "BEL": "Bruxelles", "NLD": "Amsterdam", "CHE": "Berne", "PRT": "Lisbonne",
             "AUT": "Vienne", "POL": "Varsovie", "SWE": "Stockholm", "NOR": "Oslo", "GRC": "Athènes", "ROU": "Bucarest", "UKR": "Kyiv", "BLR": "Minsk",
             "RUS": "Moscou", "TUR": "Ankara", "DZA": "Alger", "MAR": "Rabat", "TUN": "Tunis", "EGY": "Le Caire", "SAU": "Riyad", "USA": "Washington",
-            "CAN": "Ottawa", "BRA": "Brasília", "CHN": "Pékin", "JPN": "Tokyo", "IND": "New Delhi"}
+            "CAN": "Ottawa", "BRA": "Brasília", "CHN": "Pékin", "JPN": "Tokyo", "IND": "New Delhi",
+            "FIN": "Helsinki", "DNK": "Copenhague", "IRL": "Dublin", "CZE": "Prague", "HUN": "Budapest", "SRB": "Belgrade", "ISR": "Jérusalem", "IRN": "Téhéran",
+            "ARE": "Abou Dabi", "LBY": "Tripoli", "KOR": "Séoul", "PRK": "Pyongyang", "AUS": "Canberra", "MEX": "Mexico", "ARG": "Buenos Aires", "ZAF": "Pretoria",
+            "NGA": "Abuja", "IDN": "Jakarta", "PAK": "Islamabad"}
 
 
 def slug(country, name):

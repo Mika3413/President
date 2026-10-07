@@ -1,0 +1,85 @@
+{
+ "id": "IDN",
+ "name": "Indonésie",
+ "article": "l'",
+ "adjective": "indonésien",
+ "language": "id",
+ "namePool": "id",
+ "detail": "LIGHT",
+ "population": 280000000,
+ "economy": "economy/IDN_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Président de la République",
+  "headOfGovernmentTitleFemale": "Présidente de la République",
+  "honorificMale": "Monsieur le Président",
+  "honorificFemale": "Madame la Présidente"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.15,
+    0.45
+   ],
+   "nationalism": [
+    0.5,
+    0.8
+   ],
+   "openness": [
+    0.35,
+    0.65
+   ],
+   "toughness": [
+    0.45,
+    0.75
+   ],
+   "caution": [
+    0.45,
+    0.75
+   ],
+   "militarism": [
+    0.3,
+    0.6
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ],
+  "figure": {
+   "firstName": "Prabowo",
+   "lastName": "Subianta",
+   "birthYear": 1951
+  }
+ },
+ "strategic": {
+  "electricityBalanceTWh": 0,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 4
+  },
+  "alliances": [],
+  "priorities": [],
+  "intelligenceQuality": 0.55,
+  "militaryBudgetBillions": 10,
+  "nuclear": false,
+  "forces": {
+   "land": 0,
+   "air": 0,
+   "sea": 0
+  },
+  "capital": {
+   "name": "Jakarta",
+   "lon": 106.85,
+   "lat": -6.21
+  },
+  "hazards": [
+   "earthquake",
+   "flood"
+  ]
+ }
+}

@@ -24,9 +24,29 @@ class ZoneGraph(file: ZonesFile) {
 
     fun distanceKm(a: String, b: String): Double = haversine(zone(a), zone(b))
 
+    /** Index spatial (cases d'un degré) : la grille couvre le monde, la recherche reste locale. */
+    private val buckets: Map<Long, List<ZoneDef>> = file.zones.groupBy { key(Math.floor(it.lon).toInt(), Math.floor(it.lat).toInt()) }
+    private fun key(x: Int, y: Int): Long = (x.toLong() shl 32) or (y.toLong() and 0xffffffffL)
+
     /** Zone la plus proche d'un point, éventuellement restreinte (terrestre, pays...). */
-    fun nearest(lon: Double, lat: Double, filter: (ZoneDef) -> Boolean = { true }): ZoneDef? =
-        zones.values.filter(filter).minByOrNull { (it.lon - lon) * (it.lon - lon) + (it.lat - lat) * (it.lat - lat) }
+    fun nearest(lon: Double, lat: Double, filter: (ZoneDef) -> Boolean = { true }): ZoneDef? {
+        val cx = Math.floor(lon).toInt(); val cy = Math.floor(lat).toInt()
+        var best: ZoneDef? = null
+        var bestD = Double.MAX_VALUE
+        // Anneaux de cases de plus en plus larges, jusqu'à être sûr que rien de plus proche n'existe.
+        for (r in 0..MAX_RING) {
+            for (x in cx - r..cx + r) for (y in cy - r..cy + r) {
+                if (r > 0 && x != cx - r && x != cx + r && y != cy - r && y != cy + r) continue
+                buckets[key(x, y)]?.forEach { z ->
+                    if (!filter(z)) return@forEach
+                    val d = (z.lon - lon) * (z.lon - lon) + (z.lat - lat) * (z.lat - lat)
+                    if (d < bestD) { bestD = d; best = z }
+                }
+            }
+            if (best != null && bestD < (r.toDouble() * r)) return best
+        }
+        return best ?: zones.values.filter(filter).minByOrNull { (it.lon - lon) * (it.lon - lon) + (it.lat - lat) * (it.lat - lat) }
+    }
 
     /**
      * Plus court chemin (A*) entre deux zones en ne traversant que les zones autorisées.
@@ -84,6 +104,7 @@ class ZoneGraph(file: ZonesFile) {
     companion object {
         private const val EARTH_RADIUS_KM = 6371.0
         private const val MAX_EXPLORED = 6000
+        private const val MAX_RING = 40
 
         fun haversine(a: ZoneDef, b: ZoneDef): Double = haversine(a.lon, a.lat, b.lon, b.lat)
 

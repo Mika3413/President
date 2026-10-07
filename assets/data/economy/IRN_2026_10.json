@@ -1,0 +1,22 @@
+{
+ "_note": "Valeurs arrondies converties en euros ; simulation allégée (pays IA).",
+ "currency": "EUR",
+ "gdpBillions": 400,
+ "realGrowth": 0.02,
+ "potentialGrowth": 0.019,
+ "inflation": 0.35,
+ "inflationTarget": 0.245,
+ "unemployment": 0.09,
+ "naturalUnemployment": 0.0855,
+ "publicDebtBillions": 140,
+ "averageDebtRate": 0.025,
+ "riskFreeRate": 0.35,
+ "consumerConfidence": 0.47,
+ "businessConfidence": 0.48,
+ "averageNetMonthlyWage": 2000,
+ "tradeBalanceBillions": 0,
+ "aggregateBudget": {
+  "revenueRatio": 0.15,
+  "spendingRatio": 0.22
+ }
+}

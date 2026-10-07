@@ -1,0 +1,86 @@
+{
+ "id": "AUS",
+ "name": "Australie",
+ "article": "l'",
+ "adjective": "australien",
+ "language": "en",
+ "namePool": "en",
+ "detail": "LIGHT",
+ "population": 27000000,
+ "economy": "economy/AUS_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Premier ministre",
+  "headOfGovernmentTitleFemale": "Première ministre",
+  "honorificMale": "Monsieur le Premier ministre",
+  "honorificFemale": "Madame la Première ministre"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.15,
+    0.45
+   ],
+   "nationalism": [
+    0.35,
+    0.65
+   ],
+   "openness": [
+    0.45,
+    0.75
+   ],
+   "toughness": [
+    0.55,
+    0.85
+   ],
+   "caution": [
+    0.45,
+    0.75
+   ],
+   "militarism": [
+    0.35,
+    0.65
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ],
+  "figure": {
+   "firstName": "Anthony",
+   "lastName": "Albanesi",
+   "birthYear": 1963
+  }
+ },
+ "strategic": {
+  "electricityBalanceTWh": 0,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 6
+  },
+  "alliances": [],
+  "priorities": [],
+  "intelligenceQuality": 0.85,
+  "militaryBudgetBillions": 40,
+  "nuclear": false,
+  "forces": {
+   "land": 0,
+   "air": 0,
+   "sea": 0
+  },
+  "capital": {
+   "name": "Canberra",
+   "lon": 149.13,
+   "lat": -35.28
+  },
+  "hazards": [
+   "wildfire",
+   "flood",
+   "drought"
+  ]
+ }
+}

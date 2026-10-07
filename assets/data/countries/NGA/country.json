@@ -1,0 +1,84 @@
+{
+ "id": "NGA",
+ "name": "Nigeria",
+ "article": "le",
+ "adjective": "nigérian",
+ "language": "en",
+ "namePool": "en",
+ "detail": "LIGHT",
+ "population": 230000000,
+ "economy": "economy/NGA_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Président de la République fédérale",
+  "headOfGovernmentTitleFemale": "Présidente de la République fédérale",
+  "honorificMale": "Monsieur le Président",
+  "honorificFemale": "Madame la Présidente"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.3,
+    0.6
+   ],
+   "nationalism": [
+    0.55,
+    0.85
+   ],
+   "openness": [
+    0.25,
+    0.55
+   ],
+   "toughness": [
+    0.5,
+    0.8
+   ],
+   "caution": [
+    0.3,
+    0.6
+   ],
+   "militarism": [
+    0.4,
+    0.7
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ],
+  "figure": {
+   "firstName": "Bola",
+   "lastName": "Tinoubou",
+   "birthYear": 1952
+  }
+ },
+ "strategic": {
+  "electricityBalanceTWh": 0,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 5
+  },
+  "alliances": [],
+  "priorities": [],
+  "intelligenceQuality": 0.45,
+  "militaryBudgetBillions": 3,
+  "nuclear": false,
+  "forces": {
+   "land": 8,
+   "air": 2,
+   "sea": 1
+  },
+  "capital": {
+   "name": "Abuja",
+   "lon": 7.49,
+   "lat": 9.06
+  },
+  "hazards": [
+   "flood"
+  ]
+ }
+}

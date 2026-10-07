@@ -1,0 +1,87 @@
+{
+ "id": "CZE",
+ "name": "Tchéquie",
+ "article": "la",
+ "adjective": "tchèque",
+ "language": "cs",
+ "namePool": "cs",
+ "detail": "LIGHT",
+ "population": 10900000,
+ "economy": "economy/CZE_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Président du gouvernement",
+  "headOfGovernmentTitleFemale": "Présidente du gouvernement",
+  "honorificMale": "Monsieur le Président du gouvernement",
+  "honorificFemale": "Madame la Présidente du gouvernement"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.2,
+    0.5
+   ],
+   "nationalism": [
+    0.4,
+    0.7
+   ],
+   "openness": [
+    0.3,
+    0.6
+   ],
+   "toughness": [
+    0.45,
+    0.75
+   ],
+   "caution": [
+    0.4,
+    0.7
+   ],
+   "militarism": [
+    0.25,
+    0.55
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ],
+  "figure": {
+   "firstName": "Andrej",
+   "lastName": "Babich",
+   "birthYear": 1954
+  }
+ },
+ "strategic": {
+  "electricityBalanceTWh": 0,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 6
+  },
+  "alliances": [
+   "EU",
+   "NATO"
+  ],
+  "priorities": [],
+  "intelligenceQuality": 0.6,
+  "militaryBudgetBillions": 6,
+  "nuclear": false,
+  "forces": {
+   "land": 3,
+   "air": 1,
+   "sea": 0
+  },
+  "capital": {
+   "name": "Prague",
+   "lon": 14.42,
+   "lat": 50.08
+  },
+  "hazards": [
+   "flood"
+  ]
+ }
+}

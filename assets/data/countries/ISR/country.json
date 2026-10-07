@@ -1,0 +1,85 @@
+{
+ "id": "ISR",
+ "name": "Israël",
+ "article": "",
+ "adjective": "israélien",
+ "language": "he",
+ "namePool": "he",
+ "detail": "LIGHT",
+ "population": 9900000,
+ "economy": "economy/ISR_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Premier ministre",
+  "headOfGovernmentTitleFemale": "Première ministre",
+  "honorificMale": "Monsieur le Premier ministre",
+  "honorificFemale": "Madame la Première ministre"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.6,
+    0.9
+   ],
+   "nationalism": [
+    0.6,
+    0.9
+   ],
+   "openness": [
+    0.15,
+    0.45
+   ],
+   "toughness": [
+    0.75,
+    1
+   ],
+   "caution": [
+    0.25,
+    0.55
+   ],
+   "militarism": [
+    0.7,
+    1
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ],
+  "figure": {
+   "firstName": "Benjamin",
+   "lastName": "Netanyaho",
+   "birthYear": 1949
+  }
+ },
+ "strategic": {
+  "electricityBalanceTWh": 0,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 3
+  },
+  "alliances": [],
+  "priorities": [],
+  "intelligenceQuality": 0.95,
+  "militaryBudgetBillions": 30,
+  "nuclear": true,
+  "forces": {
+   "land": 6,
+   "air": 4,
+   "sea": 1
+  },
+  "capital": {
+   "name": "Jérusalem",
+   "lon": 35.21,
+   "lat": 31.77
+  },
+  "hazards": [
+   "wildfire",
+   "drought"
+  ]
+ }
+}

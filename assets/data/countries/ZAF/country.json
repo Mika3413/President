@@ -1,0 +1,85 @@
+{
+ "id": "ZAF",
+ "name": "Afrique du Sud",
+ "article": "l'",
+ "adjective": "sud-africain",
+ "language": "en",
+ "namePool": "en",
+ "detail": "LIGHT",
+ "population": 63000000,
+ "economy": "economy/ZAF_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Président de la République",
+  "headOfGovernmentTitleFemale": "Présidente de la République",
+  "honorificMale": "Monsieur le Président",
+  "honorificFemale": "Madame la Présidente"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.15,
+    0.45
+   ],
+   "nationalism": [
+    0.35,
+    0.65
+   ],
+   "openness": [
+    0.45,
+    0.75
+   ],
+   "toughness": [
+    0.4,
+    0.7
+   ],
+   "caution": [
+    0.4,
+    0.7
+   ],
+   "militarism": [
+    0.2,
+    0.5
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ],
+  "figure": {
+   "firstName": "Cyril",
+   "lastName": "Ramaphosu",
+   "birthYear": 1952
+  }
+ },
+ "strategic": {
+  "electricityBalanceTWh": 0,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 5
+  },
+  "alliances": [],
+  "priorities": [],
+  "intelligenceQuality": 0.55,
+  "militaryBudgetBillions": 3,
+  "nuclear": false,
+  "forces": {
+   "land": 0,
+   "air": 0,
+   "sea": 0
+  },
+  "capital": {
+   "name": "Pretoria",
+   "lon": 28.19,
+   "lat": -25.75
+  },
+  "hazards": [
+   "drought",
+   "flood"
+  ]
+ }
+}

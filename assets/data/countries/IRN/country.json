@@ -1,0 +1,85 @@
+{
+ "id": "IRN",
+ "name": "Iran",
+ "article": "l'",
+ "adjective": "iranien",
+ "language": "fa",
+ "namePool": "fa",
+ "detail": "LIGHT",
+ "population": 90000000,
+ "economy": "economy/IRN_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Président de la République islamique",
+  "headOfGovernmentTitleFemale": "Présidente de la République islamique",
+  "honorificMale": "Monsieur le Président",
+  "honorificFemale": "Madame la Présidente"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.6,
+    0.9
+   ],
+   "nationalism": [
+    0.75,
+    1
+   ],
+   "openness": [
+    0,
+    0.3
+   ],
+   "toughness": [
+    0.7,
+    1
+   ],
+   "caution": [
+    0.25,
+    0.55
+   ],
+   "militarism": [
+    0.65,
+    0.95
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ],
+  "figure": {
+   "firstName": "Masoud",
+   "lastName": "Pezeshkiani",
+   "birthYear": 1954
+  }
+ },
+ "strategic": {
+  "electricityBalanceTWh": 0,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 1
+  },
+  "alliances": [],
+  "priorities": [],
+  "intelligenceQuality": 0.7,
+  "militaryBudgetBillions": 10,
+  "nuclear": false,
+  "forces": {
+   "land": 10,
+   "air": 3,
+   "sea": 2
+  },
+  "capital": {
+   "name": "Téhéran",
+   "lon": 51.39,
+   "lat": 35.69
+  },
+  "hazards": [
+   "earthquake",
+   "drought"
+  ]
+ }
+}

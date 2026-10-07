@@ -1,0 +1,84 @@
+{
+ "id": "SRB",
+ "name": "Serbie",
+ "article": "la",
+ "adjective": "serbe",
+ "language": "sr",
+ "namePool": "sr",
+ "detail": "LIGHT",
+ "population": 6600000,
+ "economy": "economy/SRB_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Premier ministre",
+  "headOfGovernmentTitleFemale": "Première ministre",
+  "honorificMale": "Monsieur le Premier ministre",
+  "honorificFemale": "Madame la Première ministre"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.3,
+    0.6
+   ],
+   "nationalism": [
+    0.65,
+    0.95
+   ],
+   "openness": [
+    0.2,
+    0.5
+   ],
+   "toughness": [
+    0.5,
+    0.8
+   ],
+   "caution": [
+    0.35,
+    0.65
+   ],
+   "militarism": [
+    0.4,
+    0.7
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ],
+  "figure": {
+   "firstName": "Aleksandar",
+   "lastName": "Vucik",
+   "birthYear": 1970
+  }
+ },
+ "strategic": {
+  "electricityBalanceTWh": 0,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 2
+  },
+  "alliances": [],
+  "priorities": [],
+  "intelligenceQuality": 0.5,
+  "militaryBudgetBillions": 1.5,
+  "nuclear": false,
+  "forces": {
+   "land": 3,
+   "air": 1,
+   "sea": 0
+  },
+  "capital": {
+   "name": "Belgrade",
+   "lon": 20.46,
+   "lat": 44.79
+  },
+  "hazards": [
+   "flood"
+  ]
+ }
+}

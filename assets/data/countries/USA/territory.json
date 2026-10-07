@@ -116,7 +116,9 @@
    "article": "le",
    "region": "PAC",
    "population": 7923000,
-   "tags": [],
+   "tags": [
+    "coastal"
+   ],
    "profile": {
     "unemployment": 0.03,
     "incomeIndex": 1.08,
@@ -316,7 +318,9 @@
    "article": "la",
    "region": "NE",
    "population": 1422000,
-   "tags": [],
+   "tags": [
+    "coastal"
+   ],
    "profile": {
     "unemployment": 0.039,
     "incomeIndex": 0.93,
@@ -336,7 +340,9 @@
    "article": "la",
    "region": "NE",
    "population": 1422000,
-   "tags": [],
+   "tags": [
+    "coastal"
+   ],
    "profile": {
     "unemployment": 0.046,
     "incomeIndex": 0.93,
@@ -376,7 +382,9 @@
    "article": "la",
    "region": "PAC",
    "population": 39617000,
-   "tags": [],
+   "tags": [
+    "coastal"
+   ],
    "profile": {
     "unemployment": 0.05,
     "incomeIndex": 1.1,
@@ -416,7 +424,9 @@
    "article": "le",
    "region": "WSC",
    "population": 30983000,
-   "tags": [],
+   "tags": [
+    "coastal"
+   ],
    "profile": {
     "unemployment": 0.044,
     "incomeIndex": 1.05,
@@ -436,7 +446,9 @@
    "article": "l'",
    "region": "PAC",
    "population": 711000,
-   "tags": [],
+   "tags": [
+    "coastal"
+   ],
    "profile": {
     "unemployment": 0.034,
     "incomeIndex": 1.0,
@@ -456,7 +468,9 @@
    "article": "la",
    "region": "WSC",
    "population": 4672000,
-   "tags": [],
+   "tags": [
+    "coastal"
+   ],
    "profile": {
     "unemployment": 0.046,
     "incomeIndex": 1.01,
@@ -516,7 +530,9 @@
    "article": "la",
    "region": "SA",
    "population": 22957000,
-   "tags": [],
+   "tags": [
+    "coastal"
+   ],
    "profile": {
     "unemployment": 0.039,
     "incomeIndex": 1.03,
@@ -556,7 +572,9 @@
    "article": "le",
    "region": "SA",
    "population": 5485000,
-   "tags": [],
+   "tags": [
+    "coastal"
+   ],
    "profile": {
     "unemployment": 0.054,
     "incomeIndex": 0.91,
@@ -576,7 +594,9 @@
    "article": "le",
    "region": "SA",
    "population": 10971000,
-   "tags": [],
+   "tags": [
+    "coastal"
+   ],
    "profile": {
     "unemployment": 0.04,
     "incomeIndex": 0.94,
@@ -616,7 +636,9 @@
    "article": "le",
    "region": "SA",
    "population": 711000,
-   "tags": [],
+   "tags": [
+    "coastal"
+   ],
    "profile": {
     "unemployment": 0.05,
     "incomeIndex": 1.09,
@@ -636,7 +658,9 @@
    "article": "le",
    "region": "SA",
    "population": 6298000,
-   "tags": [],
+   "tags": [
+    "coastal"
+   ],
    "profile": {
     "unemployment": 0.03,
     "incomeIndex": 0.96,
@@ -656,7 +680,9 @@
    "article": "la",
    "region": "SA",
    "population": 1015000,
-   "tags": [],
+   "tags": [
+    "coastal"
+   ],
    "profile": {
     "unemployment": 0.034,
     "incomeIndex": 0.96,
@@ -676,7 +702,9 @@
    "article": "le",
    "region": "MA",
    "population": 9447000,
-   "tags": [],
+   "tags": [
+    "coastal"
+   ],
    "profile": {
     "unemployment": 0.048,
     "incomeIndex": 0.98,
@@ -696,7 +724,9 @@
    "article": "le",
    "region": "NE",
    "population": 3657000,
-   "tags": [],
+   "tags": [
+    "coastal"
+   ],
    "profile": {
     "unemployment": 0.037,
     "incomeIndex": 1.08,
@@ -716,7 +746,9 @@
    "article": "le",
    "region": "NE",
    "population": 1117000,
-   "tags": [],
+   "tags": [
+    "coastal"
+   ],
    "profile": {
     "unemployment": 0.037,
     "incomeIndex": 1.17,
@@ -736,7 +768,9 @@
    "article": "le",
    "region": "NE",
    "population": 7110000,
-   "tags": [],
+   "tags": [
+    "coastal"
+   ],
    "profile": {
     "unemployment": 0.031,
     "incomeIndex": 1.1,
@@ -776,7 +810,9 @@
    "article": "l'",
    "region": "PAC",
    "population": 1422000,
-   "tags": [],
+   "tags": [
+    "coastal"
+   ],
    "profile": {
     "unemployment": 0.032,
     "incomeIndex": 1.06,

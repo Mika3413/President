@@ -1,0 +1,87 @@
+{
+ "id": "FIN",
+ "name": "Finlande",
+ "article": "la",
+ "adjective": "finlandais",
+ "language": "fi",
+ "namePool": "fi",
+ "detail": "LIGHT",
+ "population": 5600000,
+ "economy": "economy/FIN_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Premier ministre",
+  "headOfGovernmentTitleFemale": "Première ministre",
+  "honorificMale": "Monsieur le Premier ministre",
+  "honorificFemale": "Madame la Première ministre"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.1,
+    0.4
+   ],
+   "nationalism": [
+    0.35,
+    0.65
+   ],
+   "openness": [
+    0.45,
+    0.75
+   ],
+   "toughness": [
+    0.55,
+    0.85
+   ],
+   "caution": [
+    0.5,
+    0.8
+   ],
+   "militarism": [
+    0.4,
+    0.7
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ],
+  "figure": {
+   "firstName": "Petteri",
+   "lastName": "Orpa",
+   "birthYear": 1969
+  }
+ },
+ "strategic": {
+  "electricityBalanceTWh": 0,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 5
+  },
+  "alliances": [
+   "EU",
+   "NATO"
+  ],
+  "priorities": [],
+  "intelligenceQuality": 0.75,
+  "militaryBudgetBillions": 7,
+  "nuclear": false,
+  "forces": {
+   "land": 4,
+   "air": 2,
+   "sea": 1
+  },
+  "capital": {
+   "name": "Helsinki",
+   "lon": 24.94,
+   "lat": 60.17
+  },
+  "hazards": [
+   "wildfire"
+  ]
+ }
+}

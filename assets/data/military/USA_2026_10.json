@@ -84,20 +84,20 @@
   },
   {
    "id": "usa_naval_1",
-   "name": "Base navale de Chicago",
-   "branch": "Marine",
-   "lon": -87.635,
-   "lat": 41.848,
-   "department": "IL",
-   "capacityUnits": 6
-  },
-  {
-   "id": "usa_naval_2",
    "name": "Base navale de Miami",
    "branch": "Marine",
    "lon": -80.226,
    "lat": 25.79,
    "department": "FL",
+   "capacityUnits": 6
+  },
+  {
+   "id": "usa_naval_2",
+   "name": "Base navale de Dallas",
+   "branch": "Marine",
+   "lon": -96.795,
+   "lat": 32.772,
+   "department": "TX",
    "capacityUnits": 6
   }
  ],

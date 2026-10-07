@@ -1,0 +1,87 @@
+{
+ "id": "IRL",
+ "name": "Irlande",
+ "article": "l'",
+ "adjective": "irlandais",
+ "language": "en",
+ "namePool": "en",
+ "detail": "LIGHT",
+ "population": 5300000,
+ "economy": "economy/IRL_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Taoiseach",
+  "headOfGovernmentTitleFemale": "Taoiseach",
+  "honorificMale": "Monsieur le Taoiseach",
+  "honorificFemale": "Madame la Taoiseach"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0,
+    0.3
+   ],
+   "nationalism": [
+    0.25,
+    0.55
+   ],
+   "openness": [
+    0.55,
+    0.85
+   ],
+   "toughness": [
+    0.35,
+    0.65
+   ],
+   "caution": [
+    0.45,
+    0.75
+   ],
+   "militarism": [
+    0,
+    0.3
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ],
+  "figure": {
+   "firstName": "Micheál",
+   "lastName": "Martyn",
+   "birthYear": 1960
+  }
+ },
+ "strategic": {
+  "electricityBalanceTWh": 0,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 10
+  },
+  "alliances": [
+   "EU"
+  ],
+  "priorities": [],
+  "intelligenceQuality": 0.6,
+  "militaryBudgetBillions": 1.5,
+  "nuclear": false,
+  "forces": {
+   "land": 1,
+   "air": 0,
+   "sea": 1
+  },
+  "capital": {
+   "name": "Dublin",
+   "lon": -6.26,
+   "lat": 53.35
+  },
+  "hazards": [
+   "storm",
+   "flood"
+  ]
+ }
+}

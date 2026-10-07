@@ -1,0 +1,84 @@
+{
+ "id": "ARE",
+ "name": "Émirats arabes unis",
+ "article": "les",
+ "adjective": "émirien",
+ "language": "ar",
+ "namePool": "ar",
+ "detail": "LIGHT",
+ "population": 10000000,
+ "economy": "economy/ARE_2026_10.json",
+ "institutions": {
+  "headOfStateTitle": "Chef de l'État",
+  "headOfGovernmentTitle": "Président de la Fédération",
+  "headOfGovernmentTitleFemale": "Présidente de la Fédération",
+  "honorificMale": "Votre Altesse",
+  "honorificFemale": "Votre Altesse"
+ },
+ "leader": {
+  "traitRanges": {
+   "aggressiveness": [
+    0.2,
+    0.5
+   ],
+   "nationalism": [
+    0.45,
+    0.75
+   ],
+   "openness": [
+    0.35,
+    0.65
+   ],
+   "toughness": [
+    0.55,
+    0.85
+   ],
+   "caution": [
+    0.45,
+    0.75
+   ],
+   "militarism": [
+    0.35,
+    0.65
+   ]
+  },
+  "ageRange": [
+   44,
+   70
+  ],
+  "economicLeaningRange": [
+   -0.3,
+   0.4
+  ],
+  "figure": {
+   "firstName": "Mohammed",
+   "lastName": "ben Zayid",
+   "birthYear": 1961
+  }
+ },
+ "strategic": {
+  "electricityBalanceTWh": 0,
+  "electricityInterconnected": false,
+  "tradeWithPartnersBillions": {
+   "FRA": 6
+  },
+  "alliances": [],
+  "priorities": [],
+  "intelligenceQuality": 0.75,
+  "militaryBudgetBillions": 22,
+  "nuclear": false,
+  "forces": {
+   "land": 3,
+   "air": 3,
+   "sea": 1
+  },
+  "capital": {
+   "name": "Abou Dabi",
+   "lon": 54.37,
+   "lat": 24.45
+  },
+  "hazards": [
+   "drought"
+  ]
+ }
+}

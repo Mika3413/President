@@ -9,7 +9,11 @@ import json, math, os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 GEO = os.path.join(ROOT, "assets", "data", "geo")
+# Origine des identifiants (z{i}_{j}) : inchangée pour garder les sauvegardes valides ; la grille
+# couvre maintenant le monde entier (indices négatifs à l'ouest de 25° O et au sud de l'équateur).
 LON_MIN, LON_MAX, LAT_MIN, LAT_MAX = -25, 60, 0, 71
+WORLD_LON = (-180, 180)
+WORLD_LAT = (-56, 80)
 STEP = 1.0
 SEA_RANGE = 2  # cellules maritimes conservées jusqu'à cette distance des côtes
 
@@ -44,12 +48,16 @@ def find(features, x, y):
 
 def main():
     countries = [(f["id"], rings(f)) for f in load("world_countries.json")]
-    depts = [(f["id"], rings(f)) for f in load("france_departments.json")]
+    depts = {"FRA": [(f["id"], rings(f)) for f in load("france_departments.json")]}
+    # Subdivisions des autres pays jouables (dégâts de guerre, défense des départements).
+    for iso in ("DEU", "GBR", "ITA", "ESP", "USA"):
+        path = os.path.join(GEO, f"{iso}_departments.json")
+        if os.path.exists(path): depts[iso] = [(f["id"], rings(f)) for f in load(f"{iso}_departments.json")]
     cells = {}
-    nx = int((LON_MAX - LON_MIN) / STEP) + 1
-    ny = int((LAT_MAX - LAT_MIN) / STEP) + 1
-    for i in range(nx):
-        for j in range(ny):
+    i0 = int(math.floor((WORLD_LON[0] - LON_MIN) / STEP)); i1 = int(math.floor((WORLD_LON[1] - LON_MIN) / STEP)) - 1
+    j0 = int(math.floor((WORLD_LAT[0] - LAT_MIN) / STEP)); j1 = int(math.floor((WORLD_LAT[1] - LAT_MIN) / STEP)) - 1
+    for i in range(i0, i1 + 1):
+        for j in range(j0, j1 + 1):
             lon = LON_MIN + i * STEP + STEP / 2
             lat = LAT_MIN + j * STEP + STEP / 2
             owner = find(countries, lon, lat)
@@ -73,8 +81,8 @@ def main():
     for (i, j), v in keep.items():
         zid = f"z{i}_{j}"
         z = {"id": zid, "lon": v["lon"], "lat": v["lat"], "owner": v["owner"] or "", "sea": v["owner"] is None}
-        if v["owner"] == "FRA":
-            d = find(depts, v["lon"], v["lat"])
+        if v["owner"] in depts:
+            d = find(depts[v["owner"]], v["lon"], v["lat"])
             if d: z["department"] = d
         z["n"] = [f"z{i+dx}_{j+dy}" for dx in (-1, 0, 1) for dy in (-1, 0, 1)
                   if (dx or dy) and (i + dx, j + dy) in keep]
@@ -86,7 +94,7 @@ def main():
         r = max(f["rings"], key=len)
         xs = r[0::2]; ys = r[1::2]
         cx = (min(xs) + max(xs)) / 2; cy = (min(ys) + max(ys)) / 2
-        if cid in present or not (LON_MIN <= cx <= LON_MAX and LAT_MIN <= cy <= LAT_MAX):
+        if cid in present or not (WORLD_LON[0] <= cx <= WORLD_LON[1] and WORLD_LAT[0] <= cy <= WORLD_LAT[1]):
             continue
         zid = "c_" + cid
         near = sorted((z for z in zones.values() if not z["sea"]), key=lambda z: (z["lon"] - cx) ** 2 + (z["lat"] - cy) ** 2)[:3]
