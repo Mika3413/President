@@ -30,6 +30,10 @@ class WarService(private val ctx: SimulationContext) {
         val war = War(ctx.state.newId("war"), mutableListOf(attacker), mutableListOf(defender), ctx.now, cause)
         ctx.state.military.wars += war
         breakAgreements(attacker, defender)
+        // Le dirigeant agressé ne l'oubliera jamais.
+        if (attacker == ctx.state.player.countryId) ctx.state.countries[defender]?.leaderId?.let {
+            fr.president.engine.politics.CharacterLife(ctx).rememberById(it, "déclaré la guerre à mon pays", -1.0)
+        }
         economicShock(attacker); economicShock(defender)
         // L'agressé et le reste du monde se souviennent de l'agression.
         ctx.state.countries.keys.filter { it != attacker }.forEach { observer ->

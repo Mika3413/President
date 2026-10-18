@@ -57,6 +57,7 @@ class GovernmentPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) :
                 box.add(ui.label(summary, "small", wrap = true)).growX().row()
                 val traits = session.characters.knownTraits(m)
                 if (traits.isNotEmpty()) box.add(ui.label("Tempérament : " + traits.joinToString(", "), "muted", wrap = true)).growX().row()
+                box.add(fr.president.game.ui.widgets.CharacterMood.build(ui, session, m, minister = !ministry.isPrimeMinister)).growX().row()
             }
             if (!ministry.isPrimeMinister) box.add(priorityRow(ministry.id)).left().padTop(4f).row()
             box.add(ui.button(if (replacing == ministry.id) "Annuler" else if (minister == null) "Nommer…" else "Remplacer…", "flat") {

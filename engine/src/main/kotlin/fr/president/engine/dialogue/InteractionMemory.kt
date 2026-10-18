@@ -12,6 +12,18 @@ class InteractionMemory(private val ctx: SimulationContext) {
         val retention = ctx.db.config.simulation.memoryRetentionDays.toLong()
         val cutoff = ctx.now.plusDays(-retention)
         records.removeAll { it.time < cutoff }
+        // Le personnage en garde un souvenir (et une humeur) : il pourra vous le rappeler.
+        val topic = label?.let { if ('(' in it) it.substringAfter('(').substringBefore(')') else it }
+            ?.removePrefix("notre dossier ")?.removePrefix("le dossier ")
+        val about = topic?.let { " ($it)" } ?: ""
+        val (text, weight) = when (outcome) {
+            InteractionOutcome.ACCEPTED -> "répondu à ma demande$about" to WARM
+            InteractionOutcome.PARTIAL -> "fait un geste$about" to WARM / 2
+            InteractionOutcome.REFUSED -> "rejeté ma demande$about" to -WARM
+            InteractionOutcome.POSTPONED -> "fait attendre ma demande$about" to -WARM / 3
+            InteractionOutcome.NEUTRAL -> return
+        }
+        fr.president.engine.politics.CharacterLife(ctx).rememberById(characterId, text, weight)
     }
 
     fun lastRecord(characterId: String): InteractionRecord? = records(characterId).lastOrNull()
@@ -40,5 +52,6 @@ class InteractionMemory(private val ctx: SimulationContext) {
 
     private companion object {
         const val REPEATED = 2
+        const val WARM = 0.18
     }
 }

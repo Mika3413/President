@@ -20,7 +20,11 @@ class Portraits : Disposable {
         Image(TextureRegion(cache.getOrPut(key(c)) { draw(c) })).apply { setSize(size, size) }
 
     /** Le visage change avec les choix du joueur : la clé du cache en tient compte. */
-    private fun key(c: Character) = "${c.id}|${c.appearance}|${c.female}|${c.birthYear}"
+    private fun key(c: Character) = "${c.id}|${c.appearance}|${c.female}|${c.birthYear}|${expression(c)}"
+
+    /** L'humeur se lit sur le visage : sourire, moue, sourcils froncés. */
+    private fun expression(c: Character): Int =
+        if (c.role == fr.president.engine.politics.CharacterRole.PRESIDENT) 1 else fr.president.engine.politics.CharacterLife.expressionOf(c)
 
     private fun draw(c: Character): Texture {
         val r = GameRandom(c.portraitSeed)
@@ -53,8 +57,22 @@ class Portraits : Disposable {
         }
         // Yeux, sourcils, bouche.
         p.setColor(EYES); p.fillCircle(cx - 5, 27, 1); p.fillCircle(cx + 5, 27, 1)
-        p.setColor(hair); p.drawLine(cx - 7, 23, cx - 3, 23); p.drawLine(cx + 3, 23, cx + 7, 23)
-        p.setColor(MOUTH); p.drawLine(cx - 4, 35, cx + 4, 35)
+        val mood = expression(c)
+        p.setColor(hair)
+        when (mood) {
+            // Sourcils froncés (colère) ou levés (bonne humeur).
+            -2 -> { p.drawLine(cx - 7, 22, cx - 3, 24); p.drawLine(cx + 3, 24, cx + 7, 22) }
+            2 -> { p.drawLine(cx - 7, 22, cx - 3, 22); p.drawLine(cx + 3, 22, cx + 7, 22) }
+            else -> { p.drawLine(cx - 7, 23, cx - 3, 23); p.drawLine(cx + 3, 23, cx + 7, 23) }
+        }
+        p.setColor(MOUTH)
+        when (mood) {
+            2 -> { p.drawLine(cx - 4, 35, cx + 4, 35); p.drawLine(cx - 3, 36, cx + 3, 36); p.drawPixel(cx - 5, 34); p.drawPixel(cx + 5, 34); p.drawPixel(cx - 6, 33); p.drawPixel(cx + 6, 33) }
+            1 -> { p.drawLine(cx - 4, 35, cx + 4, 35); p.drawPixel(cx - 5, 34); p.drawPixel(cx + 5, 34) }
+            -1 -> { p.drawLine(cx - 4, 35, cx + 4, 35); p.drawPixel(cx - 5, 36); p.drawPixel(cx + 5, 36) }
+            -2 -> { p.drawLine(cx - 3, 35, cx + 3, 35); p.drawPixel(cx - 4, 36); p.drawPixel(cx + 4, 36); p.drawPixel(cx - 5, 37); p.drawPixel(cx + 5, 37) }
+            else -> p.drawLine(cx - 4, 35, cx + 4, 35)
+        }
         if (a?.glasses ?: r.chance(GLASSES_CHANCE)) { p.setColor(GLASSES); p.drawCircle(cx - 5, 27, 3); p.drawCircle(cx + 5, 27, 3); p.drawLine(cx - 2, 27, cx + 2, 27) }
         val texture = Texture(p)
         texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear)

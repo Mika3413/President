@@ -25,6 +25,10 @@ object Traits {
     val ALL = listOf(AGGRESSIVENESS, PRAGMATISM, NATIONALISM, OPENNESS, EGO, CAUTION, INTEGRITY, CHARISMA, TOUGHNESS, MILITARISM)
 }
 
+/** Souvenir d'un personnage à propos du président : « vous avez [text] », bon ou mauvais. */
+@Serializable
+data class CharacterMemory(val time: Long, val text: String, val weight: Double)
+
 /**
  * Personnage fictif (dirigeants, ministres, élus locaux...).
  * Les pays et institutions sont réels, les personnes jamais.
@@ -58,6 +62,14 @@ class Character(
     var active: Boolean = true,
     /** Visage choisi par le joueur (sinon dérivé de la graine du portrait). */
     var appearance: Appearance? = null,
+    /** Ce que le personnage retient de vous (au plus une dizaine de souvenirs). */
+    val memories: MutableList<CharacterMemory> = mutableListOf(),
+    /** Humeur du moment (-1 furieux .. 1 ravi), qui retombe avec le temps. */
+    var mood: Double = 0.0,
+    /** Rivalité d'un ministre ambitieux : 0 aucune, 1 ambitions affichées, 2 joue sa carte, 3 rupture. */
+    var rivalry: Int = 0,
+    /** Dernière fois que ce ministre est monté au créneau pour vous (secondes du monde). */
+    var lastDefense: Long = 0L,
 ) {
     val fullName: String get() = "$firstName $lastName"
 

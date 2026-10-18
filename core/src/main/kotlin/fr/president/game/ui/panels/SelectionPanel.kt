@@ -207,6 +207,7 @@ class SelectionPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : 
         val who = Table().apply { defaults().left() }
         who.add(ui.label(leader.fullName, "bold")).row()
         who.add(ui.label(data.definition.institutions.headOfGovernment(leader.female), "muted")).row()
+        who.add(fr.president.game.ui.widgets.CharacterMood.build(ui, session, leader, compact = true)).growX().row()
         head.add(who).growX().left().top()
         into.add(head).growX().left().row()
         // Jauge de relation : rouge (hostile) → vert (allié).

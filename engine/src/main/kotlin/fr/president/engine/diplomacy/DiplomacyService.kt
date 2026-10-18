@@ -185,7 +185,8 @@ class DiplomacyService(private val ctx: SimulationContext) {
                 senderId = leader?.id,
                 senderLabel = "${leader?.fullName ?: ""}, ${def.institutions.headOfGovernment(leader?.female == true)} (${def.name})",
                 subject = composed.subject,
-                body = composed.body,
+                // Le dirigeant rappelle ce qu'il n'a pas oublié de vous.
+                body = leader?.let { fr.president.engine.politics.CharacterLife(ctx).recall(it) }?.let { composed.body.trimEnd() + "\n\nP.-S. $it" } ?: composed.body,
                 time = ctx.now,
                 category = NotificationCategory.DIPLOMACY,
                 origin = if (withOptions) MessageOrigin.PROPOSAL else MessageOrigin.DIPLOMATIC_RESPONSE,

@@ -42,7 +42,7 @@ data class DisputeDef(
 data class CabinetFile(val initiatives: List<InitiativeDef> = emptyList(), val disputes: List<DisputeDef> = emptyList())
 
 @Serializable
-enum class AffairKind { INITIATIVE, DISPUTE, THREAT, GAFFE }
+enum class AffairKind { INITIATIVE, DISPUTE, THREAT, GAFFE, RIVALRY }
 
 /** Une affaire du gouvernement en attente d'arbitrage présidentiel. */
 @Serializable
@@ -142,16 +142,20 @@ class CabinetService(private val ctx: SimulationContext) {
             AffairKind.DISPUTE -> disputeLetter(minister, other!!, file.disputes.first { it.id == ref })
             AffairKind.THREAT -> threatLetter(minister, title)
             AffairKind.GAFFE -> gaffeLetter(minister, title)
+            AffairKind.RIVALRY -> rivalryLetter(minister, title)
         }
         if (kind == AffairKind.GAFFE) {
             ctx.effects.trigger(EffectSpec("opinion.national", -GAFFE_SHOCK), null, emptyMap(), "cabinet")
             ctx.notifications.news(NotificationCategory.GOVERNMENT, "${minister.fullName} contredit la ligne du gouvernement", null)
         }
+        // Le ministre rappelle ce qu'il n'a pas oublié.
+        val memory = if (kind == AffairKind.INITIATIVE || kind == AffairKind.THREAT) life.recall(minister) else null
+        val text = memory?.let { body.replaceFirst("\n\n", "\n\n$it\n\n") } ?: body
         val message = InboxMessage(
             id = ctx.state.newId("msg"),
             senderId = if (kind == AffairKind.DISPUTE) gov.primeMinisterId else minister.id,
             senderLabel = if (kind == AffairKind.DISPUTE) pmLabel() else "${minister.fullName}, $title",
-            subject = subject, body = body, time = ctx.now,
+            subject = subject, body = text, time = ctx.now,
             category = NotificationCategory.GOVERNMENT, origin = MessageOrigin.CABINET, originId = affair.id,
             options = options, deadline = ctx.now.plusDays(RESPONSE_DAYS), defaultOptionId = default,
         )
@@ -174,6 +178,7 @@ class CabinetService(private val ctx: SimulationContext) {
             AffairKind.DISPUTE -> dispute(m, affair.otherId?.let { ctx.state.characters[it] } ?: return, file.disputes.firstOrNull { it.id == affair.refId } ?: return, optionId)
             AffairKind.THREAT -> threat(m, optionId)
             AffairKind.GAFFE -> gaffe(m, optionId)
+            AffairKind.RIVALRY -> rivalry(m, optionId)
         }
     }
 
@@ -207,6 +212,10 @@ class CabinetService(private val ctx: SimulationContext) {
             journal("Projet de ${m.fullName} : ${i.label}" + if (share < 1) " (version réduite)" else "", fr.president.engine.readout.Tone.GOOD)
         }
         when (option) {
+            "back" -> life.remember(m, "soutenu mon projet (${i.label.lowercase()})", MEMORY_STRONG)
+            "refuse" -> life.remember(m, "enterré mon projet (${i.label.lowercase()})", -MEMORY_STRONG)
+        }
+        when (option) {
             "back" -> { m.loyalty = (m.loyalty + LOYALTY_GAIN).clamp01(); m.popularity = (m.popularity + POPULARITY_GAIN).clamp01() }
             "scaled" -> m.loyalty = (m.loyalty + LOYALTY_GAIN / 3).clamp01()
             "refuse" -> { m.loyalty = (m.loyalty - LOYALTY_LOSS).clamp01(); m.relationWithPlayer = (m.relationWithPlayer - RELATION_LOSS).clamp01() }
@@ -238,6 +247,8 @@ class CabinetService(private val ctx: SimulationContext) {
     private fun dispute(a: Character, b: Character, d: DisputeDef, option: String) {
         fun apply(effects: List<EffectSpec>, share: Double) = effects.forEach { ctx.effects.trigger(it.copy(amount = it.amount * share), null, emptyMap(), "cabinet:${d.id}") }
         fun win(w: Character, l: Character) {
+            life.remember(w, "tranché en ma faveur face à ${l.fullName} (${d.subject})", MEMORY_MEDIUM)
+            life.remember(l, "pris le parti de ${w.fullName} contre moi (${d.subject})", -MEMORY_STRONG)
             w.loyalty = (w.loyalty + LOYALTY_GAIN).clamp01()
             l.loyalty = (l.loyalty - LOYALTY_LOSS).clamp01()
             l.relationWithPlayer = (l.relationWithPlayer - RELATION_LOSS).clamp01()
@@ -278,6 +289,7 @@ class CabinetService(private val ctx: SimulationContext) {
     private fun threat(m: Character, option: String) {
         when (option) {
             "concede" -> {
+                life.remember(m, "donné à mon ministère les moyens que je demandais", MEMORY_STRONG)
                 trigger("budget.oneOff", CONCESSION_BILLIONS)
                 spendingOf(m)?.let { trigger("spending.$it", SPENDING_RAISE) }
                 m.loyalty = (m.loyalty + CONCESSION_LOYALTY).clamp01()
@@ -292,7 +304,7 @@ class CabinetService(private val ctx: SimulationContext) {
                 GovernmentChanges(ctx).dismiss(m.id)
                 journal("Départ de ${m.fullName}", fr.president.engine.readout.Tone.BAD)
             }
-            else -> m.loyalty = (m.loyalty - LOYALTY_LOSS).clamp01()
+            else -> { m.loyalty = (m.loyalty - LOYALTY_LOSS).clamp01(); life.remember(m, "ignoré mon avertissement", -MEMORY_MEDIUM) }
         }
     }
 
@@ -311,18 +323,56 @@ class CabinetService(private val ctx: SimulationContext) {
     private fun gaffe(m: Character, option: String) {
         when (option) {
             "rebuke" -> {
+                life.remember(m, "recadré publiquement", -MEMORY_STRONG)
                 m.loyalty = (m.loyalty - LOYALTY_LOSS).clamp01()
                 trigger("opinion.national", GAFFE_SHOCK / 2)
                 trigger("government.parliamentSupport", COMPROMISE_COST)
             }
-            "cover" -> { m.loyalty = (m.loyalty + LOYALTY_GAIN / 2).clamp01(); trigger("opinion.national", -GAFFE_SHOCK / 2) }
+            "cover" -> { life.remember(m, "couvert quand j'étais dans la tourmente", MEMORY_STRONG); m.loyalty = (m.loyalty + LOYALTY_GAIN / 2).clamp01(); trigger("opinion.national", -GAFFE_SHOCK / 2) }
             else -> trigger("president.popularity", -AUTHORITY_LOSS / 2)
+        }
+    }
+
+    // --- Rivalités ---------------------------------------------------------------------------------
+
+    private fun rivalryLetter(m: Character, title: String): Letter {
+        val body = "${honorific()},\n\n${m.fullName} ($title) multiplie les déplacements, reçoit les parlementaires et laisse entendre qu'il ferait mieux que vous. " +
+            "Ses proches parlent déjà de « l'après ». Ce n'est plus un ministre, c'est un rival.\n\nIl faut décider de l'attitude de l'Élysée.\n\n${pmName()}"
+        return Letter("${m.fullName} joue sa propre carte", body, listOf(
+            MessageOption("embrace", "L'associer davantage : vice-présidence d'un comité stratégique", "Il se calme et se sent reconnu ; on dira que vous cédez"),
+            MessageOption("rebuke", "Le recadrer en Conseil des ministres", "Autorité affirmée ; la rancune grandit"),
+            MessageOption("fire", "Le limoger avant qu'il ne frappe", "Départ immédiat ; une partie de la majorité grince"),
+            MessageOption("ignore", "Laisser faire", "S'il continue, la rupture viendra"),
+        ), "ignore")
+    }
+
+    private fun rivalry(m: Character, option: String) {
+        when (option) {
+            "embrace" -> {
+                m.rivalry = 0
+                life.remember(m, "su me faire une place", MEMORY_STRONG)
+                trigger("president.popularity", -AUTHORITY_LOSS / 2)
+                journal("${m.fullName} associé aux décisions stratégiques", fr.president.engine.readout.Tone.NEUTRAL)
+            }
+            "rebuke" -> {
+                life.remember(m, "humilié en Conseil des ministres", -MEMORY_STRONG)
+                m.loyalty = (m.loyalty - LOYALTY_LOSS).clamp01()
+                trigger("opinion.national", GAFFE_SHOCK / 2)
+            }
+            "fire" -> {
+                GovernmentChanges(ctx).dismiss(m.id)
+                trigger("government.parliamentSupport", -COMPROMISE_COST * 2)
+                journal("Limogeage de ${m.fullName}, devenu un rival", fr.president.engine.readout.Tone.WARNING)
+            }
+            else -> if (ctx.rng.chance(BETRAYAL_IF_IGNORED)) life.betray(m)
         }
     }
 
     // --- Outils -----------------------------------------------------------------------------------
 
     private data class Letter(val subject: String, val body: String, val options: List<MessageOption>, val default: String)
+
+    private val life get() = fr.president.engine.politics.CharacterLife(ctx)
 
     private fun trigger(target: String, amount: Double, days: Double = 0.0) =
         ctx.effects.trigger(EffectSpec(target, amount, days = days), null, emptyMap(), "cabinet")
@@ -353,6 +403,9 @@ class CabinetService(private val ctx: SimulationContext) {
 
     private companion object {
         const val RESPONSE_DAYS = 5.0
+        const val MEMORY_STRONG = 0.3
+        const val MEMORY_MEDIUM = 0.2
+        const val BETRAYAL_IF_IGNORED = 0.5
         const val HIGH_TRAIT = 0.6
         const val HALF = 0.5
         const val PROJECT_DAYS = 180.0

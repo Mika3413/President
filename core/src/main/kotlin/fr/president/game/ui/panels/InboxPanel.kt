@@ -45,6 +45,9 @@ class InboxPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit, privat
         head.add(ui.label(m.subject, "large", wrap = true)).growX().left()
         into.add(head).growX().padTop(4f).row()
         into.add(ui.label("${m.senderLabel} · ${Formats.dateTime(m.time)}", "muted", wrap = true)).growX().row()
+        sender?.takeIf { it.role != fr.president.engine.politics.CharacterRole.PRESIDENT && it.memories.isNotEmpty() }?.let {
+            into.add(fr.president.game.ui.widgets.CharacterMood.build(ui, session, it, compact = true)).growX().row()
+        }
         into.add(ui.label(m.body, "default", wrap = true)).growX().padTop(GAP).row()
         measureNote?.let { into.add(ui.label(it, "small", Theme.accent, wrap = true)).growX().padTop(4f).row() }
         m.focusId?.let { focus -> into.add(ui.button("Voir sur la carte", "flat") { nav.focusOn(focus) }).left().padTop(4f).row() }
