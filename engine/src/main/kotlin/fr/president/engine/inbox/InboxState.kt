@@ -34,6 +34,8 @@ class InboxMessage(
     val measures: List<String> = emptyList(),
     /** Département visé par les mesures locales proposées. */
     val measureDepartment: String? = null,
+    /** Rappel « dernier délai » déjà envoyé sur le téléphone. */
+    var reminded: Boolean = false,
 ) {
     val awaitingAnswer: Boolean get() = options.isNotEmpty() && chosenOptionId == null
 }

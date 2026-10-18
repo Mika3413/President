@@ -24,4 +24,6 @@ data class NewGameOptions(
     val presidentTraits: Map<String, Double> = emptyMap(),
     /** Visage choisi. */
     val appearance: fr.president.engine.politics.Appearance? = null,
+    /** Monde de départ varié (relations, situation tirée au sort) ; les tests gardent le monde réaliste. */
+    val variedWorld: Boolean = false,
 )

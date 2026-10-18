@@ -47,7 +47,8 @@ class OnboardingService(private val ctx: SimulationContext) {
         val text = "6 h 12. Le téléphone sonne : c'est le préfet. Une crue éclair a frappé dans la nuit $place. " +
             "${Formatting.integer(people)} habitants ont été évacués, des routes sont coupées, les caméras sont déjà sur place. " +
             "Tout le pays attend de voir comment le nouveau président réagit. Votre première décision."
-        return Morning(id, dept, place, "Votre premier matin", text)
+        val context = ctx.state.player.startSituationText?.let { "\n\nLe contexte — $it" } ?: ""
+        return Morning(id, dept, place, "Votre premier matin", text + context)
     }
 
     fun message(): InboxMessage? = player.firstCrisis?.let { id -> ctx.state.inbox.messages.firstOrNull { it.id == id } }

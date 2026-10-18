@@ -16,7 +16,9 @@ class EventLauncher(private val ctx: SimulationContext) {
     fun launch(def: EventDefinition, scope: ScopeRef): EventInstance {
         val level = drawIntensity(def)
         // La prévention (débroussaillage, digues, plan grand froid...) réduit l'ampleur.
-        val factor = (level?.second?.factor ?: 1.0) * fr.president.engine.crisis.MeasureSystem.intensityFactor(ctx, def, scope)
+        val factor = (level?.second?.factor ?: 1.0) * fr.president.engine.crisis.MeasureSystem.intensityFactor(ctx, def, scope) *
+            // Le parcours du président : un médecin encaisse mieux une épidémie, un patron une grève moins bien.
+            (if (def.scope != EventScope.FOREIGN_COUNTRY) fr.president.engine.politics.CareerSystem.eventFactor(ctx, def.id) else 1.0)
         // Les montants tirés (dégâts, sommes demandées) suivent l'ampleur.
         val params = drawParams(def, scope).mapValues { (_, v) -> v * factor }.toMutableMap()
         level?.let { (index, _) -> params[EventIntensity.FACTOR] = factor; params[EventIntensity.LEVEL] = index.toDouble() }

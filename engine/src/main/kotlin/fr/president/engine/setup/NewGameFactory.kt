@@ -122,6 +122,7 @@ class NewGameFactory(private val db: GameDatabase) {
             state.player.career = career.id
             career.effects.forEach { ctx.effects.trigger(it, null, emptyMap(), "career:${career.id}") }
         }
+        if (options.variedWorld) WorldVariation(ctx).apply()
         // Premier point des courbes du mandat.
         fr.president.engine.stats.StatsSystem.record(ctx)
         state.stats.lastRecordDay = state.time.dayIndex

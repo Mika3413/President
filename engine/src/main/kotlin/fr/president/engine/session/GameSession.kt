@@ -88,8 +88,10 @@ class GameSession(
     fun nextKeyMomentRealMillis(): Long? {
         val next = state.scheduler.actions
             .filter { it !is fr.president.engine.simulation.ScheduledAction.Tutorial && it.at > state.time }
-            .minOfOrNull { it.at } ?: return null
-        return state.meta.clock.realMillisAt(next)
+            .minOfOrNull { it.at }
+        val scheduled = next?.let { state.meta.clock.realMillisAt(it) }
+        val reminder = fr.president.engine.notifications.Reminders(this).nextReminderRealMillis()?.takeIf { it > realClock() }
+        return listOfNotNull(scheduled, reminder).minOrNull()
     }
 
     /** Rattrape le temps réel écoulé : à appeler au retour du joueur puis régulièrement. */

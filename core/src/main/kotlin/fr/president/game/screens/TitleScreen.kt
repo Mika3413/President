@@ -34,6 +34,8 @@ class TitleScreen(
     private val onLoad: (String) -> Unit = {},
     private val onDelete: (String) -> Unit = {},
     private val onLearn: () -> Unit = {},
+    private val galleryCount: Int = 0,
+    private val onGallery: () -> Unit = {},
 ) : ScreenAdapter(), HasStage {
     /** Une partie sauvegardée, telle qu'affichée dans « Mes parties ». */
     data class SlotEntry(val id: String, val title: String, val detail: String, val active: Boolean)
@@ -59,6 +61,7 @@ class TitleScreen(
         box.add(ui.button(if (hasSave) "Nouvelle partie…" else "Commencer une partie", if (hasSave) "default" else "accent") { leave(onNewGame) })
             .width(BUTTON_WIDTH).height(BUTTON_HEIGHT).row()
         box.add(ui.button("✎ Apprendre à jouer (Académie)", "default") { leave(onLearn) }).width(BUTTON_WIDTH).height(BUTTON_HEIGHT).row()
+        if (galleryCount > 0) box.add(ui.button("▤ Galerie de vos présidents ($galleryCount)", "default") { leave(onGallery) }).width(BUTTON_WIDTH).height(BUTTON_HEIGHT).row()
         box.add(ui.label("Le monde continue de tourner quand l'application est fermée.", "muted")).padTop(18f).row()
         root.add(box)
         root.color.a = 0f

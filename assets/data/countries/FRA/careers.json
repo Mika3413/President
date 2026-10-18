@@ -27,7 +27,20 @@
      "target": "opinion.group.high_income",
      "amount": 0.01
     }
-   ]
+   ],
+   "perk": "Connaît l'État : les crises budgétaires sont mieux contenues",
+   "flaw": "Jugé technocrate par les classes populaires",
+   "monthly": [
+    {
+     "target": "opinion.group.low_income",
+     "amount": -0.0015
+    }
+   ],
+   "eventFactors": {
+    "rating_downgrade": 0.7,
+    "eu_deficit_procedure": 0.7,
+    "pension_deficit": 0.8
+   }
   },
   {
    "id": "avocat",
@@ -50,7 +63,20 @@
      "target": "opinion.national",
      "amount": 0.005
     }
-   ]
+   ],
+   "perk": "Sait se défendre : les scandales font moins de dégâts",
+   "flaw": "Soupçonné de servir les puissants",
+   "monthly": [
+    {
+     "target": "opinion.group.middle_income",
+     "amount": -0.001
+    }
+   ],
+   "eventFactors": {
+    "minister_scandal": 0.7,
+    "president_scandal": 0.7,
+    "minister_indicted": 0.75
+   }
   },
   {
    "id": "entrepreneur",
@@ -76,7 +102,25 @@
      "target": "opinion.group.low_income",
      "amount": -0.01
     }
-   ]
+   ],
+   "perk": "Les patrons le croient : fermetures et délocalisations mieux gérées",
+   "flaw": "Les grèves le visent davantage",
+   "monthly": [
+    {
+     "target": "economy.businessConfidence",
+     "amount": 0.002
+    },
+    {
+     "target": "opinion.group.private_employees",
+     "amount": -0.0015
+    }
+   ],
+   "eventFactors": {
+    "factory_closure": 0.75,
+    "factory_relocation": 0.75,
+    "bankruptcy": 0.8,
+    "national_strike": 1.2
+   }
   },
   {
    "id": "medecin",
@@ -98,7 +142,26 @@
      "target": "opinion.group.seniors",
      "amount": 0.015
     }
-   ]
+   ],
+   "perk": "Crédible en santé : épidémies et hôpitaux débordés pèsent moins",
+   "flaw": "Peu à l'aise avec l'économie",
+   "monthly": [
+    {
+     "target": "opinion.group.seniors",
+     "amount": 0.0015
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.001
+    }
+   ],
+   "eventFactors": {
+    "epidemic": 0.7,
+    "new_virus": 0.7,
+    "pandemic_wave": 0.75,
+    "hospital_overload": 0.75,
+    "bird_flu": 0.8
+   }
   },
   {
    "id": "militaire",
@@ -125,7 +188,25 @@
      "target": "opinion.group.young",
      "amount": -0.01
     }
-   ]
+   ],
+   "perk": "L'autorité : attentats et menaces mieux encaissés, armée fidèle",
+   "flaw": "Les jeunes s'en méfient",
+   "monthly": [
+    {
+     "target": "military.readiness",
+     "amount": 0.002
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": -0.0015
+    }
+   ],
+   "eventFactors": {
+    "terror_attack": 0.8,
+    "drone_threat": 0.75,
+    "embassy_attack": 0.8,
+    "hybrid_sabotage": 0.8
+   }
   },
   {
    "id": "enseignant",
@@ -147,7 +228,24 @@
      "target": "quality.education",
      "amount": 0.004
     }
-   ]
+   ],
+   "perk": "Parle aux enseignants : moins de grèves dans l'éducation",
+   "flaw": "Peu de crédit auprès des chefs d'entreprise",
+   "monthly": [
+    {
+     "target": "opinion.group.civil_servants",
+     "amount": 0.0015
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.001
+    }
+   ],
+   "eventFactors": {
+    "teachers_strike": 0.6,
+    "student_protest": 0.75,
+    "teacher_shortage": 0.8
+   }
   },
   {
    "id": "syndicaliste",
@@ -173,7 +271,25 @@
      "target": "economy.businessConfidence",
      "amount": -0.02
     }
-   ]
+   ],
+   "perk": "Les syndicats le respectent : grèves plus courtes",
+   "flaw": "Les marchés et les patrons s'inquiètent",
+   "monthly": [
+    {
+     "target": "opinion.group.private_employees",
+     "amount": 0.0015
+    },
+    {
+     "target": "economy.businessConfidence",
+     "amount": -0.002
+    }
+   ],
+   "eventFactors": {
+    "national_strike": 0.7,
+    "rail_strike": 0.7,
+    "port_strike": 0.7,
+    "doctor_strike": 0.8
+   }
   },
   {
    "id": "diplomate",
@@ -196,7 +312,21 @@
      "target": "alliance.NATO.NEGOTIATION_GOODWILL",
      "amount": 0.01
     }
-   ]
+   ],
+   "perk": "Carnet d'adresses : incidents diplomatiques désamorcés",
+   "flaw": "Paraît loin des préoccupations des Français",
+   "monthly": [
+    {
+     "target": "opinion.group.rural",
+     "amount": -0.0012
+    }
+   ],
+   "eventFactors": {
+    "diplomatic_incident": 0.65,
+    "fishing_dispute": 0.7,
+    "hostages_abroad": 0.8,
+    "trade_tariffs": 0.8
+   }
   },
   {
    "id": "agriculteur",
@@ -222,7 +352,26 @@
      "target": "quality.agriculture",
      "amount": 0.005
     }
-   ]
+   ],
+   "perk": "La France rurale le suit : crises agricoles adoucies",
+   "flaw": "Les villes le trouvent dépassé",
+   "monthly": [
+    {
+     "target": "opinion.group.rural",
+     "amount": 0.002
+    },
+    {
+     "target": "opinion.group.urban",
+     "amount": -0.0015
+    }
+   ],
+   "eventFactors": {
+    "farmers_protest": 0.65,
+    "farmers_local": 0.7,
+    "wine_hail": 0.75,
+    "drought": 0.8,
+    "wine_crisis": 0.75
+   }
   },
   {
    "id": "journaliste",
@@ -244,7 +393,24 @@
      "target": "opinion.group.young",
      "amount": 0.005
     }
-   ]
+   ],
+   "perk": "Maîtrise des médias : rumeurs et polémiques retombent vite",
+   "flaw": "Accusé de privilégier la communication",
+   "monthly": [
+    {
+     "target": "opinion.national",
+     "amount": 0.0008
+    },
+    {
+     "target": "opinion.group.high_income",
+     "amount": -0.001
+    }
+   ],
+   "eventFactors": {
+    "deepfake_president": 0.6,
+    "social_media_harassment": 0.7,
+    "foreign_interference": 0.8
+   }
   },
   {
    "id": "elu_local",
@@ -266,7 +432,24 @@
      "target": "opinion.group.middle_income",
      "amount": 0.01
     }
-   ]
+   ],
+   "perk": "Homme de terrain : les colères locales s'apaisent plus vite",
+   "flaw": "Peu de poids à Bruxelles",
+   "monthly": [
+    {
+     "target": "opinion.group.middle_income",
+     "amount": 0.0012
+    },
+    {
+     "target": "alliance.EU.NEGOTIATION_GOODWILL",
+     "amount": -0.002
+    }
+   ],
+   "eventFactors": {
+    "city_demonstration": 0.75,
+    "post_office_closure": 0.7,
+    "medical_desert": 0.8
+   }
   },
   {
    "id": "chercheur",
@@ -292,7 +475,25 @@
      "target": "opinion.group.young",
      "amount": 0.01
     }
-   ]
+   ],
+   "perk": "Méthode et rigueur : crises techniques et sanitaires mieux traitées",
+   "flaw": "Peu de réseaux : la majorité est plus rétive",
+   "monthly": [
+    {
+     "target": "government.parliamentSupport",
+     "amount": -0.0015
+    },
+    {
+     "target": "opinion.group.young",
+     "amount": 0.001
+    }
+   ],
+   "eventFactors": {
+    "nuclear_incident": 0.75,
+    "nuclear_plant_leak": 0.75,
+    "ai_layoffs": 0.75,
+    "space_failure": 0.7
+   }
   }
  ]
 }

@@ -93,7 +93,9 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
             slots = saves.slots().map { TitleScreen.SlotEntry(it.id, it.meta.title.ifBlank { "Partie" }, it.meta.detail, it.id == saves.activeSlot) },
             onLoad = { id -> Gdx.app.postRunnable { safely("reprise de la partie") { saves.activeSlot = id; resumeSave() } } },
             onDelete = { id -> Gdx.app.postRunnable { safely("accueil") { saves.delete(id); showTitle() } } },
-            onLearn = { Gdx.app.postRunnable { safely("académie") { startAcademy() } } }))
+            onLearn = { Gdx.app.postRunnable { safely("académie") { startAcademy() } } },
+            galleryCount = gallery.entries().size,
+            onGallery = { Gdx.app.postRunnable { safely("galerie") { switchTo(fr.president.game.screens.GalleryScreen(ui, gallery.entries(), scale) { Gdx.app.postRunnable { safely("accueil") { showTitle() } } }) } } }))
     }
 
     private fun resumeSave() {
@@ -220,9 +222,13 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
         Gdx.app.postRunnable { runCatching { old.dispose() } }
     }
 
+    private val gallery by lazy { fr.president.engine.save.Gallery(platform.saveDirectory) }
+
     private fun showGameOver(session: GameSession) {
         controller?.save()
         controller = null
+        // Chaque présidence achevée entre dans la galerie (hors Académie).
+        if (session.state.player.academyModule == null && saves.activeSlot != ACADEMY_SLOT) runCatching { gallery.record(session) }
         switchTo(GameOverScreen(ui, session, scale, onReplay = {
             Gdx.app.postRunnable { safely("relecture") { showReplay(session) { showGameOver(session) } } }
         }, onBook = {

@@ -41,4 +41,9 @@ class PlayerState(
     var bigNewsSeen: Int = 0,
     /** Soirée électorale déjà montrée (nombre de présidentielles vues). */
     var electionNightsSeen: Int = 0,
+    /** Situation de départ tirée au sort (monde varié). */
+    var startSituation: String? = null,
+    var startSituationText: String? = null,
+    /** Échéance électorale déjà rappelée (secondes du monde). */
+    var electionReminded: Long = 0L,
 )

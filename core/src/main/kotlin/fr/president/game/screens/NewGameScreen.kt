@@ -171,7 +171,7 @@ class NewGameScreen(
         }
         content.add(ui.button("Prendre ses fonctions", "accent") {
             onStart(NewGameOptions(pace, seed, nowMillis(), first.text, last.text, female, leaning, socialLeaning = social, promises = promises.toList(), scenarioId = scenario?.takeIf { it != STANDARD }, countryId = countryId,
-                presidentAge = age, careerId = career, presidentTraits = traits.toMap(), appearance = appearance))
+                presidentAge = age, careerId = career, presidentTraits = traits.toMap(), appearance = appearance, variedWorld = true))
         }).padTop(16f).row()
         content.add(ui.label("Pays, institutions et données de départ inspirés du monde réel (${db.snapshot.label}). Personnages fictifs : les noms des dirigeants s'inspirent de personnalités réelles sans les reprendre.", "muted", wrap = true)).width(CONTENT_WIDTH).row()
 
@@ -226,7 +226,7 @@ class NewGameScreen(
             val group = ButtonGroup<TextButton>().apply { setMinCheckCount(0) }
             val grid = Table().apply { defaults().padRight(4f).padBottom(4f).fillX() }
             careers.forEachIndexed { i, c ->
-                val b = ui.button(c.label, "toggle") { career = c.id; info.setText(c.description) }
+                val b = ui.button(c.label, "toggle") { career = c.id; info.setText(c.description + (if (c.perk.isNotEmpty()) "\n▲ Atout : ${c.perk}" else "") + (if (c.flaw.isNotEmpty()) "\n▼ Faiblesse : ${c.flaw}" else "")) }
                 group.add(b)
                 grid.add(b)
                 if (i % CAREER_COLUMNS == CAREER_COLUMNS - 1) grid.row()

@@ -34,6 +34,8 @@ object BackgroundRun {
                 return Outcome.SKIPPED
             }
             session.advanceToNow()
+            // Rappels de rendez-vous (décision qui expire, élection imminente) : seulement jeu fermé.
+            fr.president.engine.notifications.Reminders(session).collect(System.currentTimeMillis())
             val pending = session.context.notifications.drainPlatformQueue()
             // Le joueur a pu rouvrir le jeu pendant la simulation : sa partie a priorité.
             if (ForegroundFlag.isForeground(dir)) return Outcome.SKIPPED
