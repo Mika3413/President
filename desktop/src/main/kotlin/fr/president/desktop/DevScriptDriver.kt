@@ -58,6 +58,8 @@ class DevScriptDriver(private val game: PresidentGame, script: String) : Applica
                 fr.president.engine.military.StrikeLog.add(s.state.military, s.db.zones, s.context.now, a[0], s.military.zoneAt(a[1].toDouble(), a[2].toDouble()) ?: return@let, nuclear = a.getOrNull(3) == "nuke")
             } }
             "replay" -> game.mainScreen?.startReplay()
+            // answer:n : répond au dernier message en attente avec sa n-ième option.
+            "answer" -> game.controller?.session?.let { s -> s.state.inbox.messages.lastOrNull { it.awaitingAnswer }?.let { m -> s.answer(m.id, m.options[arg.toInt()].id); game.mainScreen?.refresh() } }
             "quit" -> Gdx.app.exit()
         }
         if (cmd != "wait") waitFrames = STEP_FRAMES

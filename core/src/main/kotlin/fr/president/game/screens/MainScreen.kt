@@ -60,6 +60,9 @@ class MainScreen(
     private val camera = OrthographicCamera()
     /** Sons et musique tirés de ce qui se passe dans la partie. */
     private val audio = fr.president.game.ui.AudioDirector()
+    /** Premier matin : une vraie crise à trancher dès l'arrivée, puis son bilan. */
+    private val firstMorning by lazy { fr.president.game.ui.hud.FirstMorning(ui) }
+    private val onboarding get() = fr.president.engine.presidency.OnboardingService(session.context)
     override val stage = Stage(ScreenViewport().apply { unitsPerPixel = 1f / uiScale })
     private val mapRenderer = MapRenderer(mapData, playerId)
     private val advisor by lazy { fr.president.game.ui.hud.AdvisorCard(ui, session, this) }
@@ -190,6 +193,7 @@ class MainScreen(
         overlayTable.touchable = com.badlogic.gdx.scenes.scene2d.Touchable.childrenOnly
         stage.addActor(overlayTable)
         stage.addActor(briefing.root)
+        stage.addActor(firstMorning.root)
         stage.addActor(tour.highlight)
         stage.addActor(academy.highlight)
         stage.addActor(quickOrders.root)
@@ -337,6 +341,8 @@ class MainScreen(
 
     override fun open(panel: PanelId, argument: String?) {
         val p = panels.getValue(panel)
+        // Un écran atteint par un autre chemin (conseil, alerte) reste ensuite dans le menu.
+        session.state.player.unlockedScreens += panel.name
         if (panel == PanelId.DIPLOMACY && argument != null) diplomacyPanel.country = argument
         else if (argument != null) p.applyArgument(argument)
         val changed = currentPanel !== p
@@ -417,7 +423,35 @@ class MainScreen(
             if (m != null) unrestButton.setText("${m.phase.icon} ${session.unrest.people(m.crowd)}")
         }
         fr.president.game.ui.MusicPlayer.setMood(mood())
+        firstMorningStep()
         currentPanel?.let { if (periodic) it.refreshIfIdle() else it.refresh() }
+    }
+
+    /** Premier matin : la crue à décider, puis ce que la décision change. */
+    private fun firstMorningStep() {
+        if (firstMorning.root.isVisible) return
+        val o = onboarding
+        if (o.firstMorningDue()) {
+            val m = o.startFirstMorning() ?: return
+            fr.president.game.ui.Sfx.play(fr.president.game.ui.Sfx.Kind.ALERT)
+            firstMorning.showMorning(m) {
+                focusOn(m.department)
+                inboxPanel.openMessage = m.messageId
+                open(PanelId.INBOX)
+            }
+            return
+        }
+        val outcome = o.outcome() ?: return
+        closePanel()
+        fr.president.game.ui.Sfx.play(if (outcome.tone == fr.president.engine.readout.Tone.GOOD) fr.president.game.ui.Sfx.Kind.CROWD else fr.president.game.ui.Sfx.Kind.MESSAGE)
+        firstMorning.showOutcome(outcome) {
+            o.outcomeSeen()
+            // La carte de popularité, cadrée sur la région touchée : on y voit l'effet de la décision.
+            overlay.locate(outcome.department)?.let { (x, y) -> cameraController.focus(x, y, DEPARTMENT_VIEW_WIDTH * 3) }
+            layer = ThematicLayer.OPINION
+            layers.show(layer)
+            refresh()
+        }
     }
 
     /** Bilan affiché au retour du joueur après une absence. */
@@ -431,7 +465,7 @@ class MainScreen(
 
     /** Accès pour l'automatisation de développement (captures d'écran). */
     fun devZoom(lon: Double, lat: Double, width: Float) = cameraController.focus(GeoProjection.x(lon), GeoProjection.y(lat), width)
-    fun devLayer(l: ThematicLayer) { layer = l }
+    fun devLayer(l: ThematicLayer) { layer = l; layers.show(l) }
     /** Simule un toucher sur la carte à une position géographique. */
     fun devTap(lon: Double, lat: Double) {
         val v = com.badlogic.gdx.math.Vector3(GeoProjection.x(lon), GeoProjection.y(lat), 0f)

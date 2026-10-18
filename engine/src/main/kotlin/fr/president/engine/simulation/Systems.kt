@@ -33,6 +33,7 @@ object Systems {
         fr.president.engine.military.OccupationSystem(),
         fr.president.engine.military.NuclearSystem(),
         fr.president.engine.presidency.MajorEventsSystem(),
+        fr.president.engine.presidency.OnboardingSystem(),
         fr.president.engine.military.ForeignOperationsSystem(),
         fr.president.engine.military.CitiesSystem(),
         fr.president.engine.crisis.MeasureSystem(),

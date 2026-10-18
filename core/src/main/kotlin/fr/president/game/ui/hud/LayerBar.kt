@@ -66,6 +66,12 @@ class LayerBar(private val ui: Ui, initial: ThematicLayer, private val onChange:
 
     fun close() = setOpen(false)
 
+    /** Couche choisie par le jeu lui-même (premier matin, script) : le bouton suit. */
+    fun show(layer: ThematicLayer) {
+        current = layer
+        toggle.setText(title(layer))
+    }
+
     val isOpen: Boolean get() = popup.isVisible
 
     private fun title(layer: ThematicLayer) = "☰ Carte : ${layer.label}"

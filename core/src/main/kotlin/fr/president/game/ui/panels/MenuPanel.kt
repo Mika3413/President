@@ -14,56 +14,89 @@ class MenuPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel
     override val title = "☰ Tous les écrans"
     private val session get() = nav.session
 
-    private data class Entry(val icon: String, val label: String, val text: String, val color: Color, val panel: PanelId?, val badge: () -> Int = { 0 }, val action: (() -> Unit)? = null)
+    private data class Entry(val icon: String, val label: String, val text: String, val color: Color, val panel: PanelId?, val badge: () -> Int = { 0 }, val key: String? = null, val action: (() -> Unit)? = null)
 
-    private val entries = listOf(
-        Entry("✪", "Bureau du président", "Note du jour, rapports des ministres, préfets, renseignement, prévisions de Bercy.", Theme.highlightDark, PanelId.OFFICE) {
-            session.state.consequences.current.values.count { it.active && it.severity >= 1 } },
-        Entry("★", "Moments présidentiels", "Allocution composée phrase par phrase, interview du 20 heures, débat d'entre-deux-tours, sommets.", Theme.highlightDark, PanelId.MOMENTS),
-        Entry("◎", "Journal du monde", "Ce qui se passe dans les autres pays et entre eux : élections, crises, accords, guerres, catastrophes.", Theme.catDiplomacy, PanelId.WORLD),
-        Entry("★", "Décider", "Plans, décrets, déplacements, décisions de crise.", Theme.highlightDark, PanelId.DECISIONS),
-        Entry("⚠", "Crises et risques", "Risques à 30 jours, prévention, confinement, couvre-feu, ORSEC...", Theme.warning, PanelId.CRISIS) { session.risks.unattended().size },
-        Entry("▲", "Bilan", "Courbes, causes, conséquences en chaîne, groupes sociaux, pays, journal.", Theme.catStats, PanelId.STATS),
-        Entry("▶", "Relecture du mandat", "Votre mandat en accéléré : la carte de popularité semaine après semaine, les fronts, les chiffres et les grands titres.", Theme.catStats, null, action = { nav.startReplay() }),
-        Entry("⚖", "Lois et budget", "Budget annuel, projets de loi, mesures sur mesure, décrets, textes votés.", Theme.catGovernment, PanelId.LEGISLATION) { session.legislation.pendingBills().size },
-        Entry("⚖", "Lois et Constitution", "Société, justice, travail, libertés, mandat, référendum.", Theme.catGovernment, PanelId.LAWS),
-        Entry("⚒", "Société civile", "Syndicats, patronat, cultes, lobbies, associations.", Theme.catElections, PanelId.ACTORS) { session.actors.rows().count { it.satisfaction < 0.3 } },
-        Entry("⌂", "Gouvernement", "Ministres, Assemblée, Sénat, réformes.", Theme.catGovernment, PanelId.GOVERNMENT),
-        Entry("€", "Économie", "Impôts, dépenses, services publics.", Theme.catEconomy, PanelId.ECONOMY),
-        Entry("⛁", "Commerce et matières premières", "Pétrole, gaz, blé, contrats, exportations, FMI, OMC.", Theme.catEconomy, PanelId.TRADE) { session.state.trade.tenders.size },
-        Entry("☎", "Diplomatie", "Accords, sanctions, ultimatums.", Theme.catDiplomacy, PanelId.DIPLOMACY),
-        Entry("✎", "Académie", "Apprendre à jouer en profondeur : 11 modules guidés.", Theme.catHelp, PanelId.ACADEMY),
-        Entry("◷", "Agenda", "Votre semaine : déplacements, sommets, visites, entretiens.", Theme.catStats, PanelId.AGENDA),
-        Entry("◎", "ONU", "Conseil de sécurité : résolutions, votes, veto de la France.", Theme.catDiplomacy, PanelId.UN) { session.state.un.drafts.count { it.sponsor != session.state.player.countryId && it.france == fr.president.engine.diplomacy.UnVote.ABSTAIN } },
-        Entry("★", "Union européenne", "Textes au Conseil, votes, alliés à Bruxelles.", Theme.catDiplomacy, PanelId.EU) { if (session.state.eu.current?.francePosition == fr.president.engine.diplomacy.EuVote.ABSTAIN) 1 else 0 },
-        Entry("✪", "Défense", "Armement, ventes d'armes, bases à l'étranger, dissuasion nucléaire.", Theme.catArmy, PanelId.DEFENSE),
-        Entry("⊘", "Renseignement", "DGSE, DGSI : espionnage, coups d'État, groupes armés, contre-espionnage.", Theme.catArmy, PanelId.INTEL) { session.state.intel.operations.size },
-        Entry("⚑", "La rue et l'armée", "Manifestations en direct, grèves, émeutes, loyauté de l'armée.", Theme.bad, PanelId.UNREST) { session.state.unrest.movements.size },
-        Entry("⚔", "Armées", "Unités, logistique, conflits, opérations.", Theme.catArmy, PanelId.ARMY),
-        Entry("▤", "Presse", "Unes du jour, sondages, climat médiatique.", Theme.catPress, PanelId.PRESS),
-        Entry("✔", "Élections", "Sondages, candidats, promesses.", Theme.catElections, PanelId.ELECTIONS),
-        Entry("✉", "Messages", "Les décisions qui attendent votre réponse.", Theme.catInbox, PanelId.INBOX) { session.state.inbox.messages.count { it.awaitingAnswer } },
-        Entry("⚑", "Alertes", "Toutes les notifications récentes.", Theme.catAlerts, PanelId.NOTIFICATIONS) { session.state.notifications.unreadCount },
-        Entry("⚙", "Réglages", "Texte, couleurs, sons, rythme, notifications.", Theme.catSettings, PanelId.SETTINGS),
-        Entry("?", "Aide", "Guide, glossaire, tutoriel.", Theme.catHelp, PanelId.HELP),
+    private class Section(val title: String, val entries: List<Entry>)
+
+    private val sections = listOf(
+        Section("Présidence", listOf(
+            Entry("✪", "Bureau du président", "Note du jour, rapports des ministres, préfets, renseignement, prévisions de Bercy.", Theme.highlightDark, PanelId.OFFICE) {
+                session.state.consequences.current.values.count { it.active && it.severity >= 1 } },
+            Entry("★", "Moments présidentiels", "Allocution phrase par phrase, interview du 20 heures, débat, sommets.", Theme.highlightDark, PanelId.MOMENTS),
+            Entry("◷", "Agenda", "Votre semaine : déplacements, sommets, visites, entretiens.", Theme.catStats, PanelId.AGENDA),
+            Entry("✉", "Messages", "Les décisions qui attendent votre réponse.", Theme.catInbox, PanelId.INBOX) { session.state.inbox.messages.count { it.awaitingAnswer } },
+            Entry("⚑", "Alertes", "Toutes les notifications récentes.", Theme.catAlerts, PanelId.NOTIFICATIONS) { session.state.notifications.unreadCount },
+        )),
+        Section("Le pays", listOf(
+            Entry("▲", "Bilan", "Courbes, causes, conséquences en chaîne, groupes sociaux, journal.", Theme.catStats, PanelId.STATS),
+            Entry("⚠", "Crises et risques", "Risques à 30 jours, prévention, confinement, couvre-feu, ORSEC...", Theme.warning, PanelId.CRISIS) { session.risks.unattended().size },
+            Entry("⚑", "La rue et l'armée", "Manifestations en direct, grèves, émeutes, loyauté de l'armée.", Theme.bad, PanelId.UNREST) { session.state.unrest.movements.size },
+            Entry("▤", "Presse", "Unes du jour, sondages, climat médiatique.", Theme.catPress, PanelId.PRESS),
+            Entry("▶", "Relecture du mandat", "Votre mandat en accéléré : la carte semaine après semaine, les chiffres, les grands titres.", Theme.catStats, null, key = "REPLAY", action = { nav.startReplay() }),
+        )),
+        Section("Lois et gouvernement", listOf(
+            Entry("⚖", "Lois et budget", "Budget annuel, projets de loi, mesures sur mesure, décrets.", Theme.catGovernment, PanelId.LEGISLATION) { session.legislation.pendingBills().size },
+            Entry("⚖", "Lois et Constitution", "Société, justice, travail, libertés, mandat, référendum.", Theme.catGovernment, PanelId.LAWS),
+            Entry("⌂", "Gouvernement", "Ministres, Assemblée, Sénat, réformes.", Theme.catGovernment, PanelId.GOVERNMENT),
+            Entry("⚒", "Société civile", "Syndicats, patronat, cultes, lobbies, associations.", Theme.catElections, PanelId.ACTORS) { session.actors.rows().count { it.satisfaction < 0.3 } },
+            Entry("✔", "Élections", "Sondages, candidats, promesses.", Theme.catElections, PanelId.ELECTIONS),
+        )),
+        Section("Économie", listOf(
+            Entry("€", "Économie", "Impôts, dépenses, services publics.", Theme.catEconomy, PanelId.ECONOMY),
+            Entry("⛁", "Commerce et matières premières", "Pétrole, gaz, blé, contrats, exportations, FMI, OMC.", Theme.catEconomy, PanelId.TRADE) { session.state.trade.tenders.size },
+        )),
+        Section("Le monde", listOf(
+            Entry("☎", "Diplomatie", "Accords, sanctions, ultimatums.", Theme.catDiplomacy, PanelId.DIPLOMACY),
+            Entry("★", "Union européenne", "Textes au Conseil, votes, alliés à Bruxelles.", Theme.catDiplomacy, PanelId.EU) { if (session.state.eu.current?.francePosition == fr.president.engine.diplomacy.EuVote.ABSTAIN) 1 else 0 },
+            Entry("◎", "ONU", "Conseil de sécurité : résolutions, votes, veto.", Theme.catDiplomacy, PanelId.UN) { session.state.un.drafts.count { it.sponsor != session.state.player.countryId && it.france == fr.president.engine.diplomacy.UnVote.ABSTAIN } },
+            Entry("◎", "Journal du monde", "Élections, crises, accords, guerres et catastrophes ailleurs.", Theme.catDiplomacy, PanelId.WORLD),
+        )),
+        Section("Défense", listOf(
+            Entry("⚔", "Armées", "Unités, logistique, conflits, opérations.", Theme.catArmy, PanelId.ARMY),
+            Entry("✪", "Défense", "Armement, ventes d'armes, bases à l'étranger, dissuasion nucléaire.", Theme.catArmy, PanelId.DEFENSE),
+            Entry("⊘", "Renseignement", "Espionnage, coups d'État, groupes armés, contre-espionnage.", Theme.catArmy, PanelId.INTEL) { session.state.intel.operations.size },
+        )),
+        Section("Le jeu", listOf(
+            Entry("✎", "Académie", "Apprendre à jouer en profondeur : modules guidés.", Theme.catHelp, PanelId.ACADEMY),
+            Entry("⚙", "Réglages", "Texte, couleurs, sons, rythme, notifications.", Theme.catSettings, PanelId.SETTINGS),
+            Entry("?", "Aide", "Guide, glossaire, tutoriel.", Theme.catHelp, PanelId.HELP),
+        )),
     )
 
     override fun build(into: Table) {
-        val grid = Table().apply { defaults().growX().uniformX().pad(3f) }
-        entries.forEachIndexed { i, e ->
-            val tile = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(8f); defaults().left() }
-            val head = Table()
-            head.add(Table().apply { setBackground(ui.skin.fill(e.color)) }.also { it.add(ui.label(e.icon, "value", Color.WHITE)) }).size(ICON).padRight(8f)
-            head.add(ui.label(e.label, "bold", wrap = true)).left().growX().minWidth(0f)
-            val n = e.badge()
-            if (n > 0) head.add(ui.label("● $n", "small", Theme.warning)).right()
-            tile.add(head).growX().row()
-            tile.add(ui.label(e.text, "muted", wrap = true)).growX().padTop(3f).row()
-            tile.onClick { e.action?.invoke() ?: e.panel?.let { nav.open(it) } }
-            grid.add(tile).fill().minWidth(0f)
-            if (i % 2 == 1) grid.row()
+        val onboarding = fr.president.engine.presidency.OnboardingService(session.context)
+        val hidden = ArrayList<String>()
+        sections.forEach { section ->
+            val shown = section.entries.filter { e -> onboarding.unlocked(e.key ?: e.panel!!.name).also { if (!it) hidden += e.label } }
+            if (shown.isEmpty()) return@forEach
+            into.add(ui.label(section.title.uppercase(), "small", Theme.textMuted)).left().padTop(6f).padBottom(2f).row()
+            val grid = Table().apply { defaults().growX().uniformX().pad(3f) }
+            shown.forEachIndexed { i, e ->
+                grid.add(tile(e)).fill().minWidth(0f)
+                if (i % 2 == 1) grid.row()
+            }
+            if (shown.size % 2 == 1) grid.add().fill()
+            into.add(grid).growX().row()
         }
-        into.add(grid).growX().row()
+        if (hidden.isNotEmpty()) {
+            val box = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(8f); defaults().left() }
+            box.add(ui.label("${hidden.size} écrans s'ouvriront au fil du mandat, quand ils deviendront utiles : ${hidden.joinToString(", ")}.", "muted", wrap = true)).growX().row()
+            box.add(ui.button("Tout afficher maintenant", "flat") { onboarding.showAll(); nav.refresh() }).left().padTop(3f).row()
+            into.add(box).growX().padTop(8f).row()
+        }
+    }
+
+    private fun tile(e: Entry): Table {
+        val tile = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(8f); defaults().left() }
+        val head = Table()
+        head.add(Table().apply { setBackground(ui.skin.fill(e.color)) }.also { it.add(ui.label(e.icon, "value", Color.WHITE)) }).size(ICON).padRight(8f)
+        head.add(ui.label(e.label, "bold", wrap = true)).left().growX().minWidth(0f)
+        val n = e.badge()
+        if (n > 0) head.add(ui.label("● $n", "small", Theme.warning)).right()
+        tile.add(head).growX().row()
+        tile.add(ui.label(e.text, "muted", wrap = true)).growX().padTop(3f).row()
+        tile.onClick { e.action?.invoke() ?: e.panel?.let { nav.open(it) } }
+        return tile
     }
 
     private companion object {

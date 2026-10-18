@@ -37,25 +37,17 @@ class GuidedTour(private val ui: Ui, private val session: GameSession, private v
     private var journalAtStart = 0
 
     private val steps = listOf(
-        Step("1/10 · Vos chiffres", "En haut, vos chiffres clés. ${Theme.goodName.replaceFirstChar { it.uppercase() }} = bien, orange = à surveiller, ${Theme.badName} = danger. Touchez votre popularité pour voir sa courbe et ses causes.",
+        Step("1/6 · Vos chiffres", "En haut, l'état du pays. ${Theme.goodName.replaceFirstChar { it.uppercase() }} = bien, orange = à surveiller, ${Theme.badName} = danger. Touchez votre popularité : sa courbe montre déjà l'effet de votre première décision.",
             "chip.approval") { host.openPanel == PanelId.STATS },
-        Step("2/10 · Décider", "Le cœur du jeu : touchez « ★ Décider » en bas pour voir les 65 décisions nationales.",
-            "bar.decide") { host.openPanel == PanelId.DECISIONS },
-        Step("3/10 · Prendre une décision", "Choisissez une rubrique, lisez les effets (${Theme.goodName} = gain, ${Theme.badName} = perte) et la prévision, puis touchez « ▶ Lancer ».",
-            null, "Décision") { it.newJournal("Décision") },
-        Step("4/10 · La carte", "Touchez un département de la France métropolitaine pour ouvrir sa fiche.",
-            null) { host.selection is MapSelection.Department },
-        Step("5/10 · Agir sur le terrain", "Ouvrez l'onglet « ▶ Agir » et lancez une action locale : hôpital, usine, police...",
-            "tab.act", "Territoire") { it.newJournal("Territoire") },
-        Step("6/10 · Lire la carte", "Touchez « ☰ Carte » en haut à gauche et choisissez « Chômage » : chaque département affiche son chiffre.",
-            "layers") { host.layer != ThematicLayer.ADMIN },
-        Step("7/10 · Le monde", "Dézoomez et touchez un pays étranger : sa couleur dit votre relation. Coopérez ou faites pression.",
+        Step("2/6 · Décider pour tout le pays", "Touchez « ★ Décider » en bas, choisissez une décision, regardez sa prévision (${Theme.goodName} = gain, ${Theme.badName} = perte) et lancez-la.",
+            "bar.decide", "Décision") { it.newJournal("Décision") },
+        Step("3/6 · Agir sur le terrain", "Touchez un département sur la carte, ouvrez « ▶ Agir » et lancez une action locale : hôpital, usine, police...",
+            null, "Territoire") { it.newJournal("Territoire") },
+        Step("4/6 · Lire la carte", "Touchez « ☰ Carte » en haut à gauche et choisissez « Chômage » : chaque département montre son chiffre.",
+            "layers") { host.layer == ThematicLayer.UNEMPLOYMENT },
+        Step("5/6 · Le monde", "Dézoomez et touchez un pays étranger : sa couleur dit votre relation. Coopérez ou faites pression.",
             null) { host.selection is MapSelection.Country },
-        Step("8/10 · Les messages", "Ministres, élus et dirigeants étrangers vous écrivent. Touchez « ✉ Messages » : chaque dossier propose plusieurs réponses, et souvent des mesures d'urgence cumulables.",
-            "bar.inbox") { host.openPanel == PanelId.INBOX },
-        Step("9/10 · Crises et risques", "Anticipez : dans « ★ Décider », touchez « ⚠ Crises et risques ». Vous y voyez les risques du mois (feux, crues, épidémie...) et décrétez prévention, confinement, couvre-feu ou plan ORSEC.",
-            "decide.crisis") { host.openPanel == PanelId.CRISIS },
-        Step("10/10 · Lois et budget", "Trois façons de changer les règles. Les impôts et les dépenses : vous les réglez, ils entrent dans le projet de budget voté chaque automne (pas de nom à donner). Une loi (société, travail, libertés, retraites...) : un projet qui réunit plusieurs changements, avec un nom proposé. Les petits réglages (SMIC, vitesse) : un décret, immédiat. Touchez « ☰ Plus » puis « Lois et budget ».",
+        Step("6/6 · Lois et budget", "Impôts et dépenses entrent dans le budget voté chaque automne ; une loi réunit plusieurs changements ; un décret s'applique tout de suite. Touchez « ☰ Plus » puis « Lois et budget ».",
             "bar.more") { host.openPanel == PanelId.LEGISLATION },
     )
 
@@ -67,6 +59,9 @@ class GuidedTour(private val ui: Ui, private val session: GameSession, private v
     fun update() {
         val i = step
         if (i < 0 || i > steps.size) { hide(); return }
+        // Le premier matin passe avant le tutoriel.
+        val p = session.state.player
+        if (p.firstCrisis == null && p.progressiveScreens || p.firstCrisis != null && !p.firstCrisisShown) { if (card.isVisible) hide(); return }
         if (i < steps.size && steps[i].done(this)) { advance(); return }
         if (i != shownStep) build(i)
     }
@@ -85,7 +80,7 @@ class GuidedTour(private val ui: Ui, private val session: GameSession, private v
         card.isVisible = true
         if (s == null) {
             card.add(ui.label("★ Bravo, Président !", "bold", Theme.highlight)).left().row()
-            card.add(ui.label("Vous savez tout l'essentiel. « ▲ Bilan » suit votre mandat, « ? » répond à vos questions. Bonne présidence !", "small", wrap = true)).width(TEXT_WIDTH).left().row()
+            card.add(ui.label("Vous savez l'essentiel. D'autres écrans s'ouvriront au fil du mandat, quand ils deviendront utiles. « ? » répond à vos questions. Bonne présidence !", "small", wrap = true)).width(TEXT_WIDTH).left().row()
             card.add(ui.colorButton("Terminer", Theme.accentDark) { session.state.player.tourStep = -1; hide() }).left().padTop(4f)
             return
         }

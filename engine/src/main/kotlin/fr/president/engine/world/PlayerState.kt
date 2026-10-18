@@ -27,4 +27,12 @@ class PlayerState(
     val academyDone: MutableSet<String> = mutableSetOf(),
     /** Parcours du président avant son élection. */
     var career: String? = null,
+    /** Premier matin : message de la première crise, département touché, bilan déjà montré. */
+    var firstCrisis: String? = null,
+    var firstCrisisDept: String? = null,
+    var firstCrisisShown: Boolean = false,
+    var firstCrisisAmount: Double = 0.0,
+    /** Écrans ouverts au fil du mandat (nouvelles parties) ; les anciennes parties voient tout. */
+    var progressiveScreens: Boolean = false,
+    val unlockedScreens: MutableSet<String> = mutableSetOf(),
 )
