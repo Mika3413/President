@@ -97,7 +97,8 @@ class OnboardingService(private val ctx: SimulationContext) {
         val opened = RULES.filter { (screen, rule) -> screen !in player.unlockedScreens && (days >= rule.days || rule.now(ctx)) }
         opened.forEach { (screen, rule) ->
             player.unlockedScreens += screen
-            ctx.notifications.post(NotificationCategory.GOVERNMENT, Urgency.IMPORTANT, "Nouvel écran : ${rule.label}", rule.why, null, journal = false)
+            player.newScreens += screen
+            ctx.notifications.post(NotificationCategory.GOVERNMENT, Urgency.INFO, "Nouvel écran : ${rule.label}", rule.why, null, journal = false)
         }
         return opened.map { (screen, rule) -> Unlock(screen, rule.label, rule.why) }
     }

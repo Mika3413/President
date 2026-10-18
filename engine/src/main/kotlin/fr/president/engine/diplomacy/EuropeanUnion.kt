@@ -247,7 +247,9 @@ class EuService(private val ctx: SimulationContext) {
         val veto = r.vetoBy?.let { " (veto : ${name(it)})" } ?: ""
         val title = "Conseil de l'UE : « ${t.title} » ${if (r.adopted) "adopté" else "rejeté"}$veto"
         val france = if (r.france == EuVote.ABSTAIN) "La France s'est abstenue." else "La France a voté ${r.france.label.lowercase()}" + if (proc.amended) ", après avoir fait adopter son amendement." else "."
-        ctx.notifications.post(NotificationCategory.DIPLOMACY, Urgency.IMPORTANT, title, "$france Parmi les États simulés : $yes pour, $no contre.", null, journal = false)
+        // Une alerte seulement quand la France est mise en minorité ou a posé son veto.
+        val notable = r.vetoBy == player || (r.france != EuVote.ABSTAIN && (r.france == EuVote.YES) != r.adopted)
+        ctx.notifications.post(NotificationCategory.DIPLOMACY, if (notable) Urgency.IMPORTANT else Urgency.INFO, title, "$france Parmi les États simulés : $yes pour, $no contre.", null, journal = false)
         JournalService(ctx).add("Europe", title, if ((r.france == EuVote.YES) == r.adopted && r.france != EuVote.ABSTAIN) Tone.GOOD else Tone.NEUTRAL)
     }
 

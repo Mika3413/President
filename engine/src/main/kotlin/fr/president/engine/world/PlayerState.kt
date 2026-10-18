@@ -35,4 +35,6 @@ class PlayerState(
     /** Écrans ouverts au fil du mandat (nouvelles parties) ; les anciennes parties voient tout. */
     var progressiveScreens: Boolean = false,
     val unlockedScreens: MutableSet<String> = mutableSetOf(),
+    /** Écrans ouverts par le temps mais pas encore visités (pastille « Nouveau »). */
+    val newScreens: MutableSet<String> = mutableSetOf(),
 )

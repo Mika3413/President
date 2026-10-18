@@ -39,17 +39,19 @@ class EventLauncher(private val ctx: SimulationContext) {
         ctx.notifications.news(def.category, headline, focus)
         if (def.message != null) {
             val message = deliverMessage(def, instance, scope, vars, details = false)
-            // Un courrier qui attend une réponse mérite une notification même s'il n'est pas urgent.
+            // Un courrier ordinaire : la pastille des messages suffit, pas de bandeau.
             if (def.urgency == Urgency.INFO && message != null) {
-                ctx.notifications.post(def.category, Urgency.IMPORTANT, "Courrier : ${message.senderLabel}", message.subject, focus, journal = false)
+                ctx.notifications.post(def.category, Urgency.INFO, "Courrier : ${message.senderLabel}", message.subject, focus, journal = false)
             }
         } else {
             instance.resolved = true
         }
         // Un événement exceptionnel devient urgent ; un événement limité reste discret.
         val urgency = when {
-            level == null -> def.urgency
+            level == null -> if (def.scope == EventScope.FOREIGN_COUNTRY && def.message == null && def.urgency != Urgency.URGENT) Urgency.INFO else def.urgency
             level.second.factor >= EXCEPTIONAL -> Urgency.URGENT
+            // À l'étranger, sans rien à décider : une brève du journal du monde, pas un bandeau.
+            def.scope == EventScope.FOREIGN_COUNTRY && def.message == null -> Urgency.INFO
             level.second.factor <= MINOR && def.urgency == Urgency.URGENT -> Urgency.IMPORTANT
             else -> def.urgency
         }

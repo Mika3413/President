@@ -32,7 +32,7 @@ class MenuPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel
             Entry("⚠", "Crises et risques", "Risques à 30 jours, prévention, confinement, couvre-feu, ORSEC...", Theme.warning, PanelId.CRISIS) { session.risks.unattended().size },
             Entry("⚑", "La rue et l'armée", "Manifestations en direct, grèves, émeutes, loyauté de l'armée.", Theme.bad, PanelId.UNREST) { session.state.unrest.movements.size },
             Entry("▤", "Presse", "Unes du jour, sondages, climat médiatique.", Theme.catPress, PanelId.PRESS),
-            Entry("▶", "Relecture du mandat", "Votre mandat en accéléré : la carte semaine après semaine, les chiffres, les grands titres.", Theme.catStats, null, key = "REPLAY", action = { nav.startReplay() }),
+            Entry("▶", "Relecture du mandat", "Votre mandat en accéléré : la carte semaine après semaine, les chiffres, les grands titres.", Theme.catStats, null, key = "REPLAY", action = { session.state.player.newScreens -= "REPLAY"; nav.startReplay() }),
         )),
         Section("Lois et gouvernement", listOf(
             Entry("⚖", "Lois et budget", "Budget annuel, projets de loi, mesures sur mesure, décrets.", Theme.catGovernment, PanelId.LEGISLATION) { session.legislation.pendingBills().size },
@@ -92,7 +92,9 @@ class MenuPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel
         head.add(Table().apply { setBackground(ui.skin.fill(e.color)) }.also { it.add(ui.label(e.icon, "value", Color.WHITE)) }).size(ICON).padRight(8f)
         head.add(ui.label(e.label, "bold", wrap = true)).left().growX().minWidth(0f)
         val n = e.badge()
-        if (n > 0) head.add(ui.label("● $n", "small", Theme.warning)).right()
+        val key = e.key ?: e.panel?.name
+        if (key != null && key in session.state.player.newScreens) head.add(ui.label("● Nouveau", "small", Theme.highlight)).right()
+        else if (n > 0) head.add(ui.label("● $n", "small", Theme.warning)).right()
         tile.add(head).growX().row()
         tile.add(ui.label(e.text, "muted", wrap = true)).growX().padTop(3f).row()
         tile.onClick { e.action?.invoke() ?: e.panel?.let { nav.open(it) } }

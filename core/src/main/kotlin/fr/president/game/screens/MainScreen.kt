@@ -343,6 +343,7 @@ class MainScreen(
         val p = panels.getValue(panel)
         // Un écran atteint par un autre chemin (conseil, alerte) reste ensuite dans le menu.
         session.state.player.unlockedScreens += panel.name
+        session.state.player.newScreens -= panel.name
         if (panel == PanelId.DIPLOMACY && argument != null) diplomacyPanel.country = argument
         else if (argument != null) p.applyArgument(argument)
         val changed = currentPanel !== p

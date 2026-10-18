@@ -20,6 +20,7 @@ class AudioDirector {
     private val tournaments = HashMap<String, Int>()
     private val won = HashSet<String>()
     private var elections = 0
+    private var pendingMessages = -1
     private var clock = 0f
     private var celebrateUntil = -1f
 
@@ -76,6 +77,10 @@ class AudioDirector {
             if (t.won && won.add(id) && !quiet) { Sfx.play(Sfx.Kind.FANFARE); celebrate(LONG_PARTY) }
             else if (!quiet && before != null && t.stage > before && !t.eliminated) Sfx.play(Sfx.Kind.CROWD, 0.6f)
         }
+        // Nouveau courrier qui attend une réponse : un léger carillon (les bandeaux sont réservés à l'important).
+        val pending = s.inbox.messages.count { it.awaitingAnswer }
+        if (!quiet && pendingMessages >= 0 && pending > pendingMessages) Sfx.play(Sfx.Kind.MESSAGE, 0.6f)
+        pendingMessages = pending
         // Élection présidentielle remportée.
         if (s.elections.results.size > elections) {
             if (!quiet && s.elections.results.last().incumbentWon) { Sfx.play(Sfx.Kind.FANFARE); celebrate(LONG_PARTY) }

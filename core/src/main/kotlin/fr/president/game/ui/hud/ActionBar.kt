@@ -29,7 +29,7 @@ class ActionBar(ui: Ui, private val session: GameSession, open: (PanelId) -> Uni
         inbox = ui.colorButton(INBOX, Theme.catInbox) { open(PanelId.INBOX) }
         inbox.name = "bar.inbox"
         root.add(inbox.hint(ui, "Les décisions qui attendent votre réponse."))
-        root.add(ui.colorButton("☎ Diplomatie", Theme.catDiplomacy) { open(PanelId.DIPLOMACY) }.hint(ui, "Négocier avec les 29 pays simulés : accords, sanctions, ultimatums."))
+        root.add(ui.colorButton("☎ Diplomatie", Theme.catDiplomacy) { open(PanelId.DIPLOMACY) }.hint(ui, "Négocier avec les pays simulés : accords, sanctions, ultimatums."))
         root.add(ui.colorButton("⚔ Armées", Theme.catArmy) { open(PanelId.ARMY) }.hint(ui, "Unités, ordres, opérations et guerres en cours."))
         more = ui.colorButton(MORE, Theme.catSettings) { open(PanelId.MENU) }
         more.name = "bar.more"
@@ -55,7 +55,7 @@ class ActionBar(ui: Ui, private val session: GameSession, open: (PanelId) -> Uni
     fun refresh() {
         val pending = session.state.inbox.messages.count { it.awaitingAnswer }
         inbox.setText(label(INBOX) + if (pending > 0) " ● $pending" else "")
-        val unread = session.state.notifications.unreadCount
+        val unread = session.state.notifications.unreadCount + session.state.player.newScreens.size
         more.setText(label(MORE) + if (unread > 0) " ● ${if (unread > 99) "99+" else unread}" else "")
     }
 

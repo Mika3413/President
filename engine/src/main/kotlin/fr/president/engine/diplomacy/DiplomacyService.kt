@@ -202,7 +202,8 @@ class DiplomacyService(private val ctx: SimulationContext) {
             "response:countered" -> "${def.name} formule une contre-proposition"
             else -> "Le gouvernement ${def.adjective} vous fait une proposition"
         }
-        ctx.notifications.post(NotificationCategory.DIPLOMACY, if (withOptions) Urgency.IMPORTANT else Urgency.INFO, title,
+        // Les propositions attendent dans la messagerie (pastille) : pas de bandeau à chaque fois.
+        ctx.notifications.post(NotificationCategory.DIPLOMACY, Urgency.INFO, title,
             "Consultez votre messagerie pour le détail.", foreign)
     }
 
