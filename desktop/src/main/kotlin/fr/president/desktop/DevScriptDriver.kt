@@ -59,6 +59,10 @@ class DevScriptDriver(private val game: PresidentGame, script: String) : Applica
             } }
             "replay" -> game.mainScreen?.startReplay()
             "book" -> game.mainScreen?.openBook()
+            "icons" -> fr.president.game.ui.Icons.atlas().let { a ->
+                val bg = Pixmap(a.width, a.height, Pixmap.Format.RGBA8888); bg.setColor(0.15f, 0.22f, 0.33f, 1f); bg.fill(); bg.drawPixmap(a, 0, 0)
+                PixmapIO.writePNG(Gdx.files.absolute(arg), bg); bg.dispose(); a.dispose()
+            }
             // elect : présidentielle fictive gagnée à 53 % (pour voir la soirée électorale).
             "elect" -> game.controller?.session?.let { s ->
                 val ctx = s.context

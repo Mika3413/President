@@ -159,6 +159,7 @@ class MainScreen(
     init {
         buildLayout()
         mapRenderer.zoneLookup = session.db.zones
+        mapRenderer.relief = session.db.warfare?.areas.orEmpty()
         mapRenderer.holderHostile = { session.military.geo.atWar(playerId, it) }
     }
 

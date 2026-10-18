@@ -29,6 +29,16 @@ class MapRenderer(private val data: MapData, private val playerCountryId: String
         view.set(camera.position.x - w / 2, camera.position.y - h / 2, w, h)
         val showDepartments = lod != Lod.WORLD
 
+        // Halo clair le long des côtes : la mer s'éclaircit près des terres.
+        if (lod >= Lod.FRANCE) {
+            Gdx.gl.glEnable(GL20.GL_BLEND)
+            shapes.projectionMatrix = camera.combined
+            shapes.begin(ShapeRenderer.ShapeType.Filled)
+            shapes.color = COAST_HALO
+            for (country in data.visibleCountries(view)) country.rings.forEach { if (it.bounds.overlaps(view)) thickPolygon(it.vertices, camera.zoom * COAST_PX) }
+            shapes.end()
+        }
+
         polygons.projectionMatrix = camera.combined
         polygons.begin()
         for (country in data.visibleCountries(view)) {
@@ -46,6 +56,7 @@ class MapRenderer(private val data: MapData, private val playerCountryId: String
 
         Gdx.gl.glEnable(GL20.GL_BLEND)
         shapes.projectionMatrix = camera.combined
+        drawRelief(lod, camera.zoom)
         shapes.begin(ShapeRenderer.ShapeType.Line)
         shapes.color = Theme.border
         for (country in data.visibleCountries(view)) {
@@ -133,6 +144,41 @@ class MapRenderer(private val data: MapData, private val playerCountryId: String
     var departmentOverride: ((String) -> Color?)? = null
     var occupiedOverride: Map<String, String>? = null
 
+    /** Reliefs (montagnes, collines, forêts, déserts), fournis par l'écran. */
+    var relief: List<fr.president.engine.military.TerrainArea> = emptyList()
+
+    /** Estompage discret : halos concentriques, hachures sur les sommets de près. */
+    private fun drawRelief(lod: Lod, pixel: Float) {
+        if (relief.isEmpty() || lod == Lod.WORLD) return
+        shapes.begin(ShapeRenderer.ShapeType.Filled)
+        for (a in relief) {
+            val cx = GeoProjection.x(a.lon); val cy = GeoProjection.y(a.lat)
+            val w = GeoProjection.x(a.rx) - GeoProjection.x(0.0); val h = GeoProjection.y(a.ry) - GeoProjection.y(0.0)
+            if (!view.overlaps(com.badlogic.gdx.math.Rectangle(cx - w, cy - h, w * 2, h * 2))) continue
+            val base = when (a.terrain) { "MOUNTAIN" -> RELIEF_MOUNTAIN; "HILLS" -> RELIEF_HILLS; "FOREST" -> RELIEF_FOREST; else -> RELIEF_DESERT }
+            for (k in 0 until RELIEF_RINGS) {
+                val f = 1f - k / RELIEF_RINGS.toFloat()
+                shapes.color = reliefColor.set(base.r, base.g, base.b, base.a * (0.35f + 0.65f * (k + 1) / RELIEF_RINGS))
+                shapes.ellipse(cx - w * f, cy - h * f, w * 2 * f, h * 2 * f, 28)
+            }
+            // De près, de petites hachures de sommets.
+            if (a.terrain == "MOUNTAIN" && lod >= Lod.FRANCE) {
+                shapes.color = PEAK
+                val step = (w / 3).coerceAtLeast(pixel * 14)
+                var x = cx - w * 0.6f
+                var i = 0
+                while (x < cx + w * 0.6f) {
+                    val y = cy + (if (i % 2 == 0) 0.15f else -0.2f) * h
+                    val s = pixel * 7
+                    shapes.triangle(x - s, y - s * 0.6f, x + s, y - s * 0.6f, x, y + s)
+                    x += step; i++
+                }
+            }
+        }
+        shapes.end()
+    }
+    private val reliefColor = Color()
+
     /** Graphe des zones (fourni par l'écran) et test d'hostilité envers le joueur. */
     var zoneLookup: fr.president.engine.military.ZoneGraph? = null
     var holderHostile: (String) -> Boolean = { false }
@@ -178,5 +224,13 @@ class MapRenderer(private val data: MapData, private val playerCountryId: String
         const val HALF_CELL = 0.5
         const val OCCUPIED_ALPHA = 0.45f
         const val ANNEXED_ALPHA = 0.25f
+        const val COAST_PX = 7f
+        const val RELIEF_RINGS = 4
+        val COAST_HALO = Color(0.42f, 0.66f, 0.85f, 0.22f)
+        val RELIEF_MOUNTAIN = Color(0.42f, 0.32f, 0.22f, 0.15f)
+        val RELIEF_HILLS = Color(0.5f, 0.42f, 0.28f, 0.05f)
+        val RELIEF_FOREST = Color(0.1f, 0.3f, 0.12f, 0.07f)
+        val RELIEF_DESERT = Color(0.85f, 0.7f, 0.4f, 0.06f)
+        val PEAK = Color(0.97f, 0.97f, 0.97f, 0.55f)
     }
 }

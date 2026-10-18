@@ -90,7 +90,10 @@ class MenuPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel
     private fun tile(e: Entry): Table {
         val tile = Table().apply { setBackground(ui.skin.fill(Theme.panelAlt)); pad(8f); defaults().left() }
         val head = Table()
-        head.add(Table().apply { setBackground(ui.skin.fill(e.color)) }.also { it.add(ui.label(e.icon, "value", Color.WHITE)) }).size(ICON).padRight(8f)
+        val drawn = (e.key?.let { ICON_KEYS[it] } ?: e.panel?.let { ICON_PANELS[it] })?.let { fr.president.game.ui.Icons.region(it) }
+        head.add(Table().apply { setBackground(ui.skin.fill(e.color)) }.also {
+            if (drawn != null) it.add(com.badlogic.gdx.scenes.scene2d.ui.Image(drawn)).size(ICON - 10f) else it.add(ui.label(e.icon, "value", Color.WHITE))
+        }).size(ICON).padRight(8f)
         head.add(ui.label(e.label, "bold", wrap = true)).left().growX().minWidth(0f)
         val n = e.badge()
         val key = e.key ?: e.panel?.name
@@ -103,6 +106,15 @@ class MenuPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel
     }
 
     private companion object {
+        val ICON_KEYS = mapOf("REPLAY" to "replay", "BOOK" to "book")
+        val ICON_PANELS = mapOf(
+            PanelId.OFFICE to "office", PanelId.MOMENTS to "moments", PanelId.AGENDA to "agenda", PanelId.INBOX to "inbox",
+            PanelId.NOTIFICATIONS to "alerts", PanelId.STATS to "stats", PanelId.CRISIS to "crisis", PanelId.UNREST to "unrest",
+            PanelId.PRESS to "press", PanelId.LEGISLATION to "legislation", PanelId.LAWS to "laws", PanelId.GOVERNMENT to "government",
+            PanelId.ACTORS to "actors", PanelId.ELECTIONS to "elections", PanelId.ECONOMY to "economy", PanelId.TRADE to "trade",
+            PanelId.DIPLOMACY to "diplomacy", PanelId.EU to "eu", PanelId.UN to "un", PanelId.WORLD to "world", PanelId.ARMY to "army",
+            PanelId.DEFENSE to "defense", PanelId.INTEL to "intel", PanelId.ACADEMY to "academy", PanelId.SETTINGS to "settings", PanelId.HELP to "help",
+        )
         const val ICON = 30f
     }
 }
