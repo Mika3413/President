@@ -20,4 +20,6 @@ class GovernmentState(
     val proposedInitiatives: MutableSet<String> = mutableSetOf(),
     /** Dernière dispute de chaque type (délai avant qu'elle ne revienne). */
     val lastDisputes: MutableMap<String, fr.president.engine.time.WorldTime> = mutableMapOf(),
+    /** Ministère vacant -> depuis quand (secondes du monde) ; le Premier ministre pourvoit au bout d'un mois. */
+    val vacantSince: MutableMap<String, Long> = mutableMapOf(),
 )

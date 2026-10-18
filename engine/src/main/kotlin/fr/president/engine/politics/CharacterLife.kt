@@ -80,6 +80,7 @@ class CharacterLife(private val ctx: SimulationContext) {
         val approval = ctx.state.opinion.nationalApproval
         ctx.state.characters.values.filter { it.active }.forEach { c -> c.mood *= MOOD_DECAY }
         if (ctx.state.player.gameOver != null) return
+        fillVacancies()
         for ((_, id) in gov.ministers.toList()) {
             val m = ctx.state.characters[id] ?: continue
             if (!m.active || id == gov.primeMinisterId) continue
@@ -105,6 +106,23 @@ class CharacterLife(private val ctx: SimulationContext) {
                     2 -> if (gov.affairs.none { it.ministerId == m.id }) fr.president.engine.government.CabinetService(ctx).raise(fr.president.engine.government.AffairKind.RIVALRY, m)
                     else -> betray(m)
                 }
+            }
+        }
+    }
+
+    /** Un ministère vacant depuis un mois : le Premier ministre y nomme le meilleur candidat disponible. */
+    private fun fillVacancies() {
+        val gov = ctx.state.government
+        val def = ctx.playerData.government ?: return
+        val commands = fr.president.engine.session.GovernmentCommands(ctx)
+        for (ministry in def.ministries.filter { !it.isPrimeMinister }) {
+            if (gov.ministers.containsKey(ministry.id)) { gov.vacantSince.remove(ministry.id); continue }
+            val since = gov.vacantSince.getOrPut(ministry.id) { ctx.now.seconds }
+            if (ctx.now.seconds - since < VACANCY_SECONDS) continue
+            val pick = commands.candidates(ministry.id).maxByOrNull { it.competence + it.loyalty } ?: continue
+            if (commands.appoint(ministry.id, pick.id).isSuccess) {
+                gov.vacantSince.remove(ministry.id)
+                JournalService(ctx).add("Gouvernement", "Le Premier ministre nomme ${pick.fullName} : ${ministry.title}", Tone.NEUTRAL)
             }
         }
     }
@@ -146,6 +164,7 @@ class CharacterLife(private val ctx: SimulationContext) {
         }
 
         private const val MAX_MEMORIES = 10
+        private const val VACANCY_SECONDS = 30L * 86_400
         private const val SHOWN_MEMORIES = 2
         private const val SECONDS_PER_YEAR = 31_557_600.0
         private const val MOOD_FACTOR = 1.2

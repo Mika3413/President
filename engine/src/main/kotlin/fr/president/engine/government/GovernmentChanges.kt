@@ -13,6 +13,7 @@ class GovernmentChanges(private val ctx: SimulationContext) {
         val ministry = gov.ministers.entries.firstOrNull { it.value == characterId }?.key ?: return
         val c = ctx.state.characters[characterId] ?: return
         gov.ministers.remove(ministry)
+        gov.vacantSince[ministry] = ctx.now.seconds
         c.role = CharacterRole.FORMER
         c.active = false
         val title = ctx.playerData.government!!.ministries.first { it.id == ministry }.title
