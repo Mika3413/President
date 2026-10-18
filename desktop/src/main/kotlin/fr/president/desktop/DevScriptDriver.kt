@@ -20,6 +20,10 @@ class DevScriptDriver(private val game: PresidentGame, script: String) : Applica
     private val steps = ArrayDeque(script.split(';').map { it.trim() }.filter { it.isNotEmpty() })
     private var waitFrames = INITIAL_WAIT
 
+    init {
+        fr.president.game.ui.PowerSaver.enabled = false
+    }
+
     override fun render() {
         game.render()
         if (waitFrames-- > 0) return

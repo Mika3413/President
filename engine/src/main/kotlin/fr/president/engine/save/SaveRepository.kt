@@ -58,6 +58,7 @@ class SaveRepository(private val directory: File, private val codec: SaveCodec =
         // Vérification : on ne remplace jamais une sauvegarde valide par un fichier illisible.
         codec.decode(temp.readBytes())
         if (target.exists()) {
+            dailySnapshot(slot, target)
             val bak = backup(slot)
             if (bak.exists()) bak.delete()
             target.renameTo(bak)
@@ -72,18 +73,36 @@ class SaveRepository(private val directory: File, private val codec: SaveCodec =
         val first = runCatching { codec.decode(primary.readBytes()) }
         if (first.isSuccess) return first.getOrThrow()
         val bak = backup(slot)
-        if (bak.exists()) return codec.decode(bak.readBytes())
+        runCatching { if (bak.exists()) return codec.decode(bak.readBytes()) }
+        // Dernier recours : les copies quotidiennes, de la plus récente à la plus ancienne.
+        for (i in 0 until DAILY_COPIES) {
+            val f = daily(slot, i)
+            if (f.exists()) runCatching { return codec.decode(f.readBytes()) }
+        }
         throw SaveException("Aucune sauvegarde lisible", first.exceptionOrNull())
     }
 
     fun delete(slot: String = activeSlot) {
         file(slot).delete()
         backup(slot).delete()
+        for (i in 0 until DAILY_COPIES) daily(slot, i).delete()
         File(directory, "$slot$META").delete()
     }
 
     private fun file(slot: String) = File(directory, "$slot$EXTENSION")
     private fun backup(slot: String) = File(directory, "$slot$EXTENSION$BACKUP_SUFFIX")
+    private fun daily(slot: String, i: Int) = File(directory, "$slot$EXTENSION$DAILY_SUFFIX$i")
+
+    /** Une copie par jour (réel), trois jours gardés : de quoi revenir avant un accident. */
+    private fun dailySnapshot(slot: String, current: File) {
+        val newest = daily(slot, 0)
+        if (newest.exists() && System.currentTimeMillis() - newest.lastModified() < DAILY_MILLIS) return
+        runCatching {
+            daily(slot, DAILY_COPIES - 1).delete()
+            for (i in DAILY_COPIES - 2 downTo 0) daily(slot, i).takeIf { it.exists() }?.renameTo(daily(slot, i + 1))
+            current.copyTo(newest, overwrite = true)
+        }
+    }
 
     companion object {
         const val DEFAULT_SLOT = "president"
@@ -92,5 +111,8 @@ class SaveRepository(private val directory: File, private val codec: SaveCodec =
         private const val BACKUP_SUFFIX = ".bak"
         private const val META = ".meta.json"
         private const val ACTIVE_FILE = "active-slot"
+        private const val DAILY_SUFFIX = ".jour"
+        private const val DAILY_COPIES = 3
+        private const val DAILY_MILLIS = 20L * 3600_000
     }
 }

@@ -71,6 +71,7 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
     }
 
     override fun render() {
+        fr.president.game.ui.PowerSaver.onFrame()
         try {
             super.render()
         } catch (t: Throwable) {
@@ -263,6 +264,7 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
 
     override fun resume() {
         super.resume()
+        fr.president.game.ui.PowerSaver.wake()
         val c = controller ?: return
         // La simulation d'arrière-plan a pu faire avancer la sauvegarde : on la reprend.
         val newer = runCatching { saves.read() }.getOrNull()?.takeIf { it.savedAtRealUtcMillis > c.lastSaveMillis }
