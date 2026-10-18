@@ -61,6 +61,7 @@ class NuclearService(private val ctx: SimulationContext) {
         val zone = target(enemy) ?: error("Aucun objectif militaire identifié.")
         StrikeLog.add(ctx.state.military, ctx.db.zones, ctx.now, player, zone, nuclear = true)
         devastate(zone)
+        fr.president.engine.stats.BigNewsService(ctx).publish("NUCLEAR", "La France a employé l'arme nucléaire", "Ultime avertissement : le monde entier retient son souffle.", Tone.BAD, flash = true)
         state.lastNuclearStrike = ctx.now
         state.escalation = maxOf(state.escalation, Rung.STRIKE.ordinal)
         state.credibility = (state.credibility + 0.2).coerceAtMost(1.0)
@@ -92,6 +93,7 @@ class NuclearService(private val ctx: SimulationContext) {
             .groupBy { it.zoneId }.maxByOrNull { (_, us) -> us.sumOf { it.strength } }?.key ?: return
         StrikeLog.add(ctx.state.military, ctx.db.zones, ctx.now, enemy, zone, nuclear = true)
         devastate(zone)
+        fr.president.engine.stats.BigNewsService(ctx).publish("NUCLEAR", "Frappe nucléaire contre nos forces", "Une arme atomique a frappé nos troupes. Le président doit décider.", Tone.BAD, flash = true)
         state.nuclearAttackBy = enemy
         state.nuclearAttackAt = ctx.now
         state.escalation = maxOf(state.escalation, Rung.STRIKE.ordinal)

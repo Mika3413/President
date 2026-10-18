@@ -52,6 +52,7 @@ class MainScreen(
     private val onGameOver: () -> Unit,
     private val onDisplayChange: () -> Unit = {},
     private val onReplay: () -> Unit = {},
+    private val onBook: () -> Unit = {},
     private val onAbandon: () -> Unit = {},
 ) : ScreenAdapter(), Navigator, HasStage, fr.president.game.ui.hud.TourHost {
     override val session: GameSession get() = controller.session
@@ -63,6 +64,10 @@ class MainScreen(
     /** Premier matin : une vraie crise à trancher dès l'arrivée, puis son bilan. */
     private val firstMorning by lazy { fr.president.game.ui.hud.FirstMorning(ui) }
     private val onboarding get() = fr.president.engine.presidency.OnboardingService(session.context)
+    /** Grands moments en plein écran (flash spécial, une de journal). */
+    private val bigNews by lazy { fr.president.game.ui.hud.BigNewsOverlay(ui) }
+    /** Soirée électorale en direct (avant l'écran de fin si l'élection est perdue). */
+    private val electionNight by lazy { fr.president.game.ui.hud.ElectionNight(ui, session) { mapRenderer.departmentOverride = it } }
     override val stage = Stage(ScreenViewport().apply { unitsPerPixel = 1f / uiScale })
     private val mapRenderer = MapRenderer(mapData, playerId)
     private val advisor by lazy { fr.president.game.ui.hud.AdvisorCard(ui, session, this) }
@@ -194,6 +199,8 @@ class MainScreen(
         stage.addActor(overlayTable)
         stage.addActor(briefing.root)
         stage.addActor(firstMorning.root)
+        stage.addActor(bigNews.root)
+        stage.addActor(electionNight.root)
         stage.addActor(tour.highlight)
         stage.addActor(academy.highlight)
         stage.addActor(quickOrders.root)
@@ -238,9 +245,10 @@ class MainScreen(
     override fun render(delta: Float) {
         fr.president.game.ui.MusicPlayer.update(delta)
         controller.update(delta)
+        electionNight.update(delta)
         audio.update(session, delta)
         while (audio.pendingFireworks > 0) { audio.pendingFireworks--; overlay.ambience.fireworks() }
-        if (session.isGameOver) {
+        if (session.isGameOver && !electionNightStep() && !electionNight.root.isVisible) {
             onGameOver()
             return
         }
@@ -271,6 +279,8 @@ class MainScreen(
     override fun applyDisplaySettings() = onDisplayChange()
 
     override fun startReplay() = onReplay()
+
+    override fun openBook() = onBook()
 
     /** Outil de développement : feu d'artifice immédiat. */
     fun devFireworks() = overlay.ambience.fireworks()
@@ -425,6 +435,7 @@ class MainScreen(
         }
         fr.president.game.ui.MusicPlayer.setMood(mood())
         firstMorningStep()
+        if (!electionNightStep()) bigNewsStep()
         currentPanel?.let { if (periodic) it.refreshIfIdle() else it.refresh() }
     }
 
@@ -453,6 +464,39 @@ class MainScreen(
             layers.show(layer)
             refresh()
         }
+    }
+
+    /** Montre la soirée de la dernière présidentielle si elle vient d'avoir lieu ; vrai si elle commence. */
+    private fun electionNightStep(): Boolean {
+        if (electionNight.root.isVisible) return false
+        val p = session.state.player
+        val results = session.state.elections.results
+        if (results.size <= p.electionNightsSeen) return false
+        p.electionNightsSeen = results.size
+        val last = results.last()
+        if (last.time.daysUntil(session.state.time) > RECENT_ELECTION_DAYS) return false
+        closePanel()
+        bigNews.root.isVisible = false
+        home()
+        // Carte sans chiffres d'opinion : seuls les résultats s'allument.
+        layer = ThematicLayer.ADMIN
+        layers.show(layer)
+        electionNight.show(last) { if (session.isGameOver) onGameOver() else refresh() }
+        return true
+    }
+
+    private fun bigNewsStep() {
+        if (electionNight.root.isVisible || bigNews.root.isVisible || firstMorning.root.isVisible || briefing.root.isVisible) return
+        val service = fr.president.engine.stats.BigNewsService(session.context)
+        val n = service.pending() ?: return
+        service.seen()
+        fr.president.game.ui.Sfx.play(when {
+            n.flash -> fr.president.game.ui.Sfx.Kind.ALERT
+            n.tone == fr.president.engine.readout.Tone.GOOD -> fr.president.game.ui.Sfx.Kind.FANFARE
+            else -> fr.president.game.ui.Sfx.Kind.MESSAGE
+        })
+        fr.president.game.ui.Haptics.buzz(if (n.flash) fr.president.game.ui.Haptics.STRONG else fr.president.game.ui.Haptics.LIGHT)
+        bigNews.show(n) { refresh() }
     }
 
     /** Bilan affiché au retour du joueur après une absence. */
@@ -533,6 +577,7 @@ class MainScreen(
         fr.president.game.ui.MusicPlayer.stop()
         stage.dispose()
         mapRenderer.dispose()
+        bigNews.dispose()
         overlay.dispose()
     }
 
@@ -540,6 +585,7 @@ class MainScreen(
         const val BOTTOM_OVERLAY = 90f
         const val TENSE_APPROVAL = 0.3
         const val PANEL_FADE_SECONDS = 0.18f
+        const val RECENT_ELECTION_DAYS = 7.0
         const val FRANCE_LON = 2.4
         const val FRANCE_LAT = 46.6
         const val FRANCE_VIEW_WIDTH = 1500f

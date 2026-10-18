@@ -43,11 +43,16 @@ object UserSettings {
         get() = prefs?.getBoolean(DAY_NIGHT, true) ?: true
         set(v) { prefs?.apply { putBoolean(DAY_NIGHT, v); flush() } }
 
+    var vibrations: Boolean
+        get() = prefs?.getBoolean(VIBRATIONS, true) ?: true
+        set(v) { prefs?.apply { putBoolean(VIBRATIONS, v); flush() } }
+
     val volumes = listOf(0.25f to "25 %", 0.5f to "50 %", 0.8f to "80 %", 1f to "100 %")
 
     private const val SOUND_VOLUME = "soundVolume"
     private const val MUSIC_VOLUME = "musicVolume"
     private const val DAY_NIGHT = "dayNight"
+    private const val VIBRATIONS = "vibrations"
     private const val NAME = "president-reglages"
     private const val MUSIC = "music"
     private const val TEXT = "textScale"

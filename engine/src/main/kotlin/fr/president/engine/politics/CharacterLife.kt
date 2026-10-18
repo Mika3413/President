@@ -118,6 +118,8 @@ class CharacterLife(private val ctx: SimulationContext) {
         ctx.notifications.post(NotificationCategory.GOVERNMENT, fr.president.engine.notifications.Urgency.URGENT, "${m.fullName} claque la porte du gouvernement",
             "« Je ne peux plus cautionner cette politique. » Le ministre démissionne avec fracas et entraîne une partie de la majorité.", null)
         JournalService(ctx).add("Gouvernement", "Trahison : ${m.fullName} quitte le gouvernement avec fracas", Tone.BAD)
+        fr.president.engine.stats.BigNewsService(ctx).publish("BETRAYAL", "Trahison : ${m.fullName} claque la porte",
+            "« Je ne peux plus cautionner cette politique. » La majorité vacille.", Tone.BAD)
     }
 
     /** Un fidèle monte au créneau quand le président est dans la tourmente. */

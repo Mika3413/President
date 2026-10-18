@@ -142,6 +142,8 @@ class WarSystem : SimulationSystem {
         val capital = capitalZone(ctx, player) ?: return
         val military = ctx.state.military
         if (geo.controllerOf(capital) != player) {
+            if (military.capitalOccupiedDays == 0) fr.president.engine.stats.BigNewsService(ctx).publish("WAR", "La capitale est tombée",
+                "Les troupes ennemies sont entrées dans la capitale. Le gouvernement se replie.", fr.president.engine.readout.Tone.BAD, flash = true)
             military.capitalOccupiedDays++
             if (military.capitalOccupiedDays >= CAPITAL_LOSS_DAYS) {
                 ctx.state.player.gameOver = GameOver(ctx.now, "La capitale est occupée depuis ${military.capitalOccupiedDays} jours : le gouvernement capitule.")

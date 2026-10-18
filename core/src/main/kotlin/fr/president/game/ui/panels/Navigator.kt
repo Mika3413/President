@@ -20,6 +20,8 @@ interface Navigator {
     fun closePanels() {}
     /** Relecture accélérée du mandat (écran à part). */
     fun startReplay() {}
+    /** Le livre de votre présidence (écran à part). */
+    fun openBook() {}
 }
 
 enum class PanelId { SELECTION, MENU, OFFICE, WORLD, MOMENTS, DECISIONS, STATS, PRESS, GOVERNMENT, ECONOMY, DIPLOMACY, ARMY, CRISIS, EU, AGENDA, ACADEMY, LAWS, ACTORS, TRADE, DEFENSE, INTEL, UNREST, UN, LEGISLATION, INBOX, NOTIFICATIONS, ELECTIONS, SETTINGS, HELP }

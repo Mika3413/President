@@ -114,6 +114,9 @@ class SettingsPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit, pri
         }
         volumeRow("Volume des sons", settings.soundVolume) { settings.soundVolume = it }
         volumeRow("Volume de la musique", settings.musicVolume) { settings.musicVolume = it }
+        into.add(ui.button(if (settings.vibrations) "✔ Vibrations pour les grands moments" else "Vibrations pour les grands moments", "toggle") {
+            settings.vibrations = !settings.vibrations; nav.refresh()
+        }.also { it.isChecked = settings.vibrations }).left().padTop(4f).row()
         into.add(ui.button(if (settings.dayNight) "✔ Jour et nuit sur la carte" else "Jour et nuit sur la carte", "toggle") {
             settings.dayNight = !settings.dayNight; nav.refresh()
         }.also { it.isChecked = settings.dayNight }).left().padTop(4f).row()

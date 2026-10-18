@@ -147,6 +147,7 @@ class OnboardingService(private val ctx: SimulationContext) {
             "UN" to Rule("ONU", 30.0, "Le Conseil de sécurité : résolutions, votes, veto.") { it.state.un.drafts.isNotEmpty() },
             "INTEL" to Rule("Renseignement", 45.0, "Espionnage, contre-espionnage, opérations clandestines.") { it.state.intel.operations.isNotEmpty() },
             "ELECTIONS" to Rule("Élections", 90.0, "Sondages, candidats, promesses : préparez la prochaine échéance."),
+            "BOOK" to Rule("Le livre de votre présidence", 300.0, "Votre première année racontée comme un chapitre d'histoire."),
             "REPLAY" to Rule("Relecture du mandat", 56.0, "Votre mandat en accéléré, semaine après semaine."),
         )
     }

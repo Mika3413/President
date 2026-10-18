@@ -30,6 +30,12 @@ class WarService(private val ctx: SimulationContext) {
         val war = War(ctx.state.newId("war"), mutableListOf(attacker), mutableListOf(defender), ctx.now, cause)
         ctx.state.military.wars += war
         breakAgreements(attacker, defender)
+        val player = ctx.state.player.countryId
+        if (attacker == player || defender == player) {
+            val other = if (attacker == player) defender else attacker
+            val title = if (attacker == player) "La France entre en guerre contre ${ctx.db.theCountry(other)}" else "${ctx.db.theCountry(other).replaceFirstChar { it.uppercase() }} déclare la guerre à la France"
+            fr.president.engine.stats.BigNewsService(ctx).publish("WAR", title, "Mobilisation générale, Conseil de défense à l'Élysée : le pays retient son souffle.", fr.president.engine.readout.Tone.BAD, flash = true)
+        }
         // Le dirigeant agressé ne l'oubliera jamais.
         if (attacker == ctx.state.player.countryId) ctx.state.countries[defender]?.leaderId?.let {
             fr.president.engine.politics.CharacterLife(ctx).rememberById(it, "déclaré la guerre à mon pays", -1.0)
@@ -151,6 +157,10 @@ class WarService(private val ctx: SimulationContext) {
             military.occupied.remove(zone)
         }
         haltOffensives(war, sendHome = true)
+        if (ctx.state.player.countryId in parties) {
+            val others = parties.filter { it != ctx.state.player.countryId }.joinToString(" et ") { ctx.db.theCountry(it) }
+            fr.president.engine.stats.BigNewsService(ctx).publish("PEACE", "La paix est signée avec $others", outcome, fr.president.engine.readout.Tone.GOOD)
+        }
         ctx.notifications.post(NotificationCategory.MILITARY, Urgency.URGENT, "Paix signée", outcome)
         ctx.notifications.news(NotificationCategory.DIPLOMACY, "Fin de la guerre : $outcome")
     }

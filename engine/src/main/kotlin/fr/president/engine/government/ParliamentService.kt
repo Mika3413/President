@@ -179,6 +179,8 @@ class ParliamentService(private val ctx: SimulationContext) {
         ctx.notifications.post(NotificationCategory.ELECTIONS, Urgency.URGENT, "Dissolution de l'Assemblée nationale",
             "Vous dissolvez l'Assemblée. Les élections législatives auront lieu le ${Formatting.date(at)}. " +
                 "Les électeurs jugeront votre bilan : une victoire renforce votre majorité, une défaite peut imposer une cohabitation.")
+        fr.president.engine.stats.BigNewsService(ctx).publish("PARLIAMENT", "Le président dissout l'Assemblée nationale",
+            "Coup de tonnerre : législatives anticipées le ${Formatting.date(at)}. Le pays aux urnes.", fr.president.engine.readout.Tone.WARNING)
         ctx.log("parliament", "Dissolution, scrutin le $at")
     }
 

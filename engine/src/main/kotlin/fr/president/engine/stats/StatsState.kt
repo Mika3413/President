@@ -19,6 +19,8 @@ class StatsState(
     val replay: MutableList<ReplayFrame> = mutableListOf(),
     /** Ordre des départements dans [ReplayFrame.approval]. */
     val replayDepartments: MutableList<String> = mutableListOf(),
+    /** Grands moments mis en scène (flash spécial, une de journal). */
+    val bigNews: MutableList<BigNews> = mutableListOf(),
 )
 
 /**

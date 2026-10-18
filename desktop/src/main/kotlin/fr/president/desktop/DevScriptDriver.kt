@@ -58,6 +58,21 @@ class DevScriptDriver(private val game: PresidentGame, script: String) : Applica
                 fr.president.engine.military.StrikeLog.add(s.state.military, s.db.zones, s.context.now, a[0], s.military.zoneAt(a[1].toDouble(), a[2].toDouble()) ?: return@let, nuclear = a.getOrNull(3) == "nuke")
             } }
             "replay" -> game.mainScreen?.startReplay()
+            "book" -> game.mainScreen?.openBook()
+            // elect : présidentielle fictive gagnée à 53 % (pour voir la soirée électorale).
+            "elect" -> game.controller?.session?.let { s ->
+                val ctx = s.context
+                val e = s.state.elections
+                val first = e.latestPoll ?: return@let
+                val top = first.shares.entries.sortedByDescending { it.value }.map { it.key }
+                val you = s.state.player.presidentId
+                val other = top.first { it != you }
+                val second = fr.president.engine.elections.RoundResult(0.72, mapOf(you to 0.53, other to 0.47))
+                e.results += fr.president.engine.elections.ElectionResult(ctx.now, first, second, you, true, fr.president.engine.elections.ElectionSimulator(ctx).incumbentShareByDepartment(0.53))
+                game.mainScreen?.refresh()
+            }
+            // bignews:IMAGE : une de journal de démonstration.
+            "bignews" -> game.controller?.session?.context?.let { ctx -> fr.president.engine.stats.BigNewsService(ctx).publish(arg, "Les Bleus, champions du monde !", "Des millions de personnes dans les rues : le pays entier fait la fête.", fr.president.engine.readout.Tone.GOOD); game.mainScreen?.refresh() }
             // answer:n : répond au dernier message en attente avec sa n-ième option.
             "answer" -> game.controller?.session?.let { s -> s.state.inbox.messages.lastOrNull { it.awaitingAnswer }?.let { m -> s.answer(m.id, m.options[arg.toInt()].id); game.mainScreen?.refresh() } }
             "quit" -> Gdx.app.exit()
@@ -118,6 +133,7 @@ class DevScriptDriver(private val game: PresidentGame, script: String) : Applica
     }
 
     private fun findButton(actor: com.badlogic.gdx.scenes.scene2d.Actor, text: String): com.badlogic.gdx.scenes.scene2d.ui.TextButton? {
+        if (!actor.isVisible) return null
         if (actor is com.badlogic.gdx.scenes.scene2d.ui.TextButton && actor.text.toString().contains(text)) return actor
         if (actor is com.badlogic.gdx.scenes.scene2d.Group) actor.children.forEach { c -> findButton(c, text)?.let { return it } }
         return null

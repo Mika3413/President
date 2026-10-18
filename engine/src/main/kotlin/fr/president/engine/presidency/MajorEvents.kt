@@ -215,6 +215,8 @@ class MajorEventsService(private val ctx: SimulationContext) {
             ctx.effects.trigger(EffectSpec("opinion.national", VICTORY_JOY), null, emptyMap(), "major:${t.id}")
             ctx.effects.trigger(EffectSpec("economy.consumerConfidence", 0.03), null, emptyMap(), "major:${t.id}")
             JournalService(ctx).add("Société", "Victoire : ${t.label}", Tone.GOOD)
+            fr.president.engine.stats.BigNewsService(ctx).publish("TROPHY", if (t.olympics) "${t.label} : moisson historique !" else "${t.team.replaceFirstChar { it.uppercase() }}, champions !",
+                "Des millions de personnes dans les rues : le pays entier fait la fête.", Tone.GOOD)
             state.champions[t.id] = ctx.now.plusDays(CHAMPIONS_WINDOW)
         } else {
             ctx.notifications.news(NotificationCategory.POLITICS, "${t.label} : ${t.team} en ${t.stages[s.stage].lowercase()}", null, world = false)

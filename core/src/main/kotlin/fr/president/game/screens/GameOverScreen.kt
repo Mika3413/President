@@ -13,7 +13,7 @@ import fr.president.game.ui.Theme
 import fr.president.game.ui.Ui
 
 /** Fin de partie : le président a perdu l'élection. Il ne devient pas chef de l'opposition. */
-class GameOverScreen(ui: Ui, session: GameSession, uiScale: Float, onReplay: (() -> Unit)? = null, onNewGame: () -> Unit) : ScreenAdapter() {
+class GameOverScreen(ui: Ui, session: GameSession, uiScale: Float, onReplay: (() -> Unit)? = null, onBook: (() -> Unit)? = null, onNewGame: () -> Unit) : ScreenAdapter() {
     private val stage = Stage(ScreenViewport().apply { unitsPerPixel = 1f / uiScale })
 
     init {
@@ -37,6 +37,7 @@ class GameOverScreen(ui: Ui, session: GameSession, uiScale: Float, onReplay: (()
             "${if (l.points >= 0) "▲" else "▼"} ${l.label} : ${l.detail}"
         }, "small", Theme.textMuted, wrap = true)).width(WIDTH).row()
         val buttons = Table().apply { defaults().padRight(8f) }
+        if (onBook != null) buttons.add(ui.button("▤ Le livre de votre présidence", "accent") { onBook() })
         if (onReplay != null && s.stats.replay.size > 1) buttons.add(ui.button("▶ Revoir le mandat") { onReplay() })
         buttons.add(ui.button("Nouvelle partie", "accent") { onNewGame() })
         t.add(buttons).padTop(20f)

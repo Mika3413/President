@@ -57,6 +57,9 @@ class EventLauncher(private val ctx: SimulationContext) {
         }
         val agenda = fr.president.engine.session.AgendaService(ctx)
         agenda.attendSummit(def.id, headline)
+        // Les drames nationaux interrompent les programmes : flash spécial.
+        FLASH_EVENTS[def.id]?.let { picture -> if (def.scope != EventScope.FOREIGN_COUNTRY)
+            fr.president.engine.stats.BigNewsService(ctx).publish(picture, headline, substitute(def.notificationText, vars), fr.president.engine.readout.Tone.BAD, flash = true) }
         if (urgency == Urgency.URGENT && def.scope != EventScope.FOREIGN_COUNTRY) agenda.crisisWhileAway(headline)
         if (urgency != Urgency.INFO || def.message == null) {
             val text = substitute(def.notificationText, vars) + (level?.let { " Ampleur : ${it.second.label}." } ?: "")
@@ -180,6 +183,7 @@ class EventLauncher(private val ctx: SimulationContext) {
     }
 
     companion object {
+        private val FLASH_EVENTS = mapOf("terror_attack" to "ATTACK", "embassy_attack" to "ATTACK", "nuclear_plant_leak" to "DISASTER", "urban_riots" to "RIOT", "nuclear_incident" to "DISASTER")
         private const val EXCEPTIONAL = 2.5
         private const val MINOR = 0.6
         private val VAR = Regex("""\{([a-zA-Z_]+)\}""")

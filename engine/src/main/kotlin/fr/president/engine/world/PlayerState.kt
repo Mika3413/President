@@ -37,4 +37,8 @@ class PlayerState(
     val unlockedScreens: MutableSet<String> = mutableSetOf(),
     /** Écrans ouverts par le temps mais pas encore visités (pastille « Nouveau »). */
     val newScreens: MutableSet<String> = mutableSetOf(),
+    /** Dernier grand moment montré en plein écran. */
+    var bigNewsSeen: Int = 0,
+    /** Soirée électorale déjà montrée (nombre de présidentielles vues). */
+    var electionNightsSeen: Int = 0,
 )

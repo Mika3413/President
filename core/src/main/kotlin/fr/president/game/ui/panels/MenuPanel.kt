@@ -32,6 +32,7 @@ class MenuPanel(ui: Ui, private val nav: Navigator, onClose: () -> Unit) : Panel
             Entry("⚠", "Crises et risques", "Risques à 30 jours, prévention, confinement, couvre-feu, ORSEC...", Theme.warning, PanelId.CRISIS) { session.risks.unattended().size },
             Entry("⚑", "La rue et l'armée", "Manifestations en direct, grèves, émeutes, loyauté de l'armée.", Theme.bad, PanelId.UNREST) { session.state.unrest.movements.size },
             Entry("▤", "Presse", "Unes du jour, sondages, climat médiatique.", Theme.catPress, PanelId.PRESS),
+            Entry("▤", "Le livre de votre présidence", "Un chapitre par année : ce qui l'a marquée, ses chiffres, puis le jugement de l'Histoire.", Theme.catPress, null, key = "BOOK", action = { session.state.player.newScreens -= "BOOK"; nav.openBook() }),
             Entry("▶", "Relecture du mandat", "Votre mandat en accéléré : la carte semaine après semaine, les chiffres, les grands titres.", Theme.catStats, null, key = "REPLAY", action = { session.state.player.newScreens -= "REPLAY"; nav.startReplay() }),
         )),
         Section("Lois et gouvernement", listOf(

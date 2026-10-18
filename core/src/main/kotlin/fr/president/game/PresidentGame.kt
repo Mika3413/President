@@ -165,6 +165,16 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
         val map = mapData?.takeIf { it.playerCountryId == session.state.player.countryId } ?: MapData(db, skin.white, session.state.player.countryId).also { mapData = it }
         val screen = MainScreen(c, ui, map, scale, { Gdx.app.postRunnable { safely("fin de partie") { showGameOver(session) } } },
             onDisplayChange = { Gdx.app.postRunnable { safely("réglages d'affichage") { applyDisplaySettings() } } },
+            onBook = {
+                Gdx.app.postRunnable {
+                    safely("livre") {
+                        c.save()
+                        switchTo(fr.president.game.screens.HistoryBookScreen(ui, session, scale) {
+                            Gdx.app.postRunnable { safely("livre") { val now = session.state.time; showSession(c, Simulator.Report(now, now, 0, 0), resumed = false) } }
+                        })
+                    }
+                }
+            },
             onReplay = {
                 Gdx.app.postRunnable {
                     safely("relecture") {
@@ -215,6 +225,8 @@ class PresidentGame(private val platform: PlatformServices) : Game() {
         controller = null
         switchTo(GameOverScreen(ui, session, scale, onReplay = {
             Gdx.app.postRunnable { safely("relecture") { showReplay(session) { showGameOver(session) } } }
+        }, onBook = {
+            Gdx.app.postRunnable { safely("livre") { switchTo(fr.president.game.screens.HistoryBookScreen(ui, session, scale) { Gdx.app.postRunnable { safely("livre") { showGameOver(session) } } }) } }
         }) {
             Gdx.app.postRunnable {
                 safely("nouvelle partie") {
