@@ -111,6 +111,7 @@ final class Renderer {
             glow = Bitmap.createBitmap(128, 128, Bitmap.Config.ARGB_8888);
             Canvas c = new Canvas(glow);
             Paint g = new Paint(Paint.ANTI_ALIAS_FLAG);
+            g.setAlpha(255);
             g.setShader(new RadialGradient(64, 64, 64, new int[]{0xFFFFFFFF, 0x99FFFFFF, 0x30FFFFFF, 0x00FFFFFF}, new float[]{0, 0.18f, 0.5f, 1}, Shader.TileMode.CLAMP));
             c.drawCircle(64, 64, 64, g);
         }
@@ -121,25 +122,30 @@ final class Renderer {
         ballShadow = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(ballShadow);
         Paint g = new Paint(Paint.ANTI_ALIAS_FLAG);
+        g.setAlpha(255);
         g.setShader(new RadialGradient(r, r, r, new int[]{0xB0000000, 0x70000000, 0x00000000}, new float[]{0, 0.45f, 1}, Shader.TileMode.CLAMP));
         c.drawCircle(r, r, r, g);
         // corps : verre bleu nuit
         ballBody = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
         c = new Canvas(ballBody);
         g = new Paint(Paint.ANTI_ALIAS_FLAG);
+        g.setAlpha(255);
         g.setShader(new RadialGradient(r * 0.72f, r * 0.68f, r * 1.25f,
                 new int[]{0xFF8FD3FF, 0xFF2C7BE0, 0xFF143C94, 0xFF07153D}, new float[]{0, 0.3f, 0.72f, 1}, Shader.TileMode.CLAMP));
         c.drawCircle(r, r, r - 0.5f, g);
         // reflet interne (caustique) en bas à droite
+        g.setAlpha(255);
         g.setShader(new RadialGradient(r * 1.32f, r * 1.38f, r * 0.55f, new int[]{0x7080E8FF, 0x0080E8FF}, null, Shader.TileMode.CLAMP));
         c.drawCircle(r, r, r - 0.5f, g);
         // surcouche : ombrage + reflets
         ballOverlay = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
         c = new Canvas(ballOverlay);
         g = new Paint(Paint.ANTI_ALIAS_FLAG);
+        g.setAlpha(255);
         g.setShader(new RadialGradient(r * 0.75f, r * 0.72f, r * 1.3f, new int[]{0x00000000, 0x00000000, 0x55000820, 0xC0000510}, new float[]{0, 0.45f, 0.78f, 1}, Shader.TileMode.CLAMP));
         c.drawCircle(r, r, r - 0.5f, g);
         // liseré lumineux
+        g.setAlpha(255);
         g.setShader(null);
         g.setStyle(Paint.Style.STROKE);
         g.setStrokeWidth(r * 0.06f);
@@ -148,11 +154,13 @@ final class Renderer {
         c.drawArc(o, 10, 80, false, g);
         g.setStyle(Paint.Style.FILL);
         // reflet spéculaire principal
+        g.setAlpha(255);
         g.setShader(new RadialGradient(r * 0.62f, r * 0.55f, r * 0.42f, new int[]{0xF0FFFFFF, 0x60FFFFFF, 0x00FFFFFF}, new float[]{0, 0.4f, 1}, Shader.TileMode.CLAMP));
         c.save();
         c.scale(1f, 0.75f, r * 0.62f, r * 0.55f);
         c.drawCircle(r * 0.62f, r * 0.55f, r * 0.42f, g);
         c.restore();
+        g.setAlpha(255);
         g.setShader(null);
         g.setColor(0xFFFFFFFF);
         c.drawCircle(r * 0.56f, r * 0.5f, r * 0.08f, g);
@@ -254,14 +262,17 @@ final class Renderer {
 
     private static void paintBackground(Canvas c, int w, int h, Theme th, Random r) {
         Paint g = new Paint(Paint.ANTI_ALIAS_FLAG);
+        g.setAlpha(255);
         g.setShader(new LinearGradient(0, 0, w * 0.3f, h, th.bgTop, th.bgBottom, Shader.TileMode.CLAMP));
         c.drawRect(0, 0, w, h, g);
         for (int i = 0; i < 22; i++) {
             float x = r.nextFloat() * w, y = r.nextFloat() * h, rad = w * (0.04f + r.nextFloat() * 0.16f);
             int a = 18 + r.nextInt(30);
+            g.setAlpha(255);
             g.setShader(new RadialGradient(x, y, rad, new int[]{alpha(th.bokeh, a), alpha(th.bokeh, a / 2), alpha(th.bokeh, 0)}, new float[]{0, 0.7f, 1}, Shader.TileMode.CLAMP));
             c.drawCircle(x, y, rad, g);
         }
+        g.setAlpha(255);
         g.setShader(new RadialGradient(w / 2f, h * 0.45f, h * 0.75f, new int[]{0x00000000, 0x00000000, 0xA0000000}, new float[]{0, 0.55f, 1}, Shader.TileMode.CLAMP));
         c.drawRect(0, 0, w, h, g);
     }
@@ -310,9 +321,11 @@ final class Renderer {
         g.setMaskFilter(new BlurMaskFilter(cs * 0.6f, BlurMaskFilter.Blur.NORMAL));
         c.drawRoundRect(frame.left + cs * 0.12f, frame.top + cs * 0.35f, frame.right + cs * 0.12f, frame.bottom + cs * 0.35f, cs * 0.5f, cs * 0.5f, g);
         g.setMaskFilter(null);
+        g.setAlpha(255);
         g.setShader(new LinearGradient(frame.left, frame.top, frame.right, frame.bottom,
                 new int[]{th.frameLight, mix(th.frameLight, th.frameDark, 0.5f), th.frameDark}, null, Shader.TileMode.CLAMP));
         c.drawRoundRect(frame, cs * 0.45f, cs * 0.45f, g);
+        g.setAlpha(255);
         g.setShader(null);
         // veinage / brossage du cadre
         c.save();
@@ -337,9 +350,11 @@ final class Renderer {
         // sol
         c.save();
         c.clipRect(bd);
+        g.setAlpha(255);
         g.setShader(new RadialGradient(bd.left + bd.width() * 0.3f, bd.top + bd.height() * 0.25f, bd.height() * 0.95f,
                 th.floorLight, th.floorDark, Shader.TileMode.CLAMP));
         c.drawRect(bd, g);
+        g.setAlpha(255);
         g.setShader(null);
         for (int i = 0; i < 3500; i++) {
             g.setColor(alpha(th.floorSpeck, 6 + r.nextInt(26)));
@@ -382,8 +397,10 @@ final class Renderer {
         }
         for (int[] s : lv.spikes) {
             rf.set(X(s[0]) + cs * 0.05f, Y(s[1]) + cs * 0.05f, X(s[0] + 1) - cs * 0.05f, Y(s[1] + 1) - cs * 0.05f);
+            g.setAlpha(255);
             g.setShader(new LinearGradient(rf.left, rf.top, rf.right, rf.bottom, 0xFF9AA3AD, 0xFF3C434C, Shader.TileMode.CLAMP));
             c.drawRoundRect(rf, cs * 0.1f, cs * 0.1f, g);
+            g.setAlpha(255);
             g.setShader(null);
             g.setColor(0xFF15181C);
             for (int k = 0; k < 4; k++) {
@@ -423,8 +440,10 @@ final class Renderer {
         g.setMaskFilter(null);
         g.setStyle(Paint.Style.FILL);
         // vignettage
+        g.setAlpha(255);
         g.setShader(new RadialGradient(bd.centerX(), bd.centerY(), bd.height() * 0.7f, new int[]{0x00000000, 0x00000000, 0x70000000}, new float[]{0, 0.6f, 1}, Shader.TileMode.CLAMP));
         c.drawRect(bd, g);
+        g.setAlpha(255);
         g.setShader(null);
         c.restore();
 
@@ -468,8 +487,10 @@ final class Renderer {
     private void drawIce(Canvas c, int col, int row, Random r) {
         Paint g = new Paint(Paint.ANTI_ALIAS_FLAG);
         float x = X(col), y = Y(row);
+        g.setAlpha(255);
         g.setShader(new LinearGradient(x, y, x + cs, y + cs, 0xA0D8F4FF, 0x8070B8E8, Shader.TileMode.CLAMP));
         c.drawRect(x, y, x + cs, y + cs, g);
+        g.setAlpha(255);
         g.setShader(null);
         g.setStyle(Paint.Style.STROKE);
         g.setStrokeWidth(Math.max(1f, cs * 0.012f));
@@ -498,8 +519,10 @@ final class Renderer {
 
     private void drawTeleBase(Canvas c, float[] t, Paint g) {
         float x = X(t[0]), y = Y(t[1]), rr = cs * 0.46f;
+        g.setAlpha(255);
         g.setShader(new RadialGradient(x, y, rr, new int[]{0xFF0A0418, 0xFF3A1A7A, 0xFF8A5CFF}, new float[]{0, 0.7f, 1}, Shader.TileMode.CLAMP));
         c.drawCircle(x, y, rr, g);
+        g.setAlpha(255);
         g.setShader(null);
         g.setStyle(Paint.Style.STROKE);
         g.setStrokeWidth(cs * 0.05f);
@@ -513,9 +536,11 @@ final class Renderer {
         if (th.lava) {
             g.setColor(0xFF120806);
             c.drawCircle(x, y, rr * 1.12f, g);
+            g.setAlpha(255);
             g.setShader(new RadialGradient(x - rr * 0.15f, y - rr * 0.15f, rr * 1.05f,
                     new int[]{0xFFFFF4A8, 0xFFFFB02E, 0xFFE0480E, 0xFF5A1204}, new float[]{0, 0.35f, 0.75f, 1}, Shader.TileMode.CLAMP));
             c.drawCircle(x, y, rr, g);
+            g.setAlpha(255);
             g.setShader(null);
             g.setStyle(Paint.Style.STROKE);
             g.setStrokeWidth(cs * 0.06f);
@@ -525,12 +550,15 @@ final class Renderer {
             return;
         }
         // lèvre
+        g.setAlpha(255);
         g.setShader(new RadialGradient(x, y, rr * 1.25f, new int[]{0x00000000, 0x00000000, 0x60000000, 0x00000000}, new float[]{0, 0.7f, 0.82f, 1}, Shader.TileMode.CLAMP));
         c.drawCircle(x, y, rr * 1.25f, g);
         // profondeur : la paroi du fond (bas-droite) reçoit la lumière
+        g.setAlpha(255);
         g.setShader(new RadialGradient(x - rr * 0.25f, y - rr * 0.3f, rr * 1.3f,
                 new int[]{0xFF000000, 0xFF020303, mix(0xFF000000, th.floorDark, 0.9f)}, new float[]{0, 0.6f, 1}, Shader.TileMode.CLAMP));
         c.drawCircle(x, y, rr, g);
+        g.setAlpha(255);
         g.setShader(null);
         g.setStyle(Paint.Style.STROKE);
         g.setStrokeWidth(cs * 0.035f);
@@ -545,15 +573,20 @@ final class Renderer {
     private void drawGoalBase(Canvas c, Paint g) {
         float x = X(lv.gx), y = Y(lv.gy);
         float ro = cs * 0.62f, ri = cs * 0.46f;
+        g.setAlpha(255);
         g.setShader(new RadialGradient(x, y, cs * 1.4f, new int[]{alpha(th.accent, 90), alpha(th.accent, 0)}, null, Shader.TileMode.CLAMP));
         c.drawCircle(x, y, cs * 1.4f, g);
+        g.setAlpha(255);
         g.setShader(null);
         g.setColor(0x90000000);
         c.drawCircle(x + cs * 0.06f, y + cs * 0.1f, ro, g);
+        g.setAlpha(255);
         g.setShader(new SweepGradient(x, y, new int[]{th.accent, 0xFFFFFFFF, mix(th.accent, 0xFF000000, 0.5f), 0xFFFFFFFF, th.accent, mix(th.accent, 0xFF000000, 0.4f), th.accent}, null));
         c.drawCircle(x, y, ro, g);
+        g.setAlpha(255);
         g.setShader(new RadialGradient(x - ri * 0.25f, y - ri * 0.3f, ri * 1.3f, new int[]{0xFF000000, 0xFF000000, 0xFF101418}, new float[]{0, 0.6f, 1}, Shader.TileMode.CLAMP));
         c.drawCircle(x, y, ri, g);
+        g.setAlpha(255);
         g.setShader(null);
         g.setStyle(Paint.Style.STROKE);
         g.setStrokeWidth(cs * 0.03f);
@@ -593,8 +626,10 @@ final class Renderer {
         c.restore();
         // dessus
         RectF bd = new RectF(ox, oy, ox + Level.COLS * cs, oy + Level.ROWS * cs);
+        g.setAlpha(255);
         g.setShader(new LinearGradient(bd.left, bd.top, bd.right, bd.bottom, th.wallTopLight, th.wallTopDark, Shader.TileMode.CLAMP));
         c.drawPath(all, g);
+        g.setAlpha(255);
         g.setShader(null);
         // texture
         c.save();
@@ -888,8 +923,10 @@ final class Renderer {
             c.rotate((float) Math.sin(t * 2 + i) * 12f);
             float sc = cs * 0.32f;
             c.scale(sc * (0.85f + 0.15f * (float) Math.cos(t * 2.4f + i)), sc);
+            p.setAlpha(255);
             p.setShader(starShader);
             c.drawPath(starPath, p);
+            p.setAlpha(255);
             p.setShader(null);
             p.setStyle(Paint.Style.STROKE);
             p.setStrokeWidth(0.08f);
@@ -917,8 +954,10 @@ final class Renderer {
             c.save();
             c.translate(x, y);
             c.scale(r, r);
+            p.setAlpha(255);
             p.setShader(bumperShader);
             c.drawCircle(0, 0, 1, p);
+            p.setAlpha(255);
             p.setShader(null);
             p.setStyle(Paint.Style.STROKE);
             p.setStrokeWidth(0.12f);
@@ -941,8 +980,10 @@ final class Renderer {
             c.drawRoundRect(l + cs * 0.06f, tp + cs * 0.12f, rr + cs * 0.12f, b + cs * 0.18f, rad, rad, p);
             p.setColor(th.wallSide);
             c.drawRoundRect(l, tp + cs * 0.12f, rr, b + cs * 0.12f, rad, rad, p);
+            p.setAlpha(255);
             p.setShader(wallTopShader);
             c.drawRoundRect(l, tp, rr, b, rad, rad, p);
+            p.setAlpha(255);
             p.setShader(null);
             // bandes de danger
             c.save();
@@ -993,8 +1034,10 @@ final class Renderer {
             for (int k = 0; k < ro.arms; k++) {
                 c.save();
                 c.scale(1, cs * 0.1f);
+                p.setAlpha(255);
                 p.setShader(bladeShader);
                 c.drawRoundRect(0, -1, len, 1, cs * 0.1f, 1, p);
+                p.setAlpha(255);
                 p.setShader(null);
                 c.restore();
                 p.setColor(0xFFFF3B3B);
@@ -1007,8 +1050,10 @@ final class Renderer {
             c.save();
             c.translate(x, y);
             c.scale(cs * 0.3f, cs * 0.3f);
+            p.setAlpha(255);
             p.setShader(hubShader);
             c.drawCircle(0, 0, 1, p);
+            p.setAlpha(255);
             p.setShader(null);
             p.setColor(0xFF30353C);
             c.drawCircle(0, 0, 0.35f, p);
@@ -1054,8 +1099,10 @@ final class Renderer {
         c.save();
         c.translate(x, y);
         c.scale(cs * 0.2f, cs * 0.2f);
+        p.setAlpha(255);
         p.setShader(emitterShader);
         c.drawCircle(0, 0, 1, p);
+        p.setAlpha(255);
         p.setShader(null);
         p.setColor(on ? 0xFFFF4060 : 0xFF501018);
         c.drawCircle(0, 0, 0.45f, p);

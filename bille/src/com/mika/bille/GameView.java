@@ -650,6 +650,7 @@ public final class GameView extends SurfaceView implements SurfaceHolder.Callbac
             pill(c, "Calibré : cette position est maintenant « à plat »", W / 2f, H * 0.9f, a);
         }
         if (fade > 0) {
+            fp.setAlpha(255);
             fp.setShader(null);
             fp.setColor(Renderer.alpha(0xFF000000, (int) (255 * fade)));
             c.drawRect(0, 0, W, H, fp);
@@ -674,12 +675,15 @@ public final class GameView extends SurfaceView implements SurfaceHolder.Callbac
         tp.setTextAlign(Paint.Align.CENTER);
         tp.setTextSize(W * 0.25f);
         tp.setLetterSpacing(0.04f);
+        tp.setAlpha(255);
         tp.setShader(null);
         tp.setColor(0x90000000);
         c.drawText("BILLE", cx + W * 0.01f, ty + W * 0.018f, tp);
         float bounce = (float) Math.sin(menuT * 2) * W * 0.006f;
+        tp.setAlpha(255);
         tp.setShader(new LinearGradient(0, ty - W * 0.2f, 0, ty, new int[]{0xFFFFF7D6, 0xFFFFD15C, 0xFFE8890C}, null, Shader.TileMode.CLAMP));
         c.drawText("BILLE", cx, ty + bounce, tp);
+        tp.setAlpha(255);
         tp.setShader(null);
         tp.setTypeface(condensed);
         tp.setTextSize(W * 0.075f);
@@ -750,15 +754,19 @@ public final class GameView extends SurfaceView implements SurfaceHolder.Callbac
                 boolean pressed = pressedId == b.id;
                 float ins = pressed ? tile * 0.04f : 0;
                 rf.set(tx + ins, ty + ins, tx + tile - ins, ty + tile - ins);
+                fp.setAlpha(255);
                 fp.setShader(null);
                 fp.setColor(0x70000000);
                 c.drawRoundRect(rf.left + tile * 0.03f, rf.top + tile * 0.06f, rf.right + tile * 0.03f, rf.bottom + tile * 0.06f, tile * 0.18f, tile * 0.18f, fp);
                 if (open) {
+                    fp.setAlpha(255);
                     fp.setShader(new LinearGradient(rf.left, rf.top, rf.right, rf.bottom, th.floorLight, th.floorDark, Shader.TileMode.CLAMP));
                 } else {
+                    fp.setAlpha(255);
                     fp.setShader(new LinearGradient(rf.left, rf.top, rf.right, rf.bottom, 0xFF2A2F38, 0xFF14171C, Shader.TileMode.CLAMP));
                 }
                 c.drawRoundRect(rf, tile * 0.18f, tile * 0.18f, fp);
+                fp.setAlpha(255);
                 fp.setShader(null);
                 fp.setStyle(Paint.Style.STROKE);
                 fp.setStrokeWidth(W * 0.005f);
@@ -812,6 +820,7 @@ public final class GameView extends SurfaceView implements SurfaceHolder.Callbac
         }
         // niveau à bulle
         float bx = W / 2f, by = Math.min(H - W * 0.18f, y + W * 0.16f), br = W * 0.11f;
+        fp.setAlpha(255);
         fp.setShader(null);
         fp.setColor(0x40000000);
         c.drawCircle(bx, by, br, fp);
@@ -831,6 +840,7 @@ public final class GameView extends SurfaceView implements SurfaceHolder.Callbac
         float m = W * 0.06f;
         float s = W * 0.12f;
         Btn b = addHit(B_BACK, m * 0.6f, W * 0.08f, s, s);
+        fp.setAlpha(255);
         fp.setShader(null);
         fp.setColor(pressedId == B_BACK ? 0x50FFFFFF : 0x28FFFFFF);
         c.drawCircle(b.r.centerX(), b.r.centerY(), s / 2, fp);
@@ -860,8 +870,10 @@ public final class GameView extends SurfaceView implements SurfaceHolder.Callbac
         rd.draw(c, w, overlay == OV_PAUSE ? 0 : dt);
         c.restore();
         if (redFlash > 0) {
+            fp.setAlpha(255);
             fp.setShader(new RadialGradient(W / 2f, H / 2f, H * 0.7f, new int[]{0x00FF0000, Renderer.alpha(0xFFFF2020, (int) (150 * redFlash))}, null, Shader.TileMode.CLAMP));
             c.drawRect(0, 0, W, H, fp);
+            fp.setAlpha(255);
             fp.setShader(null);
         }
         drawHud(c, w);
@@ -886,7 +898,7 @@ public final class GameView extends SurfaceView implements SurfaceHolder.Callbac
         }
         if (w.t < 7f && overlay == OV_NONE && w.t > 0.8f) {
             float a = Math.min(1f, (w.t - 0.8f) * 3) * Math.min(1f, (7f - w.t) * 2);
-            pill(c, TIPS[Math.min(levelIdx, TIPS.length - 1)], W / 2f, rd.Y(Level.ROWS) - W * 0.1f, a);
+            pill(c, TIPS[Math.min(levelIdx, TIPS.length - 1)], W / 2f, Math.max(hudHeight() + W * 0.02f, (hudHeight() + rd.oy - rd.cs * 0.34f) / 2f), a);
         }
 
         if (overlay == OV_PAUSE) drawPause(c);
@@ -902,6 +914,7 @@ public final class GameView extends SurfaceView implements SurfaceHolder.Callbac
             Btn b = addHit(B_PAUSE, pcx - pr * 1.4f, pcy - pr * 1.4f, pr * 2.8f, pr * 2.8f);
             b.enabled = w.state != World.WON;
         }
+        fp.setAlpha(255);
         fp.setShader(null);
         fp.setColor(pressedId == B_PAUSE ? 0x60FFFFFF : 0x30FFFFFF);
         c.drawCircle(pcx, pcy, pr, fp);
@@ -940,6 +953,7 @@ public final class GameView extends SurfaceView implements SurfaceHolder.Callbac
     }
 
     private void drawPause(Canvas c) {
+        fp.setAlpha(255);
         fp.setShader(null);
         fp.setColor(0xA0000000);
         c.drawRect(0, 0, W, H, fp);
@@ -965,6 +979,7 @@ public final class GameView extends SurfaceView implements SurfaceHolder.Callbac
 
     private void drawWin(Canvas c, World w) {
         float k = Math.min(1f, overlayT * 3f);
+        fp.setAlpha(255);
         fp.setShader(null);
         fp.setColor(Renderer.alpha(0xFF000000, (int) (150 * k)));
         c.drawRect(0, 0, W, H, fp);
@@ -975,8 +990,10 @@ public final class GameView extends SurfaceView implements SurfaceHolder.Callbac
         tp.setTypeface(black);
         tp.setTextAlign(Paint.Align.CENTER);
         tp.setTextSize(W * 0.1f);
+        tp.setAlpha(255);
         tp.setShader(new LinearGradient(0, py + W * 0.06f, 0, py + W * 0.16f, 0xFFFFF7D6, 0xFFFFC23A, Shader.TileMode.CLAMP));
         c.drawText(last ? "Victoire !" : "Bravo !", W / 2f, py + W * 0.16f, tp);
+        tp.setAlpha(255);
         tp.setShader(null);
         // étoiles
         float sy = py + W * 0.33f;
@@ -1020,11 +1037,14 @@ public final class GameView extends SurfaceView implements SurfaceHolder.Callbac
 
     private void panel(Canvas c, float x, float y, float w, float h) {
         float r = W * 0.06f;
+        fp.setAlpha(255);
         fp.setShader(null);
         fp.setColor(0x80000000);
         c.drawRoundRect(x + W * 0.01f, y + W * 0.025f, x + w + W * 0.01f, y + h + W * 0.025f, r, r, fp);
+        fp.setAlpha(255);
         fp.setShader(new LinearGradient(x, y, x, y + h, 0xF2222B3D, 0xF20C1018, Shader.TileMode.CLAMP));
         c.drawRoundRect(x, y, x + w, y + h, r, r, fp);
+        fp.setAlpha(255);
         fp.setShader(null);
         fp.setStyle(Paint.Style.STROKE);
         fp.setStrokeWidth(W * 0.004f);
@@ -1057,12 +1077,15 @@ public final class GameView extends SurfaceView implements SurfaceHolder.Callbac
         float ins = pressed ? h * 0.05f : 0;
         rf.set(x + ins, y + ins, x + w - ins, y + h - ins);
         float r = h / 2;
+        fp.setAlpha(255);
         fp.setShader(null);
         fp.setColor(0x60000000);
         c.drawRoundRect(rf.left, rf.top + h * 0.08f, rf.right, rf.bottom + h * 0.08f, r, r, fp);
         if (primary) {
+            fp.setAlpha(255);
             fp.setShader(new LinearGradient(0, rf.top, 0, rf.bottom, pressed ? 0xFFFFE08A : 0xFFFFE699, pressed ? 0xFFE08A10 : 0xFFF2A21F, Shader.TileMode.CLAMP));
             c.drawRoundRect(rf, r, r, fp);
+            fp.setAlpha(255);
             fp.setShader(null);
             fp.setColor(0x60FFFFFF);
             c.drawRoundRect(rf.left + h * 0.12f, rf.top + h * 0.06f, rf.right - h * 0.12f, rf.top + h * 0.38f, r, r, fp);
@@ -1092,6 +1115,7 @@ public final class GameView extends SurfaceView implements SurfaceHolder.Callbac
         float tw = tp.measureText(text);
         float h = tp.getTextSize() * 2.2f;
         rf.set(cx - tw / 2 - h * 0.6f, cy - h / 2, cx + tw / 2 + h * 0.6f, cy + h / 2);
+        fp.setAlpha(255);
         fp.setShader(null);
         fp.setColor(Renderer.alpha(0xE0101420, (int) (225 * a)));
         c.drawRoundRect(rf, h / 2, h / 2, fp);
@@ -1109,9 +1133,11 @@ public final class GameView extends SurfaceView implements SurfaceHolder.Callbac
         c.translate(x, y);
         c.scale(size, size);
         if (filled) {
+            fp.setAlpha(255);
             fp.setShader(starUiShader);
             fp.setAlpha((int) (255 * a));
             c.drawPath(star, fp);
+            fp.setAlpha(255);
             fp.setShader(null);
             fp.setStyle(Paint.Style.STROKE);
             fp.setStrokeWidth(0.1f);
@@ -1120,6 +1146,7 @@ public final class GameView extends SurfaceView implements SurfaceHolder.Callbac
             c.drawPath(star, fp);
             fp.setStyle(Paint.Style.FILL);
         } else {
+            fp.setAlpha(255);
             fp.setShader(null);
             fp.setColor(0x40000000);
             c.drawPath(star, fp);
@@ -1134,6 +1161,7 @@ public final class GameView extends SurfaceView implements SurfaceHolder.Callbac
     }
 
     private void drawLock(Canvas c, float x, float y, float s) {
+        fp.setAlpha(255);
         fp.setShader(null);
         fp.setStyle(Paint.Style.STROKE);
         fp.setStrokeWidth(s * 0.22f);

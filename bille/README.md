@@ -5,6 +5,9 @@ en évitant trous, pics, lasers, rotors et murs mobiles.
 
 **APK prêt à installer : [`BilleOdyssee.apk`](BilleOdyssee.apk)** (Android 7.0 et plus).
 
+![Aperçu](captures/apercu.png)
+![Interface](captures/interface.png)
+
 ## Contenu
 
 - 12 niveaux répartis en 3 mondes, chacun avec son ambiance :
