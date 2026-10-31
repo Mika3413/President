@@ -35,4 +35,5 @@ if [ ! -f release.keystore ]; then
 fi
 apksigner sign --ks release.keystore --ks-pass pass:bille123 --key-pass pass:bille123 --ks-key-alias bille \
   --out BilleOdyssee.apk build/aligned.apk
+rm -f BilleOdyssee.apk.idsig
 apksigner verify BilleOdyssee.apk && echo "✓ BilleOdyssee.apk ($(du -h BilleOdyssee.apk | cut -f1))"
